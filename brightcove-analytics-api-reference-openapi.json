@@ -1,0 +1,599 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Brightcove Analytics API Reference",
+        "description": "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"https:\/\/support.brightcove.com\/node\/17910\" target=\"_blank\">API Testing Tools<\/a>.",
+        "termsOfService": "http:\/\/exmple.com\/license\/"
+    },
+    "servers": [
+        "http:\/\/analytics.api.brightcove.com\/v1"
+    ],
+    "paths": {
+        "\/engagement\/accounts\/{account_id}": {
+            "get": {
+                "summary": "Get Account Engagement",
+                "description": "Get a summary report of engagement for the account. Note:  Engagement reports are only available for periods within the past 32 days. Requests outside that range will return an error The only parameters supported for Engagement reports are from and to Engagement reports are available for single accounts only - reports on multiple accounts will not work  ",
+                "operationId": "GetAccountEngagement",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "path",
+                        "description": "a Video Cloud account ID "
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/timeline"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/engagement\/accounts\/{account_id}\/players\/{player_id}": {
+            "get": {
+                "summary": "Get Player Engagement",
+                "description": "Get a summary report of engagement for a player. Note:  Engagement reports are only available for periods within the past 32 days. Requests outside that range will return an error The only parameters supported for Engagement reports are from and to Engagement reports are available for single accounts only - reports on multiple accounts will not work  ",
+                "operationId": "GetPlayerEngagement",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "path",
+                        "description": "a Video Cloud account ID "
+                    },
+                    {
+                        "name": "player_id",
+                        "in": "path",
+                        "description": "a Video Cloud player ID "
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/timeline"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/engagement\/accounts\/{account_id}\/videos\/{video_id}": {
+            "get": {
+                "summary": "Get Video Engagement",
+                "description": "Get a summary report of engagement for a video. Note:  Engagement reports are only available for periods within the past 32 days. Requests outside that range will return an error The only parameters supported for Engagement reports are from and to Engagement reports are available for single accounts only - reports on multiple accounts will not work  ",
+                "operationId": "GetVideoEngagement",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "path",
+                        "description": "a Video Cloud account ID "
+                    },
+                    {
+                        "name": "video_id",
+                        "in": "path",
+                        "description": "a Video Cloud video ID "
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/timeline"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/data": {
+            "get": {
+                "summary": "Get Analytics Report",
+                "description": "Get an analytics report on one or more dimensions. Note that the fields returned in the response will vary according to the dimension(s) requested and the fields specified in the fields parameter ",
+                "operationId": "GetAnalyticsReport",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "accounts",
+                        "in": "query",
+                        "description": "One or more account ids, separated by commas"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Number of items to return"
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "Number of items to skip"
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Field to sort results by (prefix with `-` for descending order)"
+                    },
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "description": "Fields to return"
+                    },
+                    {
+                        "name": "dimensions",
+                        "in": "query",
+                        "description": "One or more dimensions to report on; see [Multiple Dimensions](https:\/\/support.brightcove.com\/overview-analytics-api-v1#metrics) for which combined dimensions are supported"
+                    },
+                    {
+                        "name": "where",
+                        "in": "query",
+                        "description": "one or more 'dimension==value' pairs to filter the results; see [Where Filters](https:\/\/support.brightcove.com\/overview-analytics-api-v1#filterValues) for details"
+                    },
+                    {
+                        "name": "from",
+                        "in": "query",
+                        "description": "Start time for the period covered by the report \u2014 `alltime` or epoch time in milliseconds or a date in the format `yyyy-mm-dd` (such as `2013-09-26`)"
+                    },
+                    {
+                        "name": "to",
+                        "in": "query",
+                        "description": "End time for the period covered by the report \u2014 `now` or epoch time in milliseconds or a date in the format `yyyy-mm-dd` (such as `2013-09-26`)"
+                    },
+                    {
+                        "name": "format",
+                        "in": "query",
+                        "description": "format to return the results in"
+                    },
+                    {
+                        "name": "reconciled",
+                        "in": "query",
+                        "description": "if true, only reconciled data is returned; if false, only realtime data is returned; if not present, both reconciled and realtime data are returned"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/timeline"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/data\/status": {
+            "get": {
+                "summary": "Get Available Date Range",
+                "description": "Get the date range for which reconciled data is available for any Analytics API report. All parameters are allowed, but only account, dimensions, and where affect the result &mdash; all others are ignored. Note that date range for this request must fall within the available date range for the dimensions requested &mdash; the simplest thing to do is to use from=alltime ",
+                "operationId": "GetAvailableDateRange",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "accounts",
+                        "in": "query",
+                        "description": "One or more account ids, separated by commas"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Number of items to return"
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "Number of items to skip"
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Field to sort results by (prefix with `-` for descending order)"
+                    },
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "description": "Fields to return"
+                    },
+                    {
+                        "name": "dimensions",
+                        "in": "query",
+                        "description": "One or more dimensions to report on; see [Multiple Dimensions](https:\/\/support.brightcove.com\/overview-analytics-api-v1#metrics) for which combined dimensions are supported"
+                    },
+                    {
+                        "name": "where",
+                        "in": "query",
+                        "description": "one or more 'dimension==value' pairs to filter the results; see [Where Filters](https:\/\/support.brightcove.com\/overview-analytics-api-v1#filterValues) for details"
+                    },
+                    {
+                        "name": "from",
+                        "in": "query",
+                        "description": "Start time for the period covered by the report \u2014 `alltime` or epoch time in milliseconds or a date in the format `yyyy-mm-dd` (such as `2013-09-26`)"
+                    },
+                    {
+                        "name": "to",
+                        "in": "query",
+                        "description": "End time for the period covered by the report \u2014 `now` or epoch time in milliseconds or a date in the format `yyyy-mm-dd` (such as `2013-09-26`)"
+                    },
+                    {
+                        "name": "format",
+                        "in": "query",
+                        "description": "format to return the results in"
+                    },
+                    {
+                        "name": "reconciled",
+                        "in": "query",
+                        "description": "if true, only reconciled data is returned; if false, only realtime data is returned; if not present, both reconciled and realtime data are returned"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/timeline"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/alltime\/accounts\/{account_id}\/videos\/{video_id}": {
+            "get": {
+                "summary": "Get Alltime Video Views",
+                "description": "returns the total alltime video views for a video ",
+                "operationId": "GetAlltimeVideoViews",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "path",
+                        "description": "a Video Cloud account ID "
+                    },
+                    {
+                        "name": "video_id",
+                        "in": "path",
+                        "description": "a Video Cloud video ID "
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/timeline"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "URL Parameters": {
+                "type": "object",
+                "properties": {
+                    "from": {
+                        "description": "Start time for the period covered by the report &mdash; epoch time in milliseconds or a date in the format yyyy-mm-dd (such as 2013-09-26) ",
+                        "type": "string"
+                    },
+                    "to": {
+                        "description": "End time for the period covered by the report &mdash; epoch time in milliseconds or a date in the format yyyy-mm-dd (such as 2013-09-26)",
+                        "type": "string"
+                    },
+                    "accounts": {
+                        "description": "one or more Video Cloud account IDs separated by commas ",
+                        "type": "string"
+                    },
+                    "limit": {
+                        "description": "number of videos to return ",
+                        "type": "integer"
+                    },
+                    "offset": {
+                        "description": "number of videos to skip in the response ",
+                        "type": "integer"
+                    },
+                    "sort": {
+                        "description": "field to sort results by (for video dimension reports, valid sort fields include the video metadata fields video.name, video.tags, video.reference_id and video.custom_fields - see (Fields and Sort)) ",
+                        "type": "string"
+                    },
+                    "fields": {
+                        "description": "fields to return for items; see Dimensions and Fields for the available fields for each dimension ",
+                        "type": "string"
+                    },
+                    "dimensions": {
+                        "description": "one or more dimensions to report on; see Multiple Dimensions for which combined dimensions are supported ",
+                        "type": "string"
+                    },
+                    "where": {
+                        "description": "one or more dimension==value pairs to filter the results; see Where Filters for details ",
+                        "type": "string"
+                    },
+                    "format": {
+                        "description": "format to return the results in ",
+                        "type": "string"
+                    },
+                    "reconciled": {
+                        "description": "if true, only reconciled data is returned; if false, only realtime data is returned; if not present, both reconciled and realtime data are returned ",
+                        "type": "boolean"
+                    }
+                }
+            },
+            "summary": {
+                "type": "object",
+                "properties": {
+                    "ad_mode_begin": {
+                        "description": "Total ad mode begin events received for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "integer"
+                    },
+                    "ad_mode_complete": {
+                        "description": "Total ad mode complete events received for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "integer"
+                    },
+                    "active_media": {
+                        "description": "Total active videos in account(s) - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "integer"
+                    },
+                    "bytes_delivered": {
+                        "description": "Total bytes of data delivered for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "integer"
+                    },
+                    "daily_unique_viewers": {
+                        "description": "Total daily unique viewers for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "integer"
+                    },
+                    "drm_bytes_packaged": {
+                        "description": "Total DRM bytes packaged for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "number"
+                    },
+                    "engagement_score": {
+                        "description": "Average engagement score for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "number"
+                    },
+                    "licenses_served": {
+                        "description": "Total DRM licenses serverd for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "integer"
+                    },
+                    "live_seconds_streamed": {
+                        "description": "Total second of live video streamed for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "number"
+                    },
+                    "play_rate": {
+                        "description": "Average play rate for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "number"
+                    },
+                    "play_request": {
+                        "description": "Total play requests for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "integer"
+                    },
+                    "player_load": {
+                        "description": "Total player loads for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "integer"
+                    },
+                    "video_engagement_1": {
+                        "description": "Average views at 1% point for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "number"
+                    },
+                    "video_engagement_25": {
+                        "description": "Average views at 25% point for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "number"
+                    },
+                    "video_engagement_50": {
+                        "description": "Average views at 50% point for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "number"
+                    },
+                    "video_engagement_75": {
+                        "description": "Average views at 75% point for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "number"
+                    },
+                    "video_engagement_100": {
+                        "description": "Average views at 100% point for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "number"
+                    },
+                    "video_impression": {
+                        "description": "Total video impressions for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "integer"
+                    },
+                    "video_view": {
+                        "description": "Total video views for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "integer"
+                    }
+                }
+            },
+            "timeline": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "description": "type of data in the values array",
+                        "type": "string"
+                    },
+                    "values": {
+                        "description": "array of views in each 100th part of video duration",
+                        "type": "array"
+                    }
+                }
+            },
+            "values": {
+                "type": "array"
+            },
+            "Get_Video_Engagement200": {
+                "type": "object",
+                "properties": {
+                    "video_duration": {
+                        "description": "the video duration in seconds",
+                        "type": "string"
+                    }
+                }
+            },
+            "Get_Analytics_Report200": {
+                "type": "object",
+                "properties": {
+                    "account": {
+                        "description": "the Video Cloud account id",
+                        "type": "string"
+                    },
+                    "item_count": {
+                        "description": "the total number of items matching the request",
+                        "type": "integer"
+                    },
+                    "items": {
+                        "description": "array of analytics objects for the videos returned ",
+                        "type": "array"
+                    },
+                    "summary": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "video_engagement_1": {
+                        "description": "Average views at 1% point for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "number"
+                    },
+                    "video_engagement_25": {
+                        "description": "Average views at 25% point for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "number"
+                    },
+                    "video_engagement_50": {
+                        "description": "Average views at 50% point for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "number"
+                    },
+                    "video_engagement_75": {
+                        "description": "Average views at 75% point for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "number"
+                    },
+                    "video_engagement_100": {
+                        "description": "Average views at 100% point for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "number"
+                    }
+                }
+            },
+            "items": {
+                "type": "object",
+                "properties": {
+                    "ad_mode_begin": {
+                        "description": "Total ad mode begin events received for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "integer"
+                    },
+                    "ad_mode_complete": {
+                        "description": "Total ad mode complete events received for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "integer"
+                    },
+                    "bytes_delivered": {
+                        "description": "the total bytes of data delivered, including the videos, other assets such as images and captions, and (for player reports) the player code &mdash; some of the date is obtained from CDNs and may not be available for up to 3 days ",
+                        "type": "number"
+                    },
+                    "engagement_score": {
+                        "description": "Average engagement score for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "number"
+                    },
+                    "play_rate": {
+                        "description": "Average play rate for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "number"
+                    },
+                    "play_request": {
+                        "description": "Total play requests for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "integer"
+                    },
+                    "video": {
+                        "description": "the video id ",
+                        "type": "string"
+                    },
+                    "duration": {
+                        "description": "the duration of the video in seconds ",
+                        "type": "string"
+                    },
+                    "video_engagement_1": {
+                        "description": "Average views at 1% point for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "number"
+                    },
+                    "video_engagement_25": {
+                        "description": "Average views at 25% point for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "number"
+                    },
+                    "video_engagement_50": {
+                        "description": "Average views at 50% point for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "number"
+                    },
+                    "video_engagement_75": {
+                        "description": "Average views at 75% point for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "number"
+                    },
+                    "video_engagement_100": {
+                        "description": "Average views at 100% point for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "number"
+                    },
+                    "video_impression": {
+                        "description": "Total video impressions for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "the name of the Video Cloud account id ",
+                        "type": "string"
+                    },
+                    "video_percent_viewed": {
+                        "description": "average percentage of the video played when viewed ",
+                        "type": "number"
+                    },
+                    "video_seconds_viewed": {
+                        "description": "total seconds of the video viewed ",
+                        "type": "number"
+                    },
+                    "video_view": {
+                        "description": "Total video views for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested",
+                        "type": "integer"
+                    }
+                }
+            },
+            "account": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "the name of the Video Cloud account id ",
+                        "type": "string"
+                    }
+                }
+            },
+            "Get_Available_Date_Range200": {
+                "type": "object",
+                "properties": {
+                    "reconciled_from": {
+                        "description": "the earliest date that you can use for from and get reconciled data ",
+                        "type": "string"
+                    },
+                    "reconciled_to": {
+                        "description": "the latest date that you can use for to and get reconciled data (realtime data may be available for later dates) ",
+                        "type": "string"
+                    }
+                }
+            },
+            "Get_Alltime_Video_Views200": {
+                "type": "object",
+                "properties": {
+                    "alltime_video_views": {
+                        "description": "all-time video views ",
+                        "type": "integer"
+                    }
+                }
+            }
+        }
+    }
+}
