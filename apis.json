@@ -1,0 +1,135 @@
+{
+    "name": "Brightcove",
+    "description": "Brightcove Video Cloud is the leading online video hosting platform and online video player solution. Learn how you can leverage the power of Brightcove's video hosting services for your brand.",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/165-brightcove.jpg",
+    "tags": [
+        "api lifeycle",
+        "api provider",
+        "have api",
+        "have swagger",
+        "videos"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/brightcove\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "Ingest Profiles API Reference",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/165-brightcove.jpg",
+            "humanURL": "http:\/\/brightcove.com",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/ingest-profiles-api-reference-openapi.json"
+                },
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/ingest-profiles-api-reference.json"
+                }
+            ]
+        },
+        {
+            "name": "Brightcove Analytics API Reference",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/165-brightcove.jpg",
+            "humanURL": "http:\/\/brightcove.com",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/brightcove-analytics-api-reference-openapi.json"
+                },
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/brightcove-analytics-api-reference.json"
+                }
+            ]
+        },
+        {
+            "name": "Brightcove",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/165-brightcove.jpg",
+            "humanURL": "http:\/\/brightcove.com",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/brightcove-openapi.json"
+                },
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/brightcove.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Base",
+            "url": "https:\/\/data.brightcove.com\/"
+        },
+        {
+            "type": "Blog",
+            "url": "http:\/\/blog.brightcove.com\/"
+        },
+        {
+            "type": "Blog RSS",
+            "url": "http:\/\/docs.brightcove.com\/en\/DeveloperDocumentationUpdates.xml"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "http:\/\/www.crunchbase.com\/company\/brightcove"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/brightcove"
+        },
+        {
+            "type": "Developers",
+            "url": "http:\/\/docs.brightcove.com\/en\/video-cloud\/index.html"
+        },
+        {
+            "type": "Email",
+            "url": "docs@brightcove.com"
+        },
+        {
+            "type": "Email",
+            "url": "copyright@brightcove.com"
+        },
+        {
+            "type": "Github",
+            "url": "https:\/\/github.com\/brightcove"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/165-2019-09-03-21-11-46.json"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/165-2019-09-03-13-30-10.json"
+        },
+        {
+            "type": "Privacy",
+            "url": "http:\/\/www.brightcove.com\/en\/privacy"
+        },
+        {
+            "type": "Terms of Service",
+            "url": "http:\/\/www.brightcove.com\/en\/terms-and-conditions"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/brightcove"
+        },
+        {
+            "type": "Website",
+            "url": "http:\/\/brightcove.com"
+        }
+    ]
+}
