@@ -1,5 +1,5 @@
 {
-    "id": "acbf5f64e07145a1e1de6bb09063e390",
+    "id": "4693c21c26ae8764ffdb9e13c52fdcab",
     "name": "Ingest Profiles API Reference",
     "description": null,
     "auth": null,
@@ -10,7 +10,7 @@
     "folders": [],
     "requests": [
         {
-            "id": "21eae23af8514f43b350fda05eed5295",
+            "id": "b5b647c82bb4075d62ddf26e8e210caf",
             "name": "Get Default Profile",
             "url": "http:\/\/ingestion.api.brightcove.com\/v1\/accounts\/{account_id}\/configuration",
             "description": "Get the default ingest profile for the account. ",
@@ -37,11 +37,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "acbf5f64e07145a1e1de6bb09063e390",
+            "collectionId": "4693c21c26ae8764ffdb9e13c52fdcab",
             "rawModeData": ""
         },
         {
-            "id": "f5333e563beda1c374cbd6ace52fc45f",
+            "id": "0968d6efd9f79836df9bdd393a87ea0a",
             "name": "Set Default Profile",
             "url": "http:\/\/ingestion.api.brightcove.com\/v1\/accounts\/{account_id}\/configuration",
             "description": "Sets an ingest profile as the default for the account. ",
@@ -68,11 +68,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "acbf5f64e07145a1e1de6bb09063e390",
+            "collectionId": "4693c21c26ae8764ffdb9e13c52fdcab",
             "rawModeData": ""
         },
         {
-            "id": "ed539574d83f41e4bab70ae0fd67cc47",
+            "id": "51616fdb9789850df2c3d9e4b7924db5",
             "name": "Update Default Profile",
             "url": "http:\/\/ingestion.api.brightcove.com\/v1\/accounts\/{account_id}\/configuration",
             "description": "Updates the default ingest profile for the account. ",
@@ -99,11 +99,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "acbf5f64e07145a1e1de6bb09063e390",
+            "collectionId": "4693c21c26ae8764ffdb9e13c52fdcab",
             "rawModeData": ""
         },
         {
-            "id": "7adc89782fe7893456d4a80ce0d45839",
+            "id": "b907899485e77f01b5b09f07a1f09be7",
             "name": "Create Ingest Profile",
             "url": "http:\/\/ingestion.api.brightcove.com\/v1\/accounts\/{account_id}\/profiles",
             "description": "Create a custom ingest profile for the account. Note that you can also do this through Video Cloud Studio ",
@@ -130,11 +130,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "acbf5f64e07145a1e1de6bb09063e390",
+            "collectionId": "4693c21c26ae8764ffdb9e13c52fdcab",
             "rawModeData": ""
         },
         {
-            "id": "d71e11b5fa4ed43d56dae2c557b1b99e",
+            "id": "1b01c431dffa0a9b115432a5483b037a",
             "name": "Get All Ingest Profiles",
             "url": "http:\/\/ingestion.api.brightcove.com\/v1\/accounts\/{account_id}\/profiles",
             "description": "Get an array of all the profiles valid for the account ",
@@ -161,11 +161,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "acbf5f64e07145a1e1de6bb09063e390",
+            "collectionId": "4693c21c26ae8764ffdb9e13c52fdcab",
             "rawModeData": ""
         },
         {
-            "id": "b5aafb197de67d7ae3d30386d8f87677",
+            "id": "b2d488619624b590a2508179cf594fd4",
             "name": "Delete Ingest Profile",
             "url": "http:\/\/ingestion.api.brightcove.com\/v1\/accounts\/{account_id}\/profiles\/{profile_id}",
             "description": "Delete an ingest profile ",
@@ -199,11 +199,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "acbf5f64e07145a1e1de6bb09063e390",
+            "collectionId": "4693c21c26ae8764ffdb9e13c52fdcab",
             "rawModeData": ""
         },
         {
-            "id": "617c8346f69b2b4043a2cafdea4ba6b3",
+            "id": "781d4243746cdf9f066476adc9762134",
             "name": "Get Ingest Profile by ID",
             "url": "http:\/\/ingestion.api.brightcove.com\/v1\/accounts\/{account_id}\/profiles\/{profile_id}",
             "description": "Get a single profile map by its ID ",
@@ -237,11 +237,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "acbf5f64e07145a1e1de6bb09063e390",
+            "collectionId": "4693c21c26ae8764ffdb9e13c52fdcab",
             "rawModeData": ""
         },
         {
-            "id": "642f583fc9f127170525a5cebe5db628",
+            "id": "9d9d16f3e3d8296cc4be093ac3c92740",
             "name": "Update Ingest Profile",
             "url": "http:\/\/ingestion.api.brightcove.com\/v1\/accounts\/{account_id}\/profiles\/{profile_id}",
             "description": "Update an existing ingest profile - the existing profile will be deactivated, and replaced by the one specified in the request body ",
@@ -275,7 +275,7 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "acbf5f64e07145a1e1de6bb09063e390",
+            "collectionId": "4693c21c26ae8764ffdb9e13c52fdcab",
             "rawModeData": ""
         }
     ]
