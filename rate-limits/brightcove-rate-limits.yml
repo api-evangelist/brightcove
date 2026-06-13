@@ -1,0 +1,90 @@
+name: Brightcove API Rate Limits
+description: Rate limits for Brightcove REST APIs. Limits vary by API and are enforced per account. Exceeding limits returns HTTP 429 Too Many Requests. Implement exponential back-off and retry logic in all integrations.
+apis:
+  - name: CMS API
+    base_url: https://cms.api.brightcove.com/v1
+    rate_limits:
+      - type: concurrent_requests
+        limit: 20
+        description: Maximum 20 concurrent requests per account
+      - type: request_frequency
+        limit: 10
+        unit: per_second
+        description: Access frequency should be less than 10 requests per second
+    error_code: 429 TOO_MANY_REQUESTS
+    notes:
+      - Individual requests may take over 1 second, so concurrency limits can be hit even under 10 req/s
+      - Implement back-off and retry logic for applications sharing an account
+
+  - name: Analytics API
+    base_url: https://analytics.api.brightcove.com/v1
+    rate_limits:
+      - type: concurrent_requests
+        limit: 1
+        description: A single account is limited to one request at a time; multiple concurrent requests execute sequentially
+    performance_constraints:
+      - processing_timeout: 8 minutes
+      - response_caching: approximately 5 minutes
+      - max_returnable_items: 1,000,000 records per request
+      - query_latency: up to 20 seconds for large reports
+    notes:
+      - When overloaded the API returns a pending error; wait 2-4 minutes before retrying
+      - Access tokens expire after 5 minutes
+
+  - name: Live API
+    base_url: https://api.bcovlive.io/v1
+    authentication: API Key (X-API-KEY header)
+    rate_limits:
+      - type: active_waiting_jobs
+        limit: 5
+        description: Maximum 5 active waiting/unstarted jobs simultaneously
+      - type: concurrent_event_jobs
+        limit: 100
+        unit: per_region
+        description: Event jobs running concurrently per region
+      - type: waiting_event_jobs
+        limit: 5
+        description: Event jobs waiting to connect
+      - type: static_entry_point_jobs
+        limit: 3
+        unit: per_region
+        description: Static Entry Point (SEP) jobs per region (10 in us-west-2)
+    notes:
+      - Limits apply per account, not per region
+      - Limits can be adjusted by contacting Brightcove Support
+      - Live API uses separate API Key authentication, not OAuth 2.0
+
+  - name: Dynamic Ingest API
+    base_url: https://ingest.api.brightcove.com/v1
+    rate_limits:
+      - type: request_body_size
+        limit: 25000
+        unit: characters
+        description: Maximum 25,000 characters per ingest request body
+    notes:
+      - No explicit request frequency rate limits documented
+      - Status messages available only for jobs submitted within the past 7 days
+      - Hostnames must not contain underscore characters per IETF spec
+
+  - name: OAuth API
+    base_url: https://oauth.brightcove.com/v4
+    rate_limits: []
+    token_expiration:
+      - Access tokens expire after 5 minutes
+    notes:
+      - No explicit rate limits documented for token requests
+      - Capture the expires_in value from the token response for renewal timing
+
+  - name: Playback API
+    base_url: https://edge.api.brightcove.com/playback/v1
+    rate_limits: []
+    notes:
+      - No explicit rate limits documented
+      - Media URLs must be refreshed at least every 6 hours
+
+general_notes:
+  - All APIs return HTTP 429 when rate limits are exceeded
+  - Implement exponential back-off and retry logic in all integrations
+  - OAuth 2.0 access tokens expire after 5 minutes for most APIs
+  - The Live API uses a separate API Key authentication (X-API-KEY header)
+  - Contact Brightcove Support to request limit increases

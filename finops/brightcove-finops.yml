@@ -1,0 +1,54 @@
+name: Brightcove FinOps
+description: Financial operations guidance for managing Brightcove API and platform costs. Brightcove uses custom enterprise pricing driven by usage metrics. Understanding cost drivers and implementing monitoring helps optimize spending.
+cost_drivers:
+  - name: Video Bandwidth
+    description: The primary cost driver. Total data transferred during video playback across all viewers. Higher quality streams and more viewers increase bandwidth costs significantly.
+    optimization_tips:
+      - Use Delivery Rules API to serve appropriate quality renditions per device and connection
+      - Enable adaptive bitrate streaming to reduce unnecessary bandwidth for slower connections
+      - Implement geographic delivery rules to optimize CDN costs
+
+  - name: Video Storage
+    description: Storage for all video files, renditions, thumbnails, and assets in the Video Cloud library.
+    optimization_tips:
+      - Audit the CMS API for unused or duplicate videos and remove them
+      - Use custom Ingest Profiles to limit the number of renditions created per video
+      - Archive rarely-accessed content and remove from Video Cloud if no longer needed
+
+  - name: Video Plays / Streams
+    description: Number of video play events across all players and platforms. High-traffic sites with many viewers increase play counts significantly.
+    optimization_tips:
+      - Use the Analytics API to identify low-engagement videos that may not justify ongoing hosting costs
+      - Implement Playback Restrictions to control access and prevent unauthorized embedding
+
+  - name: Live Streaming
+    description: Live API usage billed based on hours of live streaming, number of concurrent streams, and output renditions.
+    optimization_tips:
+      - Limit concurrent live jobs to what is actively needed
+      - Use Static Entry Points (SEP) for recurring events rather than creating new jobs
+      - Monitor the Live API job count to avoid idle waiting jobs that count against limits
+
+  - name: Product Tier and Add-ons
+    description: Higher product tiers (Enterprise vs Marketing) include additional APIs and features at higher price points. Some features like SSAI, DRM, and Cloud Playout may be add-ons.
+    optimization_tips:
+      - Audit which APIs and features are actually in use before renewing
+      - Use the Analytics API to measure ROI on features like SSAI monetization
+
+monitoring_recommendations:
+  - Regularly query the Analytics API to track play counts, bandwidth, and engagement metrics
+  - Monitor Dynamic Ingest job status via the CMS API to ensure no runaway ingestion jobs
+  - Review Live API active jobs to avoid unintended idle job accumulation
+  - Set up alerts based on Analytics API data for unusual spikes in plays or bandwidth
+
+cost_visibility:
+  - Brightcove does not provide a real-time cost dashboard via API
+  - Billing is managed through contract negotiations and invoices
+  - Request detailed usage reports from your Brightcove account manager
+  - Use the Analytics API (https://analytics.api.brightcove.com/v1) to correlate play counts and engagement with billing metrics
+
+contract_guidance:
+  - Negotiate bandwidth and storage overages carefully; overages can be significant
+  - Establish clear SLAs and support terms before signing
+  - Annual contracts are standard; multi-year deals may offer discounts
+  - Request usage-based billing caps or alerts from your account manager
+  - Review add-on features (SSAI, DRM, Cloud Playout, Interactivity) carefully for actual usage

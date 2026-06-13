@@ -1,0 +1,42 @@
+name: Brightcove Plans and Pricing
+description: Brightcove offers custom enterprise pricing based on usage metrics including video bandwidth, storage, number of plays, and product tier. Pricing is not publicly listed and requires direct engagement with Brightcove sales.
+url: https://www.brightcove.com/en/contact/
+plans:
+  - name: Marketing Edition
+    description: Designed for marketing teams and corporate communications with core video hosting, player management, analytics, and social distribution features.
+    pricing_model: custom
+    pricing_contact: https://www.brightcove.com/en/contact/
+    estimated_range: "$20,000 - $60,000 annually"
+    features:
+      - Video hosting and delivery via CDN
+      - Brightcove Player with customization
+      - Basic analytics and reporting
+      - Social media distribution
+      - CMS API access
+      - Playback API access
+      - OAuth 2.0 authentication
+  - name: Enterprise Edition
+    description: Full-featured enterprise tier for media companies, broadcasters, and OTT providers with advanced analytics, monetization, DRM, and live streaming.
+    pricing_model: custom
+    pricing_contact: https://www.brightcove.com/en/contact/
+    estimated_range: "$60,000 - $250,000+ annually"
+    features:
+      - Everything in Marketing Edition
+      - Live streaming (Live API)
+      - Server-Side Ad Insertion (SSAI)
+      - DRM and Playback Restrictions
+      - Advanced analytics
+      - Audience API for marketing automation
+      - Dynamic Ingest API
+      - Delivery Rules API
+      - Cloud Playout (EPG and Channels APIs)
+      - Cross-Device Resume API
+      - In-Page Experience API
+      - Social Syndication API
+      - Dedicated support and SLAs
+notes:
+  - Brightcove does not publish fixed list prices publicly
+  - All pricing is negotiated based on anticipated usage metrics
+  - Key cost drivers include video bandwidth, storage, number of plays, and product tier
+  - API access is generally included with the platform subscription
+  - Contact sales at https://www.brightcove.com/en/contact/ for a custom quote
