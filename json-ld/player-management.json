@@ -1,0 +1,19 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "WebAPI",
+  "name": "Brightcove Player Management API Reference",
+  "description": "Reference for the Brightcove Player Management API, used to manipulate players, player configurations and child players (embeds). To test API requests, you can use our [API Testing Tools](/getting-started/concepts-testing-tools-brightcove-apis.html). Popular testing tools include:\n\n  - [cURL](https://general.support.brightcove.com/developer/concepts-set-curl.html)\n  - [Postman](/general/use-postman-api-requests.html) - note that the tutorial here uses the Player Management API as an example\n  - ",
+  "version": "2.0.0",
+  "url": "https://players.api.brightcove.com/v2",
+  "provider": {
+    "@type": "Organization",
+    "name": "Brightcove",
+    "url": "https://www.brightcove.com"
+  },
+  "documentation": "https://apis.support.brightcove.com/player-management/",
+  "availableChannel": {
+    "@type": "ServiceChannel",
+    "serviceUrl": "https://players.api.brightcove.com/v2"
+  },
+  "endpointCount": 12
+}

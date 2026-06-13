@@ -1,0 +1,19 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "WebAPI",
+  "name": "Brightcove SSAI API",
+  "description": "API for Brightcove SSAI\n\nThis API is used for managing operations related to Server-Side Ad Insertion (SSAI).\n\nSee [Video Cloud SSAI Ad Config API](/ssai/getting-started/video-cloud-ssai-ad-config-api.html) for more details on using the API.\n\nYou can easily create, list and delete ad configurations in Video Cloud Studio as well. For details, see [Configuring Server-Side Ad Settings](https://studio.support.brightcove.com/admin/configuring-server-side-ad-settings.html).\n\nFor additional in-depth gu",
+  "version": "0.1.0",
+  "url": "https://ssai.api.brightcove.com/v1",
+  "provider": {
+    "@type": "Organization",
+    "name": "Brightcove",
+    "url": "https://www.brightcove.com"
+  },
+  "documentation": "https://apis.support.brightcove.com/ssai/",
+  "availableChannel": {
+    "@type": "ServiceChannel",
+    "serviceUrl": "https://ssai.api.brightcove.com/v1"
+  },
+  "endpointCount": 4
+}

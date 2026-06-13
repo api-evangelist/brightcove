@@ -1,0 +1,19 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "WebAPI",
+  "name": "Audience API Reference",
+  "description": "Reference for the Brightcove Audience API, used to retrieve audience data for your accounts. To test API requests, you can use our [API Testing Tools](https://apis.support.brightcove.com/getting-started/concepts-testing-tools-brightcove-apis.html).\n\nFor additional in-depth guides to features of the API, see the **[Overview](/audience/getting-started/overview-audience-api.html)**.\n\n **Base URL**: https://audience.api.brightcove.com/v1",
+  "version": "1.0.0",
+  "url": "https://audience.api.brightcove.com/v1",
+  "provider": {
+    "@type": "Organization",
+    "name": "Brightcove",
+    "url": "https://www.brightcove.com"
+  },
+  "documentation": "https://apis.support.brightcove.com/audience/",
+  "availableChannel": {
+    "@type": "ServiceChannel",
+    "serviceUrl": "https://audience.api.brightcove.com/v1"
+  },
+  "endpointCount": 2
+}

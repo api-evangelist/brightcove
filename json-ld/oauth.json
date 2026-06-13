@@ -1,0 +1,19 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "WebAPI",
+  "name": "OAuth API Reference",
+  "description": "Reference for the Brightcove OAuth API, used to get client credentials and access tokens for the other APIs.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/oauth/index.html)**.\n\n**Base URL**: https://oauth.brightcove.com/v4",
+  "version": "4.0.0",
+  "url": "https://oauth.brightcove.com/v4",
+  "provider": {
+    "@type": "Organization",
+    "name": "Brightcove",
+    "url": "https://www.brightcove.com"
+  },
+  "documentation": "https://apis.support.brightcove.com/oauth/",
+  "availableChannel": {
+    "@type": "ServiceChannel",
+    "serviceUrl": "https://oauth.brightcove.com/v4"
+  },
+  "endpointCount": 3
+}

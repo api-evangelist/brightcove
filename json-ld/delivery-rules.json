@@ -1,0 +1,19 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "WebAPI",
+  "name": "Brightcove Delivery Rules API",
+  "description": "API for Brightcove Delivery Rules\nThis API is used for managing operations related to Delivery Rules.\n**Base URL: https://delivery-rules.api.brightcove.com**",
+  "version": "1.0.0",
+  "url": "https://delivery-rules.api.brightcove.com",
+  "provider": {
+    "@type": "Organization",
+    "name": "Brightcove",
+    "url": "https://www.brightcove.com"
+  },
+  "documentation": "https://apis.support.brightcove.com/delivery-rules/",
+  "availableChannel": {
+    "@type": "ServiceChannel",
+    "serviceUrl": "https://delivery-rules.api.brightcove.com"
+  },
+  "endpointCount": 4
+}

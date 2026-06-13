@@ -1,0 +1,19 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "WebAPI",
+  "name": "Brightcove Ingest Profiles API Reference",
+  "description": "Reference for the Brightcove Ingest Profiles API, used to create and manage ingest profiles that specify video and image renditions to be created, along with instructions for archiving masters.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/ingest-profiles/guides/index.html)**.\n\n**Base URL**: https://ingestion.api.brightcove.com/v1",
+  "version": "1.0.0",
+  "url": "https://ingestion.api.brightcove.com/v1",
+  "provider": {
+    "@type": "Organization",
+    "name": "Brightcove",
+    "url": "https://www.brightcove.com"
+  },
+  "documentation": "https://apis.support.brightcove.com/ingest-profiles/",
+  "availableChannel": {
+    "@type": "ServiceChannel",
+    "serviceUrl": "https://ingestion.api.brightcove.com/v1"
+  },
+  "endpointCount": 3
+}

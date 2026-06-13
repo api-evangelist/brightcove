@@ -1,0 +1,19 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "WebAPI",
+  "name": "Brightcove Social API",
+  "description": "API for Brightcove Social\n\nFor additional in-depth guides to features of the API, see the **[Overview](/social/getting-started/overview-social-api.html)**.\n\n**Base URL:** https://edge.social.api.brightcove.com/v1",
+  "version": "1.0.0",
+  "url": "https://social.api.brightcove.com/v1",
+  "provider": {
+    "@type": "Organization",
+    "name": "Brightcove",
+    "url": "https://www.brightcove.com"
+  },
+  "documentation": "https://apis.support.brightcove.com/social/",
+  "availableChannel": {
+    "@type": "ServiceChannel",
+    "serviceUrl": "https://social.api.brightcove.com/v1"
+  },
+  "endpointCount": 4
+}

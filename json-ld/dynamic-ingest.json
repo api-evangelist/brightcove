@@ -1,0 +1,19 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "WebAPI",
+  "name": "Dynamic Ingest API Reference",
+  "description": "Reference for the Brightcove Dynamic Ingest API, used to add videos, images, and captions to your media library, and to replace existing media assets.\n\n**NOTE THAT BEFORE YOU INGEST A NEW VIDEO, YOU MUST FIRST MAKE A [CREATE VIDEO REQUEST](/cms/references/reference.html#operation/CreateVideo).**\n\n\nTo test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>\n\nFor additional in-depth guides to features of the API",
+  "version": "1.0.0",
+  "url": "https://ingest.api.brightcove.com",
+  "provider": {
+    "@type": "Organization",
+    "name": "Brightcove",
+    "url": "https://www.brightcove.com"
+  },
+  "documentation": "https://apis.support.brightcove.com/dynamic-ingest/",
+  "availableChannel": {
+    "@type": "ServiceChannel",
+    "serviceUrl": "https://ingest.api.brightcove.com"
+  },
+  "endpointCount": 2
+}

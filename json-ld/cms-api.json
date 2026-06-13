@@ -1,0 +1,19 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "WebAPI",
+  "name": "Brightcove CMS API Reference",
+  "description": "Reference for the Brightcove CMS API, used to access and manage your media library. To test API requests, you can use our [API Testing Tools](/getting-started/concepts-testing-tools-brightcove-apis.html). For permissions needed for OAuth credentials, see [API Operations](/oauth/guides/api-operations-client-credentials-requests.html). For information on authenticating API requests, see the [OAuth Overview](/oauth/getting-started/overview-oauth-api-v4.html).\n\nFor additional in-depth guides to feat",
+  "version": "1.0.0",
+  "url": "https://cms.api.brightcove.com",
+  "provider": {
+    "@type": "Organization",
+    "name": "Brightcove",
+    "url": "https://www.brightcove.com"
+  },
+  "documentation": "https://apis.support.brightcove.com/cms/",
+  "availableChannel": {
+    "@type": "ServiceChannel",
+    "serviceUrl": "https://cms.api.brightcove.com"
+  },
+  "endpointCount": 55
+}

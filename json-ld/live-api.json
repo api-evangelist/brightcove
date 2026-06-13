@@ -1,0 +1,19 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "WebAPI",
+  "name": "Live API Reference",
+  "description": "Reference for the Brightcove Live API, used to create and manage live streaming events.\n\nFor additional in-depth guides to features of the API, see the **[Support Site](/live-api/index.html)**.\n\n**Base URL**: https://api.bcovlive.io/v1",
+  "version": "1.0.0",
+  "url": "https://api.bcovlive.io/v1",
+  "provider": {
+    "@type": "Organization",
+    "name": "Brightcove",
+    "url": "https://www.brightcove.com"
+  },
+  "documentation": "https://apis.support.brightcove.com/live/",
+  "availableChannel": {
+    "@type": "ServiceChannel",
+    "serviceUrl": "https://api.bcovlive.io/v1"
+  },
+  "endpointCount": 40
+}
