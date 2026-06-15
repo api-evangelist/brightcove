@@ -1,0 +1,1114 @@
+"""
+Brightcove GraphQL Schema
+Conceptual schema derived from Brightcove REST APIs covering video management,
+ingest, analytics, playback, live streaming, social, audience, SSAI, OAuth, and cloud playout.
+"""
+
+# ─────────────────────────────────────────────
+# Scalars
+# ─────────────────────────────────────────────
+
+scalar DateTime
+scalar JSON
+scalar URL
+scalar ISO8601Duration
+
+# ─────────────────────────────────────────────
+# Enums
+# ─────────────────────────────────────────────
+
+enum VideoState {
+  ACTIVE
+  INACTIVE
+  PENDING
+  DELETED
+}
+
+enum VideoSharingStatus {
+  PUBLIC
+  PRIVATE
+  PENDING
+  ERROR
+}
+
+enum PlaylistType {
+  EXPLICIT
+  ACTIVATED_OLDEST_TO_NEWEST
+  ACTIVATED_NEWEST_TO_OLDEST
+  ALPHABETICAL
+  PLAYS_TOTAL
+  PLAYS_TRAILING_WEEK
+  STARTS_OLDEST_TO_NEWEST
+  STARTS_NEWEST_TO_OLDEST
+}
+
+enum IngestStatus {
+  processing
+  publishing
+  published
+  error
+  waiting_for_videocloud
+  retrying
+  failed
+}
+
+enum LiveStreamState {
+  standby
+  processing
+  disconnected
+  error
+  finished
+  cancelling
+  cancelled
+}
+
+enum AdInsertionType {
+  VOD
+  LIVE
+}
+
+enum SocialPlatform {
+  YOUTUBE
+  FACEBOOK
+  TWITTER
+}
+
+enum SharingStatus {
+  SHARED
+  UNSHARED
+  PROCESSING
+  ERROR
+}
+
+enum DeliveryRuleConditionType {
+  request_country
+  request_device_type
+  video_type
+}
+
+enum ChannelState {
+  DRAFT
+  SCHEDULED
+  RUNNING
+  IDLE
+  STOPPED
+  DELETING
+  ERROR
+}
+
+enum RenditionType {
+  HLS
+  DASH
+  MP4
+  IMAGE
+  AUDIO
+}
+
+enum GeoFilterType {
+  EXCLUDE
+  INCLUDE
+}
+
+enum ScheduleStatus {
+  SCHEDULED
+  PROCESSING
+  COMPLETE
+  FAILED
+}
+
+enum AudienceEventType {
+  video_impression
+  video_view
+  video_engagement
+}
+
+enum TokenType {
+  bearer
+}
+
+enum CuePointType {
+  AD
+  CODE
+}
+
+enum ImageType {
+  thumbnail
+  poster
+}
+
+# ─────────────────────────────────────────────
+# Core Video Types
+# ─────────────────────────────────────────────
+
+type Video {
+  id: ID!
+  accountId: String!
+  name: String!
+  description: String
+  longDescription: String
+  referenceId: String
+  state: VideoState!
+  tags: [String!]
+  customFields: JSON
+  geoFilter: GeoFilter
+  schedule: VideoSchedule
+  images: VideoImages
+  textTracks: [TextTrack!]
+  sources: [VideoSource!]
+  link: VideoLink
+  publishedAt: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  duration: Int
+  economics: VideoEconomics
+  offlineEnabled: Boolean
+  hasDigitalMasterFile: Boolean
+  projection: String
+  labels: [String!]
+  variantVideoId: String
+  sharing: VideoSharing
+}
+
+type VideoSharing {
+  byExternalAcct: Boolean
+  sourceId: String
+  toExternalAcct: Boolean
+  byReference: Boolean
+}
+
+type VideoEconomics {
+  type: String
+}
+
+type GeoFilter {
+  countries: [String!]
+  excludeCountries: Boolean
+  restricted: Boolean
+  type: GeoFilterType
+}
+
+type VideoSchedule {
+  startAt: DateTime
+  endsAt: DateTime
+}
+
+type VideoImages {
+  thumbnail: ImageAsset
+  poster: ImageAsset
+}
+
+type ImageAsset {
+  src: URL
+  width: Int
+  height: Int
+  sources: [ImageSource!]
+}
+
+type ImageSource {
+  src: URL
+  width: Int
+  height: Int
+}
+
+type TextTrack {
+  id: ID
+  src: URL
+  srclang: String!
+  label: String
+  kind: String
+  mimeType: String
+  default: Boolean
+  sources: [TextTrackSource!]
+}
+
+type TextTrackSource {
+  src: URL
+  mimeType: String
+}
+
+type VideoSource {
+  src: URL
+  type: String
+  container: String
+  codec: String
+  encoding_rate: Int
+  height: Int
+  width: Int
+  size: Int
+  duration: Int
+  streamName: String
+  appName: URL
+  averageFrameRate: Float
+}
+
+type VideoLink {
+  url: URL
+  text: String
+}
+
+type CuePoint {
+  id: ID!
+  name: String
+  type: CuePointType!
+  time: Float
+  forceStop: Boolean
+  metadata: String
+}
+
+# ─────────────────────────────────────────────
+# Playlist
+# ─────────────────────────────────────────────
+
+type Playlist {
+  id: ID!
+  accountId: String!
+  name: String!
+  description: String
+  referenceId: String
+  type: PlaylistType!
+  videoIds: [String!]
+  search: String
+  limit: Int
+  state: VideoState
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ─────────────────────────────────────────────
+# Folder / Label
+# ─────────────────────────────────────────────
+
+type Folder {
+  id: ID!
+  accountId: String!
+  name: String!
+  videoCount: Int
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type VideoLabel {
+  id: ID!
+  path: String!
+  accountId: String!
+}
+
+# ─────────────────────────────────────────────
+# Ingest & Encoding
+# ─────────────────────────────────────────────
+
+type IngestJob {
+  id: ID!
+  accountId: String!
+  videoId: String!
+  status: IngestStatus!
+  inputUrl: URL
+  errorMessages: [String!]
+  startedAt: DateTime
+  completedAt: DateTime
+  updatedAt: DateTime
+}
+
+type IngestProfile {
+  id: ID!
+  accountId: String!
+  name: String!
+  description: String
+  renditions: [Rendition!]!
+  packagingType: String
+  dynamic_origin: DynamicOrigin
+  isDefault: Boolean
+}
+
+type Rendition {
+  id: ID
+  referenceId: String
+  type: RenditionType
+  audioOnly: Boolean
+  audioBitrate: Int
+  audioCodec: String
+  audioTrack: Boolean
+  audioSampleRate: Int
+  videoBitrate: Int
+  videoCodec: String
+  width: Int
+  height: Int
+  forced_keyframe_rate: Float
+  frameRate: Float
+  h264Profile: String
+  keyframeRate: Float
+  keyframeRateFactor: Float
+  maxAudioBitrate: Int
+  maxVideoBitrate: Int
+  maxWidth: Int
+  maxHeight: Int
+  speed: Int
+  streaming: Boolean
+}
+
+type DynamicOrigin {
+  renditions: [String!]
+  images: [DynamicOriginImage!]
+}
+
+type DynamicOriginImage {
+  label: String
+  height: Int
+  width: Int
+}
+
+# ─────────────────────────────────────────────
+# Player Management
+# ─────────────────────────────────────────────
+
+type Player {
+  id: ID!
+  accountId: String!
+  name: String!
+  description: String
+  branches: PlayerBranches
+  embedCount: Int
+  url: URL
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type PlayerBranches {
+  master: PlayerBranch
+  preview: PlayerBranch
+}
+
+type PlayerBranch {
+  configuration: PlayerConfiguration
+  updatedAt: DateTime
+  videoCloud: JSON
+}
+
+type PlayerConfiguration {
+  player: PlayerSettings
+  media: PlayerMedia
+  plugins: [PlayerPlugin!]
+  stylesheets: [URL!]
+  scripts: [URL!]
+}
+
+type PlayerSettings {
+  template: PlayerTemplate
+  autoAdvance: Boolean
+  inactive: Boolean
+}
+
+type PlayerTemplate {
+  name: String
+  version: String
+  locked: Boolean
+}
+
+type PlayerMedia {
+  sources: [PlayerMediaSource!]
+}
+
+type PlayerMediaSource {
+  src: URL
+  type: String
+}
+
+type PlayerPlugin {
+  name: String!
+  options: JSON
+  scripts: [URL!]
+  stylesheets: [URL!]
+}
+
+type PlayerEmbed {
+  id: ID!
+  playerId: String!
+  accountId: String!
+  name: String
+  referenceId: String
+  configuration: PlayerConfiguration
+  url: URL
+  previewUrl: URL
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ─────────────────────────────────────────────
+# Analytics
+# ─────────────────────────────────────────────
+
+type AnalyticsReport {
+  accountId: String!
+  dimensions: [String!]!
+  metrics: [String!]!
+  filters: JSON
+  dateFrom: DateTime
+  dateTo: DateTime
+  granularity: String
+  items: [AnalyticsItem!]!
+  summary: AnalyticsSummary
+  rowCount: Int
+}
+
+type AnalyticsItem {
+  dimensions: JSON!
+  metrics: AnalyticsMetrics!
+}
+
+type AnalyticsMetrics {
+  videoImpression: Int
+  videoView: Int
+  videoEngagement: Float
+  playRate: Float
+  engagementScore: Float
+  adOpportunities: Int
+  adsStarted: Int
+  uniqueUsers: Int
+  bytesDelivered: Float
+  playRequestTime: Float
+  rebuffering: Float
+}
+
+type AnalyticsSummary {
+  videoImpression: Int
+  videoView: Int
+  videoEngagement: Float
+  playRate: Float
+  engagementScore: Float
+}
+
+type EngagementReport {
+  accountId: String!
+  videoId: String!
+  timeline: [EngagementPoint!]!
+}
+
+type EngagementPoint {
+  percentage: Float!
+  videoSeconds: Float!
+  views: Int!
+}
+
+# ─────────────────────────────────────────────
+# Live Streaming
+# ─────────────────name─────────────────────────
+
+type LiveJob {
+  id: ID!
+  accountId: String!
+  state: LiveStreamState!
+  inputInfo: LiveInputInfo
+  outputs: [LiveOutput!]
+  staticEndpoint: Boolean
+  adInsertion: Boolean
+  region: String
+  reconnectTime: Int
+  streamUrl: URL
+  streamName: String
+  rtmpUrl: URL
+  srtUrl: URL
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type LiveInputInfo {
+  protocol: String
+  url: URL
+  streamName: String
+}
+
+type LiveOutput {
+  id: ID!
+  label: String
+  url: URL
+  streamingUrl: URL
+  type: RenditionType
+  videoCodec: String
+  audioBitrate: Int
+  videoBitrate: Int
+  height: Int
+  width: Int
+  frameRate: Float
+  keyframeInterval: Int
+}
+
+type LiveClip {
+  id: ID!
+  jobId: String!
+  state: IngestStatus
+  videoId: String
+  outputMediaType: String
+  startTime: Float
+  endTime: Float
+  createdAt: DateTime!
+}
+
+# ─────────────────────────────────────────────
+# SSAI / Ad Insertion
+# ─────────────────────────────────────────────
+
+type AdConfiguration {
+  id: ID!
+  accountId: String!
+  name: String!
+  type: AdInsertionType!
+  adUrl: URL!
+  tokenization: JSON
+  responseType: String
+  expectedResponse: String
+  variables: [AdVariable!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type AdVariable {
+  name: String!
+  description: String
+  required: Boolean
+}
+
+type SSAISession {
+  sessionId: ID!
+  accountId: String!
+  videoId: String
+  adConfigId: String!
+  manifestUrl: URL
+  vmap: URL
+  adsInserted: Int
+  durationMs: Int
+}
+
+# ─────────────────────────────────────────────
+# Social
+# ─────────────────────────────────────────────
+
+type SocialDistribution {
+  id: ID!
+  accountId: String!
+  videoId: String!
+  platform: SocialPlatform!
+  status: SharingStatus!
+  distributedAt: DateTime
+  socialUrl: URL
+  error: String
+  destination: SocialDestination
+}
+
+type SocialDestination {
+  id: ID!
+  accountId: String!
+  platform: SocialPlatform!
+  channelId: String
+  channelName: String
+  enabled: Boolean
+}
+
+# ─────────────────────────────────────────────
+# Audience
+# ─────────────────────────────────────────────
+
+type AudienceEvent {
+  id: ID!
+  accountId: String!
+  videoId: String!
+  playerId: String
+  embedId: String
+  eventType: AudienceEventType!
+  externalId: String
+  externalUrl: URL
+  percentViewed: Float
+  timeWatched: Float
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type AudienceLead {
+  id: ID!
+  accountId: String!
+  videoId: String
+  playerId: String
+  embedId: String
+  firstName: String
+  lastName: String
+  email: String!
+  company: String
+  externalId: String
+  createdAt: DateTime!
+}
+
+# ─────────────────────────────────────────────
+# Cloud Playout
+# ─────────────────────────────────────────────
+
+type CloudPlayoutChannel {
+  id: ID!
+  accountId: String!
+  name: String!
+  description: String
+  state: ChannelState!
+  region: String
+  startTime: DateTime
+  stopTime: DateTime
+  inputGroup: [ChannelInput!]
+  outputGroup: [ChannelOutput!]
+  liveProfile: String
+  epgId: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ChannelInput {
+  inputType: String
+  value: String
+}
+
+type ChannelOutput {
+  type: String
+  brightcoveAccountId: String
+  outputGroupId: String
+}
+
+type EPGEntry {
+  id: ID!
+  channelId: String!
+  videoId: String
+  startTime: DateTime!
+  endTime: DateTime!
+  title: String
+  description: String
+  adBreaks: [EPGAdBreak!]
+}
+
+type EPGAdBreak {
+  startTime: DateTime!
+  duration: Int!
+  offset: Int
+}
+
+# ─────────────────────────────────────────────
+# Delivery Rules
+# ─────────────────────────────────────────────
+
+type DeliveryRule {
+  id: ID!
+  accountId: String!
+  name: String!
+  conditions: [DeliveryRuleCondition!]
+  actions: [DeliveryRuleAction!]
+  enabled: Boolean!
+}
+
+type DeliveryRuleCondition {
+  type: DeliveryRuleConditionType!
+  op: String!
+  values: [String!]!
+}
+
+type DeliveryRuleAction {
+  id: ID!
+  label: String
+  profile: String
+  renditionOrder: [String!]
+  skipSources: Boolean
+  minVideoRenditions: Int
+  maxVideoRenditions: Int
+}
+
+# ─────────────────────────────────────────────
+# Playback Restrictions
+# ─────────────────────────────────────────────
+
+type PlaybackRestriction {
+  id: ID!
+  accountId: String!
+  name: String!
+  domainRestriction: DomainRestriction
+  geoRestriction: GeoRestriction
+  concurrencyRestriction: ConcurrencyRestriction
+  drmEnabled: Boolean
+}
+
+type DomainRestriction {
+  allowedDomains: [String!]!
+}
+
+type GeoRestriction {
+  allowedCountries: [String!]!
+  blockedCountries: [String!]!
+}
+
+type ConcurrencyRestriction {
+  maxStreams: Int!
+}
+
+type PlaybackAuthKey {
+  accountId: String!
+  keyId: String!
+  publicKey: String!
+  privateKey: String
+  createdAt: DateTime!
+}
+
+# ─────────────────────────────────────────────
+# OAuth & Credentials
+# ─────────────────────────────────────────────
+
+type OAuthCredential {
+  clientId: ID!
+  clientSecret: String
+  name: String!
+  description: String
+  type: String
+  maxScope: [OAuthScope!]
+  issuedTo: String
+  trustedProxy: Boolean
+  createdAt: DateTime!
+  expiresAt: DateTime
+}
+
+type OAuthScope {
+  identity: OAuthIdentity!
+  operations: [String!]!
+}
+
+type OAuthIdentity {
+  type: String!
+  accountId: String
+}
+
+type AccessToken {
+  accessToken: String!
+  tokenType: TokenType!
+  expiresIn: Int!
+}
+
+# ─────────────────────────────────────────────
+# Account & Subscription
+# ─────────────────────────────────────────────
+
+type Account {
+  id: ID!
+  name: String!
+  description: String
+  shortCode: String
+  videoCount: Int
+  storageUsed: Float
+  bandwidthUsed: Float
+  country: String
+  timezone: String
+  videoLibraryDays: Int
+  cdnEnabled: Boolean
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type AccountUsage {
+  accountId: String!
+  period: String!
+  videoImpressions: Int
+  videoViews: Int
+  bandwidthBytesDelivered: Float
+  storageBytes: Float
+}
+
+# ─────────────────────────────────────────────
+# Pagination & Filters
+# ─────────────────────────────────────────────
+
+type PageInfo {
+  total: Int!
+  limit: Int!
+  offset: Int!
+}
+
+type VideoConnection {
+  items: [Video!]!
+  pageInfo: PageInfo!
+}
+
+type PlaylistConnection {
+  items: [Playlist!]!
+  pageInfo: PageInfo!
+}
+
+type PlayerConnection {
+  items: [Player!]!
+  pageInfo: PageInfo!
+}
+
+type IngestJobConnection {
+  items: [IngestJob!]!
+  pageInfo: PageInfo!
+}
+
+type LiveJobConnection {
+  items: [LiveJob!]!
+  pageInfo: PageInfo!
+}
+
+type AudienceEventConnection {
+  items: [AudienceEvent!]!
+  pageInfo: PageInfo!
+}
+
+type AudienceLeadConnection {
+  items: [AudienceLead!]!
+  pageInfo: PageInfo!
+}
+
+input VideoFilter {
+  state: VideoState
+  tags: [String!]
+  referenceId: String
+  q: String
+  updatedAfter: DateTime
+  createdAfter: DateTime
+}
+
+input AnalyticsFilter {
+  dimensions: [String!]!
+  metrics: [String!]!
+  where: String
+  from: DateTime
+  to: DateTime
+  sort: String
+  limit: Int
+  offset: Int
+  granularity: String
+}
+
+input VideoInput {
+  name: String!
+  description: String
+  longDescription: String
+  referenceId: String
+  state: VideoState
+  tags: [String!]
+  customFields: JSON
+  geoFilter: GeoFilterInput
+  schedule: VideoScheduleInput
+  link: VideoLinkInput
+}
+
+input GeoFilterInput {
+  countries: [String!]!
+  excludeCountries: Boolean
+  restricted: Boolean
+}
+
+input VideoScheduleInput {
+  startAt: DateTime
+  endsAt: DateTime
+}
+
+input VideoLinkInput {
+  url: URL!
+  text: String
+}
+
+input PlaylistInput {
+  name: String!
+  description: String
+  referenceId: String
+  type: PlaylistType!
+  videoIds: [String!]
+  search: String
+  limit: Int
+  state: VideoState
+}
+
+input PlayerInput {
+  name: String!
+  description: String
+  configuration: JSON
+}
+
+input IngestInput {
+  videoId: String!
+  master: IngestMasterInput
+  profile: String
+  captureImages: Boolean
+}
+
+input IngestMasterInput {
+  url: URL!
+  useArchivedMaster: Boolean
+}
+
+input LiveJobInput {
+  name: String
+  outputs: [LiveOutputInput!]!
+  staticEndpoint: Boolean
+  adInsertion: Boolean
+  region: String
+  reconnectTime: Int
+}
+
+input LiveOutputInput {
+  label: String
+  streamingUrl: URL
+  videoCodec: String
+  audioBitrate: Int
+  videoBitrate: Int
+  height: Int
+  width: Int
+}
+
+input AdConfigurationInput {
+  name: String!
+  type: AdInsertionType!
+  adUrl: URL!
+  responseType: String
+  expectedResponse: String
+}
+
+# ─────────────────────────────────────────────
+# Root Types
+# ─────────────────────────────────────────────
+
+type Query {
+  # Video CMS
+  video(accountId: String!, videoId: ID!): Video
+  videos(accountId: String!, filter: VideoFilter, limit: Int, offset: Int, sort: String): VideoConnection!
+  videoCount(accountId: String!, filter: VideoFilter): Int!
+  playlist(accountId: String!, playlistId: ID!): Playlist
+  playlists(accountId: String!, limit: Int, offset: Int): PlaylistConnection!
+  folder(accountId: String!, folderId: ID!): Folder
+  folders(accountId: String!): [Folder!]!
+  videoLabels(accountId: String!): [VideoLabel!]!
+  videoCuePoints(accountId: String!, videoId: ID!): [CuePoint!]!
+
+  # Ingest Profiles
+  ingestProfile(accountId: String!, profileId: ID!): IngestProfile
+  ingestProfiles(accountId: String!): [IngestProfile!]!
+  ingestJob(accountId: String!, videoId: String!, jobId: ID!): IngestJob
+  ingestJobs(accountId: String!, videoId: String!): IngestJobConnection!
+
+  # Player Management
+  player(accountId: String!, playerId: ID!): Player
+  players(accountId: String!, limit: Int, offset: Int): PlayerConnection!
+  playerEmbed(accountId: String!, playerId: String!, embedId: ID!): PlayerEmbed
+  playerEmbeds(accountId: String!, playerId: String!): [PlayerEmbed!]!
+
+  # Analytics
+  analyticsReport(accountId: String!, filter: AnalyticsFilter!): AnalyticsReport!
+  engagementReport(accountId: String!, videoId: String!): EngagementReport
+  accountUsage(accountId: String!, period: String): AccountUsage
+
+  # Live Streaming
+  liveJob(jobId: ID!): LiveJob
+  liveJobs(accountId: String!): LiveJobConnection!
+  liveClip(jobId: String!, clipId: ID!): LiveClip
+  liveClips(jobId: String!): [LiveClip!]!
+
+  # Social
+  socialDistributions(accountId: String!, videoId: String): [SocialDistribution!]!
+  socialDestinations(accountId: String!): [SocialDestination!]!
+
+  # Audience
+  audienceEvents(accountId: String!, videoId: String, limit: Int, offset: Int): AudienceEventConnection!
+  audienceLeads(accountId: String!, limit: Int, offset: Int): AudienceLeadConnection!
+
+  # SSAI
+  adConfiguration(accountId: String!, configId: ID!): AdConfiguration
+  adConfigurations(accountId: String!, type: AdInsertionType): [AdConfiguration!]!
+
+  # Delivery Rules
+  deliveryRule(accountId: String!, ruleId: ID!): DeliveryRule
+  deliveryRules(accountId: String!): [DeliveryRule!]!
+
+  # Playback Restrictions
+  playbackRestriction(accountId: String!, restrictionId: ID!): PlaybackRestriction
+  playbackRestrictions(accountId: String!): [PlaybackRestriction!]!
+  playbackAuthKeys(accountId: String!): [PlaybackAuthKey!]!
+
+  # Cloud Playout
+  cloudPlayoutChannel(accountId: String!, channelId: ID!): CloudPlayoutChannel
+  cloudPlayoutChannels(accountId: String!): [CloudPlayoutChannel!]!
+  epgEntries(accountId: String!, channelId: String!, from: DateTime, to: DateTime): [EPGEntry!]!
+
+  # OAuth
+  oauthCredential(clientId: ID!): OAuthCredential
+  oauthCredentials(accountId: String!): [OAuthCredential!]!
+
+  # Account
+  account(accountId: String!): Account
+}
+
+type Mutation {
+  # Video CMS
+  createVideo(accountId: String!, input: VideoInput!): Video!
+  updateVideo(accountId: String!, videoId: ID!, input: VideoInput!): Video!
+  deleteVideo(accountId: String!, videoId: ID!): Boolean!
+  addVideoToFolder(accountId: String!, videoId: String!, folderId: String!): Boolean!
+  removeVideoFromFolder(accountId: String!, videoId: String!, folderId: String!): Boolean!
+  addCuePoint(accountId: String!, videoId: String!, type: CuePointType!, time: Float!, name: String): CuePoint!
+  deleteCuePoint(accountId: String!, videoId: String!, cuePointId: ID!): Boolean!
+
+  # Playlist
+  createPlaylist(accountId: String!, input: PlaylistInput!): Playlist!
+  updatePlaylist(accountId: String!, playlistId: ID!, input: PlaylistInput!): Playlist!
+  deletePlaylist(accountId: String!, playlistId: ID!): Boolean!
+
+  # Folder
+  createFolder(accountId: String!, name: String!): Folder!
+  deleteFolder(accountId: String!, folderId: ID!): Boolean!
+
+  # Ingest
+  ingestVideo(accountId: String!, input: IngestInput!): IngestJob!
+  retranscodeVideo(accountId: String!, videoId: String!, profile: String): IngestJob!
+
+  # Ingest Profiles
+  createIngestProfile(accountId: String!, profile: JSON!): IngestProfile!
+  updateIngestProfile(accountId: String!, profileId: ID!, profile: JSON!): IngestProfile!
+  deleteIngestProfile(accountId: String!, profileId: ID!): Boolean!
+
+  # Player Management
+  createPlayer(accountId: String!, input: PlayerInput!): Player!
+  updatePlayer(accountId: String!, playerId: ID!, input: PlayerInput!): Player!
+  publishPlayer(accountId: String!, playerId: ID!): Player!
+  deletePlayer(accountId: String!, playerId: ID!): Boolean!
+  createEmbed(accountId: String!, playerId: String!, input: JSON!): PlayerEmbed!
+  updateEmbed(accountId: String!, playerId: String!, embedId: ID!, input: JSON!): PlayerEmbed!
+  deleteEmbed(accountId: String!, playerId: String!, embedId: ID!): Boolean!
+
+  # Live Streaming
+  createLiveJob(input: LiveJobInput!): LiveJob!
+  stopLiveJob(jobId: ID!): LiveJob!
+  cancelLiveJob(jobId: ID!): LiveJob!
+  createLiveClip(jobId: String!, startTime: Float!, endTime: Float!, videoId: String): LiveClip!
+
+  # Social
+  createSocialDistribution(accountId: String!, videoId: String!, destinationId: String!, platform: SocialPlatform!): SocialDistribution!
+  deleteSocialDistribution(accountId: String!, distributionId: ID!): Boolean!
+
+  # SSAI
+  createAdConfiguration(accountId: String!, input: AdConfigurationInput!): AdConfiguration!
+  updateAdConfiguration(accountId: String!, configId: ID!, input: AdConfigurationInput!): AdConfiguration!
+  deleteAdConfiguration(accountId: String!, configId: ID!): Boolean!
+
+  # Delivery Rules
+  createDeliveryRule(accountId: String!, name: String!, conditions: JSON!, actions: JSON!): DeliveryRule!
+  updateDeliveryRule(accountId: String!, ruleId: ID!, name: String, conditions: JSON, actions: JSON): DeliveryRule!
+  deleteDeliveryRule(accountId: String!, ruleId: ID!): Boolean!
+
+  # Playback Restrictions
+  createPlaybackRestriction(accountId: String!, name: String!, domain: JSON, geo: JSON, concurrency: JSON): PlaybackRestriction!
+  updatePlaybackRestriction(accountId: String!, restrictionId: ID!, name: String, domain: JSON, geo: JSON, concurrency: JSON): PlaybackRestriction!
+  deletePlaybackRestriction(accountId: String!, restrictionId: ID!): Boolean!
+  createPlaybackAuthKey(accountId: String!): PlaybackAuthKey!
+  deletePlaybackAuthKey(accountId: String!, keyId: ID!): Boolean!
+
+  # Cloud Playout
+  createCloudPlayoutChannel(accountId: String!, name: String!, region: String!, liveProfile: String): CloudPlayoutChannel!
+  startCloudPlayoutChannel(accountId: String!, channelId: ID!): CloudPlayoutChannel!
+  stopCloudPlayoutChannel(accountId: String!, channelId: ID!): CloudPlayoutChannel!
+  deleteCloudPlayoutChannel(accountId: String!, channelId: ID!): Boolean!
+  addEPGEntry(accountId: String!, channelId: String!, videoId: String!, startTime: DateTime!, endTime: DateTime!): EPGEntry!
+  removeEPGEntry(accountId: String!, channelId: String!, entryId: ID!): Boolean!
+
+  # OAuth
+  createOAuthCredential(accountId: String!, name: String!, operations: [String!]!): OAuthCredential!
+  deleteOAuthCredential(clientId: ID!): Boolean!
+  getAccessToken(clientId: String!, clientSecret: String!): AccessToken!
+}
