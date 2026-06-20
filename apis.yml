@@ -4,7 +4,7 @@ description: Brightcove is an online video platform providing REST APIs for uplo
   and managing videos, encoding, CDN delivery, player configuration, analytics, and
   live streaming management. Its Video Cloud platform serves media companies, broadcasters,
   marketers, and OTT providers globally.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/brightcove/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -23,7 +23,7 @@ apis:
 - name: Brightcove CMS API
   description: Delivers uncached access to all media data within your Video Cloud
     library, enabling full CRUD operations on videos, playlists, and assets.
-  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://apis.support.brightcove.com/cms/
   baseURL: https://cms.api.brightcove.com/v1
   tags:
@@ -40,7 +40,7 @@ apis:
 - name: Brightcove Dynamic Ingest API
   description: Handles ingestion of videos and media assets into Video Cloud, supporting
     remote URL ingestion and upload from local files.
-  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://apis.support.brightcove.com/dynamic-ingest/
   baseURL: https://ingest.api.brightcove.com/v1
   tags:
@@ -54,7 +54,7 @@ apis:
   description: Retrieves analytics data programmatically for Video Cloud accounts,
     including dimensions like device type, geography, player, and video performance
     metrics.
-  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://apis.support.brightcove.com/analytics/
   baseURL: https://analytics.api.brightcove.com/v1
   tags:
@@ -67,7 +67,7 @@ apis:
 - name: Brightcove Playback API
   description: Fetches video and playlist data for players and mobile apps, providing
     optimized delivery of media metadata and playback URLs.
-  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://apis.support.brightcove.com/playback/
   baseURL: https://edge.api.brightcove.com/playback/v1
   tags:
@@ -80,7 +80,7 @@ apis:
 - name: Brightcove Player Management API
   description: Creates, edits, and manages Brightcove players as publishable resources
     with full configuration control.
-  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://apis.support.brightcove.com/player-management/
   baseURL: https://players.api.brightcove.com/v2
   tags:
@@ -93,7 +93,7 @@ apis:
 - name: Brightcove Live API
   description: Creates and manages live streams with comprehensive streaming controls
     including RTMP, RTP, RTP-FEC, and SRT input protocols and HLS output delivery.
-  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://apis.support.brightcove.com/live-api/
   baseURL: https://api.bcovlive.io/v1
   tags:
@@ -106,7 +106,7 @@ apis:
 - name: Brightcove OAuth API
   description: Implements OAuth 2.0 client credentials flow for managing credentials
     and obtaining access tokens for all Brightcove REST APIs.
-  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://apis.support.brightcove.com/oauth/
   baseURL: https://oauth.brightcove.com/v4
   tags:
@@ -119,7 +119,7 @@ apis:
 - name: Brightcove SSAI API
   description: Enables server-side ad stitching directly into video streams, supporting
     VOD and live stream monetization with seamless ad insertion.
-  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://apis.support.brightcove.com/ssai/
   baseURL: https://ssai.api.brightcove.com/v1
   tags:
@@ -132,7 +132,7 @@ apis:
 - name: Brightcove Ingest Profiles API
   description: Manages profiles that define video processing during ingestion, controlling
     encoding settings and rendition creation.
-  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://apis.support.brightcove.com/ingest-profiles/
   baseURL: https://ingestion.api.brightcove.com/v1
   tags:
@@ -145,7 +145,7 @@ apis:
 - name: Brightcove Delivery Rules API
   description: Customizes media delivery to meet specific business objectives, enabling
     conditional logic for rendition selection and CDN routing.
-  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://apis.support.brightcove.com/delivery-rules/
   baseURL: https://delivery-rules.api.brightcove.com
   tags:
@@ -158,7 +158,7 @@ apis:
 - name: Brightcove Cloud Playout APIs
   description: Manages cloud-based linear channel playout with EPG (Electronic Programming
     Guide) and Channels APIs for scheduled programming.
-  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://apis.support.brightcove.com/cloud-playout-apis/
   baseURL: https://cm.cloudplayout.brightcove.com
   tags:
@@ -172,7 +172,7 @@ apis:
 - name: Brightcove Audience API
   description: Retrieves viewing event and lead data for marketing automation workflows,
     enabling integration with MAP and CRM platforms.
-  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://apis.support.brightcove.com/audience/
   baseURL: https://audience.api.brightcove.com/v1
   tags:
@@ -185,7 +185,7 @@ apis:
 - name: Brightcove Social API
   description: Retrieves social sharing status and history for videos distributed
     to social media platforms.
-  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://apis.support.brightcove.com/social/
   baseURL: https://edge.social.api.brightcove.com/v1
   tags:
@@ -198,7 +198,7 @@ apis:
 - name: Brightcove Playback Restrictions API
   description: Provides scalable playback management including DRM, concurrency controls,
     and geographic and domain restrictions.
-  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://apis.support.brightcove.com/playback-restrictions/
   baseURL: https://playback-auth.api.brightcove.com
   tags:
