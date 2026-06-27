@@ -2,10 +2,12 @@
   "repo": "brightcove",
   "feeds": [
     {
-      "source": "https://www.linkedin.com/company/brightcove",
-      "error": "HTTPError"
+      "source": "https://www.brightcove.com/en/blog/",
+      "saved": 0,
+      "error": "listing renders client-side; no posts extractable from HTML"
     }
   ],
+  "fetched": "2026-06-27T12:29:18Z",
   "post_count": 0,
-  "fetched": "2026-06-14T20:42:17Z"
+  "agent_pulled": "2026-06-27"
 }
