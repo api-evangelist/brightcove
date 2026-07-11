@@ -210,6 +210,8 @@ apis:
   - type: Documentation
     url: https://apis.support.brightcove.com/playback-restrictions/
 common:
+- type: OAuthScopes
+  url: scopes/brightcove-scopes.yml
 - type: Website
   url: https://www.brightcove.com
 - type: Documentation

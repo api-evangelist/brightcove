@@ -1,0 +1,277 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/analytics-api-openapi.yaml, openapi/audience-openapi.yaml, openapi/cms-api-openapi.yaml,
+  openapi/delivery-rules-openapi.yaml, openapi/dynamic-ingest-openapi.yaml, openapi/ingest-profiles-openapi.yaml,
+  openapi/player-management-openapi.yaml, openapi/social-openapi.yaml, openapi/ssai-openapi.yaml
+schemes:
+- name: BC_OAuth2
+  source: openapi/analytics-api-openapi.yaml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://oauth.brightcove.com/v4/access_token
+  description: Brightcove OAuth API. See the [support documentation](/oauth/index.html) or [Getting
+    Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html) to learn more
+- name: BC_OAuth2
+  source: openapi/audience-openapi.yaml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://oauth.brightcove.com/v4/access_token
+  description: Brightcove OAuth API. See the [support documentation](https://apis.support.brightcove.com/oauth/)
+    or [Getting Access Tokens](https://apis.support.brightcove.com/oauth/guides/getting-access-tokens.html)
+    to learn more
+- name: BC_OAuth2
+  source: openapi/cms-api-openapi.yaml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://oauth.brightcove.com/v4/access_token
+  description: Brightcove OAuth API. See the [support documentation](/oauth/index.html) or [Getting
+    Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html) to learn more
+- name: BC_OAuth2
+  source: openapi/delivery-rules-openapi.yaml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://oauth.brightcove.com/v4/access_token
+  description: Brightcove OAuth API. To learn more, see the [OAuth Overview](https://apis.support.brightcove.com/oauth/)
+    or the [Getting Access Tokens](https://apis.support.brightcove.com/oauth/code-samples/oauth-api-sample-get-access-token.html)
+    document.
+- name: BC_OAuth2
+  source: openapi/dynamic-ingest-openapi.yaml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://oauth.brightcove.com/v4/access_token
+  description: Brightcove OAuth API. See the [support documentation](/oauth/index.html) or [Getting
+    Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html) to learn more
+- name: BC_OAuth2
+  source: openapi/ingest-profiles-openapi.yaml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://oauth.brightcove.com/v4/access_token
+  description: Brightcove OAuth API. See the [support documentation](/oauth/index.html) or [Getting
+    Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html) to learn more
+- name: BC_OAuth2
+  source: openapi/player-management-openapi.yaml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://oauth.brightcove.com/v4/access_token
+  description: |-
+    **IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.
+
+    Brightcove OAuth API. See the [support documentation](/oauth/index.html) or [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html) to learn more.
+- name: BC_OAuth2
+  source: openapi/social-openapi.yaml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://oauth.brightcove.com/v4/access_token
+  description: Brightcove OAuth API. See the [support documentation](https://apis.support.brightcove.com/oauth/)
+    or [Getting Access Tokens](https://apis.support.brightcove.com/oauth/guides/getting-access-tokens.html)
+    to learn more
+- name: BC_OAuth2
+  source: openapi/ssai-openapi.yaml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://oauth.brightcove.com/v4/access_token
+  description: Brightcove OAuth API. See the [support documentation](/oauth/index.html) or [Getting
+    Access Tokens](/oauth/guides/getting-access-tokens.html) to learn more
+scopes:
+- scope: video-cloud/analytics/read
+  description: Read analytics data
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/analytics-api-openapi.yaml
+- scope: video-cloud/asset/delete
+  description: Digital Master Delete
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/cms-api-openapi.yaml
+- scope: video-cloud/audience/read
+  description: Read Leads and Events data
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/audience-openapi.yaml
+- scope: video-cloud/audience/write
+  description: Write Leads and Events data
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/audience-openapi.yaml
+- scope: video-cloud/delivery-rules/all
+  description: Read, Write, Delete Delivery Rules
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/delivery-rules-openapi.yaml
+- scope: video-cloud/delivery-rules/read
+  description: Read Delivery Rules
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/delivery-rules-openapi.yaml
+- scope: video-cloud/ingest-profiles/account/read
+  description: Read account default ingest profile
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/dynamic-ingest-openapi.yaml
+  - openapi/ingest-profiles-openapi.yaml
+- scope: video-cloud/ingest-profiles/account/write
+  description: Write account settings
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/ingest-profiles-openapi.yaml
+- scope: video-cloud/ingest-profiles/profile/read
+  description: Read ingest profiles
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/dynamic-ingest-openapi.yaml
+  - openapi/ingest-profiles-openapi.yaml
+- scope: video-cloud/ingest-profiles/profile/write
+  description: Write profiles
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/ingest-profiles-openapi.yaml
+- scope: video-cloud/notifications/all
+  description: Notifications All
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/cms-api-openapi.yaml
+- scope: video-cloud/player/all
+  description: Read/write player data
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/player-management-openapi.yaml
+- scope: video-cloud/player/read
+  description: Read player data
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/player-management-openapi.yaml
+- scope: video-cloud/playlist/all
+  description: Playlist All
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/cms-api-openapi.yaml
+- scope: video-cloud/playlist/create
+  description: Playlist Create
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/cms-api-openapi.yaml
+- scope: video-cloud/playlist/delete
+  description: Playlist Delete
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/cms-api-openapi.yaml
+- scope: video-cloud/playlist/read
+  description: Playlist Read
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/cms-api-openapi.yaml
+- scope: video-cloud/playlist/update
+  description: Playlist Update
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/cms-api-openapi.yaml
+- scope: video-cloud/sharing-relationships/all
+  description: Sharing Relationships All
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/cms-api-openapi.yaml
+- scope: video-cloud/sharing-relationships/create
+  description: Sharing Relationships Create
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/cms-api-openapi.yaml
+- scope: video-cloud/sharing-relationships/delete
+  description: Sharing Relationships Delete
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/cms-api-openapi.yaml
+- scope: video-cloud/sharing-relationships/read
+  description: Sharing Relationships Read
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/cms-api-openapi.yaml
+- scope: video-cloud/sharing-relationships/update
+  description: Sharing Relationships Update
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/cms-api-openapi.yaml
+- scope: video-cloud/social/status/read
+  description: Read social sharing status and history
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/social-openapi.yaml
+- scope: video-cloud/ssai/all
+  description: Read and write SSAI metadata
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/ssai-openapi.yaml
+- scope: video-cloud/ssai/read
+  description: Read SSAI metadata
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/ssai-openapi.yaml
+- scope: video-cloud/upload-urls/read
+  description: Read upload URLs
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/dynamic-ingest-openapi.yaml
+- scope: video-cloud/video/all
+  description: Video ALL
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/cms-api-openapi.yaml
+  - openapi/dynamic-ingest-openapi.yaml
+- scope: video-cloud/video/clear-sources
+  description: Read clear sources
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/cms-api-openapi.yaml
+- scope: video-cloud/video/create
+  description: Video Create
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/cms-api-openapi.yaml
+- scope: video-cloud/video/delete
+  description: Video Delete
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/cms-api-openapi.yaml
+- scope: video-cloud/video/read
+  description: Read video data
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/analytics-api-openapi.yaml
+  - openapi/cms-api-openapi.yaml
+- scope: video-cloud/video/update
+  description: Video Update
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/cms-api-openapi.yaml
