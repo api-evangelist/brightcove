@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: searched
+probe: true
+source: https://trust.brightcove.com/
+url: https://trust.brightcove.com/
+certifications:
+- ISO 27001
+- GDPR
+- CSA STAR
+evidence:
+- source: https://trust.brightcove.com/
+  keywords:
+  - iso/iec 27001
+  - trust center
+  - gdpr
+  - csa star

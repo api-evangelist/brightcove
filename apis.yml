@@ -210,6 +210,12 @@ apis:
   - type: Documentation
     url: https://apis.support.brightcove.com/playback-restrictions/
 common:
+- type: TrustCenter
+  url: security/brightcove-trust-center.yml
+- type: DomainSecurity
+  url: security/brightcove-domain-security.yml
+- type: Authentication
+  url: authentication/brightcove-authentication.yml
 - type: OAuthScopes
   url: scopes/brightcove-scopes.yml
 - type: Website
