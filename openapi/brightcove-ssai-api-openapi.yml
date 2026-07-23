@@ -1,0 +1,1019 @@
+openapi: 3.0.3
+info:
+  title: Brightcove Analytics API Reference Access Tokens SSAI API
+  description: "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com"
+  x-bc-access: public
+  version: 1.0.0
+servers:
+- url: https://analytics.api.brightcove.com
+  variables: {}
+tags:
+- name: SSAI
+  description: Operations for managing server-side ad insertion with live streams.
+paths:
+  /ssai/applications:
+    post:
+      tags:
+      - SSAI
+      summary: Create Ad Configuration
+      description: "Create a configuration for server-side ad application.\n\n**Note: SSAI is supported for the following regions:**\n  - us-west-2\n  - us-east-1\n  - ap-southeast-2\n  - ap-northeast-1\n  - ap-southeast-1\n  - eu-central-1"
+      operationId: CreateAdConfiguration
+      parameters:
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/XAPIKEY'
+      requestBody:
+        description: Create a configuration for server-side ad application.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAdConfigurationbody'
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        '400':
+          description: 'BAD_REQUEST: Invalid input value - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '401':
+          description: 'UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '500':
+          description: 'INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+      deprecated: false
+      security: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    get:
+      tags:
+      - SSAI
+      summary: Get Ad Configurations
+      description: Get ad applications for the current user.
+      operationId: GetuserAdConfigurations
+      parameters:
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/XAPIKEY'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        '400':
+          description: 'BAD_REQUEST: Invalid input value - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '401':
+          description: 'UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '500':
+          description: 'INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+      deprecated: false
+      security: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /ssai/applications/account/{live_account_id}:
+    get:
+      tags:
+      - SSAI
+      summary: Get Account Ad Configurations
+      description: 'Get ad applications for an account. '
+      operationId: GetAccountAdConfigurations
+      parameters:
+      - $ref: '#/components/parameters/live_account_id'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/XAPIKEY'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        '401':
+          description: 'UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '500':
+          description: 'INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+      deprecated: false
+      security: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /ssai/applications/application/{application_id}:
+    get:
+      tags:
+      - SSAI
+      summary: Get Ad Configuration
+      operationId: GetAdConfiguration
+      description: Get an ad application.
+      parameters:
+      - $ref: '#/components/parameters/application_id'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/XAPIKEY'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        '401':
+          description: 'UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '500':
+          description: 'INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+      deprecated: false
+      security: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    put:
+      tags:
+      - SSAI
+      summary: Update Ad Configuration
+      description: 'Update a configuration for server-side ad application. '
+      operationId: UpdateAdConfiguration
+      parameters:
+      - $ref: '#/components/parameters/application_id'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/XAPIKEY'
+      requestBody:
+        description: Update a configuration for server-side ad application.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAdConfigurationbody'
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        '400':
+          description: 'BAD_REQUEST: Invalid input value - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '401':
+          description: 'UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '500':
+          description: 'INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+      deprecated: false
+      security: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    delete:
+      tags:
+      - SSAI
+      summary: Delete Ad Configuration
+      description: 'Delete an ad application. '
+      operationId: DeleteAdConfiguration
+      parameters:
+      - $ref: '#/components/parameters/application_id'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/XAPIKEY'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteAdConfigurationResponse'
+        '401':
+          description: 'UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '500':
+          description: 'INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+      deprecated: false
+      security: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /ssai/beaconsets:
+    post:
+      tags:
+      - SSAI
+      summary: Create Beacon Set
+      description: Beacons are data points on playback sent to ad servers to track whether and how much of ads were played. Creates a beacon set.
+      operationId: CreateBeaconSet
+      parameters:
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/XAPIKEY'
+      requestBody:
+        description: Beacons are data points on playback sent to ad servers to track whether and how much of ads were played. Creates a beacon set.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBeaconSetbody'
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateBeaconSetResponse'
+        '400':
+          description: 'BAD_REQUEST: Invalid input value - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '401':
+          description: 'UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '500':
+          description: 'INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+      deprecated: false
+      security: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    get:
+      tags:
+      - SSAI
+      summary: Get Beacon Sets for User
+      description: 'Get all beacon sets for the requesting user. '
+      operationId: GetBeaconSetsForUser
+      parameters:
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/XAPIKEY'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeaconSets'
+        '401':
+          description: 'UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '500':
+          description: 'INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+      deprecated: false
+      security: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /ssai/beaconsets/beaconset/{beacon_set_id}:
+    put:
+      tags:
+      - SSAI
+      summary: Update Beacon Set
+      description: 'Updates a beacon set. '
+      operationId: UpdateBeaconSet
+      parameters:
+      - $ref: '#/components/parameters/BeaconSetId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/XAPIKEY'
+      requestBody:
+        description: Updates a beacon set.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateBeaconSetbody'
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeaconSet'
+        '400':
+          description: 'BAD_REQUEST: Invalid input value - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '401':
+          description: 'UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '500':
+          description: 'INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+      deprecated: false
+      security: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    delete:
+      tags:
+      - SSAI
+      summary: Delete Beacon Set
+      description: 'Deletes a beacon set. '
+      operationId: DeleteBeaconSet
+      parameters:
+      - $ref: '#/components/parameters/BeaconSetId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/XAPIKEY'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteBeaconSetResponse'
+        '401':
+          description: 'UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '500':
+          description: 'INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+      deprecated: false
+      security: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /ssai/beaconsets/account/{live_account_id}:
+    get:
+      tags:
+      - SSAI
+      summary: Get Beacon Sets
+      description: 'Get all beacon sets for an account. '
+      operationId: GetBeaconSets
+      parameters:
+      - $ref: '#/components/parameters/live_account_id'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/XAPIKEY'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeaconSet'
+        '401':
+          description: 'UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '500':
+          description: 'INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+      deprecated: false
+      security: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /ssai/slates:
+    post:
+      tags:
+      - SSAI
+      summary: Ingest Slate Media Source Asset
+      description: 'Ingest Slate Media Source Asset. '
+      operationId: IngestSlateMediaSourceAsset
+      parameters:
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/XAPIKEY'
+      requestBody:
+        description: Ingest Slate Media Source Asset.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IngestSlateMediaSourceAssetbody'
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngestSlateMediaSourceAssetResponse'
+        '400':
+          description: 'BAD_REQUEST: Invalid input value - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '401':
+          description: 'UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '500':
+          description: 'INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+      deprecated: false
+      security: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    get:
+      tags:
+      - SSAI
+      summary: Get User Slate Media Source Assets
+      description: 'Get Slate Media Source Assets for the current user. '
+      operationId: GetUserSlateMediaSourceAssets
+      parameters:
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/XAPIKEY'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSlateMediaSourceAssetsResponse'
+        '401':
+          description: 'UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '500':
+          description: 'INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+      deprecated: false
+      security: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /ssai/slates/slate{slate_msa_id}:
+    delete:
+      tags:
+      - SSAI
+      summary: Delete Slate Media Source Asset
+      description: 'Delete Slate Media Source Asset. '
+      operationId: DeleteSlateMediaSourceAsset
+      parameters:
+      - $ref: '#/components/parameters/SlateMsaId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/XAPIKEY'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteSlateMediaSourceAssetResponse'
+        '401':
+          description: 'UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '500':
+          description: 'INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+      deprecated: false
+      security: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /ssai/slates/account/{live_account_id}:
+    get:
+      tags:
+      - SSAI
+      summary: Get Slates for Account
+      description: 'Get all beacon sets for an account. '
+      operationId: GetSlatesForAccount
+      parameters:
+      - $ref: '#/components/parameters/live_account_id'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/XAPIKEY'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSlateMediaSourceAssetsResponse'
+        '401':
+          description: 'UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '500':
+          description: 'INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+      deprecated: false
+      security: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+components:
+  schemas:
+    UpdateBeaconSetbody:
+      properties:
+        account_id:
+          description: URL for the slate to ingest
+          type: string
+        beacon_urls:
+          description: Array of beacon URLs
+          items:
+            $ref: '#/components/schemas/UpdateBeaconSetbody.beaconUrls'
+          type: array
+      required:
+      - beacon_urls
+      title: Update_beacon_setBody
+      type: object
+    UpdateAdConfigurationbody.applicationAdConfiguration:
+      properties:
+        ad_configuration_compensation_disable:
+          description: 'This setting will override ad timing compensation, a setting that reduces timing drift when ads that get returned are longer than expected. This is normally achieved by shortening the next ad break. When set to `true`, all ad break durations will  be called as-is, and compensation will not happen. '
+          type: boolean
+          default: false
+        ad_configuration_description:
+          description: Human readable description of the configuration.
+          type: string
+        ad_configuration_expected_response_type:
+          description: The expected response type based on your ad server
+          type: string
+        ad_configuration_headers:
+          description: An optional JSON object that can contain zero or more key-value-pairs, for which both key and value must be strings.  All of the standard URL substitutions are valid for headers.
+          type: object
+        ad_configuration_headers_for_impressions:
+          description: If true, this configuration will send headers on all ad requests and impressions; if false, headers will not be sent on impressions (quartiles/impressions that we fire for tracking from an ad response).
+          type: boolean
+        ad_configuration_url_format:
+          description: Format for the ad tag - see SSAI Using the Brightcove Live API for the available ad configuration variables.
+          type: string
+        ad_configuration_strategy:
+          description: Specifies whether ad breaks should include single or muliple ads
+          type: string
+        ad_tracking_sample_percentage:
+          type: integer
+          description: The value determines the percentage of sessions that will be logged. A value of 0 disables logs entirely.  0 is the default value.
+          minimum: 0
+          maximum: 100
+          default: 0
+      required:
+      - ad_configuration_description
+      - ad_configuration_expected_response_type
+      - ad_configuration_url_format
+      - ad_configuration_strategy
+      title: Update_Ad_ConfigurationBody.application_ad_configuration
+      type: object
+    IngestSlateMediaSourceAssetResponse:
+      properties:
+        account_id:
+          description: Id for the account
+          type: string
+        media_source_asset_default:
+          description: Whether this is the default media source asset
+          type: boolean
+          default: false
+        media_source_asset_description:
+          description: User identifiable description for the slate
+          type: string
+        media_source_asset_id:
+          description: Id for the slate asset
+          type: string
+          readOnly: true
+        media_source_asset_status:
+          description: Current status of the ingestion of the media asset
+          type: string
+          readOnly: true
+        media_source_asset_type:
+          description: The media asset type
+          type: string
+        media_source_asset_url:
+          description: URL for the media asset to be ingested
+          type: string
+      title: Ingest_Slate_Media_Source_Asset_Response
+      type: object
+    CreateAdConfigurationbody:
+      properties:
+        account_id:
+          description: Your Live account id (if you leave this blank, the request will still work, defaulting to account of the current user)
+          type: string
+        application_ad_configuration:
+          $ref: '#/components/schemas/CreateAdConfigurationbody.applicationAdConfiguration'
+        application_description:
+          description: Human readable description of the ad application.
+          type: string
+      required:
+      - application_ad_configuration
+      - application_description
+      title: Create_Ad_ConfigurationBody
+      type: object
+    UpdateBeaconSetbody.beaconUrls:
+      properties:
+        beacon_type:
+          description: '''the beacon type - see [Beacons](/live-api/ssai/live-api-cue-points-and-ad-beacons-ssai.html#Beacons) for the valid beacon types'''
+          type: string
+        beacon_url:
+          description: URL format for the beacon - see [Beacons](/live-api/ssai/live-api-cue-points-and-ad-beacons-ssai.html#Beacons) for the valid beacon variables
+          type: string
+      required:
+      - beacon_url
+      - beacon_type
+      title: Update_beacon_setBody.beacon_urls
+      type: object
+    Application:
+      properties:
+        account_id:
+          description: The Live account id
+          type: string
+        application_ad_configuration:
+          $ref: '#/components/schemas/Application.applicationAdConfiguration'
+        application_id:
+          description: The ad application id
+          type: string
+        description:
+          description: The ad application description
+          type: string
+      required:
+      - account_id
+      - description
+      - application_ad_configuration
+      - application_id
+      title: application
+      type: object
+    CreateBeaconSetResponse:
+      properties:
+        account_id:
+          description: The Live account id
+          type: string
+        beacon_urls:
+          description: Array of beacon URLs
+          items:
+            $ref: '#/components/schemas/BeaconSet.beaconUrls'
+          type: array
+        inserted:
+          description: Whether the beacon set was successfully added
+          type: boolean
+      required:
+      - beacon_urls
+      title: beacon_set
+      type: object
+    CreateAdConfigurationbody.applicationAdConfiguration:
+      properties:
+        ad_configuration_client_sdk_enabled:
+          description: This setting enables client-side player enhancements for Live SSAI.
+          type: boolean
+          default: false
+        ad_configuration_compensation_disable:
+          description: This setting will override ad timing compensation, a setting that reduces timing drift when ads that get returned are longer than expected. This is normally achieved by shortening the next ad break. When set to true, all ad break durations will  be called as-is, and compensation will not happen.
+          type: boolean
+          default: false
+        ad_configuration_description:
+          description: Human readable description of the configuration.
+          type: string
+        ad_configuration_escape_vast_wrapper_url:
+          description: Certain ad providers return unescaped VASTAdTagURI values, and setting this applies URI encoding for all values.
+          type: boolean
+          default: false
+        ad_configuration_expected_response_type:
+          description: The expected response type based on your ad server
+          type: string
+        ad_configuration_headers:
+          description: An optional JSON object that can contain zero or more key-value-pairs, for which both key and value must be strings.  All of the standard URL substitutions are valid for headers.
+          type: object
+        ad_configuration_headers_for_impressions:
+          description: If true, this configuration will send headers on all ad requests and impressions; if false, headers will not be sent on impressions (quartiles/impressions that we fire for tracking from an ad response).
+          type: boolean
+        ad_configuration_url_format:
+          description: Format for the ad tag - see SSAI Using the Brightcove Live API for the available ad configuration variables.
+          type: string
+        ad_configuration_strategy:
+          description: Specifies whether ad breaks should include single or multiple ads
+          type: string
+        ad_tracking_sample_percentage:
+          type: integer
+          description: The value determines the percentage of sessions that will be logged. A value of 0 disables logs entirely.  0 is the default value.
+          minimum: 0
+          maximum: 100
+          default: 0
+        client_options:
+          $ref: '#/components/schemas/CreateAdConfigurationbody.applicationAdConfiguration.clientOptions'
+        enable_regional_ads:
+          description: This setting indicates that server-side ad requests will be sent from the live job processing region.
+          type: boolean
+          default: false
+        enable_roku_workarounds:
+          description: This setting, when combined with ad_configuration_client_sdk_enabled,  enables client-side player enhancements for Live SSAI specific to the Roku streaming platform.
+          type: boolean
+          default: false
+      required:
+      - ad_configuration_description
+      - ad_configuration_expected_response_type
+      - ad_configuration_url_format
+      - ad_configuration_strategy
+      title: Create_Ad_ConfigurationBody.application_ad_configuration
+      type: object
+    UpdateAdConfigurationbody:
+      properties:
+        account_id:
+          description: Your Live account id (if you leave this blank, the request will still work)
+          type: string
+        application_ad_configuration:
+          $ref: '#/components/schemas/UpdateAdConfigurationbody.applicationAdConfiguration'
+        application_description:
+          description: Human readable description of the ad application.
+          type: string
+      required:
+      - application_ad_configuration
+      - application_description
+      title: Update_Ad_ConfigurationBody
+      type: object
+    CreateBeaconSetbody.beaconUrls:
+      properties:
+        beacon_type:
+          description: '''The beacon type - see [Beacons](/live-api/ssai/live-api-cue-points-and-ad-beacons-ssai.html#Beacons) for the valid beacon types'''
+          type: string
+        beacon_url:
+          description: URL format for the beacon - see [Beacons](/live-api/ssai/live-api-cue-points-and-ad-beacons-ssai.html#Beacons) for the valid beacon variables
+          type: string
+      required:
+      - beacon_url
+      - beacon_type
+      title: Create_beacon_setBody.beacon_urls
+      type: object
+    BeaconSets:
+      items:
+        $ref: '#/components/schemas/BeaconSet'
+      required:
+      - beacon_set_id
+      - account_id
+      title: beacon_sets
+      type: array
+    CreateAdConfigurationbody.applicationAdConfiguration.clientOptions:
+      properties:
+        client_only_tracking:
+          description: Disable server-side tracking events (impressions/quartiles)
+          type: boolean
+          default: false
+        show_ad_break_remaining_time:
+          description: Display time remaining for an ad break
+          type: boolean
+          default: false
+        show_ad_remaining_time:
+          description: Display time remaining for an ad
+          type: boolean
+          default: false
+        show_number_of_remaining_ads:
+          description: Display the number of ads remaining in the ad break
+          type: boolean
+          default: false
+      title: Create_Ad_ConfigurationBody.application_ad_configuration.client_options
+      type: object
+    DeleteBeaconSetResponse:
+      properties:
+        beacon_set_id:
+          description: The beacon set id
+          type: string
+        deleted:
+          description: Whether the beacon set was deleted successfully
+          type: boolean
+      required:
+      - beacon_set_id
+      - deleted
+      title: Delete_beacon_set_Response
+      type: object
+    IngestSlateMediaSourceAssetbody:
+      properties:
+        account_id:
+          description: The Live account id (if left blank, the request will still work)
+          type: string
+        source_description:
+          description: User identifiable description for the slate
+          type: string
+        source_url:
+          description: URL for the slate to ingest
+          type: string
+      required:
+      - source_url
+      - account_id
+      title: Ingest_Slate_Media_Source_AssetBody
+      type: object
+    CreateBeaconSetbody:
+      properties:
+        account_id:
+          description: Live account id
+          type: string
+        beacon_urls:
+          description: Array of beacon URLs
+          items:
+            $ref: '#/components/schemas/CreateBeaconSetbody.beaconUrls'
+          type: array
+      required:
+      - beacon_urls
+      title: Create_beacon_setBody
+      type: object
+    GetSlateMediaSourceAssetsResponse:
+      properties:
+        account_id:
+          description: Id for the Live account
+          type: string
+        media_source_asset_default:
+          description: Whether this is the default media source asset
+          type: boolean
+          default: false
+        media_source_asset_description:
+          description: User identifiable description for the slate
+          type: string
+        media_source_asset_id:
+          description: Id for the slate asset
+          type: string
+        media_source_asset_status:
+          description: Current status of the ingestion of the media asset
+          type: string
+        media_source_asset_type:
+          description: The media asset type
+          type: string
+        media_source_asset_url:
+          description: URL for the media asset to be ingested
+          type: string
+      required:
+      - media_source_asset_id
+      - account_id
+      - media_source_asset_description
+      - media_source_asset_default
+      - media_source_asset_type
+      - media_source_asset_url
+      - media_source_asset_status
+      title: Get_Slate_Media_Source_Assets_Response
+      type: object
+    BeaconSet.beaconUrls:
+      properties:
+        beacon_type:
+          description: Beacon type
+          type: string
+        beacon_url:
+          description: Beacon URL
+          type: string
+      required:
+      - beacon_url
+      - beacon_type
+      title: beacon_set.beacon_urls
+      type: object
+    Application.applicationAdConfiguration:
+      properties:
+        ad_configuration_description:
+          description: The ad configuration description
+          type: string
+        ad_configuration_strategy:
+          description: The ad configuration strategy (SingleAdResponse, or MultipleAdResponse)
+          type: string
+        ad_configuration_url_format:
+          description: The URL template for the ad server
+          type: string
+        ad_configuration_variables:
+          description: Key/value pairs for the ad server URL template
+          type: object
+        ad_tracking_sample_percentage:
+          type: integer
+          description: The value determines the percentage of sessions that will be logged. A value of 0 disables logs entirely.  0 is the default value.
+        headers:
+          description: The ad configuration headers
+          type: object
+        response_type:
+          description: The ad configuration response type (Dfp, Vast, or SmartXML)
+          type: string
+      required:
+      - ad_configuration_description
+      - response_type
+      - headers
+      - ad_configuration_strategy
+      - ad_configuration_url_format
+      - ad_configuration_variables
+      title: application.application_ad_configuration
+      type: object
+    BeaconSet:
+      properties:
+        account_id:
+          description: The Live account id
+          type: string
+        beacon_urls:
+          description: Array of beacon URLs
+          items:
+            $ref: '#/components/schemas/BeaconSet.beaconUrls'
+          type: array
+      required:
+      - beacon_urls
+      title: beacon_set
+      type: object
+    DeleteAdConfigurationResponse:
+      properties:
+        application_id:
+          description: The ad application id
+          type: string
+        deleted:
+          description: Confirmation of deletion
+          type: boolean
+      required:
+      - application_id
+      - deleted
+      title: Delete_Ad_Configuration_Response
+      type: object
+    DeleteSlateMediaSourceAssetResponse:
+      properties:
+        account_id:
+          description: Id for the account
+          type: string
+        media_source_asset_default:
+          description: Whether this is the default media source asset
+          type: boolean
+          default: false
+        media_source_asset_id:
+          description: Id for the slate asset
+          type: string
+        media_source_asset_status:
+          description: Current status of the ingestion of the media asset
+          type: string
+        media_source_asset_type:
+          description: The media asset type
+          type: string
+        media_source_asset_url:
+          description: URL for the media asset to be ingested
+          type: string
+      required:
+      - media_source_asset_id
+      - account_id
+      - media_source_asset_default
+      - media_source_asset_type
+      - media_source_asset_url
+      - media_source_asset_status
+      title: Delete_Slate_Media_Source_Asset_Response
+      type: object
+  parameters:
+    SlateMsaId:
+      name: slate_msa_id
+      in: path
+      description: A slate media asset ID
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    live_account_id:
+      name: live_account_id
+      in: path
+      description: Live account ID
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    application_id:
+      name: application_id
+      in: path
+      description: The ad application id
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    XAPIKEY:
+      name: X-API-KEY
+      in: header
+      description: 'X-API-KEY: {Your_Live_API_Key}'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    ContentType:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        default: application/json
+      example: application/json
+    BeaconSetId:
+      name: beacon_set_id
+      in: path
+      description: A slate media asset ID
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+  securitySchemes:
+    BC_OAuth2:
+      type: oauth2
+      description: Brightcove OAuth API. See the [support documentation](/oauth/index.html) or [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html) to learn more
+      flows:
+        clientCredentials:
+          tokenUrl: https://oauth.brightcove.com/v4/access_token
+          scopes:
+            video-cloud/analytics/read: Read analytics data
+            video-cloud/video/read: Read video data
+x-bc-implicit-head: true
+x-bc-implicit-options: true
+x-bc-upstream: https://backend_server

@@ -1,0 +1,192 @@
+openapi: 3.0.3
+info:
+  title: Brightcove Analytics API Reference Access Tokens Delivery Rule Conditions API
+  description: "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com"
+  x-bc-access: public
+  version: 1.0.0
+servers:
+- url: https://analytics.api.brightcove.com
+  variables: {}
+tags:
+- name: Delivery Rule Conditions
+  description: Operations for reading and updating Delivery Rule Conditions
+paths:
+  /accounts/{{account_id}}/conditions:
+    get:
+      tags:
+      - Delivery Rule Conditions
+      summary: Fetch the Conditions for the account
+      description: List the Conditions defined for an account
+      operationId: getConditions
+      security:
+      - BC_OAuth2:
+        - video-cloud/delivery-rules/read
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - name: Authorization
+        in: header
+        description: 'Authorization: Bearer access_token (see Getting Access Tokens)'
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Condition'
+        '403':
+          description: Forbidden
+        '500':
+          description: Server error
+      deprecated: false
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    put:
+      tags:
+      - Delivery Rule Conditions
+      summary: Update the Conditions
+      description: Update the Conditions
+      operationId: updateConditions
+      security:
+      - BC_OAuth2:
+        - video-cloud/delivery-rules/all
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - name: Content-Type
+        in: header
+        description: 'Content-Type: application/json'
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: 'Authorization: Bearer access_token (see Getting Access Tokens)'
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: Updated Conditions
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Condition'
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Condition'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Server error
+      deprecated: false
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+components:
+  schemas:
+    Condition:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Descriptive name of the Condition
+        if:
+          type: object
+          description: The conditions that a request must match before the associated rules are invoked
+          properties:
+            device_group:
+              type: array
+              description: A list of device groups
+              items:
+                description: Device Group
+                type: string
+                enum:
+                - ipad
+                - iphone
+                - appletv
+                - chromecast
+                - ios-other
+                - fetchtv
+                - roku-9
+                - roku-7/8
+                - desktop-chrome
+                - desktop-firefox
+                - desktop-safari
+                - android
+                - tablet-android
+                - tablet-kindle
+                - smartphone-generic
+            request_country:
+              type: array
+              description: A list of countries
+              items:
+                description: A two-character ISO 3166-1 country code
+                type: string
+            request_continent:
+              type: array
+              description: A list of continents
+              items:
+                description: Continent
+                type: string
+                enum:
+                - AF
+                - AN
+                - AS
+                - EU
+                - NA
+                - OC
+                - SA
+        then:
+          type: array
+          description: A list of Action IDs to invoke when the conditions are met
+          items:
+            description: Action ID
+            type: string
+  parameters:
+    AccountId:
+      name: account_id
+      in: path
+      description: Video Cloud account id
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+  securitySchemes:
+    BC_OAuth2:
+      type: oauth2
+      description: Brightcove OAuth API. See the [support documentation](/oauth/index.html) or [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html) to learn more
+      flows:
+        clientCredentials:
+          tokenUrl: https://oauth.brightcove.com/v4/access_token
+          scopes:
+            video-cloud/analytics/read: Read analytics data
+            video-cloud/video/read: Read video data
+x-bc-implicit-head: true
+x-bc-implicit-options: true
+x-bc-upstream: https://backend_server

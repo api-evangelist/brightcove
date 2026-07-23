@@ -1,0 +1,796 @@
+openapi: 3.0.3
+info:
+  title: Brightcove Analytics API Reference Access Tokens Media Sharing API
+  description: "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com"
+  x-bc-access: public
+  version: 1.0.0
+servers:
+- url: https://analytics.api.brightcove.com
+  variables: {}
+tags:
+- name: Media Sharing
+  description: Operations for creating and managing hierarchical labels that can be associated with videos.
+paths:
+  /v1/accounts/{{account_id}}/channels:
+    get:
+      tags:
+      - Media Sharing
+      summary: List Channels
+      description: Gets a list of channels (currently there is only one default channel) - this is a Master account operation
+      operationId: ListChannels
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Channel'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '403':
+          description: 'NOT_AVAILABLE: The resource you are requesting is  unavailable - this may be a temporary condition while some kind of processing of the video is in progress, but if the message persists, contact Support'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: Resource not found '
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'UNKNOWN: Issue in Brightcove system; try again later.
+
+            TIMEOUT: Server likely too busy; try again later.'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/sharing-relationships/read
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v1/accounts/{{account_id}}/channels{channel_name}}:
+    get:
+      tags:
+      - Media Sharing
+      summary: Get Channel Details
+      description: Gets settings for a sharing channel (currently there is only one default channel) - this is a Master account operation
+      operationId: GetChannelDetails
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/ChannelName'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Channel'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '403':
+          description: 'NOT_AVAILABLE: The resource you are requesting is  unavailable - this may be a temporary condition while some kind of processing of the video is in progress, but if the message persists, contact Support'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: Resource not found '
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'UNKNOWN: Issue in Brightcove system; try again later.
+
+            TIMEOUT: Server likely too busy; try again later.'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/sharing-relationships/read
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    patch:
+      tags:
+      - Media Sharing
+      summary: Update Channel
+      description: Updates settings for a sharing channel (currently there is only one default channel) - this is a Master account operation
+      operationId: UpdateChannel
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/ChannelName'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      requestBody:
+        description: Updates settings for a sharing channel (currently there is only one default channel) - this is a Master account operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Channel'
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Channel'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '403':
+          description: 'NOT_AVAILABLE: The resource you are requesting is  unavailable - this may be a temporary condition while some kind of processing of the video is in progress, but if the message persists, contact'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: Resource not found '
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'UNKNOWN: Issue in Brightcove system; try again later.
+
+            TIMEOUT: Server likely too busy; try again later.'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/sharing-relationships/update
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v1/accounts/{{account_id}}/channels{channel_name}}/members:
+    get:
+      tags:
+      - Media Sharing
+      summary: List Channel Affiliates
+      description: Gets a list of affiliates for a channel - this is a Master account operation
+      operationId: ListChannelAffiliates
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/ChannelName'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ChannelAffiliate'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '403':
+          description: 'NOT_AVAILABLE: The resource you are requesting is  unavailable - this may be a temporary condition while some kind of processing of the video is in progress, but if the message persists, contact'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: Resource not found '
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'UNKNOWN: Issue in Brightcove system; try again later.
+
+            TIMEOUT: Server likely too busy; try again later.'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/sharing-relationships/read
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v1/accounts/{{account_id}}/channels{channel_name}}/members/{{affiliate_account_id}}:
+    put:
+      tags:
+      - Media Sharing
+      summary: Add Affiliate
+      description: 'Adds an affiliate to a channel - this is a Master account operation '
+      operationId: AddAffiliate
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/ChannelName'
+      - $ref: '#/components/parameters/AffiliateAccountId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      requestBody:
+        description: Adds an affiliate to a channel - this is a Master account operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddAffiliate'
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddAffiliate'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '403':
+          description: 'NOT_AVAILABLE: The resource you are requesting is  unavailable - this may be a temporary condition while some kind of processing of the video is in progress, but if the message persists, contact'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: Resource not found '
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'UNKNOWN: Issue in Brightcove system; try again later.
+
+            TIMEOUT: Server likely too busy; try again later.'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/sharing-relationships/update
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    delete:
+      tags:
+      - Media Sharing
+      summary: Remove Affiliate
+      description: Removes an affiliate from a channel - this is a Master account operation
+      operationId: RemoveAffiliate
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/ChannelName'
+      - $ref: '#/components/parameters/AffiliateAccountId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '204':
+          description: Item was deleted
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '403':
+          description: 'NOT_AVAILABLE: The resource you are requesting is  unavailable - this may be a temporary condition while some kind of processing of the video is in progress, but if the message persists, contact'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: Resource not found '
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'UNKNOWN: Issue in Brightcove system; try again later.
+
+            TIMEOUT: Server likely too busy; try again later.'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/sharing-relationships/delete
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v1/accounts/{{account_id}}/contracts:
+    get:
+      tags:
+      - Media Sharing
+      summary: List Contracts
+      description: Gets a list of available sharing contracts - this is an Affiliate account operation
+      operationId: ListContracts
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contract'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '403':
+          description: 'NOT_AVAILABLE: The resource you are requesting is  unavailable - this may be a temporary condition while some kind of processing of the video is in progress, but if the message persists, contact'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: Resource not found '
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'UNKNOWN: Issue in Brightcove system; try again later.
+
+            TIMEOUT: Server likely too busy; try again later.'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/sharing-relationships/update
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v1/accounts/{{account_id}}/contracts/{{master_account_id}}:
+    get:
+      tags:
+      - Media Sharing
+      summary: Get Contract
+      description: Gets a list of available sharing contracts - this is an Affiliate account operation
+      operationId: GetContract
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/MasterAccountId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contract'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '403':
+          description: 'NOT_AVAILABLE: The resource you are requesting is  unavailable - this may be a temporary condition while some kind of processing of the video is in progress, but if the message persists, contact'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: Resource not found '
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'UNKNOWN: Issue in Brightcove system; try again later.
+
+            TIMEOUT: Server likely too busy; try again later.'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/sharing-relationships/update
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    patch:
+      tags:
+      - Media Sharing
+      summary: Approve Contract
+      description: 'Approve a contract - this is an Affiliate account operation '
+      operationId: ApproveContract
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/MasterAccountId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      requestBody:
+        description: Gets a list of available sharing contracts - this is an Affiliate account operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Contract'
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contract'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '403':
+          description: 'NOT_AVAILABLE: The resource you are requesting is  unavailable - this may be a temporary condition while some kind of processing of the video is in progress, but if the message persists, contact'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: Resource not found '
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'UNKNOWN: Issue in Brightcove system; try again later.
+
+            TIMEOUT: Server likely too busy; try again later.'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/sharing-relationships/update
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v1/accounts/{{account_id}}/videos/{{video_id}}/shares:
+    get:
+      tags:
+      - Media Sharing
+      summary: List Shares
+      description: Lists the existing shares for an account - this is a Master account operation - do this before sharing to insure that you are not re-sharing to an affiliate, which would overwrite any affiliate metadata changes
+      operationId: ListShares
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/VideoId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VideoShare'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '403':
+          description: 'NOT_AVAILABLE: The resource you are requesting is  unavailable - this may be a temporary condition while some kind of processing of the video is in progress, but if the message persists, contact'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: Resource not found '
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'UNKNOWN: Issue in Brightcove system; try again later.
+
+            TIMEOUT: Server likely too busy; try again later.'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/read
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    post:
+      tags:
+      - Media Sharing
+      summary: Share Video
+      description: Shares a video to one or more affiliates - this is an Master account operation - if the video has already been shared to an affiliate, this operation will re-share it and overwrite any affiliate metadata changes
+      operationId: ShareVideo
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/VideoId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      requestBody:
+        description: Shares a video to one or more affiliates - this is an Master account operation - if the video has already been shared to an affiliate, this operation will re-share it and overwrite any affiliate metadata changes
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ShareVideoRequest'
+              description: Shares a video to one or more affiliates - this is an Master account operation - if the video has already been shared to an affiliate, this operation will re-share it and overwrite any affiliate metadata changes
+        required: true
+      responses:
+        '202':
+          description: Share request accepted
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VideoShare'
+                description: Share request accepted
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '403':
+          description: 'NOT_AVAILABLE: The resource you are requesting is  unavailable - this may be a temporary condition while some kind of processing of the video is in progress, but if the message persists, contact'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: Resource not found '
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'UNKNOWN: Issue in Brightcove system; try again later.
+
+            TIMEOUT: Server likely too busy; try again later.'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/create
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v1/accounts/{{account_id}}/videos/{{video_id}}/shares/{{affiliate_account_id}}:
+    get:
+      tags:
+      - Media Sharing
+      summary: Get Share
+      description: Lists the existing shares for an account - this is a Master account operation - do this before sharing to insure that you are not re-sharing to an affiliate, which would overwrite any affiliate metadata changes
+      operationId: GetShare
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/VideoId'
+      - $ref: '#/components/parameters/AffiliateAccountId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoShare'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '403':
+          description: 'NOT_AVAILABLE: The resource you are requesting is  unavailable - this may be a temporary condition while some kind of processing of the video is in progress, but if the message persists, contact'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: Resource not found '
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'UNKNOWN: Issue in Brightcove system; try again later.
+
+            TIMEOUT: Server likely too busy; try again later.'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/read
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    delete:
+      tags:
+      - Media Sharing
+      summary: Unshare Video
+      description: Un-shares a video with a specific affiliate - this is an Master account operation - do this before sharing to insure that you are not re-sharing to an affiliate, which would overwrite any affiliate metadata changes
+      operationId: UnshareVideo
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/VideoId'
+      - $ref: '#/components/parameters/AffiliateAccountId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '204':
+          description: Item was deleted
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '403':
+          description: 'NOT_AVAILABLE: The resource you are requesting is  unavailable - this may be a temporary condition while some kind of processing of the video is in progress, but if the message persists, contact'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: Resource not found '
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'UNKNOWN: Issue in Brightcove system; try again later.
+
+            TIMEOUT: Server likely too busy; try again later.'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/delete
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+components:
+  parameters:
+    VideoId:
+      description: Video ID (specified as `{video_id}}`).
+      explode: false
+      in: path
+      name: video_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    AffiliateAccountId:
+      description: Video Cloud affiliate account ID for media sharing relationships
+      explode: false
+      in: path
+      name: affiliate_account_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    AccountId:
+      description: Video Cloud account ID.
+      explode: false
+      in: path
+      name: account_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    ChannelName:
+      description: The name of the channel - usually `default`
+      explode: false
+      in: path
+      name: channel_name
+      required: true
+      schema:
+        type: string
+      style: simple
+    Authorization:
+      description: 'Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)'
+      explode: false
+      in: header
+      name: Authorization
+      required: true
+      schema:
+        type: string
+      style: simple
+    MasterAccountId:
+      description: Video Cloud master account ID for media sharing relationships
+      explode: false
+      in: path
+      name: master_account_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    ContentType:
+      description: 'Content-Type: application/json'
+      example: application/json
+      explode: false
+      in: header
+      name: Content-Type
+      required: true
+      schema:
+        default: application/json
+        type: string
+      style: simple
+  schemas:
+    AddAffiliate:
+      example:
+        account_id: '1937897674001'
+      properties:
+        account_id:
+          description: affiliate account id
+          type: string
+      title: AddAffiliate
+      type: object
+    ChannelAffiliate:
+      example:
+      - account_id: '57838016001'
+        account_name: BrightcoveLearning
+        approved: true
+      - account_id: '1481353044001'
+        account_name: BC - Samples
+        approved: true
+      - account_id: '301925175'
+        account_name: BC Home Page Player
+        approved: true
+      properties:
+        account_id:
+          description: affiliate account id
+          type: string
+        account_name:
+          description: affiliate account name
+          type: string
+        approved:
+          description: whether the affiliate has approved the relationship
+          type: boolean
+      required:
+      - account_id
+      - account_name
+      - approved
+      title: ChannelAffiliate
+      type: object
+    Contract:
+      example:
+      - account_id: '1485884786001'
+        approved: true
+        approved_at: '2017-08-27T12:27:21.582Z'
+        auto_accept: true
+        channel:
+          account_id: '57838016001'
+          name: default
+        channel_account_name: BrightcoveLearning
+        created_at: '2017-08-23T17:45:41.556Z'
+        updated_at: '2017-12-27T19:29:49.498Z'
+      properties:
+        account_id:
+          description: affiliate account id
+          type: string
+        approved:
+          description: whether the contract is approved
+          type: boolean
+        approved_at:
+          description: when the contract was approved
+          type: string
+        auto_accept:
+          description: whether shared videos will be automatically accepted
+          type: boolean
+        channel:
+          $ref: '#/components/schemas/Channel'
+        created_at:
+          description: when the contract was created
+          readOnly: true
+          type: string
+        updated_at:
+          description: when the contract was last updated
+          readOnly: true
+          type: string
+      title: Contract
+      type: object
+    VideoShare:
+      example:
+      - affiliate_id: '47509719001'
+        affiliate_video_id: '5766941108001'
+        error_message: null
+        shared_at: '2018-04-09T13:43:04.284Z'
+        status: COMPLETE
+        updated_at: '2018-04-09T13:43:13.687Z'
+        video_id: '5341769699001'
+      properties:
+        affiliate_id:
+          description: the id of the affiliate account the video is shared to
+          type: string
+        affiliate_video_id:
+          description: the id of the shared video in the affiliate account
+          type: string
+        shared_at:
+          description: when the video was shared
+          type: string
+        status:
+          description: the status of the sharing - either PROCESSING, COMPLETE, or FAILED
+          type: string
+        updated_at:
+          description: the video was last updated in the affiliate account
+          type: string
+        video_id:
+          description: the video id
+          type: string
+      required:
+      - video_id
+      - affiliate_id
+      - affiliate_video_id
+      title: VideoShare
+      type: object
+    Channel:
+      description: the channel this contract belongs to
+      example:
+      - account_id: '1486906377'
+        account_name: Brightcove Training
+        created_at: '2017-09-27T13:54:08.661Z'
+        enforce_custom_fields: false
+        enforce_geo: true
+        name: default
+        updated_at: '2017-09-27T13:54:08.661Z'
+      properties:
+        account_id:
+          description: master account id
+          type: string
+        account_name:
+          description: master account name
+          type: string
+        created_at:
+          description: when the channel was created
+          readOnly: true
+          type: string
+        enforce_custom_fields:
+          description: if true, will allow sharing only if the affiliate account has all custom fields that have values for the video to be shared
+          type: boolean
+        enforce_geo:
+          description: if true, and master account is enabled for geo-filtering
+          type: boolean
+        name:
+          description: channel name
+          type: string
+        updated_at:
+          description: when the channel was last updated
+          type: string
+      title: Channel
+      type: object
+    ShareVideoRequest:
+      example:
+      - id: '47509719001'
+      properties:
+        id:
+          description: affiliate account id to share to
+          type: string
+      required:
+      - id
+      title: ShareVideoRequest
+      type: object
+  securitySchemes:
+    BC_OAuth2:
+      type: oauth2
+      description: Brightcove OAuth API. See the [support documentation](/oauth/index.html) or [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html) to learn more
+      flows:
+        clientCredentials:
+          tokenUrl: https://oauth.brightcove.com/v4/access_token
+          scopes:
+            video-cloud/analytics/read: Read analytics data
+            video-cloud/video/read: Read video data
+x-bc-implicit-head: true
+x-bc-implicit-options: true
+x-bc-upstream: https://backend_server

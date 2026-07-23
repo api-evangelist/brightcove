@@ -1,0 +1,969 @@
+openapi: 3.0.3
+info:
+  title: Brightcove Analytics API Reference Access Tokens Live Job Clip API
+  description: "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com"
+  x-bc-access: public
+  version: 1.0.0
+servers:
+- url: https://analytics.api.brightcove.com
+  variables: {}
+tags:
+- name: Live Job Clip
+  description: Operations for creating and managing VOD clips, including scheduling clips for SEP jobs
+paths:
+  /vods:
+    post:
+      tags:
+      - Live Job Clip
+      summary: Create VOD Clip
+      description: '''Create VOD clips from a Live Stream.'''
+      operationId: CreateVodClip
+      parameters:
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/XAPIKEY'
+      requestBody:
+        description: Create VOD clips from a Live Stream.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateVodClipbody'
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateVodJobResponse'
+        '400':
+          description: 'BAD_REQUEST: Invalid input value - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '401':
+          description: 'UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '500':
+          description: 'INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+      deprecated: false
+      security: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /vods/{jvod_id}:
+    get:
+      tags:
+      - Live Job Clip
+      summary: Get VOD Clip Job
+      description: 'Get a VOD clip job by id. '
+      operationId: GetVodClipJob
+      parameters:
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/XAPIKEY'
+      - $ref: '#/components/parameters/jvod_id'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetVodJob'
+        '400':
+          description: 'BAD_REQUEST: Invalid input value - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '401':
+          description: 'UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '500':
+          description: 'INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+      deprecated: false
+      security: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /vods/{jvod_id}/cancel:
+    put:
+      tags:
+      - Live Job Clip
+      summary: Cancel a VOD Clip Job
+      description: 'Cancel a VOD clip job by id. '
+      operationId: CancelVodClipJob
+      parameters:
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/XAPIKEY'
+      - $ref: '#/components/parameters/jvod_id'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetVodJob'
+        '400':
+          description: 'BAD_REQUEST: Invalid input value - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '401':
+          description: 'UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '500':
+          description: 'INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+      deprecated: false
+      security: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /jobs/{job_id}/vods:
+    get:
+      tags:
+      - Live Job Clip
+      summary: List VOD Clip Jobs
+      description: List VOD clips for a Live Stream - for additional useful information on the search filters, see [Getting a List of Live or VOD Jobs](/live-api/guides/getting-list-live-or-vod-jobs.html)
+      operationId: ListVodClips
+      parameters:
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/XAPIKEY'
+      - $ref: '#/components/parameters/JobId'
+      - $ref: '#/components/parameters/start_token'
+      - $ref: '#/components/parameters/page_size'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/sort_dir'
+      - $ref: '#/components/parameters/user_id'
+      - $ref: '#/components/parameters/account_id'
+      - $ref: '#/components/parameters/created_at'
+      - $ref: '#/components/parameters/modified_at'
+      - $ref: '#/components/parameters/jvod_state'
+      - $ref: '#/components/parameters/jvod_type'
+      - $ref: '#/components/parameters/label'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListVodJobs'
+        '400':
+          description: 'BAD_REQUEST: Invalid input value - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '401':
+          description: 'UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '500':
+          description: 'INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+      deprecated: false
+      security: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    post:
+      tags:
+      - Live Job Clip
+      summary: Create VOD Clip (Alternate)
+      description: Create VOD clips from a Live Stream. This is operation is identical to the `POST` request to `/vods` - it is included for consistency, so that you can `GET` and `POST` requests to the same endpoint.
+      operationId: CreateVodClipAlternate
+      parameters:
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/XAPIKEY'
+      - $ref: '#/components/parameters/JobId'
+      requestBody:
+        description: Create VOD clips from a Live Stream.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateVodClipbody'
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VodJobs'
+        '400':
+          description: 'BAD_REQUEST: Invalid input value - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '401':
+          description: 'UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+        '500':
+          description: 'INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details'
+      deprecated: false
+      security: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+components:
+  parameters:
+    created_at:
+      name: created_at
+      in: query
+      description: Filter results by Unix time of job creation (in milliseconds)
+      style: form
+      explode: true
+      schema:
+        type: integer
+    jvod_state:
+      name: jvod_state
+      in: query
+      description: Filter results by one or more VOD job states
+      style: form
+      explode: true
+      schema:
+        oneOf:
+        - type: string
+          description: VOD Job state
+          enum:
+          - error
+          - waiting
+          - waiting_finish_live
+          - processing
+          - cancelling
+          - cancelled
+          - finished
+          - failed
+          - creating_asset
+        - type: array
+          items:
+            type: string
+            description: VOD Job state
+            enum:
+            - error
+            - waiting
+            - waiting_finish_live
+            - processing
+            - cancelling
+            - cancelled
+            - finished
+            - failed
+            - creating_asset
+    jvod_type:
+      name: jvod_type
+      in: query
+      description: Filter results by one or more VOD job types
+      style: form
+      explode: true
+      schema:
+        oneOf:
+        - type: string
+          description: VOD Job type
+          enum:
+          - s3
+          - ftp
+          - instant
+          - error
+        - type: array
+          items:
+            type: string
+            description: VOD Job type
+            enum:
+            - s3
+            - ftp
+            - instant
+            - error
+    modified_at:
+      name: modified_at
+      in: query
+      description: Filter results by Unix time of job last modified (in milliseconds)
+      style: form
+      explode: true
+      schema:
+        type: integer
+    sort:
+      name: sort
+      in: query
+      description: Attribute to sort jobs by (`created_at` | `modified_at`, default is `created_at`)
+      style: form
+      explode: true
+      schema:
+        type: string
+        enum:
+        - created_at
+        - modified_at
+        default: created_at
+    JobId:
+      name: job_id
+      in: path
+      description: Live job ID
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    label:
+      name: label
+      in: query
+      description: Filter results by one or more VOD job labels
+      style: form
+      explode: true
+      schema:
+        oneOf:
+        - type: string
+          description: VOD job label
+          enum:
+          - none
+          - ready
+          - waiting_input
+          - start_transcoding
+          - transcoding
+          - error
+        - type: array
+          items:
+            type: string
+            description: VOD job label
+            enum:
+            - none
+            - ready
+            - waiting_input
+            - start_transcoding
+            - transcoding
+            - error
+    start_token:
+      name: start_token
+      in: query
+      description: Next token from previous page; do not specify when fetching first page
+      style: form
+      explode: true
+      schema:
+        type: string
+    page_size:
+      name: page_size
+      in: query
+      description: Max number of items to return in one request (1-1000, default is 10)
+      style: form
+      explode: true
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 10
+    jvod_id:
+      name: jvod_id
+      in: path
+      description: VOD job ID
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    account_id:
+      name: account_id
+      in: query
+      description: Filter results by particular account, or specify ‘*’ to search all accounts.  Default value is account API key belongs to
+      style: form
+      explode: true
+      schema:
+        type: string
+    XAPIKEY:
+      name: X-API-KEY
+      in: header
+      description: 'X-API-KEY: {Your_Live_API_Key}'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    sort_dir:
+      name: sort_dir
+      in: query
+      description: Sort direction (default is asc):`asc` - ascending; `desc` - descending
+      style: form
+      explode: true
+      schema:
+        type: string
+        enum:
+        - asc
+        - desc
+        default: asc
+    ContentType:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        default: application/json
+      example: application/json
+    user_id:
+      name: user_id
+      in: query
+      description: Filter results by one or more user IDs
+      style: form
+      explode: true
+      schema:
+        oneOf:
+        - type: string
+          description: User id
+        - type: array
+          items:
+            type: string
+            description: User id
+  schemas:
+    CreateVodClipbody.outputs.videocloud.ingest:
+      properties:
+        callbacks:
+          description: An array of URLs that notifications for the ingest job should be sent to
+          items:
+            type: string
+          type: array
+        capture-images:
+          description: '''Whether poster and thumbnail should be captured during transcoding; defaults to `true` if the the profile has image renditions, `false` if it does not - see [Images and the Dynamic Ingest API](https://apis.support.brightcove.com/dynamic-ingest/ingest-guides/images-and-dynamic-ingest-api.html) for more information'''
+          example: true
+          type: boolean
+        profile:
+          description: The ingest profile to use - we recommend that you do **not** include this field and use the account default profile instead
+          type: string
+      title: Create_VOD_ClipBody.outputs.videocloud.ingest
+      description: An object containing inputs for Video Cloud video ingestion - see the [Dynamic Ingest Reference](https://apis.support.brightcove.com/dynamic-ingest/references/reference.html#operation/AccountsVideosIngestRequestsByAccountIdAndVideoIdPost) - do not include the master field, as that information will be provided by the Live API. If no ingest profile is specified, the account default profile will be used.
+      type: object
+    CreateVodClipbody.outputs.videocloud.video:
+      properties:
+        cue_points:
+          description: Array of cuepoint objects
+          items:
+            $ref: '#/components/schemas/CreateVodClipbody.outputs.videocloud.video.cuePoint'
+          type: array
+        custom_fields:
+          description: An object whose properties are `field_name`:`value` pairs - be sure to the *internal* name of the field
+          type: object
+        description:
+          description: Video short description
+          type: string
+        drm_disabled:
+          description: Use to disable DRM packaging for this video - applies only to DRM-enabled accounts
+          type: boolean
+        economics:
+          type: string
+          description: whether the video supports ads
+          enum:
+          - AD_SUPPORTED
+          - FREE
+        geo:
+          $ref: '#/components/schemas/CreateVodClipbody.outputs.videocloud.video.geo'
+        long_description:
+          description: A longer description of the video
+          type: string
+        name:
+          description: Title of the video clip
+          type: string
+        reference_id:
+          description: Reference id for the clip - must be unique within the account
+          type: string
+        schedule:
+          $ref: '#/components/schemas/CreateVodClipbody.outputs.videocloud.video.schedule'
+        state:
+          type: string
+          description: Whether the video should be active or inactive
+          example: ACTIVE
+          enum:
+          - ACTIVE
+          - INACTIVE
+        tags:
+          description: Array of tags for the video - note that  tags are string that may not contain a comma
+          type: object
+      required:
+      - name
+      title: Create_VOD_ClipBody.outputs.videocloud.video
+      description: '''An object containing inputs for Video Cloud video object creation - see the [CMS API Reference](https://apis.support.brightcove.com/cms/references/reference.html#operation/CreateVideo)'''
+      type: object
+    GetVodJob:
+      title: Get_VOD_Job200
+      type: object
+      properties:
+        job_id:
+          description: The parent job id
+          type: string
+        jvod_created_at:
+          description: Time vod job was created (UNIX time in milliseconds)
+          type: integer
+        jvod_duration_s:
+          description: Length of VOD clip requested (seconds)
+          type: integer
+        jvod_finished_at:
+          description: Time vod job completed processing (UNIX time in milliseconds)
+          type: integer
+        jvod_id:
+          description: The clip job id
+          type: string
+        jvod_last_state_change_at:
+          description: Time vod job was last modified (UNIX time in milliseconds)
+          type: integer
+        jvod_region:
+          description: Region VOD job is processed in
+          enum:
+          - us-west-2
+          - us-east-1
+          - ap-southeast-2
+          - ap-northeast-1
+          - ap-southeast-1
+          - eu-central-1
+          - eu-west-1
+          - sa-east-1
+          type: string
+        jvod_reported_duration_s:
+          description: Length of VOD clip as generated (seconds)
+          type: integer
+        jvod_state:
+          description: 'Current vod job processing state
+
+
+            Possible values for
+
+            **VOD jobs** are:
+
+            - `error` (An error has occurred; the job will not be processed.)
+
+            - `waiting_finish_live` ()
+
+            - `waiting` (The job waiting for processing.)
+
+            - `waiting_finish_live` (The job waiting for the Live Job to finish [if the clip depends on that].)
+
+            - `processing` (The clip is being processed.)
+
+            - `creating_asset` (A VOD asset is being created.)
+
+            - `cancelling` (The job has been cancelled and the worker is stopping the job and will NOT process any pending VOD outputs.)
+
+            - `cancelled` (The job has been cancelled successfully.)
+
+            - `finished` (The job has finished successfully.)
+
+            - `failed` (The job has stopped as a result of a system error.)'
+          enum:
+          - error
+          - waiting
+          - waiting_finish_live
+          - processing
+          - cancelling
+          - cancelled
+          - finished
+          - failed
+          - creating_asset
+          type: string
+        jvod_type:
+          description: VOD job type
+          enum:
+          - s3
+          - ftp
+          - instant
+          - error
+          type: string
+        jvod_url:
+          description: VOD job destination (e.g. s3://somebucket or ftp://someserver)
+          type: string
+        label:
+          description: The clip label (from the input)
+          type: string
+        user_id:
+          description: ID of creating user
+          type: string
+      example:
+        jvod_state: processing
+        jvod_progress: Chunklist-download-error
+        job_id: 3ae7fa89943f4a96aa273fbbf175d527
+        jvod_id: a731d75e39bf40708168cedef60ba404
+        jvod_last_state_change_at: 1536151062350
+        jvod_type: s3
+        jvod_url: s3://alive-pr-us-west-2-di-tmp/a5c3b3f8149a43328fd5ac8124765808.mp4
+        jvod_worker_id: i-0dac4a87c61e688ab
+        label: first 30 secs of live job
+        cloud_id: 301c91a5d9254b5d944b108c355f12be
+        jvod_cancelling_flag: false
+        jvod_created_at: 1536151027046
+        jvod_duration_s: 93600
+        jvod_reported_duration_s: null
+        jvod_finished_at: 0
+        jvod_region: us-west-2
+        account_id: a95ac581551b4478b27910e5675db1f8
+        user_id: c2691d4d039040be96c190a949d754a7
+        jvod_start_time_relative_s: 10
+        jvod_end_time_relative_s: 300
+        jvod_videocloud:
+          video:
+            name: TEST Clip
+            clip_source_video_id: '5831009084001'
+          ingest: {}
+    Notification:
+      properties:
+        credentials:
+          description: Credentials for the destination, if required.
+          type: string
+        event:
+          description: Event type to send notifications for.  It’s recommended to set events on the job and not individual rendition outputs since renditions will finish simultaneously.
+          type: string
+          enum:
+          - state_changed
+          - first_segment_uploaded
+          - output_finished
+          - rtmp_output_state_changed
+        url:
+          description: Destination for the notification.
+          type: string
+      required:
+      - url
+      - event
+      title: notification
+      type: object
+    VodJobs2:
+      properties:
+        job_id:
+          description: The parent job id
+          type: string
+        jvod_created_at:
+          description: Time vod job was created (UNIX time in milliseconds)
+          type: integer
+        jvod_duration_s:
+          description: Length of VOD clip requested (seconds)
+          type: integer
+        jvod_finished_at:
+          description: Time vod job completed processing (UNIX time in milliseconds)
+          type: integer
+        jvod_id:
+          description: The clip job id
+          type: string
+        jvod_last_state_change_at:
+          description: Time vod job was last modified (UNIX time in milliseconds)
+          type: integer
+        jvod_region:
+          description: Region VOD job is processed in
+          enum:
+          - us-west-2
+          - us-east-1
+          - ap-southeast-2
+          - ap-northeast-1
+          - ap-southeast-1
+          - eu-central-1
+          - eu-west-1
+          - sa-east-1
+          type: string
+        jvod_reported_duration_s:
+          description: Length of VOD clip as generated (seconds)
+          type: integer
+        jvod_state:
+          description: 'Current vod job processing state
+
+
+            Possible values for
+
+            **VOD jobs** are:
+
+            - `error` (An error has occurred; the job will not be processed.)
+
+            - `waiting_finish_live` ()
+
+            - `waiting` (The job waiting for processing.)
+
+            - `waiting_finish_live` (The job waiting for the Live Job to finish [if the clip depends on that].)
+
+            - `processing` (The clip is being processed.)
+
+            - `creating_asset` (A VOD asset is being created.)
+
+            - `cancelling` (The job has been cancelled and the worker is stopping the job and will NOT process any pending VOD outputs.)
+
+            - `cancelled` (The job has been cancelled successfully.)
+
+            - `finished` (The job has finished successfully.)
+
+            - `failed` (The job has stopped as a result of a system error.)'
+          enum:
+          - error
+          - waiting
+          - waiting_finish_live
+          - processing
+          - cancelling
+          - cancelled
+          - finished
+          - failed
+          - creating_asset
+          type: string
+        jvod_type:
+          description: VOD job type
+          enum:
+          - s3
+          - ftp
+          - instant
+          - error
+          type: string
+        jvod_url:
+          description: VOD job destination (e.g. s3://somebucket or ftp://someserver)
+          type: string
+        label:
+          description: The clip label (from the input)
+          type: string
+        user_id:
+          description: ID of creating user
+          type: string
+      required:
+      - jvod_id
+      - label
+      title: vod_jobs2
+      type: object
+    CreateVodClipbody.outputs.videocloud.video.geo:
+      properties:
+        countries:
+          description: array of ISO 3166 list of [2-letter codes](https://www.iso.org/obp/ui/#home) (search for &quot;country codes&quot;)
+          type: string
+        exclude_countries:
+          description: if true, country array is treated as a list of countries excluded from viewing
+          type: boolean
+        restricted:
+          description: whether geo-restriction is enabled for this video
+          type: boolean
+      required:
+      - countries
+      - exclude_countries
+      - restricted
+      title: Create_VOD_ClipBody.outputs.videocloud.video.geo
+      type: object
+      description: map of geo-filtering properties
+    CreateVodJobResponse:
+      properties:
+        vod_jobs:
+          type: array
+          items:
+            type: object
+            properties:
+              jvod_id:
+                type: string
+                description: VOD job id
+                readOnly: true
+                example: 62989518f9294e19b2f7e184e8141d72
+              label:
+                type: string
+                description: Label for the job set in the input field
+                example: first 30 secs of live job
+        live_job_id:
+          type: string
+          description: The id of the live job
+          readOnly: true
+          example: 3ae7fa89943f4a96aa273fbbf175d527
+      title: Create VOD Job Response
+      type: object
+    CreateVodClipbody.outputs.videocloud.video.schedule:
+      properties:
+        ends_at:
+          description: end date-time of availability in [ISO-8601](https://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) format
+          type: string
+        starts_at:
+          description: '''start date-time of availability in [ISO-8601](https://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) format'''
+          type: string
+      required:
+      - ends_at
+      - starts_at
+      title: Create_VOD_ClipBody.outputs.videocloud.video.schedule
+      type: object
+      description: map of scheduling properties
+    CreateVodClipbody.outputs.videocloud:
+      properties:
+        account_id:
+          description: The Video Cloud Account ID the clip should be ingested to. Only required if using Video Cloud Account ID other than the default configured in your Live account. If set, you must also set the `credentials` property on the output.
+          type: string
+        ingest:
+          $ref: '#/components/schemas/CreateVodClipbody.outputs.videocloud.ingest'
+        video:
+          $ref: '#/components/schemas/CreateVodClipbody.outputs.videocloud.video'
+      required:
+      - video
+      title: Create_VOD_ClipBody.outputs.videocloud
+      description: An object containing inputs for Video Cloud ingestion
+      type: object
+    ListVodJobs:
+      properties:
+        next_token:
+          description: Use as start_token to fetch next page.  Not include if no more matching jobs.
+          type: string
+        start_token:
+          description: Returns start_token from current request (not included on first page).
+          type: string
+        vod_jobs:
+          description: The filtered list of jobs.  List may be empty if no matching jobs or for last page.
+          items:
+            $ref: '#/components/schemas/VodJobs2'
+          type: array
+      required:
+      - start_token
+      - vod_jobs
+      title: List_Live_Jobs200
+      type: object
+      example:
+        jvod_state: processing
+        jvod_progress: Chunklist-download-error
+        job_id: 3ae7fa89943f4a96aa273fbbf175d527
+        jvod_id: a731d75e39bf40708168cedef60ba404
+        jvod_last_state_change_at: 1536151062350
+        jvod_type: s3
+        jvod_url: s3://alive-pr-us-west-2-di-tmp/a5c3b3f8149a43328fd5ac8124765808.mp4
+        jvod_worker_id: i-0dac4a87c61e688ab
+        label: first 30 secs of live job
+        cloud_id: 301c91a5d9254b5d944b108c355f12be
+        jvod_cancelling_flag: false
+        jvod_created_at: 1536151027046
+        jvod_duration_s: 93600
+        jvod_reported_duration_s: null
+        jvod_finished_at: 0
+        jvod_region: us-west-2
+        account_id: a95ac581551b4478b27910e5675db1f8
+        user_id: c2691d4d039040be96c190a949d754a7
+        jvod_start_time_relative_s: 10
+        jvod_end_time_relative_s: 300
+        jvod_videocloud:
+          video:
+            name: TEST Clip
+            clip_source_video_id: '5831009084001'
+          ingest: {}
+    CreateVodClipbody.outputs.videocloud.video.cuePoint:
+      properties:
+        force-stop:
+          description: whether video is force-stopped at the cue point
+          type: boolean
+        metadata:
+          description: optional metadata string (512 single-byte characters maximum)
+          type: string
+        name:
+          description: cue point name
+          type: string
+        time:
+          description: 'time of the cue point in seconds; example: 10.527'
+          type: number
+        type:
+          description: cue point type
+          enum:
+          - AD
+          - CODE
+          example: AD
+          type: string
+      required:
+      - time
+      - type
+      title: Create_VOD_ClipBody.outputs.videocloud.video.cue_point
+      type: object
+    CreateVodClipbody:
+      description: Request body for creating a clip. **Note that if you are sending a clip to Video Cloud and the account has your Live APIKey, you should *not* include the `credentials` field in the `outputs`.**
+      properties:
+        live_job_id:
+          description: The id of Live Stream job to create the VOD clip from.
+          type: string
+        outputs:
+          description: Array of VOD outputs
+          items:
+            $ref: '#/components/schemas/CreateVodClipbody.outputs'
+          type: array
+      required:
+      - live_job_id
+      - outputs
+      title: Create_VOD_ClipBody
+      type: object
+      example:
+        live_job_id: 3ae7fa89943f4a96aa273fbbf175d527
+        outputs:
+        - label: first 30 secs of live job
+          notifications:
+          - https://solutions.brightcove.com/bcls/live/live-callbacks.php
+          stream_start_time: 10
+          stream_end_time: 300
+          videocloud:
+            video:
+              name: TEST Clip
+            ingest: {}
+    CreateVodClipbody.outputs:
+      properties:
+        credentials:
+          description: The name of the credentials configured in your Live account for this destination. Not required if using the default Video Cloud account associated with your Live account.
+          type: string
+        notifications:
+          description: '''Array of notification destination objects or strings - notifications defined here are for job-level events.  A notification will be sent to the destination when selected event occurs. You can use a simple string with a url: &quot;https://log:pass@httpbin.org/post&quot;, or you can use an object. See [Events](/live-api/guides/live-api-notifications.html#Events) for an explanation of the events reported in `state_changed` notifications. <br> Retry strategy: In the event of a failed request to send a notification, the default retry strategy is to retry 50 times with an exponential delay between attempts: <br> `max_retry_times = 50` <br> `delay_delta_s = 5` <br> `next_retry = now_s + retry_count * delay_delta_s`
+
+            **Note:** notifications are *not* supported for instant mode VODs.'''
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/Notification'
+            - type: string
+              description: A URL to send notifications to
+          type: array
+        duration:
+          description: 'Duration of the clip in seconds. The <code translate="no">duration</code> must be used alone to define a clip that will be made of the final <code translate="no">{duration}</code> seconds of the stream. <code translate="no">duration</code>
+
+            **Note:** the duration parameter is not available for instant mode VODs.'
+          maximum: 172800
+          minimum: 0
+          type: integer
+        remove_ads:
+          description: Remove content processed during the duration of cue points received while streaming.
+          type: boolean
+          default: false
+        start_time:
+          description: Start time for the clip in Epoch (Unix) time (seconds), <code translate="no">start_time</code> must be used alone or with <code translate="no">end_time</code>.
+          type: integer
+        end_time:
+          description: End time for the clip in Epoch (Unix) time (seconds), <code translate="no">end_time</code> must be used alone or with <code translate="no">start_time</code>.
+          type: integer
+        stream_start_time:
+          description: Start time in seconds for the clip relative to the start time of the live stream, <code translate="no">stream_start_time</code> must be used alone or with <code translate="no">stream_end_time</code>.
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+        stream_end_time:
+          description: End time in seconds for the clip relative to the start time of the live stream, <code translate="no">stream_end_time</code> must be used alone or with <code translate="no">stream_start_time</code>.
+          type: integer
+        stream_start_timecode:
+          description: Start time for a frame-accurate clip in an SMPTE-formatted (HH:MM:SS:FF) timecode from the start of the stream, <code translate="no">stream_start_timecode</code> must be used alone or with <code translate="no">stream_end_timecode</code>. Requires that the encoder is sending timecodes.
+          type: string
+        stream_end_timecode:
+          description: End time for a frame-accurate clip in an SMPTE-formatted (HH:MM:SS:FF) timecode from the end of the stream, <code translate="no">stream_end_timecode</code> must be used alone or with <code translate="no">stream_start_timecode</code>. Requires that the encoder is sending timecodes.
+          type: string
+        label:
+          description: Label for the output
+          type: string
+        mode:
+          type: string
+          description: Expedite clip publishing by leveraging existing live renditions and segment boundaries
+          enum:
+          - instant
+        playlist_label:
+          type: string
+          description: Only applicable for `instant` mode VODs. Indicates which playlist to use to create a VOD output (from the live job). Only necessary if custom playlists were defined at live job creation.
+        url:
+          description: '`url` is mandatory (**unless** the destination is `videocloud`, in which case you dod **not** include the `url`) and sets the destination of the final asset destination. For access restricted origins, the credentials a can be passed along with the URL or stored within the Brightcove system. For Live, this is reserved for future use.'
+          type: string
+        videocloud:
+          $ref: '#/components/schemas/CreateVodClipbody.outputs.videocloud'
+      required:
+      - label
+      title: Create_VOD_ClipBody.outputs
+      type: object
+    VodJobs:
+      properties:
+        jvod_id:
+          description: The clip job id
+          type: string
+        label:
+          description: The clip label (from the input)
+          type: string
+      required:
+      - jvod_id
+      - label
+      title: vod_jobs
+      type: object
+  securitySchemes:
+    BC_OAuth2:
+      type: oauth2
+      description: Brightcove OAuth API. See the [support documentation](/oauth/index.html) or [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html) to learn more
+      flows:
+        clientCredentials:
+          tokenUrl: https://oauth.brightcove.com/v4/access_token
+          scopes:
+            video-cloud/analytics/read: Read analytics data
+            video-cloud/video/read: Read video data
+x-bc-implicit-head: true
+x-bc-implicit-options: true
+x-bc-upstream: https://backend_server

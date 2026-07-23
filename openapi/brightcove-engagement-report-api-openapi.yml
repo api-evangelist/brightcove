@@ -1,0 +1,444 @@
+openapi: 3.0.3
+info:
+  title: Brightcove Analytics API Reference Access Tokens Engagement Report API
+  description: "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com"
+  x-bc-access: public
+  version: 1.0.0
+servers:
+- url: https://analytics.api.brightcove.com
+  variables: {}
+tags:
+- name: Engagement Report
+  description: Detailed engagement reports by account, video or player. Detailed engagement is available only for the most recent 32 days.
+paths:
+  /v1/engagement/accounts/{{account_id}}:
+    get:
+      tags:
+      - Engagement Report
+      summary: Get Account Engagement
+      description: 'Get a summary report of engagement for the account. Note:  Engagement reports are only available for periods within the past 32 days. Requests outside that range will return an error The only parameters supported for Engagement reports are from and to Engagement reports are available for single accounts only - reports on multiple accounts will not work'
+      operationId: GetAccountEngagement
+      security:
+      - BC_OAuth2:
+        - video-cloud/analytics/read
+      parameters:
+      - $ref: '#/components/parameters/account_id'
+      - $ref: '#/components/parameters/Content-Type'
+      - $ref: '#/components/parameters/Authorization'
+      - $ref: '#/components/parameters/Accept-Encoding'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Timeline'
+        '400':
+          description: 'BAD_REQUEST: The message fields of the response contains information about what caused the error such as invalid value for sort parameter
+
+            UNSUPPORTED_FIELD_COMBINATION_ERROR: The message fields of the response contains information about what invalid fields were specified'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials are correct'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: This error occurs when the api request is made with an HTTP method other than GET'
+        '500':
+          description: 'SERVER_ERROR: Issue in Brightcove system; try again later
+
+            PROCESSING: The analytics API may send back this message if it encounters a long running query. Once the query has finished it will be stored in the server’s cache for up to 5 minutes. Therefore we suggest querying the API 4 minutes after receiving this error'
+      deprecated: false
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v1/engagement/accounts/{{account_id}}/players/{{player_id}}:
+    get:
+      tags:
+      - Engagement Report
+      summary: Get Player Engagement
+      description: 'Get a summary report of engagement for a player. Note:  Engagement reports are only available for periods within the past 32 days. Requests outside that range will return an error The only parameters supported for Engagement reports are from and to Engagement reports are available for single accounts only - reports on multiple accounts will not work'
+      operationId: GetPlayerEngagement
+      security:
+      - BC_OAuth2:
+        - video-cloud/analytics/read
+      parameters:
+      - $ref: '#/components/parameters/account_id'
+      - $ref: '#/components/parameters/Content-Type'
+      - $ref: '#/components/parameters/Authorization'
+      - $ref: '#/components/parameters/Accept-Encoding'
+      - $ref: '#/components/parameters/player_id'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Timeline'
+        '400':
+          description: 'BAD_REQUEST: The message fields of the response contains information about what caused the error such as invalid value for sort parameter
+
+            UNSUPPORTED_FIELD_COMBINATION_ERROR: The message fields of the response contains information about what invalid fields were specified'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials are correct'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: This error occurs when the api request is made with an HTTP method other than GET'
+        '500':
+          description: 'SERVER_ERROR: Issue in Brightcove system; try again later
+
+            PROCESSING: The analytics API may send back this message if it encounters a long running query. Once the query has finished it will be stored in the server’s cache for up to 5 minutes. Therefore we suggest querying the API 4 minutes after receiving this error'
+      deprecated: false
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v1/engagement/accounts/{{account_id}}/videos/{{video_id}}:
+    get:
+      tags:
+      - Engagement Report
+      summary: Get Video Engagement
+      description: 'Get a summary report of engagement for a video. Note:  Engagement reports are only available for periods within the past 32 days. Requests outside that range will return an error The only parameters supported for Engagement reports are from and to Engagement reports are available for single accounts only - reports on multiple accounts will not work'
+      operationId: GetVideoEngagement
+      security:
+      - BC_OAuth2:
+        - video-cloud/analytics/read
+      parameters:
+      - $ref: '#/components/parameters/account_id'
+      - $ref: '#/components/parameters/Content-Type'
+      - $ref: '#/components/parameters/Authorization'
+      - $ref: '#/components/parameters/Accept-Encoding'
+      - $ref: '#/components/parameters/video_id'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Get_Video_Engagement_Response'
+        '400':
+          description: 'BAD_REQUEST: The message fields of the response contains information about what caused the error such as invalid value for sort parameter
+
+            UNSUPPORTED_FIELD_COMBINATION_ERROR: The message fields of the response contains information about what invalid fields were specified'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials are correct'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: This error occurs when the api request is made with an HTTP method other than GET'
+        '500':
+          description: 'SERVER_ERROR: Issue in Brightcove system; try again later
+
+            PROCESSING: The analytics API may send back this message if it encounters a long running query. Once the query has finished it will be stored in the server’s cache for up to 5 minutes. Therefore we suggest querying the API 4 minutes after receiving this error'
+      deprecated: false
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+components:
+  parameters:
+    account_id:
+      name: account_id
+      in: path
+      description: a Video Cloud account ID
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    Authorization:
+      name: Authorization
+      in: header
+      description: 'Authorization: Bearer access_token (see Getting Access Tokens)'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    player_id:
+      name: player_id
+      in: path
+      description: a Video Cloud player ID
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    Content-Type:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    video_id:
+      name: video_id
+      in: path
+      description: a Video Cloud video ID
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    Accept-Encoding:
+      name: Accept-Encoding
+      in: header
+      description: 'Accept-Encoding: gzip (optional)'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+  schemas:
+    Timeline:
+      title: Timeline
+      required:
+      - type
+      - values
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of the timeline array
+        values:
+          type: array
+          items:
+            type: number
+          description: Array of views in each 100th part of video duration
+      example:
+        timeline:
+          type: percentile
+          values:
+          - 17507.16
+          - 17446.47
+          - 17381.53
+          - 18864.7
+          - 20034.09
+          - 19964.33
+          - 19869.78
+          - 19667.05
+          - 19566.13
+          - 19475.24
+          - 72462.89
+          - 72388.19
+          - 72380.55
+          - 72340.39
+          - 72230.89
+          - 72181.51
+          - 72118.65
+          - 72009.98
+          - 71959.46
+          - 71928.65
+          - 72301.65
+          - 72248.72
+          - 72214.78
+          - 72172.31
+          - 72075.03
+          - 71953.25
+          - 71933.07
+          - 71890.68
+          - 71828.13
+          - 71769.25
+          - 71713.09
+          - 71599.56
+          - 71581.92
+          - 71542.35
+          - 71416.43
+          - 71305.33
+          - 71274.92
+          - 71248.6
+          - 71321.91
+          - 71290.81
+          - 71214.11
+          - 71191.02
+          - 71167.63
+          - 71141.25
+          - 71125.24
+          - 71087.18
+          - 71065.24
+          - 71038.08
+          - 71012.63
+          - 71004.61
+          - 74524.95
+          - 74517.69
+          - 74489.42
+          - 74384.57
+          - 74359.08
+          - 74336.24
+          - 74311.31
+          - 74291.99
+          - 74266.64
+          - 74243.25
+          - 74201.68
+          - 74179.67
+          - 74076.49
+          - 74055.94
+          - 74045.4
+          - 73999.57
+          - 73946.48
+          - 73933.69
+          - 73924.56
+          - 73588.54
+          - 73537.41
+          - 73524.52
+          - 71981.69
+          - 70901.7
+          - 70903.16
+          - 70853.67
+          - 70816.72
+          - 70737.02
+          - 70723.89
+          - 70723.22
+          - 70736.19
+          - 70721.05
+          - 70668.38
+          - 70610.77
+          - 70589
+          - 70587.97
+          - 70580.99
+          - 70581.93
+          - 70574.65
+          - 70558.48
+          - 21197.2
+          - 21192.85
+          - 21202.43
+          - 21205.57
+          - 21200.8
+          - 21200.34
+          - 21199.76
+          - 21201.2
+          - 21202.08
+          - 21203
+    Get_Video_Engagement_Response:
+      title: Get Video Engagement Response
+      required:
+      - video_duration
+      type: object
+      properties:
+        video_duration:
+          type: string
+          description: the video duration in seconds
+      example:
+        timeline:
+          type: percentile
+          values:
+          - 1063
+          - 1063
+          - 1063
+          - 1063
+          - 1063
+          - 1063
+          - 1063
+          - 1063
+          - 1034.94
+          - 1021
+          - 1021
+          - 1021
+          - 1021
+          - 1021
+          - 1021
+          - 1021
+          - 1010.08
+          - 988
+          - 988
+          - 988
+          - 988
+          - 988
+          - 988
+          - 988
+          - 988
+          - 962
+          - 962
+          - 962
+          - 962
+          - 962
+          - 962
+          - 962
+          - 962
+          - 953.97
+          - 950
+          - 950
+          - 950
+          - 950
+          - 950
+          - 950
+          - 950
+          - 944.38
+          - 933
+          - 933
+          - 933
+          - 933
+          - 933
+          - 933
+          - 933
+          - 933
+          - 922
+          - 922
+          - 922
+          - 922
+          - 922
+          - 922
+          - 922
+          - 922
+          - 913.3
+          - 909
+          - 909
+          - 909
+          - 909
+          - 909
+          - 909
+          - 909
+          - 906.03
+          - 900
+          - 900
+          - 900
+          - 900
+          - 900
+          - 900
+          - 900
+          - 900
+          - 875
+          - 875
+          - 875
+          - 875
+          - 875
+          - 875
+          - 875
+          - 875
+          - 837.6
+          - 819
+          - 819
+          - 819
+          - 819
+          - 819
+          - 819
+          - 819
+          - 818.67
+          - 818
+          - 818.67
+          - 819
+          - 819
+          - 819
+          - 819
+          - 819
+          - 819
+        video_duration: '12'
+  securitySchemes:
+    BC_OAuth2:
+      type: oauth2
+      description: Brightcove OAuth API. See the [support documentation](/oauth/index.html) or [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html) to learn more
+      flows:
+        clientCredentials:
+          tokenUrl: https://oauth.brightcove.com/v4/access_token
+          scopes:
+            video-cloud/analytics/read: Read analytics data
+            video-cloud/video/read: Read video data
+x-bc-implicit-head: true
+x-bc-implicit-options: true
+x-bc-upstream: https://backend_server

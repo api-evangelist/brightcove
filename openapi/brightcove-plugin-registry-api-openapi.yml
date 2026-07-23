@@ -1,0 +1,230 @@
+openapi: 3.0.3
+info:
+  title: Brightcove Analytics API Reference Access Tokens Plugin Registry API
+  description: "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com"
+  x-bc-access: public
+  version: 1.0.0
+servers:
+- url: https://analytics.api.brightcove.com
+  variables: {}
+tags:
+- name: Plugin Registry
+  description: Operations for working with the player plugin registry.
+paths:
+  /plugins:
+    get:
+      tags:
+      - Plugin Registry
+      summary: Get all plugins
+      description: Get all plugins
+      operationId: GetAllPlugin
+      security:
+      - BC_OAuth2:
+        - video-cloud/player/read
+      parameters:
+      - name: template_version
+        in: query
+        description: Limit results to plugins compatible with a specific player template version.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Simple plugin object
+                properties:
+                  documentation:
+                    type: string
+                    description: URL for the plugin documentation
+                  description:
+                    type: string
+                    description: Description of the plugin
+                  id:
+                    type: string
+                    description: The plugin id
+                  name:
+                    type: string
+                    description: The plugin name
+                  current_version:
+                    type: string
+                    description: The current version of the plugin
+                example:
+                  versions:
+                  - scripts:
+                    - //players.brightcove.net/videojs-ima3/3/videojs.ima3.min.js
+                    stylesheets:
+                    - //players.brightcove.net/videojs-ima3/3/videojs.ima3.min.css
+                    version_number: 3.x
+                    minimum_template_version: 6.0.0
+                  - minimum_template_version: 5.0.0
+                    version_number: 2.x
+                    stylesheets:
+                    - //players.brightcove.net/videojs-ima3/2/videojs.ima3.min.css
+                    scripts:
+                    - //players.brightcove.net/videojs-ima3/2/videojs.ima3.min.js
+                  - minimum_template_version: 1.14.0
+                    version_number: 1.x
+                    stylesheets:
+                    - //players.brightcove.net/videojs-ima3/1/videojs.ima3.min.css
+                    scripts:
+                    - //players.brightcove.net/videojs-ima3/1/videojs.ima3.min.js
+                  documentation: https://player.support.brightcove.com/plugins/advertising-ima3-plugin.html
+                  description: Google Interactive Media Ads (IMA) v3 support for video.js
+                  id: '@brightcove/videojs-ima3'
+                  name: ima3
+                  current_version: 3.x
+        '400':
+          description: 'BAD_REQUEST: the syntax of the API call is likely incorrect'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed - check to make sure your client credentials were correct for the access token'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '429':
+          description: 'RATE_LIMIT_EXCEEDED: Too many requests per second'
+        '500':
+          description: 'INTERNAL_SERVER_ERROR: there was an error trying to fulfill the request'
+      deprecated: false
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /plugins/{plugin_id}:
+    get:
+      tags:
+      - Plugin Registry
+      summary: Get a single plugin
+      description: Get a single plugin
+      operationId: GetPlugin
+      security:
+      - BC_OAuth2:
+        - video-cloud/player/read
+      parameters:
+      - $ref: '#/components/parameters/plugin_id'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/plugin'
+        '400':
+          description: 'BAD_REQUEST: the syntax of the API call is likely incorrect'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed - check to make sure your client credentials were correct for the access token'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '429':
+          description: 'RATE_LIMIT_EXCEEDED: Too many requests per second'
+        '500':
+          description: 'INTERNAL_SERVER_ERROR: there was an error trying to fulfill the request'
+      deprecated: false
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+components:
+  parameters:
+    Authorization:
+      name: Authorization
+      in: header
+      description: '**IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.
+
+
+        `Authorization: Bearer {access_token}` - (see [Getting Access
+
+        Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    ContentType:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+      example: application/json
+    plugin_id:
+      name: plugin_id
+      in: path
+      description: The plugin ID in the Plugin Registry.
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+  schemas:
+    plugin:
+      title: Plugin
+      type: object
+      description: A player plugin object
+      readOnly: true
+      properties:
+        versions:
+          type: array
+          description: Array of objects describing the versions of the plugin
+          items:
+            type: object
+            properties:
+              version_number:
+                type: string
+                description: The version number
+              minimum_template_version:
+                type: string
+                description: The minimum player version required to use this plugin
+              stylesheets:
+                type: array
+                description: Array of URLs for the plugin stylesheets
+                items:
+                  type: string
+                  description: URL for a stylesheet
+              scripts:
+                type: array
+                description: Array of URLs for the plugin scripts
+                items:
+                  type: string
+                  description: URL for a script
+        documentation:
+          type: string
+          description: URL for the plugin documentation
+        description:
+          type: string
+          description: Description of the plugin
+        id:
+          type: string
+          description: The plugin id
+        name:
+          type: string
+          description: The plugin name
+        current_version:
+          type: string
+          description: The current version of the plugin
+  securitySchemes:
+    BC_OAuth2:
+      type: oauth2
+      description: Brightcove OAuth API. See the [support documentation](/oauth/index.html) or [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html) to learn more
+      flows:
+        clientCredentials:
+          tokenUrl: https://oauth.brightcove.com/v4/access_token
+          scopes:
+            video-cloud/analytics/read: Read analytics data
+            video-cloud/video/read: Read video data
+x-bc-implicit-head: true
+x-bc-implicit-options: true
+x-bc-upstream: https://backend_server

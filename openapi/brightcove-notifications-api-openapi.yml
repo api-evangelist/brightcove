@@ -1,0 +1,265 @@
+openapi: 3.0.3
+info:
+  title: Brightcove Analytics API Reference Access Tokens Notifications API
+  description: "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com"
+  x-bc-access: public
+  version: 1.0.0
+servers:
+- url: https://analytics.api.brightcove.com
+  variables: {}
+tags:
+- name: Notifications
+  description: Operations for setting up and managing notifications of changes to your video library.
+paths:
+  /v1/accounts/{{account_id}}/subscriptions:
+    get:
+      tags:
+      - Notifications
+      summary: Get Subscriptions List
+      description: 'Get a list of all notification subscriptions for the account '
+      operationId: GetSubscriptionsList
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Subscription'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '403':
+          description: 'NOT_AVAILABLE: The resource you are requesting is temporarily unavailable'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'UNKNOWN: Issue in Brightcove system; try again later.
+
+            TIMEOUT: Server likely too busy; try again later.'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/notifications/all
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    post:
+      tags:
+      - Notifications
+      summary: Create Subscription
+      description: Establishes up to 10 endpoints that video changes should be sent to. Any change in video metadata will trigger a video change event and a notification - changes to assets used by the video will not trigger change events.
+      operationId: CreateSubscription
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      requestBody:
+        description: Establishes up to 10 endpoints that video changes should be sent to. Any change in video metadata will trigger a video change event and a notification - changes to assets used by the video will not trigger change events.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Subscription'
+        required: true
+      responses:
+        '201':
+          description: Subscription created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '403':
+          description: 'NOT_AVAILABLE: The resource you are requesting is temporarily unavailable'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '422':
+          description: 'Unprocessable_Entity: 1) You already have a subscription for the video-change event that delivers to that address; 2) the endpoint or events field is missing from the request; 3) you already have 10 subscriptions to this event'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'UNKNOWN: Issue in Brightcove system; try again later.
+
+            TIMEOUT: Server likely too busy; try again later.'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/notifications/all
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v1/accounts/{{account_id}}/subscriptions/{{subscription_id}}:
+    get:
+      tags:
+      - Notifications
+      summary: Get Subscription
+      description: 'Get a notification subscription for the account '
+      operationId: GetSubscription
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/SubscriptionId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '403':
+          description: 'NOT_AVAILABLE: The resource you are requesting is temporarily unavailable'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'UNKNOWN: Issue in Brightcove system; try again later.
+
+            TIMEOUT: Server likely too busy; try again later.'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/notifications/all
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    delete:
+      tags:
+      - Notifications
+      summary: Delete Subscription
+      description: 'Delete a notification subscription for the account '
+      operationId: DeleteSubscription
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/SubscriptionId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '204':
+          description: Item was deleted
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '403':
+          description: 'NOT_AVAILABLE: The resource you are requesting is temporarily unavailable'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'UNKNOWN: Issue in Brightcove system; try again later.
+
+            TIMEOUT: Server likely too busy; try again later.'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/notifications/all
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+components:
+  parameters:
+    AccountId:
+      description: Video Cloud account ID.
+      explode: false
+      in: path
+      name: account_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    Authorization:
+      description: 'Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)'
+      explode: false
+      in: header
+      name: Authorization
+      required: true
+      schema:
+        type: string
+      style: simple
+    ContentType:
+      description: 'Content-Type: application/json'
+      example: application/json
+      explode: false
+      in: header
+      name: Content-Type
+      required: true
+      schema:
+        default: application/json
+        type: string
+      style: simple
+    SubscriptionId:
+      description: Subscription ID.
+      explode: false
+      in: path
+      name: subscription_id
+      required: true
+      schema:
+        type: string
+      style: simple
+  schemas:
+    Subscription:
+      properties:
+        endpoint:
+          description: the notifications endpoint
+          example: https://solutions.brightcove.com/bcls/di-api/cms-callbacks.php
+          type: string
+        events:
+          description: list of events subscribed to
+          example:
+          - video-change
+          type: array
+          items:
+            type: string
+            enum:
+            - video-change
+        id:
+          description: system id for the subscription
+          example: a0847083-79f4-4315-8a2c-403465a3d9bc
+          readOnly: true
+          type: string
+        service_account:
+          description: the Video Cloud account id
+          example: '57838016001'
+          readOnly: true
+          type: string
+      title: Subscription
+      type: object
+  securitySchemes:
+    BC_OAuth2:
+      type: oauth2
+      description: Brightcove OAuth API. See the [support documentation](/oauth/index.html) or [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html) to learn more
+      flows:
+        clientCredentials:
+          tokenUrl: https://oauth.brightcove.com/v4/access_token
+          scopes:
+            video-cloud/analytics/read: Read analytics data
+            video-cloud/video/read: Read video data
+x-bc-implicit-head: true
+x-bc-implicit-options: true
+x-bc-upstream: https://backend_server

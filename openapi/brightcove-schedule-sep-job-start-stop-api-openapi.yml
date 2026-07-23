@@ -1,0 +1,313 @@
+openapi: 3.0.3
+info:
+  title: Brightcove Analytics API Reference Access Tokens Schedule SEP Job Start Stop API
+  description: "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com"
+  x-bc-access: public
+  version: 1.0.0
+servers:
+- url: https://analytics.api.brightcove.com
+  variables: {}
+tags:
+- name: Schedule SEP Job Start Stop
+  description: Operations for scheduling the activation and deactivation of an SEP job.
+paths:
+  /scheduler/jobstartstop:
+    post:
+      tags:
+      - Schedule SEP Job Start Stop
+      summary: Create a JobStartStop workflow to schedule activation/deactivation of an SEP job
+      description: Create a JobStartStop workflow to schedule activation/deactivation of an SEP job.
+      operationId: CreateAJobStartStop
+      parameters:
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/XAPIKEY'
+      requestBody:
+        description: Create a JobStartStop workflow to set the `activation` and `deactivation` times for an SEP job.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateJobStartStopRequestBody'
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStartStop'
+        '400':
+          description: 'BAD_REQUEST: Invalid input value - see Live API Error Messages for more details'
+        '401':
+          description: 'UNAUTHORIZED: Unauthorized - see Live API Error Messages for more details'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested - see Live API Error Messages for more details'
+        '500':
+          description: 'INTERNAL_SERVER_ERROR: see Live API Error Messages for more details'
+      deprecated: false
+      security: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /scheduler/jobstartstop/{workflow_id}:
+    get:
+      tags:
+      - Schedule SEP Job Start Stop
+      summary: Get JobStartStop Details
+      description: Get JobStartStop Details
+      operationId: GetJobStartStop
+      parameters:
+      - $ref: '#/components/parameters/WorkflowId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/XAPIKEY'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStartStop'
+        '401':
+          description: 'UNAUTHORIZED: Unauthorized - see Live API Error Messages for more details'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested - see Live API Error Messages for more details'
+        '500':
+          description: 'INTERNAL_SERVER_ERROR: see Live API Error Messages for more details'
+      deprecated: false
+      security: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    put:
+      tags:
+      - Schedule SEP Job Start Stop
+      summary: Update JobStartStop Details
+      description: Update Activation and/or Deactivation time. Can only update if state is "pending".
+      operationId: UpdateJobStartStop
+      parameters:
+      - $ref: '#/components/parameters/WorkflowId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/XAPIKEY'
+      requestBody:
+        description: Update a JobStartStop workflow
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateJobStartStopRequestBody'
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStartStop'
+        '401':
+          description: 'UNAUTHORIZED: Unauthorized - see Live API Error Messages for more details'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested - see Live API Error Messages for more details'
+        '500':
+          description: 'INTERNAL_SERVER_ERROR: see Live API Error Messages for more details'
+      deprecated: false
+      security: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    delete:
+      tags:
+      - Schedule SEP Job Start Stop
+      summary: Cancel JobStartStop
+      description: Cancel JobStartStop
+      operationId: CancelJobStartStop
+      parameters:
+      - $ref: '#/components/parameters/WorkflowId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/XAPIKEY'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStartStop'
+        '401':
+          description: 'UNAUTHORIZED: Unauthorized - see Live API Error Messages for more details'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested - see Live API Error Messages for more details'
+        '500':
+          description: 'INTERNAL_SERVER_ERROR: see Live API Error Messages for more details'
+      deprecated: false
+      security: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+components:
+  schemas:
+    JobStartStop.TaskInfo:
+      properties:
+        time_utc:
+          description: UTC time to perform task. Value must be unix timestamp in seconds.
+          type: number
+        notification:
+          description: Duration in seconds before time_utc to send a notification for the upcoming task.
+          type: number
+        state:
+          description: Task state
+          type: string
+          enum:
+          - pending
+          - cancelled
+          - failed
+          - finished
+      required:
+      - time_utc
+      - state
+      title: JobStartStop.task_info
+      type: object
+    UpdateJobStartStopRequestBody:
+      properties:
+        activation:
+          $ref: '#/components/schemas/CreateJobStartStopRequestBody.TaskInfo'
+        deactivation:
+          $ref: '#/components/schemas/CreateJobStartStopRequestBody.TaskInfo'
+      title: Update_JobStartStop_Body
+      type: object
+      example:
+        activation:
+          time_utc: 1611178000
+          notification: 300
+        deactivation:
+          time_utc: 1611188000
+          notification: 300
+    JobStartStop:
+      properties:
+        job_id:
+          description: Live Job ID to schedule activation and deactivation for. Job must be a static Job.
+          type: string
+        activation:
+          $ref: '#/components/schemas/JobStartStop.TaskInfo'
+        deactivation:
+          $ref: '#/components/schemas/JobStartStop.TaskInfo'
+        workflow_id:
+          description: ID of the JobStartStop workflow
+          type: string
+        account_id:
+          description: Live Account ID
+          type: string
+        type:
+          description: Workflow type jobstartstop
+          type: string
+          enum:
+          - jobstartstop
+        description:
+          description: JobStartStop workflow description.
+          type: string
+        notification_url:
+          description: URL to send notifications for activation and deactivation. Required if a pre-notification is configured for activation or deactivation.
+          type: string
+      required:
+      - job_id
+      - activation
+      - deactivation
+      - workflow_id
+      - account_id
+      - type
+      title: JobStartStop
+      type: object
+    CreateJobStartStopRequestBody.TaskInfo:
+      properties:
+        time_utc:
+          description: UTC time to perform task. Value must be unix timestamp in seconds.
+          type: number
+        notification:
+          description: Duration in seconds before time_utc to send a notification for the upcoming task.
+          type: number
+      required:
+      - time_utc
+      title: Create_JobStartStop_Body.task_info
+      type: object
+    CreateJobStartStopRequestBody:
+      properties:
+        job_id:
+          description: Live Job ID to schedule activation and deactivation for. Job must be a static Job.
+          type: string
+        activation:
+          $ref: '#/components/schemas/CreateJobStartStopRequestBody.TaskInfo'
+        deactivation:
+          $ref: '#/components/schemas/CreateJobStartStopRequestBody.TaskInfo'
+        description:
+          description: JobStartStop workflow description.
+          type: string
+        notification_url:
+          description: URL to send notifications for activation and deactivation. Required if a pre-notification is configured for activation or deactivation.
+          type: string
+        redundant_group:
+          type: boolean
+          description: If `true`, then `job_id` must be a redundant group id
+          default: false
+      required:
+      - job_id
+      - activation
+      - deactivation
+      title: Create_JobStartStop_Body
+      type: object
+      example:
+        job_id: 481ff4cf0bf74956bc2ec6e126588080
+        activation:
+          time_utc: 1611178000
+          notification: 300
+        deactivation:
+          time_utc: 1611188000
+          notification: 300
+        description: My JobStartStop workflow
+        notification_url: https://example.com/live/jobstartstop/callbacks
+  parameters:
+    WorkflowId:
+      name: workflow_id
+      in: path
+      description: Scheduler Workflow ID
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    XAPIKEY:
+      name: X-API-KEY
+      in: header
+      description: 'X-API-KEY: {Your_Live_API_Key}'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    ContentType:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        default: application/json
+      example: application/json
+  securitySchemes:
+    BC_OAuth2:
+      type: oauth2
+      description: Brightcove OAuth API. See the [support documentation](/oauth/index.html) or [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html) to learn more
+      flows:
+        clientCredentials:
+          tokenUrl: https://oauth.brightcove.com/v4/access_token
+          scopes:
+            video-cloud/analytics/read: Read analytics data
+            video-cloud/video/read: Read video data
+x-bc-implicit-head: true
+x-bc-implicit-options: true
+x-bc-upstream: https://backend_server

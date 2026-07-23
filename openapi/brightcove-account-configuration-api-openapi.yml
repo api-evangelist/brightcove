@@ -1,0 +1,247 @@
+openapi: 3.0.3
+info:
+  title: Brightcove Analytics API Reference Access Tokens Account Configuration API
+  description: "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com"
+  x-bc-access: public
+  version: 1.0.0
+servers:
+- url: https://analytics.api.brightcove.com
+  variables: {}
+tags:
+- name: Account Configuration
+  description: Operations for managing default profiles for the account.
+paths:
+  /accounts/{{account_id}}/configuration:
+    get:
+      tags:
+      - Account Configuration
+      summary: Get Default Profile
+      description: 'Get the default ingest profile for the account. '
+      operationId: GetDefaultProfile
+      security:
+      - BC_OAuth2:
+        - video-cloud/ingest-profiles/account/read
+      parameters:
+      - $ref: '#/components/parameters/account_id'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          description: SUCCESS
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultProfileResponse'
+        '401':
+          description: 'NOT_AUTHORIZED: Credentials are required to access this resource '
+        '404':
+          description: 'NOT_FOUND: The api could not find the resource you requested '
+      deprecated: false
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    put:
+      tags:
+      - Account Configuration
+      summary: Update Default Profile
+      description: 'Updates the default ingest profile for the account. '
+      operationId: UpdateDefaultProfile
+      security:
+      - BC_OAuth2:
+        - video-cloud/ingest-profiles/account/write
+      parameters:
+      - $ref: '#/components/parameters/account_id'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      requestBody:
+        description: Updates the default ingest profile for the account.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDefaultProfilebody'
+        required: true
+      responses:
+        '200':
+          description: SUCCESS
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultProfileResponse'
+        '400':
+          description: 'BAD_REQUEST: The JSON was not valid '
+        '401':
+          description: 'NOT_AUTHORIZED: Credentials are required to access this resource. '
+        '404':
+          description: 'NOT_FOUND: The api could not find the resource you requested '
+        '409':
+          description: 'CONFLICT: Account configuration already exists for 57838016001; please delete the configuration first, or update it instead.'
+      deprecated: false
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    post:
+      tags:
+      - Account Configuration
+      summary: Set Default Profile
+      description: 'Sets an ingest profile as the default for the account. '
+      operationId: SetDefaultProfile
+      security:
+      - BC_OAuth2:
+        - video-cloud/ingest-profiles/account/write
+      parameters:
+      - $ref: '#/components/parameters/account_id'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      requestBody:
+        description: Sets an ingest profile as the default for the account.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetDefaultProfilebody'
+        required: true
+      responses:
+        '200':
+          description: SUCCESS
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultProfileResponse'
+        '400':
+          description: 'BAD_REQUEST: The JSON was not valid '
+        '401':
+          description: 'NOT_AUTHORIZED: Credentials are required to access this resource. '
+        '404':
+          description: 'NOT_FOUND: The api could not find the resource you requested '
+        '409':
+          description: 'CONFLICT: Account configuration already exists for 57838016001; please delete the configuration first, or update it instead.'
+      deprecated: false
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+components:
+  parameters:
+    account_id:
+      name: account_id
+      in: path
+      description: Video Cloud account ID.
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    Authorization:
+      name: Authorization
+      in: header
+      description: 'Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    ContentType:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: application/json
+  schemas:
+    UpdateDefaultProfilebody:
+      title: Update_Default_ProfileBody
+      required:
+      - account_id
+      - id
+      - default_profile_id
+      type: object
+      properties:
+        account_id:
+          type: number
+          description: Video Cloud account ID
+        id:
+          type: string
+          description: the configuration id (if you do not have it, make a GET request to get it)
+        default_profile_id:
+          type: string
+          description: The id or name of the profile you want to set as the default
+          example: multi-platform-standard-static
+        default_live_profile_id:
+          type: string
+          description: The id or name of the live profile you want to set as the default
+        default_social_clipping_profile_id:
+          type: string
+          description: The id or name of the profile you want to set as the default for creating social clips
+    DefaultProfileResponse:
+      title: Default Profile responses
+      type: object
+      properties:
+        account_id:
+          type: number
+          description: Video Cloud account id
+        id:
+          type: string
+          description: configuration id
+        default_profile_id:
+          type: string
+          description: profile name for video-on-demand
+        default_live_profile_id:
+          type: string
+          description: default profile name for live streams
+        date_created:
+          type: number
+          description: when the profile was created (epoch time in milliseconds)
+        date_last_modified:
+          type: number
+          description: when the profile was last modified (epoch time in milliseconds)
+        version:
+          type: number
+          description: system-managed version number
+      example:
+        version: 1526447969284
+        account_id: 57838016001
+        default_profile_id: videocloud-default-v1
+        default_live_profile_id: Live - Standard
+        date_created: 1526447969283
+        date_last_modified: 1526447969283
+        id: 55525f84e4b08e946aa03281
+    SetDefaultProfilebody:
+      title: Set_Default_ProfileBody
+      required:
+      - account_id
+      - default_profile_id
+      type: object
+      properties:
+        account_id:
+          type: number
+          description: Video Cloud account ID
+        default_profile_id:
+          type: string
+          description: The id or name of the profile you want to set as the default
+          example: multi-platform-standard-static
+        default_live_profile_id:
+          type: string
+          description: The id or name of the live profile you want to set as the default
+        default_social_clipping_profile_id:
+          type: string
+          description: The id or name of the profile you want to set as the default for creating social clips
+  securitySchemes:
+    BC_OAuth2:
+      type: oauth2
+      description: Brightcove OAuth API. See the [support documentation](/oauth/index.html) or [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html) to learn more
+      flows:
+        clientCredentials:
+          tokenUrl: https://oauth.brightcove.com/v4/access_token
+          scopes:
+            video-cloud/analytics/read: Read analytics data
+            video-cloud/video/read: Read video data
+x-bc-implicit-head: true
+x-bc-implicit-options: true
+x-bc-upstream: https://backend_server

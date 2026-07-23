@@ -1,0 +1,280 @@
+openapi: 3.0.3
+info:
+  title: Brightcove Analytics API Reference Access Tokens Labels API
+  description: "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com"
+  x-bc-access: public
+  version: 1.0.0
+servers:
+- url: https://analytics.api.brightcove.com
+  variables: {}
+tags:
+- name: Labels
+  description: Operations for managing folders to organize your videos. See [Working with Labels](/cms/managing-videos/working-with-labels.html) for more information.
+paths:
+  /v1/accounts/{{account_id}}/labels:
+    post:
+      tags:
+      - Labels
+      summary: Create a Label
+      description: 'Create a new label for the account '
+      operationId: CreateLabel
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      requestBody:
+        description: Create a new label for the account
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LabelPath'
+        required: true
+      responses:
+        '201':
+          description: Label created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LabelPath'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '403':
+          description: 'NOT_AVAILABLE: The resource you are requesting is temporarily unavailable'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'UNKNOWN: Issue in Brightcove system; try again later.
+
+            TIMEOUT: Server likely too busy; try again later.'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/create
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    get:
+      tags:
+      - Labels
+      summary: Get Labels
+      description: 'Gets list of labels for the account '
+      operationId: GetLabels
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LabelsList'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '403':
+          description: 'NOT_AVAILABLE: The resource you are requesting is temporarily unavailable'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'UNKNOWN: Issue in Brightcove system; try again later.
+
+            TIMEOUT: Server likely too busy; try again later.'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/read
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v1/accounts/{{account_id}}/labels/by_path/{{label_path}}:
+    patch:
+      tags:
+      - Labels
+      summary: Update a Label
+      description: Update a label for the account
+      operationId: UpdateLabel
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      - $ref: '#/components/parameters/label_path'
+      requestBody:
+        description: Update a label for the account
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LabelUpdate'
+        required: true
+      responses:
+        '201':
+          description: Label updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LabelPath'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '403':
+          description: 'NOT_AVAILABLE: The resource you are requesting is temporarily unavailable'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'UNKNOWN: Issue in Brightcove system; try again later.
+
+            TIMEOUT: Server likely too busy; try again later.'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/create
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    delete:
+      tags:
+      - Labels
+      summary: Delete Label
+      description: Delete a label
+      operationId: deleteLabel
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/Authorization'
+      - $ref: '#/components/parameters/label_path'
+      responses:
+        '204':
+          description: 204 No Content
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '403':
+          description: 'NOT_AVAILABLE: The resource you are requesting is temporarily unavailable'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'UNKNOWN: Issue in Brightcove system; try again later.
+
+            TIMEOUT: Server likely too busy; try again later.'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/read
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+components:
+  parameters:
+    label_path:
+      description: '''The path for a label to update or delete. Note that the operation performed is on the last item in the path, so for example, if you specify the path `/nature/birds/seabirds`, only the `seabirds` label will be updated/deleted, but if you specify the path as `/nature/birds`, `birds` and any sub-labels of `birds` will be updated/deleted.'''
+      explode: false
+      in: path
+      name: label_path
+      required: true
+      schema:
+        type: string
+      style: simple
+    AccountId:
+      description: Video Cloud account ID.
+      explode: false
+      in: path
+      name: account_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    Authorization:
+      description: 'Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)'
+      explode: false
+      in: header
+      name: Authorization
+      required: true
+      schema:
+        type: string
+      style: simple
+    ContentType:
+      description: 'Content-Type: application/json'
+      example: application/json
+      explode: false
+      in: header
+      name: Content-Type
+      required: true
+      schema:
+        default: application/json
+        type: string
+      style: simple
+  schemas:
+    LabelsList:
+      description: A list of labels for the account
+      type: object
+      properties:
+        account_id:
+          type: string
+          description: The Video Cloud account id
+          example: '57838016001'
+        labels:
+          type: array
+          description: Array of labels that exist for the account
+          items:
+            type: string
+            description: a full label path
+          example:
+          - /nature/birds
+          - /nature/birds/shorebirds
+          - /nature/birds/forestbirds
+          - /nature/mammals/seamammals
+        version:
+          type: integer
+          description: An internal version tracker
+    LabelPath:
+      description: The full path for a label that can be assigned to videos
+      title: label
+      type: object
+      properties:
+        path:
+          type: string
+      example:
+        path: /nature/mammals/seamammals
+    LabelUpdate:
+      description: Update Label request body
+      title: label
+      type: object
+      properties:
+        new_label:
+          type: string
+          description: The new label which will replace **the last item in the label path**
+      example:
+        new_label: forest_birds
+  securitySchemes:
+    BC_OAuth2:
+      type: oauth2
+      description: Brightcove OAuth API. See the [support documentation](/oauth/index.html) or [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html) to learn more
+      flows:
+        clientCredentials:
+          tokenUrl: https://oauth.brightcove.com/v4/access_token
+          scopes:
+            video-cloud/analytics/read: Read analytics data
+            video-cloud/video/read: Read video data
+x-bc-implicit-head: true
+x-bc-implicit-options: true
+x-bc-upstream: https://backend_server

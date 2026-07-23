@@ -1,0 +1,755 @@
+openapi: 3.0.3
+info:
+  title: Brightcove Analytics API Reference Access Tokens Schedule Clip API
+  description: "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com"
+  x-bc-access: public
+  version: 1.0.0
+servers:
+- url: https://analytics.api.brightcove.com
+  variables: {}
+tags:
+- name: Schedule Clip
+  description: Operations for scheduling the creation of a VOD clip for SEP jobs only.
+paths:
+  /scheduler/clip:
+    post:
+      tags:
+      - Schedule Clip
+      summary: Create a Scheduled Clip workflow
+      description: Create a Scheduled Clip workflow
+      operationId: CreateAScheduledClip
+      parameters:
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/XAPIKEY'
+      requestBody:
+        description: Create a Clip
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateClipRequestBody'
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClipResponse'
+        '400':
+          description: 'BAD_REQUEST: Invalid input value - see Live API Error Messages for more details'
+        '401':
+          description: 'UNAUTHORIZED: Unauthorized - see Live API Error Messages for more details'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested - see Live API Error Messages for more details'
+        '500':
+          description: 'INTERNAL_SERVER_ERROR: see Live API Error Messages for more details'
+      deprecated: false
+      security: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    get:
+      tags:
+      - Schedule Clip
+      summary: List Scheduled Clip workflows
+      description: '''List Clip workflows'''
+      operationId: ListClip
+      parameters:
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/XAPIKEY'
+      - $ref: '#/components/parameters/start_token'
+      - $ref: '#/components/parameters/page_size'
+      - $ref: '#/components/parameters/job_id'
+      - $ref: '#/components/parameters/scheduler_state'
+      - $ref: '#/components/parameters/start'
+      - $ref: '#/components/parameters/end'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListClipResponse'
+        '400':
+          description: 'BAD_REQUEST: Invalid input value - see Live API Error Messages for more details'
+        '401':
+          description: 'UNAUTHORIZED: Unauthorized - see Live API Error Messages for more details'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested - see Live API Error Messages for more details'
+        '500':
+          description: 'INTERNAL_SERVER_ERROR: see Live API Error Messages for more details'
+      deprecated: false
+      security: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /scheduler/clip/{workflow_id}:
+    get:
+      tags:
+      - Schedule Clip
+      summary: Get Clip Schedule Details
+      description: Get Clip Schedule Details
+      operationId: GetScheduledClip
+      parameters:
+      - $ref: '#/components/parameters/WorkflowId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/XAPIKEY'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Clip'
+        '401':
+          description: 'UNAUTHORIZED: Unauthorized - see Live API Error Messages for more details'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested - see Live API Error Messages for more details'
+        '500':
+          description: 'INTERNAL_SERVER_ERROR: see Live API Error Messages for more details'
+      deprecated: false
+      security: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    put:
+      tags:
+      - Schedule Clip
+      summary: Update Clip Schedule Details
+      description: Update Clip time. Can only update if state is "pending".
+      operationId: UpdateScheduledClip
+      parameters:
+      - $ref: '#/components/parameters/WorkflowId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/XAPIKEY'
+      requestBody:
+        description: Update a Clip workflow
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateClipRequestBody'
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Clip'
+        '401':
+          description: 'UNAUTHORIZED: Unauthorized - see Live API Error Messages for more details'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested - see Live API Error Messages for more details'
+        '500':
+          description: 'INTERNAL_SERVER_ERROR: see Live API Error Messages for more details'
+      deprecated: false
+      security: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    delete:
+      tags:
+      - Schedule Clip
+      summary: Cancel Scheduled Clip
+      description: Cancel Clip
+      operationId: CancelScheduledClip
+      parameters:
+      - $ref: '#/components/parameters/WorkflowId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/XAPIKEY'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Clip'
+        '401':
+          description: 'UNAUTHORIZED: Unauthorized - see Live API Error Messages for more details'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested - see Live API Error Messages for more details'
+        '500':
+          description: 'INTERNAL_SERVER_ERROR: see Live API Error Messages for more details'
+      deprecated: false
+      security: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+components:
+  parameters:
+    WorkflowId:
+      name: workflow_id
+      in: path
+      description: Scheduler Workflow ID
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    start:
+      name: start
+      in: query
+      description: Filter results by limiting range of query. Value should be unix time in seconds. Workflows with a workflow_start_time_utc value greater than this will be returned. Can be used with end param.
+      style: form
+      explode: true
+      schema:
+        type: number
+    start_token:
+      name: start_token
+      in: query
+      description: Next token from previous page; do not specify when fetching first page
+      style: form
+      explode: true
+      schema:
+        type: string
+    job_id:
+      name: job_id
+      in: query
+      description: Filter results by particular Job.
+      style: form
+      explode: true
+      schema:
+        type: string
+    page_size:
+      name: page_size
+      in: query
+      description: Max number of items to return in one request (1-1000, default is 10)
+      style: form
+      explode: true
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 10
+    XAPIKEY:
+      name: X-API-KEY
+      in: header
+      description: 'X-API-KEY: {Your_Live_API_Key}'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    ContentType:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        default: application/json
+      example: application/json
+    scheduler_state:
+      name: state
+      in: query
+      description: Filter results by particular workflow state. Select multiple states with comma separated list
+      style: form
+      explode: true
+      schema:
+        type: string
+        enum:
+        - pending
+        - finished
+        - failed
+        - cancelled
+    end:
+      name: end
+      in: query
+      description: Filter results by limiting range of query. Value should be unix time in seconds. Workflows with a workflow_start_time_utc value less than this will be returned. Can be used with start param.
+      style: form
+      explode: true
+      schema:
+        type: number
+  schemas:
+    ListClipResponse:
+      properties:
+        workflows:
+          description: List of Clip workflows
+          items:
+            $ref: '#/components/schemas/Clip'
+          type: array
+        next_token:
+          description: Token to include in next request in StartToken query param.
+          type: string
+      required:
+      - workflows
+      title: List_Clip_Response
+      type: object
+    CreateVodClipbody.outputs.videocloud.ingest:
+      properties:
+        callbacks:
+          description: An array of URLs that notifications for the ingest job should be sent to
+          items:
+            type: string
+          type: array
+        capture-images:
+          description: '''Whether poster and thumbnail should be captured during transcoding; defaults to `true` if the the profile has image renditions, `false` if it does not - see [Images and the Dynamic Ingest API](https://apis.support.brightcove.com/dynamic-ingest/ingest-guides/images-and-dynamic-ingest-api.html) for more information'''
+          example: true
+          type: boolean
+        profile:
+          description: The ingest profile to use - we recommend that you do **not** include this field and use the account default profile instead
+          type: string
+      title: Create_VOD_ClipBody.outputs.videocloud.ingest
+      description: An object containing inputs for Video Cloud video ingestion - see the [Dynamic Ingest Reference](https://apis.support.brightcove.com/dynamic-ingest/references/reference.html#operation/AccountsVideosIngestRequestsByAccountIdAndVideoIdPost) - do not include the master field, as that information will be provided by the Live API. If no ingest profile is specified, the account default profile will be used.
+      type: object
+    CreateVodClipbody.outputs.videocloud.video:
+      properties:
+        cue_points:
+          description: Array of cuepoint objects
+          items:
+            $ref: '#/components/schemas/CreateVodClipbody.outputs.videocloud.video.cuePoint'
+          type: array
+        custom_fields:
+          description: An object whose properties are `field_name`:`value` pairs - be sure to the *internal* name of the field
+          type: object
+        description:
+          description: Video short description
+          type: string
+        drm_disabled:
+          description: Use to disable DRM packaging for this video - applies only to DRM-enabled accounts
+          type: boolean
+        economics:
+          type: string
+          description: whether the video supports ads
+          enum:
+          - AD_SUPPORTED
+          - FREE
+        geo:
+          $ref: '#/components/schemas/CreateVodClipbody.outputs.videocloud.video.geo'
+        long_description:
+          description: A longer description of the video
+          type: string
+        name:
+          description: Title of the video clip
+          type: string
+        reference_id:
+          description: Reference id for the clip - must be unique within the account
+          type: string
+        schedule:
+          $ref: '#/components/schemas/CreateVodClipbody.outputs.videocloud.video.schedule'
+        state:
+          type: string
+          description: Whether the video should be active or inactive
+          example: ACTIVE
+          enum:
+          - ACTIVE
+          - INACTIVE
+        tags:
+          description: Array of tags for the video - note that  tags are string that may not contain a comma
+          type: object
+      required:
+      - name
+      title: Create_VOD_ClipBody.outputs.videocloud.video
+      description: '''An object containing inputs for Video Cloud video object creation - see the [CMS API Reference](https://apis.support.brightcove.com/cms/references/reference.html#operation/CreateVideo)'''
+      type: object
+    CreateVodClipbody.outputs.videocloud.video.geo:
+      properties:
+        countries:
+          description: array of ISO 3166 list of [2-letter codes](https://www.iso.org/obp/ui/#home) (search for &quot;country codes&quot;)
+          type: string
+        exclude_countries:
+          description: if true, country array is treated as a list of countries excluded from viewing
+          type: boolean
+        restricted:
+          description: whether geo-restriction is enabled for this video
+          type: boolean
+      required:
+      - countries
+      - exclude_countries
+      - restricted
+      title: Create_VOD_ClipBody.outputs.videocloud.video.geo
+      type: object
+      description: map of geo-filtering properties
+    Notification:
+      properties:
+        credentials:
+          description: Credentials for the destination, if required.
+          type: string
+        event:
+          description: Event type to send notifications for.  It’s recommended to set events on the job and not individual rendition outputs since renditions will finish simultaneously.
+          type: string
+          enum:
+          - state_changed
+          - first_segment_uploaded
+          - output_finished
+          - rtmp_output_state_changed
+        url:
+          description: Destination for the notification.
+          type: string
+      required:
+      - url
+      - event
+      title: notification
+      type: object
+    Clip.ClipInfo:
+      properties:
+        time_utc:
+          description: UTC time to perform task. Value must be unix timestamp in seconds.
+          type: number
+        notification:
+          description: Duration in seconds before time_utc to send a notification for the upcoming task.
+          type: number
+        state:
+          description: Task state
+          type: string
+          enum:
+          - pending
+          - cancelled
+          - failed
+          - finished
+        output:
+          $ref: '#/components/schemas/CreateVodClipbody.outputs'
+      required:
+      - time_utc
+      - state
+      - output
+      title: Clip.clip_info
+      type: object
+    CreateVodClipbody.outputs.videocloud.video.schedule:
+      properties:
+        ends_at:
+          description: end date-time of availability in [ISO-8601](https://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) format
+          type: string
+        starts_at:
+          description: '''start date-time of availability in [ISO-8601](https://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) format'''
+          type: string
+      required:
+      - ends_at
+      - starts_at
+      title: Create_VOD_ClipBody.outputs.videocloud.video.schedule
+      type: object
+      description: map of scheduling properties
+    Clip:
+      properties:
+        job_id:
+          description: Live Job ID to schedule clip for.
+          type: string
+        clip:
+          $ref: '#/components/schemas/Clip.ClipInfo'
+        workflow_id:
+          description: ID of the Clip workflow
+          type: string
+          readOnly: true
+        account_id:
+          description: Live Account ID
+          type: string
+        type:
+          description: Workflow type clip
+          type: string
+          enum:
+          - clip
+        description:
+          description: Clip workflow description.
+          type: string
+        notification_url:
+          description: URL to send notifications for clip. Required if a pre-notification is configured for clip.
+          type: string
+      required:
+      - job_id
+      - clip
+      - workflow_id
+      - account_id
+      - type
+      title: Clip
+      type: object
+      example:
+        workflow_id: ef90f92e9ce148d0ab33d8c7c80daf94
+        account_id: 44bc2648864e40b7b0146fbe4e487523
+        description: My JobStartStop workflow
+        type: clip
+        workflow_start_time_utc: 1654620000
+        job_id: 6e7da666a2d54eed8e3ce547f09b33bd
+        clip:
+          time_utc: 1654620000
+          output:
+            label: My Scheduled Clip
+            remove_ads: false
+            stream_end_time: 200
+            stream_start_time: 0
+            videocloud:
+              ingest: {}
+              video:
+                id: '1734994757129442095'
+                name: My Scheduled Clip
+          state: pending
+    UpdateClipRequestBody:
+      properties:
+        clip:
+          $ref: '#/components/schemas/CreateClipRequestBody.ClipInfo'
+      title: Update_Clip_Body
+      type: object
+      example:
+        clip:
+          output:
+            label: My Scheduled Clip
+            start_time: 1612878900
+            end_time: 1612879500
+            videocloud:
+              video:
+                id: '70702010152202'
+                name: My Scheduled Clip
+          time_utc: 1612879500
+    CreateVodClipbody.outputs.videocloud:
+      properties:
+        account_id:
+          description: The Video Cloud Account ID the clip should be ingested to. Only required if using Video Cloud Account ID other than the default configured in your Live account. If set, you must also set the `credentials` property on the output.
+          type: string
+        ingest:
+          $ref: '#/components/schemas/CreateVodClipbody.outputs.videocloud.ingest'
+        video:
+          $ref: '#/components/schemas/CreateVodClipbody.outputs.videocloud.video'
+      required:
+      - video
+      title: Create_VOD_ClipBody.outputs.videocloud
+      description: An object containing inputs for Video Cloud ingestion
+      type: object
+    CreateClipRequestBody:
+      properties:
+        job_id:
+          description: Live Job ID to schedule Clip for.
+          type: string
+        clip:
+          $ref: '#/components/schemas/CreateClipRequestBody.ClipInfo'
+        description:
+          description: Clip workflow description.
+          type: string
+        notification_url:
+          description: URL to send notifications for clip. Required if a pre-notification is configured for clip.
+          type: string
+      required:
+      - job_id
+      - clip
+      title: Create_Clip_Body
+      type: object
+      example:
+        job_id: 481ff4cf0bf74956bc2ec6e126588080
+        clip:
+          output:
+            label: My Scheduled Clip
+            start_time: 1612878900
+            end_time: 1612879800
+            videocloud:
+              video:
+                name: My Scheduled Clip
+          time_utc: 1612879800
+        description: My JobStartStop workflow
+        notification_url: https://example.com/live/jobstartstop/callbacks
+    CreateVodClipbody.outputs.videocloud.video.cuePoint:
+      properties:
+        force-stop:
+          description: whether video is force-stopped at the cue point
+          type: boolean
+        metadata:
+          description: optional metadata string (512 single-byte characters maximum)
+          type: string
+        name:
+          description: cue point name
+          type: string
+        time:
+          description: 'time of the cue point in seconds; example: 10.527'
+          type: number
+        type:
+          description: cue point type
+          enum:
+          - AD
+          - CODE
+          example: AD
+          type: string
+      required:
+      - time
+      - type
+      title: Create_VOD_ClipBody.outputs.videocloud.video.cue_point
+      type: object
+    CreateClipRequestBody.ClipInfo:
+      properties:
+        time_utc:
+          description: UTC time to perform task. Value must be unix timestamp in seconds.
+          type: number
+        notification:
+          description: Duration in seconds before time_utc to send a notification for the upcoming task.
+          type: number
+        output:
+          $ref: '#/components/schemas/CreateVodClipbody.outputs'
+      required:
+      - time_utc
+      - output
+      title: Create_Clip_Body.clip_info
+      type: object
+    ClipResponse:
+      properties:
+        job_id:
+          description: Live Job ID to schedule clip for.
+          type: string
+        clip:
+          type: object
+          properties:
+            time_utc:
+              description: UTC time to perform task. Value must be unix timestamp in seconds.
+              type: number
+            output:
+              type: object
+              properties:
+                label:
+                  description: Human-readable label for the clip
+                  type: string
+                remove_ads:
+                  description: Whether to remove ads from the clip
+                  type: boolean
+                stream_start_time:
+                  description: Time to start the clip in seconds, relative to the `stream_start_time`
+                  type: number
+                stream_end_time:
+                  description: Time to end the clip in seconds, relative to the `stream_start_time`
+                  type: number
+                videocloud:
+                  type: object
+                  properties:
+                    ingest:
+                      description: JSON request body for ingestion - there are no required fields - see [Ingest Request](/dynamic-ingest/references/reference.html#operation/AccountsVideosIngestRequestsByAccountIdAndVideoIdPost) for available fields
+                      type: object
+                    video:
+                      type: object
+                      description: JSON request body for the video object
+                      properties:
+                        id:
+                          type: string
+                          description: The video id
+                          readOnly: true
+                        name:
+                          type: string
+                          description: A title for the video
+            state:
+              type: string
+              enum:
+              - pending
+              - cancelled
+              - failed
+              - finished
+        workflow_id:
+          description: ID of the Clip workflow
+          type: string
+          readOnly: true
+        account_id:
+          description: Live Account ID
+          type: string
+        type:
+          description: Workflow type clip
+          type: string
+          enum:
+          - clip
+        description:
+          description: Clip workflow description.
+          type: string
+      title: Clip Response Object
+      type: object
+      example:
+        workflow_id: ef90f92e9ce148d0ab33d8c7c80daf94
+        account_id: 44bc2648864e40b7b0146fbe4e487523
+        description: My JobStartStop workflow
+        type: clip
+        workflow_start_time_utc: 1654620000
+        job_id: 6e7da666a2d54eed8e3ce547f09b33bd
+        clip:
+          time_utc: 1654620000
+          output:
+            label: My Scheduled Clip
+            remove_ads: false
+            stream_end_time: 200
+            stream_start_time: 0
+            videocloud:
+              ingest: {}
+              video:
+                id: '1734994757129442095'
+                name: My Scheduled Clip
+          state: pending
+    CreateVodClipbody.outputs:
+      properties:
+        credentials:
+          description: The name of the credentials configured in your Live account for this destination. Not required if using the default Video Cloud account associated with your Live account.
+          type: string
+        notifications:
+          description: '''Array of notification destination objects or strings - notifications defined here are for job-level events.  A notification will be sent to the destination when selected event occurs. You can use a simple string with a url: &quot;https://log:pass@httpbin.org/post&quot;, or you can use an object. See [Events](/live-api/guides/live-api-notifications.html#Events) for an explanation of the events reported in `state_changed` notifications. <br> Retry strategy: In the event of a failed request to send a notification, the default retry strategy is to retry 50 times with an exponential delay between attempts: <br> `max_retry_times = 50` <br> `delay_delta_s = 5` <br> `next_retry = now_s + retry_count * delay_delta_s`
+
+            **Note:** notifications are *not* supported for instant mode VODs.'''
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/Notification'
+            - type: string
+              description: A URL to send notifications to
+          type: array
+        duration:
+          description: 'Duration of the clip in seconds. The <code translate="no">duration</code> must be used alone to define a clip that will be made of the final <code translate="no">{duration}</code> seconds of the stream. <code translate="no">duration</code>
+
+            **Note:** the duration parameter is not available for instant mode VODs.'
+          maximum: 172800
+          minimum: 0
+          type: integer
+        remove_ads:
+          description: Remove content processed during the duration of cue points received while streaming.
+          type: boolean
+          default: false
+        start_time:
+          description: Start time for the clip in Epoch (Unix) time (seconds), <code translate="no">start_time</code> must be used alone or with <code translate="no">end_time</code>.
+          type: integer
+        end_time:
+          description: End time for the clip in Epoch (Unix) time (seconds), <code translate="no">end_time</code> must be used alone or with <code translate="no">start_time</code>.
+          type: integer
+        stream_start_time:
+          description: Start time in seconds for the clip relative to the start time of the live stream, <code translate="no">stream_start_time</code> must be used alone or with <code translate="no">stream_end_time</code>.
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+        stream_end_time:
+          description: End time in seconds for the clip relative to the start time of the live stream, <code translate="no">stream_end_time</code> must be used alone or with <code translate="no">stream_start_time</code>.
+          type: integer
+        stream_start_timecode:
+          description: Start time for a frame-accurate clip in an SMPTE-formatted (HH:MM:SS:FF) timecode from the start of the stream, <code translate="no">stream_start_timecode</code> must be used alone or with <code translate="no">stream_end_timecode</code>. Requires that the encoder is sending timecodes.
+          type: string
+        stream_end_timecode:
+          description: End time for a frame-accurate clip in an SMPTE-formatted (HH:MM:SS:FF) timecode from the end of the stream, <code translate="no">stream_end_timecode</code> must be used alone or with <code translate="no">stream_start_timecode</code>. Requires that the encoder is sending timecodes.
+          type: string
+        label:
+          description: Label for the output
+          type: string
+        mode:
+          type: string
+          description: Expedite clip publishing by leveraging existing live renditions and segment boundaries
+          enum:
+          - instant
+        playlist_label:
+          type: string
+          description: Only applicable for `instant` mode VODs. Indicates which playlist to use to create a VOD output (from the live job). Only necessary if custom playlists were defined at live job creation.
+        url:
+          description: '`url` is mandatory (**unless** the destination is `videocloud`, in which case you dod **not** include the `url`) and sets the destination of the final asset destination. For access restricted origins, the credentials a can be passed along with the URL or stored within the Brightcove system. For Live, this is reserved for future use.'
+          type: string
+        videocloud:
+          $ref: '#/components/schemas/CreateVodClipbody.outputs.videocloud'
+      required:
+      - label
+      title: Create_VOD_ClipBody.outputs
+      type: object
+  securitySchemes:
+    BC_OAuth2:
+      type: oauth2
+      description: Brightcove OAuth API. See the [support documentation](/oauth/index.html) or [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html) to learn more
+      flows:
+        clientCredentials:
+          tokenUrl: https://oauth.brightcove.com/v4/access_token
+          scopes:
+            video-cloud/analytics/read: Read analytics data
+            video-cloud/video/read: Read video data
+x-bc-implicit-head: true
+x-bc-implicit-options: true
+x-bc-upstream: https://backend_server

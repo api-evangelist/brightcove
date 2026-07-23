@@ -1,0 +1,2104 @@
+openapi: 3.0.3
+info:
+  title: Brightcove Analytics API Reference Access Tokens Videos API
+  description: "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com"
+  x-bc-access: public
+  version: 1.0.0
+servers:
+- url: https://analytics.api.brightcove.com
+  variables: {}
+tags:
+- name: Videos
+  description: Operations for managing videos, video metadata, audio tracks, and more.
+paths:
+  /v1/accounts/{{account_id}}/videos:
+    get:
+      tags:
+      - Videos
+      summary: Get Videos
+      description: 'Gets a page of video objects '
+      operationId: GetVideos
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Offset'
+      - $ref: '#/components/parameters/VideoSort'
+      - $ref: '#/components/parameters/Search'
+      - $ref: '#/components/parameters/Query'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Video'
+        '400':
+          description: 'INVALID_SORT: sort parameter specified and invalid field
+
+            ILLEGAL_QUERY: The search string syntax was invalid - example'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '403':
+          description: 'NOT_AVAILABLE: The resource you are requesting is  unavailable - this may be a temporary condition while some kind of processing of the video is in progress, but if the message persists, contact'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: Resource not found '
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'UNKNOWN: Issue in Brightcove system; try again later.
+
+            TIMEOUT: Server likely too busy; try again later.'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/read
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    post:
+      tags:
+      - Videos
+      summary: Create Video
+      description: 'Create a new video object in the account. Note: this does not ingest a video file - use the Dynamic Ingest API for ingestion'
+      operationId: CreateVideo
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      requestBody:
+        description: 'Create a new video object in the account. Note: this does not ingest a video file - use the Dynamic Ingest API for ingestion'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateVideoRequestBodyFields'
+        required: true
+      responses:
+        '201':
+          description: Video created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Video'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '403':
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '409':
+          description: 'REFERENCE_ID_IN_USE: You attempted to create a video with a reference id that is already in use, or add a reference id to a video which is already used by another video'
+        '422':
+          description: 'ILLEGAL_FIELD: Spelling error or other use of non-existent field '
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/create
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v1/accounts/{{account_id}}/counts/videos:
+    get:
+      tags:
+      - Videos
+      summary: Get Video Count
+      description: 'Gets count of videos for the account or a search '
+      operationId: GetVideoCount
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      - $ref: '#/components/parameters/Search'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoCount'
+        '400':
+          description: 'INVALID_SORT: sort parameter specified and invalid field '
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '403':
+          description: 'NOT_AVAILABLE: The resource you are requesting is temporarily unavailable'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'UNKNOWN: Issue in Brightcove system; try again later.
+
+            TIMEOUT: Server likely too busy; try again later.'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/read
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v1/accounts/{{account_id}}/videos{video_ids}}:
+    get:
+      tags:
+      - Videos
+      summary: Get Videos by ID/Reference ID
+      description: 'Gets a video object - you can include **up to 10** video ids separated by commas.
+
+
+        Note: To receive the `video_preview.sources`, include `include_video_preview=true` in the request query.'
+      operationId: GetVideoByIdOrReferenceId
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/VideoIds'
+      - $ref: '#/components/parameters/include_variants'
+      - $ref: '#/components/parameters/include_video_preview'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Video'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/read
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    delete:
+      tags:
+      - Videos
+      summary: Delete Video
+      description: '''Deletes one or more videos - note that for this operation you can specify a comma-delimited list of video ids to delete. A maximum of 10 videos can be deleted with one request. You can also delete a video by its reference id using `ref:video_reference_id` but only one at a time.'''
+      operationId: DeleteVideo
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/VideoIds'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '204':
+          description: NO_CONTENT
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '409':
+          description: 'REFERENCES_EXIST: The video is in one or more manual playlists '
+        '412':
+          description: 'PRE_CONDITION_FAILED: usually this means the caller provided an ETag that didn''t match the version of the video'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'INTERNAL_ERROR: Error in the backend '
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/delete
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v1/accounts/{{account_id}}/videos/{{video_id}}:
+    patch:
+      tags:
+      - Videos
+      summary: Update Video
+      description: Update video metadata - note that this API does not ingest any media files - use the Dynamic Ingest API for ingestion. Also note that replacing WebVTT text tracks is a two-step operation - see Add WebVTT Captions for details.
+      operationId: UpdateVideo
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/VideoId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      requestBody:
+        description: Update video metadata - note that this API does not ingest any media files - use the Dynamic Ingest API for ingestion. Also note that replacing WebVTT text tracks is a two-step operation - see Add WebVTT Captions for details.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Video'
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Video'
+        '202':
+          description: 202 is returned as a success response in cases where text tracks are updated, because that is performed by a separate system.
+        '400':
+          description: 'AD_CONFIG_INACTIVE: Ad configuration specified in an SSAI request is inactive
+
+            AD_CONFIG_NOT_FOUND: Ad configuration specified in an SSAI request was not found'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '403':
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '409':
+          description: 'REFERENCE_ID_IN_USE: You attempted to create a video with a reference id that is already in use, or add a reference id to a video which is already used by another video'
+        '422':
+          description: 'ILLEGAL_FIELD: Spelling error or other use of non-existent field
+
+            VALIDATION_ERROR: the JSON data was not valid - error messages vary depending on the problem'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'UNKNOWN: an unknown internal error occurred - this might be a temporary system issue, but if the problem persists, it is likely an uncaught error in the request - contact Support'
+        '503':
+          description: 'TIMEOUT: Server likely too busy - try again later '
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/update
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v1/accounts/{{account_id}}/videos/{{video_id}}/sources:
+    get:
+      tags:
+      - Videos
+      summary: Get Video Sources
+      description: Gets an array of sources (renditions) for a video
+      operationId: GetVideoSources
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/VideoId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoSources'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/read
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v1/accounts/{{account_id}}/videos/{{video_id}}/images:
+    get:
+      tags:
+      - Videos
+      summary: Get Video Images
+      description: 'Gets the images for a video '
+      operationId: GetVideoImages
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/VideoId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoImages'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/read
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v1/accounts/{{account_id}}/videos/{{video_id}}/image_sources{label}}:
+    delete:
+      tags:
+      - Videos
+      summary: Delete video image
+      description: Delete video image source by label. The label can be one of `poster`, `thumbnail`, `wide`, `ultra-wide`, `portrait`, `square`.
+      operationId: DeleteVideoImage
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/VideoId'
+      - $ref: '#/components/parameters/Label'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '204':
+          description: 'NO CONTENT: image source was deleted successfully.'
+        '400':
+          description: 'AD_CONFIG_INACTIVE: Ad configuration specified in an SSAI request is inactive
+
+            AD_CONFIG_NOT_FOUND: Ad configuration specified in an SSAI request was not found'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'UNKNOWN: an unknown internal error occurred - this might be a temporary system issue, but if the problem persists, it is likely an uncaught error in the request - contact Support'
+        '503':
+          description: 'TIMEOUT: Server likely too busy - try again later '
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/update
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v1/accounts/{{account_id}}/videos/{{video_id}}/variants:
+    get:
+      tags:
+      - Videos
+      summary: Get All Video Variants
+      description: Gets the language variants for the video metadata
+      operationId: GetVideoVariants
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/VideoId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoVariants'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/read
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    post:
+      tags:
+      - Videos
+      summary: Create a Video Variant
+      description: Creates a language variant for a video metadata
+      operationId: createVideoVariant
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/VideoId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      requestBody:
+        description: Request body for a video variant
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VideoVariant'
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoVariant'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/read
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v1/accounts/{{account_id}}/videos/{{video_id}}/variants{language}}:
+    get:
+      tags:
+      - Videos
+      summary: Get a Video Variant
+      description: Gets the variant for the video metadata for the specified language
+      operationId: GetVideoVariant
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/VideoId'
+      - $ref: '#/components/parameters/Language'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoVariant'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/read
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    patch:
+      tags:
+      - Videos
+      summary: Update a Video Variant
+      description: Updates a language variant for a video metadata
+      operationId: updateVideoVariant
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/VideoId'
+      - $ref: '#/components/parameters/Language'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      requestBody:
+        description: Request body for a video variant
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VideoVariant'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoVariant'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/read
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    delete:
+      tags:
+      - Videos
+      summary: Delete a Video Variant
+      description: Delete a language variant for a video metadata
+      operationId: deleteVideoVariant
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/VideoId'
+      - $ref: '#/components/parameters/Language'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '204':
+          description: 204 NO CONTENT
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/read
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v1/accounts/{{account_id}}/videos/{{video_id}}/audio_tracks:
+    get:
+      tags:
+      - Videos
+      summary: Get Video Audio Tracks
+      description: 'Gets the audio tracks for a video Dynamic Delivery only '
+      operationId: GetVideoAudioTracks
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/VideoId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioTracks'
+              examples:
+                audio_track:
+                  summary: Sample audio track object
+                  value:
+                  - duration: 86053
+                    encoding_rates:
+                    - 64000
+                    - 96000
+                    - 127000
+                    - 192000
+                    id: en_alternate
+                    is_default: true
+                    language: en
+                    variant: main
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/read
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v1/accounts/{{account_id}}/videos/{{video_id}}/audio_tracks{audio_track_id}}:
+    get:
+      tags:
+      - Videos
+      summary: Get Video Audio Track
+      description: 'Gets one audio track for a video by its ID Dynamic Delivery only '
+      operationId: GetVideoAudioTrack
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/VideoId'
+      - $ref: '#/components/parameters/AudioTrackId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioTrack'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/read
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    patch:
+      tags:
+      - Videos
+      summary: Update Video Audio Track
+      description: 'Updates audio track metadata for a video Dynamic Delivery only '
+      operationId: UpdateVideoAudioTrack
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/VideoId'
+      - $ref: '#/components/parameters/AudioTrackId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      requestBody:
+        description: Updates audio track metadata for a video Dynamic Delivery only
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AudioTrack'
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioTrack'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/update
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    delete:
+      tags:
+      - Videos
+      summary: Delete Video Audio Track
+      description: 'Deletes one audio track for a video by its ID Dynamic Delivery only '
+      operationId: DeleteVideoAudioTrack
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/VideoId'
+      - $ref: '#/components/parameters/AudioTrackId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '204':
+          description: Item was deleted
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/update
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v1/accounts/{{account_id}}/videos/{{video_id}}/digital_master:
+    get:
+      tags:
+      - Videos
+      summary: Get Digital Master Info
+      description: 'Gets the stored digital master for a video, if any '
+      operationId: GetDigitalMasterInfo
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/VideoId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DigitalMaster'
+        '204':
+          description: The video does not have a digital master
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/read
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    delete:
+      tags:
+      - Videos
+      summary: Delete Digital Master
+      description: Deletes the archived digital master for a video. Be sure to read Digital Master Delete API before using this operation to understand the implications.
+      operationId: DeleteDigitalMaster
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/VideoId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '204':
+          description: Item was deleted
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '403':
+          description: 'NOT_AVAILABLE: The resource you are requesting is temporarily unavailable'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'UNKNOWN: Issue in Brightcove system; try again later.
+
+            TIMEOUT: Server likely too busy; try again later.'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/asset/delete
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v1/accounts/{{account_id}}/videos/{{video_id}}/references:
+    get:
+      tags:
+      - Videos
+      summary: Get Playlists for Video
+      description: Gets an array of Manual (EXPLICIT) playlists that contain a video object for the account
+      operationId: GetPlaylistsForVideo
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/VideoId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlaylistReferences'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/read
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    delete:
+      tags:
+      - Videos
+      summary: Remove Video from all Playlists
+      description: 'Removes the video from all EXPLICIT playlists for the account '
+      operationId: RemoveVideoFromAllPlaylists
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/VideoId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '204':
+          description: Item was deleted
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/delete
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v1/accounts/{{account_id}}/videos/{{video_id}}/ingest_jobs:
+    get:
+      tags:
+      - Videos
+      summary: Get Status of Ingest Jobs
+      description: "Get the status of all ingest jobs associated with a video (including the original ingestion, replacing and retranscoding the video). NOTE: this operation only works for videos that were ingested using **Dynamic Delivery** profiles.\n\nPossible states of jobs are:\n  * `processing` processing is underway, but no playable renditions have been created yet\n  * `publishing` at least one playable rendition has been created and is being published\n  * `published` at least one rendition is available for playback\n  * `finished` processing is complete\n  * `failed` processing failed - if you cannot figure what went wrong, contact Support"
+      operationId: GetStatusOfIngestJobs
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/GetStatusVideoId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IngestJobStatus'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'INTERNAL_ERROR: Error in the backend '
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/read
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v1/accounts/{{account_id}}/videos/{{video_id}}/ingest_jobs{job_id}}:
+    get:
+      tags:
+      - Videos
+      summary: Get Status of Ingest Job
+      description: "Get the status of an ingest job associated with a video (including the original ingestion, replacing and retranscoding the video). NOTE: this operation only works for videos that were ingested using **Dynamic Delivery** profiles.\n\n\nPossible states of jobs are:\n  * `processing` processing is underway, but no playable renditions have been created yet\n  * `publishing` at least one playable rendition has been created and is being published\n  * `published` at least one rendition is available for playback\n  * `finished` processing is complete\n  * `failed` processing failed - if you cannot figure what went wrong, contact Support"
+      operationId: GetStatusOfIngestJob
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/VideoId'
+      - $ref: '#/components/parameters/JobId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngestJobStatus'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'INTERNAL_ERROR: Error in the backend '
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/read
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+components:
+  schemas:
+    VideoImages:
+      description: map of image maps - the map name is in the form `label.language` where the label is one of `poster`, `thumbnail`, `portrait`, `square`, `wide` or `ultra-wide`, and the `language` is a language identifier such as 'en', 'de', or `ko`
+      example:
+        thumbnail:
+          src: https://cf-images.us-east-1.prod.boltdns.net/v1/jit/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/main/160x90/20s629ms/match/image.jpg
+          sources:
+          - src: https://cf-images.us-east-1.prod.boltdns.net/v1/jit/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/main/160x90/20s629ms/match/image.jpg
+            height: 90
+            width: 160
+        poster:
+          src: https://cf-images.us-east-1.prod.boltdns.net/v1/jit/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/main/1280x720/20s629ms/match/image.jpg
+          sources:
+          - src: https://cf-images.us-east-1.prod.boltdns.net/v1/jit/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/main/1280x720/20s629ms/match/image.jpg
+            height: 720
+            width: 1280
+        portrait.es:
+          src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/bac8717a-43db-4fa8-a6f0-189c80ee4c4e/800x1200/match/image.jpg
+          sources:
+          - src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/bac8717a-43db-4fa8-a6f0-189c80ee4c4e/800x1200/match/image.jpg
+            height: 1200
+            width: 800
+        thumbnail.en:
+          src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/0ce2da4d-ca36-469b-9024-0273d79feeeb/292x108/match/image.jpg
+          sources:
+          - src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/0ce2da4d-ca36-469b-9024-0273d79feeeb/292x108/match/image.jpg
+            height: 108
+            width: 292
+        poster.en:
+          src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/a7cb150d-c84a-48e0-9469-5b4ce80fba53/1920x1080/match/image.jpg
+          sources:
+          - src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/a7cb150d-c84a-48e0-9469-5b4ce80fba53/1920x1080/match/image.jpg
+            height: 1080
+            width: 1920
+        square.de:
+          src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/22209955-e136-4f17-914c-e19ec4c58886/570x570/match/image.jpg
+          sources:
+          - src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/22209955-e136-4f17-914c-e19ec4c58886/570x570/match/image.jpg
+            height: 570
+            width: 570
+        ultra-wide.hi:
+          src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/72fd489f-d978-44ba-8d04-1e33c7c36cef/3840x1646/match/image.jpg
+          sources:
+          - src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/72fd489f-d978-44ba-8d04-1e33c7c36cef/3840x1646/match/image.jpg
+            height: 1646
+            width: 3840
+        wide.fr:
+          src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/4405a5d5-8b9e-4c2b-be71-cf4e2c153e87/2560x1440/match/image.jpg
+          sources:
+          - src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/4405a5d5-8b9e-4c2b-be71-cf4e2c153e87/2560x1440/match/image.jpg
+            height: 1440
+            width: 2560
+      readOnly: true
+      title: VideoImages
+      type: object
+    VideoVariants:
+      description: Array of video variants
+      type: array
+      items:
+      - $ref: '#/components/schemas/VideoVariant'
+      - $ref: '#/components/schemas/VideoVariant2'
+      - $ref: '#/components/schemas/VideoVariant3'
+    CuePoint:
+      properties:
+        force_stop:
+          description: Whether playback should be stopped when the cuepoint is reached
+          type: boolean
+        metadata:
+          description: optional metadata string (512 single-byte characters maximum)
+          maxLength: 512
+          type: string
+        name:
+          description: cue point name
+          type: string
+        time:
+          description: time of the cue point in seconds
+          example: 10.527
+          type: number
+        type:
+          description: cue point type
+          enum:
+          - AD
+          - DATA
+          type: string
+      required:
+      - time
+      - type
+      title: cue_point
+      type: object
+    Link:
+      description: map of related link properties - can only be added on update, not creation
+      properties:
+        text:
+          description: text for the link
+          maxLength: 255
+          type: string
+        url:
+          description: URL for the link
+          maxLength: 255
+          type: string
+      title: link
+      type: object
+    Geo:
+      description: map of geo-filtering properties
+      properties:
+        countries:
+          description: array of ISO 3166 list of 2-letter codes(https://www.iso.org/obp/ui/#home) (search for "country codes")
+          example:
+          - us
+          - ca
+          - fr
+          items:
+            type: string
+          type: array
+        exclude_countries:
+          description: if true, country array is treated as a list of countries excluded from viewing
+          type: boolean
+        restricted:
+          description: whether geo-restriction is enabled for this video
+          type: boolean
+      required:
+      - countries
+      - exclude_countries
+      - restricted
+      title: geo
+      type: object
+    VideoVariant3:
+      description: Object containing language-specific metadata for a video
+      properties:
+        language:
+          type: string
+          description: 'The language for this variant in the language-country code format (examples: en-US, es-ES) **Note that `language` is only included when you create a variant - you must NOT include it when updating the variant**'
+          example: ja-JA
+        name:
+          type: string
+          description: The title of the video in this language
+        description:
+          type: string
+          description: The video short description in this language
+        long_description:
+          type: string
+          description: The video long description in this language
+        custom_fields:
+          type: object
+          description: 'map of `fieldname: value` pairs, where values are for this language; values have a maximum length of 1024 single-byte characters. Note: be sure to use the **internal** name for the field, not the display name'
+    AudioTrack:
+      properties:
+        duration:
+          description: URL the duration of the audio track in milliseconds
+          example: 86053
+          readOnly: true
+          type: integer
+        encoding_rates:
+          description: array of encoding rates for the audio track renditions in KBPS
+          readOnly: true
+          example:
+          - 64000
+          - 96000
+          - 127000
+          - 192000
+          items:
+            type: integer
+          type: array
+        id:
+          description: ID for the audio track formed as language_variant
+          example: en_alternate
+          readOnly: true
+          type: string
+        is_default:
+          description: Whether this is the default audio track
+          example: true
+          type: boolean
+        language:
+          description: language code for the audio track
+          example: en-US
+          type: string
+        variant:
+          description: the type of audio track (default can be set for the account by contacting Brightcove Support)
+          enum:
+          - main
+          - alternate
+          - commentary
+          - dub
+          - descriptive
+          example: main
+          type: string
+      title: AudioTrack
+      type: object
+    VideoVariant:
+      description: Object containing language-specific metadata for a video
+      properties:
+        language:
+          type: string
+          description: 'The language for this variant in the language-country code format (examples: en-US, es-ES) **Note that `language` is only included when you create a variant - you must NOT include it when updating the variant**'
+          example: es-ES
+        name:
+          type: string
+          description: The title of the video in this language
+        description:
+          type: string
+          description: The video short description in this language
+        long_description:
+          type: string
+          description: The video long description in this language
+        custom_fields:
+          type: object
+          description: 'map of `fieldname: value` pairs, where values are for this language; values have a maximum length of 1024 single-byte characters. Note: be sure to use the **internal** name for the field, not the display name'
+    User:
+      description: information about who created or modified a video, if available
+      properties:
+        email:
+          description: the user's email address in Video Cloud
+          type: string
+        id:
+          description: Video Cloud system id of the user
+          type: string
+        type:
+          description: "The type of the updater, either:\n  - `user` a user in Studio\n  - `api-key` a user via the APIs\n  - `internal` a Brightcove system or user"
+          enum:
+          - user
+          - api_key
+          - internal
+          type: string
+      readOnly: true
+      title: User
+      type: object
+    Schedule:
+      description: map of scheduling properties
+      properties:
+        ends_at:
+          description: '''End date-time of availability in ISO-8601(https://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) format. Note that you can input a date-time stamp with a time zone, such as `2021-05-01T18:00:00.000+08`, but it will be converted to and stored as a UTC data-time stamp: `2021-05-01T10:00:00.000Z`'''
+          example: 2020-05-20 20:41:07.689000+00:00
+          nullable: true
+          type: string
+        starts_at:
+          description: '''Start date-time of availability in ISO-8601(https://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) format. Note that you can input a date-time stamp with a time zone, such as `2021-05-01T18:00:00.000+08`, but it will be converted to and stored as a UTC data-time stamp: `2021-05-01T10:00:00.000Z`'''
+          example: 2019-05-20 20:41:07.689000+00:00
+          nullable: true
+          type: string
+      title: schedule
+      type: object
+    VideoVariant2:
+      description: Object containing language-specific metadata for a video
+      properties:
+        language:
+          type: string
+          description: 'The language for this variant in the language-country code format (examples: en-US, es-ES) **Note that `language` is only included when you create a variant - you must NOT include it when updating the variant**'
+          example: de-DE
+        name:
+          type: string
+          description: The title of the video in this language
+        description:
+          type: string
+          description: The video short description in this language
+        long_description:
+          type: string
+          description: The video long description in this language
+        custom_fields:
+          type: object
+          description: 'map of `fieldname: value` pairs, where values are for this language; values have a maximum length of 1024 single-byte characters. Note: be sure to use the **internal** name for the field, not the display name'
+    IngestJobStatus:
+      properties:
+        account_id:
+          description: the Video Cloud account id
+          example: 57838016001
+          readOnly: true
+          type: string
+        error_code:
+          description: the error code if the job failed
+          example: UnableToResolveHostError
+          readOnly: true
+          type: string
+        error_message:
+          description: the error message if the job failed
+          example: There was a problem resolving the host at https://some.site.comm/videos/mp4/IMG_0544.MOV. Please check that it is correct.
+          readOnly: true
+          type: string
+        id:
+          description: the ingest job id returned when you submit the Dynamic Ingest API request
+          example: 879a3301-5c1a-4b1b-a368-58e200a6e64b
+          readOnly: true
+          type: string
+        priority:
+          description: priority of the job (normal or low)
+          example: normal
+          readOnly: true
+          type: string
+        started_at:
+          description: when processing started
+          example: 2018-11-14 19:30:36.265000+00:00
+          readOnly: true
+          type: string
+        state:
+          description: "the current state of the ingest job - status:\n  - `processing` - video processing in progress - the video is not currently playable\n  - `publishing` - video processing in progress - publishing a playable rendition\n  - `published` - that at least one playable rendition is available for the video\n  - `finished` - that all processing is complete\n  - `failed` - video processing failed to complete"
+          enum:
+          - processing
+          - publishing
+          - published
+          - finished
+          - failed
+          example: failed
+          readOnly: true
+          type: string
+          x-enum-elements:
+          - description: video processing in progress - the video is not currently playable
+            name: processing
+          - description: video processing in progress - publishing a playable rendition
+            name: publishing
+          - description: there is at least one playable rendition available for the video
+            name: published
+          - description: video processing is complete
+            name: finished
+          - description: video processing failed to complete
+            name: failed
+        submitted_at:
+          description: when the job was submitted
+          example: 2018-11-14 19:30:36.196000+00:00
+          readOnly: true
+          type: string
+        updated_at:
+          description: when the status was last updated
+          example: 2018-11-14 19:43:08.641000+00:00
+          readOnly: true
+          type: string
+        video_id:
+          description: the video id
+          example: 5966995221001
+          readOnly: true
+          type: string
+      title: Ingest Job Status
+      type: object
+    PlaylistReferences:
+      properties:
+        playlists:
+          description: array of EXPLICIT playlist ids that contain the video
+          example: 749117323001
+          items:
+            type: string
+          type: array
+      title: PlaylistReferences
+      type: object
+    Sharing:
+      description: map of the sharing properties for the video
+      properties:
+        by_external_acct:
+          description: whether the video was shared from another account
+          example: true
+          readOnly: true
+          type: boolean
+        by_id:
+          description: id of the account that shared the video; note that this field is populated only for the shared copy, not for the original video
+          example: 57838016001
+          readOnly: true
+          type: string
+        by_reference:
+          description: whether the video is shared by reference
+          example: true
+          readOnly: true
+          type: boolean
+        source_id:
+          description: id of the video in its original account; note that this field is populated only for the shared copy, not for the original video
+          example: 239487239487
+          readOnly: true
+          type: string
+        to_external_acct:
+          description: whether the video is shared to another account
+          example: true
+          readOnly: true
+          type: boolean
+      readOnly: true
+      title: sharing
+      type: object
+    VideoCount:
+      example:
+        count: 7650
+      properties:
+        count:
+          description: count of videos
+          type: integer
+      title: Get_Video_CountResponse
+      type: object
+    Transcript:
+      properties:
+        id:
+          description: System id for the text track
+          readOnly: true
+          type: string
+        account_id:
+          description: The account id
+          readOnly: true
+          type: string
+        default:
+          description: Whether the transcript is the default - note that if there are multi-language transcripts, there can be a default per language
+          readOnly: true
+          type: boolean
+        label:
+          description: label for the track
+          type: string
+        sources:
+          description: sources for a client to retrieve the transcription
+          type: array
+          items:
+            type: string
+            description: URLs where the transcript can be retrieved - there will an http and https URL for each transcript
+        src:
+          description: URL for the transcription file
+          type: string
+        srclang:
+          description: 2-letter or 4-letter language code, such as `es` or `es-MX`
+          type: string
+        status:
+          description: Either `draft` (unavailable to viewers) or `published`
+          type: string
+          enum:
+          - draft
+          - published
+      required:
+      - src
+      - srclang
+      title: transcription
+      type: object
+    Video:
+      description: Object containing metadata for a video
+      properties:
+        video_preview:
+          $ref: '#/components/schemas/VideoPreview'
+        ad_keys:
+          description: string representing the ad key/value pairs assigned to the video. Key/value pairs are formatted as key=value and are separated by ampersands - can only be added on update, not creation
+          example: ' "adKeys": "category=sports&live=true"'
+          nullable: true
+          type: string
+        clip_source_video_id:
+          description: The ID of the source video that was clipped to produce this video or null if this video is not a clip of another video
+          example: 4723947979
+          readOnly: true
+          type: string
+        complete:
+          description: 'whether the video has at least one rendition -Note: when you create a new video, the complete property is automatically set to false. As soon as one rendition exists for the video, the complete property will be automatically set to true. This does **not mean that all renditions are created and images and captions processed**. For the full status of ingestion, see [Dynamic Ingest API Notifications](/dynamic-ingest/general/notifications-dynamic-delivery-video-cloud.html)'
+          example: true
+          readOnly: true
+          type: boolean
+        created_at:
+          description: when the video was created
+          example: '2015-09-17T16:08:37.108Z'
+          readOnly: true
+          type: string
+        created_by:
+          $ref: '#/components/schemas/User'
+        cue_points:
+          description: array of cue points - can be added on creation or update
+          items:
+            $ref: '#/components/schemas/CuePoint'
+          type: array
+        custom_fields:
+          additionalProperties:
+            description: 'map of fieldname-value pairs; values have a maximum length of 1024 single-byte characters Note: be sure to use the internal name for the field, not the display name'
+            type: string
+          type: object
+        delivery_type:
+          description: "video delivery type:\n  - `remote`: a remote asset\n  - `dynamic_origin`: processed using the Dynamic Delivery ingest system\n  - `live_origin`: a live stream from Brightcove Live\n  - `unknown`: the delivery type could not be determined (may mean there are no playable renditions)"
+          enum:
+          - remote
+          - dynamic_origin
+          - live_origin
+          - unknown
+          example: dynamic_origin
+          readOnly: true
+          type: string
+        description:
+          description: video short description
+          example: Herring gull on a wharf in Boston
+          maxLength: 248
+          type: string
+        digital_master_id:
+          description: asset id of the digital master
+          example: 734462494001
+          readOnly: true
+          type: string
+        drm_disabled:
+          description: if true, the video is not DRM-packaged - applies to accounts that are enabled for DRM only
+          example: true
+          type: boolean
+        duration:
+          description: video duration in milliseconds
+          example: 18160
+          readOnly: true
+          type: integer
+        economics:
+          default: AD_SUPPORTED
+          description: whether video is `AD_SUPPORTED`
+          enum:
+          - AD_SUPPORTED
+          - FREE
+          example: AD_SUPPORTED
+          type: string
+        folder_id:
+          description: id of the folder that contains the video
+          example: 560039e5e4b0e69e4b01cacd
+          readOnly: true
+          type: string
+        forensic_watermarking:
+          description: 'Indicates whether the video has forensic watermarking
+
+
+            possible values:
+
+
+            - `ACTIVE` - the video was transcoded with forensic watermarking and should be used during delivery
+
+            - `UNAVAILABLE` - the video was not transcoded with forensic watermarking support and can’t be delivered using it
+
+            - `null` - the value is for forensic watermarking is not available for the account; in this case the field is not returned in API responses
+
+
+            if the video was not ingested with forensic watermarking, this field will be set to `UNAVAILABLE` automatically; if the video was ingested or retranscoded with forensic watermarking, this field will be set to `ACTIVE` automatically'
+          example: ACTIVE
+          readOnly: true
+          type: string
+          enum:
+          - ACTIVE
+          - UNAVAILABLE
+        geo:
+          $ref: '#/components/schemas/Geo'
+        has_digital_master:
+          description: whether video has an archived master than can be used for retranscoding
+          example: true
+          readOnly: true
+          type: boolean
+        id:
+          description: video id
+          example: 734462567001
+          readOnly: true
+          type: string
+        images:
+          $ref: '#/components/schemas/VideoImages'
+        labels:
+          type: array
+          description: Array of labels assigned to the video. See [Working with Labels](/cms/managing-videos/working-with-labels.html) for more information.
+          items:
+            type: string
+            description: full hierarchical path for a label.
+        link:
+          $ref: '#/components/schemas/Link'
+        long_description:
+          description: video long description - can only be added on update, not creation
+          example: Herring Gull near Fort Point Channel in Boston, MA, USA. 2019-04-25.
+          maxLength: 5000
+          type: string
+        name:
+          description: video title
+          example: Laughing Gull
+          maxLength: 255
+          minLength: 1
+          type: string
+        offline_enabled:
+          default: false
+          description: whether video is enabled for offline viewing
+          example: true
+          type: boolean
+        original_filename:
+          description: the original file name for the uploaded video
+          example: gull-boston.mov
+          readOnly: true
+          type: string
+        playback_rights_id:
+          type: string
+          description: Associates specified EPA playback rights with video.
+        projection:
+          description: used for 360 videos
+          enum:
+          - equirectangular
+          example: equirectangular
+          nullable: true
+          type: string
+        published_at:
+          description: start date-time of first activation in ISO-8601(https://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) format
+          example: 2019-04-30 23:27:22.507000+00:00
+          type: string
+        reference_id:
+          description: video reference-id (must be unique within the account)
+          example: laughing_gull_2019_04_25
+          maxLength: 150
+          nullable: true
+          type: string
+        schedule:
+          $ref: '#/components/schemas/Schedule'
+        sharing:
+          $ref: '#/components/schemas/Sharing'
+        state:
+          description: "The state of the video:\n  - ACTIVE: the video is playable\n  - INACTIVE: the video is not playable\n  - PENDING: \n  - DELETED: the video has been deleted (within the past 10 days; after that, the API won't return the video)"
+          enum:
+          - ACTIVE
+          - INACTIVE
+          - PENDING
+          - DELETED
+          example: ACTIVE
+          type: string
+        tags:
+          description: array of tags - maximum characters per tag is 1000
+          example:
+          - birds
+          - sea
+          items:
+            type: string
+            maxLength: 128
+          type: array
+        text_tracks:
+          description: array of text tracks - can only be added on update, not creation
+          items:
+            $ref: '#/components/schemas/TextTrack'
+          type: array
+        transcripts:
+          description: array of transcription objects - can only be added on update, not creation
+          items:
+            $ref: '#/components/schemas/Transcript'
+          type: array
+        updated_at:
+          description: when the video was last modified
+          example: 2018-02-27 19:09:20.401000+00:00
+          readOnly: true
+          type: string
+        updated_by:
+          $ref: '#/components/schemas/User'
+        variants:
+          $ref: '#/components/schemas/VideoVariants'
+      title: Video
+      type: object
+    CreateVideoRequestBodyFields:
+      description: 'Only certain video metadata fields can be set when you initially create the video, and are listed here. Other fields must be set through an update (`PATCH`) request type: object'
+      properties:
+        cue_points:
+          description: Array of cuepoint objects
+          items:
+            $ref: '#/components/schemas/CuePoint'
+          type: array
+        custom_fields:
+          description: 'map of `fieldname: value` pairs; values have a maximum length of 1024 single-byte characters Note: be sure to use the **internal** name for the field, not the display name'
+          example:
+            subject: birds
+          type: object
+        description:
+          description: Video short description
+          maxLength: 250
+          example: Laughing Gull
+          type: string
+        drm_disabled:
+          description: Use to disable DRM packaging for this video - applies only to DRM-enabled accounts
+          example: true
+          type: boolean
+        economics:
+          description: whether the video supports ads
+          enum:
+          - AD_SUPPORTED
+          - FREE
+          example: AD_SUPPORTED
+          type: string
+        geo:
+          $ref: '#/components/schemas/Geo'
+        long_description:
+          description: A longer description of the video
+          example: Herring Gull near Fort Point Channel in Boston, MA, USA. 2019-04-25.
+          maxLength: 5000
+          type: string
+        name:
+          description: Title of the video video
+          example: A happy herring gull
+          maxLength: 250
+          minLength: 1
+          type: string
+        offline_enabled:
+          default: false
+          description: whether video is enabled for offline viewing
+          example: true
+          type: boolean
+        reference_id:
+          description: Reference id for the clip - must be unique within the account
+          example: laughing_gull_2019_04_25
+          type: string
+        schedule:
+          $ref: '#/components/schemas/Schedule'
+        state:
+          description: Whether the video should be active or inactive
+          enum:
+          - ACTIVE
+          - INACTIVE
+          example: ACTIVE
+          type: string
+        tags:
+          description: Array of tags for the video - note that  tags are string that may not contain a comma or more than 128 characters
+          example:
+          - birds
+          - sea
+          items:
+            type: string
+            maxLength: 128
+          type: array
+      required:
+      - name
+      title: Create Video Request Body Fields
+    VideoPreview:
+      description: Animated thumbnail preview metadata for the video
+      properties:
+        start:
+          description: Start time in milliseconds for the preview segment
+          example: 10000
+          type: integer
+        sources:
+          description: Array of HLS manifests for the animated preview
+          items:
+            $ref: '#/components/schemas/VideoPreviewSource'
+          type: array
+      title: VideoPreview
+      type: object
+    VideoSources:
+      example:
+      - ext_x_version: '4'
+        src: https://manifest.prod.boltdns.net/manifest/v1/hls/v4/clear/57838016001/853641cb-d66b-4f08-bb02-8489b5fba897/10s/master.m3u8?fastly_token=NWJiMmIyNmNfMWM3YmVhZTA5OTc4YjM4ZjZiZjU1OTk0ZTkzZTUyMzhhNGU5Zjc5YTNkZGYwYWQyNWZkMTcyMGM1MzlmMWVmZg%3D%3D
+        type: application/x-mpegURL
+        uploaded_at: '2017-06-05T11:20:53.731Z'
+      - ext_x_version: '5'
+        src: https://manifest.prod.boltdns.net/manifest/v1/hls/v5/clear/57838016001/853641cb-d66b-4f08-bb02-8489b5fba897/10s/master.m3u8?fastly_token=NWJiMmIyNmNfNDc4YjJiNTM1YzkwYzcwNzliNmY3MDVjMzJmZjJhZjdmNjAxMzM0NWEzMTk3MzY2MGIwYWZhNzVhYjMyMzNhYg%3D%3D
+        type: application/x-mpegURL
+        uploaded_at: '2017-06-05T11:20:53.731Z'
+      - profiles: urn:mpeg:dash:profile:isoff-live:2011
+        src: https://manifest.prod.boltdns.net/manifest/v1/dash/live-baseurl/clear/57838016001/853641cb-d66b-4f08-bb02-8489b5fba897/2s/manifest.mpd?fastly_token=NWJiMmIyNmNfYjM3YTFiZjU5MmJjNzQzZjFkZTVlZmY0NTVhNmYxMzU3N2M2ODk5MmU1YjkyNDg5ZWRlNWRmMGNlODdjYjg5YQ%3D%3D
+        type: application/dash+xml
+        uploaded_at: '2017-06-05T11:20:53.731Z'
+      - codec: H264
+        container: MP4
+        duration: 49690
+        encoding_rate: 2129000
+        height: 720
+        remote: false
+        size: 13242064
+        src: https://bcbolt446c5271-a.akamaihd.net/media/v1/pmp4/static/clear/57838016001/853641cb-d66b-4f08-bb02-8489b5fba897/high.mp4?akamai_token=exp=1538437740~acl=/media/v1/pmp4/static/clear/57838016001/853641cb-d66b-4f08-bb02-8489b5fba897/high.mp4*~hmac=619d67d75397e01c0bb9bd88ea047ace80bd03b56261337233b5d53f2632c690
+        uploaded_at: '2017-06-05T11:20:53.731Z'
+        width: 1280
+      - codec: H264
+        container: MP4
+        duration: 49690
+        encoding_rate: 574000
+        height: 270
+        remote: false
+        size: 3586929
+        src: https://bcbolt446c5271-a.akamaihd.net/media/v1/pmp4/static/clear/57838016001/853641cb-d66b-4f08-bb02-8489b5fba897/mid.mp4?akamai_token=exp=1538437740~acl=/media/v1/pmp4/static/clear/57838016001/853641cb-d66b-4f08-bb02-8489b5fba897/mid.mp4*~hmac=fde050eac8c8d3bb5b6c9141639a3dc770b8b8a3a3f88f5436c803b133d940fc
+        uploaded_at: '2017-06-05T11:20:53.731Z'
+        width: 480
+      properties:
+        app_name:
+          description: address for RTMP stream
+          readOnly: true
+          type: string
+        asset_id:
+          description: system id for the rendition
+          readOnly: true
+          type: string
+        codec:
+          description: the video codec for the rendition
+          type: string
+        container:
+          description: the video container for the rendition
+          type: string
+        duration:
+          description: duration in milliseconds
+          type: integer
+        encoding_rate:
+          description: encoding rate in bps
+          type: integer
+        height:
+          description: frame height in pixels
+          readOnly: true
+          type: integer
+        remote:
+          description: whether the source is a remote asset
+          type: boolean
+        size:
+          description: file size in bytes
+          type: integer
+        src:
+          description: URL for HTTP rendition
+          readOnly: true
+          type: string
+        stream_name:
+          description: the stream name on the CDN
+          readOnly: true
+          type: string
+        type:
+          description: the type for segmented streams
+          readOnly: true
+          type: string
+        uploaded_at:
+          description: date/time when the video was uploaded
+          readOnly: true
+          type: string
+        width:
+          description: frame width in pixels
+          readOnly: true
+          type: integer
+      title: VideoSources
+      type: object
+    VideoPreviewSource:
+      description: HLS manifest entry for animated preview
+      properties:
+        ext_x_version:
+          description: HLS EXT-X-VERSION value
+          example: '7'
+          type: string
+        src:
+          description: URL to the preview HLS manifest
+          example: https://manifest.prod.boltdns.net/.../preview.m3u8?...
+          type: string
+        type:
+          description: MIME type
+          example: application/x-mpegURL
+          type: string
+      title: VideoPreviewSource
+      type: object
+    AudioTracks:
+      description: Audio tracks for the video
+      items:
+        $ref: '#/components/schemas/AudioTrack'
+      title: Audio Tracks
+      type: array
+    DigitalMaster:
+      properties:
+        created_at:
+          description: date/time created
+          example: 2019-04-30 10:09:12.548000+00:00
+          readOnly: true
+          type: string
+        duration:
+          description: duration in milliseconds
+          example: 31431
+          type: integer
+        encoding_rate:
+          description: encoding rate in bps
+          example: 23152000
+          readOnly: true
+          type: integer
+        height:
+          description: frame height in pixels
+          example: 1080
+          readOnly: true
+          type: integer
+        id:
+          description: the system id for the digital master
+          example: a0a2e032-4de4-4495-a59e-a806d52989
+          readOnly: true
+          type: string
+        size:
+          description: file size in bytes
+          example: 90990884
+          readOnly: true
+          type: integer
+        updated_at:
+          description: date/time last modified
+          example: 2019-04-30 10:09:12.548000+00:00
+          readOnly: true
+          type: string
+        width:
+          description: frame width in pixels
+          example: 1920
+          readOnly: true
+          type: integer
+      title: DigitalMaster
+      type: object
+    TextTrack:
+      properties:
+        default:
+          default: false
+          description: whether this is the default track - should only be true for one text track
+          type: boolean
+        id:
+          description: System id for the text track
+          readOnly: true
+          type: string
+        kind:
+          default: captions
+          description: 'How the track is meant to be used: `subtitles`, `captions`, `descriptions`, `chapters`, `metadata`.'
+          enum:
+          - subtitles
+          - captions
+          - descriptions
+          - chapters
+          - metadata
+          - transcripts
+          type: string
+        label:
+          description: label for the track
+          type: string
+        mime_type:
+          description: mime-type for the track
+          type: string
+        src:
+          description: URL for the .vtt file
+          type: string
+        srclang:
+          description: 2-letter language code, such as "en" or "ko"
+          type: string
+        status:
+          description: Indicates the actual situation of the track, if it is `published`, `draft`, or `null` for pre-existing text tracks. Draft tracks will not be displayed in the player.
+  parameters:
+    AccountId:
+      description: Video Cloud account ID.
+      explode: false
+      in: path
+      name: account_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    Offset:
+      description: Number of items to skip - see [Paging Search Results](/cms/searching/using-cms-api-page-search-results.html) for more information
+      explode: true
+      in: query
+      name: offset
+      schema:
+        default: 0
+        example: 20
+        format: int32
+        type: integer
+      style: form
+    include_variants:
+      description: Whether to include the language variants in the response
+      explode: true
+      in: query
+      name: include_variants
+      schema:
+        default: true
+        type: boolean
+      style: form
+    Query:
+      description: Search string - see [search guide](/cms/searching/cms-and-playback-apis-video-search-v2.html) for details
+      explode: true
+      in: query
+      name: query
+      schema:
+        example: +name:Birds
+        type: string
+      style: form
+    include_video_preview:
+      description: Whether to include the `video_preview` object (animated thumbnail preview metadata) in the response
+      explode: true
+      in: query
+      name: include_video_preview
+      schema:
+        default: false
+        type: boolean
+      style: form
+    Search:
+      description: Search string - see [search guide](/cms/searching/cmsplayback-api-videos-search.html) for details
+      explode: true
+      in: query
+      name: q
+      schema:
+        example: +name:Birds
+        type: string
+      style: form
+    JobId:
+      description: The Job ID for the ingest job (returned in the response to an ingest request)
+      explode: false
+      in: path
+      name: job_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    VideoId:
+      description: Video ID (specified as `{video_id}}`).
+      explode: false
+      in: path
+      name: video_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    Limit:
+      description: Number of items to return - see [Paging Search Results](/cms/searching/using-cms-api-page-search-results.html) for more information
+      explode: true
+      in: query
+      name: limit
+      schema:
+        default: 20
+        example: 20
+        format: int32
+        maximum: 100
+        minimum: 1
+        type: integer
+      style: form
+    AudioTrackId:
+      description: the id for the audio track, formed as `language_variant`
+      explode: false
+      in: path
+      name: audio_track_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    Label:
+      description: Image type
+      explode: false
+      in: path
+      name: label
+      required: true
+      schema:
+        type: string
+        enum:
+        - poster
+        - thumbnail
+        - wide
+        - ultra-wide
+        - portrait
+        - square
+      style: simple
+    ContentType:
+      description: 'Content-Type: application/json'
+      example: application/json
+      explode: false
+      in: header
+      name: Content-Type
+      required: true
+      schema:
+        default: application/json
+        type: string
+      style: simple
+    GetStatusVideoId:
+      description: 'Video ID.
+
+
+        For example:
+
+        - https://cms.api.brightcove.com/v1/accounts/{{account_id}}/videos/9827342837937'
+      explode: false
+      in: path
+      name: video_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    VideoSort:
+      description: "Field to sort results by - if absent and there is a search string, results are sorted by relevance or if there is no search string, results are sorted by `-updated_at`. \nNotes: \n  - to sort in descending order, preface the field name with a minus (`-`) sign\n  - this parameter can be used to sort results both for a get videos request and for a get videos in folder request"
+      explode: true
+      in: query
+      name: sort
+      schema:
+        default: -updated_at
+        enum:
+        - name
+        - -name
+        - reference_id
+        - -reference_id
+        - created_at
+        - -created_at
+        - published_at
+        - -published_at
+        - updated_at
+        - -updated_at
+        - schedule.starts_at
+        - -schedule.ends_at
+        - state
+        - -state
+        - plays_total
+        - -plays_total
+        - plays_trailing_week
+        - -plays_trailing_week
+        example: created_at
+        type: string
+        x-enum-elements:
+        - description: The video name
+          name: name
+        - description: The video reference id
+          name: reference_id
+        - description: Date video was created in the Video Cloud
+          name: created_at
+        - description: Date video was activated
+          name: published_at
+        - description: Date video was last updated (by a user or the system)
+          name: updated_at
+        - description: Date video scheduled to become available
+          name: schedule.starts_at
+        - description: Date video scheduled to become unavailable
+          name: schedule.ends_at
+        - description: Whether the video is playable (`ACTIVE` or `INACTIVE`)
+          name: state
+        - description: All time video views (this field can only be sorted on - it is not returned)
+          name: plays_total
+        - description: Trailing week video views (this field can only be sorted on - it is not returned)
+          name: plays_trailing_week
+      style: form
+    Authorization:
+      description: 'Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)'
+      explode: false
+      in: header
+      name: Authorization
+      required: true
+      schema:
+        type: string
+      style: simple
+    Language:
+      description: 'The language for the variant in the language-country code format (examples: en-US, es-ES)'
+      explode: false
+      in: path
+      name: language
+      required: true
+      schema:
+        type: string
+      style: simple
+    VideoIds:
+      description: 'One or more video ids or one reference id. If reference ids, the syntax is `ref:my_ref_id`. Note that you may include multiple video ids, but only one reference id.
+
+
+        For example:
+
+        - https://cms.api.brightcove.com/v1/accounts/{{account_id}}/videos/9827342837937
+
+        - https://cms.api.brightcove.com/v1/accounts/{{account_id}}/videos/9827342837937,47584736360
+
+        - https://cms.api.brightcove.com/v1/accounts/{{account_id}}/videos/ref:my_ref_id'
+      explode: false
+      in: path
+      name: video_ids
+      required: true
+      schema:
+        type: string
+      style: simple
+  securitySchemes:
+    BC_OAuth2:
+      type: oauth2
+      description: Brightcove OAuth API. See the [support documentation](/oauth/index.html) or [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html) to learn more
+      flows:
+        clientCredentials:
+          tokenUrl: https://oauth.brightcove.com/v4/access_token
+          scopes:
+            video-cloud/analytics/read: Read analytics data
+            video-cloud/video/read: Read video data
+x-bc-implicit-head: true
+x-bc-implicit-options: true
+x-bc-upstream: https://backend_server

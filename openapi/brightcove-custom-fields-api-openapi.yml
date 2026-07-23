@@ -1,0 +1,527 @@
+openapi: 3.0.3
+info:
+  title: Brightcove Analytics API Reference Access Tokens Custom Fields API
+  description: "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com"
+  x-bc-access: public
+  version: 1.0.0
+servers:
+- url: https://analytics.api.brightcove.com
+  variables: {}
+tags:
+- name: Custom Fields
+  description: Operations for creating and managing custom fields.
+paths:
+  /v1/accounts/{{account_id}}/video_fields:
+    get:
+      tags:
+      - Custom Fields
+      summary: Get Video Fields
+      description: Gets a list of custom fields for the account (note that this operation may later return standard fields as well - current it returns an empty array for `standard_fields`)
+      operationId: GetVideoFields
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoFields'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '403':
+          description: 'NOT_AVAILABLE: The resource you are requesting is temporarily unavailable'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'UNKNOWN: Issue in Brightcove system; try again later.
+
+            TIMEOUT: Server likely too busy; try again later.'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/read
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v1/accounts/{{account_id}}/video_fields/custom_fields:
+    get:
+      tags:
+      - Custom Fields
+      summary: Get Custom Fields
+      description: Gets a list of custom fields for the account
+      operationId: GetCustomFields
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomFields'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '403':
+          description: 'NOT_AVAILABLE: The resource you are requesting is temporarily unavailable'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'UNKNOWN: Issue in Brightcove system; try again later.
+
+            TIMEOUT: Server likely too busy; try again later.'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/read
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    post:
+      tags:
+      - Custom Fields
+      summary: Create a Custom Field
+      description: Create a new custom field for the account
+      operationId: CreateCustomField
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      requestBody:
+        description: Properties for a new custom field
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/customField'
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/customField'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '403':
+          description: 'NOT_AVAILABLE: The resource you are requesting is temporarily unavailable'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'UNKNOWN: Issue in Brightcove system; try again later.
+
+            TIMEOUT: Server likely too busy; try again later.'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/read
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v1/accounts/{{account_id}}/video_fields/custom_fields/{{custom_field_id}}:
+    get:
+      tags:
+      - Custom Fields
+      summary: Get a Custom Field
+      description: Gets a list of custom fields for the account
+      operationId: GetCustomField
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      - $ref: '#/components/parameters/custom_field_id'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/customField'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '403':
+          description: 'NOT_AVAILABLE: The resource you are requesting is temporarily unavailable'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'UNKNOWN: Issue in Brightcove system; try again later.
+
+            TIMEOUT: Server likely too busy; try again later.'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/read
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    patch:
+      tags:
+      - Custom Fields
+      summary: Update a Custom Field
+      description: Update a new custom field for the account
+      operationId: UpdateCustomField
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      - $ref: '#/components/parameters/custom_field_id'
+      requestBody:
+        description: Update properties for a new custom field
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/customFieldUpdate'
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/customFieldUpdate'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '403':
+          description: 'NOT_AVAILABLE: The resource you are requesting is temporarily unavailable'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'UNKNOWN: Issue in Brightcove system; try again later.
+
+            TIMEOUT: Server likely too busy; try again later.'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/read
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    delete:
+      tags:
+      - Custom Fields
+      summary: Delete a Custom Field
+      description: Delete a new custom field for the account
+      operationId: DeleteCustomField
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - $ref: '#/components/parameters/ContentType'
+      - $ref: '#/components/parameters/Authorization'
+      - $ref: '#/components/parameters/custom_field_id'
+      responses:
+        '204':
+          description: 204 No Content
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+        '403':
+          description: 'NOT_AVAILABLE: The resource you are requesting is temporarily unavailable'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint'
+        '429':
+          description: 'TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second'
+        '500':
+          description: 'UNKNOWN: Issue in Brightcove system; try again later.
+
+            TIMEOUT: Server likely too busy; try again later.'
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/video/read
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+components:
+  schemas:
+    VideoFields:
+      example:
+        custom_fields:
+        - description: Add a topic
+          display_name: Subject
+          enum_values:
+          - Reptiles
+          - Mammals
+          - Other
+          - wildlife
+          - Fish
+          - Birds
+          - Insects
+          id: subject
+          required: false
+          type: enum
+        - description: null
+          display_name: Uploader UserID
+          id: uploader-userid
+          required: false
+          type: string
+        - description: null
+          display_name: Rating
+          id: rating
+          required: false
+          type: string
+        - description: null
+          display_name: Duration
+          id: duration
+          required: false
+          type: string
+        - description: null
+          display_name: Associatedtopics
+          id: associated-topics
+          required: false
+          type: string
+        - description: null
+          display_name: Custom Theme Path
+          enum_values:
+          - https://files.brightcove.com/BCL_customLabelTheme2.css
+          - https://files.brightcove.com/BCL_customLabelTheme.css
+          id: customthemepath
+          required: false
+          type: enum
+        - description: null
+          display_name: Text Color
+          enum_values:
+          - '#4C4D4F'
+          - '#CF0050'
+          - '#F4901E'
+          - '#619FA8'
+          id: textcolor
+          required: false
+          type: enum
+        - description: null
+          display_name: Captions File URL
+          id: dfxppath
+          required: false
+          type: string
+        - description: null
+          display_name: Purpose
+          enum_values:
+          - Training
+          - Demo
+          - Sample
+          - Solution
+          id: purpose
+          required: false
+          type: enum
+        - description: null
+          display_name: Downloadable
+          enum_values:
+          - 'yes'
+          - 'no'
+          id: downloadable
+          required: false
+          type: enum
+        max_custom_fields: 10
+        standard_fields:
+        - description: null
+          id: description
+          required: false
+        - description: null
+          id: tags
+          required: false
+      properties:
+        custom_fields:
+          description: array of standard field maps
+          items:
+            $ref: '#/components/schemas/Videofields.customField'
+          type: array
+        max_custom_fields:
+          description: maximum number of custom fields for the account
+          type: string
+        standard_fields:
+          description: array of standard field maps
+          items:
+            $ref: '#/components/schemas/Videofields.standardField'
+          type: array
+      title: VideoFields
+      type: object
+    CustomFields:
+      description: array of standard field maps
+      items:
+        $ref: '#/components/schemas/customField'
+      type: array
+    customFieldUpdate:
+      properties:
+        description:
+          description: description (instruction for user)
+          type: string
+        display_name:
+          description: display name
+          type: string
+        enum_values:
+          description: 'Array of string values for select type fields (by default the maximum is 100 values; this can be increased up to 1000 by submitting a [request to Support](https://supportportal.brightcove.com/)).
+
+
+            This field is **required** for `enum` types, and **not allowed** for `string` types.'
+          items:
+            type: string
+            maxLength: 100
+          type: array
+        id:
+          description: "Data name for the field (used to access it in searches, etc.)\n\nNote the following **requirements** for the custom field `id`:\n  - all lowercase\n  - no spaces (use underscore [_] instead)\n  - max length: 128 single-byte characters\n  - must be unique among all custom fields for the account\n  - must not be one of the [Reserved names](https://studio.support.brightcove.com/admin/creating-custom-metadata-fields.html#reserved)\n\n  Note that updating the `id` will trigger an internal process to update the `id` in any videos that have the custom field."
+          type: string
+        required:
+          description: whether field must have a value before video can be active
+          type: boolean
+          default: false
+        type:
+          description: custom field type (enum or string)
+          type: string
+          readOnly: true
+      title: custom_field
+      type: object
+    Videofields.standardField:
+      properties:
+        description:
+          description: description (instruction for user)
+          type: string
+        id:
+          description: data name for the field (used to access it in searches, etc.)
+          type: string
+        required:
+          description: whether field must have a value before video can be active
+          type: boolean
+      title: VideoFields.standard_field
+      type: object
+    Videofields.customField:
+      properties:
+        description:
+          description: description (instruction for user)
+          type: string
+        display_name:
+          description: display name
+          type: string
+        enum_values:
+          description: array of string values for select type fields
+          items:
+            type: string
+          type: array
+        id:
+          description: data name for the field (used to access it in searches, etc.)
+          type: string
+        required:
+          description: whether field must have a value before video can be active
+          type: boolean
+          default: false
+        type:
+          description: custom field type (enum or string)
+          type: string
+          readOnly: true
+      title: VideoFields.custom_field
+      type: object
+    customField:
+      properties:
+        description:
+          description: description (instruction for user)
+          type: string
+        display_name:
+          description: display name
+          type: string
+        enum_values:
+          description: 'Array of string values for select type fields (by default the maximum is 100 values; this can be increased up to 1000 by submitting a [request to Support](https://supportportal.brightcove.com/)).
+
+
+            This field is **required** for `enum` types, and **not allowed** for `string` types.'
+          items:
+            type: string
+            maxLength: 100
+          type: array
+        id:
+          description: "Data name for the field (used to access it in searches, etc.)\n\nNote the following **requirements** for the custom field `id`:\n  - all lowercase\n  - no spaces (use underscore [_] instead)\n  - max length: 128 single-byte characters\n  - must be unique among all custom fields for the account\n  - must not be one of the [Reserved names](https://studio.support.brightcove.com/admin/creating-custom-metadata-fields.html#reserved)\n\n  Note that updating it will trigger an internal process to update the `id` in any videos that have the custom field."
+          type: string
+        required:
+          description: whether field must have a value before video can be active
+          type: boolean
+          default: false
+        type:
+          description: custom field type (enum or string)
+          type: string
+      title: custom_field
+      type: object
+  parameters:
+    AccountId:
+      description: Video Cloud account ID.
+      explode: false
+      in: path
+      name: account_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    Authorization:
+      description: 'Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)'
+      explode: false
+      in: header
+      name: Authorization
+      required: true
+      schema:
+        type: string
+      style: simple
+    custom_field_id:
+      description: Custom Field ID.
+      explode: false
+      in: path
+      name: custom_field_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    ContentType:
+      description: 'Content-Type: application/json'
+      example: application/json
+      explode: false
+      in: header
+      name: Content-Type
+      required: true
+      schema:
+        default: application/json
+        type: string
+      style: simple
+  securitySchemes:
+    BC_OAuth2:
+      type: oauth2
+      description: Brightcove OAuth API. See the [support documentation](/oauth/index.html) or [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html) to learn more
+      flows:
+        clientCredentials:
+          tokenUrl: https://oauth.brightcove.com/v4/access_token
+          scopes:
+            video-cloud/analytics/read: Read analytics data
+            video-cloud/video/read: Read video data
+x-bc-implicit-head: true
+x-bc-implicit-options: true
+x-bc-upstream: https://backend_server

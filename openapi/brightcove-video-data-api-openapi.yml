@@ -1,0 +1,125 @@
+openapi: 3.0.3
+info:
+  title: Brightcove Analytics API Reference Access Tokens Video Data API
+  description: "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com"
+  x-bc-access: public
+  version: 1.0.0
+servers:
+- url: https://analytics.api.brightcove.com
+  variables: {}
+tags:
+- name: Video Data
+  description: Low latency endpoints for quickly retrieving a single piece of data.
+paths:
+  /v1/alltime/accounts/{{account_id}}/videos/{{video_id}}:
+    get:
+      tags:
+      - Video Data
+      summary: Get Alltime Video Views
+      description: '''Returns the total alltime video views for a video. This is a low-latency endpoint appropriate for use by client-side apps such as the Brightcove Player.'''
+      operationId: GetAlltimeVideoViews
+      security:
+      - BC_OAuth2:
+        - video-cloud/analytics/read
+      parameters:
+      - $ref: '#/components/parameters/account_id'
+      - $ref: '#/components/parameters/video_id'
+      - $ref: '#/components/parameters/Content-Type'
+      - $ref: '#/components/parameters/Authorization'
+      - $ref: '#/components/parameters/Accept-Encoding'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Get_Alltime_Video_Views_Response'
+        '400':
+          description: 'BAD_REQUEST: The message fields of the response contains information about what caused the error such as invalid value for sort parameter'
+        '401':
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials are correct'
+        '404':
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+        '405':
+          description: 'METHOD_NOT_ALLOWED: This error occurs when the api request is made with an HTTP method other than GET'
+        '500':
+          description: 'SERVER_ERROR: Issue in Brightcove system; try again later '
+      deprecated: false
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+components:
+  parameters:
+    account_id:
+      name: account_id
+      in: path
+      description: a Video Cloud account ID
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    Authorization:
+      name: Authorization
+      in: header
+      description: 'Authorization: Bearer access_token (see Getting Access Tokens)'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    Content-Type:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    Accept-Encoding:
+      name: Accept-Encoding
+      in: header
+      description: 'Accept-Encoding: gzip (optional)'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    video_id:
+      name: video_id
+      in: path
+      description: a Video Cloud video ID
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+  schemas:
+    Get_Alltime_Video_Views_Response:
+      title: Get Alltime_ ideo Views Response
+      required:
+      - alltime_video_views
+      type: object
+      properties:
+        alltime_video_views:
+          type: integer
+          description: all-time video views
+          format: int32
+      example:
+        alltime_video_views: 42271
+  securitySchemes:
+    BC_OAuth2:
+      type: oauth2
+      description: Brightcove OAuth API. See the [support documentation](/oauth/index.html) or [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html) to learn more
+      flows:
+        clientCredentials:
+          tokenUrl: https://oauth.brightcove.com/v4/access_token
+          scopes:
+            video-cloud/analytics/read: Read analytics data
+            video-cloud/video/read: Read video data
+x-bc-implicit-head: true
+x-bc-implicit-options: true
+x-bc-upstream: https://backend_server
