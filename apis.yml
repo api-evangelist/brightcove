@@ -4,7 +4,20 @@ description: Brightcove is an online video platform providing REST APIs for uplo
   and managing videos, encoding, CDN delivery, player configuration, analytics, and
   live streaming management. Its Video Cloud platform serves media companies, broadcasters,
   marketers, and OTT providers globally.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/brightcove.png
 url: https://raw.githubusercontent.com/api-evangelist/brightcove/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -20,26 +33,10 @@ tags:
 - Player
 - Ad Insertion
 apis:
-- name: Brightcove CMS API
-  description: Delivers uncached access to all media data within your Video Cloud
-    library, enabling full CRUD operations on videos, playlists, and assets.
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://apis.support.brightcove.com/cms/
-  baseURL: https://cms.api.brightcove.com/v1
-  tags:
-  - CMS
-  - Video Management
-  - Media
-  properties:
-  - type: Documentation
-    url: https://apis.support.brightcove.com/cms/
-  - type: OpenAPI
-    url: https://apis.support.brightcove.com/cms/references/cms-api-swagger.yaml
-  - url: graphql/brightcove-graphql.md
-    type: GraphQL
 - name: Brightcove Dynamic Ingest API
-  description: Handles ingestion of videos and media assets into Video Cloud, supporting
-    remote URL ingestion and upload from local files.
+  description: >-
+    Handles ingestion of videos and media assets into Video Cloud, supporting remote URL ingestion and
+    upload from local files.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://apis.support.brightcove.com/dynamic-ingest/
   baseURL: https://ingest.api.brightcove.com/v1
@@ -51,9 +48,9 @@ apis:
   - type: Documentation
     url: https://apis.support.brightcove.com/dynamic-ingest/
 - name: Brightcove Analytics API
-  description: Retrieves analytics data programmatically for Video Cloud accounts,
-    including dimensions like device type, geography, player, and video performance
-    metrics.
+  description: >-
+    Retrieves analytics data programmatically for Video Cloud accounts, including dimensions like device
+    type, geography, player, and video performance metrics.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://apis.support.brightcove.com/analytics/
   baseURL: https://analytics.api.brightcove.com/v1
@@ -65,8 +62,9 @@ apis:
   - type: Documentation
     url: https://apis.support.brightcove.com/analytics/
 - name: Brightcove Playback API
-  description: Fetches video and playlist data for players and mobile apps, providing
-    optimized delivery of media metadata and playback URLs.
+  description: >-
+    Fetches video and playlist data for players and mobile apps, providing optimized delivery of media
+    metadata and playback URLs.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://apis.support.brightcove.com/playback/
   baseURL: https://edge.api.brightcove.com/playback/v1
@@ -78,8 +76,8 @@ apis:
   - type: Documentation
     url: https://apis.support.brightcove.com/playback/
 - name: Brightcove Player Management API
-  description: Creates, edits, and manages Brightcove players as publishable resources
-    with full configuration control.
+  description: >-
+    Creates, edits, and manages Brightcove players as publishable resources with full configuration control.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://apis.support.brightcove.com/player-management/
   baseURL: https://players.api.brightcove.com/v2
@@ -91,8 +89,9 @@ apis:
   - type: Documentation
     url: https://apis.support.brightcove.com/player-management/
 - name: Brightcove Live API
-  description: Creates and manages live streams with comprehensive streaming controls
-    including RTMP, RTP, RTP-FEC, and SRT input protocols and HLS output delivery.
+  description: >-
+    Creates and manages live streams with comprehensive streaming controls including RTMP, RTP, RTP-FEC,
+    and SRT input protocols and HLS output delivery.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://apis.support.brightcove.com/live-api/
   baseURL: https://api.bcovlive.io/v1
@@ -104,8 +103,9 @@ apis:
   - type: Documentation
     url: https://apis.support.brightcove.com/live-api/
 - name: Brightcove OAuth API
-  description: Implements OAuth 2.0 client credentials flow for managing credentials
-    and obtaining access tokens for all Brightcove REST APIs.
+  description: >-
+    Implements OAuth 2.0 client credentials flow for managing credentials and obtaining access tokens
+    for all Brightcove REST APIs.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://apis.support.brightcove.com/oauth/
   baseURL: https://oauth.brightcove.com/v4
@@ -117,8 +117,9 @@ apis:
   - type: Documentation
     url: https://apis.support.brightcove.com/oauth/
 - name: Brightcove SSAI API
-  description: Enables server-side ad stitching directly into video streams, supporting
-    VOD and live stream monetization with seamless ad insertion.
+  description: >-
+    Enables server-side ad stitching directly into video streams, supporting VOD and live stream monetization
+    with seamless ad insertion.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://apis.support.brightcove.com/ssai/
   baseURL: https://ssai.api.brightcove.com/v1
@@ -130,8 +131,9 @@ apis:
   - type: Documentation
     url: https://apis.support.brightcove.com/ssai/
 - name: Brightcove Ingest Profiles API
-  description: Manages profiles that define video processing during ingestion, controlling
-    encoding settings and rendition creation.
+  description: >-
+    Manages profiles that define video processing during ingestion, controlling encoding settings and
+    rendition creation.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://apis.support.brightcove.com/ingest-profiles/
   baseURL: https://ingestion.api.brightcove.com/v1
@@ -143,8 +145,9 @@ apis:
   - type: Documentation
     url: https://apis.support.brightcove.com/ingest-profiles/
 - name: Brightcove Delivery Rules API
-  description: Customizes media delivery to meet specific business objectives, enabling
-    conditional logic for rendition selection and CDN routing.
+  description: >-
+    Customizes media delivery to meet specific business objectives, enabling conditional logic for rendition
+    selection and CDN routing.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://apis.support.brightcove.com/delivery-rules/
   baseURL: https://delivery-rules.api.brightcove.com
@@ -156,8 +159,9 @@ apis:
   - type: Documentation
     url: https://apis.support.brightcove.com/delivery-rules/
 - name: Brightcove Cloud Playout APIs
-  description: Manages cloud-based linear channel playout with EPG (Electronic Programming
-    Guide) and Channels APIs for scheduled programming.
+  description: >-
+    Manages cloud-based linear channel playout with EPG (Electronic Programming Guide) and Channels APIs
+    for scheduled programming.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://apis.support.brightcove.com/cloud-playout-apis/
   baseURL: https://cm.cloudplayout.brightcove.com
@@ -170,8 +174,9 @@ apis:
   - type: Documentation
     url: https://apis.support.brightcove.com/cloud-playout-apis/
 - name: Brightcove Audience API
-  description: Retrieves viewing event and lead data for marketing automation workflows,
-    enabling integration with MAP and CRM platforms.
+  description: >-
+    Retrieves viewing event and lead data for marketing automation workflows, enabling integration with
+    MAP and CRM platforms.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://apis.support.brightcove.com/audience/
   baseURL: https://audience.api.brightcove.com/v1
@@ -183,8 +188,8 @@ apis:
   - type: Documentation
     url: https://apis.support.brightcove.com/audience/
 - name: Brightcove Social API
-  description: Retrieves social sharing status and history for videos distributed
-    to social media platforms.
+  description: >-
+    Retrieves social sharing status and history for videos distributed to social media platforms.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://apis.support.brightcove.com/social/
   baseURL: https://edge.social.api.brightcove.com/v1
@@ -196,8 +201,9 @@ apis:
   - type: Documentation
     url: https://apis.support.brightcove.com/social/
 - name: Brightcove Playback Restrictions API
-  description: Provides scalable playback management including DRM, concurrency controls,
-    and geographic and domain restrictions.
+  description: >-
+    Provides scalable playback management including DRM, concurrency controls, and geographic and domain
+    restrictions.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://apis.support.brightcove.com/playback-restrictions/
   baseURL: https://playback-auth.api.brightcove.com
@@ -209,6 +215,595 @@ apis:
   properties:
   - type: Documentation
     url: https://apis.support.brightcove.com/playback-restrictions/
+- aid: brightcove:brightcove-access-tokens-api
+  name: Brightcove Access Tokens API
+  description: Get access tokens to authenticate API requests.
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Access Tokens
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-access-tokens-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-account-configuration-api
+  name: Brightcove Account Configuration API
+  description: Operations for managing default profiles for the account.
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Account Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-account-configuration-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-ad-call-tracking-api
+  name: Brightcove Ad Call Tracking API
+  description: Operations for tracking ad calls - used primarily for debugging.
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Ad Call Tracking
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-ad-call-tracking-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-ad-configurations-api
+  name: Brightcove Ad Configurations API
+  description: Operations for managing ad configurations.
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Ad Configurations
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-ad-configurations-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-analytics-report-api
+  name: Brightcove Analytics Report API
+  description: Full analytics reports with many options for filtering, date ranges, formats, and more.
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Analytics Report
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-analytics-report-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-clear-sources-api
+  name: Brightcove Clear-Sources API
+  description: "Clear_sources endpoints expose unencrypted sources to the preview players in the studio\
+    \ for customers who are using [Playback Rights](/playback-restrictions/references/index.html) to protect\
+    \ DRM and HLSe video content. This endpoint is also useful for customers who want to make their protected\
+    \ source files available to 3rd parties or internal users who have access to their API credentials.\n\
+    \n  **Important Notes:**\n  \n  1. Once the unprotected URL is made available, Brightcove and the\
+    \ client have no control over who has access to the content or how it is used.\n  2. There will be\
+    \ egress bandwidth charges made to your account when the sources are accessed."
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Clear-Sources
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-clear-sources-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-client-credentials-api
+  name: Brightcove Client Credentials API
+  description: Create client credentials needed to get access tokens.
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Client Credentials
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-client-credentials-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-credentials-api
+  name: Brightcove Credentials API
+  description: Operations for creating and managing credentials for secure destinations.
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Credentials
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-credentials-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-custom-fields-api
+  name: Brightcove Custom Fields API
+  description: Operations for creating and managing custom fields.
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Custom Fields
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-custom-fields-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-delivery-rule-actions-api
+  name: Brightcove Delivery Rule Actions API
+  description: Operations for creating, reading, updating and deleting Delivery Rule Actions
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Delivery Rule Actions
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-delivery-rule-actions-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-delivery-rule-conditions-api
+  name: Brightcove Delivery Rule Conditions API
+  description: Operations for reading and updating Delivery Rule Conditions
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Delivery Rule Conditions
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-delivery-rule-conditions-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-delivery-rules-api
+  name: Brightcove Delivery Rules API
+  description: Operations for reading Delivery Rules
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Delivery Rules
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-delivery-rules-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-embed-configurations-api
+  name: Brightcove Embed Configurations API
+  description: Operations for managing player embed (child player) configurations.
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Embed Configurations
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-embed-configurations-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-engagement-report-api
+  name: Brightcove Engagement Report API
+  description: >-
+    Detailed engagement reports by account, video or player. Detailed engagement is available only for
+    the most recent 32 days.
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Engagement Report
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-engagement-report-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-folders-api
+  name: Brightcove Folders API
+  description: Operations for managing folders to organize your videos.
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Folders
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-folders-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-history-api
+  name: Brightcove History API
+  description: Operations for getting the history of all or a specific video.
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - History
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-history-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-ingest-api
+  name: Brightcove Ingest API
+  description: The Ingest API from Brightcove — 2 operation(s) for ingest.
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Ingest
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-ingest-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-labels-api
+  name: Brightcove Labels API
+  description: >-
+    Operations for managing folders to organize your videos. See [Working with Labels](/cms/managing-videos/working-with-labels.html)
+    for more information.
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Labels
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-labels-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-leads-api
+  name: Brightcove Leads API
+  description: Get leads for a Video Cloud account.
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Leads
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-leads-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-live-analytics-api
+  name: Brightcove Live Analytics API
+  description: Analytics for Live streams
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Live Analytics
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-live-analytics-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-live-job-clip-api
+  name: Brightcove Live Job Clip API
+  description: Operations for creating and managing VOD clips, including scheduling clips for SEP jobs
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Live Job Clip
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-live-job-clip-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-live-jobs-api
+  name: Brightcove Live Jobs API
+  description: >-
+    Operations for creating live jobs, listing live jobs, getting job details, and canceling live jobs.
+    There are also operations for activating and deactivating SEP jobs, scheduling activation and deactivation
+    of SEP jobs, and for inserting cuepoints or ID3 timed metadata.
+
+
+    Notes:
+
+
+    -Live outputs are VBR.
+
+
+    -The average video bitrate should be around the target value, but there can be brief periods when
+    the measured video bitrate exceeds that target.
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Live Jobs
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-live-jobs-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-media-assets-api
+  name: Brightcove Media Assets API
+  description: >-
+    Operations for managing renditions, manifests, and other media assets. These operations are used mainly
+    for remote assets.
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Media Assets
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-media-assets-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-media-sharing-api
+  name: Brightcove Media Sharing API
+  description: >-
+    Operations for creating and managing hierarchical labels that can be associated with videos.
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Media Sharing
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-media-sharing-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-notifications-api
+  name: Brightcove Notifications API
+  description: Operations for setting up and managing notifications of changes to your video library.
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Notifications
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-notifications-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-player-configurations-api
+  name: Brightcove Player Configurations API
+  description: Operations for managing player configurations.
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Player Configurations
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-player-configurations-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-player-embeds-api
+  name: Brightcove Player Embeds API
+  description: Operations for managing player embeds (child players).
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Player Embeds
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-player-embeds-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-players-api
+  name: Brightcove Players API
+  description: Operations for managing players.
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Players
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-players-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-playlists-api
+  name: Brightcove Playlists API
+  description: Operations for managing video playlists.
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Playlists
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-playlists-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-plugin-registry-api
+  name: Brightcove Plugin Registry API
+  description: Operations for working with the player plugin registry.
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Plugin Registry
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-plugin-registry-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-profiles-api
+  name: Brightcove Profiles API
+  description: Operations creating and managing ingest profiles.
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Profiles
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-profiles-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-redundant-groups-api
+  name: Brightcove Redundant Groups API
+  description: >-
+    Operations for creating redundant groups of live jobs for failover in case one stream fails
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Redundant Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-redundant-groups-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-rtmp-outputs-api
+  name: Brightcove RTMP Outputs API
+  description: >-
+    Operations for creating and managing RTMP outputs. Note that RTMP output hours will be billed against
+    event hours.
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - RTMP Outputs
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-rtmp-outputs-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-schedule-clip-api
+  name: Brightcove Schedule Clip API
+  description: Operations for scheduling the creation of a VOD clip for SEP jobs only.
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Schedule Clip
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-schedule-clip-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-schedule-sep-job-start-stop-api
+  name: Brightcove Schedule SEP Job Start Stop API
+  description: Operations for scheduling the activation and deactivation of an SEP job.
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Schedule SEP Job Start Stop
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-schedule-sep-job-start-stop-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-ssai-api
+  name: Brightcove SSAI API
+  description: Operations for managing server-side ad insertion with live streams.
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - SSAI
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-ssai-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-status-api
+  name: Brightcove Status API
+  description: Operations for getting the status of all or a specific video.
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Status
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-status-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-video-data-api
+  name: Brightcove Video Data API
+  description: Low latency endpoints for quickly retrieving a single piece of data.
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Video Data
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-video-data-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-videos-api
+  name: Brightcove Videos API
+  description: Operations for managing videos, video metadata, audio tracks, and more.
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - Videos
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-videos-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
+- aid: brightcove:brightcove-view-events-api
+  name: Brightcove View Events API
+  description: Get view events for a Video Cloud account
+  humanURL: https://apis.support.brightcove.com/cms/
+  baseURL: https://cms.api.brightcove.com/v1
+  tags:
+  - View Events
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-view-events-api-openapi.yml
+  - type: Documentation
+    url: https://apis.support.brightcove.com/cms/
+  - type: GraphQL
+    url: graphql/brightcove-graphql.md
 common:
 - type: AgenticAccess
   url: agentic-access/brightcove-agentic-access.yml
