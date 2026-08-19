@@ -1,0 +1,770 @@
+{
+  "item": [
+    {
+      "id": "3dedd749-4874-43de-9546-437a3cdf7dfa",
+      "name": "Leads",
+      "description": {
+        "content": "Get leads for a Video Cloud account.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dd624a05-43e4-40c3-9c4b-39959e25620c",
+          "name": "Get Leads",
+          "request": {
+            "name": "Get Leads",
+            "description": {
+              "content": "Get leads for an account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":account_id",
+                "leads"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "Number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of items to skip"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "created_at",
+                  "description": "Field to sort lead results by (prefix with `-` for descending order)"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Fields to return for leads\n\n**Note:** by default, all fields are returned. Use this parameter to return fewer fields."
+                },
+                {
+                  "disabled": false,
+                  "key": "where",
+                  "value": "<string>",
+                  "description": "One or more field==value pairs to filter the results; fields supported are `video_id`, `video_name`, `tracking_id`, `external_id`, `player_id`, `page_url`, `watched`, `time_watched`, `created_at`, `updated_at`, `is_synced`"
+                },
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<string>",
+                  "description": "'Start time for the period covered by the report — epoch time in milliseconds or a date in the format `yyyy-mm-dd` (such as `2013-09-26`) or a relative date in `d` (days), `h` (hours), `m` (minutes), `s` (seconds) (such as `-2d` or `-6h`)'"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<string>",
+                  "description": "End time for the period covered by the report — epoch time in milliseconds or a date in the format `yyyy-mm-dd` (such as `2013-09-26`) or a relative date in `d` (days), `h` (hours), `m` (minutes), `s` (seconds) (such as `-2d` or `-6h`)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "account_id",
+                  "description": "(Required) a Video Cloud account ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fe550957-5b95-4305-93f5-68f174b1517e",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "leads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "video_id"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "video_id"
+                    },
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "account_id",
+                      "description": "(Required) a Video Cloud account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see Getting Access Tokens)",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"email_address\": \"rcrooks@brightcove.com\",\n      \"first_name\": \"Robert\",\n      \"last_name\": \"Crooks\",\n      \"business_phone\": \"\",\n      \"company_name\": \"Brightcove\",\n      \"page_url\": \"https://players.brightcove.net/20318290001/HyH9wwb4BZ_default/index.html?playlistId=4344773088001\",\n      \"player_id\": \"HyH9wwb4BZ\",\n      \"video_id\": \"6038250741001\",\n      \"video_name\": \"Creating a Smart Playlist\",\n      \"created_at\": \"2019-07-19T20:26:33.535Z\",\n      \"external_id\": \"cc8e546c-89e1-4de2-b83a-21fc8a7974f3\"\n    },\n    {\n      \"email_address\": \"aladron@brightcove.com\",\n      \"first_name\": \"Alberto\",\n      \"last_name\": \"Ladron\",\n      \"business_phone\": \"\",\n      \"company_name\": \"Brightcove\",\n      \"page_url\": \"https://players.brightcove.net/20318290001/HyH9wwb4BZ_default/index.html?playlistId=4344773088001\",\n      \"player_id\": \"HyH9wwb4BZ\",\n      \"video_id\": \"6038250741001\",\n      \"video_name\": \"Creating a Smart Playlist\",\n      \"created_at\": \"2019-07-19T20:26:28.229Z\",\n      \"external_id\": \"2e3d9209-0018-4ade-82c7-83d9a15fb5b2\"\n    }\n  ],\n  \"count\": 14,\n  \"offset\": 0,\n  \"limit\": 4\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "28d5efbc-757a-4cc1-8794-dd476acf93b6",
+              "name": "BAD_REQUEST_ERROR: Query parameters are invalid ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "leads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "video_id"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "video_id"
+                    },
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "account_id",
+                      "description": "(Required) a Video Cloud account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see Getting Access Tokens)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3c96e9dd-a3dc-4365-8d31-07d511fc26c1",
+              "name": "UNAUTHORIZED_ERROR: The access token is either absent, has expired, or is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "leads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "video_id"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "video_id"
+                    },
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "account_id",
+                      "description": "(Required) a Video Cloud account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see Getting Access Tokens)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "572e768a-79ce-4434-9c26-c45a2d1ef96f",
+              "name": "RESOURCE_NOT_FOUND: The URL does not exist ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "leads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "video_id"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "video_id"
+                    },
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "account_id",
+                      "description": "(Required) a Video Cloud account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see Getting Access Tokens)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d60b47a9-12d8-4430-ba59-e9c590e69972",
+              "name": "REQUEST_THROTTLED_ERROR: The user has exceeded the rate limiting policy",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "leads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "video_id"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "video_id"
+                    },
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "account_id",
+                      "description": "(Required) a Video Cloud account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see Getting Access Tokens)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "32b3b5cb-2b98-4bac-be03-2582448c2535",
+              "name": "INTERNAL_ERROR: An internal error has occurred ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "leads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "video_id"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "video_id"
+                    },
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "account_id",
+                      "description": "(Required) a Video Cloud account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see Getting Access Tokens)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0a47b4cd-56a1-4c32-bf09-8cc6cd3d1620",
+              "name": "GATEWAY_TIMEOUT_ERROR: The server timed out while fulfilling your request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "leads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "video_id"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "video_id"
+                    },
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "account_id",
+                      "description": "(Required) a Video Cloud account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see Getting Access Tokens)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://analytics.api.brightcove.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d291b785-20ca-4c13-a113-e7a56581a4f3",
+    "name": "Brightcove Analytics API Reference Access Tokens Leads API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com",
+      "type": "text/plain"
+    }
+  }
+}

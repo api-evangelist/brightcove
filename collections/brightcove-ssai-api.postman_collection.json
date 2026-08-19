@@ -1,0 +1,4326 @@
+{
+  "item": [
+    {
+      "id": "c22d7e5c-78d8-4821-b90e-ade8d3cd7c7d",
+      "name": "SSAI",
+      "description": {
+        "content": "Operations for managing server-side ad insertion with live streams.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c9c95c4f-c364-4adc-b896-7fb2ee7114ad",
+          "name": "Create Ad Configuration",
+          "request": {
+            "name": "Create Ad Configuration",
+            "description": {
+              "content": "Create a configuration for server-side ad application.\n\n**Note: SSAI is supported for the following regions:**\n  - us-west-2\n  - us-east-1\n  - ap-southeast-2\n  - ap-northeast-1\n  - ap-southeast-1\n  - eu-central-1",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ssai",
+                "applications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"application_ad_configuration\": {\n    \"ad_configuration_description\": \"<string>\",\n    \"ad_configuration_expected_response_type\": \"<string>\",\n    \"ad_configuration_url_format\": \"<string>\",\n    \"ad_configuration_strategy\": \"<string>\",\n    \"ad_configuration_client_sdk_enabled\": false,\n    \"ad_configuration_compensation_disable\": false,\n    \"ad_configuration_escape_vast_wrapper_url\": false,\n    \"ad_configuration_headers\": \"<object>\",\n    \"ad_configuration_headers_for_impressions\": \"<boolean>\",\n    \"ad_tracking_sample_percentage\": 0,\n    \"client_options\": {\n      \"client_only_tracking\": false,\n      \"show_ad_break_remaining_time\": false,\n      \"show_ad_remaining_time\": false,\n      \"show_number_of_remaining_ads\": false\n    },\n    \"enable_regional_ads\": false,\n    \"enable_roku_workarounds\": false\n  },\n  \"application_description\": \"<string>\",\n  \"account_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e6790602-2882-407c-bd0e-fb2b9fbbecbf",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"application_ad_configuration\": {\n    \"ad_configuration_description\": \"<string>\",\n    \"ad_configuration_expected_response_type\": \"<string>\",\n    \"ad_configuration_url_format\": \"<string>\",\n    \"ad_configuration_strategy\": \"<string>\",\n    \"ad_configuration_client_sdk_enabled\": false,\n    \"ad_configuration_compensation_disable\": false,\n    \"ad_configuration_escape_vast_wrapper_url\": false,\n    \"ad_configuration_headers\": \"<object>\",\n    \"ad_configuration_headers_for_impressions\": \"<boolean>\",\n    \"ad_tracking_sample_percentage\": 0,\n    \"client_options\": {\n      \"client_only_tracking\": false,\n      \"show_ad_break_remaining_time\": false,\n      \"show_ad_remaining_time\": false,\n      \"show_number_of_remaining_ads\": false\n    },\n    \"enable_regional_ads\": false,\n    \"enable_roku_workarounds\": false\n  },\n  \"application_description\": \"<string>\",\n  \"account_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_id\": \"string\",\n  \"description\": \"string\",\n  \"application_ad_configuration\": {\n    \"ad_configuration_description\": \"string\",\n    \"response_type\": \"string\",\n    \"headers\": {},\n    \"ad_configuration_strategy\": \"string\",\n    \"ad_configuration_url_format\": \"string\",\n    \"ad_configuration_variables\": {},\n    \"ad_tracking_sample_percentage\": 5040\n  },\n  \"application_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22b6b0af-b5ae-4d78-b4bf-76dd8918698d",
+              "name": "BAD_REQUEST: Invalid input value - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"application_ad_configuration\": {\n    \"ad_configuration_description\": \"<string>\",\n    \"ad_configuration_expected_response_type\": \"<string>\",\n    \"ad_configuration_url_format\": \"<string>\",\n    \"ad_configuration_strategy\": \"<string>\",\n    \"ad_configuration_client_sdk_enabled\": false,\n    \"ad_configuration_compensation_disable\": false,\n    \"ad_configuration_escape_vast_wrapper_url\": false,\n    \"ad_configuration_headers\": \"<object>\",\n    \"ad_configuration_headers_for_impressions\": \"<boolean>\",\n    \"ad_tracking_sample_percentage\": 0,\n    \"client_options\": {\n      \"client_only_tracking\": false,\n      \"show_ad_break_remaining_time\": false,\n      \"show_ad_remaining_time\": false,\n      \"show_number_of_remaining_ads\": false\n    },\n    \"enable_regional_ads\": false,\n    \"enable_roku_workarounds\": false\n  },\n  \"application_description\": \"<string>\",\n  \"account_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9ed41888-b802-4dee-bc1a-069570c9015f",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"application_ad_configuration\": {\n    \"ad_configuration_description\": \"<string>\",\n    \"ad_configuration_expected_response_type\": \"<string>\",\n    \"ad_configuration_url_format\": \"<string>\",\n    \"ad_configuration_strategy\": \"<string>\",\n    \"ad_configuration_client_sdk_enabled\": false,\n    \"ad_configuration_compensation_disable\": false,\n    \"ad_configuration_escape_vast_wrapper_url\": false,\n    \"ad_configuration_headers\": \"<object>\",\n    \"ad_configuration_headers_for_impressions\": \"<boolean>\",\n    \"ad_tracking_sample_percentage\": 0,\n    \"client_options\": {\n      \"client_only_tracking\": false,\n      \"show_ad_break_remaining_time\": false,\n      \"show_ad_remaining_time\": false,\n      \"show_number_of_remaining_ads\": false\n    },\n    \"enable_regional_ads\": false,\n    \"enable_roku_workarounds\": false\n  },\n  \"application_description\": \"<string>\",\n  \"account_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3edec3e7-dea1-4ad0-9af0-a23dc70c621a",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"application_ad_configuration\": {\n    \"ad_configuration_description\": \"<string>\",\n    \"ad_configuration_expected_response_type\": \"<string>\",\n    \"ad_configuration_url_format\": \"<string>\",\n    \"ad_configuration_strategy\": \"<string>\",\n    \"ad_configuration_client_sdk_enabled\": false,\n    \"ad_configuration_compensation_disable\": false,\n    \"ad_configuration_escape_vast_wrapper_url\": false,\n    \"ad_configuration_headers\": \"<object>\",\n    \"ad_configuration_headers_for_impressions\": \"<boolean>\",\n    \"ad_tracking_sample_percentage\": 0,\n    \"client_options\": {\n      \"client_only_tracking\": false,\n      \"show_ad_break_remaining_time\": false,\n      \"show_ad_remaining_time\": false,\n      \"show_number_of_remaining_ads\": false\n    },\n    \"enable_regional_ads\": false,\n    \"enable_roku_workarounds\": false\n  },\n  \"application_description\": \"<string>\",\n  \"account_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4a04bff0-b357-4a9f-a8de-7e16e46b716e",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"application_ad_configuration\": {\n    \"ad_configuration_description\": \"<string>\",\n    \"ad_configuration_expected_response_type\": \"<string>\",\n    \"ad_configuration_url_format\": \"<string>\",\n    \"ad_configuration_strategy\": \"<string>\",\n    \"ad_configuration_client_sdk_enabled\": false,\n    \"ad_configuration_compensation_disable\": false,\n    \"ad_configuration_escape_vast_wrapper_url\": false,\n    \"ad_configuration_headers\": \"<object>\",\n    \"ad_configuration_headers_for_impressions\": \"<boolean>\",\n    \"ad_tracking_sample_percentage\": 0,\n    \"client_options\": {\n      \"client_only_tracking\": false,\n      \"show_ad_break_remaining_time\": false,\n      \"show_ad_remaining_time\": false,\n      \"show_number_of_remaining_ads\": false\n    },\n    \"enable_regional_ads\": false,\n    \"enable_roku_workarounds\": false\n  },\n  \"application_description\": \"<string>\",\n  \"account_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fcb8cab9-34f7-4091-ba76-ec2578657392",
+          "name": "Get Ad Configurations",
+          "request": {
+            "name": "Get Ad Configurations",
+            "description": {
+              "content": "Get ad applications for the current user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ssai",
+                "applications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e9a172c1-bdce-4543-ac76-6b6aeca55cd3",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_id\": \"string\",\n  \"description\": \"string\",\n  \"application_ad_configuration\": {\n    \"ad_configuration_description\": \"string\",\n    \"response_type\": \"string\",\n    \"headers\": {},\n    \"ad_configuration_strategy\": \"string\",\n    \"ad_configuration_url_format\": \"string\",\n    \"ad_configuration_variables\": {},\n    \"ad_tracking_sample_percentage\": 5040\n  },\n  \"application_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a22112d-e4a9-431e-8646-560fada17bd7",
+              "name": "BAD_REQUEST: Invalid input value - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8c1bc7bc-5920-4fcc-bd1a-3253ec6ebb4c",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bc96bfad-92a9-4c68-b1c8-74c5d6af4b04",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "abbb68cf-62c6-4b4e-9b89-efcc39cbe760",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "960a2ca1-c559-4702-b0c2-b3da2c3d55d3",
+          "name": "Get Account Ad Configurations",
+          "request": {
+            "name": "Get Account Ad Configurations",
+            "description": {
+              "content": "Get ad applications for an account. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ssai",
+                "applications",
+                "account",
+                ":live_account_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "live_account_id",
+                  "description": "(Required) Live account ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1bd03a4d-0290-4b61-8741-7ff4a0ae93ae",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "applications",
+                    "account",
+                    ":live_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "live_account_id",
+                      "description": "(Required) Live account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_id\": \"string\",\n  \"description\": \"string\",\n  \"application_ad_configuration\": {\n    \"ad_configuration_description\": \"string\",\n    \"response_type\": \"string\",\n    \"headers\": {},\n    \"ad_configuration_strategy\": \"string\",\n    \"ad_configuration_url_format\": \"string\",\n    \"ad_configuration_variables\": {},\n    \"ad_tracking_sample_percentage\": 5040\n  },\n  \"application_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8bca30e1-737d-429d-9e9e-509f4575b682",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "applications",
+                    "account",
+                    ":live_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "live_account_id",
+                      "description": "(Required) Live account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3dcbed71-72eb-431a-af03-2066faa297d2",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "applications",
+                    "account",
+                    ":live_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "live_account_id",
+                      "description": "(Required) Live account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6c57ea1b-12c9-4b44-badf-3d8c6c9a6676",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "applications",
+                    "account",
+                    ":live_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "live_account_id",
+                      "description": "(Required) Live account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a6a6f757-835c-48d7-87d8-f86fa6da7490",
+          "name": "Get Ad Configuration",
+          "request": {
+            "name": "Get Ad Configuration",
+            "description": {
+              "content": "Get an ad application.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ssai",
+                "applications",
+                "application",
+                ":application_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "application_id",
+                  "description": "(Required) The ad application id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b2150301-0a9b-4155-bf60-746d018c5b98",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "applications",
+                    "application",
+                    ":application_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_id",
+                      "description": "(Required) The ad application id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_id\": \"string\",\n  \"description\": \"string\",\n  \"application_ad_configuration\": {\n    \"ad_configuration_description\": \"string\",\n    \"response_type\": \"string\",\n    \"headers\": {},\n    \"ad_configuration_strategy\": \"string\",\n    \"ad_configuration_url_format\": \"string\",\n    \"ad_configuration_variables\": {},\n    \"ad_tracking_sample_percentage\": 5040\n  },\n  \"application_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a32e9e2d-28d6-47a1-ba5e-ad65887031d1",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "applications",
+                    "application",
+                    ":application_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_id",
+                      "description": "(Required) The ad application id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a64d20a0-f4fa-42cc-99c6-166c5f6516ce",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "applications",
+                    "application",
+                    ":application_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_id",
+                      "description": "(Required) The ad application id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3e79fcaf-93a8-4125-aab5-8fe33de773ff",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "applications",
+                    "application",
+                    ":application_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_id",
+                      "description": "(Required) The ad application id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c481d2ec-6681-49e6-a8fd-38d8801e1358",
+          "name": "Update Ad Configuration",
+          "request": {
+            "name": "Update Ad Configuration",
+            "description": {
+              "content": "Update a configuration for server-side ad application. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ssai",
+                "applications",
+                "application",
+                ":application_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "application_id",
+                  "description": "(Required) The ad application id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"application_ad_configuration\": {\n    \"ad_configuration_description\": \"<string>\",\n    \"ad_configuration_expected_response_type\": \"<string>\",\n    \"ad_configuration_url_format\": \"<string>\",\n    \"ad_configuration_strategy\": \"<string>\",\n    \"ad_configuration_compensation_disable\": false,\n    \"ad_configuration_headers\": \"<object>\",\n    \"ad_configuration_headers_for_impressions\": \"<boolean>\",\n    \"ad_tracking_sample_percentage\": 0\n  },\n  \"application_description\": \"<string>\",\n  \"account_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d724fd65-a02c-4f84-b638-32237e1c350f",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "applications",
+                    "application",
+                    ":application_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_id",
+                      "description": "(Required) The ad application id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"application_ad_configuration\": {\n    \"ad_configuration_description\": \"<string>\",\n    \"ad_configuration_expected_response_type\": \"<string>\",\n    \"ad_configuration_url_format\": \"<string>\",\n    \"ad_configuration_strategy\": \"<string>\",\n    \"ad_configuration_compensation_disable\": false,\n    \"ad_configuration_headers\": \"<object>\",\n    \"ad_configuration_headers_for_impressions\": \"<boolean>\",\n    \"ad_tracking_sample_percentage\": 0\n  },\n  \"application_description\": \"<string>\",\n  \"account_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_id\": \"string\",\n  \"description\": \"string\",\n  \"application_ad_configuration\": {\n    \"ad_configuration_description\": \"string\",\n    \"response_type\": \"string\",\n    \"headers\": {},\n    \"ad_configuration_strategy\": \"string\",\n    \"ad_configuration_url_format\": \"string\",\n    \"ad_configuration_variables\": {},\n    \"ad_tracking_sample_percentage\": 5040\n  },\n  \"application_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b454b9d3-4c6c-4a96-9bcb-fd8e798032c5",
+              "name": "BAD_REQUEST: Invalid input value - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "applications",
+                    "application",
+                    ":application_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_id",
+                      "description": "(Required) The ad application id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"application_ad_configuration\": {\n    \"ad_configuration_description\": \"<string>\",\n    \"ad_configuration_expected_response_type\": \"<string>\",\n    \"ad_configuration_url_format\": \"<string>\",\n    \"ad_configuration_strategy\": \"<string>\",\n    \"ad_configuration_compensation_disable\": false,\n    \"ad_configuration_headers\": \"<object>\",\n    \"ad_configuration_headers_for_impressions\": \"<boolean>\",\n    \"ad_tracking_sample_percentage\": 0\n  },\n  \"application_description\": \"<string>\",\n  \"account_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f4957955-a0ac-49f7-9314-a0196a895c21",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "applications",
+                    "application",
+                    ":application_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_id",
+                      "description": "(Required) The ad application id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"application_ad_configuration\": {\n    \"ad_configuration_description\": \"<string>\",\n    \"ad_configuration_expected_response_type\": \"<string>\",\n    \"ad_configuration_url_format\": \"<string>\",\n    \"ad_configuration_strategy\": \"<string>\",\n    \"ad_configuration_compensation_disable\": false,\n    \"ad_configuration_headers\": \"<object>\",\n    \"ad_configuration_headers_for_impressions\": \"<boolean>\",\n    \"ad_tracking_sample_percentage\": 0\n  },\n  \"application_description\": \"<string>\",\n  \"account_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "67868c27-efdf-4eda-a709-07076f29f600",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "applications",
+                    "application",
+                    ":application_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_id",
+                      "description": "(Required) The ad application id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"application_ad_configuration\": {\n    \"ad_configuration_description\": \"<string>\",\n    \"ad_configuration_expected_response_type\": \"<string>\",\n    \"ad_configuration_url_format\": \"<string>\",\n    \"ad_configuration_strategy\": \"<string>\",\n    \"ad_configuration_compensation_disable\": false,\n    \"ad_configuration_headers\": \"<object>\",\n    \"ad_configuration_headers_for_impressions\": \"<boolean>\",\n    \"ad_tracking_sample_percentage\": 0\n  },\n  \"application_description\": \"<string>\",\n  \"account_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a65aa9fb-cf61-4bfc-9907-b055d785c50a",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "applications",
+                    "application",
+                    ":application_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_id",
+                      "description": "(Required) The ad application id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"application_ad_configuration\": {\n    \"ad_configuration_description\": \"<string>\",\n    \"ad_configuration_expected_response_type\": \"<string>\",\n    \"ad_configuration_url_format\": \"<string>\",\n    \"ad_configuration_strategy\": \"<string>\",\n    \"ad_configuration_compensation_disable\": false,\n    \"ad_configuration_headers\": \"<object>\",\n    \"ad_configuration_headers_for_impressions\": \"<boolean>\",\n    \"ad_tracking_sample_percentage\": 0\n  },\n  \"application_description\": \"<string>\",\n  \"account_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "27e11392-1610-45ed-8b8a-0b33d11e9a67",
+          "name": "Delete Ad Configuration",
+          "request": {
+            "name": "Delete Ad Configuration",
+            "description": {
+              "content": "Delete an ad application. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ssai",
+                "applications",
+                "application",
+                ":application_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "application_id",
+                  "description": "(Required) The ad application id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a24ec16c-2112-44bc-931f-487f60b4374f",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "applications",
+                    "application",
+                    ":application_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_id",
+                      "description": "(Required) The ad application id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"application_id\": \"string\",\n  \"deleted\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8cb5ebfe-939a-4c8c-9666-a3f8ebc098cb",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "applications",
+                    "application",
+                    ":application_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_id",
+                      "description": "(Required) The ad application id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4d204b82-3aa1-468d-8d29-68a0133b8d38",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "applications",
+                    "application",
+                    ":application_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_id",
+                      "description": "(Required) The ad application id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4f2384b3-1e13-4fc1-8f5c-652221528edf",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "applications",
+                    "application",
+                    ":application_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_id",
+                      "description": "(Required) The ad application id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a06b7f1a-6d4e-475f-8cc5-9399c6716dfd",
+          "name": "Create Beacon Set",
+          "request": {
+            "name": "Create Beacon Set",
+            "description": {
+              "content": "Beacons are data points on playback sent to ad servers to track whether and how much of ads were played. Creates a beacon set.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ssai",
+                "beaconsets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"beacon_urls\": [\n    {\n      \"beacon_url\": \"<string>\",\n      \"beacon_type\": \"<string>\"\n    },\n    {\n      \"beacon_url\": \"<string>\",\n      \"beacon_type\": \"<string>\"\n    }\n  ],\n  \"account_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "10333ba6-b92b-4d0c-86a1-e6194e50e4bf",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "beaconsets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"beacon_urls\": [\n    {\n      \"beacon_url\": \"<string>\",\n      \"beacon_type\": \"<string>\"\n    },\n    {\n      \"beacon_url\": \"<string>\",\n      \"beacon_type\": \"<string>\"\n    }\n  ],\n  \"account_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"beacon_urls\": [\n    {\n      \"beacon_url\": \"string\",\n      \"beacon_type\": \"string\"\n    },\n    {\n      \"beacon_url\": \"string\",\n      \"beacon_type\": \"string\"\n    }\n  ],\n  \"account_id\": \"string\",\n  \"inserted\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47b2e0ab-a34a-4054-8174-6658b304a615",
+              "name": "BAD_REQUEST: Invalid input value - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "beaconsets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"beacon_urls\": [\n    {\n      \"beacon_url\": \"<string>\",\n      \"beacon_type\": \"<string>\"\n    },\n    {\n      \"beacon_url\": \"<string>\",\n      \"beacon_type\": \"<string>\"\n    }\n  ],\n  \"account_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "75f22c05-86ba-4fc1-860d-c7136599e607",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "beaconsets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"beacon_urls\": [\n    {\n      \"beacon_url\": \"<string>\",\n      \"beacon_type\": \"<string>\"\n    },\n    {\n      \"beacon_url\": \"<string>\",\n      \"beacon_type\": \"<string>\"\n    }\n  ],\n  \"account_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2e0bcc30-808b-4779-8c89-5f6b545e05f4",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "beaconsets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"beacon_urls\": [\n    {\n      \"beacon_url\": \"<string>\",\n      \"beacon_type\": \"<string>\"\n    },\n    {\n      \"beacon_url\": \"<string>\",\n      \"beacon_type\": \"<string>\"\n    }\n  ],\n  \"account_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0e9b7b5e-9041-431a-b3d3-b98087f01960",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "beaconsets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"beacon_urls\": [\n    {\n      \"beacon_url\": \"<string>\",\n      \"beacon_type\": \"<string>\"\n    },\n    {\n      \"beacon_url\": \"<string>\",\n      \"beacon_type\": \"<string>\"\n    }\n  ],\n  \"account_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "69023565-48c5-4075-9d3e-8aa8286df321",
+          "name": "Get Beacon Sets for User",
+          "request": {
+            "name": "Get Beacon Sets for User",
+            "description": {
+              "content": "Get all beacon sets for the requesting user. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ssai",
+                "beaconsets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e7a10f15-5fbb-48a1-9eb9-d7c04201b6f0",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "beaconsets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"beacon_urls\": [\n      {\n        \"beacon_url\": \"string\",\n        \"beacon_type\": \"string\"\n      },\n      {\n        \"beacon_url\": \"string\",\n        \"beacon_type\": \"string\"\n      }\n    ],\n    \"account_id\": \"string\"\n  },\n  {\n    \"beacon_urls\": [\n      {\n        \"beacon_url\": \"string\",\n        \"beacon_type\": \"string\"\n      },\n      {\n        \"beacon_url\": \"string\",\n        \"beacon_type\": \"string\"\n      }\n    ],\n    \"account_id\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "536018aa-cc53-491d-8a01-b4ca2b1ee9ee",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "beaconsets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "eccaf3c6-1fbd-41fa-8cd8-e57efd46146d",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "beaconsets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ab6d2917-b622-42f2-8732-01430b1fdd58",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "beaconsets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9d641bf6-06cb-4527-baa6-6adf13b2e67f",
+          "name": "Update Beacon Set",
+          "request": {
+            "name": "Update Beacon Set",
+            "description": {
+              "content": "Updates a beacon set. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ssai",
+                "beaconsets",
+                "beaconset",
+                ":beacon_set_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "beacon_set_id",
+                  "description": "(Required) A slate media asset ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"beacon_urls\": [\n    {\n      \"beacon_url\": \"<string>\",\n      \"beacon_type\": \"<string>\"\n    },\n    {\n      \"beacon_url\": \"<string>\",\n      \"beacon_type\": \"<string>\"\n    }\n  ],\n  \"account_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f42c463c-9959-4570-8088-54a8e6b057df",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "beaconsets",
+                    "beaconset",
+                    ":beacon_set_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "beacon_set_id",
+                      "description": "(Required) A slate media asset ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"beacon_urls\": [\n    {\n      \"beacon_url\": \"<string>\",\n      \"beacon_type\": \"<string>\"\n    },\n    {\n      \"beacon_url\": \"<string>\",\n      \"beacon_type\": \"<string>\"\n    }\n  ],\n  \"account_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"beacon_urls\": [\n    {\n      \"beacon_url\": \"string\",\n      \"beacon_type\": \"string\"\n    },\n    {\n      \"beacon_url\": \"string\",\n      \"beacon_type\": \"string\"\n    }\n  ],\n  \"account_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6589d4e9-2f34-465e-9719-cb6a41f3eeda",
+              "name": "BAD_REQUEST: Invalid input value - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "beaconsets",
+                    "beaconset",
+                    ":beacon_set_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "beacon_set_id",
+                      "description": "(Required) A slate media asset ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"beacon_urls\": [\n    {\n      \"beacon_url\": \"<string>\",\n      \"beacon_type\": \"<string>\"\n    },\n    {\n      \"beacon_url\": \"<string>\",\n      \"beacon_type\": \"<string>\"\n    }\n  ],\n  \"account_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f4573115-c959-462f-a029-3573eaf353f4",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "beaconsets",
+                    "beaconset",
+                    ":beacon_set_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "beacon_set_id",
+                      "description": "(Required) A slate media asset ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"beacon_urls\": [\n    {\n      \"beacon_url\": \"<string>\",\n      \"beacon_type\": \"<string>\"\n    },\n    {\n      \"beacon_url\": \"<string>\",\n      \"beacon_type\": \"<string>\"\n    }\n  ],\n  \"account_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e5066bfd-daac-483a-8985-01b232ef530e",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "beaconsets",
+                    "beaconset",
+                    ":beacon_set_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "beacon_set_id",
+                      "description": "(Required) A slate media asset ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"beacon_urls\": [\n    {\n      \"beacon_url\": \"<string>\",\n      \"beacon_type\": \"<string>\"\n    },\n    {\n      \"beacon_url\": \"<string>\",\n      \"beacon_type\": \"<string>\"\n    }\n  ],\n  \"account_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5bcb1e09-7838-4992-8abb-03c2a3b922a9",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "beaconsets",
+                    "beaconset",
+                    ":beacon_set_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "beacon_set_id",
+                      "description": "(Required) A slate media asset ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"beacon_urls\": [\n    {\n      \"beacon_url\": \"<string>\",\n      \"beacon_type\": \"<string>\"\n    },\n    {\n      \"beacon_url\": \"<string>\",\n      \"beacon_type\": \"<string>\"\n    }\n  ],\n  \"account_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4ad4d9a4-bac9-4e1c-b097-addf485f5dd7",
+          "name": "Delete Beacon Set",
+          "request": {
+            "name": "Delete Beacon Set",
+            "description": {
+              "content": "Deletes a beacon set. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ssai",
+                "beaconsets",
+                "beaconset",
+                ":beacon_set_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "beacon_set_id",
+                  "description": "(Required) A slate media asset ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "22fe38b2-ebcb-42b6-9fbf-9dc48640d019",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "beaconsets",
+                    "beaconset",
+                    ":beacon_set_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "beacon_set_id",
+                      "description": "(Required) A slate media asset ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"beacon_set_id\": \"string\",\n  \"deleted\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "863ecc97-fd1e-40f1-b58b-03f5be83d2c9",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "beaconsets",
+                    "beaconset",
+                    ":beacon_set_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "beacon_set_id",
+                      "description": "(Required) A slate media asset ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a72ace3a-e7c0-48a6-9c7a-650a81f79727",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "beaconsets",
+                    "beaconset",
+                    ":beacon_set_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "beacon_set_id",
+                      "description": "(Required) A slate media asset ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "55e71147-dfb7-4514-bcbc-5d5c27ca97aa",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "beaconsets",
+                    "beaconset",
+                    ":beacon_set_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "beacon_set_id",
+                      "description": "(Required) A slate media asset ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "17cda8b8-2634-4934-a384-243ccba84973",
+          "name": "Get Beacon Sets",
+          "request": {
+            "name": "Get Beacon Sets",
+            "description": {
+              "content": "Get all beacon sets for an account. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ssai",
+                "beaconsets",
+                "account",
+                ":live_account_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "live_account_id",
+                  "description": "(Required) Live account ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "28c99d35-3618-455e-8888-ec57486a5f28",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "beaconsets",
+                    "account",
+                    ":live_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "live_account_id",
+                      "description": "(Required) Live account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"beacon_urls\": [\n    {\n      \"beacon_url\": \"string\",\n      \"beacon_type\": \"string\"\n    },\n    {\n      \"beacon_url\": \"string\",\n      \"beacon_type\": \"string\"\n    }\n  ],\n  \"account_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86b9bb32-13cc-4977-ada7-2582fd3ffecd",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "beaconsets",
+                    "account",
+                    ":live_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "live_account_id",
+                      "description": "(Required) Live account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "028853db-ed94-4086-ae77-c5e9b0707371",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "beaconsets",
+                    "account",
+                    ":live_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "live_account_id",
+                      "description": "(Required) Live account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7a6c2f47-3db5-4d55-8747-d78887dc6f39",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "beaconsets",
+                    "account",
+                    ":live_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "live_account_id",
+                      "description": "(Required) Live account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9543908-4576-4998-b431-a0bea0ff6342",
+          "name": "Ingest Slate Media Source Asset",
+          "request": {
+            "name": "Ingest Slate Media Source Asset",
+            "description": {
+              "content": "Ingest Slate Media Source Asset. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ssai",
+                "slates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source_url\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"source_description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "db4a7e87-84b8-437f-8adb-02aff000a6f3",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "slates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_url\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"source_description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_id\": \"string\",\n  \"media_source_asset_default\": false,\n  \"media_source_asset_description\": \"string\",\n  \"media_source_asset_id\": \"string\",\n  \"media_source_asset_status\": \"string\",\n  \"media_source_asset_type\": \"string\",\n  \"media_source_asset_url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c27105ef-cb85-4ca2-a035-2ffde108f1d6",
+              "name": "BAD_REQUEST: Invalid input value - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "slates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_url\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"source_description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "83f8394f-09e6-43e5-9a1f-f4734d89186f",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "slates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_url\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"source_description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "759395d3-8544-48a2-a3ba-545a48878983",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "slates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_url\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"source_description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d029f63d-328f-49ac-914f-582086f9175d",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "slates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_url\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"source_description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2373666e-3bc5-4647-aa4c-d1a819676de5",
+          "name": "Get User Slate Media Source Assets",
+          "request": {
+            "name": "Get User Slate Media Source Assets",
+            "description": {
+              "content": "Get Slate Media Source Assets for the current user. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ssai",
+                "slates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ae3e5f97-bdd4-46f8-8354-349827965a28",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "slates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"media_source_asset_id\": \"string\",\n  \"account_id\": \"string\",\n  \"media_source_asset_description\": \"string\",\n  \"media_source_asset_default\": false,\n  \"media_source_asset_type\": \"string\",\n  \"media_source_asset_url\": \"string\",\n  \"media_source_asset_status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "423d09e2-8511-4261-978b-f8b43ec65549",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "slates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e079eef4-b5ef-4dfa-b1c4-216ea93019ea",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "slates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5e3061fe-e689-4046-b132-a2251d831aec",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "slates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea53b5e8-7285-4d4a-a8dd-cc3d04a26c5e",
+          "name": "Delete Slate Media Source Asset",
+          "request": {
+            "name": "Delete Slate Media Source Asset",
+            "description": {
+              "content": "Delete Slate Media Source Asset. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ssai",
+                "slates",
+                "slate{{slate_msa_id}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "03bf2b1d-a936-4057-ad4e-df43a1fded93",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "slates",
+                    "slate{{slate_msa_id}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"media_source_asset_id\": \"string\",\n  \"account_id\": \"string\",\n  \"media_source_asset_default\": false,\n  \"media_source_asset_type\": \"string\",\n  \"media_source_asset_url\": \"string\",\n  \"media_source_asset_status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c755d25-b2a5-4431-a09a-6c1db632eabc",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "slates",
+                    "slate{{slate_msa_id}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "23bf4bfe-27c9-4934-b51e-30200fed5604",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "slates",
+                    "slate{{slate_msa_id}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e3184d1f-632e-40bf-8cea-68f4c56589c8",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "slates",
+                    "slate{{slate_msa_id}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7e4be3bd-11e6-4be8-8a0d-4f45c1fba0dd",
+          "name": "Get Slates for Account",
+          "request": {
+            "name": "Get Slates for Account",
+            "description": {
+              "content": "Get all beacon sets for an account. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ssai",
+                "slates",
+                "account",
+                ":live_account_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "live_account_id",
+                  "description": "(Required) Live account ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "57918494-65f9-4e3b-8678-d6227cd46797",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "slates",
+                    "account",
+                    ":live_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "live_account_id",
+                      "description": "(Required) Live account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"media_source_asset_id\": \"string\",\n  \"account_id\": \"string\",\n  \"media_source_asset_description\": \"string\",\n  \"media_source_asset_default\": false,\n  \"media_source_asset_type\": \"string\",\n  \"media_source_asset_url\": \"string\",\n  \"media_source_asset_status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca0baed7-5d49-4ac4-95ac-c484d3579a9a",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "slates",
+                    "account",
+                    ":live_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "live_account_id",
+                      "description": "(Required) Live account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ae0df1bb-8f19-4916-941c-f896194cc3f1",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "slates",
+                    "account",
+                    ":live_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "live_account_id",
+                      "description": "(Required) Live account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "25dc122b-fda2-4a3b-9da5-6d298edba7fd",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssai",
+                    "slates",
+                    "account",
+                    ":live_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "live_account_id",
+                      "description": "(Required) Live account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://analytics.api.brightcove.com",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) A slate media asset ID",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "slate_msa_id"
+    }
+  ],
+  "info": {
+    "_postman_id": "dd5a1b56-28dc-488f-bdd4-c503ff9763af",
+    "name": "Brightcove Analytics API Reference Access Tokens SSAI API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com",
+      "type": "text/plain"
+    }
+  }
+}

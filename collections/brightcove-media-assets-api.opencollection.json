@@ -1,0 +1,1538 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brightcove Analytics API Reference Access Tokens Media Assets API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Media Assets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/assets",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets assets for a given video. Note: you can use `/videos/ref:reference_id` instead of `/videos/video_id`"
+        },
+        {
+          "info": {
+            "name": "Get Dynamic Renditions (renditions for Dynamic Delivery videos)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/assets/dynamic_renditions",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets a list of dynamic renditions for a Dynamic Delivery video. Note: you can use `/videos/ref:reference_id` instead of `/videos/video_id`"
+        },
+        {
+          "info": {
+            "name": "Add Rendition",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/assets/renditions",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Add a remote rendition to the given video. Note: you can use `/videos/ref:reference_id` instead of `/videos/video_id`"
+        },
+        {
+          "info": {
+            "name": "Get Rendition",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/assets/renditions/:{asset_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              },
+              {
+                "name": "asset_id",
+                "value": "",
+                "type": "path",
+                "description": "The asset ID"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets a specified rendition for a video. Note: you can use `/videos/ref:reference_id` instead of `/videos/video_id`"
+        },
+        {
+          "info": {
+            "name": "Update Rendition",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/assets/renditions/:{asset_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              },
+              {
+                "name": "asset_id",
+                "value": "",
+                "type": "path",
+                "description": "The asset ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update the location for a remote rendition. Note: you can use `/videos/ref:reference_id` instead of `/videos/video_id`"
+        },
+        {
+          "info": {
+            "name": "Delete Rendition",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/assets/renditions/:{asset_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              },
+              {
+                "name": "asset_id",
+                "value": "",
+                "type": "path",
+                "description": "The asset ID"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Deletes a remote rendition for the given video. Note: this operation is **only for remote renditions for remote asset videos** do *not* use it for renditions created by Video Cloud for ingested videos!"
+        },
+        {
+          "info": {
+            "name": "Get HLS Manifest List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/assets/hls_manifest",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets the `hls_manifest` for a given video. Notes: 1) you can use `/videos/ref:reference_id` instead of `/videos/video_id` 2) this method only returns a remote asset HLS manifest, not manifests for ingested videos"
+        },
+        {
+          "info": {
+            "name": "Add HLS Manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/assets/hls_manifest",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Adds the location of an hls_manifest file for a remote asset. Note: you can use `/videos/ref:reference_id` instead of `/videos/video_id`"
+        },
+        {
+          "info": {
+            "name": "Get HLS Manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/assets/hls_manifest/:{asset_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              },
+              {
+                "name": "asset_id",
+                "value": "",
+                "type": "path",
+                "description": "The asset ID"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets an hls_manifest for a given video. Note: you can use `/videos/ref:reference_id` instead of `/videos/video_id`"
+        },
+        {
+          "info": {
+            "name": "Update HLS Manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/assets/hls_manifest/:{asset_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              },
+              {
+                "name": "asset_id",
+                "value": "",
+                "type": "path",
+                "description": "The asset ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Updates the location of a remote hls_manifest file for a remote asset. Note: you can use `/videos/ref:reference_id` instead of `/videos/video_id`"
+        },
+        {
+          "info": {
+            "name": "Delete HLS Manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/assets/hls_manifest/:{asset_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              },
+              {
+                "name": "asset_id",
+                "value": "",
+                "type": "path",
+                "description": "The asset ID"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Deletes an hls_manifest file for a remote asset. Note: you can use `/videos/ref:reference_id` instead of `/videos/video_id`"
+        },
+        {
+          "info": {
+            "name": "Get DASH Manifest List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/assets/dash_manifests",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets the dash_manifests for a given video. Notes: 1. you can have multiple dash manifests with profiles; you can have only one dash manifest without a profile, but one manifest without a profile can be combined with multiple manifests with profiles; 2. all manifests intended to be used with the CMS API should include a profile - only DASH manifests with profiles will be returned by the CMS API - only a single DASH manifest without a profile will be returned by the Media API 3. you can use /video"
+        },
+        {
+          "info": {
+            "name": "Add DASH Manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/assets/dash_manifests",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Adds a location for a remote DASH manifest Notes: 1. you can have multiple dash manifests with profiles; you can have only one dash manifest without a profile, but one manifest without a profile can be combined with multiple manifests with profiles; 2. all manifests intended to be used with the CMS API should include a profile - only DASH manifests with profiles will be returned by the CMS API - only a single DASH manifest without a profile will be returned by the Media API 3. you can use /video"
+        },
+        {
+          "info": {
+            "name": "Get DASH Manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/assets/dash_manifests/:{asset_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              },
+              {
+                "name": "asset_id",
+                "value": "",
+                "type": "path",
+                "description": "The asset ID"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets a dash_manifest for a given video. Note: you can use `/videos/ref:reference_id` instead of `/videos/video_id`"
+        },
+        {
+          "info": {
+            "name": "Update DASH Manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/assets/dash_manifests/:{asset_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              },
+              {
+                "name": "asset_id",
+                "value": "",
+                "type": "path",
+                "description": "The asset ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Updates the location of a remote dash_manifest file for a remote asset. Note: you can use `/videos/ref:reference_id` instead of `/videos/video_id`"
+        },
+        {
+          "info": {
+            "name": "Delete DASH Manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/assets/dash_manifests/:{asset_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              },
+              {
+                "name": "asset_id",
+                "value": "",
+                "type": "path",
+                "description": "The asset ID"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Deletes an dash_manifest file for a remote asset. Note: you can use `/videos/ref:reference_id` instead of `/videos/video_id`"
+        },
+        {
+          "info": {
+            "name": "Get HDS Manifest List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/assets/hds_manifest",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets the hds_manifest file for a given video. Note: you can use `/videos/ref:reference_id` instead of `/videos/video_id`"
+        },
+        {
+          "info": {
+            "name": "Add HDS Manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/assets/hds_manifest",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Adds the location of an hds_manifest file for a remote asset. Note: you can use `/videos/ref:reference_id` instead of `/videos/video_id`"
+        },
+        {
+          "info": {
+            "name": "Get HDS Manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/assets/hds_manifest/:{asset_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              },
+              {
+                "name": "asset_id",
+                "value": "",
+                "type": "path",
+                "description": "The asset ID"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets the hds_manifest file for a given video. Note: you can use `/videos/ref:reference_id` instead of `/videos/video_id`"
+        },
+        {
+          "info": {
+            "name": "Update HDS Manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/assets/hds_manifest/:{asset_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              },
+              {
+                "name": "asset_id",
+                "value": "",
+                "type": "path",
+                "description": "The asset ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Updates the location of a remote hds_manifest file for a remote asset. Note: you can use `/videos/ref:reference_id` instead of `/videos/video_id`"
+        },
+        {
+          "info": {
+            "name": "Delete HDS Manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/assets/hds_manifest/:{asset_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              },
+              {
+                "name": "asset_id",
+                "value": "",
+                "type": "path",
+                "description": "The asset ID"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Deletes an hds_manifest file for a remote asset. Note: you can use `/videos/ref:reference_id` instead of `/videos/video_id`"
+        },
+        {
+          "info": {
+            "name": "Get ISM Manifest List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/assets/ism_manifest",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets the ism_manifest for a given video. Note: you can use `/videos/ref:reference_id` instead of `/videos/video_id`"
+        },
+        {
+          "info": {
+            "name": "Add ISM Manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/assets/ism_manifest",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Adds the location of an ism_manifest file for a remote asset. Note: you can use `/videos/ref:reference_id` instead of `/videos/video_id`"
+        },
+        {
+          "info": {
+            "name": "Get ISM Manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/assets/ism_manifest/:{asset_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              },
+              {
+                "name": "asset_id",
+                "value": "",
+                "type": "path",
+                "description": "The asset ID"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets an ism_manifest for a given video. Note: you can use `/videos/ref:reference_id` instead of `/videos/video_id`"
+        },
+        {
+          "info": {
+            "name": "Update ISM Manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/assets/ism_manifest/:{asset_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              },
+              {
+                "name": "asset_id",
+                "value": "",
+                "type": "path",
+                "description": "The asset ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Updates the location of a remote ism_manifest file for a remote asset. Note: you can use `/videos/ref:reference_id` instead of `/videos/video_id`"
+        },
+        {
+          "info": {
+            "name": "Delete ISM Manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/assets/ism_manifest/:{asset_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              },
+              {
+                "name": "asset_id",
+                "value": "",
+                "type": "path",
+                "description": "The asset ID"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Deletes an ism_manifest file for a remote asset. Note: you can use `/videos/ref:reference_id` instead of `/videos/video_id`"
+        },
+        {
+          "info": {
+            "name": "Get ISMC Manifest List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/assets/ismc_manifest",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets the ismc_manifest files for a given video. Note: you can use `/videos/ref:reference_id` instead of `/videos/video_id`"
+        },
+        {
+          "info": {
+            "name": "Add ISMC Manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/assets/ismc_manifest",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Adds the location of an ismc_manifest file for a remote asset. Note: you can use `/videos/ref:reference_id` instead of `/videos/video_id`"
+        },
+        {
+          "info": {
+            "name": "Get ISMC Manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/assets/ismc_manifest/:{asset_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              },
+              {
+                "name": "asset_id",
+                "value": "",
+                "type": "path",
+                "description": "The asset ID"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets the ismc_manifest file for a given video. Note: you can use `/videos/ref:reference_id` instead of `/videos/video_id`"
+        },
+        {
+          "info": {
+            "name": "Update ISMC Manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/assets/ismc_manifest/:{asset_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              },
+              {
+                "name": "asset_id",
+                "value": "",
+                "type": "path",
+                "description": "The asset ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Updates the location of a remote ismc_manifest file for a remote asset. Note: you can use `/videos/ref:reference_id` instead of `/videos/video_id`"
+        },
+        {
+          "info": {
+            "name": "Delete ISMC Manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/assets/ismc_manifest/:{asset_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              },
+              {
+                "name": "asset_id",
+                "value": "",
+                "type": "path",
+                "description": "The asset ID"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Deletes an ismc_manifest file for a remote asset. Note: you can use `/videos/ref:reference_id` instead of `/videos/video_id`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

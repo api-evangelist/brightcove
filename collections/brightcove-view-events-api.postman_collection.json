@@ -1,0 +1,770 @@
+{
+  "item": [
+    {
+      "id": "6aec02f0-11a8-48cf-8230-8b1e66f10d8c",
+      "name": "View Events",
+      "description": {
+        "content": "Get view events for a Video Cloud account",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "86d9c1a7-5974-4b0c-ae8a-2af80dde745b",
+          "name": "Get View Events",
+          "request": {
+            "name": "Get View Events",
+            "description": {
+              "content": "Get view events for an account - note that only view events that have been processed will appear in the response",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":account_id",
+                "view_events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "Number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of items to skip"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "created_at",
+                  "description": "Field to sort results by (prefix with `-` for descending order)"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Fields to return for view events\n\n**Note:** by default, all fields are returned. Use this parameter to return fewer fields."
+                },
+                {
+                  "disabled": false,
+                  "key": "where",
+                  "value": "<string>",
+                  "description": "One or more field==value pairs to filter the results; fields supported are `video_id`, `video_name`, `tracking_id`, `external_id`, `player_id`, `page_url`, `watched`, `time_watched`, `created_at`, `updated_at`, `is_synced`"
+                },
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<string>",
+                  "description": "'Start time for the period covered by the report — epoch time in milliseconds or a date in the format `yyyy-mm-dd` (such as `2013-09-26`) or a relative date in `d` (days), `h` (hours), `m` (minutes), `s` (seconds) (such as `-2d` or `-6h`)'"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<string>",
+                  "description": "End time for the period covered by the report — epoch time in milliseconds or a date in the format `yyyy-mm-dd` (such as `2013-09-26`) or a relative date in `d` (days), `h` (hours), `m` (minutes), `s` (seconds) (such as `-2d` or `-6h`)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "account_id",
+                  "description": "(Required) a Video Cloud account ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "db573185-1bd0-4952-8179-a5ca9c3626c7",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "view_events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "video_id"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "video_id"
+                    },
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "account_id",
+                      "description": "(Required) a Video Cloud account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see Getting Access Tokens)",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 27,\n  \"limit\": 25,\n  \"offset\": 0,\n  \"result\": [\n    {\n      \"created_at\": \"2016-04-25T18:30:21.651Z\",\n      \"page_url\": \"https://players.brightcove.net/1486906377/V1s6NOwRx_default/index.html?videoId=4842718056001\",\n      \"player_id\": \"V1s6NOwRx\",\n      \"time_watched\": 2,\n      \"updated_at\": \"2016-04-25T18:30:21.651Z\",\n      \"video_id\": \"4842718056001\",\n      \"video_name\": \"Horses Heading to the Track\",\n      \"watched\": 19\n    },\n    {\n      \"created_at\": \"2016-04-25T18:31:55.071Z\",\n      \"page_url\": \"https://players.brightcove.net/1486906377/BkgFuzyhg_default/index.html?videoId=4842718056001\",\n      \"player_id\": \"BkgFuzyhg\",\n      \"time_watched\": 15,\n      \"updated_at\": \"2016-04-25T18:32:00.879Z\",\n      \"video_id\": \"4842718056001\",\n      \"video_name\": \"Horses Heading to the Track\",\n      \"watched\": 99\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d4ca1e5-65cb-4aed-a386-91c65740dcbe",
+              "name": "BAD_REQUEST_ERROR: Query parameters are invalid ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "view_events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "video_id"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "video_id"
+                    },
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "account_id",
+                      "description": "(Required) a Video Cloud account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see Getting Access Tokens)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e67a9ef8-87bf-4f32-94f8-a74e1c5072fa",
+              "name": "UNAUTHORIZED_ERROR: The access token is either absent, has expired, or is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "view_events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "video_id"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "video_id"
+                    },
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "account_id",
+                      "description": "(Required) a Video Cloud account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see Getting Access Tokens)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ff6bca07-108e-4370-aa03-9515110f5b77",
+              "name": "RESOURCE_NOT_FOUND: The URL does not exist ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "view_events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "video_id"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "video_id"
+                    },
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "account_id",
+                      "description": "(Required) a Video Cloud account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see Getting Access Tokens)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "39e83703-1719-4348-804a-98b50af35b98",
+              "name": "REQUEST_THROTTLED_ERROR: The user has exceeded the rate limiting policy",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "view_events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "video_id"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "video_id"
+                    },
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "account_id",
+                      "description": "(Required) a Video Cloud account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see Getting Access Tokens)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6f94ef7c-cdd9-47ff-9c1a-d6b19dde5e33",
+              "name": "INTERNAL_ERROR: An internal error has occurred ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "view_events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "video_id"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "video_id"
+                    },
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "account_id",
+                      "description": "(Required) a Video Cloud account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see Getting Access Tokens)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bf4bed82-2992-4cdf-a1a2-6d0a3c6fbe58",
+              "name": "GATEWAY_TIMEOUT_ERROR: The server timed out while fulfilling your request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "view_events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "video_id"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "video_id"
+                    },
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "account_id",
+                      "description": "(Required) a Video Cloud account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see Getting Access Tokens)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://analytics.api.brightcove.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4e6d5442-d766-4c53-8207-4a28b42e31b1",
+    "name": "Brightcove Analytics API Reference Access Tokens View Events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brightcove Analytics API Reference Access Tokens Embed Configurations API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Embed Configurations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get player embed configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/accounts/:{account_id}/players/:{player_id}/embeds/:embed_id/configuration/:branch",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "player_id",
+                "value": "",
+                "type": "path",
+                "description": "Brightcove Player ID."
+              },
+              {
+                "name": "embed_id",
+                "value": "",
+                "type": "path",
+                "description": "The embed id."
+              },
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path",
+                "description": "A plugin id"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get the configuration for an embed. You must specify the branch, either `master` or `preview`."
+        },
+        {
+          "info": {
+            "name": "Update embed configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://analytics.api.brightcove.com/accounts/:{account_id}/players/:{player_id}/embeds/:embed_id/configuration/",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "player_id",
+                "value": "",
+                "type": "path",
+                "description": "Brightcove Player ID."
+              },
+              {
+                "name": "embed_id",
+                "value": "",
+                "type": "path",
+                "description": "The embed id."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update the configuration for an embed. Note that you will need to publish the altered embed for optimization and production use. You can also use a `PUT` HTTP method instead of the `PATCH` shown here. When using `PUT` it replaces all embed configuration information, so you must supply all embed configuration information when using `PUT`. In contrast, `PATCH` appends or modifies existing configuration information. Using `PUT` is such rare use case it is not detailed in this reference."
+        },
+        {
+          "info": {
+            "name": "Get Configuration Combinations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/accounts/:account_id/players/:player_id/embeds/:embedID/configuration/merged",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "playerBranch",
+                "value": "",
+                "type": "query",
+                "description": "The (master) player branch to use."
+              },
+              {
+                "name": "embedBranch",
+                "value": "",
+                "type": "query",
+                "description": "The embed (child player) branch to use."
+              },
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "player_id",
+                "value": "",
+                "type": "path",
+                "description": "Brightcove Player ID."
+              },
+              {
+                "name": "embed_id",
+                "value": "",
+                "type": "path",
+                "description": "The embed id."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieve the configuration for a parent/child combination of master and preview branches. If you are using the second query parameter (and hence using the ampersand [&]), you MUST use quotes around the endpoint or the curl statement will fail at the ampersand. For example:\n\n`\"https://players.api.brightcove.com/v1/accounts/{{account_id}}/players/{{player_id}}/embeds/{embed_id}/configuration/merged?playerBranch=preview&embedBranch=master\"`.\n\nUsing this endpoint provides a way to view what the resu"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

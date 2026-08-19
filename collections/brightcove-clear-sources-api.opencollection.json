@@ -1,0 +1,106 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brightcove Analytics API Reference Access Tokens Clear-Sources API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Clear-Sources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Video with Clear Sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/clear_videos/:{video_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get the video object along with unencrypted clear sources, including all associated metadata.\n**Notes**\n  - Once the unprotected URL is made available, Brightcove and the client have no control over who has access to the content or how it is used.\n  - There will be egress bandwidth charges made to the customer when the sources are accessed."
+        },
+        {
+          "info": {
+            "name": "Get Video Clear Sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/clear_sources",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get only unencrypted clear sources for a video, without any additional metadata.\n**Notes**\n  - Once the unprotected URL is made available, Brightcove and the client have no control over who has access to the content or how it is used.\n  - There will be egress bandwidth charges made to the customer when the sources are accessed.\n  - This endpoint requires the special permission `video-cloud/video/clear-sources` which is not available in the Studio UI. To generate credentials to get clear sources,"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

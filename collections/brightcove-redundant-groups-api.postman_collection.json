@@ -1,0 +1,3886 @@
+{
+  "item": [
+    {
+      "id": "ddb2a761-814e-4931-87f0-bac62ed54b2b",
+      "name": "Redundant Groups",
+      "description": {
+        "content": "Operations for creating redundant groups of live jobs for failover in case one stream fails",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "48177bd4-07bd-4d48-90dc-97b11da3505c",
+          "name": "Create Redundant Group",
+          "request": {
+            "name": "Create Redundant Group",
+            "description": {
+              "content": "Creates a redundant group of live jobs to provide failover in case one stream fails",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "redundantgroups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"label\": \"<string>\",\n  \"processing_regions\": \"<string>\",\n  \"storage_regions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ad_insertion\": \"<boolean>\",\n  \"add_cdns\": [\n    {\n      \"label\": \"<string>\",\n      \"prepend\": \"<string>\",\n      \"protocol\": \"<string>\",\n      \"token_auth\": {\n        \"auth_type\": \"<string>\",\n        \"key\": \"<string>\",\n        \"token_name\": \"<string>\",\n        \"media\": {\n          \"end_time\": \"<integer>\",\n          \"start_time\": \"<integer>\",\n          \"ttl\": \"<integer>\"\n        }\n      },\n      \"vendor\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"prepend\": \"<string>\",\n      \"protocol\": \"<string>\",\n      \"token_auth\": {\n        \"auth_type\": \"<string>\",\n        \"key\": \"<string>\",\n        \"token_name\": \"<string>\",\n        \"media\": {\n          \"end_time\": \"<integer>\",\n          \"start_time\": \"<integer>\",\n          \"ttl\": \"<integer>\"\n        }\n      },\n      \"vendor\": \"<string>\"\n    }\n  ],\n  \"drm\": \"<object>\",\n  \"encryption\": \"<object>\",\n  \"live_dvr_sliding_window_duration\": 0,\n  \"notifications\": [\n    {\n      \"url\": \"<string>\",\n      \"event\": \"<string>\",\n      \"credentials\": \"<string>\"\n    },\n    {\n      \"url\": \"<string>\",\n      \"event\": \"<string>\",\n      \"credentials\": \"<string>\"\n    }\n  ],\n  \"videocloud\": {\n    \"video\": {\n      \"name\": \"<string>\",\n      \"cue_points\": [\n        {\n          \"time\": \"<number>\",\n          \"type\": \"<string>\",\n          \"force-stop\": \"<boolean>\",\n          \"metadata\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        {\n          \"time\": \"<number>\",\n          \"type\": \"<string>\",\n          \"force-stop\": \"<boolean>\",\n          \"metadata\": \"<string>\",\n          \"name\": \"<string>\"\n        }\n      ],\n      \"custom_fields\": \"<object>\",\n      \"description\": \"<string>\",\n      \"drm_disabled\": \"<boolean>\",\n      \"economics\": \"<string>\",\n      \"geo\": {\n        \"countries\": \"<string>\",\n        \"exclude_countries\": \"<boolean>\",\n        \"restricted\": \"<boolean>\"\n      },\n      \"long_description\": \"<string>\",\n      \"reference_id\": \"<string>\",\n      \"schedule\": {\n        \"ends_at\": \"<string>\",\n        \"starts_at\": \"<string>\"\n      },\n      \"state\": \"<string>\",\n      \"tags\": \"<object>\"\n    },\n    \"account_id\": \"<number>\",\n    \"credentials\": \"<string>\",\n    \"live_to_vod\": false,\n    \"mode\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "02874f7d-8ca0-4294-897f-300a248ebc29",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"<string>\",\n  \"processing_regions\": \"<string>\",\n  \"storage_regions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ad_insertion\": \"<boolean>\",\n  \"add_cdns\": [\n    {\n      \"label\": \"<string>\",\n      \"prepend\": \"<string>\",\n      \"protocol\": \"<string>\",\n      \"token_auth\": {\n        \"auth_type\": \"<string>\",\n        \"key\": \"<string>\",\n        \"token_name\": \"<string>\",\n        \"media\": {\n          \"end_time\": \"<integer>\",\n          \"start_time\": \"<integer>\",\n          \"ttl\": \"<integer>\"\n        }\n      },\n      \"vendor\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"prepend\": \"<string>\",\n      \"protocol\": \"<string>\",\n      \"token_auth\": {\n        \"auth_type\": \"<string>\",\n        \"key\": \"<string>\",\n        \"token_name\": \"<string>\",\n        \"media\": {\n          \"end_time\": \"<integer>\",\n          \"start_time\": \"<integer>\",\n          \"ttl\": \"<integer>\"\n        }\n      },\n      \"vendor\": \"<string>\"\n    }\n  ],\n  \"drm\": \"<object>\",\n  \"encryption\": \"<object>\",\n  \"live_dvr_sliding_window_duration\": 0,\n  \"notifications\": [\n    {\n      \"url\": \"<string>\",\n      \"event\": \"<string>\",\n      \"credentials\": \"<string>\"\n    },\n    {\n      \"url\": \"<string>\",\n      \"event\": \"<string>\",\n      \"credentials\": \"<string>\"\n    }\n  ],\n  \"videocloud\": {\n    \"video\": {\n      \"name\": \"<string>\",\n      \"cue_points\": [\n        {\n          \"time\": \"<number>\",\n          \"type\": \"AD\",\n          \"force-stop\": \"<boolean>\",\n          \"metadata\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        {\n          \"time\": \"<number>\",\n          \"type\": \"AD\",\n          \"force-stop\": \"<boolean>\",\n          \"metadata\": \"<string>\",\n          \"name\": \"<string>\"\n        }\n      ],\n      \"custom_fields\": {\n        \"custom_field_1\": \"Entry 1\",\n        \"custom_field_2\": \"Entry 2\"\n      },\n      \"description\": \"<string>\",\n      \"drm_disabled\": \"<boolean>\",\n      \"economics\": \"<string>\",\n      \"geo\": {\n        \"countries\": \"<string>\",\n        \"exclude_countries\": \"<boolean>\",\n        \"restricted\": \"<boolean>\"\n      },\n      \"long_description\": \"<string>\",\n      \"reference_id\": \"<string>\",\n      \"schedule\": {\n        \"ends_at\": \"<string>\",\n        \"starts_at\": \"<string>\"\n      },\n      \"state\": \"ACTIVE\",\n      \"tags\": \"<object>\"\n    },\n    \"account_id\": \"<number>\",\n    \"credentials\": \"<string>\",\n    \"live_to_vod\": false,\n    \"mode\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"state\": \"WAITING\",\n  \"live_dvr_sliding_window_duration\": 3083,\n  \"label\": \"string\",\n  \"status\": {},\n  \"ad_insertion\": false,\n  \"outputs\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d3ffa51-5054-43bb-aade-3b2f244b4e35",
+              "name": "BAD_REQUEST: Invalid input value - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"<string>\",\n  \"processing_regions\": \"<string>\",\n  \"storage_regions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ad_insertion\": \"<boolean>\",\n  \"add_cdns\": [\n    {\n      \"label\": \"<string>\",\n      \"prepend\": \"<string>\",\n      \"protocol\": \"<string>\",\n      \"token_auth\": {\n        \"auth_type\": \"<string>\",\n        \"key\": \"<string>\",\n        \"token_name\": \"<string>\",\n        \"media\": {\n          \"end_time\": \"<integer>\",\n          \"start_time\": \"<integer>\",\n          \"ttl\": \"<integer>\"\n        }\n      },\n      \"vendor\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"prepend\": \"<string>\",\n      \"protocol\": \"<string>\",\n      \"token_auth\": {\n        \"auth_type\": \"<string>\",\n        \"key\": \"<string>\",\n        \"token_name\": \"<string>\",\n        \"media\": {\n          \"end_time\": \"<integer>\",\n          \"start_time\": \"<integer>\",\n          \"ttl\": \"<integer>\"\n        }\n      },\n      \"vendor\": \"<string>\"\n    }\n  ],\n  \"drm\": \"<object>\",\n  \"encryption\": \"<object>\",\n  \"live_dvr_sliding_window_duration\": 0,\n  \"notifications\": [\n    {\n      \"url\": \"<string>\",\n      \"event\": \"<string>\",\n      \"credentials\": \"<string>\"\n    },\n    {\n      \"url\": \"<string>\",\n      \"event\": \"<string>\",\n      \"credentials\": \"<string>\"\n    }\n  ],\n  \"videocloud\": {\n    \"video\": {\n      \"name\": \"<string>\",\n      \"cue_points\": [\n        {\n          \"time\": \"<number>\",\n          \"type\": \"AD\",\n          \"force-stop\": \"<boolean>\",\n          \"metadata\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        {\n          \"time\": \"<number>\",\n          \"type\": \"AD\",\n          \"force-stop\": \"<boolean>\",\n          \"metadata\": \"<string>\",\n          \"name\": \"<string>\"\n        }\n      ],\n      \"custom_fields\": {\n        \"custom_field_1\": \"Entry 1\",\n        \"custom_field_2\": \"Entry 2\"\n      },\n      \"description\": \"<string>\",\n      \"drm_disabled\": \"<boolean>\",\n      \"economics\": \"<string>\",\n      \"geo\": {\n        \"countries\": \"<string>\",\n        \"exclude_countries\": \"<boolean>\",\n        \"restricted\": \"<boolean>\"\n      },\n      \"long_description\": \"<string>\",\n      \"reference_id\": \"<string>\",\n      \"schedule\": {\n        \"ends_at\": \"<string>\",\n        \"starts_at\": \"<string>\"\n      },\n      \"state\": \"ACTIVE\",\n      \"tags\": \"<object>\"\n    },\n    \"account_id\": \"<number>\",\n    \"credentials\": \"<string>\",\n    \"live_to_vod\": false,\n    \"mode\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6eb66f97-616a-482c-ad9a-c9ced8198e5b",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"<string>\",\n  \"processing_regions\": \"<string>\",\n  \"storage_regions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ad_insertion\": \"<boolean>\",\n  \"add_cdns\": [\n    {\n      \"label\": \"<string>\",\n      \"prepend\": \"<string>\",\n      \"protocol\": \"<string>\",\n      \"token_auth\": {\n        \"auth_type\": \"<string>\",\n        \"key\": \"<string>\",\n        \"token_name\": \"<string>\",\n        \"media\": {\n          \"end_time\": \"<integer>\",\n          \"start_time\": \"<integer>\",\n          \"ttl\": \"<integer>\"\n        }\n      },\n      \"vendor\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"prepend\": \"<string>\",\n      \"protocol\": \"<string>\",\n      \"token_auth\": {\n        \"auth_type\": \"<string>\",\n        \"key\": \"<string>\",\n        \"token_name\": \"<string>\",\n        \"media\": {\n          \"end_time\": \"<integer>\",\n          \"start_time\": \"<integer>\",\n          \"ttl\": \"<integer>\"\n        }\n      },\n      \"vendor\": \"<string>\"\n    }\n  ],\n  \"drm\": \"<object>\",\n  \"encryption\": \"<object>\",\n  \"live_dvr_sliding_window_duration\": 0,\n  \"notifications\": [\n    {\n      \"url\": \"<string>\",\n      \"event\": \"<string>\",\n      \"credentials\": \"<string>\"\n    },\n    {\n      \"url\": \"<string>\",\n      \"event\": \"<string>\",\n      \"credentials\": \"<string>\"\n    }\n  ],\n  \"videocloud\": {\n    \"video\": {\n      \"name\": \"<string>\",\n      \"cue_points\": [\n        {\n          \"time\": \"<number>\",\n          \"type\": \"AD\",\n          \"force-stop\": \"<boolean>\",\n          \"metadata\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        {\n          \"time\": \"<number>\",\n          \"type\": \"AD\",\n          \"force-stop\": \"<boolean>\",\n          \"metadata\": \"<string>\",\n          \"name\": \"<string>\"\n        }\n      ],\n      \"custom_fields\": {\n        \"custom_field_1\": \"Entry 1\",\n        \"custom_field_2\": \"Entry 2\"\n      },\n      \"description\": \"<string>\",\n      \"drm_disabled\": \"<boolean>\",\n      \"economics\": \"<string>\",\n      \"geo\": {\n        \"countries\": \"<string>\",\n        \"exclude_countries\": \"<boolean>\",\n        \"restricted\": \"<boolean>\"\n      },\n      \"long_description\": \"<string>\",\n      \"reference_id\": \"<string>\",\n      \"schedule\": {\n        \"ends_at\": \"<string>\",\n        \"starts_at\": \"<string>\"\n      },\n      \"state\": \"ACTIVE\",\n      \"tags\": \"<object>\"\n    },\n    \"account_id\": \"<number>\",\n    \"credentials\": \"<string>\",\n    \"live_to_vod\": false,\n    \"mode\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "26755dc4-b2ed-4b3b-addd-bbf4a1fc808b",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"<string>\",\n  \"processing_regions\": \"<string>\",\n  \"storage_regions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ad_insertion\": \"<boolean>\",\n  \"add_cdns\": [\n    {\n      \"label\": \"<string>\",\n      \"prepend\": \"<string>\",\n      \"protocol\": \"<string>\",\n      \"token_auth\": {\n        \"auth_type\": \"<string>\",\n        \"key\": \"<string>\",\n        \"token_name\": \"<string>\",\n        \"media\": {\n          \"end_time\": \"<integer>\",\n          \"start_time\": \"<integer>\",\n          \"ttl\": \"<integer>\"\n        }\n      },\n      \"vendor\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"prepend\": \"<string>\",\n      \"protocol\": \"<string>\",\n      \"token_auth\": {\n        \"auth_type\": \"<string>\",\n        \"key\": \"<string>\",\n        \"token_name\": \"<string>\",\n        \"media\": {\n          \"end_time\": \"<integer>\",\n          \"start_time\": \"<integer>\",\n          \"ttl\": \"<integer>\"\n        }\n      },\n      \"vendor\": \"<string>\"\n    }\n  ],\n  \"drm\": \"<object>\",\n  \"encryption\": \"<object>\",\n  \"live_dvr_sliding_window_duration\": 0,\n  \"notifications\": [\n    {\n      \"url\": \"<string>\",\n      \"event\": \"<string>\",\n      \"credentials\": \"<string>\"\n    },\n    {\n      \"url\": \"<string>\",\n      \"event\": \"<string>\",\n      \"credentials\": \"<string>\"\n    }\n  ],\n  \"videocloud\": {\n    \"video\": {\n      \"name\": \"<string>\",\n      \"cue_points\": [\n        {\n          \"time\": \"<number>\",\n          \"type\": \"AD\",\n          \"force-stop\": \"<boolean>\",\n          \"metadata\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        {\n          \"time\": \"<number>\",\n          \"type\": \"AD\",\n          \"force-stop\": \"<boolean>\",\n          \"metadata\": \"<string>\",\n          \"name\": \"<string>\"\n        }\n      ],\n      \"custom_fields\": {\n        \"custom_field_1\": \"Entry 1\",\n        \"custom_field_2\": \"Entry 2\"\n      },\n      \"description\": \"<string>\",\n      \"drm_disabled\": \"<boolean>\",\n      \"economics\": \"<string>\",\n      \"geo\": {\n        \"countries\": \"<string>\",\n        \"exclude_countries\": \"<boolean>\",\n        \"restricted\": \"<boolean>\"\n      },\n      \"long_description\": \"<string>\",\n      \"reference_id\": \"<string>\",\n      \"schedule\": {\n        \"ends_at\": \"<string>\",\n        \"starts_at\": \"<string>\"\n      },\n      \"state\": \"ACTIVE\",\n      \"tags\": \"<object>\"\n    },\n    \"account_id\": \"<number>\",\n    \"credentials\": \"<string>\",\n    \"live_to_vod\": false,\n    \"mode\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2cf0774f-a7d7-4315-ad7a-ca5eef9f16b0",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"<string>\",\n  \"processing_regions\": \"<string>\",\n  \"storage_regions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ad_insertion\": \"<boolean>\",\n  \"add_cdns\": [\n    {\n      \"label\": \"<string>\",\n      \"prepend\": \"<string>\",\n      \"protocol\": \"<string>\",\n      \"token_auth\": {\n        \"auth_type\": \"<string>\",\n        \"key\": \"<string>\",\n        \"token_name\": \"<string>\",\n        \"media\": {\n          \"end_time\": \"<integer>\",\n          \"start_time\": \"<integer>\",\n          \"ttl\": \"<integer>\"\n        }\n      },\n      \"vendor\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"prepend\": \"<string>\",\n      \"protocol\": \"<string>\",\n      \"token_auth\": {\n        \"auth_type\": \"<string>\",\n        \"key\": \"<string>\",\n        \"token_name\": \"<string>\",\n        \"media\": {\n          \"end_time\": \"<integer>\",\n          \"start_time\": \"<integer>\",\n          \"ttl\": \"<integer>\"\n        }\n      },\n      \"vendor\": \"<string>\"\n    }\n  ],\n  \"drm\": \"<object>\",\n  \"encryption\": \"<object>\",\n  \"live_dvr_sliding_window_duration\": 0,\n  \"notifications\": [\n    {\n      \"url\": \"<string>\",\n      \"event\": \"<string>\",\n      \"credentials\": \"<string>\"\n    },\n    {\n      \"url\": \"<string>\",\n      \"event\": \"<string>\",\n      \"credentials\": \"<string>\"\n    }\n  ],\n  \"videocloud\": {\n    \"video\": {\n      \"name\": \"<string>\",\n      \"cue_points\": [\n        {\n          \"time\": \"<number>\",\n          \"type\": \"AD\",\n          \"force-stop\": \"<boolean>\",\n          \"metadata\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        {\n          \"time\": \"<number>\",\n          \"type\": \"AD\",\n          \"force-stop\": \"<boolean>\",\n          \"metadata\": \"<string>\",\n          \"name\": \"<string>\"\n        }\n      ],\n      \"custom_fields\": {\n        \"custom_field_1\": \"Entry 1\",\n        \"custom_field_2\": \"Entry 2\"\n      },\n      \"description\": \"<string>\",\n      \"drm_disabled\": \"<boolean>\",\n      \"economics\": \"<string>\",\n      \"geo\": {\n        \"countries\": \"<string>\",\n        \"exclude_countries\": \"<boolean>\",\n        \"restricted\": \"<boolean>\"\n      },\n      \"long_description\": \"<string>\",\n      \"reference_id\": \"<string>\",\n      \"schedule\": {\n        \"ends_at\": \"<string>\",\n        \"starts_at\": \"<string>\"\n      },\n      \"state\": \"ACTIVE\",\n      \"tags\": \"<object>\"\n    },\n    \"account_id\": \"<number>\",\n    \"credentials\": \"<string>\",\n    \"live_to_vod\": false,\n    \"mode\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a1a0bee-6212-4d7b-a6c4-cf09b13a8758",
+          "name": "Get Redundant Groups",
+          "request": {
+            "name": "Get Redundant Groups",
+            "description": {
+              "content": "Get redundant groups for the account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "redundantgroups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_token",
+                  "value": "<string>",
+                  "description": "Next token from previous page; do not specify when fetching first page"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "created_at",
+                  "description": "Attribute to sort jobs by (`created_at` | `modified_at`, default is `created_at`)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_dir",
+                  "value": "asc",
+                  "description": "Sort direction (default is asc):`asc` - ascending; `desc` - descending"
+                },
+                {
+                  "disabled": false,
+                  "key": "user_id",
+                  "value": "<string>",
+                  "description": "Filter results by one or more user IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<string>",
+                  "description": "Filter results by particular account, or specify ‘*’ to search all accounts.  Default value is account API key belongs to"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter redundant grous by state"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "10",
+                  "description": "Max number of items to return in one request (1-1000, default is 10)"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at",
+                  "value": "<integer>",
+                  "description": "Filter results by Unix time of group creation (in milliseconds)"
+                },
+                {
+                  "disabled": false,
+                  "key": "updated_at",
+                  "value": "<integer>",
+                  "description": "Filter results by Unix time of group last updated (in milliseconds)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "13a822c3-446a-4a36-b957-d1a880a5400c",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "sort_dir",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "created_at",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "updated_at",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"redundant_groups\": [\n    {\n      \"id\": \"string\",\n      \"account_id\": \"string\",\n      \"processing_regions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"storage_regions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"jobs\": [\n        \"string\",\n        \"string\"\n      ],\n      \"state\": \"standby\",\n      \"created_at\": 5186,\n      \"updated_at\": 356,\n      \"live_dvr_sliding_window_duration\": 745,\n      \"label\": \"string\",\n      \"status\": {},\n      \"ad_insertion\": false,\n      \"outputs\": {\n        \"playback_url\": \"string\",\n        \"playback_url_dvr\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"account_id\": \"string\",\n      \"processing_regions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"storage_regions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"jobs\": [\n        \"string\",\n        \"string\"\n      ],\n      \"state\": \"cancelled\",\n      \"created_at\": 8983,\n      \"updated_at\": 3796,\n      \"live_dvr_sliding_window_duration\": 7815,\n      \"label\": \"string\",\n      \"status\": {},\n      \"ad_insertion\": true,\n      \"outputs\": {\n        \"playback_url\": \"string\",\n        \"playback_url_dvr\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b89cf17f-6a89-402d-bf1a-0e372c7250cf",
+              "name": "BAD_REQUEST: Invalid input value - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "sort_dir",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "created_at",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "updated_at",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6d18307d-5ad6-4c98-aca2-7ed841e26a45",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "sort_dir",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "created_at",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "updated_at",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "91395efd-9487-40f3-8007-c46463582be7",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "sort_dir",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "created_at",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "updated_at",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c4262446-846b-4cfb-9c07-137285cb122e",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "sort_dir",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "created_at",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "updated_at",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9ff84640-ce5f-46eb-b7ae-ddc913e41a54",
+          "name": "Add Jobs to Redundant Group",
+          "request": {
+            "name": "Add Jobs to Redundant Group",
+            "description": {
+              "content": "Add Jobs to Redundant Group",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "redundantgroups",
+                ":redundant_group_id",
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "redundant_group_id",
+                  "description": "(Required) Redundant group ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"job_id\": \"<string>\",\n    \"playlist\": \"<string>\",\n    \"streams\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"job_id\": \"<string>\",\n    \"playlist\": \"<string>\",\n    \"streams\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b41dc142-c77e-4c75-9f8f-ca57ab6f5959",
+              "name": "A success response will just contain the group id",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"job_id\": \"0b76bc73f92f46dc917bbe5061c0c633\"\n  },\n  {\n    \"job_id\": \"0ae5a4a71dc54b3181af0f98ee407c27\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "eb47b4b7-9851-42a2-9e95-493509c939b1",
+              "name": "BAD_REQUEST: Invalid input value - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"job_id\": \"0b76bc73f92f46dc917bbe5061c0c633\"\n  },\n  {\n    \"job_id\": \"0ae5a4a71dc54b3181af0f98ee407c27\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c96fa271-e434-4848-bd54-e6345bbaba41",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"job_id\": \"0b76bc73f92f46dc917bbe5061c0c633\"\n  },\n  {\n    \"job_id\": \"0ae5a4a71dc54b3181af0f98ee407c27\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "91ba90eb-d660-4736-a83a-d86ea9465068",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"job_id\": \"0b76bc73f92f46dc917bbe5061c0c633\"\n  },\n  {\n    \"job_id\": \"0ae5a4a71dc54b3181af0f98ee407c27\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e02eebf9-4c58-47b9-a215-4c4810629ffa",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"job_id\": \"0b76bc73f92f46dc917bbe5061c0c633\"\n  },\n  {\n    \"job_id\": \"0ae5a4a71dc54b3181af0f98ee407c27\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bd09fad6-b6ce-488d-a414-ad3803e55e73",
+          "name": "Remove a Job from Redundant Group",
+          "request": {
+            "name": "Remove a Job from Redundant Group",
+            "description": {
+              "content": "Remove the specified Jobs from a Redundant Group; normally the operation will not remove the job that is currently `on_air`, but adding the `force=true` query parameter will remove it",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "redundantgroups",
+                ":redundant_group_id",
+                "jobs",
+                ":job_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "force",
+                  "value": "<string>",
+                  "description": "The `force` parameter serves different purposes for different requests: \n1. For [force failover requests](#operation/ForceRedundantStreamFailover): force failover for a redundant stream without going to manual mode\n2. For [remove job from redundant group requests](#operation/RemoveJobRedundantGroup): force removal of on-air job\n3. For [delete redundant group requests](#operation/DeleteRedundantGroup): force delete redundant group in processing state\n\nNote that `force` is a string, not a boolean. The value must be `true`, not `1`."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "redundant_group_id",
+                  "description": "(Required) Redundant group ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "job_id",
+                  "description": "(Required) Live job ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "16caebf5-a742-4ab4-92af-e8a1b3dd3e03",
+              "name": "204 NO_CONTENT",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id",
+                    "jobs",
+                    ":job_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) Live job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e28023a8-4e46-4ea8-9b57-8aefcc08e305",
+              "name": "BAD_REQUEST: Invalid input value - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id",
+                    "jobs",
+                    ":job_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) Live job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f27d7064-6dbd-44c6-b920-aef68891d953",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id",
+                    "jobs",
+                    ":job_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) Live job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "72884676-5641-4217-be1c-a3ea2dadc1a7",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id",
+                    "jobs",
+                    ":job_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) Live job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "33fc7dcb-b530-45be-bde7-e51c682a579b",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id",
+                    "jobs",
+                    ":job_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) Live job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0027dc7a-c1e2-4506-bdc0-b59542c6533f",
+          "name": "Get Redundant Group Status",
+          "request": {
+            "name": "Get Redundant Group Status",
+            "description": {
+              "content": "Get the current status of a redundant group",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "redundantgroups",
+                ":redundant_group_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "redundant_group_id",
+                  "description": "(Required) Redundant group ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b3fcca9a-a8a0-4673-a230-7296bcaad7f2",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"processing_regions\": [\n    {\n      \"region\": \"string\",\n      \"probability\": 4976.426527372052\n    },\n    {\n      \"region\": \"string\",\n      \"probability\": 7019.298508792177\n    }\n  ],\n  \"storage_regions\": [\n    \"string\",\n    \"string\"\n  ],\n  \"jobs\": [\n    {\n      \"job_id\": \"string\",\n      \"streams\": [\n        \"string\",\n        \"string\"\n      ],\n      \"state\": \"string\"\n    },\n    {\n      \"job_id\": \"string\",\n      \"streams\": [\n        \"string\",\n        \"string\"\n      ],\n      \"state\": \"string\"\n    }\n  ],\n  \"state\": \"string\",\n  \"created_at\": 8557.953087339165,\n  \"updated_at\": 8688.435099815404,\n  \"ad_insertion\": false,\n  \"outputs\": {},\n  \"status\": {\n    \"SwitchDrift\": 4529.468864659365,\n    \"Ended\": false,\n    \"OnAir\": \"string\",\n    \"Mode\": \"string\",\n    \"InManifest\": true,\n    \"MediaSequence\": 5168.970057199397,\n    \"Healthiness\": 9934.528372725652,\n    \"Duration\": 2678,\n    \"DiscontinuitySequence\": 5567,\n    \"SourceChunk\": {},\n    \"UpdatedAt\": \"string\",\n    \"ProgramDateTime\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a847e1cd-a5a7-4509-82cd-586254871b20",
+              "name": "BAD_REQUEST: Invalid input value - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8a74d33d-e967-48c7-a1d5-bbfc117e0826",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9cad78ad-a29b-4542-9ec6-51bc4cc14911",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a236dbe6-d0b8-440c-bbc9-fd986d3a7b35",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "74ac9abb-b066-467e-b82a-9a4cbc115927",
+          "name": "Delete a redundant group",
+          "request": {
+            "name": "Delete a redundant group",
+            "description": {
+              "content": "Deletes a redundant group and ends the redundant stream. Note that alternatively you can put the stream in standby mode by removing all jobs from it.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "redundantgroups",
+                ":redundant_group_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "force",
+                  "value": "<string>",
+                  "description": "The `force` parameter serves different purposes for different requests: \n1. For [force failover requests](#operation/ForceRedundantStreamFailover): force failover for a redundant stream without going to manual mode\n2. For [remove job from redundant group requests](#operation/RemoveJobRedundantGroup): force removal of on-air job\n3. For [delete redundant group requests](#operation/DeleteRedundantGroup): force delete redundant group in processing state\n\nNote that `force` is a string, not a boolean. The value must be `true`, not `1`."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "redundant_group_id",
+                  "description": "(Required) Redundant group ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9e2c4caf-c965-4437-ba0f-7bea22b22078",
+              "name": "204 NO_CONTENT",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3c788a3c-8f4e-4bc7-83c8-ad314b79efd5",
+              "name": "BAD_REQUEST: Invalid input value - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f7127382-ae6a-44cf-8bff-f21e82af7ec7",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f400c878-024f-43d3-9675-c1094bf5d42d",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7933842e-addb-433a-99b6-d07789459b04",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f23b8cd9-9885-42a4-ac38-68c911a08862",
+          "name": "Force Redundant Stream Failover",
+          "request": {
+            "name": "Force Redundant Stream Failover",
+            "description": {
+              "content": "Force failover from the `on_air` stream to a specified secondary stream; note that you can also accomplish this by stopping the encoder for the `on_air` stream.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "redundantgroups",
+                ":redundant_group_id",
+                "switch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "force",
+                  "value": "<string>",
+                  "description": "The `force` parameter serves different purposes for different requests: \n1. For [force failover requests](#operation/ForceRedundantStreamFailover): force failover for a redundant stream without going to manual mode\n2. For [remove job from redundant group requests](#operation/RemoveJobRedundantGroup): force removal of on-air job\n3. For [delete redundant group requests](#operation/DeleteRedundantGroup): force delete redundant group in processing state\n\nNote that `force` is a string, not a boolean. The value must be `true`, not `1`."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "redundant_group_id",
+                  "description": "(Required) Redundant group ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mode\": \"auto\",\n  \"on_air\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b80a54b7-974b-478d-bc19-d78d24ec5a87",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id",
+                    "switch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"mode\": \"auto\",\n  \"on_air\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f50d83e6-5d22-46d5-9e6a-e93734042c5d",
+              "name": "BAD_REQUEST: Invalid input value - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id",
+                    "switch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"mode\": \"auto\",\n  \"on_air\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "27d187d7-4dbb-4a60-b091-2b7eabceb730",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id",
+                    "switch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"mode\": \"auto\",\n  \"on_air\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fb285554-3f7a-4174-91ce-924680807e86",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id",
+                    "switch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"mode\": \"auto\",\n  \"on_air\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b2cb535e-84fd-42bb-950b-66deaedc7ab0",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id",
+                    "switch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"mode\": \"auto\",\n  \"on_air\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b6cc139-7701-4bff-bd1c-2eb5f527a071",
+          "name": "Activates all SEP Jobs in the Group",
+          "request": {
+            "name": "Activates all SEP Jobs in the Group",
+            "description": {
+              "content": "Activates all SEP Jobs in the Redundant Group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "redundantgroups",
+                ":redundant_group_id",
+                "activate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "redundant_group_id",
+                  "description": "(Required) Redundant group ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d44e3eab-9390-41b5-a035-252f34ef0968",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jobs\": [\n    {},\n    {\n      \"error\": \"Error activating Job\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b2d7a6b-db0e-420d-86ed-b6f7dab6aeb8",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ac78b5ca-13bc-42e2-906b-8b00614b5775",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6d763c41-8ca4-441b-aab9-75d3af08b698",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7c774090-46ab-4b05-9b08-29b89589f9e2",
+          "name": "Deactivates all SEP Jobs in the Group",
+          "request": {
+            "name": "Deactivates all SEP Jobs in the Group",
+            "description": {
+              "content": "Deactivates all SEP Jobs in the Redundant Group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "redundantgroups",
+                ":redundant_group_id",
+                "deactivate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "redundant_group_id",
+                  "description": "(Required) Redundant group ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "224024eb-41e7-42a4-b742-5355385f61c4",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id",
+                    "deactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jobs\": [\n    {},\n    {\n      \"error\": \"Error deactivating Job\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc554209-ea75-402a-8e3d-1e47604354f0",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id",
+                    "deactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4cfd8fd2-9a95-4cef-95c3-4b62d4665c0e",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id",
+                    "deactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1259f712-725c-46a5-9947-80d634b12bd9",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id",
+                    "deactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "275d0a2f-1dfa-45ca-aaee-a85190b75066",
+          "name": "Insert cuepoint for redundant group",
+          "request": {
+            "name": "Insert cuepoint for redundant group",
+            "description": {
+              "content": "Manually inserts a cuepoint for a redundant Live job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "redundantgroups",
+                ":redundant_group_id",
+                "cuepoint"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "redundant_group_id",
+                  "description": "(Required) Redundant group ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"duration\": \"<number>\",\n  \"ad_server_data\": \"<object>\",\n  \"cancel\": false,\n  \"cuepoint_id\": \"<string>\",\n  \"timecode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c28da883-2f02-4c1e-8d35-1d474ef00ef5",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id",
+                    "cuepoint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"duration\": \"<number>\",\n  \"ad_server_data\": \"<object>\",\n  \"cancel\": false,\n  \"cuepoint_id\": \"<string>\",\n  \"timecode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"jobs\": [\n    {\n      \"id\": \"string\",\n      \"error\": \"string\",\n      \"cue_point\": {\n        \"accuracy\": \"frame\",\n        \"duration\": 7528,\n        \"id\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"error\": \"string\",\n      \"cue_point\": {\n        \"accuracy\": \"frame\",\n        \"duration\": 965,\n        \"id\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d8f47cf-a556-4e8c-9b92-e1a888cd7082",
+              "name": "BAD_REQUEST: Invalid input value - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id",
+                    "cuepoint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"duration\": \"<number>\",\n  \"ad_server_data\": \"<object>\",\n  \"cancel\": false,\n  \"cuepoint_id\": \"<string>\",\n  \"timecode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f67c484a-eb53-43e4-837f-9f227c70b3d2",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id",
+                    "cuepoint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"duration\": \"<number>\",\n  \"ad_server_data\": \"<object>\",\n  \"cancel\": false,\n  \"cuepoint_id\": \"<string>\",\n  \"timecode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "668a4499-49f7-4b14-ae1a-ea30a6aafa7c",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id",
+                    "cuepoint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"duration\": \"<number>\",\n  \"ad_server_data\": \"<object>\",\n  \"cancel\": false,\n  \"cuepoint_id\": \"<string>\",\n  \"timecode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ea26e18a-3286-4506-ac16-1bd9c087cd5f",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id",
+                    "cuepoint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"duration\": \"<number>\",\n  \"ad_server_data\": \"<object>\",\n  \"cancel\": false,\n  \"cuepoint_id\": \"<string>\",\n  \"timecode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6774c3f1-9a3a-41d3-bd9f-a19e851d1262",
+          "name": "Create playback token for a redundant group",
+          "request": {
+            "name": "Create playback token for a redundant group",
+            "description": {
+              "content": "Redundant groups created via the Live module in Studio (or by specifying `videocloud.video` when creating a redundant group directly through the API) automatically create a special Video Cloud video that, when used in a Brightcove player, makes use of the `ad_config_id` property to select the specific source desired (i.e. SSAI source, DVR/no DVR, BYOCDN). Redundant groups which have SSAI enabled must always provide an `ad_config_id` in the player, even if the source desired is non-SSAI (this prevents an end user from omitting the `ad_config_id` and receiving a clear stream). **This applies only to live Video Cloud videos created via the Live module or Live API - manually created Video Cloud remote assets have no such restriction.**\n\nThe request returns a generated `playback_token`.\n\nThis behavior is handled automatically when you publish a live video from the Live module publishing screen, but may be useful if you have a custom workflow",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "redundantgroups",
+                ":redundant_group_id",
+                "playback-token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "redundant_group_id",
+                  "description": "(Required) Redundant group ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "078749b0-1b37-4489-ba37-2dd67ebd51da",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id",
+                    "playback-token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"playback_token\": \"live.6cGp7MDhWW4wXw0FKlTM_kruqzN4QO2eklBJhrXt8tBnSCKyuwwBReptfp91K5bBUdfRALYlnu-QXhb9xGEJYR9UCkmGdfwqJqKhx7gngzIg43L9ByQmEMUc\\\"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c108431-e86b-4cef-aed8-3a938cb1ee99",
+              "name": "BAD_REQUEST: Invalid input value - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id",
+                    "playback-token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2071d876-99eb-4591-bde8-b423b9e6d2f4",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id",
+                    "playback-token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4042bcbc-3bc9-4bc8-9ea3-2e808860cf33",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id",
+                    "playback-token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f4293f4a-2a8b-46cd-8aeb-f5501a162ec3",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redundantgroups",
+                    ":redundant_group_id",
+                    "playback-token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "redundant_group_id",
+                      "description": "(Required) Redundant group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://analytics.api.brightcove.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f9552bf4-71cb-427c-aa1c-c4e3e7d1ea14",
+    "name": "Brightcove Analytics API Reference Access Tokens Redundant Groups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com",
+      "type": "text/plain"
+    }
+  }
+}

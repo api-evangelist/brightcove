@@ -1,0 +1,1126 @@
+{
+  "item": [
+    {
+      "id": "a0c95487-e978-4792-ac19-2b7899a02286",
+      "name": "Account Configuration",
+      "description": {
+        "content": "Operations for managing default profiles for the account.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b0f4d145-4481-432c-9bb7-0902b647a543",
+          "name": "Get Default Profile",
+          "request": {
+            "name": "Get Default Profile",
+            "description": {
+              "content": "Get the default ingest profile for the account. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":account_id",
+                "configuration"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5f2d1087-5099-4407-964a-db5fca6663dd",
+              "name": "SUCCESS",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version\": 1526447969284,\n  \"account_id\": 57838016001,\n  \"default_profile_id\": \"videocloud-default-v1\",\n  \"default_live_profile_id\": \"Live - Standard\",\n  \"date_created\": 1526447969283,\n  \"date_last_modified\": 1526447969283\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1e0a254e-e17e-4183-af99-2e7d5fdb02de",
+              "name": "NOT_AUTHORIZED: Credentials are required to access this resource ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7a51d917-189b-4a65-b5a6-5d20b76d138c",
+              "name": "NOT_FOUND: The api could not find the resource you requested ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fb8a4ee7-f92b-4280-93f3-b2d705668ea3",
+          "name": "Update Default Profile",
+          "request": {
+            "name": "Update Default Profile",
+            "description": {
+              "content": "Updates the default ingest profile for the account. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":account_id",
+                "configuration"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"account_id\": \"<number>\",\n  \"id\": \"<string>\",\n  \"default_profile_id\": \"<string>\",\n  \"default_live_profile_id\": \"<string>\",\n  \"default_social_clipping_profile_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6f2d8752-757c-4f81-82e3-02017ca922ba",
+              "name": "SUCCESS",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_id\": \"<number>\",\n  \"id\": \"<string>\",\n  \"default_profile_id\": \"multi-platform-standard-static\",\n  \"default_live_profile_id\": \"<string>\",\n  \"default_social_clipping_profile_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version\": 1526447969284,\n  \"account_id\": 57838016001,\n  \"default_profile_id\": \"videocloud-default-v1\",\n  \"default_live_profile_id\": \"Live - Standard\",\n  \"date_created\": 1526447969283,\n  \"date_last_modified\": 1526447969283\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a80b27a3-8c6f-40c1-aa22-84cddd6551bf",
+              "name": "BAD_REQUEST: The JSON was not valid ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_id\": \"<number>\",\n  \"id\": \"<string>\",\n  \"default_profile_id\": \"multi-platform-standard-static\",\n  \"default_live_profile_id\": \"<string>\",\n  \"default_social_clipping_profile_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c22a7fea-10e5-4527-86f3-dee87626ab1f",
+              "name": "NOT_AUTHORIZED: Credentials are required to access this resource. ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_id\": \"<number>\",\n  \"id\": \"<string>\",\n  \"default_profile_id\": \"multi-platform-standard-static\",\n  \"default_live_profile_id\": \"<string>\",\n  \"default_social_clipping_profile_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ae9ee424-f765-4f40-82d5-fdb911c7fb45",
+              "name": "NOT_FOUND: The api could not find the resource you requested ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_id\": \"<number>\",\n  \"id\": \"<string>\",\n  \"default_profile_id\": \"multi-platform-standard-static\",\n  \"default_live_profile_id\": \"<string>\",\n  \"default_social_clipping_profile_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "007f7faf-c8b9-47e7-b722-b3dc0db118e4",
+              "name": "CONFLICT: Account configuration already exists for 57838016001; please delete the configuration first, or update it instead.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_id\": \"<number>\",\n  \"id\": \"<string>\",\n  \"default_profile_id\": \"multi-platform-standard-static\",\n  \"default_live_profile_id\": \"<string>\",\n  \"default_social_clipping_profile_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "149c7d13-e424-46a6-a61d-d7afd6c0702a",
+          "name": "Set Default Profile",
+          "request": {
+            "name": "Set Default Profile",
+            "description": {
+              "content": "Sets an ingest profile as the default for the account. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":account_id",
+                "configuration"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"account_id\": \"<number>\",\n  \"default_profile_id\": \"<string>\",\n  \"default_live_profile_id\": \"<string>\",\n  \"default_social_clipping_profile_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3ecde61d-0d31-4647-8424-5d35d5976ab7",
+              "name": "SUCCESS",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_id\": \"<number>\",\n  \"default_profile_id\": \"multi-platform-standard-static\",\n  \"default_live_profile_id\": \"<string>\",\n  \"default_social_clipping_profile_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version\": 1526447969284,\n  \"account_id\": 57838016001,\n  \"default_profile_id\": \"videocloud-default-v1\",\n  \"default_live_profile_id\": \"Live - Standard\",\n  \"date_created\": 1526447969283,\n  \"date_last_modified\": 1526447969283\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ca2c911-09fc-490f-bd84-ec8a88253996",
+              "name": "BAD_REQUEST: The JSON was not valid ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_id\": \"<number>\",\n  \"default_profile_id\": \"multi-platform-standard-static\",\n  \"default_live_profile_id\": \"<string>\",\n  \"default_social_clipping_profile_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a96ea9d1-b666-4a01-a570-ea25e6585c0b",
+              "name": "NOT_AUTHORIZED: Credentials are required to access this resource. ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_id\": \"<number>\",\n  \"default_profile_id\": \"multi-platform-standard-static\",\n  \"default_live_profile_id\": \"<string>\",\n  \"default_social_clipping_profile_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f7025aa8-1e2e-4461-adb7-be744c4dbdd8",
+              "name": "NOT_FOUND: The api could not find the resource you requested ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_id\": \"<number>\",\n  \"default_profile_id\": \"multi-platform-standard-static\",\n  \"default_live_profile_id\": \"<string>\",\n  \"default_social_clipping_profile_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7247ec9f-c351-4249-9af1-a89d15a67ccc",
+              "name": "CONFLICT: Account configuration already exists for 57838016001; please delete the configuration first, or update it instead.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_id\": \"<number>\",\n  \"default_profile_id\": \"multi-platform-standard-static\",\n  \"default_live_profile_id\": \"<string>\",\n  \"default_social_clipping_profile_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://analytics.api.brightcove.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f4762955-52f6-4c44-9fdc-8c5ee79aa43d",
+    "name": "Brightcove Analytics API Reference Access Tokens Account Configuration API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com",
+      "type": "text/plain"
+    }
+  }
+}

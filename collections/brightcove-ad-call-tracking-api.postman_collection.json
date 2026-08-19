@@ -1,0 +1,533 @@
+{
+  "item": [
+    {
+      "id": "2ef23bc6-0b49-4b88-9fc7-77231d94c1d3",
+      "name": "Ad Call Tracking",
+      "description": {
+        "content": "Operations for tracking ad calls - used primarily for debugging.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "34b73488-a371-4d49-ad7a-068a409f6592",
+          "name": "Create an SSAI ad trace for an account",
+          "request": {
+            "name": "Create an SSAI ad trace for an account",
+            "description": {
+              "content": "Create an SSAI ad trace for an account. Use this request if you do **not** have an ad config id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":account_id",
+                "ssai_debug_vmap",
+                "debug.xml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) ID of the account to query video statuses for"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"playback_config\": {\n    \"name\": \"<string>\",\n    \"vmap_response_namespace\": \"<string>\",\n    \"account_id\": \"<string>\",\n    \"ad_config\": {\n      \"expected_ad_response\": \"<string>\",\n      \"enable_ads\": true,\n      \"disable_server_beacons\": \"<boolean>\",\n      \"round_up_cue_points\": false,\n      \"template_url\": {\n        \"template\": \"<string>\"\n      }\n    },\n    \"extend_beacon_guard_ttl\": false\n  },\n  \"title_metadata\": {\n    \"duration\": \"<string>\"\n  },\n  \"videocloud_metadata\": {\n    \"name\": \"<string>\",\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"ad_keys\": \"<string>\",\n    \"cue_points\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"time\": \"<integer>\",\n        \"metadata\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"time\": \"<integer>\",\n        \"metadata\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a7f0fd1b-d309-4210-a45d-f998be702f24",
+              "name": "An ad response. The content varies according to the `expected_ad_response`. For examples, see [Video Cloud SSAI Ad Tag Validation](https://player.support.brightcove.com/advertising/video-cloud-ssai-ad-tag-validation.html)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "ssai_debug_vmap",
+                    "debug.xml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) ID of the account to query video statuses for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"playback_config\": {\n    \"name\": \"config_name\",\n    \"vmap_response_namespace\": \"config_namespace\",\n    \"account_id\": \"account_id\",\n    \"ad_config\": {\n      \"enable_ads\": true,\n      \"expected_ad_response\": \"dfp_ad_rules\",\n      \"disable_server_beacons\": false,\n      \"round_up_cue_points\": false,\n      \"template_url\": {\n        \"template\": \"template_url\"\n      }\n    },\n    \"extend_beacon_guard_ttl\": false\n  },\n  \"title_metadata\": {\n    \"duration\": \"10s\"\n  },\n  \"videocloud_metadata\": {\n    \"name\": \"ad_name\",\n    \"tags\": [\n      \"tag1:tag1_value\",\n      \"tag2:tag2_value\"\n    ],\n    \"ad_keys\": \"a=1&b=2\",\n    \"cue_points\": [\n      {\n        \"name\": \"Pre-roll\",\n        \"type\": \"AD\",\n        \"time\": 0,\n        \"metadata\": \"type:pre-roll,a=b\"\n      },\n      {\n        \"name\": \"Mid-roll\",\n        \"type\": \"AD\",\n        \"time\": 10,\n        \"metadata\": \"type=mid-roll,x=y\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <xml>\n    <summary>VMAP/VAST example</summary>\n    <value>'&lt;vmap:VMAP xmlns:bc=\"bc\" xmlns:vmap=\"https://www.iab.net/vmap-1.0\" xmlns:xsi=\"https://www.w3.org/2001/XMLSchema-instance\" version=\"1.0\"&gt;\n&lt;vmap:Extensions&gt;\n&lt;bc:Brightcove ttl=\"1800\" contenturi=\"https://ssaiplayback.us-east-1.qa.boltdns.net/playback/once/v1/hls/v5/clear/accoutn_debug/debug/debug/7592e9c3-214f-4c68-a576-1e2494b7be06/debug.m3u8\" contentlength=\"10.0000\" payloadlength=\"70.0000\" contenttype=\"application/x-mpegURL\"&gt;&lt;/bc:Brightcove&gt;\n&lt;bc:BrightcoveDebug sessionID=\"7592e9c3-214f-4c68-a576-1e2494b7be06\"&gt;&lt;/bc:BrightcoveDebug&gt;\n&lt;/vmap:Extensions&gt;\n&lt;vmap:AdBreak breakType=\"linear\" breakId=\"PreRoll_0_0\" timeOffset=\"start\"&gt;\n&lt;vmap:AdSource allowMultipleAds=\"true\" followRedirects=\"true\" id=\"0\"&gt;\n&lt;vmap:VASTData&gt;\n  &lt;VAST xmlns:xsd=\"https://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"https://www.w3.org/2001/XMLSchema-instance\"&gt;\n    &lt;Ad id=\"test-01-30s\"&gt;\n      &lt;InLine&gt;\n        &lt;AdSystem&gt;BIAS&lt;/AdSystem&gt;\n        &lt;AdTitle&gt;test-01-30s&lt;/AdTitle&gt;\n        &lt;Creatives&gt;\n          &lt;Creative&gt;\n            &lt;Linear&gt;\n              &lt;CreativeExtensions&gt;\n                &lt;CreativeExtension&gt;\n                  &lt;BrightcoveForeignKey&gt;test-01-30s&lt;/BrightcoveForeignKey&gt;\n                &lt;/CreativeExtension&gt;\n              &lt;/CreativeExtensions&gt;\n              &lt;Duration&gt;00:00:30.0000&lt;/Duration&gt;\n              &lt;TrackingEvents&gt;\n                &lt;Tracking event=\"mute\"&gt;https://solutions.brightcove.com/beacon?event=mute&amp;type=vast&amp;request_id=43a0e4a5-4420-11e8-b306-99b1b6ae5164&amp;parent_request_id=436ae081-4420-11e8-bd7f-41361f814644&amp;ad_id=test-01-30s&lt;/Tracking&gt;\n                &lt;Tracking event=\"unmute\"&gt;https://solutions.brightcove.com/beacon?event=unmute&amp;type=vast&amp;request_id=43a0e4a5-4420-11e8-b306-99b1b6ae5164&amp;parent_request_id=436ae081-4420-11e8-bd7f-41361f814644&amp;ad_id=test-01-30s&lt;/Tracking&gt;\n                &lt;Tracking event=\"rewind\"&gt;https://solutions.brightcove.com/beacon?event=rewind&amp;type=vast&amp;request_id=43a0e4a5-4420-11e8-b306-99b1b6ae5164&amp;parent_request_id=436ae081-4420-11e8-bd7f-41361f814644&amp;ad_id=test-01-30s&lt;/Tracking&gt;\n                &lt;Tracking event=\"pause\"&gt;https://solutions.brightcove.com/beacon?event=pause&amp;type=vast&amp;request_id=43a0e4a5-4420-11e8-b306-99b1b6ae5164&amp;parent_request_id=436ae081-4420-11e8-bd7f-41361f814644&amp;ad_id=test-01-30s&lt;/Tracking&gt;\n                &lt;Tracking event=\"resume\"&gt;https://solutions.brightcove.com/beacon?event=resume&amp;type=vast&amp;request_id=43a0e4a5-4420-11e8-b306-99b1b6ae5164&amp;parent_request_id=436ae081-4420-11e8-bd7f-41361f814644&amp;ad_id=test-01-30s&lt;/Tracking&gt;\n                &lt;Tracking event=\"fullscreen\"&gt;https://solutions.brightcove.com/beacon?event=fullscreen&amp;type=vast&amp;request_id=43a0e4a5-4420-11e8-b306-99b1b6ae5164&amp;parent_request_id=436ae081-4420-11e8-bd7f-41361f814644&amp;ad_id=test-01-30s&lt;/Tracking&gt;\n                &lt;Tracking event=\"acceptInvitation\"&gt;https://solutions.brightcove.com/beacon?event=acceptInvitation&amp;type=vast&amp;request_id=43a0e4a5-4420-11e8-b306-99b1b6ae5164&amp;parent_request_id=436ae081-4420-11e8-bd7f-41361f814644&amp;ad_id=test-01-30s&lt;/Tracking&gt;\n              &lt;/TrackingEvents&gt;\n              &lt;VideoClicks&gt;\n                &lt;ClickThrough id=\"clickthrough\"&gt;https://www.brightcove.com/en/&lt;/ClickThrough&gt;\n                &lt;ClickTracking id=\"43a0e4a5-4420-11e8-b306-99b1b6ae5164\"&gt;&lt;/ClickTracking&gt;\n              &lt;/VideoClicks&gt;\n            &lt;/Linear&gt;\n          &lt;/Creative&gt;\n        &lt;/Creatives&gt;\n      &lt;/InLine&gt;\n    &lt;/Ad&gt;\n  &lt;/VAST&gt;\n&lt;/vmap:VASTData&gt;\n&lt;/vmap:AdSource&gt;\n&lt;/vmap:AdBreak&gt;\n...// additional ad breaks\n&lt;/vmap:VMAP&gt;'</value>\n  </xml>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "1fc85c1d-6a4d-4432-aed2-0efd59c6ba6e",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "ssai_debug_vmap",
+                    "debug.xml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) ID of the account to query video statuses for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"playback_config\": {\n    \"name\": \"config_name\",\n    \"vmap_response_namespace\": \"config_namespace\",\n    \"account_id\": \"account_id\",\n    \"ad_config\": {\n      \"enable_ads\": true,\n      \"expected_ad_response\": \"dfp_ad_rules\",\n      \"disable_server_beacons\": false,\n      \"round_up_cue_points\": false,\n      \"template_url\": {\n        \"template\": \"template_url\"\n      }\n    },\n    \"extend_beacon_guard_ttl\": false\n  },\n  \"title_metadata\": {\n    \"duration\": \"10s\"\n  },\n  \"videocloud_metadata\": {\n    \"name\": \"ad_name\",\n    \"tags\": [\n      \"tag1:tag1_value\",\n      \"tag2:tag2_value\"\n    ],\n    \"ad_keys\": \"a=1&b=2\",\n    \"cue_points\": [\n      {\n        \"name\": \"Pre-roll\",\n        \"type\": \"AD\",\n        \"time\": 0,\n        \"metadata\": \"type:pre-roll,a=b\"\n      },\n      {\n        \"name\": \"Mid-roll\",\n        \"type\": \"AD\",\n        \"time\": 10,\n        \"metadata\": \"type=mid-roll,x=y\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "763fe701-1029-4227-94ee-ae0fb819c6c3",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "ssai_debug_vmap",
+                    "debug.xml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) ID of the account to query video statuses for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"playback_config\": {\n    \"name\": \"config_name\",\n    \"vmap_response_namespace\": \"config_namespace\",\n    \"account_id\": \"account_id\",\n    \"ad_config\": {\n      \"enable_ads\": true,\n      \"expected_ad_response\": \"dfp_ad_rules\",\n      \"disable_server_beacons\": false,\n      \"round_up_cue_points\": false,\n      \"template_url\": {\n        \"template\": \"template_url\"\n      }\n    },\n    \"extend_beacon_guard_ttl\": false\n  },\n  \"title_metadata\": {\n    \"duration\": \"10s\"\n  },\n  \"videocloud_metadata\": {\n    \"name\": \"ad_name\",\n    \"tags\": [\n      \"tag1:tag1_value\",\n      \"tag2:tag2_value\"\n    ],\n    \"ad_keys\": \"a=1&b=2\",\n    \"cue_points\": [\n      {\n        \"name\": \"Pre-roll\",\n        \"type\": \"AD\",\n        \"time\": 0,\n        \"metadata\": \"type:pre-roll,a=b\"\n      },\n      {\n        \"name\": \"Mid-roll\",\n        \"type\": \"AD\",\n        \"time\": 10,\n        \"metadata\": \"type=mid-roll,x=y\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fc705463-52c3-48b1-9c5b-d69c23ce6a67",
+          "name": "Get ad calls for a session",
+          "request": {
+            "name": "Get ad calls for a session",
+            "description": {
+              "content": "'Get ad calls for a session. The `session_id` comes from the VMAP response: `<bc:BrightcoveDebug sessionID=\"your session id\"></bc:BrightcoveDebug>`'",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":account_id",
+                "ssai_traces",
+                ":session_id",
+                "ad_calls"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) ID of the account to query video statuses for"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "session_id",
+                  "description": "(Required) Session id from the VMAP response"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7191d6ba-c861-4884-875b-447620c23004",
+              "name": "Array of ad calls for a session.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "ssai_traces",
+                    ":session_id",
+                    "ad_calls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) ID of the account to query video statuses for"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "session_id",
+                      "description": "(Required) Session id from the VMAP response"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ad_calls\": [\n    {\n      \"timestamp\": \"string\",\n      \"duration_ms\": 7908.476216969024,\n      \"request\": {\n        \"content_length\": 1612,\n        \"event\": \"string\",\n        \"method\": \"string\",\n        \"url\": \"string\"\n      },\n      \"response\": {\n        \"content_length\": 3559,\n        \"event\": \"string\",\n        \"status_code\": 8582,\n        \"body\": \"string\"\n      }\n    },\n    {\n      \"timestamp\": \"string\",\n      \"duration_ms\": 8849.647533725696,\n      \"request\": {\n        \"content_length\": 5473,\n        \"event\": \"string\",\n        \"method\": \"string\",\n        \"url\": \"string\"\n      },\n      \"response\": {\n        \"content_length\": 1329,\n        \"event\": \"string\",\n        \"status_code\": 6245,\n        \"body\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4bdba3d5-994e-4197-bf40-1ea574587174",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "ssai_traces",
+                    ":session_id",
+                    "ad_calls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) ID of the account to query video statuses for"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "session_id",
+                      "description": "(Required) Session id from the VMAP response"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a1da083d-ab55-40d8-81d7-bfcd08a062e2",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "ssai_traces",
+                    ":session_id",
+                    "ad_calls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) ID of the account to query video statuses for"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "session_id",
+                      "description": "(Required) Session id from the VMAP response"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://analytics.api.brightcove.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "950c324f-21e8-451d-b809-560d686aa077",
+    "name": "Brightcove Analytics API Reference Access Tokens Ad Call Tracking API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com",
+      "type": "text/plain"
+    }
+  }
+}

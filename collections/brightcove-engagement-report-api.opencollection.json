@@ -1,0 +1,156 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brightcove Analytics API Reference Access Tokens Engagement Report API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Engagement Report",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Account Engagement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/engagement/accounts/:{account_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "a Video Cloud account ID"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get a summary report of engagement for the account. Note:  Engagement reports are only available for periods within the past 32 days. Requests outside that range will return an error The only parameters supported for Engagement reports are from and to Engagement reports are available for single accounts only - reports on multiple accounts will not work"
+        },
+        {
+          "info": {
+            "name": "Get Player Engagement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/engagement/accounts/:{account_id}/players/:{player_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "a Video Cloud account ID"
+              },
+              {
+                "name": "player_id",
+                "value": "",
+                "type": "path",
+                "description": "a Video Cloud player ID"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get a summary report of engagement for a player. Note:  Engagement reports are only available for periods within the past 32 days. Requests outside that range will return an error The only parameters supported for Engagement reports are from and to Engagement reports are available for single accounts only - reports on multiple accounts will not work"
+        },
+        {
+          "info": {
+            "name": "Get Video Engagement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/engagement/accounts/:{account_id}/videos/:{video_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "a Video Cloud account ID"
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "a Video Cloud video ID"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get a summary report of engagement for a video. Note:  Engagement reports are only available for periods within the past 32 days. Requests outside that range will return an error The only parameters supported for Engagement reports are from and to Engagement reports are available for single accounts only - reports on multiple accounts will not work"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

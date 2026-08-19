@@ -1,0 +1,425 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brightcove Analytics API Reference Access Tokens SSAI API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SSAI",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Ad Configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/ssai/applications",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Get ad applications for the current user."
+        },
+        {
+          "info": {
+            "name": "Create Ad Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://analytics.api.brightcove.com/ssai/applications",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a configuration for server-side ad application.\n\n**Note: SSAI is supported for the following regions:**\n  - us-west-2\n  - us-east-1\n  - ap-southeast-2\n  - ap-northeast-1\n  - ap-southeast-1\n  - eu-central-1"
+        },
+        {
+          "info": {
+            "name": "Get Account Ad Configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/ssai/applications/account/:live_account_id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "live_account_id",
+                "value": "",
+                "type": "path",
+                "description": "Live account ID"
+              }
+            ]
+          },
+          "docs": "Get ad applications for an account. "
+        },
+        {
+          "info": {
+            "name": "Get Ad Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/ssai/applications/application/:application_id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The ad application id"
+              }
+            ]
+          },
+          "docs": "Get an ad application."
+        },
+        {
+          "info": {
+            "name": "Update Ad Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://analytics.api.brightcove.com/ssai/applications/application/:application_id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The ad application id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a configuration for server-side ad application. "
+        },
+        {
+          "info": {
+            "name": "Delete Ad Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://analytics.api.brightcove.com/ssai/applications/application/:application_id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The ad application id"
+              }
+            ]
+          },
+          "docs": "Delete an ad application. "
+        },
+        {
+          "info": {
+            "name": "Get Beacon Sets for User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/ssai/beaconsets",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Get all beacon sets for the requesting user. "
+        },
+        {
+          "info": {
+            "name": "Create Beacon Set",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://analytics.api.brightcove.com/ssai/beaconsets",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Beacons are data points on playback sent to ad servers to track whether and how much of ads were played. Creates a beacon set."
+        },
+        {
+          "info": {
+            "name": "Update Beacon Set",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://analytics.api.brightcove.com/ssai/beaconsets/beaconset/:beacon_set_id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "beacon_set_id",
+                "value": "",
+                "type": "path",
+                "description": "A slate media asset ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a beacon set. "
+        },
+        {
+          "info": {
+            "name": "Delete Beacon Set",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://analytics.api.brightcove.com/ssai/beaconsets/beaconset/:beacon_set_id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "beacon_set_id",
+                "value": "",
+                "type": "path",
+                "description": "A slate media asset ID"
+              }
+            ]
+          },
+          "docs": "Deletes a beacon set. "
+        },
+        {
+          "info": {
+            "name": "Get Beacon Sets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/ssai/beaconsets/account/:live_account_id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "live_account_id",
+                "value": "",
+                "type": "path",
+                "description": "Live account ID"
+              }
+            ]
+          },
+          "docs": "Get all beacon sets for an account. "
+        },
+        {
+          "info": {
+            "name": "Get User Slate Media Source Assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/ssai/slates",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Get Slate Media Source Assets for the current user. "
+        },
+        {
+          "info": {
+            "name": "Ingest Slate Media Source Asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://analytics.api.brightcove.com/ssai/slates",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Ingest Slate Media Source Asset. "
+        },
+        {
+          "info": {
+            "name": "Delete Slate Media Source Asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://analytics.api.brightcove.com/ssai/slates/slate:slate_msa_id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "slate_msa_id",
+                "value": "",
+                "type": "path",
+                "description": "A slate media asset ID"
+              }
+            ]
+          },
+          "docs": "Delete Slate Media Source Asset. "
+        },
+        {
+          "info": {
+            "name": "Get Slates for Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/ssai/slates/account/:live_account_id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "live_account_id",
+                "value": "",
+                "type": "path",
+                "description": "Live account ID"
+              }
+            ]
+          },
+          "docs": "Get all beacon sets for an account. "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

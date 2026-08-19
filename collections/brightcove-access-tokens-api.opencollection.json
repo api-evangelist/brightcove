@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brightcove Analytics API Reference Access Tokens API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Access Tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Access Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://analytics.api.brightcove.com/access_token",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "grant_type",
+                "value": "client_credentials",
+                "type": "query",
+                "description": "OAuth grant type"
+              }
+            ]
+          },
+          "docs": "create a temporary access token for an API request "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

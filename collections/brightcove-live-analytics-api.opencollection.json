@@ -1,0 +1,162 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brightcove Analytics API Reference Access Tokens Live Analytics API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Live Analytics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Live Analytics time-series",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/timeseries/accounts/:{account_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "a Video Cloud account ID"
+              },
+              {
+                "name": "dimensions",
+                "value": "",
+                "type": "query",
+                "description": "One or more dimensions to report on for Live Analytics requests\nDimensions:\n  - video\n  - video, country\n  - video, device_type"
+              },
+              {
+                "name": "bucket_limit",
+                "value": "10",
+                "type": "query",
+                "description": "'Max number of points to be returned for a time-series'"
+              },
+              {
+                "name": "bucket_duration",
+                "value": "5m",
+                "type": "query",
+                "description": "'Intervals duration in the form of an integer plus `m` (minutes), `h` (hours), or `d` (days)'"
+              },
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Data metrics to return for live analytics requests:\n\n  - `video_impression` - the number of video impressions\n  - `video_view` - the number of video views\n  - `video_seconds_viewed` - seconds of video viewed\n  - `alive_ss_ad_start` - SSAI ad starts\n  - `fingerprint_count` - \"fingerprint\" (user) count\n  - `ccu` - concurrent viewers"
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "one or more 'dimension==value' pairs to filter the results; for live, the only available filters are `country`, `device-type`, and `video`. This is a filter in which the options areL where in the world, in which device or which part of the video. In this case, the property is called where as if to use some DSL that mimics the SQL syntax, and that is why it is called where"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "'Start time for the period covered by the report — epoch time in milliseconds (`1535654206775`) or a date in the format `yyyy-mm-dd` (such as `2013-09-26`)'"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "End time for the period covered by the report — `now` or epoch time in milliseconds (`1535654206775`) or a date in the format `yyyy-mm-dd` (such as `2013-09-26`)"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "A time-series is defined as a an list of timestamp-value pairs representing samples of a variable (metric). The time-series API intends to allow the user to return a time-series for the set of metrics requested in the query."
+        },
+        {
+          "info": {
+            "name": "Get Live Analytics event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/events/accounts/:account_id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "a Video Cloud account ID"
+              },
+              {
+                "name": "dimensions",
+                "value": "",
+                "type": "query",
+                "description": "One or more dimensions to report on for Live Analytics requests\nDimensions:\n  - video\n  - video, country\n  - video, device_type"
+              },
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Data metrics to return for live analytics requests:\n\n  - `video_impression` - the number of video impressions\n  - `video_view` - the number of video views\n  - `video_seconds_viewed` - seconds of video viewed\n  - `alive_ss_ad_start` - SSAI ad starts\n  - `fingerprint_count` - \"fingerprint\" (user) count\n  - `ccu` - concurrent viewers"
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "One or more filters to limit responses for Live Analytics requests\nAvailable filters:\n  - video\n  - country\n  - device_type"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Provides a summary of analytics data collected for a live stream."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

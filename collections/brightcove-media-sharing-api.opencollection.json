@@ -1,0 +1,618 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brightcove Analytics API Reference Access Tokens Media Sharing API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Media Sharing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Channels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/channels",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets a list of channels (currently there is only one default channel) - this is a Master account operation"
+        },
+        {
+          "info": {
+            "name": "Get Channel Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/channels:channel_name}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "channel_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the channel - usually `default`"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets settings for a sharing channel (currently there is only one default channel) - this is a Master account operation"
+        },
+        {
+          "info": {
+            "name": "Update Channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/channels:channel_name}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "channel_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the channel - usually `default`"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Updates settings for a sharing channel (currently there is only one default channel) - this is a Master account operation"
+        },
+        {
+          "info": {
+            "name": "List Channel Affiliates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/channels:channel_name}/members",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "channel_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the channel - usually `default`"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets a list of affiliates for a channel - this is a Master account operation"
+        },
+        {
+          "info": {
+            "name": "Add Affiliate",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/channels:channel_name}/members/:{affiliate_account_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "channel_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the channel - usually `default`"
+              },
+              {
+                "name": "affiliate_account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud affiliate account ID for media sharing relationships"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Adds an affiliate to a channel - this is a Master account operation "
+        },
+        {
+          "info": {
+            "name": "Remove Affiliate",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/channels:channel_name}/members/:{affiliate_account_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "channel_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the channel - usually `default`"
+              },
+              {
+                "name": "affiliate_account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud affiliate account ID for media sharing relationships"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Removes an affiliate from a channel - this is a Master account operation"
+        },
+        {
+          "info": {
+            "name": "List Contracts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/contracts",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets a list of available sharing contracts - this is an Affiliate account operation"
+        },
+        {
+          "info": {
+            "name": "Get Contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/contracts/:{master_account_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "master_account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud master account ID for media sharing relationships"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets a list of available sharing contracts - this is an Affiliate account operation"
+        },
+        {
+          "info": {
+            "name": "Approve Contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/contracts/:{master_account_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "master_account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud master account ID for media sharing relationships"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Approve a contract - this is an Affiliate account operation "
+        },
+        {
+          "info": {
+            "name": "List Shares",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/shares",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Lists the existing shares for an account - this is a Master account operation - do this before sharing to insure that you are not re-sharing to an affiliate, which would overwrite any affiliate metadata changes"
+        },
+        {
+          "info": {
+            "name": "Share Video",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/shares",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Shares a video to one or more affiliates - this is an Master account operation - if the video has already been shared to an affiliate, this operation will re-share it and overwrite any affiliate metadata changes"
+        },
+        {
+          "info": {
+            "name": "Get Share",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/shares/:{affiliate_account_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              },
+              {
+                "name": "affiliate_account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud affiliate account ID for media sharing relationships"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Lists the existing shares for an account - this is a Master account operation - do this before sharing to insure that you are not re-sharing to an affiliate, which would overwrite any affiliate metadata changes"
+        },
+        {
+          "info": {
+            "name": "Unshare Video",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/shares/:{affiliate_account_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              },
+              {
+                "name": "affiliate_account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud affiliate account ID for media sharing relationships"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Un-shares a video with a specific affiliate - this is an Master account operation - do this before sharing to insure that you are not re-sharing to an affiliate, which would overwrite any affiliate metadata changes"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

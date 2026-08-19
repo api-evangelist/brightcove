@@ -1,0 +1,442 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brightcove Analytics API Reference Access Tokens Live Jobs API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Live Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Live Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/jobs",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "start_token",
+                "value": "",
+                "type": "query",
+                "description": "Next token from previous page; do not specify when fetching first page"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Max number of items to return in one request (1-1000, default is 10)"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Attribute to sort jobs by (`created_at` | `modified_at`, default is `created_at`)"
+              },
+              {
+                "name": "sort_dir",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction (default is asc):`asc` - ascending; `desc` - descending"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by one or more user IDs"
+              },
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by particular account, or specify ‘*’ to search all accounts.  Default value is account API key belongs to"
+              },
+              {
+                "name": "created_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by Unix time of job creation (in milliseconds)"
+              },
+              {
+                "name": "modified_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by Unix time of job last modified (in milliseconds)"
+              },
+              {
+                "name": "ad_insertion",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by is SSAI enabled"
+              },
+              {
+                "name": "static",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by has static endpoint"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by one or more job states"
+              },
+              {
+                "name": "ssai_state",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by one or more SSAI states"
+              },
+              {
+                "name": "region",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by one or more regions"
+              }
+            ]
+          },
+          "docs": "'List live jobs - for additional useful information on the search filters, see [Getting a List of Live or VOD\nJobs](/live-api/guides/getting-list-live-or-vod-jobs.html).'\n\n**Note: The Live API does not return the updated CMS information, even if the video object is updated. For example, if you update the Live Event title, the change will not be reflected in the <code translate=\"no\">videocloud</code> section in the API response, and the Live API will return the original Live Event title.**\n**Note"
+        },
+        {
+          "info": {
+            "name": "Create a Live Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://analytics.api.brightcove.com/jobs",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a live streaming job"
+        },
+        {
+          "info": {
+            "name": "Get Live Job Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/jobs/:job_id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "Live job ID"
+              }
+            ]
+          },
+          "docs": "Get Live Job Details.\n\n\n**Note: The Live API does not return the updated CMS information, even if the video object is updated. For example, if you update the Live Event title, the change will not be reflected in the <code translate=\"no\">videocloud</code> section in the API response, and the Live API will return the original Live Event title.**"
+        },
+        {
+          "info": {
+            "name": "Create Playback Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://analytics.api.brightcove.com/jobs/:job_id/playback-token",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "Live job ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Live jobs created via the Live module in Studio (or by specifying `videocloud.video` when creating a job directly through the API) automatically create a special Video Cloud video that, when used in a Brightcove player, makes use of the `ad_config_id` property to select the specific source desired (i.e. SSAI source, DVR/no DVR, BYOCDN). Jobs which have SSAI enabled must always provide an `ad_config_id` in the player, even if the source desired is non-SSAI (this prevents an end user from omitting"
+        },
+        {
+          "info": {
+            "name": "Activate SEP Stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://analytics.api.brightcove.com/jobs/:job_id/activate",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "Live job ID"
+              }
+            ]
+          },
+          "docs": "Activate SEP (static entry point) Stream"
+        },
+        {
+          "info": {
+            "name": "Deactivate SEP Stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://analytics.api.brightcove.com/jobs/:job_id/deactivate",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "Live job ID"
+              }
+            ]
+          },
+          "docs": "Deactivate SEP (static entry point) Stream "
+        },
+        {
+          "info": {
+            "name": "Manual Cue Point Insertion",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://analytics.api.brightcove.com/jobs/:job_id/cuepoint",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "Live job ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Inserts a manual Cue-Out with a duration to the Live ingest point."
+        },
+        {
+          "info": {
+            "name": "Add or update Ad Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://analytics.api.brightcove.com/jobs/:job_id/cuepointdata",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "Live job ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Allows  content metadata to be pushed and constantly updated out-of-band from a customer live stream.."
+        },
+        {
+          "info": {
+            "name": "Delete Ad Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://analytics.api.brightcove.com/jobs/:job_id/cuepointdata",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "Live job ID"
+              }
+            ]
+          },
+          "docs": "Deletes ad metadata from a customer live stream.."
+        },
+        {
+          "info": {
+            "name": "Insert ID3 Timed Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://analytics.api.brightcove.com/jobs/:job_id/id3tag",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "Live job ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Inserts an ID3 timed metadata tag for an ongoing job. Note that: 1) If using timecode property, the job only stores the most recent request for insertion; 2) If using timecode property, the encoder must be sending SMPTE-formatted (HH:MM:SS:FF) timecode stored in the tc property via OnFI"
+        },
+        {
+          "info": {
+            "name": "Cancel Live Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://analytics.api.brightcove.com/jobs/:job_id/cancel",
+            "headers": [
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "Live job ID"
+              }
+            ]
+          },
+          "docs": "Cancel a live stream. When a live job is cancelled, it is ended, and any unprocessed VOD jobs associated with the live job will **not** be processed."
+        },
+        {
+          "info": {
+            "name": "Stop Live Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://analytics.api.brightcove.com/jobs/:job_id/stop",
+            "headers": [
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "Live job ID"
+              }
+            ]
+          },
+          "docs": "Stop a live job. When a live job is stopped (as opposed to cancelled), the live stream will stop, but any VOD jobs associated with the live job **will** continue to process. **Warning: do *NOT* use this request to stop an SEP job - that is not supported and will put the SEP job into a state where it cannot be deactivated and must be cancelled. Use [Deactivate SEP Job](##operation/DeactivateSepStream) instead.**"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

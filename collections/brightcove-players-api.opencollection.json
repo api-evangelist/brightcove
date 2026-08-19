@@ -1,0 +1,278 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brightcove Analytics API Reference Access Tokens Players API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Players",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of players",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/accounts/:{account_id}/players",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get a list of players"
+        },
+        {
+          "info": {
+            "name": "Create a player",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://analytics.api.brightcove.com/accounts/:{account_id}/players",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a player. The POST method creates a player by submitting a player configuration. The properties of Brightcove Player you can manipulate with player management are detailed in the **Request Body Fields** section below. To create a player, a publisher must decide what properties the final player will have. If no properties are given at creation, a blank player will be created with only the base player skin applied to the player. A user may then use an HTTP PATCH method to update properties "
+        },
+        {
+          "info": {
+            "name": "Get a single player",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/accounts/:{account_id}/players/:{player_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "player_id",
+                "value": "",
+                "type": "path",
+                "description": "Brightcove Player ID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get a player by ID"
+        },
+        {
+          "info": {
+            "name": "Update a player by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://analytics.api.brightcove.com/accounts/:{account_id}/players/:{player_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "player_id",
+                "value": "",
+                "type": "path",
+                "description": "Brightcove Player ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update a single player. The PATCH method can be used on a single player to do a VERY limited update. The only fields you can update in this manner are the `name` and `description` properties. All other player configuration must be done via the **PLAYER CONFIGURATIONS** APIs, detailed below."
+        },
+        {
+          "info": {
+            "name": "Delete a player by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://analytics.api.brightcove.com/accounts/:{account_id}/players/:{player_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "player_id",
+                "value": "",
+                "type": "path",
+                "description": "Brightcove Player ID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete a player and all embeds associated with it."
+        },
+        {
+          "info": {
+            "name": "Publish a player",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://analytics.api.brightcove.com/accounts/:{account_id}/players/:{player_id}/publish",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "player_id",
+                "value": "",
+                "type": "path",
+                "description": "Brightcove Player ID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Publish a player for optimization and production use."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,134 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brightcove Analytics API Reference Access Tokens Schedule SEP Job Start Stop API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Schedule SEP Job Start Stop",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a JobStartStop workflow to schedule activation/deactivation of an SEP job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://analytics.api.brightcove.com/scheduler/jobstartstop",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a JobStartStop workflow to schedule activation/deactivation of an SEP job."
+        },
+        {
+          "info": {
+            "name": "Get JobStartStop Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/scheduler/jobstartstop/:workflow_id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "Scheduler Workflow ID"
+              }
+            ]
+          },
+          "docs": "Get JobStartStop Details"
+        },
+        {
+          "info": {
+            "name": "Update JobStartStop Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://analytics.api.brightcove.com/scheduler/jobstartstop/:workflow_id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "Scheduler Workflow ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Activation and/or Deactivation time. Can only update if state is \"pending\"."
+        },
+        {
+          "info": {
+            "name": "Cancel JobStartStop",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://analytics.api.brightcove.com/scheduler/jobstartstop/:workflow_id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "Scheduler Workflow ID"
+              }
+            ]
+          },
+          "docs": "Cancel JobStartStop"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

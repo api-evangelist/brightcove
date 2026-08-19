@@ -1,0 +1,229 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brightcove Analytics API Reference Access Tokens Live Job Clip API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Live Job Clip",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create VOD Clip",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://analytics.api.brightcove.com/vods",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "'Create VOD clips from a Live Stream.'"
+        },
+        {
+          "info": {
+            "name": "Get VOD Clip Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/vods/:jvod_id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "jvod_id",
+                "value": "",
+                "type": "path",
+                "description": "VOD job ID"
+              }
+            ]
+          },
+          "docs": "Get a VOD clip job by id. "
+        },
+        {
+          "info": {
+            "name": "Cancel a VOD Clip Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://analytics.api.brightcove.com/vods/:jvod_id/cancel",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "jvod_id",
+                "value": "",
+                "type": "path",
+                "description": "VOD job ID"
+              }
+            ]
+          },
+          "docs": "Cancel a VOD clip job by id. "
+        },
+        {
+          "info": {
+            "name": "List VOD Clip Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/jobs/:job_id/vods",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "Live job ID"
+              },
+              {
+                "name": "start_token",
+                "value": "",
+                "type": "query",
+                "description": "Next token from previous page; do not specify when fetching first page"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Max number of items to return in one request (1-1000, default is 10)"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Attribute to sort jobs by (`created_at` | `modified_at`, default is `created_at`)"
+              },
+              {
+                "name": "sort_dir",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction (default is asc):`asc` - ascending; `desc` - descending"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by one or more user IDs"
+              },
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by particular account, or specify ‘*’ to search all accounts.  Default value is account API key belongs to"
+              },
+              {
+                "name": "created_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by Unix time of job creation (in milliseconds)"
+              },
+              {
+                "name": "modified_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by Unix time of job last modified (in milliseconds)"
+              },
+              {
+                "name": "jvod_state",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by one or more VOD job states"
+              },
+              {
+                "name": "jvod_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by one or more VOD job types"
+              },
+              {
+                "name": "label",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by one or more VOD job labels"
+              }
+            ]
+          },
+          "docs": "List VOD clips for a Live Stream - for additional useful information on the search filters, see [Getting a List of Live or VOD Jobs](/live-api/guides/getting-list-live-or-vod-jobs.html)"
+        },
+        {
+          "info": {
+            "name": "Create VOD Clip (Alternate)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://analytics.api.brightcove.com/jobs/:job_id/vods",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "Live job ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create VOD clips from a Live Stream. This is operation is identical to the `POST` request to `/vods` - it is included for consistency, so that you can `GET` and `POST` requests to the same endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

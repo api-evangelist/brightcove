@@ -1,0 +1,1230 @@
+{
+  "item": [
+    {
+      "id": "fd66c62a-f1e7-4f10-8429-53bd5bb28ff1",
+      "name": "Ingest",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ed8e41c9-ff5a-4160-a60a-eee5be7f3f68",
+          "name": "Ingest Videos and Assets",
+          "request": {
+            "name": "Ingest Videos and Assets",
+            "description": {
+              "content": "Ingests a video, images, and/or text track (WebVTT files) and adds them to your media library. NOTE that before you ingest a new video, you must first make a Create Video request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":account_id",
+                "videos",
+                ":video_id",
+                "ingest-requests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "video_id",
+                  "description": "(Required) Video Cloud video ID; if this is a new video ingest, the ID will be the one returned by the Create Video request"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"master\": {\n    \"url\": \"<string>\",\n    \"use_archived_master\": false,\n    \"late_binding_type\": \"<string>\",\n    \"audio_tracks\": [\n      {\n        \"language\": \"<string>\",\n        \"variant\": \"<string>\"\n      },\n      {\n        \"language\": \"<string>\",\n        \"variant\": \"<string>\"\n      }\n    ]\n  },\n  \"forensic_watermarking\": false,\n  \"forensic_watermarking_stub_mode\": false,\n  \"profile\": \"<string>\",\n  \"priority\": \"<string>\",\n  \"text_tracks\": [\n    {\n      \"url\": \"<string>\",\n      \"srclang\": \"<string>\",\n      \"kind\": \"captions\",\n      \"label\": \"<string>\",\n      \"default\": false,\n      \"status\": null,\n      \"embed_closed_caption\": false\n    },\n    {\n      \"url\": \"<string>\",\n      \"srclang\": \"<string>\",\n      \"kind\": \"captions\",\n      \"label\": \"<string>\",\n      \"default\": false,\n      \"status\": null,\n      \"embed_closed_caption\": false\n    }\n  ],\n  \"transcriptions\": [\n    [\n      {\n        \"autodetect\": \"<boolean>\",\n        \"default\": false,\n        \"input_audio_track\": {\n          \"language\": \"<string>\",\n          \"variant\": \"<string>\"\n        },\n        \"kind\": \"captions\",\n        \"label\": \"<string>\",\n        \"srclang\": \"<string>\",\n        \"status\": null,\n        \"url\": \"<string>\",\n        \"use_dictionary\": \"<boolean>\",\n        \"max_chars_per_line\": \"<integer>\",\n        \"max_lines_per_cue\": \"<integer>\",\n        \"diarization_mode\": \"<string>\",\n        \"enable_audio_tags\": \"<boolean>\",\n        \"allow_multilanguage_caption\": \"<boolean>\",\n        \"ai_transparency_label\": \"<string>\",\n        \"polished_transcription\": \"<boolean>\",\n        \"translation_languages\": [\n          {\n            \"srclang\": \"<string>\",\n            \"label\": \"<string>\",\n            \"status\": \"<string>\",\n            \"dubbing\": \"<boolean>\",\n            \"disable_voice_cloning\": \"<boolean>\",\n            \"ai_transparency_label\": \"<string>\",\n            \"ai_transparency_label_dubbing\": \"<string>\"\n          },\n          {\n            \"srclang\": \"<string>\",\n            \"label\": \"<string>\",\n            \"status\": \"<string>\",\n            \"dubbing\": \"<boolean>\",\n            \"disable_voice_cloning\": \"<boolean>\",\n            \"ai_transparency_label\": \"<string>\",\n            \"ai_transparency_label_dubbing\": \"<string>\"\n          }\n        ],\n        \"metadata_optimizer\": {\n          \"language\": \"<string>\",\n          \"translation_request\": {\n            \"languages\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"fields_to_generate\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"skip_review\": \"<boolean>\",\n          \"auto_translate\": \"<boolean>\",\n          \"use_tag_architecture\": \"<boolean>\",\n          \"references\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"character_limits\": {\n            \"key_0\": \"<integer>\",\n            \"key_1\": \"<integer>\"\n          }\n        },\n        \"audio_descriptions\": {\n          \"languages\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"ai_transparency_label\": \"<string>\"\n        }\n      },\n      {\n        \"autodetect\": \"<boolean>\",\n        \"default\": false,\n        \"input_audio_track\": {\n          \"language\": \"<string>\",\n          \"variant\": \"<string>\"\n        },\n        \"kind\": \"captions\",\n        \"label\": \"<string>\",\n        \"srclang\": \"<string>\",\n        \"status\": null,\n        \"url\": \"<string>\",\n        \"use_dictionary\": \"<boolean>\",\n        \"max_chars_per_line\": \"<integer>\",\n        \"max_lines_per_cue\": \"<integer>\",\n        \"diarization_mode\": \"<string>\",\n        \"enable_audio_tags\": \"<boolean>\",\n        \"allow_multilanguage_caption\": \"<boolean>\",\n        \"ai_transparency_label\": \"<string>\",\n        \"polished_transcription\": \"<boolean>\",\n        \"translation_languages\": [\n          {\n            \"srclang\": \"<string>\",\n            \"label\": \"<string>\",\n            \"status\": \"<string>\",\n            \"dubbing\": \"<boolean>\",\n            \"disable_voice_cloning\": \"<boolean>\",\n            \"ai_transparency_label\": \"<string>\",\n            \"ai_transparency_label_dubbing\": \"<string>\"\n          },\n          {\n            \"srclang\": \"<string>\",\n            \"label\": \"<string>\",\n            \"status\": \"<string>\",\n            \"dubbing\": \"<boolean>\",\n            \"disable_voice_cloning\": \"<boolean>\",\n            \"ai_transparency_label\": \"<string>\",\n            \"ai_transparency_label_dubbing\": \"<string>\"\n          }\n        ],\n        \"metadata_optimizer\": {\n          \"language\": \"<string>\",\n          \"translation_request\": {\n            \"languages\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"fields_to_generate\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"skip_review\": \"<boolean>\",\n          \"auto_translate\": \"<boolean>\",\n          \"use_tag_architecture\": \"<boolean>\",\n          \"references\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"character_limits\": {\n            \"key_0\": \"<integer>\"\n          }\n        },\n        \"audio_descriptions\": {\n          \"languages\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"ai_transparency_label\": \"<string>\"\n        }\n      }\n    ],\n    [\n      {\n        \"autodetect\": \"<boolean>\",\n        \"default\": false,\n        \"input_audio_track\": {\n          \"language\": \"<string>\",\n          \"variant\": \"<string>\"\n        },\n        \"kind\": \"captions\",\n        \"label\": \"<string>\",\n        \"srclang\": \"<string>\",\n        \"status\": null,\n        \"url\": \"<string>\",\n        \"use_dictionary\": \"<boolean>\",\n        \"max_chars_per_line\": \"<integer>\",\n        \"max_lines_per_cue\": \"<integer>\",\n        \"diarization_mode\": \"<string>\",\n        \"enable_audio_tags\": \"<boolean>\",\n        \"allow_multilanguage_caption\": \"<boolean>\",\n        \"ai_transparency_label\": \"<string>\",\n        \"polished_transcription\": \"<boolean>\",\n        \"translation_languages\": [\n          {\n            \"srclang\": \"<string>\",\n            \"label\": \"<string>\",\n            \"status\": \"<string>\",\n            \"dubbing\": \"<boolean>\",\n            \"disable_voice_cloning\": \"<boolean>\",\n            \"ai_transparency_label\": \"<string>\",\n            \"ai_transparency_label_dubbing\": \"<string>\"\n          },\n          {\n            \"srclang\": \"<string>\",\n            \"label\": \"<string>\",\n            \"status\": \"<string>\",\n            \"dubbing\": \"<boolean>\",\n            \"disable_voice_cloning\": \"<boolean>\",\n            \"ai_transparency_label\": \"<string>\",\n            \"ai_transparency_label_dubbing\": \"<string>\"\n          }\n        ],\n        \"metadata_optimizer\": {\n          \"language\": \"<string>\",\n          \"translation_request\": {\n            \"languages\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"fields_to_generate\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"skip_review\": \"<boolean>\",\n          \"auto_translate\": \"<boolean>\",\n          \"use_tag_architecture\": \"<boolean>\",\n          \"references\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"character_limits\": {\n            \"key_0\": \"<integer>\",\n            \"key_1\": \"<integer>\"\n          }\n        },\n        \"audio_descriptions\": {\n          \"languages\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"ai_transparency_label\": \"<string>\"\n        }\n      },\n      {\n        \"autodetect\": \"<boolean>\",\n        \"default\": false,\n        \"input_audio_track\": {\n          \"language\": \"<string>\",\n          \"variant\": \"<string>\"\n        },\n        \"kind\": \"captions\",\n        \"label\": \"<string>\",\n        \"srclang\": \"<string>\",\n        \"status\": null,\n        \"url\": \"<string>\",\n        \"use_dictionary\": \"<boolean>\",\n        \"max_chars_per_line\": \"<integer>\",\n        \"max_lines_per_cue\": \"<integer>\",\n        \"diarization_mode\": \"<string>\",\n        \"enable_audio_tags\": \"<boolean>\",\n        \"allow_multilanguage_caption\": \"<boolean>\",\n        \"ai_transparency_label\": \"<string>\",\n        \"polished_transcription\": \"<boolean>\",\n        \"translation_languages\": [\n          {\n            \"srclang\": \"<string>\",\n            \"label\": \"<string>\",\n            \"status\": \"<string>\",\n            \"dubbing\": \"<boolean>\",\n            \"disable_voice_cloning\": \"<boolean>\",\n            \"ai_transparency_label\": \"<string>\",\n            \"ai_transparency_label_dubbing\": \"<string>\"\n          },\n          {\n            \"srclang\": \"<string>\",\n            \"label\": \"<string>\",\n            \"status\": \"<string>\",\n            \"dubbing\": \"<boolean>\",\n            \"disable_voice_cloning\": \"<boolean>\",\n            \"ai_transparency_label\": \"<string>\",\n            \"ai_transparency_label_dubbing\": \"<string>\"\n          }\n        ],\n        \"metadata_optimizer\": {\n          \"language\": \"<string>\",\n          \"translation_request\": {\n            \"languages\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"fields_to_generate\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"skip_review\": \"<boolean>\",\n          \"auto_translate\": \"<boolean>\",\n          \"use_tag_architecture\": \"<boolean>\",\n          \"references\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"character_limits\": {\n            \"key_0\": \"<integer>\",\n            \"key_1\": \"<integer>\"\n          }\n        },\n        \"audio_descriptions\": {\n          \"languages\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"ai_transparency_label\": \"<string>\"\n        }\n      }\n    ]\n  ],\n  \"audio_tracks\": {\n    \"merge_with_existing\": true,\n    \"masters\": [\n      {\n        \"url\": \"<string>\",\n        \"language\": \"<string>\",\n        \"variant\": \"<string>\"\n      },\n      {\n        \"url\": \"<string>\",\n        \"language\": \"<string>\",\n        \"variant\": \"<string>\"\n      }\n    ]\n  },\n  \"images\": [\n    {\n      \"url\": \"<string>\",\n      \"variant\": \"<string>\",\n      \"language\": \"<string>\",\n      \"label\": \"<string>\",\n      \"height\": \"<number>\",\n      \"width\": \"<number>\"\n    },\n    {\n      \"url\": \"<string>\",\n      \"variant\": \"<string>\",\n      \"language\": \"<string>\",\n      \"label\": \"<string>\",\n      \"height\": \"<number>\",\n      \"width\": \"<number>\"\n    }\n  ],\n  \"poster\": {\n    \"url\": \"<string>\",\n    \"height\": \"<number>\",\n    \"width\": \"<number>\"\n  },\n  \"thumbnail\": {\n    \"url\": \"<string>\",\n    \"height\": \"<number>\",\n    \"width\": \"<number>\"\n  },\n  \"capture-images\": \"<boolean>\",\n  \"capture-images-at\": \"<number>\",\n  \"callbacks\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6c9408c7-70b2-48d5-8f10-fc2e075f8dc2",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "videos",
+                    ":video_id",
+                    "ingest-requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "video_id",
+                      "description": "(Required) Video Cloud video ID; if this is a new video ingest, the ID will be the one returned by the Create Video request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) 'Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/guides/getting-access-tokens.html))'",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"master\": {\n    \"url\": \"https://support.brightcove.com/test-assets/audio/celtic_lullaby.m4a\",\n    \"use_archived_master\": false,\n    \"late_binding_type\": \"<string>\",\n    \"audio_tracks\": [\n      {\n        \"language\": \"en\",\n        \"variant\": \"main\"\n      }\n    ]\n  },\n  \"forensic_watermarking\": true,\n  \"forensic_watermarking_stub_mode\": true,\n  \"profile\": \"multi-platform-standard-static\",\n  \"priority\": \"<string>\",\n  \"text_tracks\": [\n    {\n      \"url\": \"<string>\",\n      \"srclang\": \"<string>\",\n      \"kind\": \"captions\",\n      \"label\": \"<string>\",\n      \"default\": false,\n      \"status\": null,\n      \"embed_closed_caption\": false\n    },\n    {\n      \"url\": \"<string>\",\n      \"srclang\": \"<string>\",\n      \"kind\": \"captions\",\n      \"label\": \"<string>\",\n      \"default\": false,\n      \"status\": null,\n      \"embed_closed_caption\": false\n    }\n  ],\n  \"transcriptions\": [\n    [\n      {\n        \"srclang\": \"en-US\",\n        \"kind\": \"transcripts\",\n        \"label\": \"en-US\",\n        \"status\": \"published\",\n        \"default\": true\n      }\n    ],\n    [\n      {\n        \"srclang\": \"en-US\",\n        \"kind\": \"transcripts\",\n        \"label\": \"en-US\",\n        \"status\": \"published\",\n        \"default\": true\n      }\n    ]\n  ],\n  \"audio_tracks\": {\n    \"merge_with_existing\": true,\n    \"masters\": [\n      {\n        \"url\": \"https://support.brightcove.com/test-assets/audio/celtic_lullaby.m4a\",\n        \"language\": \"en\",\n        \"variant\": \"alternate\"\n      },\n      {\n        \"url\": \"https://support.brightcove.com/test-assets/audio/audio1.m4a\",\n        \"language\": \"en\",\n        \"variant\": \"commentary\"\n      }\n    ]\n  },\n  \"images\": [\n    {\n      \"url\": \"<string>\",\n      \"variant\": \"<string>\",\n      \"language\": \"<string>\",\n      \"label\": \"<string>\",\n      \"height\": \"<number>\",\n      \"width\": \"<number>\"\n    },\n    {\n      \"url\": \"<string>\",\n      \"variant\": \"<string>\",\n      \"language\": \"<string>\",\n      \"label\": \"<string>\",\n      \"height\": \"<number>\",\n      \"width\": \"<number>\"\n    }\n  ],\n  \"poster\": {\n    \"url\": \"https://support.brightcove.com/test-assets/images/celtic-lullaby-large.png\",\n    \"width\": 1400,\n    \"height\": 1400\n  },\n  \"thumbnail\": {\n    \"url\": \"https://support.brightcove.com/test-assets/images/celtic-lullaby-large.png\",\n    \"width\": 160,\n    \"height\": 90\n  },\n  \"capture-images\": \"<boolean>\",\n  \"capture-images-at\": 30.5,\n  \"callbacks\": [\n    \"https://solutions.brightcove.com/bcls/di-api/di-callbacks.php\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d311f2d9-f781-411c-9200-a7dd55561ab6",
+              "name": "PROFILE: Unable to find profile by name\nNOT_SUBMITTED: Unable to submit job, please try again later\nNO_SUCH_VIDEO: Unable to find the referenced video\nNO_SOURCE: Unable to find a source to use\nCDN_CREDENTIALS: Unable to fetch CDN credentials\nBAD_CALLBACKS: Callbacks were not in expected format\nBAD_REQUEST: Unable to parse request body.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "videos",
+                    ":video_id",
+                    "ingest-requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "video_id",
+                      "description": "(Required) Video Cloud video ID; if this is a new video ingest, the ID will be the one returned by the Create Video request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) 'Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/guides/getting-access-tokens.html))'",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"master\": {\n    \"url\": \"https://support.brightcove.com/test-assets/audio/celtic_lullaby.m4a\",\n    \"use_archived_master\": false,\n    \"late_binding_type\": \"<string>\",\n    \"audio_tracks\": [\n      {\n        \"language\": \"en\",\n        \"variant\": \"main\"\n      }\n    ]\n  },\n  \"forensic_watermarking\": true,\n  \"forensic_watermarking_stub_mode\": true,\n  \"profile\": \"multi-platform-standard-static\",\n  \"priority\": \"<string>\",\n  \"text_tracks\": [\n    {\n      \"url\": \"<string>\",\n      \"srclang\": \"<string>\",\n      \"kind\": \"captions\",\n      \"label\": \"<string>\",\n      \"default\": false,\n      \"status\": null,\n      \"embed_closed_caption\": false\n    },\n    {\n      \"url\": \"<string>\",\n      \"srclang\": \"<string>\",\n      \"kind\": \"captions\",\n      \"label\": \"<string>\",\n      \"default\": false,\n      \"status\": null,\n      \"embed_closed_caption\": false\n    }\n  ],\n  \"transcriptions\": [\n    [\n      {\n        \"srclang\": \"en-US\",\n        \"kind\": \"transcripts\",\n        \"label\": \"en-US\",\n        \"status\": \"published\",\n        \"default\": true\n      }\n    ],\n    [\n      {\n        \"srclang\": \"en-US\",\n        \"kind\": \"transcripts\",\n        \"label\": \"en-US\",\n        \"status\": \"published\",\n        \"default\": true\n      }\n    ]\n  ],\n  \"audio_tracks\": {\n    \"merge_with_existing\": true,\n    \"masters\": [\n      {\n        \"url\": \"https://support.brightcove.com/test-assets/audio/celtic_lullaby.m4a\",\n        \"language\": \"en\",\n        \"variant\": \"alternate\"\n      },\n      {\n        \"url\": \"https://support.brightcove.com/test-assets/audio/audio1.m4a\",\n        \"language\": \"en\",\n        \"variant\": \"commentary\"\n      }\n    ]\n  },\n  \"images\": [\n    {\n      \"url\": \"<string>\",\n      \"variant\": \"<string>\",\n      \"language\": \"<string>\",\n      \"label\": \"<string>\",\n      \"height\": \"<number>\",\n      \"width\": \"<number>\"\n    },\n    {\n      \"url\": \"<string>\",\n      \"variant\": \"<string>\",\n      \"language\": \"<string>\",\n      \"label\": \"<string>\",\n      \"height\": \"<number>\",\n      \"width\": \"<number>\"\n    }\n  ],\n  \"poster\": {\n    \"url\": \"https://support.brightcove.com/test-assets/images/celtic-lullaby-large.png\",\n    \"width\": 1400,\n    \"height\": 1400\n  },\n  \"thumbnail\": {\n    \"url\": \"https://support.brightcove.com/test-assets/images/celtic-lullaby-large.png\",\n    \"width\": 160,\n    \"height\": 90\n  },\n  \"capture-images\": \"<boolean>\",\n  \"capture-images-at\": 30.5,\n  \"callbacks\": [\n    \"https://solutions.brightcove.com/bcls/di-api/di-callbacks.php\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8bea59a2-a732-4500-8cb9-fbdf77917124",
+              "name": "UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "videos",
+                    ":video_id",
+                    "ingest-requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "video_id",
+                      "description": "(Required) Video Cloud video ID; if this is a new video ingest, the ID will be the one returned by the Create Video request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) 'Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/guides/getting-access-tokens.html))'",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"master\": {\n    \"url\": \"https://support.brightcove.com/test-assets/audio/celtic_lullaby.m4a\",\n    \"use_archived_master\": false,\n    \"late_binding_type\": \"<string>\",\n    \"audio_tracks\": [\n      {\n        \"language\": \"en\",\n        \"variant\": \"main\"\n      }\n    ]\n  },\n  \"forensic_watermarking\": true,\n  \"forensic_watermarking_stub_mode\": true,\n  \"profile\": \"multi-platform-standard-static\",\n  \"priority\": \"<string>\",\n  \"text_tracks\": [\n    {\n      \"url\": \"<string>\",\n      \"srclang\": \"<string>\",\n      \"kind\": \"captions\",\n      \"label\": \"<string>\",\n      \"default\": false,\n      \"status\": null,\n      \"embed_closed_caption\": false\n    },\n    {\n      \"url\": \"<string>\",\n      \"srclang\": \"<string>\",\n      \"kind\": \"captions\",\n      \"label\": \"<string>\",\n      \"default\": false,\n      \"status\": null,\n      \"embed_closed_caption\": false\n    }\n  ],\n  \"transcriptions\": [\n    [\n      {\n        \"srclang\": \"en-US\",\n        \"kind\": \"transcripts\",\n        \"label\": \"en-US\",\n        \"status\": \"published\",\n        \"default\": true\n      }\n    ],\n    [\n      {\n        \"srclang\": \"en-US\",\n        \"kind\": \"transcripts\",\n        \"label\": \"en-US\",\n        \"status\": \"published\",\n        \"default\": true\n      }\n    ]\n  ],\n  \"audio_tracks\": {\n    \"merge_with_existing\": true,\n    \"masters\": [\n      {\n        \"url\": \"https://support.brightcove.com/test-assets/audio/celtic_lullaby.m4a\",\n        \"language\": \"en\",\n        \"variant\": \"alternate\"\n      },\n      {\n        \"url\": \"https://support.brightcove.com/test-assets/audio/audio1.m4a\",\n        \"language\": \"en\",\n        \"variant\": \"commentary\"\n      }\n    ]\n  },\n  \"images\": [\n    {\n      \"url\": \"<string>\",\n      \"variant\": \"<string>\",\n      \"language\": \"<string>\",\n      \"label\": \"<string>\",\n      \"height\": \"<number>\",\n      \"width\": \"<number>\"\n    },\n    {\n      \"url\": \"<string>\",\n      \"variant\": \"<string>\",\n      \"language\": \"<string>\",\n      \"label\": \"<string>\",\n      \"height\": \"<number>\",\n      \"width\": \"<number>\"\n    }\n  ],\n  \"poster\": {\n    \"url\": \"https://support.brightcove.com/test-assets/images/celtic-lullaby-large.png\",\n    \"width\": 1400,\n    \"height\": 1400\n  },\n  \"thumbnail\": {\n    \"url\": \"https://support.brightcove.com/test-assets/images/celtic-lullaby-large.png\",\n    \"width\": 160,\n    \"height\": 90\n  },\n  \"capture-images\": \"<boolean>\",\n  \"capture-images-at\": 30.5,\n  \"callbacks\": [\n    \"https://solutions.brightcove.com/bcls/di-api/di-callbacks.php\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cf2037b1-527f-4db3-8029-24732822756f",
+              "name": "DYNAMIC_DELIVERY_NOT_ALLOWED: This account is not enabled for Dynamic Delivery, but a Dynamic Delivery profile was specified.\nCONTEXT_AWARE_ENCODING_NOT_ALLOWED: This account is not enabled for Context Aware Encoding, but a Context Aware Encoding profile was specified.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "videos",
+                    ":video_id",
+                    "ingest-requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "video_id",
+                      "description": "(Required) Video Cloud video ID; if this is a new video ingest, the ID will be the one returned by the Create Video request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) 'Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/guides/getting-access-tokens.html))'",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"master\": {\n    \"url\": \"https://support.brightcove.com/test-assets/audio/celtic_lullaby.m4a\",\n    \"use_archived_master\": false,\n    \"late_binding_type\": \"<string>\",\n    \"audio_tracks\": [\n      {\n        \"language\": \"en\",\n        \"variant\": \"main\"\n      }\n    ]\n  },\n  \"forensic_watermarking\": true,\n  \"forensic_watermarking_stub_mode\": true,\n  \"profile\": \"multi-platform-standard-static\",\n  \"priority\": \"<string>\",\n  \"text_tracks\": [\n    {\n      \"url\": \"<string>\",\n      \"srclang\": \"<string>\",\n      \"kind\": \"captions\",\n      \"label\": \"<string>\",\n      \"default\": false,\n      \"status\": null,\n      \"embed_closed_caption\": false\n    },\n    {\n      \"url\": \"<string>\",\n      \"srclang\": \"<string>\",\n      \"kind\": \"captions\",\n      \"label\": \"<string>\",\n      \"default\": false,\n      \"status\": null,\n      \"embed_closed_caption\": false\n    }\n  ],\n  \"transcriptions\": [\n    [\n      {\n        \"srclang\": \"en-US\",\n        \"kind\": \"transcripts\",\n        \"label\": \"en-US\",\n        \"status\": \"published\",\n        \"default\": true\n      }\n    ],\n    [\n      {\n        \"srclang\": \"en-US\",\n        \"kind\": \"transcripts\",\n        \"label\": \"en-US\",\n        \"status\": \"published\",\n        \"default\": true\n      }\n    ]\n  ],\n  \"audio_tracks\": {\n    \"merge_with_existing\": true,\n    \"masters\": [\n      {\n        \"url\": \"https://support.brightcove.com/test-assets/audio/celtic_lullaby.m4a\",\n        \"language\": \"en\",\n        \"variant\": \"alternate\"\n      },\n      {\n        \"url\": \"https://support.brightcove.com/test-assets/audio/audio1.m4a\",\n        \"language\": \"en\",\n        \"variant\": \"commentary\"\n      }\n    ]\n  },\n  \"images\": [\n    {\n      \"url\": \"<string>\",\n      \"variant\": \"<string>\",\n      \"language\": \"<string>\",\n      \"label\": \"<string>\",\n      \"height\": \"<number>\",\n      \"width\": \"<number>\"\n    },\n    {\n      \"url\": \"<string>\",\n      \"variant\": \"<string>\",\n      \"language\": \"<string>\",\n      \"label\": \"<string>\",\n      \"height\": \"<number>\",\n      \"width\": \"<number>\"\n    }\n  ],\n  \"poster\": {\n    \"url\": \"https://support.brightcove.com/test-assets/images/celtic-lullaby-large.png\",\n    \"width\": 1400,\n    \"height\": 1400\n  },\n  \"thumbnail\": {\n    \"url\": \"https://support.brightcove.com/test-assets/images/celtic-lullaby-large.png\",\n    \"width\": 160,\n    \"height\": 90\n  },\n  \"capture-images\": \"<boolean>\",\n  \"capture-images-at\": 30.5,\n  \"callbacks\": [\n    \"https://solutions.brightcove.com/bcls/di-api/di-callbacks.php\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5d4ed5b5-c924-46e9-9421-494dcecc1cb4",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "videos",
+                    ":video_id",
+                    "ingest-requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "video_id",
+                      "description": "(Required) Video Cloud video ID; if this is a new video ingest, the ID will be the one returned by the Create Video request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) 'Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/guides/getting-access-tokens.html))'",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"master\": {\n    \"url\": \"https://support.brightcove.com/test-assets/audio/celtic_lullaby.m4a\",\n    \"use_archived_master\": false,\n    \"late_binding_type\": \"<string>\",\n    \"audio_tracks\": [\n      {\n        \"language\": \"en\",\n        \"variant\": \"main\"\n      }\n    ]\n  },\n  \"forensic_watermarking\": true,\n  \"forensic_watermarking_stub_mode\": true,\n  \"profile\": \"multi-platform-standard-static\",\n  \"priority\": \"<string>\",\n  \"text_tracks\": [\n    {\n      \"url\": \"<string>\",\n      \"srclang\": \"<string>\",\n      \"kind\": \"captions\",\n      \"label\": \"<string>\",\n      \"default\": false,\n      \"status\": null,\n      \"embed_closed_caption\": false\n    },\n    {\n      \"url\": \"<string>\",\n      \"srclang\": \"<string>\",\n      \"kind\": \"captions\",\n      \"label\": \"<string>\",\n      \"default\": false,\n      \"status\": null,\n      \"embed_closed_caption\": false\n    }\n  ],\n  \"transcriptions\": [\n    [\n      {\n        \"srclang\": \"en-US\",\n        \"kind\": \"transcripts\",\n        \"label\": \"en-US\",\n        \"status\": \"published\",\n        \"default\": true\n      }\n    ],\n    [\n      {\n        \"srclang\": \"en-US\",\n        \"kind\": \"transcripts\",\n        \"label\": \"en-US\",\n        \"status\": \"published\",\n        \"default\": true\n      }\n    ]\n  ],\n  \"audio_tracks\": {\n    \"merge_with_existing\": true,\n    \"masters\": [\n      {\n        \"url\": \"https://support.brightcove.com/test-assets/audio/celtic_lullaby.m4a\",\n        \"language\": \"en\",\n        \"variant\": \"alternate\"\n      },\n      {\n        \"url\": \"https://support.brightcove.com/test-assets/audio/audio1.m4a\",\n        \"language\": \"en\",\n        \"variant\": \"commentary\"\n      }\n    ]\n  },\n  \"images\": [\n    {\n      \"url\": \"<string>\",\n      \"variant\": \"<string>\",\n      \"language\": \"<string>\",\n      \"label\": \"<string>\",\n      \"height\": \"<number>\",\n      \"width\": \"<number>\"\n    },\n    {\n      \"url\": \"<string>\",\n      \"variant\": \"<string>\",\n      \"language\": \"<string>\",\n      \"label\": \"<string>\",\n      \"height\": \"<number>\",\n      \"width\": \"<number>\"\n    }\n  ],\n  \"poster\": {\n    \"url\": \"https://support.brightcove.com/test-assets/images/celtic-lullaby-large.png\",\n    \"width\": 1400,\n    \"height\": 1400\n  },\n  \"thumbnail\": {\n    \"url\": \"https://support.brightcove.com/test-assets/images/celtic-lullaby-large.png\",\n    \"width\": 160,\n    \"height\": 90\n  },\n  \"capture-images\": \"<boolean>\",\n  \"capture-images-at\": 30.5,\n  \"callbacks\": [\n    \"https://solutions.brightcove.com/bcls/di-api/di-callbacks.php\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cf8ba4e1-b2d2-4a38-9fd9-bf39306d9bc2",
+              "name": "[One of the following:]\n* MALFORMED_SOURCE_URL: source url is malformed.\n\n* BAD_PROTOCOL_SOURCE_URL: source url uses a unsupported protocol.\n\n* EXCEED_MAXIMUM_VTT_SOURCES: vtt sources exceed the maximum size.\n\n* INVALID_VTT_KIND: vtt kind is invalid.\n\n* CONSTRAINT_VIOLATION: capture-image is not allowed if an image\nsource is provided.\n\n* UNPROCESSABLE_ENTITY: request data contains some unprocessable\nentity.\n\n* INPUT_SIZE_EXCEEDED: Unprocessable content.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "videos",
+                    ":video_id",
+                    "ingest-requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "video_id",
+                      "description": "(Required) Video Cloud video ID; if this is a new video ingest, the ID will be the one returned by the Create Video request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) 'Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/guides/getting-access-tokens.html))'",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"master\": {\n    \"url\": \"https://support.brightcove.com/test-assets/audio/celtic_lullaby.m4a\",\n    \"use_archived_master\": false,\n    \"late_binding_type\": \"<string>\",\n    \"audio_tracks\": [\n      {\n        \"language\": \"en\",\n        \"variant\": \"main\"\n      }\n    ]\n  },\n  \"forensic_watermarking\": true,\n  \"forensic_watermarking_stub_mode\": true,\n  \"profile\": \"multi-platform-standard-static\",\n  \"priority\": \"<string>\",\n  \"text_tracks\": [\n    {\n      \"url\": \"<string>\",\n      \"srclang\": \"<string>\",\n      \"kind\": \"captions\",\n      \"label\": \"<string>\",\n      \"default\": false,\n      \"status\": null,\n      \"embed_closed_caption\": false\n    },\n    {\n      \"url\": \"<string>\",\n      \"srclang\": \"<string>\",\n      \"kind\": \"captions\",\n      \"label\": \"<string>\",\n      \"default\": false,\n      \"status\": null,\n      \"embed_closed_caption\": false\n    }\n  ],\n  \"transcriptions\": [\n    [\n      {\n        \"srclang\": \"en-US\",\n        \"kind\": \"transcripts\",\n        \"label\": \"en-US\",\n        \"status\": \"published\",\n        \"default\": true\n      }\n    ],\n    [\n      {\n        \"srclang\": \"en-US\",\n        \"kind\": \"transcripts\",\n        \"label\": \"en-US\",\n        \"status\": \"published\",\n        \"default\": true\n      }\n    ]\n  ],\n  \"audio_tracks\": {\n    \"merge_with_existing\": true,\n    \"masters\": [\n      {\n        \"url\": \"https://support.brightcove.com/test-assets/audio/celtic_lullaby.m4a\",\n        \"language\": \"en\",\n        \"variant\": \"alternate\"\n      },\n      {\n        \"url\": \"https://support.brightcove.com/test-assets/audio/audio1.m4a\",\n        \"language\": \"en\",\n        \"variant\": \"commentary\"\n      }\n    ]\n  },\n  \"images\": [\n    {\n      \"url\": \"<string>\",\n      \"variant\": \"<string>\",\n      \"language\": \"<string>\",\n      \"label\": \"<string>\",\n      \"height\": \"<number>\",\n      \"width\": \"<number>\"\n    },\n    {\n      \"url\": \"<string>\",\n      \"variant\": \"<string>\",\n      \"language\": \"<string>\",\n      \"label\": \"<string>\",\n      \"height\": \"<number>\",\n      \"width\": \"<number>\"\n    }\n  ],\n  \"poster\": {\n    \"url\": \"https://support.brightcove.com/test-assets/images/celtic-lullaby-large.png\",\n    \"width\": 1400,\n    \"height\": 1400\n  },\n  \"thumbnail\": {\n    \"url\": \"https://support.brightcove.com/test-assets/images/celtic-lullaby-large.png\",\n    \"width\": 160,\n    \"height\": 90\n  },\n  \"capture-images\": \"<boolean>\",\n  \"capture-images-at\": 30.5,\n  \"callbacks\": [\n    \"https://solutions.brightcove.com/bcls/di-api/di-callbacks.php\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1bfca1e7-042c-4af9-b48e-af6627f11ffd",
+              "name": "RATE_LIMIT_EXCEEDED: Dynamic Ingest job not created. Reduce the number of concurrent jobs for this account before trying again. This error has been logged",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "videos",
+                    ":video_id",
+                    "ingest-requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "video_id",
+                      "description": "(Required) Video Cloud video ID; if this is a new video ingest, the ID will be the one returned by the Create Video request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) 'Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/guides/getting-access-tokens.html))'",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"master\": {\n    \"url\": \"https://support.brightcove.com/test-assets/audio/celtic_lullaby.m4a\",\n    \"use_archived_master\": false,\n    \"late_binding_type\": \"<string>\",\n    \"audio_tracks\": [\n      {\n        \"language\": \"en\",\n        \"variant\": \"main\"\n      }\n    ]\n  },\n  \"forensic_watermarking\": true,\n  \"forensic_watermarking_stub_mode\": true,\n  \"profile\": \"multi-platform-standard-static\",\n  \"priority\": \"<string>\",\n  \"text_tracks\": [\n    {\n      \"url\": \"<string>\",\n      \"srclang\": \"<string>\",\n      \"kind\": \"captions\",\n      \"label\": \"<string>\",\n      \"default\": false,\n      \"status\": null,\n      \"embed_closed_caption\": false\n    },\n    {\n      \"url\": \"<string>\",\n      \"srclang\": \"<string>\",\n      \"kind\": \"captions\",\n      \"label\": \"<string>\",\n      \"default\": false,\n      \"status\": null,\n      \"embed_closed_caption\": false\n    }\n  ],\n  \"transcriptions\": [\n    [\n      {\n        \"srclang\": \"en-US\",\n        \"kind\": \"transcripts\",\n        \"label\": \"en-US\",\n        \"status\": \"published\",\n        \"default\": true\n      }\n    ],\n    [\n      {\n        \"srclang\": \"en-US\",\n        \"kind\": \"transcripts\",\n        \"label\": \"en-US\",\n        \"status\": \"published\",\n        \"default\": true\n      }\n    ]\n  ],\n  \"audio_tracks\": {\n    \"merge_with_existing\": true,\n    \"masters\": [\n      {\n        \"url\": \"https://support.brightcove.com/test-assets/audio/celtic_lullaby.m4a\",\n        \"language\": \"en\",\n        \"variant\": \"alternate\"\n      },\n      {\n        \"url\": \"https://support.brightcove.com/test-assets/audio/audio1.m4a\",\n        \"language\": \"en\",\n        \"variant\": \"commentary\"\n      }\n    ]\n  },\n  \"images\": [\n    {\n      \"url\": \"<string>\",\n      \"variant\": \"<string>\",\n      \"language\": \"<string>\",\n      \"label\": \"<string>\",\n      \"height\": \"<number>\",\n      \"width\": \"<number>\"\n    },\n    {\n      \"url\": \"<string>\",\n      \"variant\": \"<string>\",\n      \"language\": \"<string>\",\n      \"label\": \"<string>\",\n      \"height\": \"<number>\",\n      \"width\": \"<number>\"\n    }\n  ],\n  \"poster\": {\n    \"url\": \"https://support.brightcove.com/test-assets/images/celtic-lullaby-large.png\",\n    \"width\": 1400,\n    \"height\": 1400\n  },\n  \"thumbnail\": {\n    \"url\": \"https://support.brightcove.com/test-assets/images/celtic-lullaby-large.png\",\n    \"width\": 160,\n    \"height\": 90\n  },\n  \"capture-images\": \"<boolean>\",\n  \"capture-images-at\": 30.5,\n  \"callbacks\": [\n    \"https://solutions.brightcove.com/bcls/di-api/di-callbacks.php\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6b79c15a-9710-4cce-88f8-1f1d6bf11b90",
+              "name": "[One of the following:]\n* SUBMISSION_FAILURE: Unable to submit job please try again later.\n* INTERNAL_ERROR: Internal error, please try again later",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "videos",
+                    ":video_id",
+                    "ingest-requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "video_id",
+                      "description": "(Required) Video Cloud video ID; if this is a new video ingest, the ID will be the one returned by the Create Video request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) 'Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/guides/getting-access-tokens.html))'",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"master\": {\n    \"url\": \"https://support.brightcove.com/test-assets/audio/celtic_lullaby.m4a\",\n    \"use_archived_master\": false,\n    \"late_binding_type\": \"<string>\",\n    \"audio_tracks\": [\n      {\n        \"language\": \"en\",\n        \"variant\": \"main\"\n      }\n    ]\n  },\n  \"forensic_watermarking\": true,\n  \"forensic_watermarking_stub_mode\": true,\n  \"profile\": \"multi-platform-standard-static\",\n  \"priority\": \"<string>\",\n  \"text_tracks\": [\n    {\n      \"url\": \"<string>\",\n      \"srclang\": \"<string>\",\n      \"kind\": \"captions\",\n      \"label\": \"<string>\",\n      \"default\": false,\n      \"status\": null,\n      \"embed_closed_caption\": false\n    },\n    {\n      \"url\": \"<string>\",\n      \"srclang\": \"<string>\",\n      \"kind\": \"captions\",\n      \"label\": \"<string>\",\n      \"default\": false,\n      \"status\": null,\n      \"embed_closed_caption\": false\n    }\n  ],\n  \"transcriptions\": [\n    [\n      {\n        \"srclang\": \"en-US\",\n        \"kind\": \"transcripts\",\n        \"label\": \"en-US\",\n        \"status\": \"published\",\n        \"default\": true\n      }\n    ],\n    [\n      {\n        \"srclang\": \"en-US\",\n        \"kind\": \"transcripts\",\n        \"label\": \"en-US\",\n        \"status\": \"published\",\n        \"default\": true\n      }\n    ]\n  ],\n  \"audio_tracks\": {\n    \"merge_with_existing\": true,\n    \"masters\": [\n      {\n        \"url\": \"https://support.brightcove.com/test-assets/audio/celtic_lullaby.m4a\",\n        \"language\": \"en\",\n        \"variant\": \"alternate\"\n      },\n      {\n        \"url\": \"https://support.brightcove.com/test-assets/audio/audio1.m4a\",\n        \"language\": \"en\",\n        \"variant\": \"commentary\"\n      }\n    ]\n  },\n  \"images\": [\n    {\n      \"url\": \"<string>\",\n      \"variant\": \"<string>\",\n      \"language\": \"<string>\",\n      \"label\": \"<string>\",\n      \"height\": \"<number>\",\n      \"width\": \"<number>\"\n    },\n    {\n      \"url\": \"<string>\",\n      \"variant\": \"<string>\",\n      \"language\": \"<string>\",\n      \"label\": \"<string>\",\n      \"height\": \"<number>\",\n      \"width\": \"<number>\"\n    }\n  ],\n  \"poster\": {\n    \"url\": \"https://support.brightcove.com/test-assets/images/celtic-lullaby-large.png\",\n    \"width\": 1400,\n    \"height\": 1400\n  },\n  \"thumbnail\": {\n    \"url\": \"https://support.brightcove.com/test-assets/images/celtic-lullaby-large.png\",\n    \"width\": 160,\n    \"height\": 90\n  },\n  \"capture-images\": \"<boolean>\",\n  \"capture-images-at\": 30.5,\n  \"callbacks\": [\n    \"https://solutions.brightcove.com/bcls/di-api/di-callbacks.php\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5e775ff6-e5a2-452c-be97-a7463add391e",
+          "name": "Get Temporary S3 URLs to Upload Videos",
+          "request": {
+            "name": "Get Temporary S3 URLs to Upload Videos",
+            "description": {
+              "content": "Get temporary S3 URLs to upload source files for ingestion into Video Cloud. See Source File Upload for more information. NOTE that before you ingest a new video, you must first make a Create Video request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":account_id",
+                "videos",
+                ":video_id",
+                "upload-urls",
+                ":source_name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "video_id",
+                  "description": "(Required) Video Cloud video ID; if this is a new video ingest, the ID will be the one returned by the Create Video request"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "source_name",
+                  "description": "(Required) the video source filename - the name should not contain any URL-reserved characters such as ?, &amp;, # or spaces"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "abf9583d-d186-4bc3-b71c-535e0938e5fc",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "videos",
+                    ":video_id",
+                    "upload-urls",
+                    ":source_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "video_id",
+                      "description": "(Required) Video Cloud video ID; if this is a new video ingest, the ID will be the one returned by the Create Video request"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "source_name",
+                      "description": "(Required) the video source filename - the name should not contain any URL-reserved characters such as ?, &amp;, # or spaces"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) 'Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/guides/getting-access-tokens.html))'",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"bucket\": \"string\",\n  \"object_key\": \"string\",\n  \"access_key_id\": \"string\",\n  \"secret_access_key\": \"string\",\n  \"session_token\": \"string\",\n  \"SignedUrl\": \"string\",\n  \"ApiRequestUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87dfc5a3-3557-4cf3-b322-b9d58276b65f",
+              "name": "UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "videos",
+                    ":video_id",
+                    "upload-urls",
+                    ":source_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "video_id",
+                      "description": "(Required) Video Cloud video ID; if this is a new video ingest, the ID will be the one returned by the Create Video request"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "source_name",
+                      "description": "(Required) the video source filename - the name should not contain any URL-reserved characters such as ?, &amp;, # or spaces"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) 'Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/guides/getting-access-tokens.html))'",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cda89d28-4555-4c88-a3c9-ba6241a88f0d",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "videos",
+                    ":video_id",
+                    "upload-urls",
+                    ":source_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "video_id",
+                      "description": "(Required) Video Cloud video ID; if this is a new video ingest, the ID will be the one returned by the Create Video request"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "source_name",
+                      "description": "(Required) the video source filename - the name should not contain any URL-reserved characters such as ?, &amp;, # or spaces"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) 'Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/guides/getting-access-tokens.html))'",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9fb0f661-f3f7-4eeb-b250-79df32a9a0eb",
+              "name": "RATE_LIMIT_EXCEEDED: Dynamic Ingest job not created. Reduce the number of concurrent jobs for this account before trying again. This error has been logged",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "videos",
+                    ":video_id",
+                    "upload-urls",
+                    ":source_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "video_id",
+                      "description": "(Required) Video Cloud video ID; if this is a new video ingest, the ID will be the one returned by the Create Video request"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "source_name",
+                      "description": "(Required) the video source filename - the name should not contain any URL-reserved characters such as ?, &amp;, # or spaces"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) 'Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/guides/getting-access-tokens.html))'",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d546dd0a-bd29-464c-a369-71eaf2cbee73",
+              "name": "INTERNAL_ERROR: Internal error, please try again later ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "videos",
+                    ":video_id",
+                    "upload-urls",
+                    ":source_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "video_id",
+                      "description": "(Required) Video Cloud video ID; if this is a new video ingest, the ID will be the one returned by the Create Video request"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "source_name",
+                      "description": "(Required) the video source filename - the name should not contain any URL-reserved characters such as ?, &amp;, # or spaces"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) 'Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/guides/getting-access-tokens.html))'",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://analytics.api.brightcove.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a2a6013c-f8d9-489d-b3c6-812d775150dc",
+    "name": "Brightcove Analytics API Reference Access Tokens Ingest API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com",
+      "type": "text/plain"
+    }
+  }
+}

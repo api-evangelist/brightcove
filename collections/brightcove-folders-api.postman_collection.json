@@ -1,0 +1,4898 @@
+{
+  "item": [
+    {
+      "id": "3caa9e69-19d5-4159-8263-5775316f71e4",
+      "name": "Folders",
+      "description": {
+        "content": "Operations for managing folders to organize your videos.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ee55bcf1-eadd-40af-bb91-099a7d5c1a99",
+          "name": "Get Folders",
+          "request": {
+            "name": "Get Folders",
+            "description": {
+              "content": "Gets list of folders for the account ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":account_id",
+                "folders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f051c408-7a19-49b6-b69d-52d7b10b9f26",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_id\": \"string\",\n  \"created_at\": \"2017-11-23 19:53:59.687000+00:00\",\n  \"id\": \"5a17275782aca45b631295f9\",\n  \"name\": \"birds\",\n  \"updated_at\": \"2017-11-23 20:06:24.537000+00:00\",\n  \"video_count\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "090b29b6-bfe3-4afc-b28d-d31e154beebd",
+              "name": "UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "962308d7-f631-457f-ade0-9fbad00971d8",
+              "name": "NOT_AVAILABLE: The resource you are requesting is temporarily unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f6018779-5517-483a-be79-f471852c74cd",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0c654943-19ed-4376-8200-2923715d50e1",
+              "name": "METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c459c146-df94-4e9d-9e48-e61cd4d80e13",
+              "name": "TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a26fba60-a018-4473-8102-eaabe94ac8d3",
+              "name": "UNKNOWN: Issue in Brightcove system; try again later.\nTIMEOUT: Server likely too busy; try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4e1786d9-21a4-4b71-a8f3-5f4e2c25eb0e",
+          "name": "Create Folder",
+          "request": {
+            "name": "Create Folder",
+            "description": {
+              "content": "Create a new folder for the account - **note** that there is a limit of 1000 folders per account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":account_id",
+                "folders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "80a3d8d9-b18b-4c27-9aab-e67187fad276",
+              "name": "Folder created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_id\": \"string\",\n  \"created_at\": \"2017-11-23 19:53:59.687000+00:00\",\n  \"id\": \"5a17275782aca45b631295f9\",\n  \"name\": \"birds\",\n  \"updated_at\": \"2017-11-23 20:06:24.537000+00:00\",\n  \"video_count\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98cbac16-6230-41cc-b694-0294dfb4746b",
+              "name": "UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "362a0baf-8ce1-460e-acdb-6a1231be0a64",
+              "name": "NOT_AVAILABLE: The resource you are requesting is temporarily unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c45f4b54-e960-4116-9781-b8b7203f06be",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "11c2d485-f52b-4455-9e65-8e0ced680ef4",
+              "name": "METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a6265391-fa7a-4c9d-a31e-ff1addc02427",
+              "name": "MAXIMUM_FOLDER_COUNT_REACHED: You have exceeded the maximum number of folders",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ec686b91-ab67-44a3-a9c3-a7919a48a746",
+              "name": "TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4beaab68-7aa8-4605-a237-a03e9e12253a",
+              "name": "UNKNOWN: Issue in Brightcove system; try again later.\nTIMEOUT: Server likely too busy; try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf4f4b2c-afd1-4903-a850-915a9f640602",
+          "name": "Get Folder Information",
+          "request": {
+            "name": "Get Folder Information",
+            "description": {
+              "content": "Gets information about a folder ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":account_id",
+                "folders",
+                ":folder_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "folder_id",
+                  "description": "(Required) Folder ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e5477f72-9fa5-4ede-b5f4-ae73d34fbf8c",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) Folder ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"account_id\": \"string\",\n    \"created_at\": \"2017-11-23 19:53:59.687000+00:00\",\n    \"id\": \"5a17275782aca45b631295f9\",\n    \"name\": \"birds\",\n    \"updated_at\": \"2017-11-23 20:06:24.537000+00:00\",\n    \"video_count\": \"string\"\n  },\n  {\n    \"account_id\": \"string\",\n    \"created_at\": \"2017-11-23 19:53:59.687000+00:00\",\n    \"id\": \"5a17275782aca45b631295f9\",\n    \"name\": \"birds\",\n    \"updated_at\": \"2017-11-23 20:06:24.537000+00:00\",\n    \"video_count\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8e65a7c4-7f71-411c-b76a-67e0d1c70d16",
+              "name": "UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) Folder ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "783e38dc-4601-472d-a976-507964c80b95",
+              "name": "NOT_AVAILABLE: The resource you are requesting is temporarily unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) Folder ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0f730a8a-60c4-4d40-be5f-887fe811bce2",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) Folder ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7a7249fc-41ad-41c0-88d3-ea610845b2f0",
+              "name": "METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) Folder ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3291c504-314e-4120-87b0-5f301b9e43a5",
+              "name": "TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) Folder ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c74aad7b-9a4e-41f5-8570-d55e20d164da",
+              "name": "UNKNOWN: Issue in Brightcove system; try again later.\nTIMEOUT: Server likely too busy; try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) Folder ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "98f4c9fa-feb8-4ebc-877b-2a38021f6260",
+          "name": "Update Folder Name",
+          "request": {
+            "name": "Update Folder Name",
+            "description": {
+              "content": "Update the folder name ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":account_id",
+                "folders",
+                ":folder_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "folder_id",
+                  "description": "(Required) the folder ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c57fa8df-a4c9-43f1-8ca1-b64dfda2c002",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) the folder ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_id\": \"string\",\n  \"created_at\": \"2017-11-23 19:53:59.687000+00:00\",\n  \"id\": \"5a17275782aca45b631295f9\",\n  \"name\": \"birds\",\n  \"updated_at\": \"2017-11-23 20:06:24.537000+00:00\",\n  \"video_count\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33effff6-5dfd-4589-90e6-b0bec28f3b50",
+              "name": "UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) the folder ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4118ea40-4064-4614-b161-1c064069bd38",
+              "name": "NOT_AVAILABLE: The resource you are requesting is temporarily unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) the folder ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "829f2b60-71fb-4925-b677-b3850b08149d",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) the folder ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a970e4aa-d286-429f-9722-6cab5dbcb913",
+              "name": "METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) the folder ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5c7e5dad-a855-48b4-aafd-6f23173e3f2f",
+              "name": "TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) the folder ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "18c3d621-6100-4ddf-b61b-11631d94df82",
+              "name": "UNKNOWN: Issue in Brightcove system; try again later.\nTIMEOUT: Server likely too busy; try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) the folder ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8e222ea3-5b03-479b-96c7-7adc1781be48",
+          "name": "Delete Folder",
+          "request": {
+            "name": "Delete Folder",
+            "description": {
+              "content": "Delete a folder ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":account_id",
+                "folders",
+                ":folder_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) name of the folder (must be unique in the account)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "folder_id",
+                  "description": "(Required) the folder ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "39e653b8-93f2-4d97-85cf-41945ace09d7",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) the folder ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "383937b5-2dec-41db-a35a-554dbc6864a5",
+              "name": "UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) the folder ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "527edf84-415c-4dca-b488-446604fed8f1",
+              "name": "NOT_AVAILABLE: The resource you are requesting is temporarily unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) the folder ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "165b122b-d60c-4335-80df-1504fb2e5de4",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) the folder ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b0b120c1-39c5-47ce-849a-f762eb8c2daf",
+              "name": "METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) the folder ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6684053d-9c3d-41df-a645-c12e7867ea10",
+              "name": "TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) the folder ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4b15c159-6ac2-46dc-95c8-7002624a340b",
+              "name": "UNKNOWN: Issue in Brightcove system; try again later.\nTIMEOUT: Server likely too busy; try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) the folder ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9478154b-dd69-4921-ada1-91d6f49df7a0",
+          "name": "Get Videos in Folder",
+          "request": {
+            "name": "Get Videos in Folder",
+            "description": {
+              "content": "Gets list of video objects in a folder ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":account_id",
+                "folders",
+                ":folder_id",
+                "videos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Number of items to return - see [Paging Search Results](/cms/searching/using-cms-api-page-search-results.html) for more information"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of items to skip - see [Paging Search Results](/cms/searching/using-cms-api-page-search-results.html) for more information"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "-updated_at",
+                  "description": "Field to sort results by - if absent and there is a search string, results are sorted by relevance or if there is no search string, results are sorted by `-updated_at`. \nNotes: \n  - to sort in descending order, preface the field name with a minus (`-`) sign\n  - this parameter can be used to sort results both for a get videos request and for a get videos in folder request"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "folder_id",
+                  "description": "(Required) the folder ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e129205e-d380-4436-ac37-e90376fc4186",
+              "name": "Videos in the folder",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id",
+                    "videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "created_at"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) the folder ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"video_preview\": {\n      \"start\": 10000,\n      \"sources\": [\n        {\n          \"ext_x_version\": \"7\",\n          \"src\": \"https://manifest.prod.boltdns.net/.../preview.m3u8?...\",\n          \"type\": \"application/x-mpegURL\"\n        },\n        {\n          \"ext_x_version\": \"7\",\n          \"src\": \"https://manifest.prod.boltdns.net/.../preview.m3u8?...\",\n          \"type\": \"application/x-mpegURL\"\n        }\n      ]\n    },\n    \"ad_keys\": \" \\\"adKeys\\\": \\\"category=sports&live=true\\\"\",\n    \"clip_source_video_id\": \"string\",\n    \"complete\": true,\n    \"created_at\": \"2015-09-17T16:08:37.108Z\",\n    \"created_by\": {\n      \"email\": \"string\",\n      \"id\": \"string\",\n      \"type\": \"internal\"\n    },\n    \"cue_points\": [\n      {\n        \"time\": 10.527,\n        \"type\": \"DATA\",\n        \"force_stop\": true,\n        \"metadata\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"time\": 10.527,\n        \"type\": \"AD\",\n        \"force_stop\": false,\n        \"metadata\": \"string\",\n        \"name\": \"string\"\n      }\n    ],\n    \"custom_fields\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"delivery_type\": \"dynamic_origin\",\n    \"description\": \"Herring gull on a wharf in Boston\",\n    \"digital_master_id\": \"string\",\n    \"drm_disabled\": true,\n    \"duration\": 18160,\n    \"economics\": \"AD_SUPPORTED\",\n    \"folder_id\": \"560039e5e4b0e69e4b01cacd\",\n    \"forensic_watermarking\": \"ACTIVE\",\n    \"geo\": {\n      \"countries\": [\n        \"us\",\n        \"ca\",\n        \"fr\"\n      ],\n      \"exclude_countries\": false,\n      \"restricted\": true\n    },\n    \"has_digital_master\": true,\n    \"id\": \"string\",\n    \"images\": {\n      \"thumbnail\": {\n        \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/jit/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/main/160x90/20s629ms/match/image.jpg\",\n        \"sources\": [\n          {\n            \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/jit/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/main/160x90/20s629ms/match/image.jpg\",\n            \"height\": 90,\n            \"width\": 160\n          }\n        ]\n      },\n      \"poster\": {\n        \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/jit/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/main/1280x720/20s629ms/match/image.jpg\",\n        \"sources\": [\n          {\n            \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/jit/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/main/1280x720/20s629ms/match/image.jpg\",\n            \"height\": 720,\n            \"width\": 1280\n          }\n        ]\n      },\n      \"portrait.es\": {\n        \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/bac8717a-43db-4fa8-a6f0-189c80ee4c4e/800x1200/match/image.jpg\",\n        \"sources\": [\n          {\n            \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/bac8717a-43db-4fa8-a6f0-189c80ee4c4e/800x1200/match/image.jpg\",\n            \"height\": 1200,\n            \"width\": 800\n          }\n        ]\n      },\n      \"thumbnail.en\": {\n        \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/0ce2da4d-ca36-469b-9024-0273d79feeeb/292x108/match/image.jpg\",\n        \"sources\": [\n          {\n            \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/0ce2da4d-ca36-469b-9024-0273d79feeeb/292x108/match/image.jpg\",\n            \"height\": 108,\n            \"width\": 292\n          }\n        ]\n      },\n      \"poster.en\": {\n        \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/a7cb150d-c84a-48e0-9469-5b4ce80fba53/1920x1080/match/image.jpg\",\n        \"sources\": [\n          {\n            \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/a7cb150d-c84a-48e0-9469-5b4ce80fba53/1920x1080/match/image.jpg\",\n            \"height\": 1080,\n            \"width\": 1920\n          }\n        ]\n      },\n      \"square.de\": {\n        \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/22209955-e136-4f17-914c-e19ec4c58886/570x570/match/image.jpg\",\n        \"sources\": [\n          {\n            \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/22209955-e136-4f17-914c-e19ec4c58886/570x570/match/image.jpg\",\n            \"height\": 570,\n            \"width\": 570\n          }\n        ]\n      },\n      \"ultra-wide.hi\": {\n        \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/72fd489f-d978-44ba-8d04-1e33c7c36cef/3840x1646/match/image.jpg\",\n        \"sources\": [\n          {\n            \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/72fd489f-d978-44ba-8d04-1e33c7c36cef/3840x1646/match/image.jpg\",\n            \"height\": 1646,\n            \"width\": 3840\n          }\n        ]\n      },\n      \"wide.fr\": {\n        \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/4405a5d5-8b9e-4c2b-be71-cf4e2c153e87/2560x1440/match/image.jpg\",\n        \"sources\": [\n          {\n            \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/4405a5d5-8b9e-4c2b-be71-cf4e2c153e87/2560x1440/match/image.jpg\",\n            \"height\": 1440,\n            \"width\": 2560\n          }\n        ]\n      }\n    },\n    \"labels\": [\n      \"string\",\n      \"string\"\n    ],\n    \"link\": {\n      \"text\": \"string\",\n      \"url\": \"string\"\n    },\n    \"long_description\": \"Herring Gull near Fort Point Channel in Boston, MA, USA. 2019-04-25.\",\n    \"name\": \"Laughing Gull\",\n    \"offline_enabled\": true,\n    \"original_filename\": \"gull-boston.mov\",\n    \"playback_rights_id\": \"string\",\n    \"projection\": \"equirectangular\",\n    \"published_at\": \"2019-04-30 23:27:22.507000+00:00\",\n    \"reference_id\": \"laughing_gull_2019_04_25\",\n    \"schedule\": {\n      \"ends_at\": \"2020-05-20 20:41:07.689000+00:00\",\n      \"starts_at\": \"2019-05-20 20:41:07.689000+00:00\"\n    },\n    \"sharing\": {\n      \"by_external_acct\": true,\n      \"by_id\": \"string\",\n      \"by_reference\": true,\n      \"source_id\": \"string\",\n      \"to_external_acct\": true\n    },\n    \"state\": \"ACTIVE\",\n    \"tags\": [\n      \"birds\",\n      \"sea\"\n    ],\n    \"text_tracks\": [\n      {\n        \"default\": false,\n        \"id\": \"string\",\n        \"kind\": \"captions\",\n        \"label\": \"string\",\n        \"mime_type\": \"string\",\n        \"src\": \"string\",\n        \"srclang\": \"string\",\n        \"status\": {}\n      },\n      {\n        \"default\": false,\n        \"id\": \"string\",\n        \"kind\": \"captions\",\n        \"label\": \"string\",\n        \"mime_type\": \"string\",\n        \"src\": \"string\",\n        \"srclang\": \"string\",\n        \"status\": {}\n      }\n    ],\n    \"transcripts\": [\n      {\n        \"src\": \"string\",\n        \"srclang\": \"string\",\n        \"id\": \"string\",\n        \"account_id\": \"string\",\n        \"default\": false,\n        \"label\": \"string\",\n        \"sources\": [\n          \"string\",\n          \"string\"\n        ],\n        \"status\": \"published\"\n      },\n      {\n        \"src\": \"string\",\n        \"srclang\": \"string\",\n        \"id\": \"string\",\n        \"account_id\": \"string\",\n        \"default\": false,\n        \"label\": \"string\",\n        \"sources\": [\n          \"string\",\n          \"string\"\n        ],\n        \"status\": \"draft\"\n      }\n    ],\n    \"updated_at\": \"2018-02-27 19:09:20.401000+00:00\",\n    \"updated_by\": {\n      \"email\": \"string\",\n      \"id\": \"string\",\n      \"type\": \"api_key\"\n    }\n  },\n  {\n    \"video_preview\": {\n      \"start\": 10000,\n      \"sources\": [\n        {\n          \"ext_x_version\": \"7\",\n          \"src\": \"https://manifest.prod.boltdns.net/.../preview.m3u8?...\",\n          \"type\": \"application/x-mpegURL\"\n        },\n        {\n          \"ext_x_version\": \"7\",\n          \"src\": \"https://manifest.prod.boltdns.net/.../preview.m3u8?...\",\n          \"type\": \"application/x-mpegURL\"\n        }\n      ]\n    },\n    \"ad_keys\": \" \\\"adKeys\\\": \\\"category=sports&live=true\\\"\",\n    \"clip_source_video_id\": \"string\",\n    \"complete\": true,\n    \"created_at\": \"2015-09-17T16:08:37.108Z\",\n    \"created_by\": {\n      \"email\": \"string\",\n      \"id\": \"string\",\n      \"type\": \"internal\"\n    },\n    \"cue_points\": [\n      {\n        \"time\": 10.527,\n        \"type\": \"DATA\",\n        \"force_stop\": false,\n        \"metadata\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"time\": 10.527,\n        \"type\": \"AD\",\n        \"force_stop\": true,\n        \"metadata\": \"string\",\n        \"name\": \"string\"\n      }\n    ],\n    \"custom_fields\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"delivery_type\": \"dynamic_origin\",\n    \"description\": \"Herring gull on a wharf in Boston\",\n    \"digital_master_id\": \"string\",\n    \"drm_disabled\": true,\n    \"duration\": 18160,\n    \"economics\": \"AD_SUPPORTED\",\n    \"folder_id\": \"560039e5e4b0e69e4b01cacd\",\n    \"forensic_watermarking\": \"ACTIVE\",\n    \"geo\": {\n      \"countries\": [\n        \"us\",\n        \"ca\",\n        \"fr\"\n      ],\n      \"exclude_countries\": true,\n      \"restricted\": false\n    },\n    \"has_digital_master\": true,\n    \"id\": \"string\",\n    \"images\": {\n      \"thumbnail\": {\n        \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/jit/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/main/160x90/20s629ms/match/image.jpg\",\n        \"sources\": [\n          {\n            \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/jit/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/main/160x90/20s629ms/match/image.jpg\",\n            \"height\": 90,\n            \"width\": 160\n          }\n        ]\n      },\n      \"poster\": {\n        \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/jit/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/main/1280x720/20s629ms/match/image.jpg\",\n        \"sources\": [\n          {\n            \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/jit/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/main/1280x720/20s629ms/match/image.jpg\",\n            \"height\": 720,\n            \"width\": 1280\n          }\n        ]\n      },\n      \"portrait.es\": {\n        \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/bac8717a-43db-4fa8-a6f0-189c80ee4c4e/800x1200/match/image.jpg\",\n        \"sources\": [\n          {\n            \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/bac8717a-43db-4fa8-a6f0-189c80ee4c4e/800x1200/match/image.jpg\",\n            \"height\": 1200,\n            \"width\": 800\n          }\n        ]\n      },\n      \"thumbnail.en\": {\n        \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/0ce2da4d-ca36-469b-9024-0273d79feeeb/292x108/match/image.jpg\",\n        \"sources\": [\n          {\n            \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/0ce2da4d-ca36-469b-9024-0273d79feeeb/292x108/match/image.jpg\",\n            \"height\": 108,\n            \"width\": 292\n          }\n        ]\n      },\n      \"poster.en\": {\n        \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/a7cb150d-c84a-48e0-9469-5b4ce80fba53/1920x1080/match/image.jpg\",\n        \"sources\": [\n          {\n            \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/a7cb150d-c84a-48e0-9469-5b4ce80fba53/1920x1080/match/image.jpg\",\n            \"height\": 1080,\n            \"width\": 1920\n          }\n        ]\n      },\n      \"square.de\": {\n        \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/22209955-e136-4f17-914c-e19ec4c58886/570x570/match/image.jpg\",\n        \"sources\": [\n          {\n            \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/22209955-e136-4f17-914c-e19ec4c58886/570x570/match/image.jpg\",\n            \"height\": 570,\n            \"width\": 570\n          }\n        ]\n      },\n      \"ultra-wide.hi\": {\n        \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/72fd489f-d978-44ba-8d04-1e33c7c36cef/3840x1646/match/image.jpg\",\n        \"sources\": [\n          {\n            \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/72fd489f-d978-44ba-8d04-1e33c7c36cef/3840x1646/match/image.jpg\",\n            \"height\": 1646,\n            \"width\": 3840\n          }\n        ]\n      },\n      \"wide.fr\": {\n        \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/4405a5d5-8b9e-4c2b-be71-cf4e2c153e87/2560x1440/match/image.jpg\",\n        \"sources\": [\n          {\n            \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/4405a5d5-8b9e-4c2b-be71-cf4e2c153e87/2560x1440/match/image.jpg\",\n            \"height\": 1440,\n            \"width\": 2560\n          }\n        ]\n      }\n    },\n    \"labels\": [\n      \"string\",\n      \"string\"\n    ],\n    \"link\": {\n      \"text\": \"string\",\n      \"url\": \"string\"\n    },\n    \"long_description\": \"Herring Gull near Fort Point Channel in Boston, MA, USA. 2019-04-25.\",\n    \"name\": \"Laughing Gull\",\n    \"offline_enabled\": true,\n    \"original_filename\": \"gull-boston.mov\",\n    \"playback_rights_id\": \"string\",\n    \"projection\": \"equirectangular\",\n    \"published_at\": \"2019-04-30 23:27:22.507000+00:00\",\n    \"reference_id\": \"laughing_gull_2019_04_25\",\n    \"schedule\": {\n      \"ends_at\": \"2020-05-20 20:41:07.689000+00:00\",\n      \"starts_at\": \"2019-05-20 20:41:07.689000+00:00\"\n    },\n    \"sharing\": {\n      \"by_external_acct\": true,\n      \"by_id\": \"string\",\n      \"by_reference\": true,\n      \"source_id\": \"string\",\n      \"to_external_acct\": true\n    },\n    \"state\": \"ACTIVE\",\n    \"tags\": [\n      \"birds\",\n      \"sea\"\n    ],\n    \"text_tracks\": [\n      {\n        \"default\": false,\n        \"id\": \"string\",\n        \"kind\": \"captions\",\n        \"label\": \"string\",\n        \"mime_type\": \"string\",\n        \"src\": \"string\",\n        \"srclang\": \"string\",\n        \"status\": {}\n      },\n      {\n        \"default\": false,\n        \"id\": \"string\",\n        \"kind\": \"captions\",\n        \"label\": \"string\",\n        \"mime_type\": \"string\",\n        \"src\": \"string\",\n        \"srclang\": \"string\",\n        \"status\": {}\n      }\n    ],\n    \"transcripts\": [\n      {\n        \"src\": \"string\",\n        \"srclang\": \"string\",\n        \"id\": \"string\",\n        \"account_id\": \"string\",\n        \"default\": false,\n        \"label\": \"string\",\n        \"sources\": [\n          \"string\",\n          \"string\"\n        ],\n        \"status\": \"published\"\n      },\n      {\n        \"src\": \"string\",\n        \"srclang\": \"string\",\n        \"id\": \"string\",\n        \"account_id\": \"string\",\n        \"default\": false,\n        \"label\": \"string\",\n        \"sources\": [\n          \"string\",\n          \"string\"\n        ],\n        \"status\": \"draft\"\n      }\n    ],\n    \"updated_at\": \"2018-02-27 19:09:20.401000+00:00\",\n    \"updated_by\": {\n      \"email\": \"string\",\n      \"id\": \"string\",\n      \"type\": \"internal\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b33e9e18-9f06-40c7-a9ef-aabb0393fbc7",
+              "name": "UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id",
+                    "videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "created_at"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) the folder ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bcbfe51c-c4e8-45a9-a6b9-00a9d8bcc890",
+              "name": "NOT_AVAILABLE: The resource you are requesting is temporarily unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id",
+                    "videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "created_at"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) the folder ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "454bdf1d-d20b-465d-ad84-41cbfb5e54af",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id",
+                    "videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "created_at"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) the folder ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2cd206c1-1f0f-400a-a6a3-1b82cb7dc24d",
+              "name": "METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id",
+                    "videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "created_at"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) the folder ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3a724294-fa1d-48e3-9e08-b5c3de038399",
+              "name": "TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id",
+                    "videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "created_at"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) the folder ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "775baa50-4da0-4763-8f96-39ae247770b5",
+              "name": "UNKNOWN: Issue in Brightcove system; try again later.\nTIMEOUT: Server likely too busy; try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id",
+                    "videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "created_at"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) the folder ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3f706fcd-311b-473d-b950-72e68cd60d44",
+          "name": "Add Video to Folder",
+          "request": {
+            "name": "Add Video to Folder",
+            "description": {
+              "content": "Add a video to a folder ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":account_id",
+                "folders",
+                ":folder_id",
+                "videos",
+                ":video_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "folder_id",
+                  "description": "(Required) Folder ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "video_id",
+                  "description": "(Required) Video ID (specified as `{video_id}}`)."
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "589dfe12-db89-4856-8f51-6696ed5e97d0",
+              "name": "NO_CONTENT",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id",
+                    "videos",
+                    ":video_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) Folder ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) Video ID (specified as `{video_id}}`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2509ca47-423b-4b0a-a633-366e31d5cd99",
+              "name": "UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id",
+                    "videos",
+                    ":video_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) Folder ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) Video ID (specified as `{video_id}}`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bb5924fa-7faf-48d9-89c4-67595789103e",
+              "name": "NOT_AVAILABLE: The resource you are requesting is temporarily unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id",
+                    "videos",
+                    ":video_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) Folder ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) Video ID (specified as `{video_id}}`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "231e111e-bfb6-40fc-8b49-8d2386ed87c3",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id",
+                    "videos",
+                    ":video_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) Folder ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) Video ID (specified as `{video_id}}`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "233fc85e-2e4d-4c8a-8ec2-4888c483301d",
+              "name": "METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id",
+                    "videos",
+                    ":video_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) Folder ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) Video ID (specified as `{video_id}}`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b4f2cf1a-45d8-4229-bc1c-a83504decb19",
+              "name": "TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id",
+                    "videos",
+                    ":video_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) Folder ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) Video ID (specified as `{video_id}}`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fc741431-4a44-4aa9-8290-773688a18419",
+              "name": "UNKNOWN: Issue in Brightcove system; try again later.\nTIMEOUT: Server likely too busy; try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id",
+                    "videos",
+                    ":video_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) Folder ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) Video ID (specified as `{video_id}}`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "693787bc-8deb-43e0-870d-b57ca97f13df",
+          "name": "Remove Video from Folder",
+          "request": {
+            "name": "Remove Video from Folder",
+            "description": {
+              "content": "Remove a video from a folder ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":account_id",
+                "folders",
+                ":folder_id",
+                "videos",
+                ":video_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "folder_id",
+                  "description": "(Required) the folder ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "video_id",
+                  "description": "(Required) the video ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "abf8144a-a122-47b6-84cc-a05b5750d357",
+              "name": "Video successfully removed from the folder",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id",
+                    "videos",
+                    ":video_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) the folder ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) the video ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "02765b40-5be3-4796-b81f-3ce8891f1854",
+              "name": "UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id",
+                    "videos",
+                    ":video_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) the folder ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) the video ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "848e924c-682c-435b-8990-64b41823bf89",
+              "name": "NOT_AVAILABLE: The resource you are requesting is temporarily unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id",
+                    "videos",
+                    ":video_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) the folder ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) the video ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9e2b0cbc-5d15-4339-bb60-844afc371b48",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id",
+                    "videos",
+                    ":video_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) the folder ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) the video ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2f19dcb3-eefd-4ad9-a2c3-65f11e08f270",
+              "name": "METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id",
+                    "videos",
+                    ":video_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) the folder ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) the video ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5c5fc844-822c-4178-abef-f75bbc4f5342",
+              "name": "TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id",
+                    "videos",
+                    ":video_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) the folder ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) the video ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "baedfc2c-08ff-40f9-a179-b198d6ae048d",
+              "name": "UNKNOWN: Issue in Brightcove system; try again later.\nTIMEOUT: Server likely too busy; try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "folders",
+                    ":folder_id",
+                    "videos",
+                    ":video_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folder_id",
+                      "description": "(Required) the folder ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) the video ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://analytics.api.brightcove.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6fa705d7-41b6-49ce-992e-53c8446a0050",
+    "name": "Brightcove Analytics API Reference Access Tokens Folders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com",
+      "type": "text/plain"
+    }
+  }
+}

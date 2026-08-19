@@ -1,0 +1,1625 @@
+{
+  "item": [
+    {
+      "id": "ae00c012-3ea7-460b-898e-2419ddf810c4",
+      "name": "Schedule Clip",
+      "description": {
+        "content": "Operations for scheduling the creation of a VOD clip for SEP jobs only.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1858cdcb-364a-47b2-8be8-201f04a89857",
+          "name": "Create a Scheduled Clip workflow",
+          "request": {
+            "name": "Create a Scheduled Clip workflow",
+            "description": {
+              "content": "Create a Scheduled Clip workflow",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scheduler",
+                "clip"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"job_id\": \"<string>\",\n  \"clip\": {\n    \"time_utc\": \"<number>\",\n    \"output\": {\n      \"label\": \"<string>\",\n      \"credentials\": \"<string>\",\n      \"notifications\": [\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        },\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        }\n      ],\n      \"duration\": \"<integer>\",\n      \"remove_ads\": false,\n      \"start_time\": \"<integer>\",\n      \"end_time\": \"<integer>\",\n      \"stream_start_time\": \"<integer>\",\n      \"stream_end_time\": \"<integer>\",\n      \"stream_start_timecode\": \"<string>\",\n      \"stream_end_timecode\": \"<string>\",\n      \"mode\": \"<string>\",\n      \"playlist_label\": \"<string>\",\n      \"url\": \"<string>\",\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"<string>\",\n          \"cue_points\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"custom_fields\": \"<object>\",\n          \"description\": \"<string>\",\n          \"drm_disabled\": \"<boolean>\",\n          \"economics\": \"<string>\",\n          \"geo\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"long_description\": \"<string>\",\n          \"reference_id\": \"<string>\",\n          \"schedule\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"state\": \"<string>\",\n          \"tags\": \"<object>\"\n        },\n        \"account_id\": \"<string>\",\n        \"ingest\": {\n          \"callbacks\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"capture-images\": \"<boolean>\",\n          \"profile\": \"<string>\"\n        }\n      }\n    },\n    \"notification\": \"<number>\"\n  },\n  \"description\": \"<string>\",\n  \"notification_url\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "510fa0ef-085c-407b-9176-3dd34eb4f21a",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduler",
+                    "clip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_id\": \"481ff4cf0bf74956bc2ec6e126588080\",\n  \"clip\": {\n    \"output\": {\n      \"label\": \"My Scheduled Clip\",\n      \"start_time\": 1612878900,\n      \"end_time\": 1612879800,\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"My Scheduled Clip\"\n        }\n      }\n    },\n    \"time_utc\": 1612879800\n  },\n  \"description\": \"My JobStartStop workflow\",\n  \"notification_url\": \"https://example.com/live/jobstartstop/callbacks\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"workflow_id\": \"ef90f92e9ce148d0ab33d8c7c80daf94\",\n  \"account_id\": \"44bc2648864e40b7b0146fbe4e487523\",\n  \"description\": \"My JobStartStop workflow\",\n  \"type\": \"clip\",\n  \"workflow_start_time_utc\": 1654620000,\n  \"job_id\": \"6e7da666a2d54eed8e3ce547f09b33bd\",\n  \"clip\": {\n    \"time_utc\": 1654620000,\n    \"output\": {\n      \"label\": \"My Scheduled Clip\",\n      \"remove_ads\": false,\n      \"stream_end_time\": 200,\n      \"stream_start_time\": 0,\n      \"videocloud\": {\n        \"ingest\": {},\n        \"video\": {\n          \"name\": \"My Scheduled Clip\"\n        }\n      }\n    },\n    \"state\": \"pending\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "860bd089-9f42-4d18-8057-be72ac62e51b",
+              "name": "BAD_REQUEST: Invalid input value - see Live API Error Messages for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduler",
+                    "clip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_id\": \"481ff4cf0bf74956bc2ec6e126588080\",\n  \"clip\": {\n    \"output\": {\n      \"label\": \"My Scheduled Clip\",\n      \"start_time\": 1612878900,\n      \"end_time\": 1612879800,\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"My Scheduled Clip\"\n        }\n      }\n    },\n    \"time_utc\": 1612879800\n  },\n  \"description\": \"My JobStartStop workflow\",\n  \"notification_url\": \"https://example.com/live/jobstartstop/callbacks\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3ba68df1-68d4-4be0-90b5-15f001ad8692",
+              "name": "UNAUTHORIZED: Unauthorized - see Live API Error Messages for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduler",
+                    "clip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_id\": \"481ff4cf0bf74956bc2ec6e126588080\",\n  \"clip\": {\n    \"output\": {\n      \"label\": \"My Scheduled Clip\",\n      \"start_time\": 1612878900,\n      \"end_time\": 1612879800,\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"My Scheduled Clip\"\n        }\n      }\n    },\n    \"time_utc\": 1612879800\n  },\n  \"description\": \"My JobStartStop workflow\",\n  \"notification_url\": \"https://example.com/live/jobstartstop/callbacks\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3c9bee38-fb90-445c-b22b-10adfe262e93",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see Live API Error Messages for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduler",
+                    "clip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_id\": \"481ff4cf0bf74956bc2ec6e126588080\",\n  \"clip\": {\n    \"output\": {\n      \"label\": \"My Scheduled Clip\",\n      \"start_time\": 1612878900,\n      \"end_time\": 1612879800,\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"My Scheduled Clip\"\n        }\n      }\n    },\n    \"time_utc\": 1612879800\n  },\n  \"description\": \"My JobStartStop workflow\",\n  \"notification_url\": \"https://example.com/live/jobstartstop/callbacks\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3b6ad8e6-2081-4fbc-a6ca-99fc3f0924b5",
+              "name": "INTERNAL_SERVER_ERROR: see Live API Error Messages for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduler",
+                    "clip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_id\": \"481ff4cf0bf74956bc2ec6e126588080\",\n  \"clip\": {\n    \"output\": {\n      \"label\": \"My Scheduled Clip\",\n      \"start_time\": 1612878900,\n      \"end_time\": 1612879800,\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"My Scheduled Clip\"\n        }\n      }\n    },\n    \"time_utc\": 1612879800\n  },\n  \"description\": \"My JobStartStop workflow\",\n  \"notification_url\": \"https://example.com/live/jobstartstop/callbacks\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "329cb53f-092d-4484-a77b-957574d44e2a",
+          "name": "List Scheduled Clip workflows",
+          "request": {
+            "name": "List Scheduled Clip workflows",
+            "description": {
+              "content": "'List Clip workflows'",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scheduler",
+                "clip"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_token",
+                  "value": "<string>",
+                  "description": "Next token from previous page; do not specify when fetching first page"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "10",
+                  "description": "Max number of items to return in one request (1-1000, default is 10)"
+                },
+                {
+                  "disabled": false,
+                  "key": "job_id",
+                  "value": "<string>",
+                  "description": "Filter results by particular Job."
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter results by particular workflow state. Select multiple states with comma separated list"
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<number>",
+                  "description": "Filter results by limiting range of query. Value should be unix time in seconds. Workflows with a workflow_start_time_utc value greater than this will be returned. Can be used with end param."
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<number>",
+                  "description": "Filter results by limiting range of query. Value should be unix time in seconds. Workflows with a workflow_start_time_utc value less than this will be returned. Can be used with start param."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "21a25bb3-c43b-4356-8229-97a38bc0d6c1",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduler",
+                    "clip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "job_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"workflows\": [\n    {\n      \"workflow_id\": \"ef90f92e9ce148d0ab33d8c7c80daf94\",\n      \"account_id\": \"44bc2648864e40b7b0146fbe4e487523\",\n      \"description\": \"My JobStartStop workflow\",\n      \"type\": \"clip\",\n      \"workflow_start_time_utc\": 1654620000,\n      \"job_id\": \"6e7da666a2d54eed8e3ce547f09b33bd\",\n      \"clip\": {\n        \"time_utc\": 1654620000,\n        \"output\": {\n          \"label\": \"My Scheduled Clip\",\n          \"remove_ads\": false,\n          \"stream_end_time\": 200,\n          \"stream_start_time\": 0,\n          \"videocloud\": {\n            \"ingest\": {},\n            \"video\": {\n              \"name\": \"My Scheduled Clip\"\n            }\n          }\n        },\n        \"state\": \"pending\"\n      }\n    },\n    {\n      \"workflow_id\": \"ef90f92e9ce148d0ab33d8c7c80daf94\",\n      \"account_id\": \"44bc2648864e40b7b0146fbe4e487523\",\n      \"description\": \"My JobStartStop workflow\",\n      \"type\": \"clip\",\n      \"workflow_start_time_utc\": 1654620000,\n      \"job_id\": \"6e7da666a2d54eed8e3ce547f09b33bd\",\n      \"clip\": {\n        \"time_utc\": 1654620000,\n        \"output\": {\n          \"label\": \"My Scheduled Clip\",\n          \"remove_ads\": false,\n          \"stream_end_time\": 200,\n          \"stream_start_time\": 0,\n          \"videocloud\": {\n            \"ingest\": {},\n            \"video\": {\n              \"name\": \"My Scheduled Clip\"\n            }\n          }\n        },\n        \"state\": \"pending\"\n      }\n    }\n  ],\n  \"next_token\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29f88318-6daa-4fb3-a5b5-d8365ccf1fbc",
+              "name": "BAD_REQUEST: Invalid input value - see Live API Error Messages for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduler",
+                    "clip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "job_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9984490a-675e-49d2-b51d-62a132fab111",
+              "name": "UNAUTHORIZED: Unauthorized - see Live API Error Messages for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduler",
+                    "clip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "job_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "91c25e8d-8da0-44e4-8e30-d86fc8d5641a",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see Live API Error Messages for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduler",
+                    "clip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "job_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b8f6fa02-3dff-4c96-8a58-b512b8894298",
+              "name": "INTERNAL_SERVER_ERROR: see Live API Error Messages for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduler",
+                    "clip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "job_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3a2946d2-36cc-4c10-bc3f-b82936dc3c8c",
+          "name": "Get Clip Schedule Details",
+          "request": {
+            "name": "Get Clip Schedule Details",
+            "description": {
+              "content": "Get Clip Schedule Details",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scheduler",
+                "clip",
+                ":workflow_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_id",
+                  "description": "(Required) Scheduler Workflow ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0f7b05d3-d697-4411-a3b2-ac6b8081beb3",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduler",
+                    "clip",
+                    ":workflow_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Scheduler Workflow ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"workflow_id\": \"ef90f92e9ce148d0ab33d8c7c80daf94\",\n  \"account_id\": \"44bc2648864e40b7b0146fbe4e487523\",\n  \"description\": \"My JobStartStop workflow\",\n  \"type\": \"clip\",\n  \"workflow_start_time_utc\": 1654620000,\n  \"job_id\": \"6e7da666a2d54eed8e3ce547f09b33bd\",\n  \"clip\": {\n    \"time_utc\": 1654620000,\n    \"output\": {\n      \"label\": \"My Scheduled Clip\",\n      \"remove_ads\": false,\n      \"stream_end_time\": 200,\n      \"stream_start_time\": 0,\n      \"videocloud\": {\n        \"ingest\": {},\n        \"video\": {\n          \"name\": \"My Scheduled Clip\"\n        }\n      }\n    },\n    \"state\": \"pending\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a69332c9-32ec-4a5f-9563-a3dfbe140bb4",
+              "name": "UNAUTHORIZED: Unauthorized - see Live API Error Messages for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduler",
+                    "clip",
+                    ":workflow_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Scheduler Workflow ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1fb18e6c-eb59-4ec6-b237-138eeef60d6d",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see Live API Error Messages for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduler",
+                    "clip",
+                    ":workflow_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Scheduler Workflow ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e94e1b88-c60b-4467-a27f-eff6e61ec9cc",
+              "name": "INTERNAL_SERVER_ERROR: see Live API Error Messages for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduler",
+                    "clip",
+                    ":workflow_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Scheduler Workflow ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f3b550af-1bef-490d-97e5-0687d35ecf82",
+          "name": "Update Clip Schedule Details",
+          "request": {
+            "name": "Update Clip Schedule Details",
+            "description": {
+              "content": "Update Clip time. Can only update if state is \"pending\".",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scheduler",
+                "clip",
+                ":workflow_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_id",
+                  "description": "(Required) Scheduler Workflow ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clip\": {\n    \"time_utc\": \"<number>\",\n    \"output\": {\n      \"label\": \"<string>\",\n      \"credentials\": \"<string>\",\n      \"notifications\": [\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        },\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        }\n      ],\n      \"duration\": \"<integer>\",\n      \"remove_ads\": false,\n      \"start_time\": \"<integer>\",\n      \"end_time\": \"<integer>\",\n      \"stream_start_time\": \"<integer>\",\n      \"stream_end_time\": \"<integer>\",\n      \"stream_start_timecode\": \"<string>\",\n      \"stream_end_timecode\": \"<string>\",\n      \"mode\": \"<string>\",\n      \"playlist_label\": \"<string>\",\n      \"url\": \"<string>\",\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"<string>\",\n          \"cue_points\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"custom_fields\": \"<object>\",\n          \"description\": \"<string>\",\n          \"drm_disabled\": \"<boolean>\",\n          \"economics\": \"<string>\",\n          \"geo\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"long_description\": \"<string>\",\n          \"reference_id\": \"<string>\",\n          \"schedule\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"state\": \"<string>\",\n          \"tags\": \"<object>\"\n        },\n        \"account_id\": \"<string>\",\n        \"ingest\": {\n          \"callbacks\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"capture-images\": \"<boolean>\",\n          \"profile\": \"<string>\"\n        }\n      }\n    },\n    \"notification\": \"<number>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fe3cc7d4-b90a-4303-8664-81fb17a03de8",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduler",
+                    "clip",
+                    ":workflow_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Scheduler Workflow ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clip\": {\n    \"output\": {\n      \"label\": \"My Scheduled Clip\",\n      \"start_time\": 1612878900,\n      \"end_time\": 1612879500,\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"My Scheduled Clip\"\n        }\n      }\n    },\n    \"time_utc\": 1612879500\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"workflow_id\": \"ef90f92e9ce148d0ab33d8c7c80daf94\",\n  \"account_id\": \"44bc2648864e40b7b0146fbe4e487523\",\n  \"description\": \"My JobStartStop workflow\",\n  \"type\": \"clip\",\n  \"workflow_start_time_utc\": 1654620000,\n  \"job_id\": \"6e7da666a2d54eed8e3ce547f09b33bd\",\n  \"clip\": {\n    \"time_utc\": 1654620000,\n    \"output\": {\n      \"label\": \"My Scheduled Clip\",\n      \"remove_ads\": false,\n      \"stream_end_time\": 200,\n      \"stream_start_time\": 0,\n      \"videocloud\": {\n        \"ingest\": {},\n        \"video\": {\n          \"name\": \"My Scheduled Clip\"\n        }\n      }\n    },\n    \"state\": \"pending\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4397cb9c-f163-41f2-b785-27b1f062e205",
+              "name": "UNAUTHORIZED: Unauthorized - see Live API Error Messages for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduler",
+                    "clip",
+                    ":workflow_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Scheduler Workflow ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clip\": {\n    \"output\": {\n      \"label\": \"My Scheduled Clip\",\n      \"start_time\": 1612878900,\n      \"end_time\": 1612879500,\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"My Scheduled Clip\"\n        }\n      }\n    },\n    \"time_utc\": 1612879500\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4e26416c-86a3-4352-83a0-a0316002f69a",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see Live API Error Messages for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduler",
+                    "clip",
+                    ":workflow_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Scheduler Workflow ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clip\": {\n    \"output\": {\n      \"label\": \"My Scheduled Clip\",\n      \"start_time\": 1612878900,\n      \"end_time\": 1612879500,\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"My Scheduled Clip\"\n        }\n      }\n    },\n    \"time_utc\": 1612879500\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f0c44ba1-c5ca-4910-a778-0beca96dbae9",
+              "name": "INTERNAL_SERVER_ERROR: see Live API Error Messages for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduler",
+                    "clip",
+                    ":workflow_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Scheduler Workflow ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clip\": {\n    \"output\": {\n      \"label\": \"My Scheduled Clip\",\n      \"start_time\": 1612878900,\n      \"end_time\": 1612879500,\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"My Scheduled Clip\"\n        }\n      }\n    },\n    \"time_utc\": 1612879500\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7a7ff700-350b-464d-b2a0-9c36b7d46685",
+          "name": "Cancel Scheduled Clip",
+          "request": {
+            "name": "Cancel Scheduled Clip",
+            "description": {
+              "content": "Cancel Clip",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scheduler",
+                "clip",
+                ":workflow_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_id",
+                  "description": "(Required) Scheduler Workflow ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7cc2388a-1972-497e-ac41-59e05de90317",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduler",
+                    "clip",
+                    ":workflow_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Scheduler Workflow ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"workflow_id\": \"ef90f92e9ce148d0ab33d8c7c80daf94\",\n  \"account_id\": \"44bc2648864e40b7b0146fbe4e487523\",\n  \"description\": \"My JobStartStop workflow\",\n  \"type\": \"clip\",\n  \"workflow_start_time_utc\": 1654620000,\n  \"job_id\": \"6e7da666a2d54eed8e3ce547f09b33bd\",\n  \"clip\": {\n    \"time_utc\": 1654620000,\n    \"output\": {\n      \"label\": \"My Scheduled Clip\",\n      \"remove_ads\": false,\n      \"stream_end_time\": 200,\n      \"stream_start_time\": 0,\n      \"videocloud\": {\n        \"ingest\": {},\n        \"video\": {\n          \"name\": \"My Scheduled Clip\"\n        }\n      }\n    },\n    \"state\": \"pending\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd56f456-ac30-4f4a-814f-65325ff8fea5",
+              "name": "UNAUTHORIZED: Unauthorized - see Live API Error Messages for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduler",
+                    "clip",
+                    ":workflow_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Scheduler Workflow ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3170b763-a935-40a5-8480-2725131a61d8",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see Live API Error Messages for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduler",
+                    "clip",
+                    ":workflow_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Scheduler Workflow ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f38a853f-68c3-4411-b02d-502b089b6418",
+              "name": "INTERNAL_SERVER_ERROR: see Live API Error Messages for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduler",
+                    "clip",
+                    ":workflow_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Scheduler Workflow ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://analytics.api.brightcove.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6a7af027-134c-4979-86bd-a674a1b2b72d",
+    "name": "Brightcove Analytics API Reference Access Tokens Schedule Clip API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com",
+      "type": "text/plain"
+    }
+  }
+}

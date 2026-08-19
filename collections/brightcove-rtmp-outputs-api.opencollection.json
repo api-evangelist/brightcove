@@ -1,0 +1,103 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brightcove Analytics API Reference Access Tokens RTMP Outputs API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "RTMP Outputs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List RTMP Outputs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/jobs/:job_id/rtmpouts",
+            "headers": [
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "Live job ID"
+              }
+            ]
+          },
+          "docs": "Get a list of RTMP outputs. See [Live API: RTMP Outputs](/live-api/guides/live-api-rtmp-outputs.html) for more information on RTMP outputs."
+        },
+        {
+          "info": {
+            "name": "Create RTMP Output",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://analytics.api.brightcove.com/jobs/:job_id/rtmpouts",
+            "headers": [
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "Live job ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an RTMP output. See [Live API: RTMP Outputs](/live-api/guides/live-api-rtmp-outputs.html) for more information on RTMP outputs."
+        },
+        {
+          "info": {
+            "name": "Stop RTMP Output",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://analytics.api.brightcove.com/jobs/:job_id/rtmpouts/:rtmp_out_id/stop",
+            "headers": [
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "Live job ID"
+              },
+              {
+                "name": "rtmp_out_id",
+                "value": "",
+                "type": "path",
+                "description": "RTMP output ID"
+              }
+            ]
+          },
+          "docs": "Stop an RTMP output. See [Live API: RTMP Outputs](/live-api/guides/live-api-rtmp-outputs.html) for more information on RTMP outputs."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

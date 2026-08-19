@@ -1,0 +1,1137 @@
+{
+  "item": [
+    {
+      "id": "50433a05-48c2-41f2-bec1-a33affb3ba4d",
+      "name": "Player Configurations",
+      "description": {
+        "content": "Operations for managing player configurations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cb99c164-110a-4116-8ae1-18d82f10d74d",
+          "name": "Get player configuration",
+          "request": {
+            "name": "Get player configuration",
+            "description": {
+              "content": "Get a preview or published player configuration",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":account_id",
+                "players",
+                ":player_id",
+                "configuration",
+                ":branch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "player_id",
+                  "description": "(Required) Brightcove Player ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "branch",
+                  "description": "(Required) A plugin id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ab680b74-08e8-410d-a757-1fe905cebc12",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "players",
+                    ":player_id",
+                    "configuration",
+                    ":branch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "player_id",
+                      "description": "(Required) Brightcove Player ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "branch",
+                      "description": "(Required) A plugin id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) **IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.\n\n`Authorization: Bearer {access_token}` - (see [Getting Access\nTokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ad_config_id\": \"undefined\",\n  \"ad_failover\": \"undefined\",\n  \"application_id\": \"undefined\",\n  \"autoadvance\": \"not enabled\",\n  \"autoplay\": true,\n  \"compatibility\": true,\n  \"crossorigin\": false,\n  \"css\": {\n    \"controlBarColor\": \"{set by player template}\",\n    \"controlColor\": \"{set by player template}\",\n    \"progressColor\": \"{set by player template}\"\n  },\n  \"debugger\": true,\n  \"errors\": false,\n  \"flash\": {},\n  \"fullscreenControl\": false,\n  \"hls\": false,\n  \"language\": \"undefined\",\n  \"languages\": [\n    \"fi\",\n    \"pl\"\n  ],\n  \"loop\": false,\n  \"media\": {\n    \"sources\": [\n      {\n        \"height\": 5956,\n        \"width\": 3062,\n        \"poster\": {\n          \"highres\": \"string\"\n        },\n        \"src\": \"string\",\n        \"title\": \"string\",\n        \"type\": \"video/mp4\"\n      },\n      {\n        \"height\": 1846,\n        \"width\": 7420,\n        \"poster\": {\n          \"highres\": \"string\"\n        },\n        \"src\": \"string\",\n        \"title\": \"string\",\n        \"type\": \"video/mp4\"\n      }\n    ],\n    \"src\": \"string\",\n    \"tracks\": [\n      {\n        \"label\": \"string\",\n        \"src\": \"string\",\n        \"srclang\": \"string\"\n      },\n      {\n        \"label\": \"string\",\n        \"src\": \"string\",\n        \"srclang\": \"string\"\n      }\n    ]\n  },\n  \"muted\": false,\n  \"play_button\": {\n    \"hover\": \"glow\",\n    \"shape\": \"rectangle\",\n    \"position\": \"topLeft\"\n  },\n  \"player\": {\n    \"inactive\": true,\n    \"template\": {\n      \"name\": \"string\",\n      \"version\": \"6.22.7\",\n      \"locked\": false\n    }\n  },\n  \"player_id\": \"string\",\n  \"player_name\": \"string\",\n  \"playsinline\": false,\n  \"plugins\": [\n    {\n      \"name\": \"string\",\n      \"options\": {},\n      \"registry_id\": \"@brightcove/videojs-custom-endscreen\",\n      \"version\": \"@brightcove/videojs-custom-endscreen\"\n    },\n    {\n      \"name\": \"string\",\n      \"options\": {},\n      \"registry_id\": \"@brightcove/videojs-custom-endscreen\",\n      \"version\": \"@brightcove/videojs-custom-endscreen\"\n    }\n  ],\n  \"preload\": \"none\",\n  \"query_string_to_window\": {\n    \"target\": \"string\",\n    \"globals\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"repeat\": false,\n  \"scripts\": \"none\",\n  \"skin\": \"graphite\",\n  \"stylesheets\": \"none\",\n  \"techOrder\": [\n    \"html5\",\n    \"flash\"\n  ],\n  \"video_cloud\": {\n    \"aspect_ratio_width\": \"630\",\n    \"aspect_ratio_height\": \"300\",\n    \"base_url\": \"https://edge-elb.api.brightcove.com/playback/v1/\",\n    \"max_retry\": 3,\n    \"interval_retry\": 60000,\n    \"policy_key\": \"{the key automatically assigned}\",\n    \"poster_image_url\": \"{the key automatically assigned}\",\n    \"thumbnail_image_url\": \"{the key automatically assigned}\",\n    \"video\": \"undefined\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc0b2db7-cd4b-4b2f-bfc7-ea8f9d633f0e",
+              "name": "BAD_REQUEST: the syntax of the API call is likely incorrect",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "players",
+                    ":player_id",
+                    "configuration",
+                    ":branch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "player_id",
+                      "description": "(Required) Brightcove Player ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "branch",
+                      "description": "(Required) A plugin id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) **IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.\n\n`Authorization: Bearer {access_token}` - (see [Getting Access\nTokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c085f3db-29ed-4f48-9abc-ebb24c886dba",
+              "name": "UNAUTHORIZED: Authentication failed - check to make sure your client credentials were correct for the access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "players",
+                    ":player_id",
+                    "configuration",
+                    ":branch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "player_id",
+                      "description": "(Required) Brightcove Player ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "branch",
+                      "description": "(Required) A plugin id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) **IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.\n\n`Authorization: Bearer {access_token}` - (see [Getting Access\nTokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c2465a28-d17e-4664-ad60-a0f77ea4afdb",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "players",
+                    ":player_id",
+                    "configuration",
+                    ":branch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "player_id",
+                      "description": "(Required) Brightcove Player ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "branch",
+                      "description": "(Required) A plugin id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) **IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.\n\n`Authorization: Bearer {access_token}` - (see [Getting Access\nTokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7a0d6580-d152-42ee-8063-f36bf91cbf53",
+              "name": "RATE_LIMIT_EXCEEDED: Too many requests per second",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "players",
+                    ":player_id",
+                    "configuration",
+                    ":branch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "player_id",
+                      "description": "(Required) Brightcove Player ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "branch",
+                      "description": "(Required) A plugin id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) **IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.\n\n`Authorization: Bearer {access_token}` - (see [Getting Access\nTokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "58046213-7f00-4d41-ac66-e03ccf29eb6d",
+              "name": "INTERNAL_SERVER_ERROR: there was an error trying to fulfill the request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "players",
+                    ":player_id",
+                    "configuration",
+                    ":branch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "player_id",
+                      "description": "(Required) Brightcove Player ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "branch",
+                      "description": "(Required) A plugin id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) **IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.\n\n`Authorization: Bearer {access_token}` - (see [Getting Access\nTokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "efff753e-718b-42eb-b540-098a262d0423",
+          "name": "Update player configuration",
+          "request": {
+            "name": "Update player configuration",
+            "description": {
+              "content": "Update a player configuration",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":account_id",
+                "players",
+                ":player_id",
+                "configuration"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "player_id",
+                  "description": "(Required) Brightcove Player ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ad_config_id\": \"undefined\",\n  \"ad_failover\": \"undefined\",\n  \"application_id\": \"undefined\",\n  \"autoadvance\": \"not enabled\",\n  \"autoplay\": \"<boolean>\",\n  \"css\": {\n    \"controlBarColor\": \"{set by player template}\",\n    \"controlColor\": \"{set by player template}\",\n    \"progressColor\": \"{set by player template}\"\n  },\n  \"debugger\": \"<boolean>\",\n  \"errors\": \"<boolean>\",\n  \"flash\": \"<object>\",\n  \"fullscreenControl\": \"<boolean>\",\n  \"hls\": \"<boolean>\",\n  \"language\": \"undefined\",\n  \"languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"loop\": false,\n  \"media\": {\n    \"sources\": [\n      {\n        \"height\": \"<integer>\",\n        \"width\": \"<integer>\",\n        \"poster\": {\n          \"highres\": \"<string>\"\n        },\n        \"src\": \"<string>\",\n        \"title\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"height\": \"<integer>\",\n        \"width\": \"<integer>\",\n        \"poster\": {\n          \"highres\": \"<string>\"\n        },\n        \"src\": \"<string>\",\n        \"title\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"src\": \"<string>\",\n    \"tracks\": [\n      {\n        \"label\": \"<string>\",\n        \"src\": \"<string>\",\n        \"srclang\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"src\": \"<string>\",\n        \"srclang\": \"<string>\"\n      }\n    ]\n  },\n  \"muted\": false,\n  \"play_button\": {\n    \"hover\": \"<string>\",\n    \"shape\": \"<string>\",\n    \"position\": \"<string>\"\n  },\n  \"player\": {\n    \"inactive\": true,\n    \"template\": {\n      \"version\": \"<string>\",\n      \"locked\": false\n    }\n  },\n  \"playsinline\": false,\n  \"plugins\": [\n    {\n      \"name\": \"<string>\",\n      \"options\": \"<object>\",\n      \"registry_id\": \"<string>\",\n      \"version\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"options\": \"<object>\",\n      \"registry_id\": \"<string>\",\n      \"version\": \"<string>\"\n    }\n  ],\n  \"preload\": \"none\",\n  \"query_string_to_window\": {\n    \"target\": \"<string>\",\n    \"globals\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"repeat\": false,\n  \"scripts\": \"none\",\n  \"skin\": \"<string>\",\n  \"stylesheets\": \"none\",\n  \"techOrder\": [\n    \"html5\",\n    \"flash\"\n  ],\n  \"video_cloud\": {\n    \"aspect_ratio_width\": \"{automatically assigned}\",\n    \"aspect_ratio_height\": \"{automatically assigned}\",\n    \"base_url\": \"https://edge.api.brightcove.com/playback/v1/\",\n    \"max_retry\": 3,\n    \"interval_retry\": 60000,\n    \"policy_key\": \"{the key automatically assigned}\",\n    \"poster_image_url\": \"{the key automatically assigned}\",\n    \"thumbnail_image_url\": \"{the key automatically assigned}\",\n    \"video\": \"undefined\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a890308f-9b06-4ee3-b3d0-80c7e4a264c1",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "players",
+                    ":player_id",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "player_id",
+                      "description": "(Required) Brightcove Player ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) **IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.\n\n`Authorization: Bearer {access_token}` - (see [Getting Access\nTokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ad_config_id\": \"undefined\",\n  \"ad_failover\": \"undefined\",\n  \"application_id\": \"undefined\",\n  \"autoadvance\": \"not enabled\",\n  \"autoplay\": \"<boolean>\",\n  \"css\": {\n    \"controlBarColor\": \"{set by player template}\",\n    \"controlColor\": \"{set by player template}\",\n    \"progressColor\": \"{set by player template}\"\n  },\n  \"debugger\": \"<boolean>\",\n  \"errors\": \"<boolean>\",\n  \"flash\": \"<object>\",\n  \"fullscreenControl\": \"<boolean>\",\n  \"hls\": \"<boolean>\",\n  \"language\": \"undefined\",\n  \"languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"loop\": false,\n  \"media\": {\n    \"sources\": [\n      {\n        \"height\": \"<integer>\",\n        \"width\": \"<integer>\",\n        \"poster\": {\n          \"highres\": \"<string>\"\n        },\n        \"src\": \"<string>\",\n        \"title\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"height\": \"<integer>\",\n        \"width\": \"<integer>\",\n        \"poster\": {\n          \"highres\": \"<string>\"\n        },\n        \"src\": \"<string>\",\n        \"title\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"src\": \"<string>\",\n    \"tracks\": [\n      {\n        \"label\": \"<string>\",\n        \"src\": \"<string>\",\n        \"srclang\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"src\": \"<string>\",\n        \"srclang\": \"<string>\"\n      }\n    ]\n  },\n  \"muted\": false,\n  \"play_button\": {\n    \"hover\": \"<string>\",\n    \"shape\": \"<string>\",\n    \"position\": \"<string>\"\n  },\n  \"player\": {\n    \"inactive\": true,\n    \"template\": {\n      \"version\": \"6.22.7\",\n      \"locked\": false\n    }\n  },\n  \"playsinline\": false,\n  \"plugins\": [\n    {\n      \"name\": \"<string>\",\n      \"options\": \"<object>\",\n      \"registry_id\": \"@brightcove/videojs-custom-endscreen\",\n      \"version\": \"@brightcove/videojs-custom-endscreen\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"options\": \"<object>\",\n      \"registry_id\": \"@brightcove/videojs-custom-endscreen\",\n      \"version\": \"@brightcove/videojs-custom-endscreen\"\n    }\n  ],\n  \"preload\": \"none\",\n  \"query_string_to_window\": {\n    \"target\": \"<string>\",\n    \"globals\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"repeat\": false,\n  \"scripts\": \"none\",\n  \"skin\": \"<string>\",\n  \"stylesheets\": \"none\",\n  \"techOrder\": [\n    \"html5\",\n    \"flash\"\n  ],\n  \"video_cloud\": {\n    \"aspect_ratio_width\": \"630\",\n    \"aspect_ratio_height\": \"300\",\n    \"base_url\": \"https://edge-elb.api.brightcove.com/playback/v1/\",\n    \"max_retry\": 3,\n    \"interval_retry\": 60000,\n    \"policy_key\": \"{the key automatically assigned}\",\n    \"poster_image_url\": \"{the key automatically assigned}\",\n    \"thumbnail_image_url\": \"{the key automatically assigned}\",\n    \"video\": \"undefined\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_id\": \"string\",\n  \"created_at\": \"string\",\n  \"embeds_count\": 8250,\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"url\": \"string\",\n  \"branches\": {\n    \"preview\": {\n      \"configuration\": {\n        \"ad_config_id\": \"undefined\",\n        \"ad_failover\": \"undefined\",\n        \"application_id\": \"undefined\",\n        \"autoadvance\": \"not enabled\",\n        \"autoplay\": \"<boolean>\",\n        \"compatibility\": true,\n        \"crossorigin\": true,\n        \"css\": {\n          \"controlBarColor\": \"{set by player template}\",\n          \"controlColor\": \"{set by player template}\",\n          \"progressColor\": \"{set by player template}\"\n        },\n        \"debugger\": \"<boolean>\",\n        \"errors\": \"<boolean>\",\n        \"flash\": \"<object>\",\n        \"fullscreenControl\": \"<boolean>\",\n        \"hls\": \"<boolean>\",\n        \"language\": \"undefined\",\n        \"languages\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"loop\": false,\n        \"media\": {\n          \"sources\": [\n            {\n              \"height\": \"<integer>\",\n              \"width\": \"<integer>\",\n              \"poster\": {\n                \"highres\": \"<string>\"\n              },\n              \"src\": \"<string>\",\n              \"title\": \"<string>\",\n              \"type\": \"<string>\"\n            },\n            {\n              \"height\": \"<integer>\",\n              \"width\": \"<integer>\",\n              \"poster\": {\n                \"highres\": \"<string>\"\n              },\n              \"src\": \"<string>\",\n              \"title\": \"<string>\",\n              \"type\": \"<string>\"\n            }\n          ],\n          \"src\": \"<string>\",\n          \"tracks\": [\n            {\n              \"label\": \"<string>\",\n              \"src\": \"<string>\",\n              \"srclang\": \"<string>\"\n            },\n            {\n              \"label\": \"<string>\",\n              \"src\": \"<string>\",\n              \"srclang\": \"<string>\"\n            }\n          ]\n        },\n        \"muted\": false,\n        \"play_button\": {\n          \"hover\": \"<string>\",\n          \"shape\": \"<string>\",\n          \"position\": \"<string>\"\n        },\n        \"player\": {\n          \"inactive\": true,\n          \"template\": {\n            \"name\": \"string\",\n            \"version\": \"6.22.7\",\n            \"locked\": false\n          }\n        },\n        \"player_id\": \"string\",\n        \"player_name\": \"string\",\n        \"playsinline\": false,\n        \"plugins\": [\n          {\n            \"name\": \"<string>\",\n            \"options\": \"<object>\",\n            \"registry_id\": \"@brightcove/videojs-custom-endscreen\",\n            \"version\": \"@brightcove/videojs-custom-endscreen\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"options\": \"<object>\",\n            \"registry_id\": \"@brightcove/videojs-custom-endscreen\",\n            \"version\": \"@brightcove/videojs-custom-endscreen\"\n          }\n        ],\n        \"preload\": \"none\",\n        \"query_string_to_window\": {\n          \"target\": \"<string>\",\n          \"globals\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"repeat\": false,\n        \"scripts\": \"none\",\n        \"skin\": \"<string>\",\n        \"stylesheets\": \"none\",\n        \"techOrder\": [\n          \"html5\",\n          \"flash\"\n        ],\n        \"video_cloud\": {\n          \"aspect_ratio_width\": \"630\",\n          \"aspect_ratio_height\": \"300\",\n          \"base_url\": \"https://edge-elb.api.brightcove.com/playback/v1/\",\n          \"max_retry\": 3,\n          \"interval_retry\": 60000,\n          \"policy_key\": \"{the key automatically assigned}\",\n          \"poster_image_url\": \"{the key automatically assigned}\",\n          \"thumbnail_image_url\": \"{the key automatically assigned}\",\n          \"video\": \"undefined\"\n        }\n      },\n      \"updated_at\": \"string\",\n      \"template_updated_at\": \"string\",\n      \"preview_url\": \"string\"\n    },\n    \"master\": {\n      \"configuration\": {\n        \"ad_config_id\": \"undefined\",\n        \"ad_failover\": \"undefined\",\n        \"application_id\": \"undefined\",\n        \"autoadvance\": \"not enabled\",\n        \"autoplay\": \"<boolean>\",\n        \"compatibility\": true,\n        \"crossorigin\": false,\n        \"css\": {\n          \"controlBarColor\": \"{set by player template}\",\n          \"controlColor\": \"{set by player template}\",\n          \"progressColor\": \"{set by player template}\"\n        },\n        \"debugger\": \"<boolean>\",\n        \"errors\": \"<boolean>\",\n        \"flash\": \"<object>\",\n        \"fullscreenControl\": \"<boolean>\",\n        \"hls\": \"<boolean>\",\n        \"language\": \"undefined\",\n        \"languages\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"loop\": false,\n        \"media\": {\n          \"sources\": [\n            {\n              \"height\": \"<integer>\",\n              \"width\": \"<integer>\",\n              \"poster\": {\n                \"highres\": \"<string>\"\n              },\n              \"src\": \"<string>\",\n              \"title\": \"<string>\",\n              \"type\": \"<string>\"\n            },\n            {\n              \"height\": \"<integer>\",\n              \"width\": \"<integer>\",\n              \"poster\": {\n                \"highres\": \"<string>\"\n              },\n              \"src\": \"<string>\",\n              \"title\": \"<string>\",\n              \"type\": \"<string>\"\n            }\n          ],\n          \"src\": \"<string>\",\n          \"tracks\": [\n            {\n              \"label\": \"<string>\",\n              \"src\": \"<string>\",\n              \"srclang\": \"<string>\"\n            },\n            {\n              \"label\": \"<string>\",\n              \"src\": \"<string>\",\n              \"srclang\": \"<string>\"\n            }\n          ]\n        },\n        \"muted\": false,\n        \"play_button\": {\n          \"hover\": \"<string>\",\n          \"shape\": \"<string>\",\n          \"position\": \"<string>\"\n        },\n        \"player\": {\n          \"inactive\": true,\n          \"template\": {\n            \"name\": \"string\",\n            \"version\": \"6.22.7\",\n            \"locked\": false\n          }\n        },\n        \"player_id\": \"string\",\n        \"player_name\": \"string\",\n        \"playsinline\": false,\n        \"plugins\": [\n          {\n            \"name\": \"<string>\",\n            \"options\": \"<object>\",\n            \"registry_id\": \"@brightcove/videojs-custom-endscreen\",\n            \"version\": \"@brightcove/videojs-custom-endscreen\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"options\": \"<object>\",\n            \"registry_id\": \"@brightcove/videojs-custom-endscreen\",\n            \"version\": \"@brightcove/videojs-custom-endscreen\"\n          }\n        ],\n        \"preload\": \"none\",\n        \"query_string_to_window\": {\n          \"target\": \"<string>\",\n          \"globals\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"repeat\": false,\n        \"scripts\": \"none\",\n        \"skin\": \"<string>\",\n        \"stylesheets\": \"none\",\n        \"techOrder\": [\n          \"html5\",\n          \"flash\"\n        ],\n        \"video_cloud\": {\n          \"aspect_ratio_width\": \"630\",\n          \"aspect_ratio_height\": \"300\",\n          \"base_url\": \"https://edge-elb.api.brightcove.com/playback/v1/\",\n          \"max_retry\": 3,\n          \"interval_retry\": 60000,\n          \"policy_key\": \"{the key automatically assigned}\",\n          \"poster_image_url\": \"{the key automatically assigned}\",\n          \"thumbnail_image_url\": \"{the key automatically assigned}\",\n          \"video\": \"undefined\"\n        }\n      },\n      \"updated_at\": \"string\",\n      \"template_updated_at\": \"string\",\n      \"preview_url\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f637f9ce-7c66-4df1-85c9-11a391cf57fb",
+              "name": "BAD_REQUEST: the syntax of the API call is likely incorrect",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "players",
+                    ":player_id",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "player_id",
+                      "description": "(Required) Brightcove Player ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) **IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.\n\n`Authorization: Bearer {access_token}` - (see [Getting Access\nTokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ad_config_id\": \"undefined\",\n  \"ad_failover\": \"undefined\",\n  \"application_id\": \"undefined\",\n  \"autoadvance\": \"not enabled\",\n  \"autoplay\": \"<boolean>\",\n  \"css\": {\n    \"controlBarColor\": \"{set by player template}\",\n    \"controlColor\": \"{set by player template}\",\n    \"progressColor\": \"{set by player template}\"\n  },\n  \"debugger\": \"<boolean>\",\n  \"errors\": \"<boolean>\",\n  \"flash\": \"<object>\",\n  \"fullscreenControl\": \"<boolean>\",\n  \"hls\": \"<boolean>\",\n  \"language\": \"undefined\",\n  \"languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"loop\": false,\n  \"media\": {\n    \"sources\": [\n      {\n        \"height\": \"<integer>\",\n        \"width\": \"<integer>\",\n        \"poster\": {\n          \"highres\": \"<string>\"\n        },\n        \"src\": \"<string>\",\n        \"title\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"height\": \"<integer>\",\n        \"width\": \"<integer>\",\n        \"poster\": {\n          \"highres\": \"<string>\"\n        },\n        \"src\": \"<string>\",\n        \"title\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"src\": \"<string>\",\n    \"tracks\": [\n      {\n        \"label\": \"<string>\",\n        \"src\": \"<string>\",\n        \"srclang\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"src\": \"<string>\",\n        \"srclang\": \"<string>\"\n      }\n    ]\n  },\n  \"muted\": false,\n  \"play_button\": {\n    \"hover\": \"<string>\",\n    \"shape\": \"<string>\",\n    \"position\": \"<string>\"\n  },\n  \"player\": {\n    \"inactive\": true,\n    \"template\": {\n      \"version\": \"6.22.7\",\n      \"locked\": false\n    }\n  },\n  \"playsinline\": false,\n  \"plugins\": [\n    {\n      \"name\": \"<string>\",\n      \"options\": \"<object>\",\n      \"registry_id\": \"@brightcove/videojs-custom-endscreen\",\n      \"version\": \"@brightcove/videojs-custom-endscreen\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"options\": \"<object>\",\n      \"registry_id\": \"@brightcove/videojs-custom-endscreen\",\n      \"version\": \"@brightcove/videojs-custom-endscreen\"\n    }\n  ],\n  \"preload\": \"none\",\n  \"query_string_to_window\": {\n    \"target\": \"<string>\",\n    \"globals\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"repeat\": false,\n  \"scripts\": \"none\",\n  \"skin\": \"<string>\",\n  \"stylesheets\": \"none\",\n  \"techOrder\": [\n    \"html5\",\n    \"flash\"\n  ],\n  \"video_cloud\": {\n    \"aspect_ratio_width\": \"630\",\n    \"aspect_ratio_height\": \"300\",\n    \"base_url\": \"https://edge-elb.api.brightcove.com/playback/v1/\",\n    \"max_retry\": 3,\n    \"interval_retry\": 60000,\n    \"policy_key\": \"{the key automatically assigned}\",\n    \"poster_image_url\": \"{the key automatically assigned}\",\n    \"thumbnail_image_url\": \"{the key automatically assigned}\",\n    \"video\": \"undefined\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ee2be2b1-20c4-47a0-a383-5ab25b3731ee",
+              "name": "UNAUTHORIZED: Authentication failed - check to make sure your client credentials were correct for the access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "players",
+                    ":player_id",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "player_id",
+                      "description": "(Required) Brightcove Player ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) **IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.\n\n`Authorization: Bearer {access_token}` - (see [Getting Access\nTokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ad_config_id\": \"undefined\",\n  \"ad_failover\": \"undefined\",\n  \"application_id\": \"undefined\",\n  \"autoadvance\": \"not enabled\",\n  \"autoplay\": \"<boolean>\",\n  \"css\": {\n    \"controlBarColor\": \"{set by player template}\",\n    \"controlColor\": \"{set by player template}\",\n    \"progressColor\": \"{set by player template}\"\n  },\n  \"debugger\": \"<boolean>\",\n  \"errors\": \"<boolean>\",\n  \"flash\": \"<object>\",\n  \"fullscreenControl\": \"<boolean>\",\n  \"hls\": \"<boolean>\",\n  \"language\": \"undefined\",\n  \"languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"loop\": false,\n  \"media\": {\n    \"sources\": [\n      {\n        \"height\": \"<integer>\",\n        \"width\": \"<integer>\",\n        \"poster\": {\n          \"highres\": \"<string>\"\n        },\n        \"src\": \"<string>\",\n        \"title\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"height\": \"<integer>\",\n        \"width\": \"<integer>\",\n        \"poster\": {\n          \"highres\": \"<string>\"\n        },\n        \"src\": \"<string>\",\n        \"title\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"src\": \"<string>\",\n    \"tracks\": [\n      {\n        \"label\": \"<string>\",\n        \"src\": \"<string>\",\n        \"srclang\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"src\": \"<string>\",\n        \"srclang\": \"<string>\"\n      }\n    ]\n  },\n  \"muted\": false,\n  \"play_button\": {\n    \"hover\": \"<string>\",\n    \"shape\": \"<string>\",\n    \"position\": \"<string>\"\n  },\n  \"player\": {\n    \"inactive\": true,\n    \"template\": {\n      \"version\": \"6.22.7\",\n      \"locked\": false\n    }\n  },\n  \"playsinline\": false,\n  \"plugins\": [\n    {\n      \"name\": \"<string>\",\n      \"options\": \"<object>\",\n      \"registry_id\": \"@brightcove/videojs-custom-endscreen\",\n      \"version\": \"@brightcove/videojs-custom-endscreen\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"options\": \"<object>\",\n      \"registry_id\": \"@brightcove/videojs-custom-endscreen\",\n      \"version\": \"@brightcove/videojs-custom-endscreen\"\n    }\n  ],\n  \"preload\": \"none\",\n  \"query_string_to_window\": {\n    \"target\": \"<string>\",\n    \"globals\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"repeat\": false,\n  \"scripts\": \"none\",\n  \"skin\": \"<string>\",\n  \"stylesheets\": \"none\",\n  \"techOrder\": [\n    \"html5\",\n    \"flash\"\n  ],\n  \"video_cloud\": {\n    \"aspect_ratio_width\": \"630\",\n    \"aspect_ratio_height\": \"300\",\n    \"base_url\": \"https://edge-elb.api.brightcove.com/playback/v1/\",\n    \"max_retry\": 3,\n    \"interval_retry\": 60000,\n    \"policy_key\": \"{the key automatically assigned}\",\n    \"poster_image_url\": \"{the key automatically assigned}\",\n    \"thumbnail_image_url\": \"{the key automatically assigned}\",\n    \"video\": \"undefined\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "30b09157-f721-4cb3-89e6-96ef22147ccf",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "players",
+                    ":player_id",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "player_id",
+                      "description": "(Required) Brightcove Player ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) **IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.\n\n`Authorization: Bearer {access_token}` - (see [Getting Access\nTokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ad_config_id\": \"undefined\",\n  \"ad_failover\": \"undefined\",\n  \"application_id\": \"undefined\",\n  \"autoadvance\": \"not enabled\",\n  \"autoplay\": \"<boolean>\",\n  \"css\": {\n    \"controlBarColor\": \"{set by player template}\",\n    \"controlColor\": \"{set by player template}\",\n    \"progressColor\": \"{set by player template}\"\n  },\n  \"debugger\": \"<boolean>\",\n  \"errors\": \"<boolean>\",\n  \"flash\": \"<object>\",\n  \"fullscreenControl\": \"<boolean>\",\n  \"hls\": \"<boolean>\",\n  \"language\": \"undefined\",\n  \"languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"loop\": false,\n  \"media\": {\n    \"sources\": [\n      {\n        \"height\": \"<integer>\",\n        \"width\": \"<integer>\",\n        \"poster\": {\n          \"highres\": \"<string>\"\n        },\n        \"src\": \"<string>\",\n        \"title\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"height\": \"<integer>\",\n        \"width\": \"<integer>\",\n        \"poster\": {\n          \"highres\": \"<string>\"\n        },\n        \"src\": \"<string>\",\n        \"title\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"src\": \"<string>\",\n    \"tracks\": [\n      {\n        \"label\": \"<string>\",\n        \"src\": \"<string>\",\n        \"srclang\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"src\": \"<string>\",\n        \"srclang\": \"<string>\"\n      }\n    ]\n  },\n  \"muted\": false,\n  \"play_button\": {\n    \"hover\": \"<string>\",\n    \"shape\": \"<string>\",\n    \"position\": \"<string>\"\n  },\n  \"player\": {\n    \"inactive\": true,\n    \"template\": {\n      \"version\": \"6.22.7\",\n      \"locked\": false\n    }\n  },\n  \"playsinline\": false,\n  \"plugins\": [\n    {\n      \"name\": \"<string>\",\n      \"options\": \"<object>\",\n      \"registry_id\": \"@brightcove/videojs-custom-endscreen\",\n      \"version\": \"@brightcove/videojs-custom-endscreen\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"options\": \"<object>\",\n      \"registry_id\": \"@brightcove/videojs-custom-endscreen\",\n      \"version\": \"@brightcove/videojs-custom-endscreen\"\n    }\n  ],\n  \"preload\": \"none\",\n  \"query_string_to_window\": {\n    \"target\": \"<string>\",\n    \"globals\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"repeat\": false,\n  \"scripts\": \"none\",\n  \"skin\": \"<string>\",\n  \"stylesheets\": \"none\",\n  \"techOrder\": [\n    \"html5\",\n    \"flash\"\n  ],\n  \"video_cloud\": {\n    \"aspect_ratio_width\": \"630\",\n    \"aspect_ratio_height\": \"300\",\n    \"base_url\": \"https://edge-elb.api.brightcove.com/playback/v1/\",\n    \"max_retry\": 3,\n    \"interval_retry\": 60000,\n    \"policy_key\": \"{the key automatically assigned}\",\n    \"poster_image_url\": \"{the key automatically assigned}\",\n    \"thumbnail_image_url\": \"{the key automatically assigned}\",\n    \"video\": \"undefined\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5234fa44-2a6b-4fe3-9a86-97c17b02b40e",
+              "name": "RATE_LIMIT_EXCEEDED: Too many requests per second",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "players",
+                    ":player_id",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "player_id",
+                      "description": "(Required) Brightcove Player ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) **IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.\n\n`Authorization: Bearer {access_token}` - (see [Getting Access\nTokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ad_config_id\": \"undefined\",\n  \"ad_failover\": \"undefined\",\n  \"application_id\": \"undefined\",\n  \"autoadvance\": \"not enabled\",\n  \"autoplay\": \"<boolean>\",\n  \"css\": {\n    \"controlBarColor\": \"{set by player template}\",\n    \"controlColor\": \"{set by player template}\",\n    \"progressColor\": \"{set by player template}\"\n  },\n  \"debugger\": \"<boolean>\",\n  \"errors\": \"<boolean>\",\n  \"flash\": \"<object>\",\n  \"fullscreenControl\": \"<boolean>\",\n  \"hls\": \"<boolean>\",\n  \"language\": \"undefined\",\n  \"languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"loop\": false,\n  \"media\": {\n    \"sources\": [\n      {\n        \"height\": \"<integer>\",\n        \"width\": \"<integer>\",\n        \"poster\": {\n          \"highres\": \"<string>\"\n        },\n        \"src\": \"<string>\",\n        \"title\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"height\": \"<integer>\",\n        \"width\": \"<integer>\",\n        \"poster\": {\n          \"highres\": \"<string>\"\n        },\n        \"src\": \"<string>\",\n        \"title\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"src\": \"<string>\",\n    \"tracks\": [\n      {\n        \"label\": \"<string>\",\n        \"src\": \"<string>\",\n        \"srclang\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"src\": \"<string>\",\n        \"srclang\": \"<string>\"\n      }\n    ]\n  },\n  \"muted\": false,\n  \"play_button\": {\n    \"hover\": \"<string>\",\n    \"shape\": \"<string>\",\n    \"position\": \"<string>\"\n  },\n  \"player\": {\n    \"inactive\": true,\n    \"template\": {\n      \"version\": \"6.22.7\",\n      \"locked\": false\n    }\n  },\n  \"playsinline\": false,\n  \"plugins\": [\n    {\n      \"name\": \"<string>\",\n      \"options\": \"<object>\",\n      \"registry_id\": \"@brightcove/videojs-custom-endscreen\",\n      \"version\": \"@brightcove/videojs-custom-endscreen\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"options\": \"<object>\",\n      \"registry_id\": \"@brightcove/videojs-custom-endscreen\",\n      \"version\": \"@brightcove/videojs-custom-endscreen\"\n    }\n  ],\n  \"preload\": \"none\",\n  \"query_string_to_window\": {\n    \"target\": \"<string>\",\n    \"globals\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"repeat\": false,\n  \"scripts\": \"none\",\n  \"skin\": \"<string>\",\n  \"stylesheets\": \"none\",\n  \"techOrder\": [\n    \"html5\",\n    \"flash\"\n  ],\n  \"video_cloud\": {\n    \"aspect_ratio_width\": \"630\",\n    \"aspect_ratio_height\": \"300\",\n    \"base_url\": \"https://edge-elb.api.brightcove.com/playback/v1/\",\n    \"max_retry\": 3,\n    \"interval_retry\": 60000,\n    \"policy_key\": \"{the key automatically assigned}\",\n    \"poster_image_url\": \"{the key automatically assigned}\",\n    \"thumbnail_image_url\": \"{the key automatically assigned}\",\n    \"video\": \"undefined\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "30da8399-acfc-4eae-8814-1468ba1fd9b3",
+              "name": "INTERNAL_SERVER_ERROR: there was an error trying to fulfill the request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "players",
+                    ":player_id",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "player_id",
+                      "description": "(Required) Brightcove Player ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) **IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.\n\n`Authorization: Bearer {access_token}` - (see [Getting Access\nTokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ad_config_id\": \"undefined\",\n  \"ad_failover\": \"undefined\",\n  \"application_id\": \"undefined\",\n  \"autoadvance\": \"not enabled\",\n  \"autoplay\": \"<boolean>\",\n  \"css\": {\n    \"controlBarColor\": \"{set by player template}\",\n    \"controlColor\": \"{set by player template}\",\n    \"progressColor\": \"{set by player template}\"\n  },\n  \"debugger\": \"<boolean>\",\n  \"errors\": \"<boolean>\",\n  \"flash\": \"<object>\",\n  \"fullscreenControl\": \"<boolean>\",\n  \"hls\": \"<boolean>\",\n  \"language\": \"undefined\",\n  \"languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"loop\": false,\n  \"media\": {\n    \"sources\": [\n      {\n        \"height\": \"<integer>\",\n        \"width\": \"<integer>\",\n        \"poster\": {\n          \"highres\": \"<string>\"\n        },\n        \"src\": \"<string>\",\n        \"title\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"height\": \"<integer>\",\n        \"width\": \"<integer>\",\n        \"poster\": {\n          \"highres\": \"<string>\"\n        },\n        \"src\": \"<string>\",\n        \"title\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"src\": \"<string>\",\n    \"tracks\": [\n      {\n        \"label\": \"<string>\",\n        \"src\": \"<string>\",\n        \"srclang\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"src\": \"<string>\",\n        \"srclang\": \"<string>\"\n      }\n    ]\n  },\n  \"muted\": false,\n  \"play_button\": {\n    \"hover\": \"<string>\",\n    \"shape\": \"<string>\",\n    \"position\": \"<string>\"\n  },\n  \"player\": {\n    \"inactive\": true,\n    \"template\": {\n      \"version\": \"6.22.7\",\n      \"locked\": false\n    }\n  },\n  \"playsinline\": false,\n  \"plugins\": [\n    {\n      \"name\": \"<string>\",\n      \"options\": \"<object>\",\n      \"registry_id\": \"@brightcove/videojs-custom-endscreen\",\n      \"version\": \"@brightcove/videojs-custom-endscreen\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"options\": \"<object>\",\n      \"registry_id\": \"@brightcove/videojs-custom-endscreen\",\n      \"version\": \"@brightcove/videojs-custom-endscreen\"\n    }\n  ],\n  \"preload\": \"none\",\n  \"query_string_to_window\": {\n    \"target\": \"<string>\",\n    \"globals\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"repeat\": false,\n  \"scripts\": \"none\",\n  \"skin\": \"<string>\",\n  \"stylesheets\": \"none\",\n  \"techOrder\": [\n    \"html5\",\n    \"flash\"\n  ],\n  \"video_cloud\": {\n    \"aspect_ratio_width\": \"630\",\n    \"aspect_ratio_height\": \"300\",\n    \"base_url\": \"https://edge-elb.api.brightcove.com/playback/v1/\",\n    \"max_retry\": 3,\n    \"interval_retry\": 60000,\n    \"policy_key\": \"{the key automatically assigned}\",\n    \"poster_image_url\": \"{the key automatically assigned}\",\n    \"thumbnail_image_url\": \"{the key automatically assigned}\",\n    \"video\": \"undefined\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://analytics.api.brightcove.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "18e5bbcf-31d5-4ac2-a424-6e040cb2ba87",
+    "name": "Brightcove Analytics API Reference Access Tokens Player Configurations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com",
+      "type": "text/plain"
+    }
+  }
+}

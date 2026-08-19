@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brightcove Analytics API Reference Access Tokens Ad Call Tracking API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ad Call Tracking",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an SSAI ad trace for an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://analytics.api.brightcove.com/accounts/:{account_id}/ssai_debug_vmap/debug.xml",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the account to query video statuses for"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create an SSAI ad trace for an account. Use this request if you do **not** have an ad config id."
+        },
+        {
+          "info": {
+            "name": "Get ad calls for a session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/accounts/:{account_id}/ssai_traces/:session_id/ad_calls",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the account to query video statuses for"
+              },
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "path",
+                "description": "Session id from the VMAP response"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "'Get ad calls for a session. The `session_id` comes from the VMAP response: `<bc:BrightcoveDebug sessionID=\"your session id\"></bc:BrightcoveDebug>`'"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

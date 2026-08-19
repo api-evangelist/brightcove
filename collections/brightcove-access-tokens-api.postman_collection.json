@@ -1,0 +1,222 @@
+{
+  "item": [
+    {
+      "id": "63d8818e-2f39-404b-91b8-e55128620a63",
+      "name": "Access Tokens",
+      "description": {
+        "content": "Get access tokens to authenticate API requests.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f27e39b1-8356-4906-af7e-1f904af62194",
+          "name": "Create Access Token",
+          "request": {
+            "name": "Create Access Token",
+            "description": {
+              "content": "create a temporary access token for an API request ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access_token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "grant_type",
+                  "value": "<string>",
+                  "description": "(Required) OAuth grant type"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0b4f3ad3-401d-4c71-ba48-c5365f00ede2",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access_token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "grant_type",
+                      "value": "client_credentials"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/x-www-form-urlencoded",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) 'Authorization: Basic client_id:client_secret (the `client_id:client_secret` string must be BASE64-encoded; see Getting Access Tokens)'",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_token\": \"string\",\n  \"expires_in\": 1461.2703418350316,\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d59e75eb-736b-4694-81b3-04a2f4941914",
+              "name": "invalid_client: credential is not valid ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access_token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "grant_type",
+                      "value": "client_credentials"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/x-www-form-urlencoded",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) 'Authorization: Basic client_id:client_secret (the `client_id:client_secret` string must be BASE64-encoded; see Getting Access Tokens)'",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1da20861-4e99-4e34-91e4-d9ae960717e5",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access_token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "grant_type",
+                      "value": "client_credentials"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/x-www-form-urlencoded",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) 'Authorization: Basic client_id:client_secret (the `client_id:client_secret` string must be BASE64-encoded; see Getting Access Tokens)'",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://analytics.api.brightcove.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3e826410-2d94-4072-89e6-f7620ab2615f",
+    "name": "Brightcove Analytics API Reference Access Tokens API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com",
+      "type": "text/plain"
+    }
+  }
+}

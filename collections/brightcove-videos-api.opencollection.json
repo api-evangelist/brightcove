@@ -1,0 +1,1172 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brightcove Analytics API Reference Access Tokens Videos API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Videos",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Videos",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return - see [Paging Search Results](/cms/searching/using-cms-api-page-search-results.html) for more information"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip - see [Paging Search Results](/cms/searching/using-cms-api-page-search-results.html) for more information"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort results by - if absent and there is a search string, results are sorted by relevance or if there is no search string, results are sorted by `-updated_at`. \nNotes: \n  - to sort in descending order, preface the field name with a minus (`-`) sign\n  - this parameter can be used to sort results both for a get videos request and for a get videos in folder request"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search string - see [search guide](/cms/searching/cmsplayback-api-videos-search.html) for details"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Search string - see [search guide](/cms/searching/cms-and-playback-apis-video-search-v2.html) for details"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets a page of video objects "
+        },
+        {
+          "info": {
+            "name": "Create Video",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a new video object in the account. Note: this does not ingest a video file - use the Dynamic Ingest API for ingestion"
+        },
+        {
+          "info": {
+            "name": "Get Video Count",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/counts/videos",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search string - see [search guide](/cms/searching/cmsplayback-api-videos-search.html) for details"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets count of videos for the account or a search "
+        },
+        {
+          "info": {
+            "name": "Get Videos by ID/Reference ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos:video_ids}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_ids",
+                "value": "",
+                "type": "path",
+                "description": "One or more video ids or one reference id. If reference ids, the syntax is `ref:my_ref_id`. Note that you may include multiple video ids, but only one reference id.\n\nFor example:\n- https://cms.api.brightcove.com/v1/accounts/{{account_id}}/videos/9827342837937\n- https://cms.api.brightcove.com/v1/accounts/{{account_id}}/videos/9827342837937,47584736360\n- https://cms.api.brightcove.com/v1/accounts/{{account_id}}/videos/ref:my_ref_id"
+              },
+              {
+                "name": "include_variants",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include the language variants in the response"
+              },
+              {
+                "name": "include_video_preview",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include the `video_preview` object (animated thumbnail preview metadata) in the response"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets a video object - you can include **up to 10** video ids separated by commas.\n\nNote: To receive the `video_preview.sources`, include `include_video_preview=true` in the request query."
+        },
+        {
+          "info": {
+            "name": "Delete Video",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos:video_ids}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_ids",
+                "value": "",
+                "type": "path",
+                "description": "One or more video ids or one reference id. If reference ids, the syntax is `ref:my_ref_id`. Note that you may include multiple video ids, but only one reference id.\n\nFor example:\n- https://cms.api.brightcove.com/v1/accounts/{{account_id}}/videos/9827342837937\n- https://cms.api.brightcove.com/v1/accounts/{{account_id}}/videos/9827342837937,47584736360\n- https://cms.api.brightcove.com/v1/accounts/{{account_id}}/videos/ref:my_ref_id"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "'Deletes one or more videos - note that for this operation you can specify a comma-delimited list of video ids to delete. A maximum of 10 videos can be deleted with one request. You can also delete a video by its reference id using `ref:video_reference_id` but only one at a time.'"
+        },
+        {
+          "info": {
+            "name": "Update Video",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update video metadata - note that this API does not ingest any media files - use the Dynamic Ingest API for ingestion. Also note that replacing WebVTT text tracks is a two-step operation - see Add WebVTT Captions for details."
+        },
+        {
+          "info": {
+            "name": "Get Video Sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/sources",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets an array of sources (renditions) for a video"
+        },
+        {
+          "info": {
+            "name": "Get Video Images",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/images",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets the images for a video "
+        },
+        {
+          "info": {
+            "name": "Delete video image",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/image_sources:label}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              },
+              {
+                "name": "label",
+                "value": "",
+                "type": "path",
+                "description": "Image type"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete video image source by label. The label can be one of `poster`, `thumbnail`, `wide`, `ultra-wide`, `portrait`, `square`."
+        },
+        {
+          "info": {
+            "name": "Get All Video Variants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/variants",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets the language variants for the video metadata"
+        },
+        {
+          "info": {
+            "name": "Create a Video Variant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/variants",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a language variant for a video metadata"
+        },
+        {
+          "info": {
+            "name": "Get a Video Variant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/variants:language}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "path",
+                "description": "The language for the variant in the language-country code format (examples: en-US, es-ES)"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets the variant for the video metadata for the specified language"
+        },
+        {
+          "info": {
+            "name": "Update a Video Variant",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/variants:language}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "path",
+                "description": "The language for the variant in the language-country code format (examples: en-US, es-ES)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Updates a language variant for a video metadata"
+        },
+        {
+          "info": {
+            "name": "Delete a Video Variant",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/variants:language}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "path",
+                "description": "The language for the variant in the language-country code format (examples: en-US, es-ES)"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete a language variant for a video metadata"
+        },
+        {
+          "info": {
+            "name": "Get Video Audio Tracks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/audio_tracks",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets the audio tracks for a video Dynamic Delivery only "
+        },
+        {
+          "info": {
+            "name": "Get Video Audio Track",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/audio_tracks:audio_track_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              },
+              {
+                "name": "audio_track_id",
+                "value": "",
+                "type": "path",
+                "description": "the id for the audio track, formed as `language_variant`"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets one audio track for a video by its ID Dynamic Delivery only "
+        },
+        {
+          "info": {
+            "name": "Update Video Audio Track",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/audio_tracks:audio_track_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              },
+              {
+                "name": "audio_track_id",
+                "value": "",
+                "type": "path",
+                "description": "the id for the audio track, formed as `language_variant`"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Updates audio track metadata for a video Dynamic Delivery only "
+        },
+        {
+          "info": {
+            "name": "Delete Video Audio Track",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/audio_tracks:audio_track_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              },
+              {
+                "name": "audio_track_id",
+                "value": "",
+                "type": "path",
+                "description": "the id for the audio track, formed as `language_variant`"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Deletes one audio track for a video by its ID Dynamic Delivery only "
+        },
+        {
+          "info": {
+            "name": "Get Digital Master Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/digital_master",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets the stored digital master for a video, if any "
+        },
+        {
+          "info": {
+            "name": "Delete Digital Master",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/digital_master",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Deletes the archived digital master for a video. Be sure to read Digital Master Delete API before using this operation to understand the implications."
+        },
+        {
+          "info": {
+            "name": "Get Playlists for Video",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/references",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets an array of Manual (EXPLICIT) playlists that contain a video object for the account"
+        },
+        {
+          "info": {
+            "name": "Remove Video from all Playlists",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/references",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Removes the video from all EXPLICIT playlists for the account "
+        },
+        {
+          "info": {
+            "name": "Get Status of Ingest Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/ingest_jobs",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID.\n\nFor example:\n- https://cms.api.brightcove.com/v1/accounts/{{account_id}}/videos/9827342837937"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get the status of all ingest jobs associated with a video (including the original ingestion, replacing and retranscoding the video). NOTE: this operation only works for videos that were ingested using **Dynamic Delivery** profiles.\n\nPossible states of jobs are:\n  * `processing` processing is underway, but no playable renditions have been created yet\n  * `publishing` at least one playable rendition has been created and is being published\n  * `published` at least one rendition is available for pla"
+        },
+        {
+          "info": {
+            "name": "Get Status of Ingest Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/ingest_jobs:job_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video ID (specified as `{video_id}}`)."
+              },
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "The Job ID for the ingest job (returned in the response to an ingest request)"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get the status of an ingest job associated with a video (including the original ingestion, replacing and retranscoding the video). NOTE: this operation only works for videos that were ingested using **Dynamic Delivery** profiles.\n\n\nPossible states of jobs are:\n  * `processing` processing is underway, but no playable renditions have been created yet\n  * `publishing` at least one playable rendition has been created and is being published\n  * `published` at least one rendition is available for play"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

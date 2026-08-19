@@ -1,0 +1,222 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brightcove Analytics API Reference Access Tokens Analytics Report API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Analytics Report",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Analytics Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/data",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "accounts",
+                "value": "",
+                "type": "query",
+                "description": "One or more account ids, separated by commas"
+              },
+              {
+                "name": "dimensions",
+                "value": "",
+                "type": "query",
+                "description": "One or more dimensions to report on; see [Multiple Dimensions](/analytics/getting-started/analytics-api-overview-dimensions-fields-and-parameters.html) or which combined dimensions are supported\n\nDimensions:\n  - account\n  - audio_track_language\n  - browser_type\n  - caption_track_language\n  - city\n  - country\n  - date\n  - date_hour\n  - destination_domain\n  - destination_path\n  - device_os\n  - device_manufacturer\n  - device_type\n  - live_stream\n  - player\n  - referrer_domain\n  - region\n  - search_terms\n  - social_platform\n  - source_type\n  - video\n  - stream_type"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort results by (prefix with `-` for descending order); you can sort on **any field** that you specifying the `fields` parameter."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Fields to return - available fields varies according to the dimensions - see the [Overview: Analytics API](/analytics/getting-started/analytics-api-overview-dimensions-fields-and-parameters.html) for more details"
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "one or more 'dimension==value' pairs to filter the results; for live, the only available filters are `country`, `device-type`, and `video`. This is a filter in which the options areL where in the world, in which device or which part of the video. In this case, the property is called where as if to use some DSL that mimics the SQL syntax, and that is why it is called where"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "'Start time for the period covered by the report — epoch time in milliseconds (`1535654206775`) or a date in the format `yyyy-mm-dd` (such as `2013-09-26`)'"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "End time for the period covered by the report — `now` or epoch time in milliseconds (`1535654206775`) or a date in the format `yyyy-mm-dd` (such as `2013-09-26`)"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "format to return the results in"
+              },
+              {
+                "name": "reconciled",
+                "value": "",
+                "type": "query",
+                "description": "if true, only reconciled data is returned; if false, only realtime data is returned; if not present, both reconciled and realtime data are returned"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get an analytics report on one or more dimensions. Note that the fields returned in the response will vary according to the dimension(s) requested and the fields specified in the fields parameter. See [the API Overview](/analytics/getting-started/analytics-api-overview-dimensions-fields-and-parameters.html) and the dimension guides for details."
+        },
+        {
+          "info": {
+            "name": "Get Available Date Range",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/data/status",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "accounts",
+                "value": "",
+                "type": "query",
+                "description": "One or more account ids, separated by commas"
+              },
+              {
+                "name": "dimensions",
+                "value": "",
+                "type": "query",
+                "description": "One or more dimensions to report on; see [Multiple Dimensions](/analytics/getting-started/analytics-api-overview-dimensions-fields-and-parameters.html) or which combined dimensions are supported\n\nDimensions:\n  - account\n  - audio_track_language\n  - browser_type\n  - caption_track_language\n  - city\n  - country\n  - date\n  - date_hour\n  - destination_domain\n  - destination_path\n  - device_os\n  - device_manufacturer\n  - device_type\n  - live_stream\n  - player\n  - referrer_domain\n  - region\n  - search_terms\n  - social_platform\n  - source_type\n  - video\n  - stream_type"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort results by (prefix with `-` for descending order); you can sort on **any field** that you specifying the `fields` parameter."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Fields to return - available fields varies according to the dimensions - see the [Overview: Analytics API](/analytics/getting-started/analytics-api-overview-dimensions-fields-and-parameters.html) for more details"
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "one or more 'dimension==value' pairs to filter the results; for live, the only available filters are `country`, `device-type`, and `video`. This is a filter in which the options areL where in the world, in which device or which part of the video. In this case, the property is called where as if to use some DSL that mimics the SQL syntax, and that is why it is called where"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "'Start time for the period covered by the report — epoch time in milliseconds (`1535654206775`) or a date in the format `yyyy-mm-dd` (such as `2013-09-26`)'"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "End time for the period covered by the report — `now` or epoch time in milliseconds (`1535654206775`) or a date in the format `yyyy-mm-dd` (such as `2013-09-26`)"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "format to return the results in"
+              },
+              {
+                "name": "reconciled",
+                "value": "",
+                "type": "query",
+                "description": "if true, only reconciled data is returned; if false, only realtime data is returned; if not present, both reconciled and realtime data are returned"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get the date range for which reconciled data is available for any Analytics API report. All parameters are allowed, but only account, dimensions, and where affect the result - all others are ignored. Note that date range for this request must fall within the available date range for the dimensions requested."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

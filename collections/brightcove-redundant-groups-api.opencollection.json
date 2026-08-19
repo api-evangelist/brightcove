@@ -1,0 +1,417 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brightcove Analytics API Reference Access Tokens Redundant Groups API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Redundant Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Redundant Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/redundantgroups",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "start_token",
+                "value": "",
+                "type": "query",
+                "description": "Next token from previous page; do not specify when fetching first page"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Attribute to sort jobs by (`created_at` | `modified_at`, default is `created_at`)"
+              },
+              {
+                "name": "sort_dir",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction (default is asc):`asc` - ascending; `desc` - descending"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by one or more user IDs"
+              },
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by particular account, or specify ‘*’ to search all accounts.  Default value is account API key belongs to"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter redundant grous by state"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Max number of items to return in one request (1-1000, default is 10)"
+              },
+              {
+                "name": "created_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by Unix time of group creation (in milliseconds)"
+              },
+              {
+                "name": "updated_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by Unix time of group last updated (in milliseconds)"
+              }
+            ]
+          },
+          "docs": "Get redundant groups for the account"
+        },
+        {
+          "info": {
+            "name": "Create Redundant Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://analytics.api.brightcove.com/redundantgroups",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a redundant group of live jobs to provide failover in case one stream fails"
+        },
+        {
+          "info": {
+            "name": "Add Jobs to Redundant Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://analytics.api.brightcove.com/redundantgroups/:redundant_group_id/jobs",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "redundant_group_id",
+                "value": "",
+                "type": "path",
+                "description": "Redundant group ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add Jobs to Redundant Group"
+        },
+        {
+          "info": {
+            "name": "Remove a Job from Redundant Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://analytics.api.brightcove.com/redundantgroups/:redundant_group_id/jobs/:job_id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "redundant_group_id",
+                "value": "",
+                "type": "path",
+                "description": "Redundant group ID"
+              },
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "Live job ID"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "The `force` parameter serves different purposes for different requests: \n1. For [force failover requests](#operation/ForceRedundantStreamFailover): force failover for a redundant stream without going to manual mode\n2. For [remove job from redundant group requests](#operation/RemoveJobRedundantGroup): force removal of on-air job\n3. For [delete redundant group requests](#operation/DeleteRedundantGroup): force delete redundant group in processing state\n\nNote that `force` is a string, not a boolean. The value must be `true`, not `1`."
+              }
+            ]
+          },
+          "docs": "Remove the specified Jobs from a Redundant Group; normally the operation will not remove the job that is currently `on_air`, but adding the `force=true` query parameter will remove it"
+        },
+        {
+          "info": {
+            "name": "Get Redundant Group Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/redundantgroups/:redundant_group_id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "redundant_group_id",
+                "value": "",
+                "type": "path",
+                "description": "Redundant group ID"
+              }
+            ]
+          },
+          "docs": "Get the current status of a redundant group"
+        },
+        {
+          "info": {
+            "name": "Delete a redundant group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://analytics.api.brightcove.com/redundantgroups/:redundant_group_id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "redundant_group_id",
+                "value": "",
+                "type": "path",
+                "description": "Redundant group ID"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "The `force` parameter serves different purposes for different requests: \n1. For [force failover requests](#operation/ForceRedundantStreamFailover): force failover for a redundant stream without going to manual mode\n2. For [remove job from redundant group requests](#operation/RemoveJobRedundantGroup): force removal of on-air job\n3. For [delete redundant group requests](#operation/DeleteRedundantGroup): force delete redundant group in processing state\n\nNote that `force` is a string, not a boolean. The value must be `true`, not `1`."
+              }
+            ]
+          },
+          "docs": "Deletes a redundant group and ends the redundant stream. Note that alternatively you can put the stream in standby mode by removing all jobs from it."
+        },
+        {
+          "info": {
+            "name": "Force Redundant Stream Failover",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://analytics.api.brightcove.com/redundantgroups/:redundant_group_id/switch",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "redundant_group_id",
+                "value": "",
+                "type": "path",
+                "description": "Redundant group ID"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "The `force` parameter serves different purposes for different requests: \n1. For [force failover requests](#operation/ForceRedundantStreamFailover): force failover for a redundant stream without going to manual mode\n2. For [remove job from redundant group requests](#operation/RemoveJobRedundantGroup): force removal of on-air job\n3. For [delete redundant group requests](#operation/DeleteRedundantGroup): force delete redundant group in processing state\n\nNote that `force` is a string, not a boolean. The value must be `true`, not `1`."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Force failover from the `on_air` stream to a specified secondary stream; note that you can also accomplish this by stopping the encoder for the `on_air` stream."
+        },
+        {
+          "info": {
+            "name": "Activates all SEP Jobs in the Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://analytics.api.brightcove.com/redundantgroups/:redundant_group_id/activate",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "redundant_group_id",
+                "value": "",
+                "type": "path",
+                "description": "Redundant group ID"
+              }
+            ]
+          },
+          "docs": "Activates all SEP Jobs in the Redundant Group."
+        },
+        {
+          "info": {
+            "name": "Deactivates all SEP Jobs in the Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://analytics.api.brightcove.com/redundantgroups/:redundant_group_id/deactivate",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "redundant_group_id",
+                "value": "",
+                "type": "path",
+                "description": "Redundant group ID"
+              }
+            ]
+          },
+          "docs": "Deactivates all SEP Jobs in the Redundant Group."
+        },
+        {
+          "info": {
+            "name": "Insert cuepoint for redundant group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://analytics.api.brightcove.com/redundantgroups/:redundant_group_id/cuepoint",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "redundant_group_id",
+                "value": "",
+                "type": "path",
+                "description": "Redundant group ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Manually inserts a cuepoint for a redundant Live job."
+        },
+        {
+          "info": {
+            "name": "Create playback token for a redundant group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://analytics.api.brightcove.com/redundantgroups/:redundant_group_id/playback-token",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "redundant_group_id",
+                "value": "",
+                "type": "path",
+                "description": "Redundant group ID"
+              }
+            ]
+          },
+          "docs": "Redundant groups created via the Live module in Studio (or by specifying `videocloud.video` when creating a redundant group directly through the API) automatically create a special Video Cloud video that, when used in a Brightcove player, makes use of the `ad_config_id` property to select the specific source desired (i.e. SSAI source, DVR/no DVR, BYOCDN). Redundant groups which have SSAI enabled must always provide an `ad_config_id` in the player, even if the source desired is non-SSAI (this pre"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

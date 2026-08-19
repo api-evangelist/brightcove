@@ -1,0 +1,1840 @@
+{
+  "item": [
+    {
+      "id": "23e26deb-2251-47d3-986d-c5dc343cb78b",
+      "name": "Embed Configurations",
+      "description": {
+        "content": "Operations for managing player embed (child player) configurations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b252b3e8-4d0f-4388-bbb0-92f0019027cc",
+          "name": "Get player embed configuration",
+          "request": {
+            "name": "Get player embed configuration",
+            "description": {
+              "content": "Get the configuration for an embed. You must specify the branch, either `master` or `preview`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":account_id",
+                "players",
+                ":player_id",
+                "embeds",
+                ":embed_id",
+                "configuration",
+                ":branch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "player_id",
+                  "description": "(Required) Brightcove Player ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "embed_id",
+                  "description": "(Required) The embed id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "branch",
+                  "description": "(Required) A plugin id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fbafa9e3-717a-4ae2-8f3a-55a0c1ef108e",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "players",
+                    ":player_id",
+                    "embeds",
+                    ":embed_id",
+                    "configuration",
+                    ":branch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "player_id",
+                      "description": "(Required) Brightcove Player ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "embed_id",
+                      "description": "(Required) The embed id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "branch",
+                      "description": "(Required) A plugin id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) **IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.\n\n`Authorization: Bearer {access_token}` - (see [Getting Access\nTokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ad_config_id\": \"undefined\",\n  \"ad_failover\": \"undefined\",\n  \"application_id\": \"undefined\",\n  \"autoadvance\": \"not enabled\",\n  \"autoplay\": false,\n  \"compatibility\": true,\n  \"crossorigin\": true,\n  \"css\": {\n    \"controlBarColor\": \"{set by player template}\",\n    \"controlColor\": \"{set by player template}\",\n    \"progressColor\": \"{set by player template}\"\n  },\n  \"debugger\": true,\n  \"errors\": false,\n  \"flash\": {},\n  \"fullscreenControl\": true,\n  \"hls\": true,\n  \"language\": \"undefined\",\n  \"languages\": [\n    \"zh-TW\",\n    \"bg\"\n  ],\n  \"loop\": false,\n  \"media\": {\n    \"sources\": [\n      {\n        \"height\": 7679,\n        \"width\": 4168,\n        \"poster\": {\n          \"highres\": \"string\"\n        },\n        \"src\": \"string\",\n        \"title\": \"string\",\n        \"type\": \"application/x-mpegURL\"\n      },\n      {\n        \"height\": 5739,\n        \"width\": 9331,\n        \"poster\": {\n          \"highres\": \"string\"\n        },\n        \"src\": \"string\",\n        \"title\": \"string\",\n        \"type\": \"application/x-mpegURL\"\n      }\n    ],\n    \"src\": \"string\",\n    \"tracks\": [\n      {\n        \"label\": \"string\",\n        \"src\": \"string\",\n        \"srclang\": \"string\"\n      },\n      {\n        \"label\": \"string\",\n        \"src\": \"string\",\n        \"srclang\": \"string\"\n      }\n    ]\n  },\n  \"muted\": false,\n  \"play_button\": {\n    \"hover\": \"glow\",\n    \"shape\": \"rectangle\",\n    \"position\": \"topLeft\"\n  },\n  \"player\": {\n    \"inactive\": true,\n    \"template\": {\n      \"name\": \"string\",\n      \"version\": \"6.22.7\",\n      \"locked\": false\n    }\n  },\n  \"player_id\": \"string\",\n  \"player_name\": \"string\",\n  \"playsinline\": false,\n  \"plugins\": [\n    {\n      \"name\": \"string\",\n      \"options\": {},\n      \"registry_id\": \"@brightcove/videojs-custom-endscreen\",\n      \"version\": \"@brightcove/videojs-custom-endscreen\"\n    },\n    {\n      \"name\": \"string\",\n      \"options\": {},\n      \"registry_id\": \"@brightcove/videojs-custom-endscreen\",\n      \"version\": \"@brightcove/videojs-custom-endscreen\"\n    }\n  ],\n  \"preload\": \"none\",\n  \"query_string_to_window\": {\n    \"target\": \"string\",\n    \"globals\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"repeat\": false,\n  \"scripts\": \"none\",\n  \"skin\": \"graphite\",\n  \"stylesheets\": \"none\",\n  \"techOrder\": [\n    \"html5\",\n    \"flash\"\n  ],\n  \"video_cloud\": {\n    \"aspect_ratio_width\": \"630\",\n    \"aspect_ratio_height\": \"300\",\n    \"base_url\": \"https://edge-elb.api.brightcove.com/playback/v1/\",\n    \"max_retry\": 3,\n    \"interval_retry\": 60000,\n    \"policy_key\": \"{the key automatically assigned}\",\n    \"poster_image_url\": \"{the key automatically assigned}\",\n    \"thumbnail_image_url\": \"{the key automatically assigned}\",\n    \"video\": \"undefined\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b00ebc0-9897-4989-a259-b95dfa3e0e52",
+              "name": "BAD_REQUEST: the syntax of the API call is likely incorrect",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "players",
+                    ":player_id",
+                    "embeds",
+                    ":embed_id",
+                    "configuration",
+                    ":branch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "player_id",
+                      "description": "(Required) Brightcove Player ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "embed_id",
+                      "description": "(Required) The embed id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "branch",
+                      "description": "(Required) A plugin id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) **IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.\n\n`Authorization: Bearer {access_token}` - (see [Getting Access\nTokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "561facca-b229-4892-877e-805748daafd1",
+              "name": "UNAUTHORIZED: Authentication failed - check to make sure your client credentials were correct for the access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "players",
+                    ":player_id",
+                    "embeds",
+                    ":embed_id",
+                    "configuration",
+                    ":branch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "player_id",
+                      "description": "(Required) Brightcove Player ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "embed_id",
+                      "description": "(Required) The embed id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "branch",
+                      "description": "(Required) A plugin id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) **IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.\n\n`Authorization: Bearer {access_token}` - (see [Getting Access\nTokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "82b6630d-c360-4ecc-a6f0-2148796d0c1c",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "players",
+                    ":player_id",
+                    "embeds",
+                    ":embed_id",
+                    "configuration",
+                    ":branch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "player_id",
+                      "description": "(Required) Brightcove Player ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "embed_id",
+                      "description": "(Required) The embed id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "branch",
+                      "description": "(Required) A plugin id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) **IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.\n\n`Authorization: Bearer {access_token}` - (see [Getting Access\nTokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b924fae0-cf06-4b0e-b917-e9e7460a89f2",
+              "name": "RATE_LIMIT_EXCEEDED: Too many requests per second",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "players",
+                    ":player_id",
+                    "embeds",
+                    ":embed_id",
+                    "configuration",
+                    ":branch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "player_id",
+                      "description": "(Required) Brightcove Player ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "embed_id",
+                      "description": "(Required) The embed id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "branch",
+                      "description": "(Required) A plugin id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) **IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.\n\n`Authorization: Bearer {access_token}` - (see [Getting Access\nTokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a2ad4da8-1356-45db-86ff-f7c54127c984",
+              "name": "INTERNAL_SERVER_ERROR: there was an error trying to fulfill the request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "players",
+                    ":player_id",
+                    "embeds",
+                    ":embed_id",
+                    "configuration",
+                    ":branch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "player_id",
+                      "description": "(Required) Brightcove Player ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "embed_id",
+                      "description": "(Required) The embed id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "branch",
+                      "description": "(Required) A plugin id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) **IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.\n\n`Authorization: Bearer {access_token}` - (see [Getting Access\nTokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c7435479-0a0f-4a5b-84a9-4b1e72d8b8bf",
+          "name": "Update embed configuration",
+          "request": {
+            "name": "Update embed configuration",
+            "description": {
+              "content": "Update the configuration for an embed. Note that you will need to publish the altered embed for optimization and production use. You can also use a `PUT` HTTP method instead of the `PATCH` shown here. When using `PUT` it replaces all embed configuration information, so you must supply all embed configuration information when using `PUT`. In contrast, `PATCH` appends or modifies existing configuration information. Using `PUT` is such rare use case it is not detailed in this reference.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":account_id",
+                "players",
+                ":player_id",
+                "embeds",
+                ":embed_id",
+                "configuration",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "player_id",
+                  "description": "(Required) Brightcove Player ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "embed_id",
+                  "description": "(Required) The embed id."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ef18b207-cf54-41cb-8723-96dd5dbdaadb",
+              "name": "SUCCESS",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "players",
+                    ":player_id",
+                    "embeds",
+                    ":embed_id",
+                    "configuration",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "player_id",
+                      "description": "(Required) Brightcove Player ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "embed_id",
+                      "description": "(Required) The embed id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) **IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.\n\n`Authorization: Bearer {access_token}` - (see [Getting Access\nTokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"preview_url\": \"string\",\n  \"preview_embed_in_page\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c80d209a-5590-4213-a690-fbe3610fea99",
+              "name": "BAD_REQUEST: the syntax of the API call is likely incorrect",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "players",
+                    ":player_id",
+                    "embeds",
+                    ":embed_id",
+                    "configuration",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "player_id",
+                      "description": "(Required) Brightcove Player ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "embed_id",
+                      "description": "(Required) The embed id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) **IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.\n\n`Authorization: Bearer {access_token}` - (see [Getting Access\nTokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3dc9ccda-f7f4-46f6-afad-a816d1561ece",
+              "name": "UNAUTHORIZED: Authentication failed - check to make sure your client credentials were correct for the access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "players",
+                    ":player_id",
+                    "embeds",
+                    ":embed_id",
+                    "configuration",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "player_id",
+                      "description": "(Required) Brightcove Player ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "embed_id",
+                      "description": "(Required) The embed id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) **IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.\n\n`Authorization: Bearer {access_token}` - (see [Getting Access\nTokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cb53bf49-72a1-4cfc-b816-c61e578d9b62",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "players",
+                    ":player_id",
+                    "embeds",
+                    ":embed_id",
+                    "configuration",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "player_id",
+                      "description": "(Required) Brightcove Player ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "embed_id",
+                      "description": "(Required) The embed id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) **IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.\n\n`Authorization: Bearer {access_token}` - (see [Getting Access\nTokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8d70ac7b-3719-40ed-9c42-5fd5a926b496",
+              "name": "RATE_LIMIT_EXCEEDED: Too many requests per second",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "players",
+                    ":player_id",
+                    "embeds",
+                    ":embed_id",
+                    "configuration",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "player_id",
+                      "description": "(Required) Brightcove Player ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "embed_id",
+                      "description": "(Required) The embed id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) **IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.\n\n`Authorization: Bearer {access_token}` - (see [Getting Access\nTokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9684cdda-58fd-4bff-9d6a-1edd589a9b44",
+              "name": "INTERNAL_SERVER_ERROR: there was an error trying to fulfill the request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "players",
+                    ":player_id",
+                    "embeds",
+                    ":embed_id",
+                    "configuration",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "player_id",
+                      "description": "(Required) Brightcove Player ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "embed_id",
+                      "description": "(Required) The embed id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) **IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.\n\n`Authorization: Bearer {access_token}` - (see [Getting Access\nTokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a2d6e466-be1f-4cdf-80a3-4bd284466e17",
+          "name": "Get Configuration Combinations",
+          "request": {
+            "name": "Get Configuration Combinations",
+            "description": {
+              "content": "Retrieve the configuration for a parent/child combination of master and preview branches. If you are using the second query parameter (and hence using the ampersand [&]), you MUST use quotes around the endpoint or the curl statement will fail at the ampersand. For example:\n\n`\"https://players.api.brightcove.com/v1/accounts/{{account_id}}/players/{{player_id}}/embeds/{embed_id}/configuration/merged?playerBranch=preview&embedBranch=master\"`.\n\nUsing this endpoint provides a way to view what the resulting configuration would be when combining different combinations of parent and child (also called embed) versions of players. Using this endpoint does not change any configurations, it is only useful for seeing results of merging changes to configurations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":account_id",
+                "players",
+                ":player_id",
+                "embeds",
+                ":embedID",
+                "configuration",
+                "merged"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "playerBranch",
+                  "value": "<string>",
+                  "description": "The (master) player branch to use."
+                },
+                {
+                  "disabled": false,
+                  "key": "embedBranch",
+                  "value": "<string>",
+                  "description": "The embed (child player) branch to use."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "player_id",
+                  "description": "(Required) Brightcove Player ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "embed_id",
+                  "description": "(Required) The embed id."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d1403423-3365-44c6-9cf6-eade9dd13d71",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "players",
+                    ":player_id",
+                    "embeds",
+                    ":embedID",
+                    "configuration",
+                    "merged"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "playerBranch",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "embedBranch",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "player_id",
+                      "description": "(Required) Brightcove Player ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "embed_id",
+                      "description": "(Required) The embed id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) **IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.\n\n`Authorization: Bearer {access_token}` - (see [Getting Access\nTokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_id\": \"string\",\n  \"created_at\": \"string\",\n  \"embeds_count\": 1413,\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"url\": \"string\",\n  \"branches\": {\n    \"preview\": {\n      \"configuration\": {\n        \"ad_config_id\": \"undefined\",\n        \"ad_failover\": \"undefined\",\n        \"application_id\": \"undefined\",\n        \"autoadvance\": \"not enabled\",\n        \"autoplay\": false,\n        \"compatibility\": false,\n        \"crossorigin\": false,\n        \"css\": {\n          \"controlBarColor\": \"{set by player template}\",\n          \"controlColor\": \"{set by player template}\",\n          \"progressColor\": \"{set by player template}\"\n        },\n        \"debugger\": true,\n        \"errors\": true,\n        \"flash\": {},\n        \"fullscreenControl\": false,\n        \"hls\": true,\n        \"language\": \"undefined\",\n        \"languages\": [\n          \"tr\",\n          \"da\"\n        ],\n        \"loop\": false,\n        \"media\": {\n          \"sources\": [\n            {\n              \"height\": 2148,\n              \"width\": 2298,\n              \"poster\": {\n                \"highres\": \"string\"\n              },\n              \"src\": \"string\",\n              \"title\": \"string\",\n              \"type\": \"application/x-mpegURL\"\n            },\n            {\n              \"height\": 3132,\n              \"width\": 2187,\n              \"poster\": {\n                \"highres\": \"string\"\n              },\n              \"src\": \"string\",\n              \"title\": \"string\",\n              \"type\": \"application/x-mpegURL\"\n            }\n          ],\n          \"src\": \"string\",\n          \"tracks\": [\n            {\n              \"label\": \"string\",\n              \"src\": \"string\",\n              \"srclang\": \"string\"\n            },\n            {\n              \"label\": \"string\",\n              \"src\": \"string\",\n              \"srclang\": \"string\"\n            }\n          ]\n        },\n        \"muted\": false,\n        \"play_button\": {\n          \"hover\": \"darken\",\n          \"shape\": \"square\",\n          \"position\": \"topRight\"\n        },\n        \"player\": {\n          \"inactive\": true,\n          \"template\": {\n            \"name\": \"string\",\n            \"version\": \"6.22.7\",\n            \"locked\": false\n          }\n        },\n        \"player_id\": \"string\",\n        \"player_name\": \"string\",\n        \"playsinline\": false,\n        \"plugins\": [\n          {\n            \"name\": \"string\",\n            \"options\": {},\n            \"registry_id\": \"@brightcove/videojs-custom-endscreen\",\n            \"version\": \"@brightcove/videojs-custom-endscreen\"\n          },\n          {\n            \"name\": \"string\",\n            \"options\": {},\n            \"registry_id\": \"@brightcove/videojs-custom-endscreen\",\n            \"version\": \"@brightcove/videojs-custom-endscreen\"\n          }\n        ],\n        \"preload\": \"none\",\n        \"query_string_to_window\": {\n          \"target\": \"string\",\n          \"globals\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"repeat\": false,\n        \"scripts\": \"none\",\n        \"skin\": \"graphite\",\n        \"stylesheets\": \"none\",\n        \"techOrder\": [\n          \"html5\",\n          \"flash\"\n        ],\n        \"video_cloud\": {\n          \"aspect_ratio_width\": \"630\",\n          \"aspect_ratio_height\": \"300\",\n          \"base_url\": \"https://edge-elb.api.brightcove.com/playback/v1/\",\n          \"max_retry\": 3,\n          \"interval_retry\": 60000,\n          \"policy_key\": \"{the key automatically assigned}\",\n          \"poster_image_url\": \"{the key automatically assigned}\",\n          \"thumbnail_image_url\": \"{the key automatically assigned}\",\n          \"video\": \"undefined\"\n        }\n      },\n      \"updated_at\": \"string\",\n      \"template_updated_at\": \"string\",\n      \"preview_url\": \"string\"\n    },\n    \"master\": {\n      \"configuration\": {\n        \"ad_config_id\": \"undefined\",\n        \"ad_failover\": \"undefined\",\n        \"application_id\": \"undefined\",\n        \"autoadvance\": \"not enabled\",\n        \"autoplay\": false,\n        \"compatibility\": false,\n        \"crossorigin\": false,\n        \"css\": {\n          \"controlBarColor\": \"{set by player template}\",\n          \"controlColor\": \"{set by player template}\",\n          \"progressColor\": \"{set by player template}\"\n        },\n        \"debugger\": true,\n        \"errors\": false,\n        \"flash\": {},\n        \"fullscreenControl\": true,\n        \"hls\": false,\n        \"language\": \"undefined\",\n        \"languages\": [\n          \"bg\",\n          \"hr\"\n        ],\n        \"loop\": false,\n        \"media\": {\n          \"sources\": [\n            {\n              \"height\": 3538,\n              \"width\": 5755,\n              \"poster\": {\n                \"highres\": \"string\"\n              },\n              \"src\": \"string\",\n              \"title\": \"string\",\n              \"type\": \"application/x-mpegURL\"\n            },\n            {\n              \"height\": 2940,\n              \"width\": 448,\n              \"poster\": {\n                \"highres\": \"string\"\n              },\n              \"src\": \"string\",\n              \"title\": \"string\",\n              \"type\": \"video/mp4\"\n            }\n          ],\n          \"src\": \"string\",\n          \"tracks\": [\n            {\n              \"label\": \"string\",\n              \"src\": \"string\",\n              \"srclang\": \"string\"\n            },\n            {\n              \"label\": \"string\",\n              \"src\": \"string\",\n              \"srclang\": \"string\"\n            }\n          ]\n        },\n        \"muted\": false,\n        \"play_button\": {\n          \"hover\": \"glow\",\n          \"shape\": \"rectangle\",\n          \"position\": \"topLeft\"\n        },\n        \"player\": {\n          \"inactive\": true,\n          \"template\": {\n            \"name\": \"string\",\n            \"version\": \"6.22.7\",\n            \"locked\": false\n          }\n        },\n        \"player_id\": \"string\",\n        \"player_name\": \"string\",\n        \"playsinline\": false,\n        \"plugins\": [\n          {\n            \"name\": \"string\",\n            \"options\": {},\n            \"registry_id\": \"@brightcove/videojs-custom-endscreen\",\n            \"version\": \"@brightcove/videojs-custom-endscreen\"\n          },\n          {\n            \"name\": \"string\",\n            \"options\": {},\n            \"registry_id\": \"@brightcove/videojs-custom-endscreen\",\n            \"version\": \"@brightcove/videojs-custom-endscreen\"\n          }\n        ],\n        \"preload\": \"none\",\n        \"query_string_to_window\": {\n          \"target\": \"string\",\n          \"globals\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"repeat\": false,\n        \"scripts\": \"none\",\n        \"skin\": \"graphite\",\n        \"stylesheets\": \"none\",\n        \"techOrder\": [\n          \"html5\",\n          \"flash\"\n        ],\n        \"video_cloud\": {\n          \"aspect_ratio_width\": \"630\",\n          \"aspect_ratio_height\": \"300\",\n          \"base_url\": \"https://edge-elb.api.brightcove.com/playback/v1/\",\n          \"max_retry\": 3,\n          \"interval_retry\": 60000,\n          \"policy_key\": \"{the key automatically assigned}\",\n          \"poster_image_url\": \"{the key automatically assigned}\",\n          \"thumbnail_image_url\": \"{the key automatically assigned}\",\n          \"video\": \"undefined\"\n        }\n      },\n      \"updated_at\": \"string\",\n      \"template_updated_at\": \"string\",\n      \"preview_url\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "90ffa829-ae93-4bb6-8e5d-83c58ff7c832",
+              "name": "BAD_REQUEST: the syntax of the API call is likely incorrect",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "players",
+                    ":player_id",
+                    "embeds",
+                    ":embedID",
+                    "configuration",
+                    "merged"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "playerBranch",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "embedBranch",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "player_id",
+                      "description": "(Required) Brightcove Player ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "embed_id",
+                      "description": "(Required) The embed id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) **IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.\n\n`Authorization: Bearer {access_token}` - (see [Getting Access\nTokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a3caa26b-af04-43b2-90d9-46ceb54fcf7c",
+              "name": "UNAUTHORIZED: Authentication failed - check to make sure your client credentials were correct for the access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "players",
+                    ":player_id",
+                    "embeds",
+                    ":embedID",
+                    "configuration",
+                    "merged"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "playerBranch",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "embedBranch",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "player_id",
+                      "description": "(Required) Brightcove Player ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "embed_id",
+                      "description": "(Required) The embed id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) **IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.\n\n`Authorization: Bearer {access_token}` - (see [Getting Access\nTokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1d97c832-c3c9-456d-a81c-c99e20dad523",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "players",
+                    ":player_id",
+                    "embeds",
+                    ":embedID",
+                    "configuration",
+                    "merged"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "playerBranch",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "embedBranch",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "player_id",
+                      "description": "(Required) Brightcove Player ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "embed_id",
+                      "description": "(Required) The embed id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) **IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.\n\n`Authorization: Bearer {access_token}` - (see [Getting Access\nTokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "78ae4d97-2dda-4bd1-aa7f-a5e27b6545b0",
+              "name": "RATE_LIMIT_EXCEEDED: Too many requests per second",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "players",
+                    ":player_id",
+                    "embeds",
+                    ":embedID",
+                    "configuration",
+                    "merged"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "playerBranch",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "embedBranch",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "player_id",
+                      "description": "(Required) Brightcove Player ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "embed_id",
+                      "description": "(Required) The embed id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) **IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.\n\n`Authorization: Bearer {access_token}` - (see [Getting Access\nTokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "98a8726b-1ca1-494b-b636-1c2f4cb3488b",
+              "name": "INTERNAL_SERVER_ERROR: there was an error trying to fulfill the request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "players",
+                    ":player_id",
+                    "embeds",
+                    ":embedID",
+                    "configuration",
+                    "merged"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "playerBranch",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "embedBranch",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "player_id",
+                      "description": "(Required) Brightcove Player ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "embed_id",
+                      "description": "(Required) The embed id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) **IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.\n\n`Authorization: Bearer {access_token}` - (see [Getting Access\nTokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://analytics.api.brightcove.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "667922d6-1d15-4358-8010-919413b7cbd2",
+    "name": "Brightcove Analytics API Reference Access Tokens Embed Configurations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com",
+      "type": "text/plain"
+    }
+  }
+}

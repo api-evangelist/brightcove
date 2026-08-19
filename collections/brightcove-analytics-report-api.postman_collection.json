@@ -1,0 +1,1533 @@
+{
+  "item": [
+    {
+      "id": "7576a29e-fd19-4a7f-9d17-6131eabd3203",
+      "name": "Analytics Report",
+      "description": {
+        "content": "Full analytics reports with many options for filtering, date ranges, formats, and more.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2b64e439-057b-4259-ad99-a5cf92a516a1",
+          "name": "Get Analytics Report",
+          "request": {
+            "name": "Get Analytics Report",
+            "description": {
+              "content": "Get an analytics report on one or more dimensions. Note that the fields returned in the response will vary according to the dimension(s) requested and the fields specified in the fields parameter. See [the API Overview](/analytics/getting-started/analytics-api-overview-dimensions-fields-and-parameters.html) and the dimension guides for details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "accounts",
+                  "value": "<string>",
+                  "description": "(Required) One or more account ids, separated by commas"
+                },
+                {
+                  "disabled": false,
+                  "key": "dimensions",
+                  "value": "<string>",
+                  "description": "(Required) One or more dimensions to report on; see [Multiple Dimensions](/analytics/getting-started/analytics-api-overview-dimensions-fields-and-parameters.html) or which combined dimensions are supported\n\nDimensions:\n  - account\n  - audio_track_language\n  - browser_type\n  - caption_track_language\n  - city\n  - country\n  - date\n  - date_hour\n  - destination_domain\n  - destination_path\n  - device_os\n  - device_manufacturer\n  - device_type\n  - live_stream\n  - player\n  - referrer_domain\n  - region\n  - search_terms\n  - social_platform\n  - source_type\n  - video\n  - stream_type"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of items to skip"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "video_view",
+                  "description": "Field to sort results by (prefix with `-` for descending order); you can sort on **any field** that you specifying the `fields` parameter."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "`video_view` + others (varies by dimension)",
+                  "description": "Fields to return - available fields varies according to the dimensions - see the [Overview: Analytics API](/analytics/getting-started/analytics-api-overview-dimensions-fields-and-parameters.html) for more details"
+                },
+                {
+                  "disabled": false,
+                  "key": "where",
+                  "value": "<string>",
+                  "description": "(Required) one or more 'dimension==value' pairs to filter the results; for live, the only available filters are `country`, `device-type`, and `video`. This is a filter in which the options areL where in the world, in which device or which part of the video. In this case, the property is called where as if to use some DSL that mimics the SQL syntax, and that is why it is called where"
+                },
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<string>",
+                  "description": "'Start time for the period covered by the report — epoch time in milliseconds (`1535654206775`) or a date in the format `yyyy-mm-dd` (such as `2013-09-26`)'"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<string>",
+                  "description": "End time for the period covered by the report — `now` or epoch time in milliseconds (`1535654206775`) or a date in the format `yyyy-mm-dd` (such as `2013-09-26`)"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "format to return the results in"
+                },
+                {
+                  "disabled": false,
+                  "key": "reconciled",
+                  "value": "true",
+                  "description": "if true, only reconciled data is returned; if false, only realtime data is returned; if not present, both reconciled and realtime data are returned"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Accept-Encoding: gzip (optional)",
+                "key": "Accept-Encoding",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3c138632-af13-4c16-ab09-0fb1e8d7a938",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accounts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dimensions",
+                      "value": "account"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "video_view"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "video_view, video_impression, video.name"
+                    },
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "csv"
+                    },
+                    {
+                      "key": "reconciled",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see Getting Access Tokens)",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Accept-Encoding: gzip (optional)",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account\": \"string\",\n  \"item_count\": 3628,\n  \"items\": [\n    {\n      \"ad_mode_begin\": 8498,\n      \"ad_mode_complete\": 1699,\n      \"bytes_delivered\": 4012.796042939917,\n      \"engagement_score\": 8206.645915575402,\n      \"play_rate\": 969.1755043762718,\n      \"play_request\": 1353,\n      \"video\": \"string\",\n      \"duration\": \"string\",\n      \"video_engagement_1\": 5202.250480608581,\n      \"video_engagement_25\": 7344.580609364491,\n      \"video_engagement_50\": 6095.589155608581,\n      \"video_engagement_75\": 3314.3793731186,\n      \"video_engagement_100\": 9086.477561962669,\n      \"video_impression\": 7328,\n      \"name\": \"string\",\n      \"video_percent_viewed\": 8824.81634057804,\n      \"video_seconds_viewed\": 254.4353068071581,\n      \"video_view\": 2917\n    },\n    {\n      \"ad_mode_begin\": 5768,\n      \"ad_mode_complete\": 1860,\n      \"bytes_delivered\": 9636.322459308572,\n      \"engagement_score\": 806.2455294334314,\n      \"play_rate\": 6662.948350619648,\n      \"play_request\": 3201,\n      \"video\": \"string\",\n      \"duration\": \"string\",\n      \"video_engagement_1\": 2219.04200433551,\n      \"video_engagement_25\": 5397.702909047652,\n      \"video_engagement_50\": 6526.503283398767,\n      \"video_engagement_75\": 8773.108464821282,\n      \"video_engagement_100\": 6093.928430270474,\n      \"video_impression\": 5696,\n      \"name\": \"string\",\n      \"video_percent_viewed\": 6333.173668055465,\n      \"video_seconds_viewed\": 6260.320304533303,\n      \"video_view\": 9956\n    }\n  ],\n  \"summary\": {\n    \"ad_mode_begin\": 9921,\n    \"ad_mode_complete\": 5332,\n    \"active_media\": 538,\n    \"bytes_delivered\": 7359,\n    \"daily_unique_viewers\": 7345,\n    \"drm_bytes_packaged\": 1945.6476928430354,\n    \"engagement_score\": 4474.07357603628,\n    \"licenses_served\": 2601,\n    \"live_seconds_streamed\": 4397.551159798819,\n    \"play_rate\": 1767.4720648843822,\n    \"play_request\": 6166,\n    \"player_load\": 2698,\n    \"video_engagement_1\": 5470.98781053787,\n    \"video_engagement_25\": 8344.427066209264,\n    \"video_engagement_50\": 2475.115129625196,\n    \"video_engagement_75\": 7259.266188184455,\n    \"video_engagement_100\": 8669.776314803896,\n    \"video_impression\": 6126,\n    \"video_view\": 3082\n  },\n  \"video_engagement_1\": 3042.438624249121,\n  \"video_engagement_25\": 5405.659548312974,\n  \"video_engagement_50\": 7533.06821036548,\n  \"video_engagement_75\": 2323.9152591473244,\n  \"video_engagement_100\": 2826.3104351418256\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8e0dda75-6c57-45f0-983d-a7c38ef06005",
+              "name": "BAD_REQUEST: The message fields of the response contains information about what caused the error such as invalid value for sort parameter\nUNSUPPORTED_FIELD_COMBINATION_ERROR: The message fields of the response contains information about what invalid fields were specified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accounts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dimensions",
+                      "value": "account"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "video_view"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "video_view, video_impression, video.name"
+                    },
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "csv"
+                    },
+                    {
+                      "key": "reconciled",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see Getting Access Tokens)",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Accept-Encoding: gzip (optional)",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2a711770-a667-4ad5-89fa-16dc727102d2",
+              "name": "UNAUTHORIZED: Authentication failed; check to make sure your client credentials are correct",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accounts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dimensions",
+                      "value": "account"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "video_view"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "video_view, video_impression, video.name"
+                    },
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "csv"
+                    },
+                    {
+                      "key": "reconciled",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see Getting Access Tokens)",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Accept-Encoding: gzip (optional)",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e9a31593-9b21-4683-9da5-0a642f1e031a",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accounts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dimensions",
+                      "value": "account"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "video_view"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "video_view, video_impression, video.name"
+                    },
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "csv"
+                    },
+                    {
+                      "key": "reconciled",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see Getting Access Tokens)",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Accept-Encoding: gzip (optional)",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ed01db96-3ce5-48f3-8f68-2e91c2d380fb",
+              "name": "METHOD_NOT_ALLOWED: This error occurs when the api request is made with an HTTP method other than GET",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accounts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dimensions",
+                      "value": "account"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "video_view"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "video_view, video_impression, video.name"
+                    },
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "csv"
+                    },
+                    {
+                      "key": "reconciled",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see Getting Access Tokens)",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Accept-Encoding: gzip (optional)",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0b5d5657-ae78-4118-8b73-3e25d6e3b3a9",
+              "name": "SERVER_ERROR: Issue in Brightcove system; try again later\nPROCESSING: The analytics API may send back this message if it encounters a long running query. Once the query has finished it will be stored in the server’s cache for up to 5 minutes. Therefore we suggest querying the API 4 minutes after receiving this error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accounts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dimensions",
+                      "value": "account"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "video_view"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "video_view, video_impression, video.name"
+                    },
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "csv"
+                    },
+                    {
+                      "key": "reconciled",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see Getting Access Tokens)",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Accept-Encoding: gzip (optional)",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5fb8bfbb-3633-42a0-863c-46d3ee9aed0a",
+          "name": "Get Available Date Range",
+          "request": {
+            "name": "Get Available Date Range",
+            "description": {
+              "content": "Get the date range for which reconciled data is available for any Analytics API report. All parameters are allowed, but only account, dimensions, and where affect the result - all others are ignored. Note that date range for this request must fall within the available date range for the dimensions requested.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "data",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "accounts",
+                  "value": "<string>",
+                  "description": "(Required) One or more account ids, separated by commas"
+                },
+                {
+                  "disabled": false,
+                  "key": "dimensions",
+                  "value": "<string>",
+                  "description": "(Required) One or more dimensions to report on; see [Multiple Dimensions](/analytics/getting-started/analytics-api-overview-dimensions-fields-and-parameters.html) or which combined dimensions are supported\n\nDimensions:\n  - account\n  - audio_track_language\n  - browser_type\n  - caption_track_language\n  - city\n  - country\n  - date\n  - date_hour\n  - destination_domain\n  - destination_path\n  - device_os\n  - device_manufacturer\n  - device_type\n  - live_stream\n  - player\n  - referrer_domain\n  - region\n  - search_terms\n  - social_platform\n  - source_type\n  - video\n  - stream_type"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of items to skip"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "video_view",
+                  "description": "Field to sort results by (prefix with `-` for descending order); you can sort on **any field** that you specifying the `fields` parameter."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "`video_view` + others (varies by dimension)",
+                  "description": "Fields to return - available fields varies according to the dimensions - see the [Overview: Analytics API](/analytics/getting-started/analytics-api-overview-dimensions-fields-and-parameters.html) for more details"
+                },
+                {
+                  "disabled": false,
+                  "key": "where",
+                  "value": "<string>",
+                  "description": "(Required) one or more 'dimension==value' pairs to filter the results; for live, the only available filters are `country`, `device-type`, and `video`. This is a filter in which the options areL where in the world, in which device or which part of the video. In this case, the property is called where as if to use some DSL that mimics the SQL syntax, and that is why it is called where"
+                },
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<string>",
+                  "description": "'Start time for the period covered by the report — epoch time in milliseconds (`1535654206775`) or a date in the format `yyyy-mm-dd` (such as `2013-09-26`)'"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<string>",
+                  "description": "End time for the period covered by the report — `now` or epoch time in milliseconds (`1535654206775`) or a date in the format `yyyy-mm-dd` (such as `2013-09-26`)"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "format to return the results in"
+                },
+                {
+                  "disabled": false,
+                  "key": "reconciled",
+                  "value": "true",
+                  "description": "if true, only reconciled data is returned; if false, only realtime data is returned; if not present, both reconciled and realtime data are returned"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Accept-Encoding: gzip (optional)",
+                "key": "Accept-Encoding",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1541ee9e-0fdd-429d-b137-c0a4cf64a234",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "data",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accounts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dimensions",
+                      "value": "account"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "video_view"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "video_view, video_impression, video.name"
+                    },
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "csv"
+                    },
+                    {
+                      "key": "reconciled",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see Getting Access Tokens)",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Accept-Encoding: gzip (optional)",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"reconciled_from\": \"2011-01-01\",\n  \"reconciled_to\": \"2018-08-31\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "46753107-6adc-4a45-a46b-e312c1b7c9c7",
+              "name": "BAD_REQUEST: The message fields of the response contains information about what caused the error such as invalid value for sort parameter\nUNSUPPORTED_FIELD_COMBINATION_ERROR: The message fields of the response contains information about what invalid fields were specified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "data",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accounts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dimensions",
+                      "value": "account"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "video_view"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "video_view, video_impression, video.name"
+                    },
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "csv"
+                    },
+                    {
+                      "key": "reconciled",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see Getting Access Tokens)",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Accept-Encoding: gzip (optional)",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6ce3253a-1295-4831-9b92-9c51f3e7b7eb",
+              "name": "UNAUTHORIZED: Authentication failed; check to make sure your client credentials are correct",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "data",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accounts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dimensions",
+                      "value": "account"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "video_view"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "video_view, video_impression, video.name"
+                    },
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "csv"
+                    },
+                    {
+                      "key": "reconciled",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see Getting Access Tokens)",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Accept-Encoding: gzip (optional)",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e305e399-0543-4be2-88c4-8e634bcf0677",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "data",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accounts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dimensions",
+                      "value": "account"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "video_view"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "video_view, video_impression, video.name"
+                    },
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "csv"
+                    },
+                    {
+                      "key": "reconciled",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see Getting Access Tokens)",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Accept-Encoding: gzip (optional)",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3ceeaade-fee8-4bef-9e40-fca1ea28a0c0",
+              "name": "METHOD_NOT_ALLOWED: This error occurs when the api request is made with an HTTP method other than GET",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "data",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accounts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dimensions",
+                      "value": "account"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "video_view"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "video_view, video_impression, video.name"
+                    },
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "csv"
+                    },
+                    {
+                      "key": "reconciled",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see Getting Access Tokens)",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Accept-Encoding: gzip (optional)",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c184e725-c742-4a8a-8ea1-98d8750fba0b",
+              "name": "SERVER_ERROR: Issue in Brightcove system; try again later\nPROCESSING: The analytics API may send back this message if it encounters a long running query. Once the query has finished it will be stored in the server’s cache for up to 5 minutes. Therefore we suggest querying the API 4 minutes after receiving this error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "data",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accounts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dimensions",
+                      "value": "account"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "video_view"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "video_view, video_impression, video.name"
+                    },
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "csv"
+                    },
+                    {
+                      "key": "reconciled",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see Getting Access Tokens)",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Accept-Encoding: gzip (optional)",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://analytics.api.brightcove.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b12599d2-73e9-4271-bcb4-26b35faeb7b7",
+    "name": "Brightcove Analytics API Reference Access Tokens Analytics Report API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com",
+      "type": "text/plain"
+    }
+  }
+}

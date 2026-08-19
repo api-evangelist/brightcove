@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brightcove Analytics API Reference Access Tokens Video Data API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Video Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Alltime Video Views",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/alltime/accounts/:{account_id}/videos/:{video_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "a Video Cloud account ID"
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "a Video Cloud video ID"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "'Returns the total alltime video views for a video. This is a low-latency endpoint appropriate for use by client-side apps such as the Brightcove Player.'"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

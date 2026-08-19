@@ -1,0 +1,176 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brightcove Analytics API Reference Access Tokens Status API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List the current status for every video on the account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/accounts/:{account_id}/videos/status",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the account to query video statuses for"
+              },
+              {
+                "name": "platform",
+                "value": "",
+                "type": "query",
+                "description": "Limit the list of videos to a single social platform.  Valid values for this property are\n- YOUTUBE\n- FACEBOOK\n- TWITTER\n\nNote that this may conflict with `destination_id`, below."
+              },
+              {
+                "name": "destination_id",
+                "value": "",
+                "type": "query",
+                "description": "Limit the list of videos to a single Social destination, by it's ID. Note that this may conflict with `platform`, above. (e.g., Specifying `platform=YOUTUBE` and passing the ID of a Twitter destination will result in no statuses.)  Generally if you are passing a `destination_id` you probably don't want to be passing a `platform` as well, as destinations imply a platform.\n"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Limit the list of videos to those with a specific status.  Valid values for this property are\n  - DELETED\n  - ERROR\n  - HIDDEN\n  - PROCESSING\n  - PUBLISHED\n  - SCHEDULED\n  - SYNCED\n  - ABANDONED"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "Limit the list of videos to those whose last status change occurred before the specified date time.  Can accept either a full timestamp, or just a datestamp.  If passed just a datestamp, assumes 00:00:00 for the time, and the filter will be exclusive of the date specified."
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "Limit the list of videos to those whose last status change occurred since the specified date time.  Can accept either a full timestamp, or just a datestamp.  If passed just a datestamp, assumes 00:00:00 for the time, and the filter will be inclusive of the date specified."
+              },
+              {
+                "name": "page_key",
+                "value": "",
+                "type": "query",
+                "description": "Fetch the next page of data.  If the previous call to this endpoint returned a `page_key`, a subsequent call can be made with the same parameters and including the `page_key` to retrieve the next page."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of entries to fetch in the next page of data.  Must be a number between 1 and 100, inclusive.  Defaults to 20."
+              },
+              {
+                "name": "pretty_print",
+                "value": "",
+                "type": "query",
+                "description": "Whether or not to pretty-print the JSON response.  Defaults to false."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets the current status of every video Social has ever attempted to distribute to a social platform.  Note that this endpoint has pagination."
+        },
+        {
+          "info": {
+            "name": "List the current status for the video.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/accounts/:{account_id}/videos/:{video_id}/status",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the account to query video statuses for"
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the video to query video statuses for"
+              },
+              {
+                "name": "platform",
+                "value": "",
+                "type": "query",
+                "description": "Limit the list of videos to a single social platform.  Valid values for this property are\n- YOUTUBE\n- FACEBOOK\n- TWITTER\n\nNote that this may conflict with `destination_id`, below."
+              },
+              {
+                "name": "destination_id",
+                "value": "",
+                "type": "query",
+                "description": "Limit the list of videos to a single Social destination, by it's ID. Note that this may conflict with `platform`, above. (e.g., Specifying `platform=YOUTUBE` and passing the ID of a Twitter destination will result in no statuses.)  Generally if you are passing a `destination_id` you probably don't want to be passing a `platform` as well, as destinations imply a platform.\n"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Limit the list of videos to those with a specific status.  Valid values for this property are\n  - DELETED\n  - ERROR\n  - HIDDEN\n  - PROCESSING\n  - PUBLISHED\n  - SCHEDULED\n  - SYNCED\n  - ABANDONED"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "Limit the list of videos to those whose last status change occurred before the specified date time.  Can accept either a full timestamp, or just a datestamp.  If passed just a datestamp, assumes 00:00:00 for the time, and the filter will be exclusive of the date specified."
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "Limit the list of videos to those whose last status change occurred since the specified date time.  Can accept either a full timestamp, or just a datestamp.  If passed just a datestamp, assumes 00:00:00 for the time, and the filter will be inclusive of the date specified."
+              },
+              {
+                "name": "page_key",
+                "value": "",
+                "type": "query",
+                "description": "Fetch the next page of data.  If the previous call to this endpoint returned a `page_key`, a subsequent call can be made with the same parameters and including the `page_key` to retrieve the next page."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of entries to fetch in the next page of data.  Must be a number between 1 and 100, inclusive.  Defaults to 20."
+              },
+              {
+                "name": "pretty_print",
+                "value": "",
+                "type": "query",
+                "description": "Whether or not to pretty-print the JSON response.  Defaults to false."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets the current status of the requested video for every Social Destination is has ever been distributed to.  Note that this endpoint has pagination."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

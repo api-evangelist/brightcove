@@ -1,0 +1,2220 @@
+{
+  "item": [
+    {
+      "id": "6a9476c7-90c2-4b6c-b5b3-26ef18e0aeed",
+      "name": "Labels",
+      "description": {
+        "content": "Operations for managing folders to organize your videos. See [Working with Labels](/cms/managing-videos/working-with-labels.html) for more information.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e9c9486f-d6dc-4c10-88a1-4f34351c17a1",
+          "name": "Create a Label",
+          "request": {
+            "name": "Create a Label",
+            "description": {
+              "content": "Create a new label for the account ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":account_id",
+                "labels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"path\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e61495fb-d22c-497a-b753-acc583dd9d85",
+              "name": "Label created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "labels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"path\": \"/nature/mammals/seamammals\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"path\": \"/nature/mammals/seamammals\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "48c33688-9609-4534-8559-ef5c87fd2c72",
+              "name": "UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "labels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"path\": \"/nature/mammals/seamammals\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a0449b9a-eca3-4819-bfba-b7b700df4498",
+              "name": "NOT_AVAILABLE: The resource you are requesting is temporarily unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "labels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"path\": \"/nature/mammals/seamammals\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "92852afa-c574-45d3-9583-ff09c864f3f1",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "labels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"path\": \"/nature/mammals/seamammals\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ff746c1d-f297-43fe-8d57-8f13b3bb89f2",
+              "name": "METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "labels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"path\": \"/nature/mammals/seamammals\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a7c6fc41-62f4-4eeb-8de4-ea01a64fae47",
+              "name": "TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "labels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"path\": \"/nature/mammals/seamammals\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1ba5dd17-4f6c-4703-a82b-319d3f57302c",
+              "name": "UNKNOWN: Issue in Brightcove system; try again later.\nTIMEOUT: Server likely too busy; try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "labels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"path\": \"/nature/mammals/seamammals\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d8d12981-ea2b-4777-8386-110dad563a51",
+          "name": "Get Labels",
+          "request": {
+            "name": "Get Labels",
+            "description": {
+              "content": "Gets list of labels for the account ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":account_id",
+                "labels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "67a4c33d-cdcf-489b-bafe-fb03bb84956f",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "labels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_id\": \"57838016001\",\n  \"labels\": [\n    \"/nature/birds\",\n    \"/nature/birds/shorebirds\",\n    \"/nature/birds/forestbirds\",\n    \"/nature/mammals/seamammals\"\n  ],\n  \"version\": 5111\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9468e4bd-80f8-4262-8a14-2d32cceeed66",
+              "name": "UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "labels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "686c669c-cc00-4177-a704-02236835d726",
+              "name": "NOT_AVAILABLE: The resource you are requesting is temporarily unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "labels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cd42ff7e-7114-4157-ac7a-c3d8346a1e52",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "labels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a46d0e49-bcd3-4c6f-bfea-a20872a53ea2",
+              "name": "METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "labels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b7b79394-3ee2-40f2-a0b4-88417d010d36",
+              "name": "TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "labels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e22e6845-8a7b-4d34-9b2e-f9fa9e59dea2",
+              "name": "UNKNOWN: Issue in Brightcove system; try again later.\nTIMEOUT: Server likely too busy; try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "labels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c8e9845-4c23-475f-b2ab-0ee4f8c76111",
+          "name": "Update a Label",
+          "request": {
+            "name": "Update a Label",
+            "description": {
+              "content": "Update a label for the account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":account_id",
+                "labels",
+                "by_path",
+                ":label_path"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "label_path",
+                  "description": "(Required) 'The path for a label to update or delete. Note that the operation performed is on the last item in the path, so for example, if you specify the path `/nature/birds/seabirds`, only the `seabirds` label will be updated/deleted, but if you specify the path as `/nature/birds`, `birds` and any sub-labels of `birds` will be updated/deleted.'"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"new_label\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ca0a6aed-d317-4255-8bbc-7dd4d5365d8b",
+              "name": "Label updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "labels",
+                    "by_path",
+                    ":label_path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "label_path",
+                      "description": "(Required) 'The path for a label to update or delete. Note that the operation performed is on the last item in the path, so for example, if you specify the path `/nature/birds/seabirds`, only the `seabirds` label will be updated/deleted, but if you specify the path as `/nature/birds`, `birds` and any sub-labels of `birds` will be updated/deleted.'"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"new_label\": \"forest_birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"path\": \"/nature/mammals/seamammals\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f671f36-f192-4023-8738-9ba1ec57e764",
+              "name": "UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "labels",
+                    "by_path",
+                    ":label_path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "label_path",
+                      "description": "(Required) 'The path for a label to update or delete. Note that the operation performed is on the last item in the path, so for example, if you specify the path `/nature/birds/seabirds`, only the `seabirds` label will be updated/deleted, but if you specify the path as `/nature/birds`, `birds` and any sub-labels of `birds` will be updated/deleted.'"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"new_label\": \"forest_birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "70391657-4db1-4b90-a65c-7a9f3280e405",
+              "name": "NOT_AVAILABLE: The resource you are requesting is temporarily unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "labels",
+                    "by_path",
+                    ":label_path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "label_path",
+                      "description": "(Required) 'The path for a label to update or delete. Note that the operation performed is on the last item in the path, so for example, if you specify the path `/nature/birds/seabirds`, only the `seabirds` label will be updated/deleted, but if you specify the path as `/nature/birds`, `birds` and any sub-labels of `birds` will be updated/deleted.'"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"new_label\": \"forest_birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "85c94900-9406-4df1-9db1-8eddbdb197c4",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "labels",
+                    "by_path",
+                    ":label_path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "label_path",
+                      "description": "(Required) 'The path for a label to update or delete. Note that the operation performed is on the last item in the path, so for example, if you specify the path `/nature/birds/seabirds`, only the `seabirds` label will be updated/deleted, but if you specify the path as `/nature/birds`, `birds` and any sub-labels of `birds` will be updated/deleted.'"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"new_label\": \"forest_birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d9587678-b919-465e-a56e-1558dec1046f",
+              "name": "METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "labels",
+                    "by_path",
+                    ":label_path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "label_path",
+                      "description": "(Required) 'The path for a label to update or delete. Note that the operation performed is on the last item in the path, so for example, if you specify the path `/nature/birds/seabirds`, only the `seabirds` label will be updated/deleted, but if you specify the path as `/nature/birds`, `birds` and any sub-labels of `birds` will be updated/deleted.'"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"new_label\": \"forest_birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4c3917ec-b03d-4774-b59d-b9968eab13ef",
+              "name": "TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "labels",
+                    "by_path",
+                    ":label_path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "label_path",
+                      "description": "(Required) 'The path for a label to update or delete. Note that the operation performed is on the last item in the path, so for example, if you specify the path `/nature/birds/seabirds`, only the `seabirds` label will be updated/deleted, but if you specify the path as `/nature/birds`, `birds` and any sub-labels of `birds` will be updated/deleted.'"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"new_label\": \"forest_birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cc7054a7-5bbb-4c5d-8291-6a2fcea875e9",
+              "name": "UNKNOWN: Issue in Brightcove system; try again later.\nTIMEOUT: Server likely too busy; try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "labels",
+                    "by_path",
+                    ":label_path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "label_path",
+                      "description": "(Required) 'The path for a label to update or delete. Note that the operation performed is on the last item in the path, so for example, if you specify the path `/nature/birds/seabirds`, only the `seabirds` label will be updated/deleted, but if you specify the path as `/nature/birds`, `birds` and any sub-labels of `birds` will be updated/deleted.'"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"new_label\": \"forest_birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "67d09085-eaa4-4939-b4af-a89bd5293233",
+          "name": "Delete Label",
+          "request": {
+            "name": "Delete Label",
+            "description": {
+              "content": "Delete a label",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":account_id",
+                "labels",
+                "by_path",
+                ":label_path"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "label_path",
+                  "description": "(Required) 'The path for a label to update or delete. Note that the operation performed is on the last item in the path, so for example, if you specify the path `/nature/birds/seabirds`, only the `seabirds` label will be updated/deleted, but if you specify the path as `/nature/birds`, `birds` and any sub-labels of `birds` will be updated/deleted.'"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d97a087a-1fbd-471e-81eb-4b19b7ecd293",
+              "name": "204 No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "labels",
+                    "by_path",
+                    ":label_path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "label_path",
+                      "description": "(Required) 'The path for a label to update or delete. Note that the operation performed is on the last item in the path, so for example, if you specify the path `/nature/birds/seabirds`, only the `seabirds` label will be updated/deleted, but if you specify the path as `/nature/birds`, `birds` and any sub-labels of `birds` will be updated/deleted.'"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "db3da1ea-a3b9-4a28-8c87-13d3e18e5ed8",
+              "name": "UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "labels",
+                    "by_path",
+                    ":label_path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "label_path",
+                      "description": "(Required) 'The path for a label to update or delete. Note that the operation performed is on the last item in the path, so for example, if you specify the path `/nature/birds/seabirds`, only the `seabirds` label will be updated/deleted, but if you specify the path as `/nature/birds`, `birds` and any sub-labels of `birds` will be updated/deleted.'"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "48374031-cf0d-4c7e-9a21-5a3bc4a007cf",
+              "name": "NOT_AVAILABLE: The resource you are requesting is temporarily unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "labels",
+                    "by_path",
+                    ":label_path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "label_path",
+                      "description": "(Required) 'The path for a label to update or delete. Note that the operation performed is on the last item in the path, so for example, if you specify the path `/nature/birds/seabirds`, only the `seabirds` label will be updated/deleted, but if you specify the path as `/nature/birds`, `birds` and any sub-labels of `birds` will be updated/deleted.'"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "eddad029-9fdb-47a1-8e89-be5e4116e6c5",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "labels",
+                    "by_path",
+                    ":label_path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "label_path",
+                      "description": "(Required) 'The path for a label to update or delete. Note that the operation performed is on the last item in the path, so for example, if you specify the path `/nature/birds/seabirds`, only the `seabirds` label will be updated/deleted, but if you specify the path as `/nature/birds`, `birds` and any sub-labels of `birds` will be updated/deleted.'"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a6793ea5-1db4-4534-8057-0f0d31b17a78",
+              "name": "METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "labels",
+                    "by_path",
+                    ":label_path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "label_path",
+                      "description": "(Required) 'The path for a label to update or delete. Note that the operation performed is on the last item in the path, so for example, if you specify the path `/nature/birds/seabirds`, only the `seabirds` label will be updated/deleted, but if you specify the path as `/nature/birds`, `birds` and any sub-labels of `birds` will be updated/deleted.'"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "efdf3355-fb1f-4e2d-ab7e-27e244639004",
+              "name": "TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "labels",
+                    "by_path",
+                    ":label_path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "label_path",
+                      "description": "(Required) 'The path for a label to update or delete. Note that the operation performed is on the last item in the path, so for example, if you specify the path `/nature/birds/seabirds`, only the `seabirds` label will be updated/deleted, but if you specify the path as `/nature/birds`, `birds` and any sub-labels of `birds` will be updated/deleted.'"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4f0f8ee1-a332-486c-8389-567051c983b9",
+              "name": "UNKNOWN: Issue in Brightcove system; try again later.\nTIMEOUT: Server likely too busy; try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "labels",
+                    "by_path",
+                    ":label_path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "label_path",
+                      "description": "(Required) 'The path for a label to update or delete. Note that the operation performed is on the last item in the path, so for example, if you specify the path `/nature/birds/seabirds`, only the `seabirds` label will be updated/deleted, but if you specify the path as `/nature/birds`, `birds` and any sub-labels of `birds` will be updated/deleted.'"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://analytics.api.brightcove.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f947f7ef-fe34-456c-8247-2800c8a776a2",
+    "name": "Brightcove Analytics API Reference Access Tokens Labels API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com",
+      "type": "text/plain"
+    }
+  }
+}

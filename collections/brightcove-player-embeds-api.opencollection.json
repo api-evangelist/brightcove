@@ -1,0 +1,210 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brightcove Analytics API Reference Access Tokens Player Embeds API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Player Embeds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all the embeds for a player.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/accounts/:{account_id}/players/:{player_id}/embeds",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "player_id",
+                "value": "",
+                "type": "path",
+                "description": "Brightcove Player ID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get all the embeds (child players) for a player."
+        },
+        {
+          "info": {
+            "name": "Create an embed",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://analytics.api.brightcove.com/accounts/:{account_id}/players/:{player_id}/embeds",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "player_id",
+                "value": "",
+                "type": "path",
+                "description": "Brightcove Player ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create an embed (child player) for a player. Note that the initial creation of the embed is automatically published. Any changes to the embed thereafter will need to be published. When creating the embed, the body must be an object representing configuration settings for the new embed. By default when you create an embed, data in the embed overrides like data that would otherwise be inherited from the common player. This situation is different for fields that contain arrays. When the data type o"
+        },
+        {
+          "info": {
+            "name": "Get a specific embed for a player.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/accounts/:{account_id}/players/:{player_id}/embeds/:embed_id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "player_id",
+                "value": "",
+                "type": "path",
+                "description": "Brightcove Player ID."
+              },
+              {
+                "name": "embed_id",
+                "value": "",
+                "type": "path",
+                "description": "The embed id."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get a specific embed (child player) for a player."
+        },
+        {
+          "info": {
+            "name": "Delete an embed",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://analytics.api.brightcove.com/accounts/:{account_id}/players/:{player_id}/embeds/:embed_id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "player_id",
+                "value": "",
+                "type": "path",
+                "description": "Brightcove Player ID."
+              },
+              {
+                "name": "embed_id",
+                "value": "",
+                "type": "path",
+                "description": "The embed id."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete a particular embed (child player) for a player."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,98 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brightcove Analytics API Reference Access Tokens Leads API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Leads",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Leads",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/accounts/:{account_id}/leads",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "a Video Cloud account ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort lead results by (prefix with `-` for descending order)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Fields to return for leads\n\n**Note:** by default, all fields are returned. Use this parameter to return fewer fields."
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "One or more field==value pairs to filter the results; fields supported are `video_id`, `video_name`, `tracking_id`, `external_id`, `player_id`, `page_url`, `watched`, `time_watched`, `created_at`, `updated_at`, `is_synced`"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "'Start time for the period covered by the report — epoch time in milliseconds or a date in the format `yyyy-mm-dd` (such as `2013-09-26`) or a relative date in `d` (days), `h` (hours), `m` (minutes), `s` (seconds) (such as `-2d` or `-6h`)'"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "End time for the period covered by the report — epoch time in milliseconds or a date in the format `yyyy-mm-dd` (such as `2013-09-26`) or a relative date in `d` (days), `h` (hours), `m` (minutes), `s` (seconds) (such as `-2d` or `-6h`)"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get leads for an account"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

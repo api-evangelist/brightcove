@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brightcove Analytics API Reference Access Tokens Ingest API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ingest",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Ingest Videos and Assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/ingest-requests",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud video ID; if this is a new video ingest, the ID will be the one returned by the Create Video request"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Ingests a video, images, and/or text track (WebVTT files) and adds them to your media library. NOTE that before you ingest a new video, you must first make a Create Video request."
+        },
+        {
+          "info": {
+            "name": "Get Temporary S3 URLs to Upload Videos",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/videos/:{video_id}/upload-urls/:source_name",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud video ID; if this is a new video ingest, the ID will be the one returned by the Create Video request"
+              },
+              {
+                "name": "source_name",
+                "value": "",
+                "type": "path",
+                "description": "the video source filename - the name should not contain any URL-reserved characters such as ?, &amp;, # or spaces"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get temporary S3 URLs to upload source files for ingestion into Video Cloud. See Source File Upload for more information. NOTE that before you ingest a new video, you must first make a Create Video request."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

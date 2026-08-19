@@ -1,0 +1,4543 @@
+{
+  "item": [
+    {
+      "id": "864cd44d-0bf2-41da-88ee-5f41ff34befc",
+      "name": "Playlists",
+      "description": {
+        "content": "Operations for managing video playlists.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fd6f1884-de0a-4b17-8271-1cbddfc7fb35",
+          "name": "Get Playlists",
+          "request": {
+            "name": "Get Playlists",
+            "description": {
+              "content": "Gets a page of playlist objects for the account ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":account_id",
+                "playlists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Number of items to return - see [Paging Search Results](/cms/searching/using-cms-api-page-search-results.html) for more information"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of items to skip - see [Paging Search Results](/cms/searching/using-cms-api-page-search-results.html) for more information"
+                },
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Search string - see [playlist search guide](/cms/searching/cms-api-playlists-search.html) for details"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "-updated_at",
+                  "description": "Field to sort results by - if absent and there is a search string, results are sorted by relevance or if there is no search string, results are sorted by `-updated_at` - note: to sort in descending order, preface the field name with a minus(`-`) sign. If the `q=` param is missing, the sort param will be ignored. Also if sort is set to an unsupported field, the quest will fail with an error"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "aa20a9dc-cf66-40f0-95d6-cdc8c6266399",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "q",
+                      "value": "name:%28Really%20Short%20Videos%29%20type:EXPLICIT"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "name"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"account_id\": \"string\",\n    \"created_at\": \"2018-11-14 19:30:36.196000+00:00\",\n    \"description\": \"Sea bird playlist\",\n    \"favorite\": false,\n    \"id\": \"string\",\n    \"name\": \"Sea Birds\",\n    \"reference_id\": \"sea_birds_playlist\",\n    \"search\": \"+tags:captions,training\",\n    \"state\": \"UPDATING\",\n    \"type\": \"ACTIVATED_NEWEST_TO_OLDEST\",\n    \"updated_at\": \"2018-11-14 19:30:36.196000+00:00\",\n    \"video_ids\": [\n      \"4084164751001\",\n      \"1532562858001\",\n      \"734484322001\",\n      \"1532530235001\",\n      \"734462570001\",\n      \"734462569001\",\n      \"734451481001\",\n      \"734445537001\"\n    ]\n  },\n  {\n    \"account_id\": \"string\",\n    \"created_at\": \"2018-11-14 19:30:36.196000+00:00\",\n    \"description\": \"Sea bird playlist\",\n    \"favorite\": false,\n    \"id\": \"string\",\n    \"name\": \"Sea Birds\",\n    \"reference_id\": \"sea_birds_playlist\",\n    \"search\": \"+tags:captions,training\",\n    \"state\": \"READY\",\n    \"type\": \"ACTIVATED_NEWEST_TO_OLDEST\",\n    \"updated_at\": \"2018-11-14 19:30:36.196000+00:00\",\n    \"video_ids\": [\n      \"4084164751001\",\n      \"1532562858001\",\n      \"734484322001\",\n      \"1532530235001\",\n      \"734462570001\",\n      \"734462569001\",\n      \"734451481001\",\n      \"734445537001\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4106761-5439-4c3d-b125-1d58a9b45b18",
+              "name": "'INVALID_SORT: sort parameter specified and invalid field\nINVALID_SEARCH: search string invalid (may not have been URI-encoded)'",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "q",
+                      "value": "name:%28Really%20Short%20Videos%29%20type:EXPLICIT"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "name"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1301f448-0a86-4277-a61e-fa098b69fa02",
+              "name": "UNAUTHORIZED: Authentication failed - check to make sure your client credentials were correct for the access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "q",
+                      "value": "name:%28Really%20Short%20Videos%29%20type:EXPLICIT"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "name"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bff50c44-ddcd-47a8-9dcf-91323d0cdfb7",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "q",
+                      "value": "name:%28Really%20Short%20Videos%29%20type:EXPLICIT"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "name"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "29f8fb34-4068-4510-a3e0-642903822ecf",
+              "name": "METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "q",
+                      "value": "name:%28Really%20Short%20Videos%29%20type:EXPLICIT"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "name"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "50389ec5-c74b-4d44-b08a-dbaa1e4b5506",
+              "name": "TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "q",
+                      "value": "name:%28Really%20Short%20Videos%29%20type:EXPLICIT"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "name"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a4b751aa-ea8a-4549-819e-cedf30907f3f",
+          "name": "Create Playlist",
+          "request": {
+            "name": "Create Playlist",
+            "description": {
+              "content": "Creates a new playlist.\n\n**A maximum of 1000 videos can be added to a playlist** (both Manual and Smart). There is no limit to the number of playlists that can be created. The videos that are initially loaded into a playlist in the player is determined by the type of playlist.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":account_id",
+                "playlists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<string>\",\n  \"favorite\": false,\n  \"name\": \"<string>\",\n  \"reference_id\": \"<string>\",\n  \"search\": \"<string>\",\n  \"search_syntax\": \"v1\",\n  \"type\": \"<string>\",\n  \"video_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "983b8616-939b-4588-bc18-365826648b94",
+              "name": "Playlist created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"My new sea playlist\",\n  \"name\": \"Sea Videos\",\n  \"type\": \"ACTIVATED_NEWEST_TO_OLDEST\",\n  \"limit\": 20,\n  \"search\": \"tags:birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_id\": \"string\",\n  \"created_at\": \"2018-11-14 19:30:36.196000+00:00\",\n  \"description\": \"Sea bird playlist\",\n  \"favorite\": false,\n  \"id\": \"string\",\n  \"name\": \"Sea Birds\",\n  \"reference_id\": \"sea_birds_playlist\",\n  \"search\": \"+tags:captions,training\",\n  \"state\": \"UPDATING\",\n  \"type\": \"ACTIVATED_NEWEST_TO_OLDEST\",\n  \"updated_at\": \"2018-11-14 19:30:36.196000+00:00\",\n  \"video_ids\": [\n    \"4084164751001\",\n    \"1532562858001\",\n    \"734484322001\",\n    \"1532530235001\",\n    \"734462570001\",\n    \"734462569001\",\n    \"734451481001\",\n    \"734445537001\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cccf5192-d1cb-4fb2-9a87-2eb738c9a2ef",
+              "name": "BAD_VALUE: The JSON could not be parsed ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"My new sea playlist\",\n  \"name\": \"Sea Videos\",\n  \"type\": \"ACTIVATED_NEWEST_TO_OLDEST\",\n  \"limit\": 20,\n  \"search\": \"tags:birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2722b374-3606-4f6e-85bf-0f5a4746240e",
+              "name": "UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"My new sea playlist\",\n  \"name\": \"Sea Videos\",\n  \"type\": \"ACTIVATED_NEWEST_TO_OLDEST\",\n  \"limit\": 20,\n  \"search\": \"tags:birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "71bc245b-30bb-485a-ae3d-17384c3ce9db",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"My new sea playlist\",\n  \"name\": \"Sea Videos\",\n  \"type\": \"ACTIVATED_NEWEST_TO_OLDEST\",\n  \"limit\": 20,\n  \"search\": \"tags:birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8c31b39e-82a0-419e-8997-d0ccc51fc5ed",
+              "name": "METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"My new sea playlist\",\n  \"name\": \"Sea Videos\",\n  \"type\": \"ACTIVATED_NEWEST_TO_OLDEST\",\n  \"limit\": 20,\n  \"search\": \"tags:birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4f7c8950-fdcc-4922-9a5f-f558df2cdfb3",
+              "name": "REFERENCE_ID_IN_USE: The specified reference id is already in use ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"My new sea playlist\",\n  \"name\": \"Sea Videos\",\n  \"type\": \"ACTIVATED_NEWEST_TO_OLDEST\",\n  \"limit\": 20,\n  \"search\": \"tags:birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5e60105a-aae1-4407-a151-33a13239acf7",
+              "name": "ILLEGAL_FIELD: Spelling error or use of non-existent field ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"My new sea playlist\",\n  \"name\": \"Sea Videos\",\n  \"type\": \"ACTIVATED_NEWEST_TO_OLDEST\",\n  \"limit\": 20,\n  \"search\": \"tags:birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6322dd8d-f37f-41d6-abdc-8cf15318a3dc",
+              "name": "TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"My new sea playlist\",\n  \"name\": \"Sea Videos\",\n  \"type\": \"ACTIVATED_NEWEST_TO_OLDEST\",\n  \"limit\": 20,\n  \"search\": \"tags:birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "680906a6-39e1-4693-a026-4100750f6585",
+          "name": "Get Playlist Count",
+          "request": {
+            "name": "Get Playlist Count",
+            "description": {
+              "content": "Gets a count of playlists in the account for the account ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":account_id",
+                "counts",
+                "playlists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Search string - see [search guide](/cms/searching/cmsplayback-api-videos-search.html) for details"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7c0ee381-dbed-4174-97e9-fe86bedceb90",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "counts",
+                    "playlists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "+name:Birds"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 84\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0d3c9d03-fcde-4401-94df-4ddd9d868710",
+              "name": "'INVALID_SORT: sort parameter specified and invalid field\nINVALID_SEARCH: search string invalid (may not have been URI-encoded)'",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "counts",
+                    "playlists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "+name:Birds"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9fd05145-c97f-4a36-bebb-f875cb8270f8",
+              "name": "UNAUTHORIZED: Authentication failed - check to make sure your client credentials were correct for the access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "counts",
+                    "playlists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "+name:Birds"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0baa023e-1d15-4b6b-a849-12975b7847dd",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "counts",
+                    "playlists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "+name:Birds"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "67d7f093-039c-4d25-bae0-aae7aff76cd7",
+              "name": "METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "counts",
+                    "playlists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "+name:Birds"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "49ae6f59-cdb5-40b5-ba21-dbed638dc431",
+              "name": "TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "counts",
+                    "playlists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "+name:Birds"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7ae7ea61-f8cb-48b1-9b05-226fb9585f02",
+          "name": "Get Playlists by ID",
+          "request": {
+            "name": "Get Playlists by ID",
+            "description": {
+              "content": "Gets one or more playlist objects for the account ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":account_id",
+                "playlists",
+                ":playlist_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "playlist_id",
+                  "description": "(Required) Video Cloud playlist ID, or multiple playlist ids separated by commas."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2f0bc764-d1b7-405e-8f71-0558c8dcc27b",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists",
+                    ":playlist_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playlist_id",
+                      "description": "(Required) Video Cloud playlist ID, or multiple playlist ids separated by commas."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_id\": \"string\",\n  \"created_at\": \"2018-11-14 19:30:36.196000+00:00\",\n  \"description\": \"Sea bird playlist\",\n  \"favorite\": false,\n  \"id\": \"string\",\n  \"name\": \"Sea Birds\",\n  \"reference_id\": \"sea_birds_playlist\",\n  \"search\": \"+tags:captions,training\",\n  \"state\": \"UPDATING\",\n  \"type\": \"ACTIVATED_NEWEST_TO_OLDEST\",\n  \"updated_at\": \"2018-11-14 19:30:36.196000+00:00\",\n  \"video_ids\": [\n    \"4084164751001\",\n    \"1532562858001\",\n    \"734484322001\",\n    \"1532530235001\",\n    \"734462570001\",\n    \"734462569001\",\n    \"734451481001\",\n    \"734445537001\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf5a06cd-4f9d-4214-9e4e-f9a90bd16243",
+              "name": "'INVALID_SORT: sort parameter specified and invalid field\nINVALID_SEARCH: search string invalid (may not have been URI-encoded)'",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists",
+                    ":playlist_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playlist_id",
+                      "description": "(Required) Video Cloud playlist ID, or multiple playlist ids separated by commas."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4ecedca2-27d0-49ff-a9b6-deec181d7b71",
+              "name": "UNAUTHORIZED: Authentication failed - check to make sure your client credentials were correct for the access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists",
+                    ":playlist_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playlist_id",
+                      "description": "(Required) Video Cloud playlist ID, or multiple playlist ids separated by commas."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ee1ae3f5-4e40-49ac-879b-3b32e3dd8f9b",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists",
+                    ":playlist_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playlist_id",
+                      "description": "(Required) Video Cloud playlist ID, or multiple playlist ids separated by commas."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "25b4618e-8764-4964-9fd8-317a0b659306",
+              "name": "METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists",
+                    ":playlist_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playlist_id",
+                      "description": "(Required) Video Cloud playlist ID, or multiple playlist ids separated by commas."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "53924f4e-59ea-42e3-8d2b-f593db422170",
+              "name": "TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists",
+                    ":playlist_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playlist_id",
+                      "description": "(Required) Video Cloud playlist ID, or multiple playlist ids separated by commas."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bb6e1ee2-f313-4e3a-adef-d635eb9746c0",
+          "name": "Update Playlist",
+          "request": {
+            "name": "Update Playlist",
+            "description": {
+              "content": "Updates a playlist for the account ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":account_id",
+                "playlists",
+                ":playlist_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "playlist_id",
+                  "description": "(Required) Playlist ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<string>\",\n  \"favorite\": false,\n  \"name\": \"<string>\",\n  \"reference_id\": \"<string>\",\n  \"search\": \"<string>\",\n  \"search_syntax\": \"v1\",\n  \"type\": \"<string>\",\n  \"video_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9f8ea945-70a9-4b18-990c-4600eb6a8014",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists",
+                    ":playlist_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playlist_id",
+                      "description": "(Required) Playlist ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"My new sea playlist\",\n  \"name\": \"Sea Videos\",\n  \"type\": \"ACTIVATED_NEWEST_TO_OLDEST\",\n  \"limit\": 20,\n  \"search\": \"tags:birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_id\": \"string\",\n  \"created_at\": \"2018-11-14 19:30:36.196000+00:00\",\n  \"description\": \"Sea bird playlist\",\n  \"favorite\": false,\n  \"id\": \"string\",\n  \"name\": \"Sea Birds\",\n  \"reference_id\": \"sea_birds_playlist\",\n  \"search\": \"+tags:captions,training\",\n  \"state\": \"UPDATING\",\n  \"type\": \"ACTIVATED_NEWEST_TO_OLDEST\",\n  \"updated_at\": \"2018-11-14 19:30:36.196000+00:00\",\n  \"video_ids\": [\n    \"4084164751001\",\n    \"1532562858001\",\n    \"734484322001\",\n    \"1532530235001\",\n    \"734462570001\",\n    \"734462569001\",\n    \"734451481001\",\n    \"734445537001\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fb122bce-30c4-40e1-a958-28a1f792704a",
+              "name": "BAD_VALUE: The JSON could not be parsed ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists",
+                    ":playlist_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playlist_id",
+                      "description": "(Required) Playlist ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"My new sea playlist\",\n  \"name\": \"Sea Videos\",\n  \"type\": \"ACTIVATED_NEWEST_TO_OLDEST\",\n  \"limit\": 20,\n  \"search\": \"tags:birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "434771fa-4ad8-4222-b70c-3374bc0a5c96",
+              "name": "UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists",
+                    ":playlist_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playlist_id",
+                      "description": "(Required) Playlist ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"My new sea playlist\",\n  \"name\": \"Sea Videos\",\n  \"type\": \"ACTIVATED_NEWEST_TO_OLDEST\",\n  \"limit\": 20,\n  \"search\": \"tags:birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d7939d88-2f44-41a4-956a-a9ea31b41d2d",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists",
+                    ":playlist_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playlist_id",
+                      "description": "(Required) Playlist ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"My new sea playlist\",\n  \"name\": \"Sea Videos\",\n  \"type\": \"ACTIVATED_NEWEST_TO_OLDEST\",\n  \"limit\": 20,\n  \"search\": \"tags:birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e9905980-93db-4409-b1d5-adfbee50df87",
+              "name": "METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists",
+                    ":playlist_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playlist_id",
+                      "description": "(Required) Playlist ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"My new sea playlist\",\n  \"name\": \"Sea Videos\",\n  \"type\": \"ACTIVATED_NEWEST_TO_OLDEST\",\n  \"limit\": 20,\n  \"search\": \"tags:birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c2bbf4b0-144d-4f73-9b7f-909bb34a68ac",
+              "name": "REFERENCE_ID_IN_USE: The specified reference id is already in use ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists",
+                    ":playlist_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playlist_id",
+                      "description": "(Required) Playlist ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"My new sea playlist\",\n  \"name\": \"Sea Videos\",\n  \"type\": \"ACTIVATED_NEWEST_TO_OLDEST\",\n  \"limit\": 20,\n  \"search\": \"tags:birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4b5b07f3-a575-429e-a7c5-d59b51dac088",
+              "name": "ILLEGAL_FIELD: Spelling error or use of non-existent field ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists",
+                    ":playlist_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playlist_id",
+                      "description": "(Required) Playlist ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"My new sea playlist\",\n  \"name\": \"Sea Videos\",\n  \"type\": \"ACTIVATED_NEWEST_TO_OLDEST\",\n  \"limit\": 20,\n  \"search\": \"tags:birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8cc5a6af-c667-44f8-b792-c0f43ac66c4a",
+              "name": "TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists",
+                    ":playlist_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playlist_id",
+                      "description": "(Required) Playlist ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"My new sea playlist\",\n  \"name\": \"Sea Videos\",\n  \"type\": \"ACTIVATED_NEWEST_TO_OLDEST\",\n  \"limit\": 20,\n  \"search\": \"tags:birds\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3bd1b957-09ea-46fb-a3dd-148c5d2538d3",
+          "name": "Delete Playlist",
+          "request": {
+            "name": "Delete Playlist",
+            "description": {
+              "content": "Deletes a playlist ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":account_id",
+                "playlists",
+                ":playlist_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "playlist_id",
+                  "description": "(Required) Playlist ID."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "504e6471-af3c-419a-9921-3871c7e72de9",
+              "name": "NO_CONTENT",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists",
+                    ":playlist_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playlist_id",
+                      "description": "(Required) Playlist ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f21e6746-66e4-4f27-ac1a-fc01c728748c",
+              "name": "'INVALID_SORT: sort parameter specified and invalid field\nINVALID_SEARCH: search string invalid (may not have been URI-encoded)'",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists",
+                    ":playlist_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playlist_id",
+                      "description": "(Required) Playlist ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "04ceaada-ebbc-4e63-91d1-d9d816063b85",
+              "name": "UNAUTHORIZED: Authentication failed - check to make sure your client credentials were correct for the access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists",
+                    ":playlist_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playlist_id",
+                      "description": "(Required) Playlist ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9097e5b0-c62c-4df4-9a18-06171373b86b",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists",
+                    ":playlist_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playlist_id",
+                      "description": "(Required) Playlist ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1f768d17-5014-4a82-88dd-69b0b6dd0f8d",
+              "name": "METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists",
+                    ":playlist_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playlist_id",
+                      "description": "(Required) Playlist ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "59fedd59-ceb2-4243-ab17-7086a10b5701",
+              "name": "TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists",
+                    ":playlist_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playlist_id",
+                      "description": "(Required) Playlist ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0bdb306d-f951-46be-9251-732a7bd0935e",
+          "name": "Get Videos in Playlist",
+          "request": {
+            "name": "Get Videos in Playlist",
+            "description": {
+              "content": "Gets the video objects for videos in a playlist for the account.\n\nNote: To receive the `video_preview.sources`, include `include_video_preview=true` in the request query.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":account_id",
+                "playlists",
+                ":playlist_id",
+                "videos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include_details",
+                  "value": "true",
+                  "description": "When it's false, api call response won't include caption info in [text_tracks] at all and it makes the response returns quicker."
+                },
+                {
+                  "disabled": false,
+                  "key": "include_video_preview",
+                  "value": "false",
+                  "description": "Whether to include the `video_preview` object (animated thumbnail preview metadata) in the response"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Number of items to return - see [Get videos in a playlist](/cms/managing-videos/managing-playlists-using-cms-api.html#get_count_of_videos) for more information"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of items to skip - see [Paging Search Results](/cms/searching/using-cms-api-page-search-results.html) for more information"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "playlist_id",
+                  "description": "(Required) Playlist ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b025d25a-be74-4e69-b3b0-bd8eca5fb189",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists",
+                    ":playlist_id",
+                    "videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_details",
+                      "value": "true"
+                    },
+                    {
+                      "key": "include_video_preview",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playlist_id",
+                      "description": "(Required) Playlist ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"video_preview\": {\n      \"start\": 10000,\n      \"sources\": [\n        {\n          \"ext_x_version\": \"7\",\n          \"src\": \"https://manifest.prod.boltdns.net/.../preview.m3u8?...\",\n          \"type\": \"application/x-mpegURL\"\n        },\n        {\n          \"ext_x_version\": \"7\",\n          \"src\": \"https://manifest.prod.boltdns.net/.../preview.m3u8?...\",\n          \"type\": \"application/x-mpegURL\"\n        }\n      ]\n    },\n    \"ad_keys\": \" \\\"adKeys\\\": \\\"category=sports&live=true\\\"\",\n    \"clip_source_video_id\": \"string\",\n    \"complete\": true,\n    \"created_at\": \"2015-09-17T16:08:37.108Z\",\n    \"created_by\": {\n      \"email\": \"string\",\n      \"id\": \"string\",\n      \"type\": \"api_key\"\n    },\n    \"cue_points\": [\n      {\n        \"time\": 10.527,\n        \"type\": \"DATA\",\n        \"force_stop\": false,\n        \"metadata\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"time\": 10.527,\n        \"type\": \"DATA\",\n        \"force_stop\": false,\n        \"metadata\": \"string\",\n        \"name\": \"string\"\n      }\n    ],\n    \"custom_fields\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"delivery_type\": \"dynamic_origin\",\n    \"description\": \"Herring gull on a wharf in Boston\",\n    \"digital_master_id\": \"string\",\n    \"drm_disabled\": true,\n    \"duration\": 18160,\n    \"economics\": \"AD_SUPPORTED\",\n    \"folder_id\": \"560039e5e4b0e69e4b01cacd\",\n    \"forensic_watermarking\": \"ACTIVE\",\n    \"geo\": {\n      \"countries\": [\n        \"us\",\n        \"ca\",\n        \"fr\"\n      ],\n      \"exclude_countries\": true,\n      \"restricted\": true\n    },\n    \"has_digital_master\": true,\n    \"id\": \"string\",\n    \"images\": {\n      \"thumbnail\": {\n        \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/jit/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/main/160x90/20s629ms/match/image.jpg\",\n        \"sources\": [\n          {\n            \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/jit/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/main/160x90/20s629ms/match/image.jpg\",\n            \"height\": 90,\n            \"width\": 160\n          }\n        ]\n      },\n      \"poster\": {\n        \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/jit/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/main/1280x720/20s629ms/match/image.jpg\",\n        \"sources\": [\n          {\n            \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/jit/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/main/1280x720/20s629ms/match/image.jpg\",\n            \"height\": 720,\n            \"width\": 1280\n          }\n        ]\n      },\n      \"portrait.es\": {\n        \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/bac8717a-43db-4fa8-a6f0-189c80ee4c4e/800x1200/match/image.jpg\",\n        \"sources\": [\n          {\n            \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/bac8717a-43db-4fa8-a6f0-189c80ee4c4e/800x1200/match/image.jpg\",\n            \"height\": 1200,\n            \"width\": 800\n          }\n        ]\n      },\n      \"thumbnail.en\": {\n        \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/0ce2da4d-ca36-469b-9024-0273d79feeeb/292x108/match/image.jpg\",\n        \"sources\": [\n          {\n            \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/0ce2da4d-ca36-469b-9024-0273d79feeeb/292x108/match/image.jpg\",\n            \"height\": 108,\n            \"width\": 292\n          }\n        ]\n      },\n      \"poster.en\": {\n        \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/a7cb150d-c84a-48e0-9469-5b4ce80fba53/1920x1080/match/image.jpg\",\n        \"sources\": [\n          {\n            \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/a7cb150d-c84a-48e0-9469-5b4ce80fba53/1920x1080/match/image.jpg\",\n            \"height\": 1080,\n            \"width\": 1920\n          }\n        ]\n      },\n      \"square.de\": {\n        \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/22209955-e136-4f17-914c-e19ec4c58886/570x570/match/image.jpg\",\n        \"sources\": [\n          {\n            \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/22209955-e136-4f17-914c-e19ec4c58886/570x570/match/image.jpg\",\n            \"height\": 570,\n            \"width\": 570\n          }\n        ]\n      },\n      \"ultra-wide.hi\": {\n        \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/72fd489f-d978-44ba-8d04-1e33c7c36cef/3840x1646/match/image.jpg\",\n        \"sources\": [\n          {\n            \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/72fd489f-d978-44ba-8d04-1e33c7c36cef/3840x1646/match/image.jpg\",\n            \"height\": 1646,\n            \"width\": 3840\n          }\n        ]\n      },\n      \"wide.fr\": {\n        \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/4405a5d5-8b9e-4c2b-be71-cf4e2c153e87/2560x1440/match/image.jpg\",\n        \"sources\": [\n          {\n            \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/4405a5d5-8b9e-4c2b-be71-cf4e2c153e87/2560x1440/match/image.jpg\",\n            \"height\": 1440,\n            \"width\": 2560\n          }\n        ]\n      }\n    },\n    \"labels\": [\n      \"string\",\n      \"string\"\n    ],\n    \"link\": {\n      \"text\": \"string\",\n      \"url\": \"string\"\n    },\n    \"long_description\": \"Herring Gull near Fort Point Channel in Boston, MA, USA. 2019-04-25.\",\n    \"name\": \"Laughing Gull\",\n    \"offline_enabled\": true,\n    \"original_filename\": \"gull-boston.mov\",\n    \"playback_rights_id\": \"string\",\n    \"projection\": \"equirectangular\",\n    \"published_at\": \"2019-04-30 23:27:22.507000+00:00\",\n    \"reference_id\": \"laughing_gull_2019_04_25\",\n    \"schedule\": {\n      \"ends_at\": \"2020-05-20 20:41:07.689000+00:00\",\n      \"starts_at\": \"2019-05-20 20:41:07.689000+00:00\"\n    },\n    \"sharing\": {\n      \"by_external_acct\": true,\n      \"by_id\": \"string\",\n      \"by_reference\": true,\n      \"source_id\": \"string\",\n      \"to_external_acct\": true\n    },\n    \"state\": \"ACTIVE\",\n    \"tags\": [\n      \"birds\",\n      \"sea\"\n    ],\n    \"text_tracks\": [\n      {\n        \"default\": false,\n        \"id\": \"string\",\n        \"kind\": \"captions\",\n        \"label\": \"string\",\n        \"mime_type\": \"string\",\n        \"src\": \"string\",\n        \"srclang\": \"string\",\n        \"status\": {}\n      },\n      {\n        \"default\": false,\n        \"id\": \"string\",\n        \"kind\": \"captions\",\n        \"label\": \"string\",\n        \"mime_type\": \"string\",\n        \"src\": \"string\",\n        \"srclang\": \"string\",\n        \"status\": {}\n      }\n    ],\n    \"transcripts\": [\n      {\n        \"src\": \"string\",\n        \"srclang\": \"string\",\n        \"id\": \"string\",\n        \"account_id\": \"string\",\n        \"default\": true,\n        \"label\": \"string\",\n        \"sources\": [\n          \"string\",\n          \"string\"\n        ],\n        \"status\": \"published\"\n      },\n      {\n        \"src\": \"string\",\n        \"srclang\": \"string\",\n        \"id\": \"string\",\n        \"account_id\": \"string\",\n        \"default\": false,\n        \"label\": \"string\",\n        \"sources\": [\n          \"string\",\n          \"string\"\n        ],\n        \"status\": \"draft\"\n      }\n    ],\n    \"updated_at\": \"2018-02-27 19:09:20.401000+00:00\",\n    \"updated_by\": {\n      \"email\": \"string\",\n      \"id\": \"string\",\n      \"type\": \"internal\"\n    }\n  },\n  {\n    \"video_preview\": {\n      \"start\": 10000,\n      \"sources\": [\n        {\n          \"ext_x_version\": \"7\",\n          \"src\": \"https://manifest.prod.boltdns.net/.../preview.m3u8?...\",\n          \"type\": \"application/x-mpegURL\"\n        },\n        {\n          \"ext_x_version\": \"7\",\n          \"src\": \"https://manifest.prod.boltdns.net/.../preview.m3u8?...\",\n          \"type\": \"application/x-mpegURL\"\n        }\n      ]\n    },\n    \"ad_keys\": \" \\\"adKeys\\\": \\\"category=sports&live=true\\\"\",\n    \"clip_source_video_id\": \"string\",\n    \"complete\": true,\n    \"created_at\": \"2015-09-17T16:08:37.108Z\",\n    \"created_by\": {\n      \"email\": \"string\",\n      \"id\": \"string\",\n      \"type\": \"internal\"\n    },\n    \"cue_points\": [\n      {\n        \"time\": 10.527,\n        \"type\": \"AD\",\n        \"force_stop\": false,\n        \"metadata\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"time\": 10.527,\n        \"type\": \"AD\",\n        \"force_stop\": false,\n        \"metadata\": \"string\",\n        \"name\": \"string\"\n      }\n    ],\n    \"custom_fields\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"delivery_type\": \"dynamic_origin\",\n    \"description\": \"Herring gull on a wharf in Boston\",\n    \"digital_master_id\": \"string\",\n    \"drm_disabled\": true,\n    \"duration\": 18160,\n    \"economics\": \"AD_SUPPORTED\",\n    \"folder_id\": \"560039e5e4b0e69e4b01cacd\",\n    \"forensic_watermarking\": \"ACTIVE\",\n    \"geo\": {\n      \"countries\": [\n        \"us\",\n        \"ca\",\n        \"fr\"\n      ],\n      \"exclude_countries\": true,\n      \"restricted\": true\n    },\n    \"has_digital_master\": true,\n    \"id\": \"string\",\n    \"images\": {\n      \"thumbnail\": {\n        \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/jit/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/main/160x90/20s629ms/match/image.jpg\",\n        \"sources\": [\n          {\n            \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/jit/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/main/160x90/20s629ms/match/image.jpg\",\n            \"height\": 90,\n            \"width\": 160\n          }\n        ]\n      },\n      \"poster\": {\n        \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/jit/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/main/1280x720/20s629ms/match/image.jpg\",\n        \"sources\": [\n          {\n            \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/jit/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/main/1280x720/20s629ms/match/image.jpg\",\n            \"height\": 720,\n            \"width\": 1280\n          }\n        ]\n      },\n      \"portrait.es\": {\n        \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/bac8717a-43db-4fa8-a6f0-189c80ee4c4e/800x1200/match/image.jpg\",\n        \"sources\": [\n          {\n            \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/bac8717a-43db-4fa8-a6f0-189c80ee4c4e/800x1200/match/image.jpg\",\n            \"height\": 1200,\n            \"width\": 800\n          }\n        ]\n      },\n      \"thumbnail.en\": {\n        \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/0ce2da4d-ca36-469b-9024-0273d79feeeb/292x108/match/image.jpg\",\n        \"sources\": [\n          {\n            \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/0ce2da4d-ca36-469b-9024-0273d79feeeb/292x108/match/image.jpg\",\n            \"height\": 108,\n            \"width\": 292\n          }\n        ]\n      },\n      \"poster.en\": {\n        \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/a7cb150d-c84a-48e0-9469-5b4ce80fba53/1920x1080/match/image.jpg\",\n        \"sources\": [\n          {\n            \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/a7cb150d-c84a-48e0-9469-5b4ce80fba53/1920x1080/match/image.jpg\",\n            \"height\": 1080,\n            \"width\": 1920\n          }\n        ]\n      },\n      \"square.de\": {\n        \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/22209955-e136-4f17-914c-e19ec4c58886/570x570/match/image.jpg\",\n        \"sources\": [\n          {\n            \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/22209955-e136-4f17-914c-e19ec4c58886/570x570/match/image.jpg\",\n            \"height\": 570,\n            \"width\": 570\n          }\n        ]\n      },\n      \"ultra-wide.hi\": {\n        \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/72fd489f-d978-44ba-8d04-1e33c7c36cef/3840x1646/match/image.jpg\",\n        \"sources\": [\n          {\n            \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/72fd489f-d978-44ba-8d04-1e33c7c36cef/3840x1646/match/image.jpg\",\n            \"height\": 1646,\n            \"width\": 3840\n          }\n        ]\n      },\n      \"wide.fr\": {\n        \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/4405a5d5-8b9e-4c2b-be71-cf4e2c153e87/2560x1440/match/image.jpg\",\n        \"sources\": [\n          {\n            \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/4405a5d5-8b9e-4c2b-be71-cf4e2c153e87/2560x1440/match/image.jpg\",\n            \"height\": 1440,\n            \"width\": 2560\n          }\n        ]\n      }\n    },\n    \"labels\": [\n      \"string\",\n      \"string\"\n    ],\n    \"link\": {\n      \"text\": \"string\",\n      \"url\": \"string\"\n    },\n    \"long_description\": \"Herring Gull near Fort Point Channel in Boston, MA, USA. 2019-04-25.\",\n    \"name\": \"Laughing Gull\",\n    \"offline_enabled\": true,\n    \"original_filename\": \"gull-boston.mov\",\n    \"playback_rights_id\": \"string\",\n    \"projection\": \"equirectangular\",\n    \"published_at\": \"2019-04-30 23:27:22.507000+00:00\",\n    \"reference_id\": \"laughing_gull_2019_04_25\",\n    \"schedule\": {\n      \"ends_at\": \"2020-05-20 20:41:07.689000+00:00\",\n      \"starts_at\": \"2019-05-20 20:41:07.689000+00:00\"\n    },\n    \"sharing\": {\n      \"by_external_acct\": true,\n      \"by_id\": \"string\",\n      \"by_reference\": true,\n      \"source_id\": \"string\",\n      \"to_external_acct\": true\n    },\n    \"state\": \"ACTIVE\",\n    \"tags\": [\n      \"birds\",\n      \"sea\"\n    ],\n    \"text_tracks\": [\n      {\n        \"default\": false,\n        \"id\": \"string\",\n        \"kind\": \"captions\",\n        \"label\": \"string\",\n        \"mime_type\": \"string\",\n        \"src\": \"string\",\n        \"srclang\": \"string\",\n        \"status\": {}\n      },\n      {\n        \"default\": false,\n        \"id\": \"string\",\n        \"kind\": \"captions\",\n        \"label\": \"string\",\n        \"mime_type\": \"string\",\n        \"src\": \"string\",\n        \"srclang\": \"string\",\n        \"status\": {}\n      }\n    ],\n    \"transcripts\": [\n      {\n        \"src\": \"string\",\n        \"srclang\": \"string\",\n        \"id\": \"string\",\n        \"account_id\": \"string\",\n        \"default\": true,\n        \"label\": \"string\",\n        \"sources\": [\n          \"string\",\n          \"string\"\n        ],\n        \"status\": \"published\"\n      },\n      {\n        \"src\": \"string\",\n        \"srclang\": \"string\",\n        \"id\": \"string\",\n        \"account_id\": \"string\",\n        \"default\": false,\n        \"label\": \"string\",\n        \"sources\": [\n          \"string\",\n          \"string\"\n        ],\n        \"status\": \"draft\"\n      }\n    ],\n    \"updated_at\": \"2018-02-27 19:09:20.401000+00:00\",\n    \"updated_by\": {\n      \"email\": \"string\",\n      \"id\": \"string\",\n      \"type\": \"api_key\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a89b7e1b-5432-4213-9070-8567819d8945",
+              "name": "'INVALID_SORT: sort parameter specified and invalid field\nINVALID_SEARCH: search string invalid (may not have been URI-encoded)'",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists",
+                    ":playlist_id",
+                    "videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_details",
+                      "value": "true"
+                    },
+                    {
+                      "key": "include_video_preview",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playlist_id",
+                      "description": "(Required) Playlist ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0793ea81-e56c-4b7c-8b4b-c701f0409fc8",
+              "name": "UNAUTHORIZED: Authentication failed - check to make sure your client credentials were correct for the access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists",
+                    ":playlist_id",
+                    "videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_details",
+                      "value": "true"
+                    },
+                    {
+                      "key": "include_video_preview",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playlist_id",
+                      "description": "(Required) Playlist ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "56e977ff-7005-44ba-ba33-1cc831fc3bc3",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists",
+                    ":playlist_id",
+                    "videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_details",
+                      "value": "true"
+                    },
+                    {
+                      "key": "include_video_preview",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playlist_id",
+                      "description": "(Required) Playlist ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "16123101-3af7-41e7-9dc6-315f9739535e",
+              "name": "METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists",
+                    ":playlist_id",
+                    "videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_details",
+                      "value": "true"
+                    },
+                    {
+                      "key": "include_video_preview",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playlist_id",
+                      "description": "(Required) Playlist ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d1642f9b-a7ad-437a-a445-e8a6fd74d6d0",
+              "name": "TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "playlists",
+                    ":playlist_id",
+                    "videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_details",
+                      "value": "true"
+                    },
+                    {
+                      "key": "include_video_preview",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playlist_id",
+                      "description": "(Required) Playlist ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "88a4505b-2c57-44a4-8e52-aeb3cc85e472",
+          "name": "Get Video Count in Playlist",
+          "request": {
+            "name": "Get Video Count in Playlist",
+            "description": {
+              "content": "Gets a count of the videos in a playlist for the account ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":account_id",
+                "counts",
+                "playlists",
+                ":playlist_id",
+                "videos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "playlist_id",
+                  "description": "(Required) Playlist ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "92c37a54-cf0e-4943-8748-681878af3965",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "counts",
+                    "playlists",
+                    ":playlist_id",
+                    "videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playlist_id",
+                      "description": "(Required) Playlist ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 5\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd155caf-7817-4299-8258-74e2a35ef781",
+              "name": "'INVALID_SORT: sort parameter specified and invalid field\nINVALID_SEARCH: search string invalid (may not have been URI-encoded)'",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "counts",
+                    "playlists",
+                    ":playlist_id",
+                    "videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playlist_id",
+                      "description": "(Required) Playlist ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "756508c6-4b37-414b-a3d8-348d9b4f11f2",
+              "name": "UNAUTHORIZED: Authentication failed - check to make sure your client credentials were correct for the access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "counts",
+                    "playlists",
+                    ":playlist_id",
+                    "videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playlist_id",
+                      "description": "(Required) Playlist ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6e9c5ef0-13fc-4155-926a-404e3c834e40",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "counts",
+                    "playlists",
+                    ":playlist_id",
+                    "videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playlist_id",
+                      "description": "(Required) Playlist ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "57fbeea6-d1c5-465a-a30c-f45877e1f911",
+              "name": "METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "counts",
+                    "playlists",
+                    ":playlist_id",
+                    "videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playlist_id",
+                      "description": "(Required) Playlist ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d0326578-aa5c-45dc-a900-bee44bce6839",
+              "name": "TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "counts",
+                    "playlists",
+                    ":playlist_id",
+                    "videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playlist_id",
+                      "description": "(Required) Playlist ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://analytics.api.brightcove.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c536b950-fff9-4c40-9317-9dd9a4b8fb22",
+    "name": "Brightcove Analytics API Reference Access Tokens Playlists API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com",
+      "type": "text/plain"
+    }
+  }
+}

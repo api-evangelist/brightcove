@@ -1,0 +1,1168 @@
+{
+  "item": [
+    {
+      "id": "22275345-e5e8-465f-9038-f84fa78a563e",
+      "name": "Clear-Sources",
+      "description": {
+        "content": "Clear_sources endpoints expose unencrypted sources to the preview players in the studio for customers who are using [Playback Rights](/playback-restrictions/references/index.html) to protect DRM and HLSe video content. This endpoint is also useful for customers who want to make their protected source files available to 3rd parties or internal users who have access to their API credentials.\n\n  **Important Notes:**\n  \n  1. Once the unprotected URL is made available, Brightcove and the client have no control over who has access to the content or how it is used.\n  2. There will be egress bandwidth charges made to your account when the sources are accessed.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "585b9955-f7b7-4c57-9f2a-dedb0d1c3679",
+          "name": "Get Video with Clear Sources",
+          "request": {
+            "name": "Get Video with Clear Sources",
+            "description": {
+              "content": "Get the video object along with unencrypted clear sources, including all associated metadata.\n**Notes**\n  - Once the unprotected URL is made available, Brightcove and the client have no control over who has access to the content or how it is used.\n  - There will be egress bandwidth charges made to the customer when the sources are accessed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":account_id",
+                "clear_videos",
+                ":video_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "video_id",
+                  "description": "(Required) Video ID (specified as `{video_id}}`)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d1f3b789-4233-4e64-bf06-719bf807df9b",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "clear_videos",
+                    ":video_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) Video ID (specified as `{video_id}}`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"video_preview\": {\n    \"start\": 10000,\n    \"sources\": [\n      {\n        \"ext_x_version\": \"7\",\n        \"src\": \"https://manifest.prod.boltdns.net/.../preview.m3u8?...\",\n        \"type\": \"application/x-mpegURL\"\n      },\n      {\n        \"ext_x_version\": \"7\",\n        \"src\": \"https://manifest.prod.boltdns.net/.../preview.m3u8?...\",\n        \"type\": \"application/x-mpegURL\"\n      }\n    ]\n  },\n  \"ad_keys\": \" \\\"adKeys\\\": \\\"category=sports&live=true\\\"\",\n  \"clip_source_video_id\": \"string\",\n  \"complete\": true,\n  \"created_at\": \"2015-09-17T16:08:37.108Z\",\n  \"created_by\": {\n    \"email\": \"string\",\n    \"id\": \"string\",\n    \"type\": \"internal\"\n  },\n  \"cue_points\": [\n    {\n      \"time\": 10.527,\n      \"type\": \"DATA\",\n      \"force_stop\": false,\n      \"metadata\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"time\": 10.527,\n      \"type\": \"DATA\",\n      \"force_stop\": false,\n      \"metadata\": \"string\",\n      \"name\": \"string\"\n    }\n  ],\n  \"custom_fields\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\",\n    \"key_3\": \"string\"\n  },\n  \"delivery_type\": \"dynamic_origin\",\n  \"description\": \"Herring gull on a wharf in Boston\",\n  \"digital_master_id\": \"string\",\n  \"drm_disabled\": true,\n  \"duration\": 18160,\n  \"economics\": \"AD_SUPPORTED\",\n  \"folder_id\": \"560039e5e4b0e69e4b01cacd\",\n  \"forensic_watermarking\": \"ACTIVE\",\n  \"geo\": {\n    \"countries\": [\n      \"us\",\n      \"ca\",\n      \"fr\"\n    ],\n    \"exclude_countries\": true,\n    \"restricted\": false\n  },\n  \"has_digital_master\": true,\n  \"id\": \"string\",\n  \"images\": {\n    \"thumbnail\": {\n      \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/jit/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/main/160x90/20s629ms/match/image.jpg\",\n      \"sources\": [\n        {\n          \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/jit/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/main/160x90/20s629ms/match/image.jpg\",\n          \"height\": 90,\n          \"width\": 160\n        }\n      ]\n    },\n    \"poster\": {\n      \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/jit/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/main/1280x720/20s629ms/match/image.jpg\",\n      \"sources\": [\n        {\n          \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/jit/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/main/1280x720/20s629ms/match/image.jpg\",\n          \"height\": 720,\n          \"width\": 1280\n        }\n      ]\n    },\n    \"portrait.es\": {\n      \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/bac8717a-43db-4fa8-a6f0-189c80ee4c4e/800x1200/match/image.jpg\",\n      \"sources\": [\n        {\n          \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/bac8717a-43db-4fa8-a6f0-189c80ee4c4e/800x1200/match/image.jpg\",\n          \"height\": 1200,\n          \"width\": 800\n        }\n      ]\n    },\n    \"thumbnail.en\": {\n      \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/0ce2da4d-ca36-469b-9024-0273d79feeeb/292x108/match/image.jpg\",\n      \"sources\": [\n        {\n          \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/0ce2da4d-ca36-469b-9024-0273d79feeeb/292x108/match/image.jpg\",\n          \"height\": 108,\n          \"width\": 292\n        }\n      ]\n    },\n    \"poster.en\": {\n      \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/a7cb150d-c84a-48e0-9469-5b4ce80fba53/1920x1080/match/image.jpg\",\n      \"sources\": [\n        {\n          \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/a7cb150d-c84a-48e0-9469-5b4ce80fba53/1920x1080/match/image.jpg\",\n          \"height\": 1080,\n          \"width\": 1920\n        }\n      ]\n    },\n    \"square.de\": {\n      \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/22209955-e136-4f17-914c-e19ec4c58886/570x570/match/image.jpg\",\n      \"sources\": [\n        {\n          \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/22209955-e136-4f17-914c-e19ec4c58886/570x570/match/image.jpg\",\n          \"height\": 570,\n          \"width\": 570\n        }\n      ]\n    },\n    \"ultra-wide.hi\": {\n      \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/72fd489f-d978-44ba-8d04-1e33c7c36cef/3840x1646/match/image.jpg\",\n      \"sources\": [\n        {\n          \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/72fd489f-d978-44ba-8d04-1e33c7c36cef/3840x1646/match/image.jpg\",\n          \"height\": 1646,\n          \"width\": 3840\n        }\n      ]\n    },\n    \"wide.fr\": {\n      \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/4405a5d5-8b9e-4c2b-be71-cf4e2c153e87/2560x1440/match/image.jpg\",\n      \"sources\": [\n        {\n          \"src\": \"https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/4405a5d5-8b9e-4c2b-be71-cf4e2c153e87/2560x1440/match/image.jpg\",\n          \"height\": 1440,\n          \"width\": 2560\n        }\n      ]\n    }\n  },\n  \"labels\": [\n    \"string\",\n    \"string\"\n  ],\n  \"link\": {\n    \"text\": \"string\",\n    \"url\": \"string\"\n  },\n  \"long_description\": \"Herring Gull near Fort Point Channel in Boston, MA, USA. 2019-04-25.\",\n  \"name\": \"Laughing Gull\",\n  \"offline_enabled\": true,\n  \"original_filename\": \"gull-boston.mov\",\n  \"playback_rights_id\": \"string\",\n  \"projection\": \"equirectangular\",\n  \"published_at\": \"2019-04-30 23:27:22.507000+00:00\",\n  \"reference_id\": \"laughing_gull_2019_04_25\",\n  \"schedule\": {\n    \"ends_at\": \"2020-05-20 20:41:07.689000+00:00\",\n    \"starts_at\": \"2019-05-20 20:41:07.689000+00:00\"\n  },\n  \"sharing\": {\n    \"by_external_acct\": true,\n    \"by_id\": \"string\",\n    \"by_reference\": true,\n    \"source_id\": \"string\",\n    \"to_external_acct\": true\n  },\n  \"state\": \"ACTIVE\",\n  \"tags\": [\n    \"birds\",\n    \"sea\"\n  ],\n  \"text_tracks\": [\n    {\n      \"default\": false,\n      \"id\": \"string\",\n      \"kind\": \"captions\",\n      \"label\": \"string\",\n      \"mime_type\": \"string\",\n      \"src\": \"string\",\n      \"srclang\": \"string\",\n      \"status\": {}\n    },\n    {\n      \"default\": false,\n      \"id\": \"string\",\n      \"kind\": \"captions\",\n      \"label\": \"string\",\n      \"mime_type\": \"string\",\n      \"src\": \"string\",\n      \"srclang\": \"string\",\n      \"status\": {}\n    }\n  ],\n  \"transcripts\": [\n    {\n      \"src\": \"string\",\n      \"srclang\": \"string\",\n      \"id\": \"string\",\n      \"account_id\": \"string\",\n      \"default\": true,\n      \"label\": \"string\",\n      \"sources\": [\n        \"string\",\n        \"string\"\n      ],\n      \"status\": \"draft\"\n    },\n    {\n      \"src\": \"string\",\n      \"srclang\": \"string\",\n      \"id\": \"string\",\n      \"account_id\": \"string\",\n      \"default\": false,\n      \"label\": \"string\",\n      \"sources\": [\n        \"string\",\n        \"string\"\n      ],\n      \"status\": \"draft\"\n    }\n  ],\n  \"updated_at\": \"2018-02-27 19:09:20.401000+00:00\",\n  \"updated_by\": {\n    \"email\": \"string\",\n    \"id\": \"string\",\n    \"type\": \"internal\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac8473ba-5b46-4ecd-a4de-2a78d7982041",
+              "name": "UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "clear_videos",
+                    ":video_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) Video ID (specified as `{video_id}}`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7186c0c6-05a2-4875-9d36-91230af7fe80",
+              "name": "NOT_AVAILABLE: The resource you are requesting is temporarily unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "clear_videos",
+                    ":video_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) Video ID (specified as `{video_id}}`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b1ed9d1d-4e90-4243-9504-98c8c778f049",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "clear_videos",
+                    ":video_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) Video ID (specified as `{video_id}}`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b7b7fdfa-a995-42ff-b38c-f9315f302849",
+              "name": "METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "clear_videos",
+                    ":video_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) Video ID (specified as `{video_id}}`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fbe73ca9-4294-4aab-b0c6-fe8e4a1ca56a",
+              "name": "TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "clear_videos",
+                    ":video_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) Video ID (specified as `{video_id}}`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "92080d50-5057-4b70-980f-13e019ed8d80",
+              "name": "UNKNOWN: Issue in Brightcove system; try again later.\nTIMEOUT: Server likely too busy; try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "clear_videos",
+                    ":video_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) Video ID (specified as `{video_id}}`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5f7ae78e-45fe-486c-93fa-63835ed2146f",
+          "name": "Get Video Clear Sources",
+          "request": {
+            "name": "Get Video Clear Sources",
+            "description": {
+              "content": "Get only unencrypted clear sources for a video, without any additional metadata.\n**Notes**\n  - Once the unprotected URL is made available, Brightcove and the client have no control over who has access to the content or how it is used.\n  - There will be egress bandwidth charges made to the customer when the sources are accessed.\n  - This endpoint requires the special permission `video-cloud/video/clear-sources` which is not available in the Studio UI. To generate credentials to get clear sources, this permission must be enabled for the account, and you must use the [OAuth API](/oauth/getting-started/overview-oauth-api-v4.html)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":account_id",
+                "videos",
+                ":video_id",
+                "clear_sources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "video_id",
+                  "description": "(Required) Video ID (specified as `{video_id}}`)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2b7cf2be-e39f-4abb-82cb-a919ad31b914",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "videos",
+                    ":video_id",
+                    "clear_sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) Video ID (specified as `{video_id}}`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"app_name\": \"string\",\n  \"asset_id\": \"string\",\n  \"codec\": \"string\",\n  \"container\": \"string\",\n  \"duration\": 8317,\n  \"encoding_rate\": 2703,\n  \"height\": 4074,\n  \"remote\": true,\n  \"size\": 9811,\n  \"src\": \"string\",\n  \"stream_name\": \"string\",\n  \"type\": \"string\",\n  \"uploaded_at\": \"string\",\n  \"width\": 2149\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d6eae56-4663-4d92-8530-79e072805253",
+              "name": "UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "videos",
+                    ":video_id",
+                    "clear_sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) Video ID (specified as `{video_id}}`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "20580b22-4787-4bc0-be9f-abeee0850ec3",
+              "name": "NOT_AVAILABLE: The resource you are requesting is temporarily unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "videos",
+                    ":video_id",
+                    "clear_sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) Video ID (specified as `{video_id}}`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "91aa9ab2-d4f7-4aad-984c-d81aab0d31de",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "videos",
+                    ":video_id",
+                    "clear_sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) Video ID (specified as `{video_id}}`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9bd4fb26-0edd-466a-b7fb-68bbe38210b9",
+              "name": "METHOD_NOT_ALLOWED: The HTTP method specified is not allowed for this endpoint",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "videos",
+                    ":video_id",
+                    "clear_sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) Video ID (specified as `{video_id}}`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ecffbac2-34e6-4512-8ba7-3dbbde196aaa",
+              "name": "TOO_MANY_REQUESTS: You are submitting too many simultaneous requests or too many requests per second",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "videos",
+                    ":video_id",
+                    "clear_sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) Video ID (specified as `{video_id}}`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "615516c9-083b-413e-ba26-fa3f5b134119",
+              "name": "UNKNOWN: Issue in Brightcove system; try again later.\nTIMEOUT: Server likely too busy; try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "videos",
+                    ":video_id",
+                    "clear_sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) Video ID (specified as `{video_id}}`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://analytics.api.brightcove.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "75472f79-5019-4e0a-b311-b7586232a20f",
+    "name": "Brightcove Analytics API Reference Access Tokens Clear-Sources API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com",
+      "type": "text/plain"
+    }
+  }
+}

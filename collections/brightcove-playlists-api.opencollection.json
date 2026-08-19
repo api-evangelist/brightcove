@@ -1,0 +1,414 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brightcove Analytics API Reference Access Tokens Playlists API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Playlists",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Playlists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/playlists",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return - see [Paging Search Results](/cms/searching/using-cms-api-page-search-results.html) for more information"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip - see [Paging Search Results](/cms/searching/using-cms-api-page-search-results.html) for more information"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search string - see [playlist search guide](/cms/searching/cms-api-playlists-search.html) for details"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort results by - if absent and there is a search string, results are sorted by relevance or if there is no search string, results are sorted by `-updated_at` - note: to sort in descending order, preface the field name with a minus(`-`) sign. If the `q=` param is missing, the sort param will be ignored. Also if sort is set to an unsupported field, the quest will fail with an error"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets a page of playlist objects for the account "
+        },
+        {
+          "info": {
+            "name": "Create Playlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/playlists",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a new playlist.\n\n**A maximum of 1000 videos can be added to a playlist** (both Manual and Smart). There is no limit to the number of playlists that can be created. The videos that are initially loaded into a playlist in the player is determined by the type of playlist."
+        },
+        {
+          "info": {
+            "name": "Get Playlist Count",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/counts/playlists",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search string - see [search guide](/cms/searching/cmsplayback-api-videos-search.html) for details"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets a count of playlists in the account for the account "
+        },
+        {
+          "info": {
+            "name": "Get Playlists by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/playlists/:{playlist_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "playlist_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud playlist ID, or multiple playlist ids separated by commas."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets one or more playlist objects for the account "
+        },
+        {
+          "info": {
+            "name": "Update Playlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/playlists/:{playlist_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "playlist_id",
+                "value": "",
+                "type": "path",
+                "description": "Playlist ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Updates a playlist for the account "
+        },
+        {
+          "info": {
+            "name": "Delete Playlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/playlists/:{playlist_id}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "playlist_id",
+                "value": "",
+                "type": "path",
+                "description": "Playlist ID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Deletes a playlist "
+        },
+        {
+          "info": {
+            "name": "Get Videos in Playlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/playlists/:{playlist_id}/videos",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "playlist_id",
+                "value": "",
+                "type": "path",
+                "description": "Playlist ID."
+              },
+              {
+                "name": "include_details",
+                "value": "",
+                "type": "query",
+                "description": "When it's false, api call response won't include caption info in [text_tracks] at all and it makes the response returns quicker."
+              },
+              {
+                "name": "include_video_preview",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include the `video_preview` object (animated thumbnail preview metadata) in the response"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return - see [Get videos in a playlist](/cms/managing-videos/managing-playlists-using-cms-api.html#get_count_of_videos) for more information"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip - see [Paging Search Results](/cms/searching/using-cms-api-page-search-results.html) for more information"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets the video objects for videos in a playlist for the account.\n\nNote: To receive the `video_preview.sources`, include `include_video_preview=true` in the request query."
+        },
+        {
+          "info": {
+            "name": "Get Video Count in Playlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/v1/accounts/:{account_id}/counts/playlists/:{playlist_id}/videos",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Video Cloud account ID."
+              },
+              {
+                "name": "playlist_id",
+                "value": "",
+                "type": "path",
+                "description": "Playlist ID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://oauth.brightcove.com/v4/access_token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets a count of the videos in a playlist for the account "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

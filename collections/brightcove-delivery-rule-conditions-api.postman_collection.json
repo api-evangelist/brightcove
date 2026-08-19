@@ -1,0 +1,616 @@
+{
+  "item": [
+    {
+      "id": "a8afcc92-76c4-4ac2-9d8e-ec9d8e7b7326",
+      "name": "Delivery Rule Conditions",
+      "description": {
+        "content": "Operations for reading and updating Delivery Rule Conditions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3d2750dc-99e5-4a22-ab35-0d3b5e01d73d",
+          "name": "Fetch the Conditions for the account",
+          "request": {
+            "name": "Fetch the Conditions for the account",
+            "description": {
+              "content": "List the Conditions defined for an account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":account_id",
+                "conditions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ce299743-2135-46c0-81ca-601508bb6d27",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "conditions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see Getting Access Tokens)",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"if\": {\n      \"device_group\": [\n        \"roku-7/8\",\n        \"appletv\"\n      ],\n      \"request_country\": [\n        \"string\",\n        \"string\"\n      ],\n      \"request_continent\": [\n        \"OC\",\n        \"EU\"\n      ]\n    },\n    \"then\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"name\": \"string\",\n    \"if\": {\n      \"device_group\": [\n        \"tablet-android\",\n        \"roku-7/8\"\n      ],\n      \"request_country\": [\n        \"string\",\n        \"string\"\n      ],\n      \"request_continent\": [\n        \"EU\",\n        \"AF\"\n      ]\n    },\n    \"then\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc6a0232-e174-4d6d-905f-5ff7d95dd022",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "conditions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see Getting Access Tokens)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "90e47feb-4cbb-439f-bd4b-5f82a1178797",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "conditions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see Getting Access Tokens)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c62f5ff6-95b9-4253-8774-54d4aa87c26b",
+          "name": "Update the Conditions",
+          "request": {
+            "name": "Update the Conditions",
+            "description": {
+              "content": "Update the Conditions",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":account_id",
+                "conditions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Video Cloud account id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "video-cloud/analytics/read video-cloud/video/read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://oauth.brightcove.com/v4/access_token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"name\": \"<string>\",\n    \"if\": {\n      \"device_group\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"request_country\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"request_continent\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"then\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"name\": \"<string>\",\n    \"if\": {\n      \"device_group\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"request_country\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"request_continent\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"then\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1e11deca-ff8e-46de-a41f-93992af5d87c",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "conditions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see Getting Access Tokens)",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"name\": \"<string>\",\n    \"if\": {\n      \"device_group\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"request_country\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"request_continent\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"then\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"name\": \"<string>\",\n    \"if\": {\n      \"device_group\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"request_country\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"request_continent\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"then\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"<string>\",\n    \"if\": {\n      \"device_group\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"request_country\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"request_continent\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"then\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"name\": \"<string>\",\n    \"if\": {\n      \"device_group\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"request_country\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"request_continent\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"then\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "58d1594a-4d96-488a-a2d7-973e702d0c48",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "conditions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see Getting Access Tokens)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"name\": \"<string>\",\n    \"if\": {\n      \"device_group\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"request_country\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"request_continent\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"then\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"name\": \"<string>\",\n    \"if\": {\n      \"device_group\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"request_country\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"request_continent\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"then\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f61d060e-2dd8-4ae0-b341-0c606aaf39e5",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "conditions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see Getting Access Tokens)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"name\": \"<string>\",\n    \"if\": {\n      \"device_group\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"request_country\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"request_continent\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"then\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"name\": \"<string>\",\n    \"if\": {\n      \"device_group\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"request_country\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"request_continent\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"then\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "da95fa5d-1c0b-4c80-9369-91cea180cb47",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "conditions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Video Cloud account id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization: Bearer access_token (see Getting Access Tokens)",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"name\": \"<string>\",\n    \"if\": {\n      \"device_group\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"request_country\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"request_continent\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"then\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"name\": \"<string>\",\n    \"if\": {\n      \"device_group\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"request_country\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"request_continent\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"then\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://analytics.api.brightcove.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "922c88f0-8d2e-4152-9f8c-ade5687ed5b9",
+    "name": "Brightcove Analytics API Reference Access Tokens Delivery Rule Conditions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com",
+      "type": "text/plain"
+    }
+  }
+}

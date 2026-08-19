@@ -1,0 +1,1964 @@
+{
+  "item": [
+    {
+      "id": "0752bd18-698a-482f-9f82-143abce56d7b",
+      "name": "Live Job Clip",
+      "description": {
+        "content": "Operations for creating and managing VOD clips, including scheduling clips for SEP jobs",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "93984d62-6db5-4bbf-9549-7241d9596518",
+          "name": "Create VOD Clip",
+          "request": {
+            "name": "Create VOD Clip",
+            "description": {
+              "content": "'Create VOD clips from a Live Stream.'",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vods"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"live_job_id\": \"<string>\",\n  \"outputs\": [\n    {\n      \"label\": \"<string>\",\n      \"credentials\": \"<string>\",\n      \"notifications\": [\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        },\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        }\n      ],\n      \"duration\": \"<integer>\",\n      \"remove_ads\": false,\n      \"start_time\": \"<integer>\",\n      \"end_time\": \"<integer>\",\n      \"stream_start_time\": \"<integer>\",\n      \"stream_end_time\": \"<integer>\",\n      \"stream_start_timecode\": \"<string>\",\n      \"stream_end_timecode\": \"<string>\",\n      \"mode\": \"<string>\",\n      \"playlist_label\": \"<string>\",\n      \"url\": \"<string>\",\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"<string>\",\n          \"cue_points\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"custom_fields\": \"<object>\",\n          \"description\": \"<string>\",\n          \"drm_disabled\": \"<boolean>\",\n          \"economics\": \"<string>\",\n          \"geo\": {\n            \"countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exclude_countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"restricted\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"long_description\": \"<string>\",\n          \"reference_id\": \"<string>\",\n          \"schedule\": {\n            \"ends_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"starts_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"state\": \"<string>\",\n          \"tags\": \"<object>\"\n        },\n        \"account_id\": \"<string>\",\n        \"ingest\": {\n          \"callbacks\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"capture-images\": \"<boolean>\",\n          \"profile\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"label\": \"<string>\",\n      \"credentials\": \"<string>\",\n      \"notifications\": [\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        },\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        }\n      ],\n      \"duration\": \"<integer>\",\n      \"remove_ads\": false,\n      \"start_time\": \"<integer>\",\n      \"end_time\": \"<integer>\",\n      \"stream_start_time\": \"<integer>\",\n      \"stream_end_time\": \"<integer>\",\n      \"stream_start_timecode\": \"<string>\",\n      \"stream_end_timecode\": \"<string>\",\n      \"mode\": \"<string>\",\n      \"playlist_label\": \"<string>\",\n      \"url\": \"<string>\",\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"<string>\",\n          \"cue_points\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"custom_fields\": \"<object>\",\n          \"description\": \"<string>\",\n          \"drm_disabled\": \"<boolean>\",\n          \"economics\": \"<string>\",\n          \"geo\": {\n            \"countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exclude_countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"restricted\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"long_description\": \"<string>\",\n          \"reference_id\": \"<string>\",\n          \"schedule\": {\n            \"ends_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"starts_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"state\": \"<string>\",\n          \"tags\": \"<object>\"\n        },\n        \"account_id\": \"<string>\",\n        \"ingest\": {\n          \"callbacks\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"capture-images\": \"<boolean>\",\n          \"profile\": \"<string>\"\n        }\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1dd34afc-f908-45ee-9d3b-d10751d488cf",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"live_job_id\": \"<string>\",\n  \"outputs\": [\n    {\n      \"label\": \"<string>\",\n      \"credentials\": \"<string>\",\n      \"notifications\": [\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        },\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        }\n      ],\n      \"duration\": \"<integer>\",\n      \"remove_ads\": false,\n      \"start_time\": \"<integer>\",\n      \"end_time\": \"<integer>\",\n      \"stream_start_time\": \"<integer>\",\n      \"stream_end_time\": \"<integer>\",\n      \"stream_start_timecode\": \"<string>\",\n      \"stream_end_timecode\": \"<string>\",\n      \"mode\": \"<string>\",\n      \"playlist_label\": \"<string>\",\n      \"url\": \"<string>\",\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"<string>\",\n          \"cue_points\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"custom_fields\": \"<object>\",\n          \"description\": \"<string>\",\n          \"drm_disabled\": \"<boolean>\",\n          \"economics\": \"<string>\",\n          \"geo\": {\n            \"countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exclude_countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"restricted\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"long_description\": \"<string>\",\n          \"reference_id\": \"<string>\",\n          \"schedule\": {\n            \"ends_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"starts_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"state\": \"ACTIVE\",\n          \"tags\": \"<object>\"\n        },\n        \"account_id\": \"<string>\",\n        \"ingest\": {\n          \"callbacks\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"capture-images\": true,\n          \"profile\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"label\": \"<string>\",\n      \"credentials\": \"<string>\",\n      \"notifications\": [\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        },\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        }\n      ],\n      \"duration\": \"<integer>\",\n      \"remove_ads\": false,\n      \"start_time\": \"<integer>\",\n      \"end_time\": \"<integer>\",\n      \"stream_start_time\": \"<integer>\",\n      \"stream_end_time\": \"<integer>\",\n      \"stream_start_timecode\": \"<string>\",\n      \"stream_end_timecode\": \"<string>\",\n      \"mode\": \"<string>\",\n      \"playlist_label\": \"<string>\",\n      \"url\": \"<string>\",\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"<string>\",\n          \"cue_points\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"custom_fields\": \"<object>\",\n          \"description\": \"<string>\",\n          \"drm_disabled\": \"<boolean>\",\n          \"economics\": \"<string>\",\n          \"geo\": {\n            \"countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exclude_countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"restricted\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"long_description\": \"<string>\",\n          \"reference_id\": \"<string>\",\n          \"schedule\": {\n            \"ends_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"starts_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"state\": \"ACTIVE\",\n          \"tags\": \"<object>\"\n        },\n        \"account_id\": \"<string>\",\n        \"ingest\": {\n          \"callbacks\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"capture-images\": true,\n          \"profile\": \"<string>\"\n        }\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vod_jobs\": [\n    {\n      \"jvod_id\": \"62989518f9294e19b2f7e184e8141d72\",\n      \"label\": \"first 30 secs of live job\"\n    },\n    {\n      \"jvod_id\": \"62989518f9294e19b2f7e184e8141d72\",\n      \"label\": \"first 30 secs of live job\"\n    }\n  ],\n  \"live_job_id\": \"3ae7fa89943f4a96aa273fbbf175d527\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b77fef4e-9fe7-4b4d-9605-e1bb9d2d521e",
+              "name": "BAD_REQUEST: Invalid input value - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"live_job_id\": \"<string>\",\n  \"outputs\": [\n    {\n      \"label\": \"<string>\",\n      \"credentials\": \"<string>\",\n      \"notifications\": [\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        },\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        }\n      ],\n      \"duration\": \"<integer>\",\n      \"remove_ads\": false,\n      \"start_time\": \"<integer>\",\n      \"end_time\": \"<integer>\",\n      \"stream_start_time\": \"<integer>\",\n      \"stream_end_time\": \"<integer>\",\n      \"stream_start_timecode\": \"<string>\",\n      \"stream_end_timecode\": \"<string>\",\n      \"mode\": \"<string>\",\n      \"playlist_label\": \"<string>\",\n      \"url\": \"<string>\",\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"<string>\",\n          \"cue_points\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"custom_fields\": \"<object>\",\n          \"description\": \"<string>\",\n          \"drm_disabled\": \"<boolean>\",\n          \"economics\": \"<string>\",\n          \"geo\": {\n            \"countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exclude_countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"restricted\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"long_description\": \"<string>\",\n          \"reference_id\": \"<string>\",\n          \"schedule\": {\n            \"ends_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"starts_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"state\": \"ACTIVE\",\n          \"tags\": \"<object>\"\n        },\n        \"account_id\": \"<string>\",\n        \"ingest\": {\n          \"callbacks\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"capture-images\": true,\n          \"profile\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"label\": \"<string>\",\n      \"credentials\": \"<string>\",\n      \"notifications\": [\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        },\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        }\n      ],\n      \"duration\": \"<integer>\",\n      \"remove_ads\": false,\n      \"start_time\": \"<integer>\",\n      \"end_time\": \"<integer>\",\n      \"stream_start_time\": \"<integer>\",\n      \"stream_end_time\": \"<integer>\",\n      \"stream_start_timecode\": \"<string>\",\n      \"stream_end_timecode\": \"<string>\",\n      \"mode\": \"<string>\",\n      \"playlist_label\": \"<string>\",\n      \"url\": \"<string>\",\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"<string>\",\n          \"cue_points\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"custom_fields\": \"<object>\",\n          \"description\": \"<string>\",\n          \"drm_disabled\": \"<boolean>\",\n          \"economics\": \"<string>\",\n          \"geo\": {\n            \"countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exclude_countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"restricted\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"long_description\": \"<string>\",\n          \"reference_id\": \"<string>\",\n          \"schedule\": {\n            \"ends_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"starts_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"state\": \"ACTIVE\",\n          \"tags\": \"<object>\"\n        },\n        \"account_id\": \"<string>\",\n        \"ingest\": {\n          \"callbacks\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"capture-images\": true,\n          \"profile\": \"<string>\"\n        }\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "384a484e-410f-42e3-95a1-ae86cb304274",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"live_job_id\": \"<string>\",\n  \"outputs\": [\n    {\n      \"label\": \"<string>\",\n      \"credentials\": \"<string>\",\n      \"notifications\": [\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        },\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        }\n      ],\n      \"duration\": \"<integer>\",\n      \"remove_ads\": false,\n      \"start_time\": \"<integer>\",\n      \"end_time\": \"<integer>\",\n      \"stream_start_time\": \"<integer>\",\n      \"stream_end_time\": \"<integer>\",\n      \"stream_start_timecode\": \"<string>\",\n      \"stream_end_timecode\": \"<string>\",\n      \"mode\": \"<string>\",\n      \"playlist_label\": \"<string>\",\n      \"url\": \"<string>\",\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"<string>\",\n          \"cue_points\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"custom_fields\": \"<object>\",\n          \"description\": \"<string>\",\n          \"drm_disabled\": \"<boolean>\",\n          \"economics\": \"<string>\",\n          \"geo\": {\n            \"countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exclude_countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"restricted\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"long_description\": \"<string>\",\n          \"reference_id\": \"<string>\",\n          \"schedule\": {\n            \"ends_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"starts_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"state\": \"ACTIVE\",\n          \"tags\": \"<object>\"\n        },\n        \"account_id\": \"<string>\",\n        \"ingest\": {\n          \"callbacks\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"capture-images\": true,\n          \"profile\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"label\": \"<string>\",\n      \"credentials\": \"<string>\",\n      \"notifications\": [\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        },\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        }\n      ],\n      \"duration\": \"<integer>\",\n      \"remove_ads\": false,\n      \"start_time\": \"<integer>\",\n      \"end_time\": \"<integer>\",\n      \"stream_start_time\": \"<integer>\",\n      \"stream_end_time\": \"<integer>\",\n      \"stream_start_timecode\": \"<string>\",\n      \"stream_end_timecode\": \"<string>\",\n      \"mode\": \"<string>\",\n      \"playlist_label\": \"<string>\",\n      \"url\": \"<string>\",\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"<string>\",\n          \"cue_points\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"custom_fields\": \"<object>\",\n          \"description\": \"<string>\",\n          \"drm_disabled\": \"<boolean>\",\n          \"economics\": \"<string>\",\n          \"geo\": {\n            \"countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exclude_countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"restricted\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"long_description\": \"<string>\",\n          \"reference_id\": \"<string>\",\n          \"schedule\": {\n            \"ends_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"starts_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"state\": \"ACTIVE\",\n          \"tags\": \"<object>\"\n        },\n        \"account_id\": \"<string>\",\n        \"ingest\": {\n          \"callbacks\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"capture-images\": true,\n          \"profile\": \"<string>\"\n        }\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "918bce09-b5ad-4785-b1e1-f2b047f83ff8",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"live_job_id\": \"<string>\",\n  \"outputs\": [\n    {\n      \"label\": \"<string>\",\n      \"credentials\": \"<string>\",\n      \"notifications\": [\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        },\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        }\n      ],\n      \"duration\": \"<integer>\",\n      \"remove_ads\": false,\n      \"start_time\": \"<integer>\",\n      \"end_time\": \"<integer>\",\n      \"stream_start_time\": \"<integer>\",\n      \"stream_end_time\": \"<integer>\",\n      \"stream_start_timecode\": \"<string>\",\n      \"stream_end_timecode\": \"<string>\",\n      \"mode\": \"<string>\",\n      \"playlist_label\": \"<string>\",\n      \"url\": \"<string>\",\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"<string>\",\n          \"cue_points\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"custom_fields\": \"<object>\",\n          \"description\": \"<string>\",\n          \"drm_disabled\": \"<boolean>\",\n          \"economics\": \"<string>\",\n          \"geo\": {\n            \"countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exclude_countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"restricted\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"long_description\": \"<string>\",\n          \"reference_id\": \"<string>\",\n          \"schedule\": {\n            \"ends_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"starts_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"state\": \"ACTIVE\",\n          \"tags\": \"<object>\"\n        },\n        \"account_id\": \"<string>\",\n        \"ingest\": {\n          \"callbacks\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"capture-images\": true,\n          \"profile\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"label\": \"<string>\",\n      \"credentials\": \"<string>\",\n      \"notifications\": [\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        },\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        }\n      ],\n      \"duration\": \"<integer>\",\n      \"remove_ads\": false,\n      \"start_time\": \"<integer>\",\n      \"end_time\": \"<integer>\",\n      \"stream_start_time\": \"<integer>\",\n      \"stream_end_time\": \"<integer>\",\n      \"stream_start_timecode\": \"<string>\",\n      \"stream_end_timecode\": \"<string>\",\n      \"mode\": \"<string>\",\n      \"playlist_label\": \"<string>\",\n      \"url\": \"<string>\",\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"<string>\",\n          \"cue_points\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"custom_fields\": \"<object>\",\n          \"description\": \"<string>\",\n          \"drm_disabled\": \"<boolean>\",\n          \"economics\": \"<string>\",\n          \"geo\": {\n            \"countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exclude_countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"restricted\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"long_description\": \"<string>\",\n          \"reference_id\": \"<string>\",\n          \"schedule\": {\n            \"ends_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"starts_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"state\": \"ACTIVE\",\n          \"tags\": \"<object>\"\n        },\n        \"account_id\": \"<string>\",\n        \"ingest\": {\n          \"callbacks\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"capture-images\": true,\n          \"profile\": \"<string>\"\n        }\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e14ed23a-6e0b-4ec6-b8f1-eb400bcff393",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"live_job_id\": \"<string>\",\n  \"outputs\": [\n    {\n      \"label\": \"<string>\",\n      \"credentials\": \"<string>\",\n      \"notifications\": [\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        },\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        }\n      ],\n      \"duration\": \"<integer>\",\n      \"remove_ads\": false,\n      \"start_time\": \"<integer>\",\n      \"end_time\": \"<integer>\",\n      \"stream_start_time\": \"<integer>\",\n      \"stream_end_time\": \"<integer>\",\n      \"stream_start_timecode\": \"<string>\",\n      \"stream_end_timecode\": \"<string>\",\n      \"mode\": \"<string>\",\n      \"playlist_label\": \"<string>\",\n      \"url\": \"<string>\",\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"<string>\",\n          \"cue_points\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"custom_fields\": \"<object>\",\n          \"description\": \"<string>\",\n          \"drm_disabled\": \"<boolean>\",\n          \"economics\": \"<string>\",\n          \"geo\": {\n            \"countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exclude_countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"restricted\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"long_description\": \"<string>\",\n          \"reference_id\": \"<string>\",\n          \"schedule\": {\n            \"ends_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"starts_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"state\": \"ACTIVE\",\n          \"tags\": \"<object>\"\n        },\n        \"account_id\": \"<string>\",\n        \"ingest\": {\n          \"callbacks\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"capture-images\": true,\n          \"profile\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"label\": \"<string>\",\n      \"credentials\": \"<string>\",\n      \"notifications\": [\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        },\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        }\n      ],\n      \"duration\": \"<integer>\",\n      \"remove_ads\": false,\n      \"start_time\": \"<integer>\",\n      \"end_time\": \"<integer>\",\n      \"stream_start_time\": \"<integer>\",\n      \"stream_end_time\": \"<integer>\",\n      \"stream_start_timecode\": \"<string>\",\n      \"stream_end_timecode\": \"<string>\",\n      \"mode\": \"<string>\",\n      \"playlist_label\": \"<string>\",\n      \"url\": \"<string>\",\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"<string>\",\n          \"cue_points\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"custom_fields\": \"<object>\",\n          \"description\": \"<string>\",\n          \"drm_disabled\": \"<boolean>\",\n          \"economics\": \"<string>\",\n          \"geo\": {\n            \"countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exclude_countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"restricted\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"long_description\": \"<string>\",\n          \"reference_id\": \"<string>\",\n          \"schedule\": {\n            \"ends_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"starts_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"state\": \"ACTIVE\",\n          \"tags\": \"<object>\"\n        },\n        \"account_id\": \"<string>\",\n        \"ingest\": {\n          \"callbacks\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"capture-images\": true,\n          \"profile\": \"<string>\"\n        }\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aacf7e1b-c93c-44f6-9954-02281ed5bd23",
+          "name": "Get VOD Clip Job",
+          "request": {
+            "name": "Get VOD Clip Job",
+            "description": {
+              "content": "Get a VOD clip job by id. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vods",
+                ":jvod_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jvod_id",
+                  "description": "(Required) VOD job ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0420ff49-0a0e-4e16-87b7-bb95fdf717ff",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vods",
+                    ":jvod_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jvod_id",
+                      "description": "(Required) VOD job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_id\": \"string\",\n  \"jvod_created_at\": 8987,\n  \"jvod_duration_s\": 8440,\n  \"jvod_finished_at\": 8736,\n  \"jvod_id\": \"string\",\n  \"jvod_last_state_change_at\": 8116,\n  \"jvod_region\": \"ap-northeast-1\",\n  \"jvod_reported_duration_s\": 6686,\n  \"jvod_state\": \"finished\",\n  \"jvod_type\": \"error\",\n  \"jvod_url\": \"string\",\n  \"label\": \"string\",\n  \"user_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cdc06c65-356f-4685-a229-e183498296b3",
+              "name": "BAD_REQUEST: Invalid input value - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vods",
+                    ":jvod_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jvod_id",
+                      "description": "(Required) VOD job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "988a9a20-db6d-42af-af60-c0197aa46ae5",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vods",
+                    ":jvod_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jvod_id",
+                      "description": "(Required) VOD job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bf554cac-1013-49d6-b186-cbcd7eaec096",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vods",
+                    ":jvod_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jvod_id",
+                      "description": "(Required) VOD job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "67b6f99f-4ef7-4e82-ac94-641275ab6bd2",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vods",
+                    ":jvod_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jvod_id",
+                      "description": "(Required) VOD job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c987abb5-5d57-4857-a20d-73b39c5c99f8",
+          "name": "Cancel a VOD Clip Job",
+          "request": {
+            "name": "Cancel a VOD Clip Job",
+            "description": {
+              "content": "Cancel a VOD clip job by id. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vods",
+                ":jvod_id",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jvod_id",
+                  "description": "(Required) VOD job ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3d10dce3-fc84-4c0d-b199-14bad5bea640",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vods",
+                    ":jvod_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jvod_id",
+                      "description": "(Required) VOD job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_id\": \"string\",\n  \"jvod_created_at\": 8987,\n  \"jvod_duration_s\": 8440,\n  \"jvod_finished_at\": 8736,\n  \"jvod_id\": \"string\",\n  \"jvod_last_state_change_at\": 8116,\n  \"jvod_region\": \"ap-northeast-1\",\n  \"jvod_reported_duration_s\": 6686,\n  \"jvod_state\": \"finished\",\n  \"jvod_type\": \"error\",\n  \"jvod_url\": \"string\",\n  \"label\": \"string\",\n  \"user_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a305a36f-c44e-454d-8475-a3dd0e9d4d8b",
+              "name": "BAD_REQUEST: Invalid input value - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vods",
+                    ":jvod_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jvod_id",
+                      "description": "(Required) VOD job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "58af9ba0-7e4a-48c7-b912-d1708fbeb278",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vods",
+                    ":jvod_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jvod_id",
+                      "description": "(Required) VOD job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "22b8db47-3390-4a01-81ac-022afce0c13f",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vods",
+                    ":jvod_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jvod_id",
+                      "description": "(Required) VOD job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2a8addb7-306e-4695-b9ff-035dadc70aa8",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vods",
+                    ":jvod_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jvod_id",
+                      "description": "(Required) VOD job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2fb0ed86-e290-458f-b876-eda742658b99",
+          "name": "List VOD Clip Jobs",
+          "request": {
+            "name": "List VOD Clip Jobs",
+            "description": {
+              "content": "List VOD clips for a Live Stream - for additional useful information on the search filters, see [Getting a List of Live or VOD Jobs](/live-api/guides/getting-list-live-or-vod-jobs.html)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                ":job_id",
+                "vods"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_token",
+                  "value": "<string>",
+                  "description": "Next token from previous page; do not specify when fetching first page"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "10",
+                  "description": "Max number of items to return in one request (1-1000, default is 10)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "created_at",
+                  "description": "Attribute to sort jobs by (`created_at` | `modified_at`, default is `created_at`)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_dir",
+                  "value": "asc",
+                  "description": "Sort direction (default is asc):`asc` - ascending; `desc` - descending"
+                },
+                {
+                  "disabled": false,
+                  "key": "user_id",
+                  "value": "<string>",
+                  "description": "Filter results by one or more user IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<string>",
+                  "description": "Filter results by particular account, or specify ‘*’ to search all accounts.  Default value is account API key belongs to"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at",
+                  "value": "<integer>",
+                  "description": "Filter results by Unix time of job creation (in milliseconds)"
+                },
+                {
+                  "disabled": false,
+                  "key": "modified_at",
+                  "value": "<integer>",
+                  "description": "Filter results by Unix time of job last modified (in milliseconds)"
+                },
+                {
+                  "disabled": false,
+                  "key": "jvod_state",
+                  "value": "<string>",
+                  "description": "Filter results by one or more VOD job states"
+                },
+                {
+                  "disabled": false,
+                  "key": "jvod_type",
+                  "value": "<string>",
+                  "description": "Filter results by one or more VOD job types"
+                },
+                {
+                  "disabled": false,
+                  "key": "label",
+                  "value": "<string>",
+                  "description": "Filter results by one or more VOD job labels"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "job_id",
+                  "description": "(Required) Live job ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "10c4ac6a-81fa-435c-853f-a166489f11ab",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "vods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "sort_dir",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "modified_at",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "jvod_state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "jvod_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "label",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) Live job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"start_token\": \"string\",\n  \"vod_jobs\": [\n    {\n      \"jvod_id\": \"string\",\n      \"label\": \"string\",\n      \"job_id\": \"string\",\n      \"jvod_created_at\": 6844,\n      \"jvod_duration_s\": 2530,\n      \"jvod_finished_at\": 1264,\n      \"jvod_last_state_change_at\": 3225,\n      \"jvod_region\": \"us-east-1\",\n      \"jvod_reported_duration_s\": 3673,\n      \"jvod_state\": \"creating_asset\",\n      \"jvod_type\": \"instant\",\n      \"jvod_url\": \"string\",\n      \"user_id\": \"string\"\n    },\n    {\n      \"jvod_id\": \"string\",\n      \"label\": \"string\",\n      \"job_id\": \"string\",\n      \"jvod_created_at\": 3557,\n      \"jvod_duration_s\": 3902,\n      \"jvod_finished_at\": 511,\n      \"jvod_last_state_change_at\": 9373,\n      \"jvod_region\": \"eu-central-1\",\n      \"jvod_reported_duration_s\": 2273,\n      \"jvod_state\": \"failed\",\n      \"jvod_type\": \"ftp\",\n      \"jvod_url\": \"string\",\n      \"user_id\": \"string\"\n    }\n  ],\n  \"next_token\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b0a8761a-88ed-414b-a812-1d3f9ac8a61b",
+              "name": "BAD_REQUEST: Invalid input value - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "vods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "sort_dir",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "modified_at",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "jvod_state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "jvod_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "label",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) Live job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7b726d82-c292-4b6d-9059-d0cd32b33eeb",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "vods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "sort_dir",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "modified_at",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "jvod_state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "jvod_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "label",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) Live job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1daac9b5-1349-4fc2-973c-63c95e4fa640",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "vods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "sort_dir",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "modified_at",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "jvod_state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "jvod_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "label",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) Live job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e15b3237-79ba-44b6-80ce-5ec77f5fd8c1",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "vods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "sort_dir",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "modified_at",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "jvod_state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "jvod_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "label",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) Live job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "134b8a8b-3440-4ed2-8cc3-699c9e1e8b0f",
+          "name": "Create VOD Clip (Alternate)",
+          "request": {
+            "name": "Create VOD Clip (Alternate)",
+            "description": {
+              "content": "Create VOD clips from a Live Stream. This is operation is identical to the `POST` request to `/vods` - it is included for consistency, so that you can `GET` and `POST` requests to the same endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                ":job_id",
+                "vods"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "job_id",
+                  "description": "(Required) Live job ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"live_job_id\": \"<string>\",\n  \"outputs\": [\n    {\n      \"label\": \"<string>\",\n      \"credentials\": \"<string>\",\n      \"notifications\": [\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        },\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        }\n      ],\n      \"duration\": \"<integer>\",\n      \"remove_ads\": false,\n      \"start_time\": \"<integer>\",\n      \"end_time\": \"<integer>\",\n      \"stream_start_time\": \"<integer>\",\n      \"stream_end_time\": \"<integer>\",\n      \"stream_start_timecode\": \"<string>\",\n      \"stream_end_timecode\": \"<string>\",\n      \"mode\": \"<string>\",\n      \"playlist_label\": \"<string>\",\n      \"url\": \"<string>\",\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"<string>\",\n          \"cue_points\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"custom_fields\": \"<object>\",\n          \"description\": \"<string>\",\n          \"drm_disabled\": \"<boolean>\",\n          \"economics\": \"<string>\",\n          \"geo\": {\n            \"countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exclude_countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"restricted\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"long_description\": \"<string>\",\n          \"reference_id\": \"<string>\",\n          \"schedule\": {\n            \"ends_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"starts_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"state\": \"<string>\",\n          \"tags\": \"<object>\"\n        },\n        \"account_id\": \"<string>\",\n        \"ingest\": {\n          \"callbacks\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"capture-images\": \"<boolean>\",\n          \"profile\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"label\": \"<string>\",\n      \"credentials\": \"<string>\",\n      \"notifications\": [\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        },\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        }\n      ],\n      \"duration\": \"<integer>\",\n      \"remove_ads\": false,\n      \"start_time\": \"<integer>\",\n      \"end_time\": \"<integer>\",\n      \"stream_start_time\": \"<integer>\",\n      \"stream_end_time\": \"<integer>\",\n      \"stream_start_timecode\": \"<string>\",\n      \"stream_end_timecode\": \"<string>\",\n      \"mode\": \"<string>\",\n      \"playlist_label\": \"<string>\",\n      \"url\": \"<string>\",\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"<string>\",\n          \"cue_points\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"custom_fields\": \"<object>\",\n          \"description\": \"<string>\",\n          \"drm_disabled\": \"<boolean>\",\n          \"economics\": \"<string>\",\n          \"geo\": {\n            \"countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exclude_countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"restricted\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"long_description\": \"<string>\",\n          \"reference_id\": \"<string>\",\n          \"schedule\": {\n            \"ends_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"starts_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"state\": \"<string>\",\n          \"tags\": \"<object>\"\n        },\n        \"account_id\": \"<string>\",\n        \"ingest\": {\n          \"callbacks\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"capture-images\": \"<boolean>\",\n          \"profile\": \"<string>\"\n        }\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a8c9f2ab-37fb-442b-b900-fce06f74e0d2",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "vods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) Live job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"live_job_id\": \"<string>\",\n  \"outputs\": [\n    {\n      \"label\": \"<string>\",\n      \"credentials\": \"<string>\",\n      \"notifications\": [\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        },\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        }\n      ],\n      \"duration\": \"<integer>\",\n      \"remove_ads\": false,\n      \"start_time\": \"<integer>\",\n      \"end_time\": \"<integer>\",\n      \"stream_start_time\": \"<integer>\",\n      \"stream_end_time\": \"<integer>\",\n      \"stream_start_timecode\": \"<string>\",\n      \"stream_end_timecode\": \"<string>\",\n      \"mode\": \"<string>\",\n      \"playlist_label\": \"<string>\",\n      \"url\": \"<string>\",\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"<string>\",\n          \"cue_points\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"custom_fields\": \"<object>\",\n          \"description\": \"<string>\",\n          \"drm_disabled\": \"<boolean>\",\n          \"economics\": \"<string>\",\n          \"geo\": {\n            \"countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exclude_countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"restricted\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"long_description\": \"<string>\",\n          \"reference_id\": \"<string>\",\n          \"schedule\": {\n            \"ends_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"starts_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"state\": \"ACTIVE\",\n          \"tags\": \"<object>\"\n        },\n        \"account_id\": \"<string>\",\n        \"ingest\": {\n          \"callbacks\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"capture-images\": true,\n          \"profile\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"label\": \"<string>\",\n      \"credentials\": \"<string>\",\n      \"notifications\": [\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        },\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        }\n      ],\n      \"duration\": \"<integer>\",\n      \"remove_ads\": false,\n      \"start_time\": \"<integer>\",\n      \"end_time\": \"<integer>\",\n      \"stream_start_time\": \"<integer>\",\n      \"stream_end_time\": \"<integer>\",\n      \"stream_start_timecode\": \"<string>\",\n      \"stream_end_timecode\": \"<string>\",\n      \"mode\": \"<string>\",\n      \"playlist_label\": \"<string>\",\n      \"url\": \"<string>\",\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"<string>\",\n          \"cue_points\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"custom_fields\": \"<object>\",\n          \"description\": \"<string>\",\n          \"drm_disabled\": \"<boolean>\",\n          \"economics\": \"<string>\",\n          \"geo\": {\n            \"countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exclude_countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"restricted\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"long_description\": \"<string>\",\n          \"reference_id\": \"<string>\",\n          \"schedule\": {\n            \"ends_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"starts_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"state\": \"ACTIVE\",\n          \"tags\": \"<object>\"\n        },\n        \"account_id\": \"<string>\",\n        \"ingest\": {\n          \"callbacks\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"capture-images\": true,\n          \"profile\": \"<string>\"\n        }\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jvod_id\": \"string\",\n  \"label\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "46effe49-72bd-4882-8edc-ab7fbda9f43d",
+              "name": "BAD_REQUEST: Invalid input value - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "vods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) Live job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"live_job_id\": \"<string>\",\n  \"outputs\": [\n    {\n      \"label\": \"<string>\",\n      \"credentials\": \"<string>\",\n      \"notifications\": [\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        },\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        }\n      ],\n      \"duration\": \"<integer>\",\n      \"remove_ads\": false,\n      \"start_time\": \"<integer>\",\n      \"end_time\": \"<integer>\",\n      \"stream_start_time\": \"<integer>\",\n      \"stream_end_time\": \"<integer>\",\n      \"stream_start_timecode\": \"<string>\",\n      \"stream_end_timecode\": \"<string>\",\n      \"mode\": \"<string>\",\n      \"playlist_label\": \"<string>\",\n      \"url\": \"<string>\",\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"<string>\",\n          \"cue_points\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"custom_fields\": \"<object>\",\n          \"description\": \"<string>\",\n          \"drm_disabled\": \"<boolean>\",\n          \"economics\": \"<string>\",\n          \"geo\": {\n            \"countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exclude_countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"restricted\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"long_description\": \"<string>\",\n          \"reference_id\": \"<string>\",\n          \"schedule\": {\n            \"ends_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"starts_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"state\": \"ACTIVE\",\n          \"tags\": \"<object>\"\n        },\n        \"account_id\": \"<string>\",\n        \"ingest\": {\n          \"callbacks\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"capture-images\": true,\n          \"profile\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"label\": \"<string>\",\n      \"credentials\": \"<string>\",\n      \"notifications\": [\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        },\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        }\n      ],\n      \"duration\": \"<integer>\",\n      \"remove_ads\": false,\n      \"start_time\": \"<integer>\",\n      \"end_time\": \"<integer>\",\n      \"stream_start_time\": \"<integer>\",\n      \"stream_end_time\": \"<integer>\",\n      \"stream_start_timecode\": \"<string>\",\n      \"stream_end_timecode\": \"<string>\",\n      \"mode\": \"<string>\",\n      \"playlist_label\": \"<string>\",\n      \"url\": \"<string>\",\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"<string>\",\n          \"cue_points\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"custom_fields\": \"<object>\",\n          \"description\": \"<string>\",\n          \"drm_disabled\": \"<boolean>\",\n          \"economics\": \"<string>\",\n          \"geo\": {\n            \"countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exclude_countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"restricted\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"long_description\": \"<string>\",\n          \"reference_id\": \"<string>\",\n          \"schedule\": {\n            \"ends_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"starts_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"state\": \"ACTIVE\",\n          \"tags\": \"<object>\"\n        },\n        \"account_id\": \"<string>\",\n        \"ingest\": {\n          \"callbacks\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"capture-images\": true,\n          \"profile\": \"<string>\"\n        }\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2cecaa05-4b90-4f7b-ba55-b9e31f639812",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "vods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) Live job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"live_job_id\": \"<string>\",\n  \"outputs\": [\n    {\n      \"label\": \"<string>\",\n      \"credentials\": \"<string>\",\n      \"notifications\": [\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        },\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        }\n      ],\n      \"duration\": \"<integer>\",\n      \"remove_ads\": false,\n      \"start_time\": \"<integer>\",\n      \"end_time\": \"<integer>\",\n      \"stream_start_time\": \"<integer>\",\n      \"stream_end_time\": \"<integer>\",\n      \"stream_start_timecode\": \"<string>\",\n      \"stream_end_timecode\": \"<string>\",\n      \"mode\": \"<string>\",\n      \"playlist_label\": \"<string>\",\n      \"url\": \"<string>\",\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"<string>\",\n          \"cue_points\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"custom_fields\": \"<object>\",\n          \"description\": \"<string>\",\n          \"drm_disabled\": \"<boolean>\",\n          \"economics\": \"<string>\",\n          \"geo\": {\n            \"countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exclude_countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"restricted\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"long_description\": \"<string>\",\n          \"reference_id\": \"<string>\",\n          \"schedule\": {\n            \"ends_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"starts_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"state\": \"ACTIVE\",\n          \"tags\": \"<object>\"\n        },\n        \"account_id\": \"<string>\",\n        \"ingest\": {\n          \"callbacks\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"capture-images\": true,\n          \"profile\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"label\": \"<string>\",\n      \"credentials\": \"<string>\",\n      \"notifications\": [\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        },\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        }\n      ],\n      \"duration\": \"<integer>\",\n      \"remove_ads\": false,\n      \"start_time\": \"<integer>\",\n      \"end_time\": \"<integer>\",\n      \"stream_start_time\": \"<integer>\",\n      \"stream_end_time\": \"<integer>\",\n      \"stream_start_timecode\": \"<string>\",\n      \"stream_end_timecode\": \"<string>\",\n      \"mode\": \"<string>\",\n      \"playlist_label\": \"<string>\",\n      \"url\": \"<string>\",\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"<string>\",\n          \"cue_points\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"custom_fields\": \"<object>\",\n          \"description\": \"<string>\",\n          \"drm_disabled\": \"<boolean>\",\n          \"economics\": \"<string>\",\n          \"geo\": {\n            \"countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exclude_countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"restricted\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"long_description\": \"<string>\",\n          \"reference_id\": \"<string>\",\n          \"schedule\": {\n            \"ends_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"starts_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"state\": \"ACTIVE\",\n          \"tags\": \"<object>\"\n        },\n        \"account_id\": \"<string>\",\n        \"ingest\": {\n          \"callbacks\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"capture-images\": true,\n          \"profile\": \"<string>\"\n        }\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c05c6c93-6df5-4539-b79d-bf34587bf858",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "vods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) Live job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"live_job_id\": \"<string>\",\n  \"outputs\": [\n    {\n      \"label\": \"<string>\",\n      \"credentials\": \"<string>\",\n      \"notifications\": [\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        },\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        }\n      ],\n      \"duration\": \"<integer>\",\n      \"remove_ads\": false,\n      \"start_time\": \"<integer>\",\n      \"end_time\": \"<integer>\",\n      \"stream_start_time\": \"<integer>\",\n      \"stream_end_time\": \"<integer>\",\n      \"stream_start_timecode\": \"<string>\",\n      \"stream_end_timecode\": \"<string>\",\n      \"mode\": \"<string>\",\n      \"playlist_label\": \"<string>\",\n      \"url\": \"<string>\",\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"<string>\",\n          \"cue_points\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"custom_fields\": \"<object>\",\n          \"description\": \"<string>\",\n          \"drm_disabled\": \"<boolean>\",\n          \"economics\": \"<string>\",\n          \"geo\": {\n            \"countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exclude_countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"restricted\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"long_description\": \"<string>\",\n          \"reference_id\": \"<string>\",\n          \"schedule\": {\n            \"ends_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"starts_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"state\": \"ACTIVE\",\n          \"tags\": \"<object>\"\n        },\n        \"account_id\": \"<string>\",\n        \"ingest\": {\n          \"callbacks\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"capture-images\": true,\n          \"profile\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"label\": \"<string>\",\n      \"credentials\": \"<string>\",\n      \"notifications\": [\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        },\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        }\n      ],\n      \"duration\": \"<integer>\",\n      \"remove_ads\": false,\n      \"start_time\": \"<integer>\",\n      \"end_time\": \"<integer>\",\n      \"stream_start_time\": \"<integer>\",\n      \"stream_end_time\": \"<integer>\",\n      \"stream_start_timecode\": \"<string>\",\n      \"stream_end_timecode\": \"<string>\",\n      \"mode\": \"<string>\",\n      \"playlist_label\": \"<string>\",\n      \"url\": \"<string>\",\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"<string>\",\n          \"cue_points\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"custom_fields\": \"<object>\",\n          \"description\": \"<string>\",\n          \"drm_disabled\": \"<boolean>\",\n          \"economics\": \"<string>\",\n          \"geo\": {\n            \"countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exclude_countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"restricted\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"long_description\": \"<string>\",\n          \"reference_id\": \"<string>\",\n          \"schedule\": {\n            \"ends_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"starts_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"state\": \"ACTIVE\",\n          \"tags\": \"<object>\"\n        },\n        \"account_id\": \"<string>\",\n        \"ingest\": {\n          \"callbacks\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"capture-images\": true,\n          \"profile\": \"<string>\"\n        }\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a10b5a9b-a867-43ad-80a9-af1aa900ae8e",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "vods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) Live job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content-Type: application/json",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"live_job_id\": \"<string>\",\n  \"outputs\": [\n    {\n      \"label\": \"<string>\",\n      \"credentials\": \"<string>\",\n      \"notifications\": [\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        },\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        }\n      ],\n      \"duration\": \"<integer>\",\n      \"remove_ads\": false,\n      \"start_time\": \"<integer>\",\n      \"end_time\": \"<integer>\",\n      \"stream_start_time\": \"<integer>\",\n      \"stream_end_time\": \"<integer>\",\n      \"stream_start_timecode\": \"<string>\",\n      \"stream_end_timecode\": \"<string>\",\n      \"mode\": \"<string>\",\n      \"playlist_label\": \"<string>\",\n      \"url\": \"<string>\",\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"<string>\",\n          \"cue_points\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"custom_fields\": \"<object>\",\n          \"description\": \"<string>\",\n          \"drm_disabled\": \"<boolean>\",\n          \"economics\": \"<string>\",\n          \"geo\": {\n            \"countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exclude_countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"restricted\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"long_description\": \"<string>\",\n          \"reference_id\": \"<string>\",\n          \"schedule\": {\n            \"ends_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"starts_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"state\": \"ACTIVE\",\n          \"tags\": \"<object>\"\n        },\n        \"account_id\": \"<string>\",\n        \"ingest\": {\n          \"callbacks\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"capture-images\": true,\n          \"profile\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"label\": \"<string>\",\n      \"credentials\": \"<string>\",\n      \"notifications\": [\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        },\n        {\n          \"url\": \"<string>\",\n          \"event\": \"<string>\",\n          \"credentials\": \"<string>\"\n        }\n      ],\n      \"duration\": \"<integer>\",\n      \"remove_ads\": false,\n      \"start_time\": \"<integer>\",\n      \"end_time\": \"<integer>\",\n      \"stream_start_time\": \"<integer>\",\n      \"stream_end_time\": \"<integer>\",\n      \"stream_start_timecode\": \"<string>\",\n      \"stream_end_timecode\": \"<string>\",\n      \"mode\": \"<string>\",\n      \"playlist_label\": \"<string>\",\n      \"url\": \"<string>\",\n      \"videocloud\": {\n        \"video\": {\n          \"name\": \"<string>\",\n          \"cue_points\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"custom_fields\": \"<object>\",\n          \"description\": \"<string>\",\n          \"drm_disabled\": \"<boolean>\",\n          \"economics\": \"<string>\",\n          \"geo\": {\n            \"countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exclude_countries\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"restricted\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"long_description\": \"<string>\",\n          \"reference_id\": \"<string>\",\n          \"schedule\": {\n            \"ends_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"starts_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"state\": \"ACTIVE\",\n          \"tags\": \"<object>\"\n        },\n        \"account_id\": \"<string>\",\n        \"ingest\": {\n          \"callbacks\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"capture-images\": true,\n          \"profile\": \"<string>\"\n        }\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://analytics.api.brightcove.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e26660e9-f2b5-472e-808c-3c0823f179a0",
+    "name": "Brightcove Analytics API Reference Access Tokens Live Job Clip API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com",
+      "type": "text/plain"
+    }
+  }
+}

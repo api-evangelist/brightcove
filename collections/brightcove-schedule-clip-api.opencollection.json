@@ -1,0 +1,193 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brightcove Analytics API Reference Access Tokens Schedule Clip API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Schedule Clip",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Scheduled Clip workflows",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/scheduler/clip",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "start_token",
+                "value": "",
+                "type": "query",
+                "description": "Next token from previous page; do not specify when fetching first page"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Max number of items to return in one request (1-1000, default is 10)"
+              },
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by particular Job."
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by particular workflow state. Select multiple states with comma separated list"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by limiting range of query. Value should be unix time in seconds. Workflows with a workflow_start_time_utc value greater than this will be returned. Can be used with end param."
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by limiting range of query. Value should be unix time in seconds. Workflows with a workflow_start_time_utc value less than this will be returned. Can be used with start param."
+              }
+            ]
+          },
+          "docs": "'List Clip workflows'"
+        },
+        {
+          "info": {
+            "name": "Create a Scheduled Clip workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://analytics.api.brightcove.com/scheduler/clip",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Scheduled Clip workflow"
+        },
+        {
+          "info": {
+            "name": "Get Clip Schedule Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://analytics.api.brightcove.com/scheduler/clip/:workflow_id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "Scheduler Workflow ID"
+              }
+            ]
+          },
+          "docs": "Get Clip Schedule Details"
+        },
+        {
+          "info": {
+            "name": "Update Clip Schedule Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://analytics.api.brightcove.com/scheduler/clip/:workflow_id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "Scheduler Workflow ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Clip time. Can only update if state is \"pending\"."
+        },
+        {
+          "info": {
+            "name": "Cancel Scheduled Clip",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://analytics.api.brightcove.com/scheduler/clip/:workflow_id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "Scheduler Workflow ID"
+              }
+            ]
+          },
+          "docs": "Cancel Clip"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

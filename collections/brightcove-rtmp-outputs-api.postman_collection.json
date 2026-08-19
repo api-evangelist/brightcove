@@ -1,0 +1,906 @@
+{
+  "item": [
+    {
+      "id": "f857e897-6b3f-477c-a915-20d74659a213",
+      "name": "RTMP Outputs",
+      "description": {
+        "content": "Operations for creating and managing RTMP outputs. Note that RTMP output hours will be billed against event hours.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d00fb306-84c2-4c3d-b33a-639cdc8fbc29",
+          "name": "List RTMP Outputs",
+          "request": {
+            "name": "List RTMP Outputs",
+            "description": {
+              "content": "Get a list of RTMP outputs. See [Live API: RTMP Outputs](/live-api/guides/live-api-rtmp-outputs.html) for more information on RTMP outputs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                ":job_id",
+                "rtmpouts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "job_id",
+                  "description": "(Required) Live job ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ba4e99be-4698-4cd8-9821-f9e383bcb4bf",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "rtmpouts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) Live job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"rtmp_out_id\": \"asdfg-lkjh\",\n    \"stream_start\": 1538746255247,\n    \"connection_info\": {\n      \"host\": \"a.rtmp.youtube.com\",\n      \"port\": 1935,\n      \"application\": \"live2\",\n      \"streamName\": \"myStream\",\n      \"sessionStatus\": \"Active\"\n    },\n    \"duration_history\": [\n      {\n        \"stream_start\": 1557933191000,\n        \"stream_end\": 1557936731000\n      }\n    ],\n    \"waiting_for_start\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "84eee55d-8a66-4ba3-abd1-6abe9097a42d",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "rtmpouts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) Live job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9cdd5a86-f3a7-40cc-8343-85d0c8105fcf",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "rtmpouts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) Live job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d054bc41-2f9a-4ea7-ad5f-478626822219",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "rtmpouts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) Live job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "888467b8-e133-4156-aebf-fe6f0709faca",
+          "name": "Create RTMP Output",
+          "request": {
+            "name": "Create RTMP Output",
+            "description": {
+              "content": "Create an RTMP output. See [Live API: RTMP Outputs](/live-api/guides/live-api-rtmp-outputs.html) for more information on RTMP outputs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                ":job_id",
+                "rtmpouts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "job_id",
+                  "description": "(Required) Live job ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"<string>\",\n  \"output_label\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3ae67e3d-8a52-462c-acc6-07332e3f5aad",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "rtmpouts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) Live job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"rtmp://host:port/application/streamName\",\n  \"output_label\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"connection_info\": {\n    \"host\": \"live-api-s.facebook.com\",\n    \"port\": 80,\n    \"application\": \"rtmp\",\n    \"streamName\": \"foo-bar\"\n  },\n  \"duration_history\": [],\n  \"rtmp_out_id\": \"foo\",\n  \"stream_start\": 1542731746032\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "88554ea8-ffb6-4798-8502-67c384aa4d30",
+              "name": "BAD_REQUEST: Bad Request - RTMP outputs limit reached, failed to add (most likely you have reached the limit of active RTMP outputs for your account; the default limit is 5)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "rtmpouts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) Live job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"rtmp://host:port/application/streamName\",\n  \"output_label\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f1411be9-047e-4e97-9ed7-c2b17fef7e31",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "rtmpouts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) Live job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"rtmp://host:port/application/streamName\",\n  \"output_label\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2875d32c-e0c6-40b8-a771-b44ade991a16",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "rtmpouts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) Live job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"rtmp://host:port/application/streamName\",\n  \"output_label\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "057e2114-06e8-43c6-aca9-b475f5409716",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "rtmpouts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) Live job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"rtmp://host:port/application/streamName\",\n  \"output_label\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "767953f6-cd07-4747-af73-0856e779c920",
+          "name": "Stop RTMP Output",
+          "request": {
+            "name": "Stop RTMP Output",
+            "description": {
+              "content": "Stop an RTMP output. See [Live API: RTMP Outputs](/live-api/guides/live-api-rtmp-outputs.html) for more information on RTMP outputs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                ":job_id",
+                "rtmpouts",
+                ":rtmp_out_id",
+                "stop"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "job_id",
+                  "description": "(Required) Live job ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "rtmp_out_id",
+                  "description": "(Required) RTMP output ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                "key": "X-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2376b044-f29b-43e0-9642-faabe805988a",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "rtmpouts",
+                    ":rtmp_out_id",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) Live job ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rtmp_out_id",
+                      "description": "(Required) RTMP output ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"{ \\\"message\\\": \\\"RTMP out asdfg-lkjh deleted successfully\\\" }\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "04307b59-f0fa-4926-aef9-c5f2a6c322ee",
+              "name": "UNAUTHORIZED: Unauthorized - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "rtmpouts",
+                    ":rtmp_out_id",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) Live job ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rtmp_out_id",
+                      "description": "(Required) RTMP output ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "942ab623-de92-4053-9ca9-f7c14be15963",
+              "name": "RESOURCE_NOT_FOUND: The api could not find the resource you requested - see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "rtmpouts",
+                    ":rtmp_out_id",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) Live job ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rtmp_out_id",
+                      "description": "(Required) RTMP output ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "41246397-cfb7-4ced-8ce5-3ecda2537bf3",
+              "name": "INTERNAL_SERVER_ERROR: see [Live API Error Messages](/live-api/references/live-api-error-messages.html) for more details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "rtmpouts",
+                    ":rtmp_out_id",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) Live job ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rtmp_out_id",
+                      "description": "(Required) RTMP output ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) X-API-KEY: {Your_Live_API_Key}",
+                    "key": "X-API-KEY",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://analytics.api.brightcove.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1abfc4d5-f618-4bef-a9be-12b220aa5127",
+    "name": "Brightcove Analytics API Reference Access Tokens RTMP Outputs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com",
+      "type": "text/plain"
+    }
+  }
+}
