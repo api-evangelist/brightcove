@@ -110,6 +110,9 @@ apis:
   humanURL: https://apis.support.brightcove.com/oauth/
   baseURL: https://oauth.brightcove.com/v4
   tags:
+  - Authentication
+  - Security
+  tags_raw:
   - OAuth
   - Authentication
   - Security
@@ -194,6 +197,10 @@ apis:
   humanURL: https://apis.support.brightcove.com/social/
   baseURL: https://edge.social.api.brightcove.com/v1
   tags:
+  - Social-Media
+  - Distribution
+  - Sharing
+  tags_raw:
   - Social Media
   - Distribution
   - Sharing
@@ -583,6 +590,8 @@ apis:
   humanURL: https://apis.support.brightcove.com/cms/
   baseURL: https://cms.api.brightcove.com/v1
   tags:
+  - Notification
+  tags_raw:
   - Notifications
   properties:
   - type: OpenAPI
