@@ -4,6 +4,18 @@ description: Brightcove is an online video platform providing REST APIs for uplo
   and managing videos, encoding, CDN delivery, player configuration, analytics, and
   live streaming management. Its Video Cloud platform serves media companies, broadcasters,
   marketers, and OTT providers globally.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: self-serve
