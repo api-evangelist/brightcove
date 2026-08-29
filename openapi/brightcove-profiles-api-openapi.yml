@@ -1,11 +1,17 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Brightcove Analytics API Reference Access Tokens Profiles API
-  description: "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com"
-  x-bc-access: public
+  title: Brightcove Ingest API Reference Profiles API
+  description: 'Reference for the Brightcove Ingest Profiles API, used to create and manage ingest profiles that specify video and image renditions to be created, along with instructions for archiving masters.
+
+
+    For additional in-depth guides to features of the API, see the **[general documentation](/ingest-profiles/guides/index.html)**.
+
+
+    **Base URL**: https://ingestion.api.brightcove.com/v1'
   version: 1.0.0
+  x-bc-access: public
 servers:
-- url: https://analytics.api.brightcove.com
+- url: https://ingestion.api.brightcove.com/v1
   variables: {}
 tags:
 - name: Profiles
@@ -198,6 +204,22 @@ paths:
         IsMultiContentStreaming: false
 components:
   schemas:
+    IngestProfile.dynamicOrigin.dynamicProfileOptions.maxResolution:
+      title: IngestProfile.dynamic_origin.dynamic_profile_options.max_resolution
+      type: object
+      description: Defines the maximum resolution for renditions for **CAE profiles only**
+      required:
+      - height
+      - width
+      properties:
+        height:
+          type: integer
+          description: Maximum height for renditions for **CAE profiles only** - defaults to the source height
+          format: int32
+        width:
+          type: integer
+          description: Maximum width for renditions for **CAE profiles only** - defaults to the source width
+          format: int32
     IngestProfile:
       title: Ingest Profile
       required:
@@ -265,108 +287,118 @@ components:
           - label: thumbnail
             height: 90
             width: 160
-    IngestProfile.dynamicOrigin.images:
-      title: IngestProfile.dynamic_origin.images
-      type: object
-      properties:
-        label:
-          type: string
-          description: the kind of image this will be
-          enum:
-          - poster
-          - thumbnail
-        height:
-          type: integer
-          description: the height of the image in pixels
-          format: int32
-        width:
-          type: integer
-          description: the width of the image in pixels
-          format: int32
-    IngestProfile.dynamicOrigin.dynamicProfileOptions.video_configuration:
-      title: IngestProfile.dynamicOrigin.dynamicProfileOptions.video_configuration
-      description: 'A specific rendition resolution that is prioritized or mandated.
-
-
-        **Note: use of required video configurations is *not* recommended unless you must have renditions that must have specific resolutions. Use of video configurations decreases the efficiency of Context Aware Encoding**'
-      type: object
+    IngestProfile.dynamicOrigin.dynamicProfileOptions:
+      title: IngestProfile.dynamic_origin.dynamic_profile_options
       required:
-      - width
-      - height
+      - min_renditions
+      - max_renditions
+      type: object
       properties:
-        width:
+        deinterlace:
+          type: string
+          description: Determines whether or not to apply a deinterlacing filter. Default is `detect` – if the input file is detected as interlaced, it will be deinterlaced. Set this to `on` to force deinterlacing (which will reduce quality if the input is not interlaced), or `off` to avoid deinterlacing.
+          default: detect
+        deinterlace_mode:
+          type: string
+          description: If not included or set to `frame-to-frame`, Video Cloud outputs will match the framerate of the input file. If set to `field-to-frame`, Video Cloud will double the framerate of the input file for the output. If you manually set framerate to double the framerate of the input file, Video Cloud will automatically set `deinterlace_mode` to `field-to-frame` and double the framerate for the output.
+          default: frame-to-frame
+        min_renditions:
           type: integer
-          description: Video frame width [pixels]
-        height:
+          description: Minimum number of renditions to create for **CAE profiles only**
+          format: int32
+        max_renditions:
           type: integer
-          description: Video frame height [pixels]
-        required:
+          description: Maximum number of renditions to create for **CAE profiles only**
+          format: int32
+        min_resolution:
+          $ref: '#/components/schemas/IngestProfile.dynamicOrigin.dynamicProfileOptions.minResolution'
+        max_resolution:
+          $ref: '#/components/schemas/IngestProfile.dynamicOrigin.dynamicProfileOptions.maxResolution'
+        max_bitrate:
+          type: integer
+          description: Maximum bitrate for renditions in kbps for **CAE profiles only**
+          format: int32
+        max_first_rendition_bitrate:
+          type: integer
+          description: Maximum bitrate for lowest bitrate rendition in kbps for **CAE profiles only**
+          format: int32
+        max_frame_rate:
+          type: integer
+          description: Maximum framerate for renditions in fps for **CAE profiles only**
+          format: int32
+          default: 30
+        keyframe_rate:
+          type: number
+          description: The number of keyframes per second for renditions (So a value of 0.5 would result in one keyframe every two seconds; a value of 3 would result in three keyframes per second) for **CAE profiles only**
+          default: 0.5
+        select_baseline_profile_configuration:
           type: boolean
-          description: Setting this to true will guarantee that a rendition will be created with these specifications
+          description: At least one rendition used in the profile will be baseline profile for **CAE profiles only**
           default: false
-      example:
-        width: 428
-        height: 240
-        required: true
-    IngestProfile.dynamicOrigin.dynamicProfileOptions.minResolution:
-      title: IngestProfile.dynamic_origin.dynamic_profile_options.min_resolution
-      description: Defines the minimum resolution for for **CAE profiles only** renditions
-      type: object
-      required:
-      - height
-      - width
-      properties:
-        height:
-          type: integer
-          description: Minimum height for renditions for **CAE profiles only**
-          format: int32
-        width:
-          type: integer
-          description: Minimum width for renditions for **CAE profiles only**
-          format: int32
-    IngestProfile.renditions.watermarks:
-      title: IngestProfile.renditions.watermarks
-      required:
-      - url
-      - width
-      - height
-      - x
-      - y
-      type: object
-      properties:
-        url:
-          type: string
-          description: URL for the watermark image **Legacy Ingest only**
-        width:
-          type: string
-          description: width in pixels or percent of frame width; e.g. 20 or 10% - decimal values like 10.5% are not permitted **Legacy Ingest only**
-        height:
-          type: string
-          description: height in pixels or percent of frame width; e.g. 20 or 10% - decimal values like 10.5% are not permitted **Legacy Ingest only**
-        x:
-          type: string
-          description: distance from left edge to center of image as pixels or percent of frame width; e.g. 20 or 10% (use negative values like -10 to position the watermark relative to the right edge) - decimal values like 10.5% are not permitted **Legacy Ingest only**
-        y:
-          type: string
-          description: distance from top edge to center if image as pixels or percent of frame height; e.g. 20 or 10% (use negative values like -10 to position the watermark relative to the bottom edge) - decimal values like 10.5% are not permitted **Legacy Ingest only**
-    IngestProfile.digitalMaster:
-      title: IngestProfile.digital_master
-      type: object
-      properties:
-        rendition:
-          type: string
-          description: rendition to use as master - either `passthrough` (the source optimized for online delivery) or `none` if you do not want to archive a master
-          default: none
-          enum:
-          - passthrough
-          - none
-        distribute:
+        select_distinct_configurations:
           type: boolean
-          description: 'whether to make the master playable as a rendition by pushing it to the CDN(s)
-
-
-            **Note that this option applies only to legacy ingest profiles, and will be ignored for Dynamic Delivery profiles**'
+          description: 'If true, CAE will ensure that no two renditions use the same combination of: resolution, frame rate, and codec profile - for **CAE profiles only**'
           default: false
+        video_codecs:
+          type: array
+          description: An array of codecs to create renditions for. This field is **used only in multi-codec CAE profiles.**
+          items:
+            type: string
+            enum:
+            - h264
+            - hevc
+          example:
+          - h264
+          - hevc
+        video_codec_options:
+          type: object
+          description: 'Options for outputs for each of the codecs specified in `video_codecs`. The properties of `video_codec_options` are object with name of an included codec (currently `h264` or `hevc`). The allowed properties for each of these objects are
+
+
+            - `min_renditions` **required**
+
+            - `max_bitrate`
+
+            - `max_first_rendition_bitrate`
+
+            - `min_resolution`
+
+            - `max_resolution`
+
+            - `max_first_rendition_resolution`
+
+
+            **Note:** these settings are also used at the global level. When you are using settings both at the global and per-codec levels, the values must be compatible. For example, `max_renditions` set at the global level must be greater than or equal to the sum of `min_rendition` values set at the per-codec level'
+          example:
+            dynamic_profile_options:
+              max_renditions: 6
+              video_codecs:
+              - h264
+              - hevc
+              video_codec_options:
+                h264:
+                  min_renditions: 2
+                  max_resolution:
+                    width: 1280
+                    height: 720
+                hevc:
+                  min_renditions: 2
+                  max_resolution:
+                    width: 1920
+                    height: 1080
+        video_configurations:
+          type: array
+          description: 'Array of specific rendition configurations that  is prioritized or mandated.
+
+
+            **Note: use of required video configurations is *not* recommended unless you must have renditions that must have specific resolutions. Use of video configurations decreases the efficiency of Context Aware Encoding.**'
+          items:
+            $ref: '#/components/schemas/IngestProfile.dynamicOrigin.dynamicProfileOptions.video_configuration'
+        watermarks:
+          type: array
+          description: Array of watermark objects specifying one or more watermarks to be added to renditions
+          items:
+            $ref: '#/components/schemas/IngestProfile.dynamicOrigin.dynamicProfileOptions.watermarks'
     IngestProfile.renditions:
       title: IngestProfile.renditions
       description: Rendition definitions **Legacy Ingest Only**  - should be an empty array for Dynamic Delivery
@@ -566,168 +598,57 @@ components:
         upscale:
           type: boolean
           description: whether to upsize the frames if the source frame size is smaller than the target **Legacy Ingest only**
-    ProfileList:
-      title: Profile List
-      description: Array of ingest profiles
-      type: array
-      items:
-        $ref: '#/components/schemas/IngestProfileResponse'
-    IngestProfile.dynamicOrigin.dynamicProfileOptions.watermarks:
-      title: IngestProfile.renditions.watermarks
-      description: One or more watermark images for Context Aware Encoding profiles
-      required:
-      - url
-      - width
-      - x
-      - y
+    IngestProfile.dynamicOrigin.images:
+      title: IngestProfile.dynamic_origin.images
       type: object
       properties:
-        url:
+        label:
           type: string
-          description: URL for the watermark image
-        width:
-          type: string
-          description: width in pixels or percent of frame width; e.g. 20 or 10%
+          description: the kind of image this will be
+          enum:
+          - poster
+          - thumbnail
         height:
-          type: string
-          description: height in pixels or percent of frame width; e.g. 20 or 10%
-        x:
-          type: string
-          description: distance from left edge to center of image as pixels or percent of frame width; e.g. 20 or 10% (use negative values like -10 to position the watermark relative to the right edge)
-        y:
-          type: string
-          description: distance from top edge to center if image as pixels or percent of frame height; e.g. 20 or 10% (use negative values like -10 to position the watermark relative to the bottom edge)
-    IngestProfile.packages:
-      title: IngestProfile.packages
-      required:
-      - drm
-      - package_type
-      - renditions
+          type: integer
+          description: the height of the image in pixels
+          format: int32
+        width:
+          type: integer
+          description: the width of the image in pixels
+          format: int32
+    IngestProfile.renditions.skip:
+      title: IngestProfiles.renditions.skip
+      description: A set of conditions for skipping creation of this rendition see Conditional Output **Legacy Ingest only**
       type: object
       properties:
-        drm:
-          type: array
-          items:
-            type: string
-          description: for MPEG-DASH, array of DRM types to apply, e.g. [&quot;widevine&quot;, &quot;playready&quot;] **Legacy Ingest only**
-        package_type:
-          type: string
-          description: for MPEG-DASH, the package type is `dash`; for other formats, the package type is the DRM type, e.g. `widevine` **Legacy Ingest only**
-        renditions:
-          type: object
-          description: for MPEG-DASH, the renditions will be set to the `reference_id` for a single rendition; for other formats, renditions is set equal to an array of rendition `reference_id`&#39;s **Legacy Ingest only**
-    IngestProfile.dynamicOrigin.dynamicProfileOptions:
-      title: IngestProfile.dynamic_origin.dynamic_profile_options
-      required:
-      - min_renditions
-      - max_renditions
-      type: object
-      properties:
-        deinterlace:
-          type: string
-          description: Determines whether or not to apply a deinterlacing filter. Default is `detect` – if the input file is detected as interlaced, it will be deinterlaced. Set this to `on` to force deinterlacing (which will reduce quality if the input is not interlaced), or `off` to avoid deinterlacing.
-          default: detect
-        deinterlace_mode:
-          type: string
-          description: If not included or set to `frame-to-frame`, Video Cloud outputs will match the framerate of the input file. If set to `field-to-frame`, Video Cloud will double the framerate of the input file for the output. If you manually set framerate to double the framerate of the input file, Video Cloud will automatically set `deinterlace_mode` to `field-to-frame` and double the framerate for the output.
-          default: frame-to-frame
-        min_renditions:
+        min_audio_bitrate:
           type: integer
-          description: Minimum number of renditions to create for **CAE profiles only**
+          description: the minimum audio bitrate that the source must have (kbps) **Legacy Ingest only**
           format: int32
-        max_renditions:
+        max_audio_bitrate:
           type: integer
-          description: Maximum number of renditions to create for **CAE profiles only**
+          description: the maximum audio bitrate that the source must have (kbps) **Legacy Ingest only**
           format: int32
-        min_resolution:
-          $ref: '#/components/schemas/IngestProfile.dynamicOrigin.dynamicProfileOptions.minResolution'
-        max_resolution:
-          $ref: '#/components/schemas/IngestProfile.dynamicOrigin.dynamicProfileOptions.maxResolution'
-        max_bitrate:
+        min_video_bitrate:
           type: integer
-          description: Maximum bitrate for renditions in kbps for **CAE profiles only**
+          description: the minimum video bitrate that the source must have (kbps) **Legacy Ingest only**
           format: int32
-        max_first_rendition_bitrate:
+        max_video_bitrate:
           type: integer
-          description: Maximum bitrate for lowest bitrate rendition in kbps for **CAE profiles only**
+          description: the maximum video bitrate that the source must have (kbps) **Legacy Ingest only**
           format: int32
-        max_frame_rate:
-          type: integer
-          description: Maximum framerate for renditions in fps for **CAE profiles only**
-          format: int32
-          default: 30
-        keyframe_rate:
-          type: number
-          description: The number of keyframes per second for renditions (So a value of 0.5 would result in one keyframe every two seconds; a value of 3 would result in three keyframes per second) for **CAE profiles only**
-          default: 0.5
-        select_baseline_profile_configuration:
+        require_audio:
           type: boolean
-          description: At least one rendition used in the profile will be baseline profile for **CAE profiles only**
-          default: false
-        select_distinct_configurations:
+          description: if true the source must include an audio track **Legacy Ingest only**
+        require_video:
           type: boolean
-          description: 'If true, CAE will ensure that no two renditions use the same combination of: resolution, frame rate, and codec profile - for **CAE profiles only**'
-          default: false
-        video_codecs:
-          type: array
-          description: An array of codecs to create renditions for. This field is **used only in multi-codec CAE profiles.**
-          items:
-            type: string
-            enum:
-            - h264
-            - hevc
-          example:
-          - h264
-          - hevc
-        video_codec_options:
-          type: object
-          description: 'Options for outputs for each of the codecs specified in `video_codecs`. The properties of `video_codec_options` are object with name of an included codec (currently `h264` or `hevc`). The allowed properties for each of these objects are
-
-
-            - `min_renditions` **required**
-
-            - `max_bitrate`
-
-            - `max_first_rendition_bitrate`
-
-            - `min_resolution`
-
-            - `max_resolution`
-
-            - `max_first_rendition_resolution`
-
-
-            **Note:** these settings are also used at the global level. When you are using settings both at the global and per-codec levels, the values must be compatible. For example, `max_renditions` set at the global level must be greater than or equal to the sum of `min_rendition` values set at the per-codec level'
-          example:
-            dynamic_profile_options:
-              max_renditions: 6
-              video_codecs:
-              - h264
-              - hevc
-              video_codec_options:
-                h264:
-                  min_renditions: 2
-                  max_resolution:
-                    width: 1280
-                    height: 720
-                hevc:
-                  min_renditions: 2
-                  max_resolution:
-                    width: 1920
-                    height: 1080
-        video_configurations:
-          type: array
-          description: 'Array of specific rendition configurations that  is prioritized or mandated.
-
-
-            **Note: use of required video configurations is *not* recommended unless you must have renditions that must have specific resolutions. Use of video configurations decreases the efficiency of Context Aware Encoding.**'
-          items:
-            $ref: '#/components/schemas/IngestProfile.dynamicOrigin.dynamicProfileOptions.video_configuration'
-        watermarks:
-          type: array
-          description: Array of watermark objects specifying one or more watermarks to be added to renditions
-          items:
-            $ref: '#/components/schemas/IngestProfile.dynamicOrigin.dynamicProfileOptions.watermarks'
+          description: if true the source must include a video track **Legacy Ingest only**
+        min_size:
+          type: string
+          description: the source must be at least this resolution - string of the form &quot;widthxheight&quot; (e.g. &quot;400x225&quot;) **Legacy Ingest only**
+        max_size:
+          type: string
+          description: the source must be at most this resolution - string of the form &quot;widthxheight&quot; (e.g. &quot;1920x1080&quot;) **Legacy Ingest only**
     IngestProfileResponse:
       title: Ingest Profile
       required:
@@ -800,22 +721,50 @@ components:
             height: 90
             width: 160
         id: 6198c17bbbdc42a4bb60a41f
-    IngestProfile.dynamicOrigin.dynamicProfileOptions.maxResolution:
-      title: IngestProfile.dynamic_origin.dynamic_profile_options.max_resolution
+    IngestProfile.dynamicOrigin.dynamicProfileOptions.video_configuration:
+      title: IngestProfile.dynamicOrigin.dynamicProfileOptions.video_configuration
+      description: 'A specific rendition resolution that is prioritized or mandated.
+
+
+        **Note: use of required video configurations is *not* recommended unless you must have renditions that must have specific resolutions. Use of video configurations decreases the efficiency of Context Aware Encoding**'
       type: object
-      description: Defines the maximum resolution for renditions for **CAE profiles only**
       required:
-      - height
       - width
+      - height
       properties:
-        height:
-          type: integer
-          description: Maximum height for renditions for **CAE profiles only** - defaults to the source height
-          format: int32
         width:
           type: integer
-          description: Maximum width for renditions for **CAE profiles only** - defaults to the source width
-          format: int32
+          description: Video frame width [pixels]
+        height:
+          type: integer
+          description: Video frame height [pixels]
+        required:
+          type: boolean
+          description: Setting this to true will guarantee that a rendition will be created with these specifications
+          default: false
+      example:
+        width: 428
+        height: 240
+        required: true
+    IngestProfile.packages:
+      title: IngestProfile.packages
+      required:
+      - drm
+      - package_type
+      - renditions
+      type: object
+      properties:
+        drm:
+          type: array
+          items:
+            type: string
+          description: for MPEG-DASH, array of DRM types to apply, e.g. [&quot;widevine&quot;, &quot;playready&quot;] **Legacy Ingest only**
+        package_type:
+          type: string
+          description: for MPEG-DASH, the package type is `dash`; for other formats, the package type is the DRM type, e.g. `widevine` **Legacy Ingest only**
+        renditions:
+          type: object
+          description: for MPEG-DASH, the renditions will be set to the `reference_id` for a single rendition; for other formats, renditions is set equal to an array of rendition `reference_id`&#39;s **Legacy Ingest only**
     IngestProfile.dynamicOrigin:
       title: IngestProfile.dynamic_origin
       required:
@@ -835,58 +784,97 @@ components:
           items:
             $ref: '#/components/schemas/IngestProfile.dynamicOrigin.images'
           description: array of image specifications for poster and thumbnail (if omitted, no images will be captured during ingestion)
-    IngestProfile.renditions.skip:
-      title: IngestProfiles.renditions.skip
-      description: A set of conditions for skipping creation of this rendition see Conditional Output **Legacy Ingest only**
+    IngestProfile.renditions.watermarks:
+      title: IngestProfile.renditions.watermarks
+      required:
+      - url
+      - width
+      - height
+      - x
+      - y
       type: object
       properties:
-        min_audio_bitrate:
-          type: integer
-          description: the minimum audio bitrate that the source must have (kbps) **Legacy Ingest only**
-          format: int32
-        max_audio_bitrate:
-          type: integer
-          description: the maximum audio bitrate that the source must have (kbps) **Legacy Ingest only**
-          format: int32
-        min_video_bitrate:
-          type: integer
-          description: the minimum video bitrate that the source must have (kbps) **Legacy Ingest only**
-          format: int32
-        max_video_bitrate:
-          type: integer
-          description: the maximum video bitrate that the source must have (kbps) **Legacy Ingest only**
-          format: int32
-        require_audio:
-          type: boolean
-          description: if true the source must include an audio track **Legacy Ingest only**
-        require_video:
-          type: boolean
-          description: if true the source must include a video track **Legacy Ingest only**
-        min_size:
+        url:
           type: string
-          description: the source must be at least this resolution - string of the form &quot;widthxheight&quot; (e.g. &quot;400x225&quot;) **Legacy Ingest only**
-        max_size:
+          description: URL for the watermark image **Legacy Ingest only**
+        width:
           type: string
-          description: the source must be at most this resolution - string of the form &quot;widthxheight&quot; (e.g. &quot;1920x1080&quot;) **Legacy Ingest only**
+          description: width in pixels or percent of frame width; e.g. 20 or 10% - decimal values like 10.5% are not permitted **Legacy Ingest only**
+        height:
+          type: string
+          description: height in pixels or percent of frame width; e.g. 20 or 10% - decimal values like 10.5% are not permitted **Legacy Ingest only**
+        x:
+          type: string
+          description: distance from left edge to center of image as pixels or percent of frame width; e.g. 20 or 10% (use negative values like -10 to position the watermark relative to the right edge) - decimal values like 10.5% are not permitted **Legacy Ingest only**
+        y:
+          type: string
+          description: distance from top edge to center if image as pixels or percent of frame height; e.g. 20 or 10% (use negative values like -10 to position the watermark relative to the bottom edge) - decimal values like 10.5% are not permitted **Legacy Ingest only**
+    IngestProfile.dynamicOrigin.dynamicProfileOptions.minResolution:
+      title: IngestProfile.dynamic_origin.dynamic_profile_options.min_resolution
+      description: Defines the minimum resolution for for **CAE profiles only** renditions
+      type: object
+      required:
+      - height
+      - width
+      properties:
+        height:
+          type: integer
+          description: Minimum height for renditions for **CAE profiles only**
+          format: int32
+        width:
+          type: integer
+          description: Minimum width for renditions for **CAE profiles only**
+          format: int32
+    ProfileList:
+      title: Profile List
+      description: Array of ingest profiles
+      type: array
+      items:
+        $ref: '#/components/schemas/IngestProfileResponse'
+    IngestProfile.digitalMaster:
+      title: IngestProfile.digital_master
+      type: object
+      properties:
+        rendition:
+          type: string
+          description: rendition to use as master - either `passthrough` (the source optimized for online delivery) or `none` if you do not want to archive a master
+          default: none
+          enum:
+          - passthrough
+          - none
+        distribute:
+          type: boolean
+          description: 'whether to make the master playable as a rendition by pushing it to the CDN(s)
+
+
+            **Note that this option applies only to legacy ingest profiles, and will be ignored for Dynamic Delivery profiles**'
+          default: false
+    IngestProfile.dynamicOrigin.dynamicProfileOptions.watermarks:
+      title: IngestProfile.renditions.watermarks
+      description: One or more watermark images for Context Aware Encoding profiles
+      required:
+      - url
+      - width
+      - x
+      - y
+      type: object
+      properties:
+        url:
+          type: string
+          description: URL for the watermark image
+        width:
+          type: string
+          description: width in pixels or percent of frame width; e.g. 20 or 10%
+        height:
+          type: string
+          description: height in pixels or percent of frame width; e.g. 20 or 10%
+        x:
+          type: string
+          description: distance from left edge to center of image as pixels or percent of frame width; e.g. 20 or 10% (use negative values like -10 to position the watermark relative to the right edge)
+        y:
+          type: string
+          description: distance from top edge to center if image as pixels or percent of frame height; e.g. 20 or 10% (use negative values like -10 to position the watermark relative to the bottom edge)
   parameters:
-    profile_id:
-      name: profile_id
-      in: path
-      description: The ingest profile ID.
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    account_id:
-      name: account_id
-      in: path
-      description: Video Cloud account ID.
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
     ContentType:
       name: Content-Type
       in: header
@@ -897,10 +885,28 @@ components:
       schema:
         type: string
         example: application/json
+    account_id:
+      name: account_id
+      in: path
+      description: Video Cloud account ID.
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
     Authorization:
       name: Authorization
       in: header
       description: 'Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    profile_id:
+      name: profile_id
+      in: path
+      description: The ingest profile ID.
       required: true
       style: simple
       explode: false
@@ -914,8 +920,10 @@ components:
         clientCredentials:
           tokenUrl: https://oauth.brightcove.com/v4/access_token
           scopes:
-            video-cloud/analytics/read: Read analytics data
-            video-cloud/video/read: Read video data
+            video-cloud/ingest-profiles/profile/read: Read profiles
+            video-cloud/ingest-profiles/profile/write: Write profiles
+            video-cloud/ingest-profiles/account/read: Read account settings
+            video-cloud/ingest-profiles/account/write: Write account settings
 x-bc-implicit-head: true
 x-bc-implicit-options: true
 x-bc-upstream: https://backend_server

@@ -826,6 +826,9 @@ apis:
   - type: GraphQL
     url: graphql/brightcove-graphql.md
 common:
+- type: CapabilityMap
+  url: capabilities/brightcove-capability-edges.yml
+  name: Brightcove Business Capability Map
 - type: AgenticAccess
   url: agentic-access/brightcove-agentic-access.yml
 - type: TrustCenter

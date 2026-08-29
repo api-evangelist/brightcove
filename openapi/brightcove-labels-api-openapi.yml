@@ -1,11 +1,17 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Brightcove Analytics API Reference Access Tokens Labels API
-  description: "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com"
-  x-bc-access: public
+  title: Brightcove CMS API Reference Labels API
+  description: 'Reference for the Brightcove CMS API, used to access and manage your media library. To test API requests, you can use our [API Testing Tools](/getting-started/concepts-testing-tools-brightcove-apis.html). For permissions needed for OAuth credentials, see [API Operations](/oauth/guides/api-operations-client-credentials-requests.html). For information on authenticating API requests, see the [OAuth Overview](/oauth/getting-started/overview-oauth-api-v4.html).
+
+
+    For additional in-depth guides to features of the API, see the **[general documentation](/cms/index.html)**.
+
+
+    **Base URL**: https://cms.api.brightcove.com'
   version: 1.0.0
+  x-bc-access: public
 servers:
-- url: https://analytics.api.brightcove.com
+- url: https://cms.api.brightcove.com
   variables: {}
 tags:
 - name: Labels
@@ -184,46 +190,16 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
 components:
-  parameters:
-    label_path:
-      description: '''The path for a label to update or delete. Note that the operation performed is on the last item in the path, so for example, if you specify the path `/nature/birds/seabirds`, only the `seabirds` label will be updated/deleted, but if you specify the path as `/nature/birds`, `birds` and any sub-labels of `birds` will be updated/deleted.'''
-      explode: false
-      in: path
-      name: label_path
-      required: true
-      schema:
-        type: string
-      style: simple
-    AccountId:
-      description: Video Cloud account ID.
-      explode: false
-      in: path
-      name: account_id
-      required: true
-      schema:
-        type: string
-      style: simple
-    Authorization:
-      description: 'Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)'
-      explode: false
-      in: header
-      name: Authorization
-      required: true
-      schema:
-        type: string
-      style: simple
-    ContentType:
-      description: 'Content-Type: application/json'
-      example: application/json
-      explode: false
-      in: header
-      name: Content-Type
-      required: true
-      schema:
-        default: application/json
-        type: string
-      style: simple
   schemas:
+    LabelPath:
+      description: The full path for a label that can be assigned to videos
+      title: label
+      type: object
+      properties:
+        path:
+          type: string
+      example:
+        path: /nature/mammals/seamammals
     LabelsList:
       description: A list of labels for the account
       type: object
@@ -246,15 +222,6 @@ components:
         version:
           type: integer
           description: An internal version tracker
-    LabelPath:
-      description: The full path for a label that can be assigned to videos
-      title: label
-      type: object
-      properties:
-        path:
-          type: string
-      example:
-        path: /nature/mammals/seamammals
     LabelUpdate:
       description: Update Label request body
       title: label
@@ -265,6 +232,45 @@ components:
           description: The new label which will replace **the last item in the label path**
       example:
         new_label: forest_birds
+  parameters:
+    ContentType:
+      description: 'Content-Type: application/json'
+      example: application/json
+      explode: false
+      in: header
+      name: Content-Type
+      required: true
+      schema:
+        default: application/json
+        type: string
+      style: simple
+    AccountId:
+      description: Video Cloud account ID.
+      explode: false
+      in: path
+      name: account_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    Authorization:
+      description: 'Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)'
+      explode: false
+      in: header
+      name: Authorization
+      required: true
+      schema:
+        type: string
+      style: simple
+    label_path:
+      description: '''The path for a label to update or delete. Note that the operation performed is on the last item in the path, so for example, if you specify the path `/nature/birds/seabirds`, only the `seabirds` label will be updated/deleted, but if you specify the path as `/nature/birds`, `birds` and any sub-labels of `birds` will be updated/deleted.'''
+      explode: false
+      in: path
+      name: label_path
+      required: true
+      schema:
+        type: string
+      style: simple
   securitySchemes:
     BC_OAuth2:
       type: oauth2
@@ -273,8 +279,24 @@ components:
         clientCredentials:
           tokenUrl: https://oauth.brightcove.com/v4/access_token
           scopes:
-            video-cloud/analytics/read: Read analytics data
-            video-cloud/video/read: Read video data
+            video-cloud/video/read: Video Read
+            video-cloud/video/create: Video Create
+            video-cloud/video/update: Video Update
+            video-cloud/video/delete: Video Delete
+            video-cloud/video/all: Video ALL
+            video-cloud/asset/delete: Digital Master Delete
+            video-cloud/playlist/read: Playlist Read
+            video-cloud/playlist/create: Playlist Create
+            video-cloud/playlist/update: Playlist Update
+            video-cloud/playlist/delete: Playlist Delete
+            video-cloud/playlist/all: Playlist All
+            video-cloud/sharing-relationships/read: Sharing Relationships Read
+            video-cloud/sharing-relationships/create: Sharing Relationships Create
+            video-cloud/sharing-relationships/update: Sharing Relationships Update
+            video-cloud/sharing-relationships/delete: Sharing Relationships Delete
+            video-cloud/sharing-relationships/all: Sharing Relationships All
+            video-cloud/notifications/all: Notifications All
+            video-cloud/video/clear-sources: Read clear sources
 x-bc-implicit-head: true
 x-bc-implicit-options: true
 x-bc-upstream: https://backend_server

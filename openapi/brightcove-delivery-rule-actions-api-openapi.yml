@@ -1,11 +1,15 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Brightcove Analytics API Reference Access Tokens Delivery Rule Actions API
-  description: "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com"
-  x-bc-access: public
+  title: Brightcove Delivery Rules Delivery Rule Actions API
+  description: 'API for Brightcove Delivery Rules
+
+    This API is used for managing operations related to Delivery Rules.
+
+    **Base URL: https://delivery-rules.api.brightcove.com**'
   version: 1.0.0
+  x-bc-access: public
 servers:
-- url: https://analytics.api.brightcove.com
+- url: https://delivery-rules.api.brightcove.com
   variables: {}
 tags:
 - name: Delivery Rule Actions
@@ -233,6 +237,23 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
 components:
+  parameters:
+    AccountId:
+      name: account_id
+      in: path
+      description: Video Cloud account id
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    ActionId:
+      name: action_id
+      in: path
+      description: ID of the Action to query on
+      required: true
+      schema:
+        type: string
   schemas:
     ActionWithID:
       title: Action
@@ -335,33 +356,16 @@ components:
               items:
                 description: Audio Codec
                 type: string
-  parameters:
-    ActionId:
-      name: action_id
-      in: path
-      description: ID of the Action to query on
-      required: true
-      schema:
-        type: string
-    AccountId:
-      name: account_id
-      in: path
-      description: Video Cloud account id
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
   securitySchemes:
     BC_OAuth2:
       type: oauth2
-      description: Brightcove OAuth API. See the [support documentation](/oauth/index.html) or [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html) to learn more
+      description: Brightcove OAuth API. To learn more, see the [OAuth Overview](https://apis.support.brightcove.com/oauth/) or the [Getting Access Tokens](https://apis.support.brightcove.com/oauth/code-samples/oauth-api-sample-get-access-token.html) document.
       flows:
         clientCredentials:
           tokenUrl: https://oauth.brightcove.com/v4/access_token
           scopes:
-            video-cloud/analytics/read: Read analytics data
-            video-cloud/video/read: Read video data
+            video-cloud/delivery-rules/read: Read Delivery Rules
+            video-cloud/delivery-rules/all: Read, Write, Delete Delivery Rules
 x-bc-implicit-head: true
 x-bc-implicit-options: true
 x-bc-upstream: https://backend_server

@@ -1,11 +1,15 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Brightcove Analytics API Reference Access Tokens Delivery Rules API
-  description: "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com"
-  x-bc-access: public
+  title: Brightcove Delivery Rules API
+  description: 'API for Brightcove Delivery Rules
+
+    This API is used for managing operations related to Delivery Rules.
+
+    **Base URL: https://delivery-rules.api.brightcove.com**'
   version: 1.0.0
+  x-bc-access: public
 servers:
-- url: https://analytics.api.brightcove.com
+- url: https://delivery-rules.api.brightcove.com
   variables: {}
 tags:
 - name: Delivery Rules
@@ -58,58 +62,17 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
 components:
+  parameters:
+    AccountId:
+      name: account_id
+      in: path
+      description: Video Cloud account id
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
   schemas:
-    Action:
-      title: Action
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-          description: Unique identifier for the Action
-        properties:
-          type: object
-          description: A list of properties to apply
-          properties:
-            min_video_bitrate:
-              description: Minimum video bitrate
-              type: number
-            max_video_bitrate:
-              description: Maximum video bitrate
-              type: number
-            first_video_bitrate:
-              description: First video bitrate to appear in the manifest
-              type: number
-            min_video_resolution:
-              description: Minimum video resolution
-              type: string
-            max_video_resolution:
-              description: Maximum video resolution
-              type: string
-            max_video_renditions:
-              description: Maximum video renditions
-              type: number
-            max_audio_renditions:
-              description: Maximum audio renditions
-              type: number
-            preferred_cdn_provider:
-              description: Preferred CDN provider
-              type: string
-            preferred_cdn_domain:
-              description: Preferred CDN domain
-              type: string
-            video_codecs:
-              type: array
-              description: A list of Video Codecs to use
-              items:
-                description: Video Codec
-                type: string
-            audio_codecs:
-              type: array
-              description: A list of Audio Codecs to use
-              items:
-                description: Audio Codec
-                type: string
     Condition:
       type: object
       properties:
@@ -168,26 +131,67 @@ components:
           items:
             description: Action ID
             type: string
-  parameters:
-    AccountId:
-      name: account_id
-      in: path
-      description: Video Cloud account id
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
+    Action:
+      title: Action
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+          description: Unique identifier for the Action
+        properties:
+          type: object
+          description: A list of properties to apply
+          properties:
+            min_video_bitrate:
+              description: Minimum video bitrate
+              type: number
+            max_video_bitrate:
+              description: Maximum video bitrate
+              type: number
+            first_video_bitrate:
+              description: First video bitrate to appear in the manifest
+              type: number
+            min_video_resolution:
+              description: Minimum video resolution
+              type: string
+            max_video_resolution:
+              description: Maximum video resolution
+              type: string
+            max_video_renditions:
+              description: Maximum video renditions
+              type: number
+            max_audio_renditions:
+              description: Maximum audio renditions
+              type: number
+            preferred_cdn_provider:
+              description: Preferred CDN provider
+              type: string
+            preferred_cdn_domain:
+              description: Preferred CDN domain
+              type: string
+            video_codecs:
+              type: array
+              description: A list of Video Codecs to use
+              items:
+                description: Video Codec
+                type: string
+            audio_codecs:
+              type: array
+              description: A list of Audio Codecs to use
+              items:
+                description: Audio Codec
+                type: string
   securitySchemes:
     BC_OAuth2:
       type: oauth2
-      description: Brightcove OAuth API. See the [support documentation](/oauth/index.html) or [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html) to learn more
+      description: Brightcove OAuth API. To learn more, see the [OAuth Overview](https://apis.support.brightcove.com/oauth/) or the [Getting Access Tokens](https://apis.support.brightcove.com/oauth/code-samples/oauth-api-sample-get-access-token.html) document.
       flows:
         clientCredentials:
           tokenUrl: https://oauth.brightcove.com/v4/access_token
           scopes:
-            video-cloud/analytics/read: Read analytics data
-            video-cloud/video/read: Read video data
+            video-cloud/delivery-rules/read: Read Delivery Rules
+            video-cloud/delivery-rules/all: Read, Write, Delete Delivery Rules
 x-bc-implicit-head: true
 x-bc-implicit-options: true
 x-bc-upstream: https://backend_server

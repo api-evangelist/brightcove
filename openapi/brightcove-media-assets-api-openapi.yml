@@ -1,11 +1,17 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Brightcove Analytics API Reference Access Tokens Media Assets API
-  description: "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com"
-  x-bc-access: public
+  title: Brightcove CMS API Reference Media Assets API
+  description: 'Reference for the Brightcove CMS API, used to access and manage your media library. To test API requests, you can use our [API Testing Tools](/getting-started/concepts-testing-tools-brightcove-apis.html). For permissions needed for OAuth credentials, see [API Operations](/oauth/guides/api-operations-client-credentials-requests.html). For information on authenticating API requests, see the [OAuth Overview](/oauth/getting-started/overview-oauth-api-v4.html).
+
+
+    For additional in-depth guides to features of the API, see the **[general documentation](/cms/index.html)**.
+
+
+    **Base URL**: https://cms.api.brightcove.com'
   version: 1.0.0
+  x-bc-access: public
 servers:
-- url: https://analytics.api.brightcove.com
+- url: https://cms.api.brightcove.com
   variables: {}
 tags:
 - name: Media Assets
@@ -1432,157 +1438,6 @@ paths:
         IsMultiContentStreaming: false
 components:
   schemas:
-    DynamicRendition:
-      example:
-      - audio_configuration: L_R
-        created_at: '2016-11-14T15:05:56.209Z'
-        duration: 31488
-        encoding_rate: 125000
-        frame_height: null
-        frame_width: null
-        language: en
-        media_type: audio
-        rendition_id: default/audio128
-        size: 506818
-        updated_at: '2016-11-14T15:05:56.209Z'
-        variant: main
-      - created_at: '2016-11-14T15:06:17.295Z'
-        duration: 31465
-        encoding_rate: 902000
-        frame_height: 360
-        frame_width: 640
-        media_type: video
-        rendition_id: default/video900
-        size: 3561912
-        updated_at: '2016-11-14T15:06:17.295Z'
-        variant: main
-      properties:
-        audio_configuration:
-          description: The audio configuration of the audio track
-          readOnly: true
-          type: string
-        duration:
-          description: duration in milliseconds
-          readOnly: true
-          type: integer
-        encoding_rate:
-          description: average encoding rate in kbps
-          readOnly: true
-          type: integer
-        frame_height:
-          description: frame height in pixels
-          readOnly: true
-          type: integer
-        frame_width:
-          description: frame width in pixels
-          readOnly: true
-          type: integer
-        media_type:
-          description: media type for the rendition (audio or video)
-          enum:
-          - audio
-          - video
-          readOnly: true
-          type: string
-        rendition_id:
-          description: the rendition id
-          readOnly: true
-          type: string
-        size:
-          description: the size of the asset in bytes (integer)
-          readOnly: true
-          type: integer
-        updated_at:
-          description: when the video was last modified
-          readOnly: true
-          type: string
-        uploaded_at:
-          description: when the asset was added to the video in Video Cloud
-          readOnly: true
-          type: string
-        variant:
-          description: The variant of the HLS profile (baseline, main, or high)
-          enum:
-          - baseline
-          - main
-          - high
-          readOnly: true
-          type: string
-      title: DynamicRendition
-      type: object
-    Manifest:
-      example:
-        account_id: '57838016001'
-        audio_only: false
-        cdn_origin_id: '8801'
-        complete: true
-        controller_type: DEFAULT
-        current_filename: 57838016001_5819043232001_5819044609001.m3u8
-        id: '5819043232001'
-        key_systems: []
-        name: greatblueheron.mp4
-        progressive_download: false
-        reference_id: ''
-        remote_stream_name: ''
-        remote_url: ''
-        size: 0
-        type: HLS_MANIFEST
-        updated_at: '2018-08-07T14:06:52.489Z'
-        uploaded_at: '2018-08-07T14:05:57.105Z'
-        video_duration: 0
-      properties:
-        audio_only:
-          description: not applicable to ism_manifests
-          type: boolean
-        cdn_origin_id:
-          description: an internally used id (not applicable to remote assets)
-          type: string
-        complete:
-          description: whether processing is complete for the asset (will be true for remote assets if a remote_url is supplied)
-          type: boolean
-        controller_type:
-          description: the controller type for ingested renditions (not applicable to remote renditions or other types of assets)
-          type: string
-        current_filename:
-          description: the filename for an ingested asset in the Video Cloud system (not applicable to remote assets)
-          type: string
-        id:
-          description: the asset id
-          readOnly: true
-          type: string
-        name:
-          description: asset name
-          type: string
-        progressive_download:
-          description: whether ingested rendition is available by progressive download (not applicable to other asset types or remote renditions)
-          type: boolean
-        reference_id:
-          description: the asset reference id (must be unique within the account); this is **not** the same as the video reference id
-          type: string
-        remote_stream_name:
-          description: name for remote streams (not applicable to asset types other than rendition)
-          type: string
-        remote_url:
-          description: the url for a remote asset (not applicable to ingested assets); **`remote_url` is required when adding an asset (POST)**
-          maxLength: 250
-          type: string
-        size:
-          description: the size of the asset in bytes (integer)
-          type: integer
-        type:
-          description: the type of the asset
-          type: string
-        updated_at:
-          description: when the video was last modified
-          type: string
-        uploaded_at:
-          description: when the asset was added to the video in Video Cloud
-          type: string
-        video_duration:
-          description: video duration in seconds (present if you included it when you created the asset)
-          type: integer
-      title: Manifest
-      type: object
     VideoAsset:
       example:
       - account_id: '57838016001'
@@ -1790,9 +1645,159 @@ components:
           type: integer
       title: VideoAsset
       type: object
+    DynamicRendition:
+      example:
+      - audio_configuration: L_R
+        created_at: '2016-11-14T15:05:56.209Z'
+        duration: 31488
+        encoding_rate: 125000
+        frame_height: null
+        frame_width: null
+        language: en
+        media_type: audio
+        rendition_id: default/audio128
+        size: 506818
+        updated_at: '2016-11-14T15:05:56.209Z'
+        variant: main
+      - created_at: '2016-11-14T15:06:17.295Z'
+        duration: 31465
+        encoding_rate: 902000
+        frame_height: 360
+        frame_width: 640
+        media_type: video
+        rendition_id: default/video900
+        size: 3561912
+        updated_at: '2016-11-14T15:06:17.295Z'
+        variant: main
+      properties:
+        audio_configuration:
+          description: The audio configuration of the audio track
+          readOnly: true
+          type: string
+        duration:
+          description: duration in milliseconds
+          readOnly: true
+          type: integer
+        encoding_rate:
+          description: average encoding rate in kbps
+          readOnly: true
+          type: integer
+        frame_height:
+          description: frame height in pixels
+          readOnly: true
+          type: integer
+        frame_width:
+          description: frame width in pixels
+          readOnly: true
+          type: integer
+        media_type:
+          description: media type for the rendition (audio or video)
+          enum:
+          - audio
+          - video
+          readOnly: true
+          type: string
+        rendition_id:
+          description: the rendition id
+          readOnly: true
+          type: string
+        size:
+          description: the size of the asset in bytes (integer)
+          readOnly: true
+          type: integer
+        updated_at:
+          description: when the video was last modified
+          readOnly: true
+          type: string
+        uploaded_at:
+          description: when the asset was added to the video in Video Cloud
+          readOnly: true
+          type: string
+        variant:
+          description: The variant of the HLS profile (baseline, main, or high)
+          enum:
+          - baseline
+          - main
+          - high
+          readOnly: true
+          type: string
+      title: DynamicRendition
+      type: object
+    Manifest:
+      example:
+        account_id: '57838016001'
+        audio_only: false
+        cdn_origin_id: '8801'
+        complete: true
+        controller_type: DEFAULT
+        current_filename: 57838016001_5819043232001_5819044609001.m3u8
+        id: '5819043232001'
+        key_systems: []
+        name: greatblueheron.mp4
+        progressive_download: false
+        reference_id: ''
+        remote_stream_name: ''
+        remote_url: ''
+        size: 0
+        type: HLS_MANIFEST
+        updated_at: '2018-08-07T14:06:52.489Z'
+        uploaded_at: '2018-08-07T14:05:57.105Z'
+        video_duration: 0
+      properties:
+        audio_only:
+          description: not applicable to ism_manifests
+          type: boolean
+        cdn_origin_id:
+          description: an internally used id (not applicable to remote assets)
+          type: string
+        complete:
+          description: whether processing is complete for the asset (will be true for remote assets if a remote_url is supplied)
+          type: boolean
+        controller_type:
+          description: the controller type for ingested renditions (not applicable to remote renditions or other types of assets)
+          type: string
+        current_filename:
+          description: the filename for an ingested asset in the Video Cloud system (not applicable to remote assets)
+          type: string
+        id:
+          description: the asset id
+          readOnly: true
+          type: string
+        name:
+          description: asset name
+          type: string
+        progressive_download:
+          description: whether ingested rendition is available by progressive download (not applicable to other asset types or remote renditions)
+          type: boolean
+        reference_id:
+          description: the asset reference id (must be unique within the account); this is **not** the same as the video reference id
+          type: string
+        remote_stream_name:
+          description: name for remote streams (not applicable to asset types other than rendition)
+          type: string
+        remote_url:
+          description: the url for a remote asset (not applicable to ingested assets); **`remote_url` is required when adding an asset (POST)**
+          maxLength: 250
+          type: string
+        size:
+          description: the size of the asset in bytes (integer)
+          type: integer
+        type:
+          description: the type of the asset
+          type: string
+        updated_at:
+          description: when the video was last modified
+          type: string
+        uploaded_at:
+          description: when the asset was added to the video in Video Cloud
+          type: string
+        video_duration:
+          description: video duration in seconds (present if you included it when you created the asset)
+          type: integer
+      title: Manifest
+      type: object
     Drm:
       description: DRM packaging details (not applicable to remote assets or Dynamic Delivery accounts)
-      nullable: true
       properties:
         metadata_cdn_origin_id:
           type: string
@@ -1804,17 +1809,10 @@ components:
           type: string
       readOnly: true
       title: Drm
-      type: object
+      type:
+      - object
+      - 'null'
   parameters:
-    AssetId:
-      description: The asset ID
-      explode: false
-      in: path
-      name: asset_id
-      required: true
-      schema:
-        type: string
-      style: simple
     VideoId:
       description: Video ID (specified as `{video_id}}`).
       explode: false
@@ -1822,6 +1820,17 @@ components:
       name: video_id
       required: true
       schema:
+        type: string
+      style: simple
+    ContentType:
+      description: 'Content-Type: application/json'
+      example: application/json
+      explode: false
+      in: header
+      name: Content-Type
+      required: true
+      schema:
+        default: application/json
         type: string
       style: simple
     AccountId:
@@ -1842,15 +1851,13 @@ components:
       schema:
         type: string
       style: simple
-    ContentType:
-      description: 'Content-Type: application/json'
-      example: application/json
+    AssetId:
+      description: The asset ID
       explode: false
-      in: header
-      name: Content-Type
+      in: path
+      name: asset_id
       required: true
       schema:
-        default: application/json
         type: string
       style: simple
   securitySchemes:
@@ -1861,8 +1868,24 @@ components:
         clientCredentials:
           tokenUrl: https://oauth.brightcove.com/v4/access_token
           scopes:
-            video-cloud/analytics/read: Read analytics data
-            video-cloud/video/read: Read video data
+            video-cloud/video/read: Video Read
+            video-cloud/video/create: Video Create
+            video-cloud/video/update: Video Update
+            video-cloud/video/delete: Video Delete
+            video-cloud/video/all: Video ALL
+            video-cloud/asset/delete: Digital Master Delete
+            video-cloud/playlist/read: Playlist Read
+            video-cloud/playlist/create: Playlist Create
+            video-cloud/playlist/update: Playlist Update
+            video-cloud/playlist/delete: Playlist Delete
+            video-cloud/playlist/all: Playlist All
+            video-cloud/sharing-relationships/read: Sharing Relationships Read
+            video-cloud/sharing-relationships/create: Sharing Relationships Create
+            video-cloud/sharing-relationships/update: Sharing Relationships Update
+            video-cloud/sharing-relationships/delete: Sharing Relationships Delete
+            video-cloud/sharing-relationships/all: Sharing Relationships All
+            video-cloud/notifications/all: Notifications All
+            video-cloud/video/clear-sources: Read clear sources
 x-bc-implicit-head: true
 x-bc-implicit-options: true
 x-bc-upstream: https://backend_server

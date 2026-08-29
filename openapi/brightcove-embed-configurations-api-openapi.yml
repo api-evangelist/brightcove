@@ -1,11 +1,11 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Brightcove Analytics API Reference Access Tokens Embed Configurations API
-  description: "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com"
+  title: Brightcove Player Management API Reference Embed Configurations API
+  description: "Reference for the Brightcove Player Management API, used to manipulate players, player configurations and child players (embeds). To test API requests, you can use our [API Testing Tools](/getting-started/concepts-testing-tools-brightcove-apis.html). Popular testing tools include:\n\n  - [cURL](https://general.support.brightcove.com/developer/concepts-set-curl.html)\n  - [Postman](/general/use-postman-api-requests.html) - note that the tutorial here uses the Player Management API as an example\n  - [Insomnia](/general/use-insomnia-api-requests.html) - note that the tutorial here uses the Player Management API as an example\n\nIf you haven't gone through [Step-by-Step: Player Management](/player-management/getting-started/step-step-player-management.html), it's highly recommended you start there. You'll get security set up and learn some of the basics of using the Player Management API.\n\nIf you are working with this API for the first time, read the [Player Management API Overview](/player-management/getting-started/overview-player-management-api.html).\n\nRemember that after making any configuration changes you **MUST** re-publish your player. **Note:** Fields in configuration objects need to be set only if you wish to change their values. Fields in configuration objects will be displayed in the response only if explicitly set. For information on authenticating API requests, see [OAuth Overview](/oauth/getting-started/overview-oauth-api-v4.html).\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/player-management/references/index.html)**.\n\nBase URL: https://players.api.brightcove.com/v2"
+  version: 2.0.0
   x-bc-access: public
-  version: 1.0.0
 servers:
-- url: https://analytics.api.brightcove.com
+- url: https://players.api.brightcove.com/v2
   variables: {}
 tags:
 - name: Embed Configurations
@@ -225,6 +225,70 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
 components:
+  parameters:
+    branch:
+      name: branch
+      in: path
+      description: A plugin id
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        enum:
+        - master
+        - preview
+    ContentType:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+      example: application/json
+    embed_id:
+      name: embed_id
+      in: path
+      description: The embed id.
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    Authorization:
+      name: Authorization
+      in: header
+      description: '**IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.
+
+
+        `Authorization: Bearer {access_token}` - (see [Getting Access
+
+        Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    player_id:
+      name: player_id
+      in: path
+      description: Brightcove Player ID.
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    account_id:
+      name: account_id
+      in: path
+      description: Video Cloud account ID.
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
   schemas:
     configuration:
       title: Player Configuration
@@ -622,80 +686,19 @@ components:
               type: string
               description: A Video Cloud video id (you can also use the reference id with the syntax `ref:reference_id`)
               default: undefined
-  parameters:
-    embed_id:
-      name: embed_id
-      in: path
-      description: The embed id.
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    account_id:
-      name: account_id
-      in: path
-      description: Video Cloud account ID.
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    Authorization:
-      name: Authorization
-      in: header
-      description: '**IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.
-
-
-        `Authorization: Bearer {access_token}` - (see [Getting Access
-
-        Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    player_id:
-      name: player_id
-      in: path
-      description: Brightcove Player ID.
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    branch:
-      name: branch
-      in: path
-      description: A plugin id
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        enum:
-        - master
-        - preview
-    ContentType:
-      name: Content-Type
-      in: header
-      description: 'Content-Type: application/json'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-      example: application/json
   securitySchemes:
     BC_OAuth2:
       type: oauth2
-      description: Brightcove OAuth API. See the [support documentation](/oauth/index.html) or [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html) to learn more
+      description: '**IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.
+
+
+        Brightcove OAuth API. See the [support documentation](/oauth/index.html) or [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html) to learn more.'
       flows:
         clientCredentials:
           tokenUrl: https://oauth.brightcove.com/v4/access_token
           scopes:
-            video-cloud/analytics/read: Read analytics data
-            video-cloud/video/read: Read video data
+            video-cloud/player/read: Read player data
+            video-cloud/player/all: Read/write player data
 x-bc-implicit-head: true
 x-bc-implicit-options: true
 x-bc-upstream: https://backend_server

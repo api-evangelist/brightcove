@@ -1,11 +1,17 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Brightcove Analytics API Reference Access Tokens Account Configuration API
-  description: "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com"
-  x-bc-access: public
+  title: Brightcove Ingest Profiles API Reference Account Configuration API
+  description: 'Reference for the Brightcove Ingest Profiles API, used to create and manage ingest profiles that specify video and image renditions to be created, along with instructions for archiving masters.
+
+
+    For additional in-depth guides to features of the API, see the **[general documentation](/ingest-profiles/guides/index.html)**.
+
+
+    **Base URL**: https://ingestion.api.brightcove.com/v1'
   version: 1.0.0
+  x-bc-access: public
 servers:
-- url: https://analytics.api.brightcove.com
+- url: https://ingestion.api.brightcove.com/v1
   variables: {}
 tags:
 - name: Account Configuration
@@ -125,60 +131,7 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
 components:
-  parameters:
-    account_id:
-      name: account_id
-      in: path
-      description: Video Cloud account ID.
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    Authorization:
-      name: Authorization
-      in: header
-      description: 'Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    ContentType:
-      name: Content-Type
-      in: header
-      description: 'Content-Type: application/json'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        example: application/json
   schemas:
-    UpdateDefaultProfilebody:
-      title: Update_Default_ProfileBody
-      required:
-      - account_id
-      - id
-      - default_profile_id
-      type: object
-      properties:
-        account_id:
-          type: number
-          description: Video Cloud account ID
-        id:
-          type: string
-          description: the configuration id (if you do not have it, make a GET request to get it)
-        default_profile_id:
-          type: string
-          description: The id or name of the profile you want to set as the default
-          example: multi-platform-standard-static
-        default_live_profile_id:
-          type: string
-          description: The id or name of the live profile you want to set as the default
-        default_social_clipping_profile_id:
-          type: string
-          description: The id or name of the profile you want to set as the default for creating social clips
     DefaultProfileResponse:
       title: Default Profile responses
       type: object
@@ -232,6 +185,59 @@ components:
         default_social_clipping_profile_id:
           type: string
           description: The id or name of the profile you want to set as the default for creating social clips
+    UpdateDefaultProfilebody:
+      title: Update_Default_ProfileBody
+      required:
+      - account_id
+      - id
+      - default_profile_id
+      type: object
+      properties:
+        account_id:
+          type: number
+          description: Video Cloud account ID
+        id:
+          type: string
+          description: the configuration id (if you do not have it, make a GET request to get it)
+        default_profile_id:
+          type: string
+          description: The id or name of the profile you want to set as the default
+          example: multi-platform-standard-static
+        default_live_profile_id:
+          type: string
+          description: The id or name of the live profile you want to set as the default
+        default_social_clipping_profile_id:
+          type: string
+          description: The id or name of the profile you want to set as the default for creating social clips
+  parameters:
+    ContentType:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: application/json
+    Authorization:
+      name: Authorization
+      in: header
+      description: 'Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    account_id:
+      name: account_id
+      in: path
+      description: Video Cloud account ID.
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
   securitySchemes:
     BC_OAuth2:
       type: oauth2
@@ -240,8 +246,10 @@ components:
         clientCredentials:
           tokenUrl: https://oauth.brightcove.com/v4/access_token
           scopes:
-            video-cloud/analytics/read: Read analytics data
-            video-cloud/video/read: Read video data
+            video-cloud/ingest-profiles/profile/read: Read profiles
+            video-cloud/ingest-profiles/profile/write: Write profiles
+            video-cloud/ingest-profiles/account/read: Read account settings
+            video-cloud/ingest-profiles/account/write: Write account settings
 x-bc-implicit-head: true
 x-bc-implicit-options: true
 x-bc-upstream: https://backend_server

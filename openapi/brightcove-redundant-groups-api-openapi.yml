@@ -1,11 +1,16 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Brightcove Analytics API Reference Access Tokens Redundant Groups API
-  description: "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com"
-  x-bc-access: public
+  title: Live API Reference Redundant Groups API
+  description: 'Reference for the Brightcove Live API, used to create and manage live streaming events.
+
+
+    For additional in-depth guides to features of the API, see the **[Support Site](/live-api/index.html)**.
+
+
+    **Base URL**: https://api.bcovlive.io/v1'
   version: 1.0.0
 servers:
-- url: https://analytics.api.brightcove.com
+- url: https://api.bcovlive.io/v1
   variables: {}
 tags:
 - name: Redundant Groups
@@ -461,6 +466,199 @@ paths:
         IsMultiContentStreaming: false
 components:
   schemas:
+    CreateLiveJobRequestBody.addCdns:
+      properties:
+        label:
+          description: A label to identify the CDN.
+          type: string
+        prepend:
+          description: CDN hostname to be prepended to addresses
+          type: string
+        protocol:
+          description: Protocol to use for the stream delivery
+          enum:
+          - http
+          - https
+          type: string
+        token_auth:
+          $ref: '#/components/schemas/CreateLiveJobRequestBody.addCdns.tokenAuth'
+        vendor:
+          description: CDN vendor such as akamai
+          type: string
+      required:
+      - label
+      - prepend
+      - protocol
+      title: Create_Live_Job_Request_Body.add_cdns
+      type: object
+    CreateLiveJobRequestBody.addCdns.tokenAuth.media:
+      description: Object containing tokenization properties
+      properties:
+        end_time:
+          description: The time to end token auth, epoch time in seconds
+          format: int32
+          type: integer
+        start_time:
+          default: now
+          description: The time to apply token auth - &quot;now&quot; or epoch time in seconds
+          format: int32
+          oneOf:
+          - type: integer
+          - enum:
+            - now
+            type: string
+        ttl:
+          description: The time to live in seconds - either `end_time` or `ttl` is required
+          format: int32
+          type: integer
+      title: Create_Live_Job_Request_Body.add_cdns.token_auth.media
+      type: object
+    ForceRedundantStreamFailover:
+      title: Force failover request body
+      type: object
+      properties:
+        mode:
+          type: string
+          enum:
+          - auto
+          - manual
+          default: auto
+          description: 'The mode for failover. `manual` means automatic failover will **not** occur. To resume automatic failover, you must submit another request with `mode: auto`'
+        on_air:
+          type: string
+          description: The id of the job that should be used for streaming. To force failover, this must be a different job than the one that is currently `on_air`
+    ManualAdCuePointInsertionbody:
+      properties:
+        ad_server_data:
+          description: a set of any variables (key/value pairs) that should be passed to the adServer
+          type: object
+        cancel:
+          description: When `true`, cuepoint specified by `cuepoint_id` will be canceled. If an ad break is already in progress, a crash-out will occur, returning to the main content.
+          type: boolean
+          default: false
+        cuepoint_id:
+          description: ID to use when creating cuepoint. If `cancel` is `true`, then this field is required and is the ID of cuepoint to cancel.
+          type: string
+        duration:
+          description: An integer value to indicate the length of the ad break in seconds
+          type: number
+        timecode:
+          description: "'When to insert the cuepoint in SMPTE HH:MM:SS:FF format from the stream start (FF = frames); if omitted, the cuepoint will be inserted immediately. Note:\n  1. If you use the timecode property, the job only only stores the most recent request for insertion\n  2. If you use the timecode property, the encoder must be sending SMPTE-formatted (HH:MM:SS:FF) timecode stored in the `tc` property via `OnFI`\n  3. Software encoders such as Wirecast and OBS do not support the sending timecode via `OnFI` packets in the RTMP stream\n  4. Elemental hardware encoders do support the sending timecode via `OnFI` packets in the RTMP stream'"
+          type: string
+          example:
+            ad_server_data:
+              subject: wildlife
+            duration: 30
+            timecode: 09:23:18:05
+      required:
+      - duration
+      title: Manual_Ad_Cue_Point_InsertionBody
+      type: object
+    CreateLiveJobRequestBody.videocloud:
+      properties:
+        account_id:
+          description: The Video Cloud Account ID the video for the remote asset live stream should be created in. Only required if the account ID is not the default configured in your Live account. If set, you must also set the `videocloud.credentials` property.
+          type: number
+        credentials:
+          description: Credentials to use for Video Cloud authentication. Only required if you set `videocloud.account_id`.
+          type: string
+        live_to_vod:
+          type: boolean
+          default: false
+          description: If set to `true`, a full VOD version of the live event will be created after the event is complete. Requires that there is a Video Cloud account associated with the Live account, *and* the `videocloud.video` property is set.
+        mode:
+          type: string
+          description: Expedite clip publishing by leveraging existing live renditions and segment boundaries
+          enum:
+          - instant
+        video:
+          $ref: '#/components/schemas/CreateLiveJobRequestBody.videocloud.video'
+      required:
+      - video
+      title: Create_Live_Job_Request_Body.videocloud
+      type: object
+      description: Video Cloud customers have the option to create a video to use for the live stream. The `videocloud` object in the `job` settings is used for this purpose. If you want to define VOD clips to send to Video Cloud, use the `videocloud` object in `outputs`.
+    RedundantGroupCuePointInsertionResponse:
+      properties:
+        id:
+          type: string
+          description: The redundant group id
+        jobs:
+          type: array
+          items:
+            type: object
+            description: Job details
+            properties:
+              id:
+                type: string
+                description: The Live job id
+              error:
+                type: string
+                description: An error message returned if the cuepoint insertion failed
+              cue_point:
+                type: object
+                description: The cuepoint details
+                properties:
+                  accuracy:
+                    type: string
+                    description: The accuracy of the timing
+                    enum:
+                    - segment
+                    - frame
+                  duration:
+                    type: integer
+                    description: The duration of the break in seconds
+                  id:
+                    type: string
+                    description: Cuepoint id
+      example:
+        id: 3ae7fa89943f4a96aa273fbbf175d527
+        jobs:
+        - id: 3fbbf175d5273ae7fa89943f4a96aa27
+          cue_point:
+            accuracy: segment
+            duration: 30
+            id: 3f273ae4a96aa273ae4a96aafa8994
+        - id: 7fa89943f3fbbf175d5273ae4a96aa27
+          error: error message
+        - id: 3ae4a96aa277fa89943f3fbbf175d527
+          cue_point:
+            accuracy: segment
+            duration: 30
+            id: 3f273ae4a96aa273ae4a96aafa8994
+      title: Redundant Group Cuepoint Insertion Response
+      type: object
+    RedundantGroupCreatePlaybackTokenResponse:
+      properties:
+        playback_token:
+          type: string
+          description: The playback token
+          example: live.6cGp7MDhWW4wXw0FKlTM_kruqzN4QO2eklBJhrXt8tBnSCKyuwwBReptfp91K5bBUdfRALYlnu-QXhb9xGEJYR9UCkmGdfwqJqKhx7gngzIg43L9ByQmEMUc"
+      title: Redundant Group Playback Token Response
+      type: object
+    CreateLiveJobRequestBody.addCdns.tokenAuth:
+      description: 'Token authentication details
+
+
+        **Note: If you don''t have your secret key for Akamai, or need to have a new one, contact your Customer Success Manager or Brightcove Support.**'
+      properties:
+        auth_type:
+          description: Token authentication type - currently, the only supported value is `Akamai2.0`
+          type: string
+        key:
+          description: Your Akamai token auth password
+          type: string
+        media:
+          $ref: '#/components/schemas/CreateLiveJobRequestBody.addCdns.tokenAuth.media'
+        token_name:
+          description: Your Akamai token token name
+          type: string
+      required:
+      - auth_type
+      - key
+      - token_name
+      title: Create_Live_Job_Request_Body.add_cdns.token_auth
+      type: object
     CreateRedundantGroupResponse:
       properties:
         id:
@@ -523,30 +721,94 @@ components:
         outputs:
           playback_url: https://bcovlive-a.akamaihd.net/r91c268a6ec5240d79a6004f4ccf0dc6f/us-west-2/NA/playlist.m3u8
           playback_url_dvr: https://bcovlive-a.akamaihd.net/r91c268a6ec5240d79a6004f4ccf0dc6f/us-west-2/NA/playlist_dvr.m3u8
-    CreateLiveJobRequestBody.videocloud:
+    CreateRedundantGroup:
+      title: Create Redundant Group Request Body
       properties:
-        account_id:
-          description: The Video Cloud Account ID the video for the remote asset live stream should be created in. Only required if the account ID is not the default configured in your Live account. If set, you must also set the `videocloud.credentials` property.
-          type: number
-        credentials:
-          description: Credentials to use for Video Cloud authentication. Only required if you set `videocloud.account_id`.
-          type: string
-        live_to_vod:
+        ad_insertion:
           type: boolean
-          default: false
-          description: If set to `true`, a full VOD version of the live event will be created after the event is complete. Requires that there is a Video Cloud account associated with the Live account, *and* the `videocloud.video` property is set.
-        mode:
+          description: Set to true if this stream should be SSAI enabled
+        add_cdns:
+          description: Array of additional CDN providers to be used for manifest generation. For each CDN provided, the manifest will be prepended accordingly
+          items:
+            $ref: '#/components/schemas/CreateLiveJobRequestBody.addCdns'
+          type: array
+        drm:
+          type: object
+          description: Not yet supported
+        encryption:
+          type: object
+          description: Not yet supported
+        label:
           type: string
-          description: Expedite clip publishing by leveraging existing live renditions and segment boundaries
-          enum:
-          - instant
-        video:
-          $ref: '#/components/schemas/CreateLiveJobRequestBody.videocloud.video'
+          description: A label to identify the group
+        live_dvr_sliding_window_duration:
+          default: 0
+          description: 'The time, in seconds, to keep in the live DVR manifest. If the stream duration is longer than the window duration, segment references will be removed first in first out. **Note: for SSAI jobs, the limit is `7200`. If you do not want to be charged for DVR usage, set this to 0 in the request body.'
+          maximum: 86400000
+          minimum: 0
+          type: integer
+        notifications:
+          description: '''Array of notification destination objects or strings - notifications defined here are for job-level events.  A notification will be sent to the destination when selected event occurs. You can use a simple string with a url: &quot;https://log:pass@httpbin.org/post&quot;, or you can use an object. See [Events](/live-api/guides/live-api-notifications.html#Events) for an explanation of the events reported in `state_changed` notifications. <br> Retry strategy: In the event of a failed request to send a notification, the default retry strategy is to retry 50 times with an exponential delay between attempts: <br> `max_retry_times = 50` <br> `delay_delta_s = 5` <br> `next_retry = now_s + retry_count * delay_delta_s`'''
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/Notification'
+            - type: string
+              description: A URL to send notifications to
+          type: array
+        processing_regions:
+          description: '''Processing regions for the Redundant Group. This will determine which AWS regions will generate the manifests. Recommended this matches storage_regions and the regions the Live Jobs are created in.'''
+          type: string
+          items:
+            type: string
+            properties:
+              region:
+                type: string
+                description: An AWS region
+                enum:
+                - us-west-2
+                - us-east-1
+                - ap-southeast-2
+                - ap-northeast-1
+                - ap-southeast-1
+                - ap-south-1
+                - eu-central-1
+                - eu-west-1
+              probability:
+                type: integer
+                minimum: 0
+                maximum: 1
+                description: not used currently - should be set to 1
+        storage_regions:
+          description: '''Storage regions media chunks and playlists will be uploaded to in S3. Recommended this matches processing_regions and the regions the Live Jobs are created in.'''
+          type: array
+          items:
+            type: string
+            description: An AWS region
+            enum:
+            - us-west-2
+            - us-east-1
+            - ap-southeast-2
+            - ap-northeast-1
+            - ap-southeast-1
+            - ap-south-1
+            - eu-central-1
+            - eu-west-1
+            - ap-northeast-2
+        videocloud:
+          $ref: '#/components/schemas/CreateLiveJobRequestBody.videocloud'
       required:
-      - video
-      title: Create_Live_Job_Request_Body.videocloud
-      type: object
-      description: Video Cloud customers have the option to create a video to use for the live stream. The `videocloud` object in the `job` settings is used for this purpose. If you want to define VOD clips to send to Video Cloud, use the `videocloud` object in `outputs`.
+      - label
+      - processing_regions
+      - storage_regions
+      example:
+        ad_insertion: true
+        processing_regions:
+        - us-west-2
+        storage_regions:
+        - us-west-2
+        - us-east-1
+        label: Test RG
+        live_dvr_sliding_window_duration: 1800
     AddJobsRedundantGroupRequest:
       title: Add Jobs to a Redundant Group Request Body
       description: A set of job ids to add to a redundant group.
@@ -571,206 +833,6 @@ components:
       example:
       - job_id: 0b76bc73f92f46dc917bbe5061c0c633
       - job_id: 0ae5a4a71dc54b3181af0f98ee407c27
-    Notification:
-      properties:
-        credentials:
-          description: Credentials for the destination, if required.
-          type: string
-        event:
-          description: Event type to send notifications for.  It’s recommended to set events on the job and not individual rendition outputs since renditions will finish simultaneously.
-          type: string
-          enum:
-          - state_changed
-          - first_segment_uploaded
-          - output_finished
-          - rtmp_output_state_changed
-        url:
-          description: Destination for the notification.
-          type: string
-      required:
-      - url
-      - event
-      title: notification
-      type: object
-    ForceRedundantStreamFailover:
-      title: Force failover request body
-      type: object
-      properties:
-        mode:
-          type: string
-          enum:
-          - auto
-          - manual
-          default: auto
-          description: 'The mode for failover. `manual` means automatic failover will **not** occur. To resume automatic failover, you must submit another request with `mode: auto`'
-        on_air:
-          type: string
-          description: The id of the job that should be used for streaming. To force failover, this must be a different job than the one that is currently `on_air`
-    CreateLiveJobRequestBody.addCdns:
-      properties:
-        label:
-          description: A label to identify the CDN.
-          type: string
-        prepend:
-          description: CDN hostname to be prepended to addresses
-          type: string
-        protocol:
-          description: Protocol to use for the stream delivery
-          enum:
-          - http
-          - https
-          type: string
-        token_auth:
-          $ref: '#/components/schemas/CreateLiveJobRequestBody.addCdns.tokenAuth'
-        vendor:
-          description: CDN vendor such as akamai
-          type: string
-      required:
-      - label
-      - prepend
-      - protocol
-      title: Create_Live_Job_Request_Body.add_cdns
-      type: object
-    CreateLiveJobRequestBody.videocloud.video.schedule:
-      properties:
-        ends_at:
-          description: end date-time of availability in [ISO-8601](https://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) format
-          type: string
-        starts_at:
-          description: start date-time of availability in [ISO-8601](https://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) format
-          type: string
-      required:
-      - ends_at
-      - starts_at
-      title: Create_Live_Job_Request_Body.videocloud.video.schedule
-      type: object
-      description: map of scheduling properties
-    CreateLiveJobRequestBody.addCdns.tokenAuth:
-      description: 'Token authentication details
-
-
-        **Note: If you don''t have your secret key for Akamai, or need to have a new one, contact your Customer Success Manager or Brightcove Support.**'
-      properties:
-        auth_type:
-          description: Token authentication type - currently, the only supported value is `Akamai2.0`
-          type: string
-        key:
-          description: Your Akamai token auth password
-          type: string
-        media:
-          $ref: '#/components/schemas/CreateLiveJobRequestBody.addCdns.tokenAuth.media'
-        token_name:
-          description: Your Akamai token token name
-          type: string
-      required:
-      - auth_type
-      - key
-      - token_name
-      title: Create_Live_Job_Request_Body.add_cdns.token_auth
-      type: object
-    ManualAdCuePointInsertionbody:
-      properties:
-        ad_server_data:
-          description: a set of any variables (key/value pairs) that should be passed to the adServer
-          type: object
-        cancel:
-          description: When `true`, cuepoint specified by `cuepoint_id` will be canceled. If an ad break is already in progress, a crash-out will occur, returning to the main content.
-          type: boolean
-          default: false
-        cuepoint_id:
-          description: ID to use when creating cuepoint. If `cancel` is `true`, then this field is required and is the ID of cuepoint to cancel.
-          type: string
-        duration:
-          description: An integer value to indicate the length of the ad break in seconds
-          type: number
-        timecode:
-          description: "'When to insert the cuepoint in SMPTE HH:MM:SS:FF format from the stream start (FF = frames); if omitted, the cuepoint will be inserted immediately. Note:\n  1. If you use the timecode property, the job only only stores the most recent request for insertion\n  2. If you use the timecode property, the encoder must be sending SMPTE-formatted (HH:MM:SS:FF) timecode stored in the `tc` property via `OnFI`\n  3. Software encoders such as Wirecast and OBS do not support the sending timecode via `OnFI` packets in the RTMP stream\n  4. Elemental hardware encoders do support the sending timecode via `OnFI` packets in the RTMP stream'"
-          type: string
-          example:
-            ad_server_data:
-              subject: wildlife
-            duration: 30
-            timecode: 09:23:18:05
-      required:
-      - duration
-      title: Manual_Ad_Cue_Point_InsertionBody
-      type: object
-    CreateLiveJobRequestBody.videocloud.video.geo:
-      properties:
-        countries:
-          description: array of ISO 3166 list of [2-letter codes](https://www.iso.org/obp/ui/#home) (search for &quot;country codes&quot;)
-          type: string
-        exclude_countries:
-          description: if true, country array is treated as a list of countries excluded from viewing
-          type: boolean
-        restricted:
-          description: whether geo-restriction is enabled for this video
-          type: boolean
-      required:
-      - countries
-      - exclude_countries
-      - restricted
-      title: Create_Live_Job_Request_Body.videocloud.video.geo
-      type: object
-      description: map of geo-filtering properties
-    RedundantGroupCreatePlaybackTokenResponse:
-      properties:
-        playback_token:
-          type: string
-          description: The playback token
-          example: live.6cGp7MDhWW4wXw0FKlTM_kruqzN4QO2eklBJhrXt8tBnSCKyuwwBReptfp91K5bBUdfRALYlnu-QXhb9xGEJYR9UCkmGdfwqJqKhx7gngzIg43L9ByQmEMUc"
-      title: Redundant Group Playback Token Response
-      type: object
-    RedundantGroupCuePointInsertionResponse:
-      properties:
-        id:
-          type: string
-          description: The redundant group id
-        jobs:
-          type: array
-          items:
-            type: object
-            description: Job details
-            properties:
-              id:
-                type: string
-                description: The Live job id
-              error:
-                type: string
-                description: An error message returned if the cuepoint insertion failed
-              cue_point:
-                type: object
-                description: The cuepoint details
-                properties:
-                  accuracy:
-                    type: string
-                    description: The accuracy of the timing
-                    enum:
-                    - segment
-                    - frame
-                  duration:
-                    type: integer
-                    description: The duration of the break in seconds
-                  id:
-                    type: string
-                    description: Cuepoint id
-      example:
-        id: 3ae7fa89943f4a96aa273fbbf175d527
-        jobs:
-        - id: 3fbbf175d5273ae7fa89943f4a96aa27
-          cue_point:
-            accuracy: segment
-            duration: 30
-            id: 3f273ae4a96aa273ae4a96aafa8994
-        - id: 7fa89943f3fbbf175d5273ae4a96aa27
-          error: error message
-        - id: 3ae4a96aa277fa89943f3fbbf175d527
-          cue_point:
-            accuracy: segment
-            duration: 30
-            id: 3f273ae4a96aa273ae4a96aafa8994
-      title: Redundant Group Cuepoint Insertion Response
-      type: object
     CreateLiveJobRequestBody.videocloud.video:
       properties:
         cue_points:
@@ -923,94 +985,85 @@ components:
           outputs:
             playback_url: https://bcovlive-a.akamaihd.net/r91c268a6ec5240d79a6004f4ccf0dc6f/us-west-2/NA/playlist.m3u8
             playback_url_dvr: https://bcovlive-a.akamaihd.net/r91c268a6ec5240d79a6004f4ccf0dc6f/us-west-2/NA/playlist_dvr.m3u8
-    CreateRedundantGroup:
-      title: Create Redundant Group Request Body
+    CreateLiveJobRequestBody.videocloud.video.cuePoint:
       properties:
-        ad_insertion:
+        force-stop:
+          description: whether video is force-stopped at the cue point
           type: boolean
-          description: Set to true if this stream should be SSAI enabled
-        add_cdns:
-          description: Array of additional CDN providers to be used for manifest generation. For each CDN provided, the manifest will be prepended accordingly
-          items:
-            $ref: '#/components/schemas/CreateLiveJobRequestBody.addCdns'
-          type: array
-        drm:
-          type: object
-          description: Not yet supported
-        encryption:
-          type: object
-          description: Not yet supported
-        label:
+        metadata:
+          description: optional metadata string (512 single-byte characters maximum)
           type: string
-          description: A label to identify the group
-        live_dvr_sliding_window_duration:
-          default: 0
-          description: 'The time, in seconds, to keep in the live DVR manifest. If the stream duration is longer than the window duration, segment references will be removed first in first out. **Note: for SSAI jobs, the limit is `7200`. If you do not want to be charged for DVR usage, set this to 0 in the request body.'
-          maximum: 86400000
-          minimum: 0
-          type: integer
-        notifications:
-          description: '''Array of notification destination objects or strings - notifications defined here are for job-level events.  A notification will be sent to the destination when selected event occurs. You can use a simple string with a url: &quot;https://log:pass@httpbin.org/post&quot;, or you can use an object. See [Events](/live-api/guides/live-api-notifications.html#Events) for an explanation of the events reported in `state_changed` notifications. <br> Retry strategy: In the event of a failed request to send a notification, the default retry strategy is to retry 50 times with an exponential delay between attempts: <br> `max_retry_times = 50` <br> `delay_delta_s = 5` <br> `next_retry = now_s + retry_count * delay_delta_s`'''
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/Notification'
-            - type: string
-              description: A URL to send notifications to
-          type: array
-        processing_regions:
-          description: '''Processing regions for the Redundant Group. This will determine which AWS regions will generate the manifests. Recommended this matches storage_regions and the regions the Live Jobs are created in.'''
+        name:
+          description: cue point name
           type: string
-          items:
-            type: string
-            properties:
-              region:
-                type: string
-                description: An AWS region
-                enum:
-                - us-west-2
-                - us-east-1
-                - ap-southeast-2
-                - ap-northeast-1
-                - ap-southeast-1
-                - ap-south-1
-                - eu-central-1
-                - eu-west-1
-              probability:
-                type: integer
-                minimum: 0
-                maximum: 1
-                description: not used currently - should be set to 1
-        storage_regions:
-          description: '''Storage regions media chunks and playlists will be uploaded to in S3. Recommended this matches processing_regions and the regions the Live Jobs are created in.'''
-          type: array
-          items:
-            type: string
-            description: An AWS region
-            enum:
-            - us-west-2
-            - us-east-1
-            - ap-southeast-2
-            - ap-northeast-1
-            - ap-southeast-1
-            - ap-south-1
-            - eu-central-1
-            - eu-west-1
-            - ap-northeast-2
-        videocloud:
-          $ref: '#/components/schemas/CreateLiveJobRequestBody.videocloud'
+        time:
+          description: 'time of the cue point in seconds; example: 10.527'
+          type: number
+        type:
+          description: cue point type
+          enum:
+          - AD
+          - CODE
+          example: AD
+          type: string
       required:
-      - label
-      - processing_regions
-      - storage_regions
-      example:
-        ad_insertion: true
-        processing_regions:
-        - us-west-2
-        storage_regions:
-        - us-west-2
-        - us-east-1
-        label: Test RG
-        live_dvr_sliding_window_duration: 1800
+      - time
+      - type
+      title: Create_Live_Job_Request_Body.videocloud.video.cue_point
+      type: object
+    CreateLiveJobRequestBody.videocloud.video.geo:
+      properties:
+        countries:
+          description: array of ISO 3166 list of [2-letter codes](https://www.iso.org/obp/ui/#home) (search for &quot;country codes&quot;)
+          type: string
+        exclude_countries:
+          description: if true, country array is treated as a list of countries excluded from viewing
+          type: boolean
+        restricted:
+          description: whether geo-restriction is enabled for this video
+          type: boolean
+      required:
+      - countries
+      - exclude_countries
+      - restricted
+      title: Create_Live_Job_Request_Body.videocloud.video.geo
+      type: object
+      description: map of geo-filtering properties
+    Notification:
+      properties:
+        credentials:
+          description: Credentials for the destination, if required.
+          type: string
+        event:
+          description: Event type to send notifications for.  It’s recommended to set events on the job and not individual rendition outputs since renditions will finish simultaneously.
+          type: string
+          enum:
+          - state_changed
+          - first_segment_uploaded
+          - output_finished
+          - rtmp_output_state_changed
+        url:
+          description: Destination for the notification.
+          type: string
+      required:
+      - url
+      - event
+      title: notification
+      type: object
+    CreateLiveJobRequestBody.videocloud.video.schedule:
+      properties:
+        ends_at:
+          description: end date-time of availability in [ISO-8601](https://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) format
+          type: string
+        starts_at:
+          description: start date-time of availability in [ISO-8601](https://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) format
+          type: string
+      required:
+      - ends_at
+      - starts_at
+      title: Create_Live_Job_Request_Body.videocloud.video.schedule
+      type: object
+      description: map of scheduling properties
     GetStatusRedundantGroupResponse:
       title: Get Redundant Group Status Response
       type: object
@@ -1163,82 +1216,54 @@ components:
               playback_url_dvr: https://playback-qa.a-live.io/r481ff4cf0bf74956bc2ec6e126588080/us-west-2/NA/26f8470f61374e608e27af9c1b3f7ff0/playlist_dvr_ssaiM.m3u8
               description: House Ads - 864b84f712ae40bca1510a8052b34312
               type: ads
-    CreateLiveJobRequestBody.videocloud.video.cuePoint:
-      properties:
-        force-stop:
-          description: whether video is force-stopped at the cue point
-          type: boolean
-        metadata:
-          description: optional metadata string (512 single-byte characters maximum)
-          type: string
-        name:
-          description: cue point name
-          type: string
-        time:
-          description: 'time of the cue point in seconds; example: 10.527'
-          type: number
-        type:
-          description: cue point type
-          enum:
-          - AD
-          - CODE
-          example: AD
-          type: string
-      required:
-      - time
-      - type
-      title: Create_Live_Job_Request_Body.videocloud.video.cue_point
-      type: object
-    CreateLiveJobRequestBody.addCdns.tokenAuth.media:
-      description: Object containing tokenization properties
-      properties:
-        end_time:
-          description: The time to end token auth, epoch time in seconds
-          format: int32
-          type: integer
-        start_time:
-          default: now
-          description: The time to apply token auth - &quot;now&quot; or epoch time in seconds
-          format: int32
-          oneOf:
-          - type: integer
-          - enum:
-            - now
-            type: string
-        ttl:
-          description: The time to live in seconds - either `end_time` or `ttl` is required
-          format: int32
-          type: integer
-      title: Create_Live_Job_Request_Body.add_cdns.token_auth.media
-      type: object
   parameters:
-    sort:
-      name: sort
-      in: query
-      description: Attribute to sort jobs by (`created_at` | `modified_at`, default is `created_at`)
-      style: form
-      explode: true
-      schema:
-        type: string
-        enum:
-        - created_at
-        - modified_at
-        default: created_at
-    JobId:
-      name: job_id
-      in: path
-      description: Live job ID
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
     start_token:
       name: start_token
       in: query
       description: Next token from previous page; do not specify when fetching first page
       style: form
       explode: true
+      schema:
+        type: string
+    ContentType:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        default: application/json
+      example: application/json
+    sort_dir:
+      name: sort_dir
+      in: query
+      description: Sort direction (default is asc):`asc` - ascending; `desc` - descending
+      style: form
+      explode: true
+      schema:
+        type: string
+        enum:
+        - asc
+        - desc
+        default: asc
+    redundant_group_id:
+      name: redundant_group_id
+      in: path
+      description: Redundant group ID
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    XAPIKEY:
+      name: X-API-KEY
+      in: header
+      description: 'X-API-KEY: {Your_Live_API_Key}'
+      required: true
+      style: simple
+      explode: false
       schema:
         type: string
     page_size:
@@ -1252,77 +1277,6 @@ components:
         minimum: 1
         maximum: 1000
         default: 10
-    redundant_group_id:
-      name: redundant_group_id
-      in: path
-      description: Redundant group ID
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    account_id:
-      name: account_id
-      in: query
-      description: Filter results by particular account, or specify ‘*’ to search all accounts.  Default value is account API key belongs to
-      style: form
-      explode: true
-      schema:
-        type: string
-    XAPIKEY:
-      name: X-API-KEY
-      in: header
-      description: 'X-API-KEY: {Your_Live_API_Key}'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    sort_dir:
-      name: sort_dir
-      in: query
-      description: Sort direction (default is asc):`asc` - ascending; `desc` - descending
-      style: form
-      explode: true
-      schema:
-        type: string
-        enum:
-        - asc
-        - desc
-        default: asc
-    ContentType:
-      name: Content-Type
-      in: header
-      description: 'Content-Type: application/json'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        default: application/json
-      example: application/json
-    user_id:
-      name: user_id
-      in: query
-      description: Filter results by one or more user IDs
-      style: form
-      explode: true
-      schema:
-        oneOf:
-        - type: string
-          description: User id
-        - type: array
-          items:
-            type: string
-            description: User id
-    force:
-      name: force
-      in: query
-      description: "The `force` parameter serves different purposes for different requests: \n1. For [force failover requests](#operation/ForceRedundantStreamFailover): force failover for a redundant stream without going to manual mode\n2. For [remove job from redundant group requests](#operation/RemoveJobRedundantGroup): force removal of on-air job\n3. For [delete redundant group requests](#operation/DeleteRedundantGroup): force delete redundant group in processing state\n\nNote that `force` is a string, not a boolean. The value must be `true`, not `1`."
-      style: form
-      explode: true
-      schema:
-        type: string
     RedundantGroupState:
       name: state
       in: query
@@ -1343,16 +1297,54 @@ components:
         - processing
         - standby
         - waiting
-  securitySchemes:
-    BC_OAuth2:
-      type: oauth2
-      description: Brightcove OAuth API. See the [support documentation](/oauth/index.html) or [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html) to learn more
-      flows:
-        clientCredentials:
-          tokenUrl: https://oauth.brightcove.com/v4/access_token
-          scopes:
-            video-cloud/analytics/read: Read analytics data
-            video-cloud/video/read: Read video data
-x-bc-implicit-head: true
-x-bc-implicit-options: true
-x-bc-upstream: https://backend_server
+    account_id:
+      name: account_id
+      in: query
+      description: Filter results by particular account, or specify ‘*’ to search all accounts.  Default value is account API key belongs to
+      style: form
+      explode: true
+      schema:
+        type: string
+    user_id:
+      name: user_id
+      in: query
+      description: Filter results by one or more user IDs
+      style: form
+      explode: true
+      schema:
+        oneOf:
+        - type: string
+          description: User id
+        - type: array
+          items:
+            type: string
+            description: User id
+    JobId:
+      name: job_id
+      in: path
+      description: Live job ID
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    force:
+      name: force
+      in: query
+      description: "The `force` parameter serves different purposes for different requests: \n1. For [force failover requests](#operation/ForceRedundantStreamFailover): force failover for a redundant stream without going to manual mode\n2. For [remove job from redundant group requests](#operation/RemoveJobRedundantGroup): force removal of on-air job\n3. For [delete redundant group requests](#operation/DeleteRedundantGroup): force delete redundant group in processing state\n\nNote that `force` is a string, not a boolean. The value must be `true`, not `1`."
+      style: form
+      explode: true
+      schema:
+        type: string
+    sort:
+      name: sort
+      in: query
+      description: Attribute to sort jobs by (`created_at` | `modified_at`, default is `created_at`)
+      style: form
+      explode: true
+      schema:
+        type: string
+        enum:
+        - created_at
+        - modified_at
+        default: created_at

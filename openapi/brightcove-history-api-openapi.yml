@@ -1,11 +1,17 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Brightcove Analytics API Reference Access Tokens History API
-  description: "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com"
-  x-bc-access: public
+  description: 'API for Brightcove Social
+
+
+    For additional in-depth guides to features of the API, see the **[Overview](/social/getting-started/overview-social-api.html)**.
+
+
+    **Base URL:** https://edge.social.api.brightcove.com/v1'
   version: 1.0.0
+  title: Brightcove Social History API
+  x-bc-access: public
 servers:
-- url: https://analytics.api.brightcove.com
+- url: https://social.api.brightcove.com/v1
   variables: {}
 tags:
 - name: History
@@ -244,6 +250,61 @@ components:
           - SUCCESS
           - ERROR
   parameters:
+    PageSize:
+      name: page_size
+      in: query
+      description: The number of entries to fetch in the next page of data.  Must be a number between 1 and 100, inclusive.  Defaults to 20.
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 100
+    VideoId:
+      name: video_id
+      in: path
+      description: ID of the video to query video statuses for
+      required: true
+      schema:
+        type: string
+    PrettyPrint:
+      name: pretty_print
+      in: query
+      description: Whether or not to pretty-print the JSON response.  Defaults to false.
+      required: false
+      schema:
+        type: boolean
+    Status:
+      name: status
+      in: query
+      description: "Limit the list of videos to those with a specific status.  Valid values for this property are\n  - DELETED\n  - ERROR\n  - HIDDEN\n  - PROCESSING\n  - PUBLISHED\n  - SCHEDULED\n  - SYNCED\n  - ABANDONED"
+      schema:
+        type: string
+    Before:
+      name: before
+      in: query
+      description: Limit the list of videos to those whose last status change occurred before the specified date time.  Can accept either a full timestamp, or just a datestamp.  If passed just a datestamp, assumes 00:00:00 for the time, and the filter will be exclusive of the date specified.
+      required: false
+      schema:
+        type: string
+        format: date-time
+    DestinationId:
+      name: destination_id
+      in: query
+      description: 'Limit the list of videos to a single Social destination, by it''s ID. Note that this may conflict with `platform`, above. (e.g., Specifying `platform=YOUTUBE` and passing the ID of a Twitter destination will result in no statuses.)  Generally if you are passing a `destination_id` you probably don''t want to be passing a `platform` as well, as destinations imply a platform.
+
+        '
+      required: false
+      schema:
+        type: string
+        format: uuid
+    AccountId:
+      name: account_id
+      in: path
+      description: ID of the account to query video statuses for
+      required: true
+      schema:
+        type: string
     Platform:
       name: platform
       in: query
@@ -264,20 +325,6 @@ components:
         - YOUTUBE
         - FACEBOOK
         - TWITTER
-    VideoId:
-      name: video_id
-      in: path
-      description: ID of the video to query video statuses for
-      required: true
-      schema:
-        type: string
-    AccountId:
-      name: account_id
-      in: path
-      description: ID of the account to query video statuses for
-      required: true
-      schema:
-        type: string
     PageKey:
       name: page_key
       in: query
@@ -285,47 +332,6 @@ components:
       required: false
       schema:
         type: string
-    PrettyPrint:
-      name: pretty_print
-      in: query
-      description: Whether or not to pretty-print the JSON response.  Defaults to false.
-      required: false
-      schema:
-        type: boolean
-    Before:
-      name: before
-      in: query
-      description: Limit the list of videos to those whose last status change occurred before the specified date time.  Can accept either a full timestamp, or just a datestamp.  If passed just a datestamp, assumes 00:00:00 for the time, and the filter will be exclusive of the date specified.
-      required: false
-      schema:
-        type: string
-        format: date-time
-    PageSize:
-      name: page_size
-      in: query
-      description: The number of entries to fetch in the next page of data.  Must be a number between 1 and 100, inclusive.  Defaults to 20.
-      required: false
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-        maximum: 100
-    Status:
-      name: status
-      in: query
-      description: "Limit the list of videos to those with a specific status.  Valid values for this property are\n  - DELETED\n  - ERROR\n  - HIDDEN\n  - PROCESSING\n  - PUBLISHED\n  - SCHEDULED\n  - SYNCED\n  - ABANDONED"
-      schema:
-        type: string
-    DestinationId:
-      name: destination_id
-      in: query
-      description: 'Limit the list of videos to a single Social destination, by it''s ID. Note that this may conflict with `platform`, above. (e.g., Specifying `platform=YOUTUBE` and passing the ID of a Twitter destination will result in no statuses.)  Generally if you are passing a `destination_id` you probably don''t want to be passing a `platform` as well, as destinations imply a platform.
-
-        '
-      required: false
-      schema:
-        type: string
-        format: uuid
     Since:
       name: since
       in: query
@@ -337,13 +343,12 @@ components:
   securitySchemes:
     BC_OAuth2:
       type: oauth2
-      description: Brightcove OAuth API. See the [support documentation](/oauth/index.html) or [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html) to learn more
+      description: Brightcove OAuth API. See the [support documentation](https://apis.support.brightcove.com/oauth/) or [Getting Access Tokens](https://apis.support.brightcove.com/oauth/guides/getting-access-tokens.html) to learn more
       flows:
         clientCredentials:
           tokenUrl: https://oauth.brightcove.com/v4/access_token
           scopes:
-            video-cloud/analytics/read: Read analytics data
-            video-cloud/video/read: Read video data
+            video-cloud/social/status/read: Read social sharing status and history
 x-bc-implicit-head: true
 x-bc-implicit-options: true
 x-bc-upstream: https://backend_server

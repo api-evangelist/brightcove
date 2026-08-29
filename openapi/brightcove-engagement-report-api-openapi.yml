@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Brightcove Analytics API Reference Access Tokens Engagement Report API
+  title: Brightcove Analytics API Reference Engagement Report API
   description: "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com"
   x-bc-access: public
   version: 1.0.0
@@ -141,10 +141,28 @@ paths:
         IsMultiContentStreaming: false
 components:
   parameters:
-    account_id:
-      name: account_id
+    Accept-Encoding:
+      name: Accept-Encoding
+      in: header
+      description: 'Accept-Encoding: gzip (optional)'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    video_id:
+      name: video_id
       in: path
-      description: a Video Cloud account ID
+      description: a Video Cloud video ID
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    Content-Type:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
       required: true
       style: simple
       explode: false
@@ -168,34 +186,130 @@ components:
       explode: false
       schema:
         type: string
-    Content-Type:
-      name: Content-Type
-      in: header
-      description: 'Content-Type: application/json'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    video_id:
-      name: video_id
+    account_id:
+      name: account_id
       in: path
-      description: a Video Cloud video ID
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    Accept-Encoding:
-      name: Accept-Encoding
-      in: header
-      description: 'Accept-Encoding: gzip (optional)'
+      description: a Video Cloud account ID
       required: true
       style: simple
       explode: false
       schema:
         type: string
   schemas:
+    Get_Video_Engagement_Response:
+      title: Get Video Engagement Response
+      required:
+      - video_duration
+      type: object
+      properties:
+        video_duration:
+          type: string
+          description: the video duration in seconds
+      example:
+        timeline:
+          type: percentile
+          values:
+          - 1063
+          - 1063
+          - 1063
+          - 1063
+          - 1063
+          - 1063
+          - 1063
+          - 1063
+          - 1034.94
+          - 1021
+          - 1021
+          - 1021
+          - 1021
+          - 1021
+          - 1021
+          - 1021
+          - 1010.08
+          - 988
+          - 988
+          - 988
+          - 988
+          - 988
+          - 988
+          - 988
+          - 988
+          - 962
+          - 962
+          - 962
+          - 962
+          - 962
+          - 962
+          - 962
+          - 962
+          - 953.97
+          - 950
+          - 950
+          - 950
+          - 950
+          - 950
+          - 950
+          - 950
+          - 944.38
+          - 933
+          - 933
+          - 933
+          - 933
+          - 933
+          - 933
+          - 933
+          - 933
+          - 922
+          - 922
+          - 922
+          - 922
+          - 922
+          - 922
+          - 922
+          - 922
+          - 913.3
+          - 909
+          - 909
+          - 909
+          - 909
+          - 909
+          - 909
+          - 909
+          - 906.03
+          - 900
+          - 900
+          - 900
+          - 900
+          - 900
+          - 900
+          - 900
+          - 900
+          - 875
+          - 875
+          - 875
+          - 875
+          - 875
+          - 875
+          - 875
+          - 875
+          - 837.6
+          - 819
+          - 819
+          - 819
+          - 819
+          - 819
+          - 819
+          - 819
+          - 818.67
+          - 818
+          - 818.67
+          - 819
+          - 819
+          - 819
+          - 819
+          - 819
+          - 819
+        video_duration: '12'
     Timeline:
       title: Timeline
       required:
@@ -315,120 +429,6 @@ components:
           - 21201.2
           - 21202.08
           - 21203
-    Get_Video_Engagement_Response:
-      title: Get Video Engagement Response
-      required:
-      - video_duration
-      type: object
-      properties:
-        video_duration:
-          type: string
-          description: the video duration in seconds
-      example:
-        timeline:
-          type: percentile
-          values:
-          - 1063
-          - 1063
-          - 1063
-          - 1063
-          - 1063
-          - 1063
-          - 1063
-          - 1063
-          - 1034.94
-          - 1021
-          - 1021
-          - 1021
-          - 1021
-          - 1021
-          - 1021
-          - 1021
-          - 1010.08
-          - 988
-          - 988
-          - 988
-          - 988
-          - 988
-          - 988
-          - 988
-          - 988
-          - 962
-          - 962
-          - 962
-          - 962
-          - 962
-          - 962
-          - 962
-          - 962
-          - 953.97
-          - 950
-          - 950
-          - 950
-          - 950
-          - 950
-          - 950
-          - 950
-          - 944.38
-          - 933
-          - 933
-          - 933
-          - 933
-          - 933
-          - 933
-          - 933
-          - 933
-          - 922
-          - 922
-          - 922
-          - 922
-          - 922
-          - 922
-          - 922
-          - 922
-          - 913.3
-          - 909
-          - 909
-          - 909
-          - 909
-          - 909
-          - 909
-          - 909
-          - 906.03
-          - 900
-          - 900
-          - 900
-          - 900
-          - 900
-          - 900
-          - 900
-          - 900
-          - 875
-          - 875
-          - 875
-          - 875
-          - 875
-          - 875
-          - 875
-          - 875
-          - 837.6
-          - 819
-          - 819
-          - 819
-          - 819
-          - 819
-          - 819
-          - 819
-          - 818.67
-          - 818
-          - 818.67
-          - 819
-          - 819
-          - 819
-          - 819
-          - 819
-          - 819
-        video_duration: '12'
   securitySchemes:
     BC_OAuth2:
       type: oauth2

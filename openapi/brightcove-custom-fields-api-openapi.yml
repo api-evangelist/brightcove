@@ -1,11 +1,17 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Brightcove Analytics API Reference Access Tokens Custom Fields API
-  description: "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com"
-  x-bc-access: public
+  title: Brightcove CMS API Reference Custom Fields API
+  description: 'Reference for the Brightcove CMS API, used to access and manage your media library. To test API requests, you can use our [API Testing Tools](/getting-started/concepts-testing-tools-brightcove-apis.html). For permissions needed for OAuth credentials, see [API Operations](/oauth/guides/api-operations-client-credentials-requests.html). For information on authenticating API requests, see the [OAuth Overview](/oauth/getting-started/overview-oauth-api-v4.html).
+
+
+    For additional in-depth guides to features of the API, see the **[general documentation](/cms/index.html)**.
+
+
+    **Base URL**: https://cms.api.brightcove.com'
   version: 1.0.0
+  x-bc-access: public
 servers:
-- url: https://analytics.api.brightcove.com
+- url: https://cms.api.brightcove.com
   variables: {}
 tags:
 - name: Custom Fields
@@ -269,6 +275,35 @@ paths:
         IsMultiContentStreaming: false
 components:
   schemas:
+    customField:
+      properties:
+        description:
+          description: description (instruction for user)
+          type: string
+        display_name:
+          description: display name
+          type: string
+        enum_values:
+          description: 'Array of string values for select type fields (by default the maximum is 100 values; this can be increased up to 1000 by submitting a [request to Support](https://supportportal.brightcove.com/)).
+
+
+            This field is **required** for `enum` types, and **not allowed** for `string` types.'
+          items:
+            type: string
+            maxLength: 100
+          type: array
+        id:
+          description: "Data name for the field (used to access it in searches, etc.)\n\nNote the following **requirements** for the custom field `id`:\n  - all lowercase\n  - no spaces (use underscore [_] instead)\n  - max length: 128 single-byte characters\n  - must be unique among all custom fields for the account\n  - must not be one of the [Reserved names](https://studio.support.brightcove.com/admin/creating-custom-metadata-fields.html#reserved)\n\n  Note that updating it will trigger an internal process to update the `id` in any videos that have the custom field."
+          type: string
+        required:
+          description: whether field must have a value before video can be active
+          type: boolean
+          default: false
+        type:
+          description: custom field type (enum or string)
+          type: string
+      title: custom_field
+      type: object
     VideoFields:
       example:
         custom_fields:
@@ -370,41 +405,6 @@ components:
           type: array
       title: VideoFields
       type: object
-    CustomFields:
-      description: array of standard field maps
-      items:
-        $ref: '#/components/schemas/customField'
-      type: array
-    customFieldUpdate:
-      properties:
-        description:
-          description: description (instruction for user)
-          type: string
-        display_name:
-          description: display name
-          type: string
-        enum_values:
-          description: 'Array of string values for select type fields (by default the maximum is 100 values; this can be increased up to 1000 by submitting a [request to Support](https://supportportal.brightcove.com/)).
-
-
-            This field is **required** for `enum` types, and **not allowed** for `string` types.'
-          items:
-            type: string
-            maxLength: 100
-          type: array
-        id:
-          description: "Data name for the field (used to access it in searches, etc.)\n\nNote the following **requirements** for the custom field `id`:\n  - all lowercase\n  - no spaces (use underscore [_] instead)\n  - max length: 128 single-byte characters\n  - must be unique among all custom fields for the account\n  - must not be one of the [Reserved names](https://studio.support.brightcove.com/admin/creating-custom-metadata-fields.html#reserved)\n\n  Note that updating the `id` will trigger an internal process to update the `id` in any videos that have the custom field."
-          type: string
-        required:
-          description: whether field must have a value before video can be active
-          type: boolean
-          default: false
-        type:
-          description: custom field type (enum or string)
-          type: string
-          readOnly: true
-      title: custom_field
-      type: object
     Videofields.standardField:
       properties:
         description:
@@ -444,7 +444,12 @@ components:
           readOnly: true
       title: VideoFields.custom_field
       type: object
-    customField:
+    CustomFields:
+      description: array of standard field maps
+      items:
+        $ref: '#/components/schemas/customField'
+      type: array
+    customFieldUpdate:
       properties:
         description:
           description: description (instruction for user)
@@ -462,7 +467,7 @@ components:
             maxLength: 100
           type: array
         id:
-          description: "Data name for the field (used to access it in searches, etc.)\n\nNote the following **requirements** for the custom field `id`:\n  - all lowercase\n  - no spaces (use underscore [_] instead)\n  - max length: 128 single-byte characters\n  - must be unique among all custom fields for the account\n  - must not be one of the [Reserved names](https://studio.support.brightcove.com/admin/creating-custom-metadata-fields.html#reserved)\n\n  Note that updating it will trigger an internal process to update the `id` in any videos that have the custom field."
+          description: "Data name for the field (used to access it in searches, etc.)\n\nNote the following **requirements** for the custom field `id`:\n  - all lowercase\n  - no spaces (use underscore [_] instead)\n  - max length: 128 single-byte characters\n  - must be unique among all custom fields for the account\n  - must not be one of the [Reserved names](https://studio.support.brightcove.com/admin/creating-custom-metadata-fields.html#reserved)\n\n  Note that updating the `id` will trigger an internal process to update the `id` in any videos that have the custom field."
           type: string
         required:
           description: whether field must have a value before video can be active
@@ -471,27 +476,10 @@ components:
         type:
           description: custom field type (enum or string)
           type: string
+          readOnly: true
       title: custom_field
       type: object
   parameters:
-    AccountId:
-      description: Video Cloud account ID.
-      explode: false
-      in: path
-      name: account_id
-      required: true
-      schema:
-        type: string
-      style: simple
-    Authorization:
-      description: 'Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)'
-      explode: false
-      in: header
-      name: Authorization
-      required: true
-      schema:
-        type: string
-      style: simple
     custom_field_id:
       description: Custom Field ID.
       explode: false
@@ -512,6 +500,24 @@ components:
         default: application/json
         type: string
       style: simple
+    AccountId:
+      description: Video Cloud account ID.
+      explode: false
+      in: path
+      name: account_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    Authorization:
+      description: 'Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)'
+      explode: false
+      in: header
+      name: Authorization
+      required: true
+      schema:
+        type: string
+      style: simple
   securitySchemes:
     BC_OAuth2:
       type: oauth2
@@ -520,8 +526,24 @@ components:
         clientCredentials:
           tokenUrl: https://oauth.brightcove.com/v4/access_token
           scopes:
-            video-cloud/analytics/read: Read analytics data
-            video-cloud/video/read: Read video data
+            video-cloud/video/read: Video Read
+            video-cloud/video/create: Video Create
+            video-cloud/video/update: Video Update
+            video-cloud/video/delete: Video Delete
+            video-cloud/video/all: Video ALL
+            video-cloud/asset/delete: Digital Master Delete
+            video-cloud/playlist/read: Playlist Read
+            video-cloud/playlist/create: Playlist Create
+            video-cloud/playlist/update: Playlist Update
+            video-cloud/playlist/delete: Playlist Delete
+            video-cloud/playlist/all: Playlist All
+            video-cloud/sharing-relationships/read: Sharing Relationships Read
+            video-cloud/sharing-relationships/create: Sharing Relationships Create
+            video-cloud/sharing-relationships/update: Sharing Relationships Update
+            video-cloud/sharing-relationships/delete: Sharing Relationships Delete
+            video-cloud/sharing-relationships/all: Sharing Relationships All
+            video-cloud/notifications/all: Notifications All
+            video-cloud/video/clear-sources: Read clear sources
 x-bc-implicit-head: true
 x-bc-implicit-options: true
 x-bc-upstream: https://backend_server

@@ -1,11 +1,11 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Brightcove Analytics API Reference Access Tokens View Events API
-  description: "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com"
-  x-bc-access: public
+  title: Audience API Reference View Events API
+  description: "Reference for the Brightcove Audience API, used to retrieve audience data for your accounts. To test API requests, you can use our [API Testing Tools](https://apis.support.brightcove.com/getting-started/concepts-testing-tools-brightcove-apis.html).\n\nFor additional in-depth guides to features of the API, see the **[Overview](/audience/getting-started/overview-audience-api.html)**.\n\n **Base URL**: https://audience.api.brightcove.com/v1"
   version: 1.0.0
+  x-bc-access: public
 servers:
-- url: https://analytics.api.brightcove.com
+- url: https://audience.api.brightcove.com/v1
   variables: {}
 tags:
 - name: View Events
@@ -59,6 +59,45 @@ paths:
         IsMultiContentStreaming: false
 components:
   schemas:
+    Get_View_Events_Response:
+      title: Get View Events Response
+      type: object
+      properties:
+        count:
+          type: number
+          description: the total number of items
+        limit:
+          type: number
+          description: the limit for items in this request
+        offset:
+          type: number
+          description: the offset for items in this request
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventResult'
+          description: array of result items
+      example:
+        count: 27
+        limit: 25
+        offset: 0
+        result:
+        - created_at: '2016-04-25T18:30:21.651Z'
+          page_url: https://players.brightcove.net/1486906377/V1s6NOwRx_default/index.html?videoId=4842718056001
+          player_id: V1s6NOwRx
+          time_watched: 2
+          updated_at: '2016-04-25T18:30:21.651Z'
+          video_id: '4842718056001'
+          video_name: Horses Heading to the Track
+          watched: 19
+        - created_at: '2016-04-25T18:31:55.071Z'
+          page_url: https://players.brightcove.net/1486906377/BkgFuzyhg_default/index.html?videoId=4842718056001
+          player_id: BkgFuzyhg
+          time_watched: 15
+          updated_at: '2016-04-25T18:32:00.879Z'
+          video_id: '4842718056001'
+          video_name: Horses Heading to the Track
+          watched: 99
     EventResult:
       title: Event Result
       description: Result object for an event. Note that in addition to the fields shown here, there may be custom slot events and metrics as well as UTM fields
@@ -160,45 +199,6 @@ components:
         description: UTM field found in the page_url
       - name: utm_content
         description: UTM field found in the page_url
-    Get_View_Events_Response:
-      title: Get View Events Response
-      type: object
-      properties:
-        count:
-          type: number
-          description: the total number of items
-        limit:
-          type: number
-          description: the limit for items in this request
-        offset:
-          type: number
-          description: the offset for items in this request
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventResult'
-          description: array of result items
-      example:
-        count: 27
-        limit: 25
-        offset: 0
-        result:
-        - created_at: '2016-04-25T18:30:21.651Z'
-          page_url: https://players.brightcove.net/1486906377/V1s6NOwRx_default/index.html?videoId=4842718056001
-          player_id: V1s6NOwRx
-          time_watched: 2
-          updated_at: '2016-04-25T18:30:21.651Z'
-          video_id: '4842718056001'
-          video_name: Horses Heading to the Track
-          watched: 19
-        - created_at: '2016-04-25T18:31:55.071Z'
-          page_url: https://players.brightcove.net/1486906377/BkgFuzyhg_default/index.html?videoId=4842718056001
-          player_id: BkgFuzyhg
-          time_watched: 15
-          updated_at: '2016-04-25T18:32:00.879Z'
-          video_id: '4842718056001'
-          video_name: Horses Heading to the Track
-          watched: 99
     Fields:
       title: fields
       description: See [Fields for filtering and selection](/develop/overview-audience-api.html#Retrieving_view_events) for more information
@@ -255,61 +255,6 @@ components:
       - name: utm_content
         description: UTM field found in the page_url
   parameters:
-    fields:
-      name: fields
-      in: query
-      description: 'Fields to return for view events
-
-
-        **Note:** by default, all fields are returned. Use this parameter to return fewer fields.'
-      style: form
-      explode: true
-      schema:
-        $ref: '#/components/schemas/Fields'
-    account_id:
-      name: account_id
-      in: path
-      description: a Video Cloud account ID
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: number
-    to:
-      name: to
-      in: query
-      description: End time for the period covered by the report — epoch time in milliseconds or a date in the format `yyyy-mm-dd` (such as `2013-09-26`) or a relative date in `d` (days), `h` (hours), `m` (minutes), `s` (seconds) (such as `-2d` or `-6h`)
-      style: form
-      explode: true
-      schema:
-        oneOf:
-        - type: string
-        - type: integer
-    Authorization:
-      name: Authorization
-      in: header
-      description: 'Authorization: Bearer access_token (see Getting Access Tokens)'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    where:
-      name: where
-      in: query
-      description: One or more field==value pairs to filter the results; fields supported are `video_id`, `video_name`, `tracking_id`, `external_id`, `player_id`, `page_url`, `watched`, `time_watched`, `created_at`, `updated_at`, `is_synced`
-      style: form
-      explode: true
-      schema:
-        type: string
-    sort:
-      name: sort
-      in: query
-      description: Field to sort results by (prefix with `-` for descending order)
-      style: form
-      explode: true
-      schema:
-        $ref: '#/components/schemas/Sort'
     from:
       name: from
       in: query
@@ -320,6 +265,14 @@ components:
         oneOf:
         - type: string
         - type: integer
+    where:
+      name: where
+      in: query
+      description: One or more field==value pairs to filter the results; fields supported are `video_id`, `video_name`, `tracking_id`, `external_id`, `player_id`, `page_url`, `watched`, `time_watched`, `created_at`, `updated_at`, `is_synced`
+      style: form
+      explode: true
+      schema:
+        type: string
     Content-Type:
       name: Content-Type
       in: header
@@ -340,6 +293,44 @@ components:
         format: int32
         default: 0
         example: 0
+    to:
+      name: to
+      in: query
+      description: End time for the period covered by the report — epoch time in milliseconds or a date in the format `yyyy-mm-dd` (such as `2013-09-26`) or a relative date in `d` (days), `h` (hours), `m` (minutes), `s` (seconds) (such as `-2d` or `-6h`)
+      style: form
+      explode: true
+      schema:
+        oneOf:
+        - type: string
+        - type: integer
+    sort:
+      name: sort
+      in: query
+      description: Field to sort results by (prefix with `-` for descending order)
+      style: form
+      explode: true
+      schema:
+        $ref: '#/components/schemas/Sort'
+    Authorization:
+      name: Authorization
+      in: header
+      description: 'Authorization: Bearer access_token (see Getting Access Tokens)'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    fields:
+      name: fields
+      in: query
+      description: 'Fields to return for view events
+
+
+        **Note:** by default, all fields are returned. Use this parameter to return fewer fields.'
+      style: form
+      explode: true
+      schema:
+        $ref: '#/components/schemas/Fields'
     limit:
       name: limit
       in: query
@@ -353,16 +344,25 @@ components:
         example: 25
         minimum: 1
         maximum: 200
+    account_id:
+      name: account_id
+      in: path
+      description: a Video Cloud account ID
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: number
   securitySchemes:
     BC_OAuth2:
       type: oauth2
-      description: Brightcove OAuth API. See the [support documentation](/oauth/index.html) or [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html) to learn more
+      description: Brightcove OAuth API. See the [support documentation](https://apis.support.brightcove.com/oauth/) or [Getting Access Tokens](https://apis.support.brightcove.com/oauth/guides/getting-access-tokens.html) to learn more
       flows:
         clientCredentials:
           tokenUrl: https://oauth.brightcove.com/v4/access_token
           scopes:
-            video-cloud/analytics/read: Read analytics data
-            video-cloud/video/read: Read video data
+            video-cloud/audience/read: Read Leads and Events data
+            video-cloud/audience/write: Write Leads and Events data
 x-bc-implicit-head: true
 x-bc-implicit-options: true
 x-bc-upstream: https://backend_server

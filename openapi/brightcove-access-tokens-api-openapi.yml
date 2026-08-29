@@ -1,11 +1,16 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Brightcove Analytics API Reference Access Tokens API
-  description: "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com"
-  x-bc-access: public
-  version: 1.0.0
+  title: OAuth API Reference Access Tokens API
+  description: 'Reference for the Brightcove OAuth API, used to get client credentials and access tokens for the other APIs.
+
+
+    For additional in-depth guides to features of the API, see the **[general documentation](/oauth/index.html)**.
+
+
+    **Base URL**: https://oauth.brightcove.com/v4'
+  version: 4.0.0
 servers:
-- url: https://analytics.api.brightcove.com
+- url: https://oauth.brightcove.com/v4
   variables: {}
 tags:
 - name: Access Tokens
@@ -42,15 +47,6 @@ paths:
         IsMultiContentStreaming: false
 components:
   parameters:
-    Token_Content-Type:
-      name: Content-Type
-      in: header
-      description: 'Content-Type: application/x-www-form-urlencoded'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
     Token_Authorization:
       name: Authorization
       in: header
@@ -72,6 +68,15 @@ components:
         enum:
         - client_credentials
       example: client_credentials
+    Token_Content-Type:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/x-www-form-urlencoded'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
   schemas:
     CreateAccessTokenResponse:
       title: Create Access Token Response
@@ -94,16 +99,3 @@ components:
         access_token: AC_MwVlYMlOUOylkREbsUpgzajEkMqHNEAC-QDUWFpiHW20ZRxlHNo6xYWFYCVL76W3sl-mo42lJnsxuWazzniaHJmMBUU70Rr0xJkw6rRASNKCRXjnTlGMZPB4f7VQdyTHMVil1nuqojuCh--FwVYQG54jtiNoljBsng84lwQDFy9D8iVcLOkmtwtQd_v9ohN6UTmkFmyhRc5JQrKvjaCjQqcsDdGcaBbMwLGHfSRnM4QDr-y7UUGlPGdxiP7I9RMwzFITg-U9gv0x7IOq1-CKQJtjjQ14f0roFLd14MtwvuQluUwxo3HZHny8VaLz5ocsH9gvYauzvecYN0SCvn4Si4iMmh6yg63pXn_kj8jkDI3HtR75RwB_oFCSKZJautiD67yuOaXyHV1yY7fQmPjB69q44cSpVhY0U20sH3jEASdpLF2MogTe6ohD4cVz7Y7-aeKzEbO00jVohzat1brgbuCvNAB73xNX5tym2Py24TBp6vMln69Zk8P0WoWoQiSiLw89Y7y8XpiwVjLf7do_13hsAi3TVpVOiTTUZ_ENUAjKu7Yq6pmA_2cVtl82rpgWNIeN-St0FXekuOqU2FyXWxIbthikC_2TsK_lfcfqVEis2gvD_5OWfSx9RJ7kKaQFeD_zHFmzeK-04teaIf9gPL4mfof1nvtHVLF_ZDmugxDL08xmktOaqH839oP0OIuVjKdnZe-uQI9Q64M20VC9NJI1do1B7ZfXtS-zTBNf2W002lAqToDKf8t2tRmRdzF8ttL0hz-zc1hFIKkbCcD1kKpdfsc1zym7ADGJ_jnXucyF9bpdh3ImElPKfA5TxGt7n46ijbQno00zXYgsbkRzK6B8ngawUXzEn6o7NjuALynBhxOcrhVQ
         token_type: Bearer
         expires_in: 300
-  securitySchemes:
-    BC_OAuth2:
-      type: oauth2
-      description: Brightcove OAuth API. See the [support documentation](/oauth/index.html) or [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html) to learn more
-      flows:
-        clientCredentials:
-          tokenUrl: https://oauth.brightcove.com/v4/access_token
-          scopes:
-            video-cloud/analytics/read: Read analytics data
-            video-cloud/video/read: Read video data
-x-bc-implicit-head: true
-x-bc-implicit-options: true
-x-bc-upstream: https://backend_server
