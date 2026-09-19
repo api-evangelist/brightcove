@@ -196,6 +196,10 @@ apis:
   humanURL: https://apis.support.brightcove.com/audience/
   baseURL: https://audience.api.brightcove.com/v1
   tags:
+  - Audiences
+  - Marketing Automation
+  - Lead Data
+  tags_raw:
   - Audience
   - Marketing Automation
   - Lead Data
@@ -646,6 +650,8 @@ apis:
   humanURL: https://apis.support.brightcove.com/cms/
   baseURL: https://cms.api.brightcove.com/v1
   tags:
+  - Player
+  tags_raw:
   - Players
   properties:
   - type: OpenAPI
@@ -803,6 +809,8 @@ apis:
   humanURL: https://apis.support.brightcove.com/cms/
   baseURL: https://cms.api.brightcove.com/v1
   tags:
+  - Video
+  tags_raw:
   - Videos
   properties:
   - type: OpenAPI
