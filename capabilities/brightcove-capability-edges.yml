@@ -11,8 +11,135 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 1
+edge_count: 17
 edges:
+- tag: Ingest
+  spec_file: brightcove-ingest-api-openapi.yml
+  capability_id: BC-3710.10
+  capability_id_l1: BC-3710
+  capability_name: Asset Ingest & Quality Control
+  confidence: 0.9
+  evidence: '"Brightcove Dynamic Ingest API, used to add videos, images, and captions to your media library,
+    and to replace existing media assets"; "Ingest Videos and Assets"'
+  reason: Operations onboard source video, images and caption assets into the media platform, which is
+    Asset Ingest under Media Asset Management.
+  recovered_from: vertical-media-entertainment-telecom-content-edges.json
+- tag: Videos
+  spec_file: brightcove-videos-api-openapi.yml
+  capability_id: BC-3710
+  capability_id_l1: BC-3710
+  capability_name: Media Asset Management
+  confidence: 0.85
+  evidence: Reference for the Brightcove CMS API, used to access and manage your media library ... CreateVideo,
+    GetVideoSources, GetVideoImages, GetVideoVariants; schemas Transcript, DigitalMaster, AudioTracks
+  reason: CRUD over the media library including masters, sources, images, variants and transcripts is
+    squarely media asset management; spans cataloguing, renditions and versioning so no single L2 is asserted.
+  recovered_from: vertical-media-entertainment-telecom-content-edges.json
+- tag: Ad Configurations
+  spec_file: brightcove-ad-configurations-api-openapi.yml
+  capability_id: BC-3760.40
+  capability_id_l1: BC-3760
+  capability_name: Ad Trafficking & Operations
+  confidence: 0.8
+  evidence: '"List the ad configurations for the account", "Create an ad configuration"; schemas AdConfiguration,
+    BeaconTemplate, Discontinuities'
+  reason: CRUD over Server-Side Ad Insertion configurations (ad servers, beacons, break handling) is exactly
+    ad trafficking and insertion configuration. Not inventory forecasting or sales, as no inventory, order
+    or pricing objects appear.
+  recovered_from: vertical-media-entertainment-telecom-content-edges.json
+- tag: Engagement Report
+  spec_file: brightcove-engagement-report-api-openapi.yml
+  capability_id: BC-3770.30
+  capability_id_l1: BC-3770
+  capability_name: Content Performance Analytics
+  confidence: 0.8
+  evidence: '"GetVideoEngagement  Get Video Engagement"; schemas "Get_Video_Engagement_Response, Timeline";
+    "Brightcove Analytics API ... retrieve analytics data"'
+  reason: Returns engagement analytics per account, player and video, including view timelines — analytics
+    of how content performs by title, which is Content Performance Analytics under Audience Measurement
+    & Insights.
+  recovered_from: vertical-media-entertainment-telecom-content-edges.json
+- tag: Media Sharing
+  spec_file: brightcove-media-sharing-api-openapi.yml
+  capability_id: BC-3740.60
+  capability_id_l1: BC-3740
+  capability_name: Syndication & Affiliate Distribution
+  confidence: 0.8
+  evidence: '"List Channel Affiliates", "Add Affiliate", "Share Video", "Approve Contract"; schemas ChannelAffiliate,
+    VideoShare, Contract'
+  reason: The surface manages sharing channels, affiliate accounts, contracts and per-video shares between
+    master and affiliate accounts — distribution of content to affiliates/third-party accounts.
+  recovered_from: vertical-media-entertainment-telecom-content-edges.json
+- tag: SSAI
+  spec_file: brightcove-ssai-api-openapi.yml
+  capability_id: BC-3760.40
+  capability_id_l1: BC-3760
+  capability_name: Ad Trafficking & Operations
+  confidence: 0.78
+  evidence: POST /ssai/applications  CreateAdConfiguration  Create Ad Configuration; POST /ssai/beaconsets  CreateBeaconSet;
+    POST /ssai/slates  IngestSlateMediaSourceAsset
+  reason: Server-side ad insertion configuration for live streams — ad configurations, tracking beacon
+    sets and slate assets used for ad breaks. This is ad decisioning/insertion and break operations, i.e.
+    ad trafficking and operations, not inventory sales or revenue reporting.
+  recovered_from: vertical-media-entertainment-telecom-content-edges.json
+- tag: Ad Call Tracking
+  spec_file: brightcove-ad-call-tracking-api-openapi.yml
+  capability_id: BC-3760.40
+  capability_id_l1: BC-3760
+  capability_name: Ad Trafficking & Operations
+  confidence: 0.75
+  evidence: '"Create an SSAI ad trace for an account", "Get ad calls for a session"; schemas AdCall, AdResponse,
+    PlaybackConfig'
+  reason: Server-Side Ad Insertion ad-call tracing is operational advertising work — verifying ad decisioning
+    and insertion into playback sessions. It is ad operations rather than advertising revenue reporting,
+    since the payloads are per-session ad calls and responses, not campaign delivery or billing.
+  recovered_from: vertical-media-entertainment-telecom-content-edges.json
+- tag: Live Analytics
+  spec_file: brightcove-live-analytics-api-openapi.yml
+  capability_id: BC-3770
+  capability_id_l1: BC-3770
+  capability_name: Audience Measurement & Insights Management
+  confidence: 0.75
+  evidence: '"GetLiveTimeSeries  Get Live Analytics time-series"; schemas "live_where, LiveDimensions"'
+  reason: Retrieves live viewership analytics time-series and events for live streams — audience measurement
+    and insights for live content. L2 left null as it straddles viewership telemetry capture and performance
+    analytics.
+  recovered_from: vertical-media-entertainment-telecom-content-edges.json
+- tag: Live Jobs
+  spec_file: brightcove-live-jobs-api-openapi.yml
+  capability_id: BC-3740.20
+  capability_id_l1: BC-3740
+  capability_name: OTT & Streaming Delivery
+  confidence: 0.75
+  evidence: '"used to create and manage live streaming events"; operations "Create a Live Job", "Activate
+    SEP Stream", "Stop Live Job", "Create Playback Token"'
+  reason: The tag's operations provision, activate and stop live streaming encode/delivery jobs and issue
+    playback tokens — i.e. operation of live streaming origin and delivery for OTT services. Ad cue-point
+    insertion is a secondary aspect; the core surface is live stream delivery rather than editorial live
+    production.
+  recovered_from: vertical-media-entertainment-telecom-content-edges.json
+- tag: Media Assets
+  spec_file: brightcove-media-assets-api-openapi.yml
+  capability_id: BC-3710.40
+  capability_id_l1: BC-3710
+  capability_name: Transcoding & Format Conversion
+  confidence: 0.75
+  evidence: '"Get Dynamic Renditions (renditions for Dynamic Delivery videos)", "Add Rendition", "Get
+    HLS Manifest List", "Get DASH Manifest List"; schemas VideoAsset, DynamicRendition, Manifest, Drm'
+  reason: Operations manage the renditions and HLS/DASH packaging manifests attached to a video asset
+    in the media library — the transcoding/packaging rendition layer of media asset management.
+  recovered_from: vertical-media-entertainment-telecom-content-edges.json
+- tag: Profiles
+  spec_file: brightcove-profiles-api-openapi.yml
+  capability_id: BC-3710.40
+  capability_id_l1: BC-3710
+  capability_name: Transcoding & Format Conversion
+  confidence: 0.75
+  evidence: '"used to create and manage ingest profiles that specify video and image renditions to be
+    created, along with instructions for archiving masters"; "Create Ingest Profile"'
+  reason: Ingest profiles define which renditions and packages are produced during transcoding, so the
+    surface governs the transcoding/packaging pipeline configuration within media asset management.
+  recovered_from: vertical-media-entertainment-telecom-content-edges.json
 - tag: Client Credentials
   spec_file: brightcove-client-credentials-api-openapi.yml
   capability_id: BC-4270.40
@@ -25,3 +152,59 @@ edges:
     for consumers of the vendor's public APIs — matches 'issuance and stewardship of developer credentials,
     OAuth clients'. Distinguished from the Access Tokens tag, which is only token minting; some residual
     risk this is better read as plain IAM plumbing.
+- tag: Custom Fields
+  spec_file: brightcove-custom-fields-api-openapi.yml
+  capability_id: BC-3710.20
+  capability_id_l1: BC-3710
+  capability_name: Metadata Cataloguing
+  confidence: 0.7
+  evidence: '"Get Video Fields", "Create a Custom Field"; schemas customField, Videofields.standardField,
+    Videofields.customField'
+  reason: Defining standard and custom fields on videos in the CMS media library is the authoring of descriptive
+    metadata structures that make assets discoverable, i.e. metadata cataloguing. Slightly discounted
+    because the operations define the metadata schema rather than populate asset metadata itself.
+  recovered_from: vertical-media-entertainment-telecom-content-edges.json
+- tag: Delivery Rules
+  spec_file: brightcove-delivery-rules-api-openapi.yml
+  capability_id: BC-3740
+  capability_id_l1: BC-3740
+  capability_name: Content Distribution & Delivery Management
+  confidence: 0.7
+  evidence: '"getDeliveryRules  Fetch the Delivery Rules for the account" with schemas "Condition, Action"'
+  reason: The tag manages account-level rules that control how video content is delivered, which is content
+    distribution and delivery management for an online video platform. No single L2 is clearly named.
+  recovered_from: vertical-media-entertainment-telecom-content-edges.json
+- tag: Labels
+  spec_file: brightcove-labels-api-openapi.yml
+  capability_id: BC-3710.20
+  capability_id_l1: BC-3710
+  capability_name: Metadata Cataloguing
+  confidence: 0.7
+  evidence: '"CreateLabel  Create a Label"; "Reference for the Brightcove CMS API, used to access and
+    manage your media library"'
+  reason: Labels are descriptive taxonomy applied to videos in the media library for organisation and
+    discovery — Metadata Cataloguing within Media Asset Management.
+  recovered_from: vertical-media-entertainment-telecom-content-edges.json
+- tag: Playlists
+  spec_file: brightcove-playlists-api-openapi.yml
+  capability_id: BC-3730.30
+  capability_id_l1: BC-3730
+  capability_name: On-Demand Catalogue Curation
+  confidence: 0.7
+  evidence: '"Create Playlist", "Get Videos in Playlist", "Update Playlist"; schemas Playlist, PlaylistInputFields,
+    Video'
+  reason: Playlists group and order titles for presentation in on-demand video experiences, matching curation
+    of titles and collections across on-demand surfaces. Note this is catalogue curation, not transmission
+    playlist/continuity for a linear channel.
+  recovered_from: vertical-media-entertainment-telecom-content-edges.json
+- tag: View Events
+  spec_file: brightcove-view-events-api-openapi.yml
+  capability_id: BC-3770.10
+  capability_id_l1: BC-3770
+  capability_name: Viewership Data Capture
+  confidence: 0.7
+  evidence: Reference for the Brightcove Audience API, used to retrieve audience data ... GET /accounts/{{account_id}}/view_events  Get
+    View Events
+  reason: Retrieval of individual viewing events is playback/viewership telemetry feeding audience analytics,
+    matching viewership data capture.
+  recovered_from: vertical-media-entertainment-telecom-content-edges.json
