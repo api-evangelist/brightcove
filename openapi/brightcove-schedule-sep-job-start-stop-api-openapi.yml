@@ -4,7 +4,7 @@ info:
   description: 'Reference for the Brightcove Live API, used to create and manage live streaming events.
 
 
-    For additional in-depth guides to features of the API, see the **[Support Site](/live-api/index.html)**.
+    For additional in-depth guides to features of the API, see the **Support Site**.
 
 
     **Base URL**: https://api.bcovlive.io/v1'
@@ -60,7 +60,6 @@ paths:
       tags:
       - Schedule SEP Job Start Stop
       summary: Get JobStartStop Details
-      description: Get JobStartStop Details
       operationId: GetJobStartStop
       parameters:
       - $ref: '#/components/parameters/WorkflowId'
@@ -127,7 +126,6 @@ paths:
       tags:
       - Schedule SEP Job Start Stop
       summary: Cancel JobStartStop
-      description: Cancel JobStartStop
       operationId: CancelJobStartStop
       parameters:
       - $ref: '#/components/parameters/WorkflowId'
@@ -154,7 +152,93 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
 components:
+  parameters:
+    WorkflowId:
+      name: workflow_id
+      in: path
+      description: Scheduler Workflow ID
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    XAPIKEY:
+      name: X-API-KEY
+      in: header
+      description: 'X-API-KEY: {Your_Live_API_Key}'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    ContentType:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        default: application/json
+      example: application/json
   schemas:
+    JobStartStop:
+      properties:
+        job_id:
+          description: Live Job ID to schedule activation and deactivation for. Job must be a static Job.
+          type: string
+        activation:
+          $ref: '#/components/schemas/JobStartStop.TaskInfo'
+        deactivation:
+          $ref: '#/components/schemas/JobStartStop.TaskInfo'
+        workflow_id:
+          description: ID of the JobStartStop workflow
+          type: string
+        account_id:
+          description: Live Account ID
+          type: string
+        type:
+          description: Workflow type jobstartstop
+          type: string
+          enum:
+          - jobstartstop
+        description:
+          description: JobStartStop workflow description.
+          type: string
+        notification_url:
+          description: URL to send notifications for activation and deactivation. Required if a pre-notification is configured for activation or deactivation.
+          type: string
+      required:
+      - job_id
+      - activation
+      - deactivation
+      - workflow_id
+      - account_id
+      - type
+      title: JobStartStop
+      type: object
+    JobStartStop.TaskInfo:
+      properties:
+        time_utc:
+          description: UTC time to perform task. Value must be unix timestamp in seconds.
+          type: number
+        notification:
+          description: Duration in seconds before time_utc to send a notification for the upcoming task.
+          type: number
+        state:
+          description: Task state
+          type: string
+          enum:
+          - pending
+          - cancelled
+          - failed
+          - finished
+      required:
+      - time_utc
+      - state
+      title: JobStartStop.task_info
+      type: object
     CreateJobStartStopRequestBody.TaskInfo:
       properties:
         time_utc:
@@ -217,89 +301,3 @@ components:
         deactivation:
           time_utc: 1611188000
           notification: 300
-    JobStartStop.TaskInfo:
-      properties:
-        time_utc:
-          description: UTC time to perform task. Value must be unix timestamp in seconds.
-          type: number
-        notification:
-          description: Duration in seconds before time_utc to send a notification for the upcoming task.
-          type: number
-        state:
-          description: Task state
-          type: string
-          enum:
-          - pending
-          - cancelled
-          - failed
-          - finished
-      required:
-      - time_utc
-      - state
-      title: JobStartStop.task_info
-      type: object
-    JobStartStop:
-      properties:
-        job_id:
-          description: Live Job ID to schedule activation and deactivation for. Job must be a static Job.
-          type: string
-        activation:
-          $ref: '#/components/schemas/JobStartStop.TaskInfo'
-        deactivation:
-          $ref: '#/components/schemas/JobStartStop.TaskInfo'
-        workflow_id:
-          description: ID of the JobStartStop workflow
-          type: string
-        account_id:
-          description: Live Account ID
-          type: string
-        type:
-          description: Workflow type jobstartstop
-          type: string
-          enum:
-          - jobstartstop
-        description:
-          description: JobStartStop workflow description.
-          type: string
-        notification_url:
-          description: URL to send notifications for activation and deactivation. Required if a pre-notification is configured for activation or deactivation.
-          type: string
-      required:
-      - job_id
-      - activation
-      - deactivation
-      - workflow_id
-      - account_id
-      - type
-      title: JobStartStop
-      type: object
-  parameters:
-    ContentType:
-      name: Content-Type
-      in: header
-      description: 'Content-Type: application/json'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        default: application/json
-      example: application/json
-    WorkflowId:
-      name: workflow_id
-      in: path
-      description: Scheduler Workflow ID
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    XAPIKEY:
-      name: X-API-KEY
-      in: header
-      description: 'X-API-KEY: {Your_Live_API_Key}'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string

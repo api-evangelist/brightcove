@@ -1,7 +1,13 @@
 openapi: 3.2.0
 info:
   title: Audience API Reference View Events API
-  description: "Reference for the Brightcove Audience API, used to retrieve audience data for your accounts. To test API requests, you can use our [API Testing Tools](https://apis.support.brightcove.com/getting-started/concepts-testing-tools-brightcove-apis.html).\n\nFor additional in-depth guides to features of the API, see the **[Overview](/audience/getting-started/overview-audience-api.html)**.\n\n **Base URL**: https://audience.api.brightcove.com/v1"
+  description: 'Reference for the Brightcove Audience API, used to retrieve audience data for your accounts. To test API requests, you can use our API Testing Tools.
+
+
+    For additional in-depth guides to features of the API, see the **Overview**.
+
+
+    **Base URL**: https://audience.api.brightcove.com/v1'
   version: 1.0.0
   x-bc-access: public
 servers:
@@ -58,46 +64,106 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
 components:
+  parameters:
+    from:
+      name: from
+      in: query
+      description: '''Start time for the period covered by the report — epoch time in milliseconds or a date in the format `yyyy-mm-dd` (such as `2013-09-26`) or a relative date in `d` (days), `h` (hours), `m` (minutes), `s` (seconds) (such as `-2d` or `-6h`)'''
+      style: form
+      explode: true
+      schema:
+        oneOf:
+        - type: string
+        - type: integer
+    Authorization:
+      name: Authorization
+      in: header
+      description: 'Authorization: Bearer access_token (see Getting Access Tokens)'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    fields:
+      name: fields
+      in: query
+      description: 'Fields to return for view events
+
+
+        **Note:** by default, all fields are returned. Use this parameter to return fewer fields.'
+      style: form
+      explode: true
+      schema:
+        $ref: '#/components/schemas/Fields'
+    offset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      style: form
+      explode: true
+      schema:
+        type: integer
+        format: int32
+        default: 0
+        example: 0
+    limit:
+      name: limit
+      in: query
+      description: Number of items to return
+      style: form
+      explode: true
+      schema:
+        type: integer
+        format: int32
+        default: 25
+        example: 25
+        minimum: 1
+        maximum: 200
+    account_id:
+      name: account_id
+      in: path
+      description: a Video Cloud account ID
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: number
+    sort:
+      name: sort
+      in: query
+      description: Field to sort results by (prefix with `-` for descending order)
+      style: form
+      explode: true
+      schema:
+        $ref: '#/components/schemas/Sort'
+    Content-Type:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    where:
+      name: where
+      in: query
+      description: One or more field==value pairs to filter the results; fields supported are `video_id`, `video_name`, `tracking_id`, `external_id`, `player_id`, `page_url`, `watched`, `time_watched`, `created_at`, `updated_at`, `is_synced`
+      style: form
+      explode: true
+      schema:
+        type: string
+    to:
+      name: to
+      in: query
+      description: End time for the period covered by the report — epoch time in milliseconds or a date in the format `yyyy-mm-dd` (such as `2013-09-26`) or a relative date in `d` (days), `h` (hours), `m` (minutes), `s` (seconds) (such as `-2d` or `-6h`)
+      style: form
+      explode: true
+      schema:
+        oneOf:
+        - type: string
+        - type: integer
   schemas:
-    Get_View_Events_Response:
-      title: Get View Events Response
-      type: object
-      properties:
-        count:
-          type: number
-          description: the total number of items
-        limit:
-          type: number
-          description: the limit for items in this request
-        offset:
-          type: number
-          description: the offset for items in this request
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventResult'
-          description: array of result items
-      example:
-        count: 27
-        limit: 25
-        offset: 0
-        result:
-        - created_at: '2016-04-25T18:30:21.651Z'
-          page_url: https://players.brightcove.net/1486906377/V1s6NOwRx_default/index.html?videoId=4842718056001
-          player_id: V1s6NOwRx
-          time_watched: 2
-          updated_at: '2016-04-25T18:30:21.651Z'
-          video_id: '4842718056001'
-          video_name: Horses Heading to the Track
-          watched: 19
-        - created_at: '2016-04-25T18:31:55.071Z'
-          page_url: https://players.brightcove.net/1486906377/BkgFuzyhg_default/index.html?videoId=4842718056001
-          player_id: BkgFuzyhg
-          time_watched: 15
-          updated_at: '2016-04-25T18:32:00.879Z'
-          video_id: '4842718056001'
-          video_name: Horses Heading to the Track
-          watched: 99
     EventResult:
       title: Event Result
       description: Result object for an event. Note that in addition to the fields shown here, there may be custom slot events and metrics as well as UTM fields
@@ -144,61 +210,6 @@ components:
           type: integer
           description: Percent of the video watched
           example: 75
-    Sort:
-      title: sort for view events
-      enum:
-      - video_id
-      - video_name
-      - tracking_id
-      - external_id
-      - player_id
-      - page_url
-      - watched
-      - time_watched
-      - created_at
-      - updated_at
-      - is_synced
-      - utm_source
-      - utm_medium
-      - utm_campaign
-      - utm_term
-      - utm_content
-      type: string
-      example: video_id
-      default: created_at
-      x-enum-elements:
-      - name: video_id
-        description: Video id
-      - name: video_name
-        description: Video name
-      - name: tracking_id
-        description: Custom tracking id
-      - name: external_id
-        description: The Marketo, Eloqua or other custom GUID
-      - name: player_id
-        description: Player id
-      - name: page_url
-        description: URL of the video page
-      - name: watched
-        description: Percent of video watched
-      - name: time_watched
-        description: Total secondes video was watched
-      - name: created_at
-        description: When video was created
-      - name: updated_at
-        description: When video was last updated
-      - name: is_synced
-        description: A boolean denoting whether or not the view event has been synchronized
-      - name: utm_source
-        description: UTM field found in the page_url
-      - name: utm_medium
-        description: UTM field found in the page_url
-      - name: utm_medium
-        description: UTM field found in the page_url
-      - name: utm_term
-        description: UTM field found in the page_url
-      - name: utm_content
-        description: UTM field found in the page_url
     Fields:
       title: fields
       description: See [Fields for filtering and selection](/develop/overview-audience-api.html#Retrieving_view_events) for more information
@@ -254,105 +265,100 @@ components:
         description: UTM field found in the page_url
       - name: utm_content
         description: UTM field found in the page_url
-  parameters:
-    from:
-      name: from
-      in: query
-      description: '''Start time for the period covered by the report — epoch time in milliseconds or a date in the format `yyyy-mm-dd` (such as `2013-09-26`) or a relative date in `d` (days), `h` (hours), `m` (minutes), `s` (seconds) (such as `-2d` or `-6h`)'''
-      style: form
-      explode: true
-      schema:
-        oneOf:
-        - type: string
-        - type: integer
-    where:
-      name: where
-      in: query
-      description: One or more field==value pairs to filter the results; fields supported are `video_id`, `video_name`, `tracking_id`, `external_id`, `player_id`, `page_url`, `watched`, `time_watched`, `created_at`, `updated_at`, `is_synced`
-      style: form
-      explode: true
-      schema:
-        type: string
-    Content-Type:
-      name: Content-Type
-      in: header
-      description: 'Content-Type: application/json'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    offset:
-      name: offset
-      in: query
-      description: Number of items to skip
-      style: form
-      explode: true
-      schema:
-        type: integer
-        format: int32
-        default: 0
-        example: 0
-    to:
-      name: to
-      in: query
-      description: End time for the period covered by the report — epoch time in milliseconds or a date in the format `yyyy-mm-dd` (such as `2013-09-26`) or a relative date in `d` (days), `h` (hours), `m` (minutes), `s` (seconds) (such as `-2d` or `-6h`)
-      style: form
-      explode: true
-      schema:
-        oneOf:
-        - type: string
-        - type: integer
-    sort:
-      name: sort
-      in: query
-      description: Field to sort results by (prefix with `-` for descending order)
-      style: form
-      explode: true
-      schema:
-        $ref: '#/components/schemas/Sort'
-    Authorization:
-      name: Authorization
-      in: header
-      description: 'Authorization: Bearer access_token (see Getting Access Tokens)'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    fields:
-      name: fields
-      in: query
-      description: 'Fields to return for view events
-
-
-        **Note:** by default, all fields are returned. Use this parameter to return fewer fields.'
-      style: form
-      explode: true
-      schema:
-        $ref: '#/components/schemas/Fields'
-    limit:
-      name: limit
-      in: query
-      description: Number of items to return
-      style: form
-      explode: true
-      schema:
-        type: integer
-        format: int32
-        default: 25
-        example: 25
-        minimum: 1
-        maximum: 200
-    account_id:
-      name: account_id
-      in: path
-      description: a Video Cloud account ID
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: number
+    Get_View_Events_Response:
+      title: Get View Events Response
+      type: object
+      properties:
+        count:
+          type: number
+          description: the total number of items
+        limit:
+          type: number
+          description: the limit for items in this request
+        offset:
+          type: number
+          description: the offset for items in this request
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventResult'
+          description: array of result items
+      example:
+        count: 27
+        limit: 25
+        offset: 0
+        result:
+        - created_at: '2016-04-25T18:30:21.651Z'
+          page_url: https://players.brightcove.net/1486906377/V1s6NOwRx_default/index.html?videoId=4842718056001
+          player_id: V1s6NOwRx
+          time_watched: 2
+          updated_at: '2016-04-25T18:30:21.651Z'
+          video_id: '4842718056001'
+          video_name: Horses Heading to the Track
+          watched: 19
+        - created_at: '2016-04-25T18:31:55.071Z'
+          page_url: https://players.brightcove.net/1486906377/BkgFuzyhg_default/index.html?videoId=4842718056001
+          player_id: BkgFuzyhg
+          time_watched: 15
+          updated_at: '2016-04-25T18:32:00.879Z'
+          video_id: '4842718056001'
+          video_name: Horses Heading to the Track
+          watched: 99
+    Sort:
+      title: sort for view events
+      enum:
+      - video_id
+      - video_name
+      - tracking_id
+      - external_id
+      - player_id
+      - page_url
+      - watched
+      - time_watched
+      - created_at
+      - updated_at
+      - is_synced
+      - utm_source
+      - utm_medium
+      - utm_campaign
+      - utm_term
+      - utm_content
+      type: string
+      example: video_id
+      default: created_at
+      x-enum-elements:
+      - name: video_id
+        description: Video id
+      - name: video_name
+        description: Video name
+      - name: tracking_id
+        description: Custom tracking id
+      - name: external_id
+        description: The Marketo, Eloqua or other custom GUID
+      - name: player_id
+        description: Player id
+      - name: page_url
+        description: URL of the video page
+      - name: watched
+        description: Percent of video watched
+      - name: time_watched
+        description: Total secondes video was watched
+      - name: created_at
+        description: When video was created
+      - name: updated_at
+        description: When video was last updated
+      - name: is_synced
+        description: A boolean denoting whether or not the view event has been synchronized
+      - name: utm_source
+        description: UTM field found in the page_url
+      - name: utm_medium
+        description: UTM field found in the page_url
+      - name: utm_medium
+        description: UTM field found in the page_url
+      - name: utm_term
+        description: UTM field found in the page_url
+      - name: utm_content
+        description: UTM field found in the page_url
   securitySchemes:
     BC_OAuth2:
       type: oauth2

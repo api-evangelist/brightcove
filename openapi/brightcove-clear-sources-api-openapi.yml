@@ -1,10 +1,10 @@
 openapi: 3.2.0
 info:
   title: Brightcove CMS API Reference Clear Sources API
-  description: 'Reference for the Brightcove CMS API, used to access and manage your media library. To test API requests, you can use our [API Testing Tools](/getting-started/concepts-testing-tools-brightcove-apis.html). For permissions needed for OAuth credentials, see [API Operations](/oauth/guides/api-operations-client-credentials-requests.html). For information on authenticating API requests, see the [OAuth Overview](/oauth/getting-started/overview-oauth-api-v4.html).
+  description: 'Reference for the Brightcove CMS API, used to access and manage your media library. To test API requests, you can use our API Testing Tools. For permissions needed for OAuth credentials, see API Operations. For information on authenticating API requests, see the OAuth Overview.
 
 
-    For additional in-depth guides to features of the API, see the **[general documentation](/cms/index.html)**.
+    For additional in-depth guides to features of the API, see the **general documentation**.
 
 
     **Base URL**: https://cms.api.brightcove.com'
@@ -15,14 +15,20 @@ servers:
   variables: {}
 tags:
 - name: Clear-Sources
-  description: "Clear_sources endpoints expose unencrypted sources to the preview players in the studio for customers who are using [Playback Rights](/playback-restrictions/references/index.html) to protect DRM and HLSe video content. This endpoint is also useful for customers who want to make their protected source files available to 3rd parties or internal users who have access to their API credentials.\n\n  **Important Notes:**\n  \n  1. Once the unprotected URL is made available, Brightcove and the client have no control over who has access to the content or how it is used.\n  2. There will be egress bandwidth charges made to your account when the sources are accessed."
+  description: Clear_sources endpoints expose unencrypted sources to the preview players in the studio for customers who are using Playback Rights to protect DRM and HLSe video content.
 paths:
   /v1/accounts/{{account_id}}/clear_videos/{{video_id}}:
     get:
       tags:
       - Clear-Sources
       summary: Get Video with Clear Sources
-      description: "Get the video object along with unencrypted clear sources, including all associated metadata.\n**Notes**\n  - Once the unprotected URL is made available, Brightcove and the client have no control over who has access to the content or how it is used.\n  - There will be egress bandwidth charges made to the customer when the sources are accessed."
+      description: 'Get the video object along with unencrypted clear sources, including all associated metadata.
+
+        **Notes**
+
+        - Once the unprotected URL is made available, Brightcove and the client have no control over who has access to the content or how it is used.
+
+        - There will be egress bandwidth charges made to the customer when the sources are accessed.'
       operationId: GetClearVideo
       parameters:
       - $ref: '#/components/parameters/AccountId'
@@ -64,7 +70,15 @@ paths:
       tags:
       - Clear-Sources
       summary: Get Video Clear Sources
-      description: "Get only unencrypted clear sources for a video, without any additional metadata.\n**Notes**\n  - Once the unprotected URL is made available, Brightcove and the client have no control over who has access to the content or how it is used.\n  - There will be egress bandwidth charges made to the customer when the sources are accessed.\n  - This endpoint requires the special permission `video-cloud/video/clear-sources` which is not available in the Studio UI. To generate credentials to get clear sources, this permission must be enabled for the account, and you must use the [OAuth API](/oauth/getting-started/overview-oauth-api-v4.html)"
+      description: 'Get only unencrypted clear sources for a video, without any additional metadata.
+
+        **Notes**
+
+        - Once the unprotected URL is made available, Brightcove and the client have no control over who has access to the content or how it is used.
+
+        - There will be egress bandwidth charges made to the customer when the sources are accessed.
+
+        - This endpoint requires the special permission `video-cloud/video/clear-sources` which is not available in the Studio UI. To generate credentials to get clear sources, this permission must be enabled for the account, and you must use the OAuth API'
       operationId: GetClearVideoSources
       parameters:
       - $ref: '#/components/parameters/AccountId'
@@ -103,86 +117,6 @@ paths:
         IsMultiContentStreaming: false
 components:
   schemas:
-    VideoVariants:
-      description: Array of video variants
-      type: array
-      items:
-      - $ref: '#/components/schemas/VideoVariant'
-      - $ref: '#/components/schemas/VideoVariant2'
-      - $ref: '#/components/schemas/VideoVariant3'
-    VideoImages:
-      description: map of image maps - the map name is in the form `label.language` where the label is one of `poster`, `thumbnail`, `portrait`, `square`, `wide` or `ultra-wide`, and the `language` is a language identifier such as 'en', 'de', or `ko`
-      example:
-        thumbnail:
-          src: https://cf-images.us-east-1.prod.boltdns.net/v1/jit/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/main/160x90/20s629ms/match/image.jpg
-          sources:
-          - src: https://cf-images.us-east-1.prod.boltdns.net/v1/jit/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/main/160x90/20s629ms/match/image.jpg
-            height: 90
-            width: 160
-        poster:
-          src: https://cf-images.us-east-1.prod.boltdns.net/v1/jit/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/main/1280x720/20s629ms/match/image.jpg
-          sources:
-          - src: https://cf-images.us-east-1.prod.boltdns.net/v1/jit/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/main/1280x720/20s629ms/match/image.jpg
-            height: 720
-            width: 1280
-        portrait.es:
-          src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/bac8717a-43db-4fa8-a6f0-189c80ee4c4e/800x1200/match/image.jpg
-          sources:
-          - src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/bac8717a-43db-4fa8-a6f0-189c80ee4c4e/800x1200/match/image.jpg
-            height: 1200
-            width: 800
-        thumbnail.en:
-          src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/0ce2da4d-ca36-469b-9024-0273d79feeeb/292x108/match/image.jpg
-          sources:
-          - src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/0ce2da4d-ca36-469b-9024-0273d79feeeb/292x108/match/image.jpg
-            height: 108
-            width: 292
-        poster.en:
-          src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/a7cb150d-c84a-48e0-9469-5b4ce80fba53/1920x1080/match/image.jpg
-          sources:
-          - src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/a7cb150d-c84a-48e0-9469-5b4ce80fba53/1920x1080/match/image.jpg
-            height: 1080
-            width: 1920
-        square.de:
-          src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/22209955-e136-4f17-914c-e19ec4c58886/570x570/match/image.jpg
-          sources:
-          - src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/22209955-e136-4f17-914c-e19ec4c58886/570x570/match/image.jpg
-            height: 570
-            width: 570
-        ultra-wide.hi:
-          src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/72fd489f-d978-44ba-8d04-1e33c7c36cef/3840x1646/match/image.jpg
-          sources:
-          - src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/72fd489f-d978-44ba-8d04-1e33c7c36cef/3840x1646/match/image.jpg
-            height: 1646
-            width: 3840
-        wide.fr:
-          src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/4405a5d5-8b9e-4c2b-be71-cf4e2c153e87/2560x1440/match/image.jpg
-          sources:
-          - src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/4405a5d5-8b9e-4c2b-be71-cf4e2c153e87/2560x1440/match/image.jpg
-            height: 1440
-            width: 2560
-      readOnly: true
-      title: VideoImages
-      type: object
-    VideoVariant2:
-      description: Object containing language-specific metadata for a video
-      properties:
-        language:
-          type: string
-          description: 'The language for this variant in the language-country code format (examples: en-US, es-ES) **Note that `language` is only included when you create a variant - you must NOT include it when updating the variant**'
-          example: de-DE
-        name:
-          type: string
-          description: The title of the video in this language
-        description:
-          type: string
-          description: The video short description in this language
-        long_description:
-          type: string
-          description: The video long description in this language
-        custom_fields:
-          type: object
-          description: 'map of `fieldname: value` pairs, where values are for this language; values have a maximum length of 1024 single-byte characters. Note: be sure to use the **internal** name for the field, not the display name'
     Link:
       description: map of related link properties - can only be added on update, not creation
       properties:
@@ -196,218 +130,117 @@ components:
           type: string
       title: link
       type: object
-    CuePoint:
+    User:
+      description: information about who created or modified a video, if available
       properties:
-        force_stop:
-          description: Whether playback should be stopped when the cuepoint is reached
-          type: boolean
-        metadata:
-          description: optional metadata string (512 single-byte characters maximum)
-          maxLength: 512
+        email:
+          description: the user's email address in Video Cloud
           type: string
-        name:
-          description: cue point name
+        id:
+          description: Video Cloud system id of the user
           type: string
-        time:
-          description: time of the cue point in seconds
-          example: 10.527
-          type: number
         type:
-          description: cue point type
+          description: "The type of the updater, either:\n  - `user` a user in Studio\n  - `api-key` a user via the APIs\n  - `internal` a Brightcove system or user"
           enum:
-          - AD
-          - DATA
+          - user
+          - api_key
+          - internal
           type: string
-      required:
-      - time
-      - type
-      title: cue_point
+      readOnly: true
+      title: User
       type: object
-    Geo:
-      description: map of geo-filtering properties
+    VideoVariant:
+      description: Object containing language-specific metadata for a video
       properties:
-        countries:
-          description: array of ISO 3166 list of 2-letter codes(https://www.iso.org/obp/ui/#home) (search for "country codes")
-          example:
-          - us
-          - ca
-          - fr
-          items:
-            type: string
-          type: array
-        exclude_countries:
-          description: if true, country array is treated as a list of countries excluded from viewing
+        language:
+          type: string
+          description: 'The language for this variant in the language-country code format (examples: en-US, es-ES) **Note that `language` is only included when you create a variant - you must NOT include it when updating the variant**'
+          example: es-ES
+        name:
+          type: string
+          description: The title of the video in this language
+        description:
+          type: string
+          description: The video short description in this language
+        long_description:
+          type: string
+          description: The video long description in this language
+        custom_fields:
+          type: object
+          description: 'map of `fieldname: value` pairs, where values are for this language; values have a maximum length of 1024 single-byte characters. Note: be sure to use the **internal** name for the field, not the display name'
+    Sharing:
+      description: map of the sharing properties for the video
+      properties:
+        by_external_acct:
+          description: whether the video was shared from another account
+          example: true
+          readOnly: true
           type: boolean
-        restricted:
-          description: whether geo-restriction is enabled for this video
+        by_id:
+          description: id of the account that shared the video; note that this field is populated only for the shared copy, not for the original video
+          example: 57838016001
+          readOnly: true
+          type: string
+        by_reference:
+          description: whether the video is shared by reference
+          example: true
+          readOnly: true
           type: boolean
-      required:
-      - countries
-      - exclude_countries
-      - restricted
-      title: geo
-      type: object
-    VideoSources:
-      example:
-      - ext_x_version: '4'
-        src: https://manifest.prod.boltdns.net/manifest/v1/hls/v4/clear/57838016001/853641cb-d66b-4f08-bb02-8489b5fba897/10s/master.m3u8?fastly_token=NWJiMmIyNmNfMWM3YmVhZTA5OTc4YjM4ZjZiZjU1OTk0ZTkzZTUyMzhhNGU5Zjc5YTNkZGYwYWQyNWZkMTcyMGM1MzlmMWVmZg%3D%3D
-        type: application/x-mpegURL
-        uploaded_at: '2017-06-05T11:20:53.731Z'
-      - ext_x_version: '5'
-        src: https://manifest.prod.boltdns.net/manifest/v1/hls/v5/clear/57838016001/853641cb-d66b-4f08-bb02-8489b5fba897/10s/master.m3u8?fastly_token=NWJiMmIyNmNfNDc4YjJiNTM1YzkwYzcwNzliNmY3MDVjMzJmZjJhZjdmNjAxMzM0NWEzMTk3MzY2MGIwYWZhNzVhYjMyMzNhYg%3D%3D
-        type: application/x-mpegURL
-        uploaded_at: '2017-06-05T11:20:53.731Z'
-      - profiles: urn:mpeg:dash:profile:isoff-live:2011
-        src: https://manifest.prod.boltdns.net/manifest/v1/dash/live-baseurl/clear/57838016001/853641cb-d66b-4f08-bb02-8489b5fba897/2s/manifest.mpd?fastly_token=NWJiMmIyNmNfYjM3YTFiZjU5MmJjNzQzZjFkZTVlZmY0NTVhNmYxMzU3N2M2ODk5MmU1YjkyNDg5ZWRlNWRmMGNlODdjYjg5YQ%3D%3D
-        type: application/dash+xml
-        uploaded_at: '2017-06-05T11:20:53.731Z'
-      - codec: H264
-        container: MP4
-        duration: 49690
-        encoding_rate: 2129000
-        height: 720
-        remote: false
-        size: 13242064
-        src: https://bcbolt446c5271-a.akamaihd.net/media/v1/pmp4/static/clear/57838016001/853641cb-d66b-4f08-bb02-8489b5fba897/high.mp4?akamai_token=exp=1538437740~acl=/media/v1/pmp4/static/clear/57838016001/853641cb-d66b-4f08-bb02-8489b5fba897/high.mp4*~hmac=619d67d75397e01c0bb9bd88ea047ace80bd03b56261337233b5d53f2632c690
-        uploaded_at: '2017-06-05T11:20:53.731Z'
-        width: 1280
-      - codec: H264
-        container: MP4
-        duration: 49690
-        encoding_rate: 574000
-        height: 270
-        remote: false
-        size: 3586929
-        src: https://bcbolt446c5271-a.akamaihd.net/media/v1/pmp4/static/clear/57838016001/853641cb-d66b-4f08-bb02-8489b5fba897/mid.mp4?akamai_token=exp=1538437740~acl=/media/v1/pmp4/static/clear/57838016001/853641cb-d66b-4f08-bb02-8489b5fba897/mid.mp4*~hmac=fde050eac8c8d3bb5b6c9141639a3dc770b8b8a3a3f88f5436c803b133d940fc
-        uploaded_at: '2017-06-05T11:20:53.731Z'
-        width: 480
-      properties:
-        app_name:
-          description: address for RTMP stream
+        source_id:
+          description: id of the video in its original account; note that this field is populated only for the shared copy, not for the original video
+          example: 239487239487
           readOnly: true
           type: string
-        asset_id:
-          description: system id for the rendition
+        to_external_acct:
+          description: whether the video is shared to another account
+          example: true
           readOnly: true
-          type: string
-        codec:
-          description: the video codec for the rendition
-          type: string
-        container:
-          description: the video container for the rendition
-          type: string
-        duration:
-          description: duration in milliseconds
-          type: integer
-        encoding_rate:
-          description: encoding rate in bps
-          type: integer
-        height:
-          description: frame height in pixels
-          readOnly: true
-          type: integer
-        remote:
-          description: whether the source is a remote asset
           type: boolean
-        size:
-          description: file size in bytes
-          type: integer
-        src:
-          description: URL for HTTP rendition
-          readOnly: true
-          type: string
-        stream_name:
-          description: the stream name on the CDN
-          readOnly: true
-          type: string
-        type:
-          description: the type for segmented streams
-          readOnly: true
-          type: string
-        uploaded_at:
-          description: date/time when the video was uploaded
-          readOnly: true
-          type: string
-        width:
-          description: frame width in pixels
-          readOnly: true
-          type: integer
-      title: VideoSources
+      readOnly: true
+      title: sharing
       type: object
-    Schedule:
-      description: map of scheduling properties
+    TextTrack:
       properties:
-        ends_at:
-          description: '''End date-time of availability in ISO-8601(https://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) format. Note that you can input a date-time stamp with a time zone, such as `2021-05-01T18:00:00.000+08`, but it will be converted to and stored as a UTC data-time stamp: `2021-05-01T10:00:00.000Z`'''
-          example: 2020-05-20 20:41:07.689000+00:00
-          type:
-          - string
-          - 'null'
-        starts_at:
-          description: '''Start date-time of availability in ISO-8601(https://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) format. Note that you can input a date-time stamp with a time zone, such as `2021-05-01T18:00:00.000+08`, but it will be converted to and stored as a UTC data-time stamp: `2021-05-01T10:00:00.000Z`'''
-          example: 2019-05-20 20:41:07.689000+00:00
-          type:
-          - string
-          - 'null'
-      title: schedule
-      type: object
-    VideoPreviewSource:
-      description: HLS manifest entry for animated preview
-      properties:
-        ext_x_version:
-          description: HLS EXT-X-VERSION value
-          example: '7'
-          type: string
-        src:
-          description: URL to the preview HLS manifest
-          example: https://manifest.prod.boltdns.net/.../preview.m3u8?...
-          type: string
-        type:
-          description: MIME type
-          example: application/x-mpegURL
-          type: string
-      title: VideoPreviewSource
-      type: object
-    Transcript:
-      properties:
+        default:
+          default: false
+          description: whether this is the default track - should only be true for one text track
+          type: boolean
         id:
           description: System id for the text track
           readOnly: true
           type: string
-        account_id:
-          description: The account id
-          readOnly: true
+        kind:
+          default: captions
+          description: 'How the track is meant to be used: `subtitles`, `captions`, `descriptions`, `chapters`, `metadata`.'
+          enum:
+          - subtitles
+          - captions
+          - descriptions
+          - chapters
+          - metadata
+          - transcripts
           type: string
-        default:
-          description: Whether the transcript is the default - note that if there are multi-language transcripts, there can be a default per language
-          readOnly: true
-          type: boolean
         label:
           description: label for the track
           type: string
-        sources:
-          description: sources for a client to retrieve the transcription
-          type: array
-          items:
-            type: string
-            description: URLs where the transcript can be retrieved - there will an http and https URL for each transcript
+        mime_type:
+          description: mime-type for the track
+          type: string
         src:
-          description: URL for the transcription file
+          description: URL for the .vtt file
           type: string
         srclang:
-          description: 2-letter or 4-letter language code, such as `es` or `es-MX`
+          description: 2-letter language code, such as "en" or "ko"
           type: string
         status:
-          description: Either `draft` (unavailable to viewers) or `published`
-          type: string
-          enum:
-          - draft
-          - published
-      required:
-      - src
-      - srclang
-      title: transcription
-      type: object
+          description: Indicates the actual situation of the track, if it is `published`, `draft`, or `null` for pre-existing text tracks. Draft tracks will not be displayed in the player.
+    VideoVariants:
+      description: Array of video variants
+      type: array
+      items:
+      - $ref: '#/components/schemas/VideoVariant'
+      - $ref: '#/components/schemas/VideoVariant2'
+      - $ref: '#/components/schemas/VideoVariant3'
     Video:
       description: Object containing metadata for a video
       properties:
@@ -617,6 +450,101 @@ components:
           $ref: '#/components/schemas/VideoVariants'
       title: Video
       type: object
+    VideoPreviewSource:
+      description: HLS manifest entry for animated preview
+      properties:
+        ext_x_version:
+          description: HLS EXT-X-VERSION value
+          example: '7'
+          type: string
+        src:
+          description: URL to the preview HLS manifest
+          example: https://manifest.prod.boltdns.net/.../preview.m3u8?...
+          type: string
+        type:
+          description: MIME type
+          example: application/x-mpegURL
+          type: string
+      title: VideoPreviewSource
+      type: object
+    VideoImages:
+      description: map of image maps - the map name is in the form `label.language` where the label is one of `poster`, `thumbnail`, `portrait`, `square`, `wide` or `ultra-wide`, and the `language` is a language identifier such as 'en', 'de', or `ko`
+      example:
+        thumbnail:
+          src: https://cf-images.us-east-1.prod.boltdns.net/v1/jit/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/main/160x90/20s629ms/match/image.jpg
+          sources:
+          - src: https://cf-images.us-east-1.prod.boltdns.net/v1/jit/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/main/160x90/20s629ms/match/image.jpg
+            height: 90
+            width: 160
+        poster:
+          src: https://cf-images.us-east-1.prod.boltdns.net/v1/jit/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/main/1280x720/20s629ms/match/image.jpg
+          sources:
+          - src: https://cf-images.us-east-1.prod.boltdns.net/v1/jit/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/main/1280x720/20s629ms/match/image.jpg
+            height: 720
+            width: 1280
+        portrait.es:
+          src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/bac8717a-43db-4fa8-a6f0-189c80ee4c4e/800x1200/match/image.jpg
+          sources:
+          - src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/bac8717a-43db-4fa8-a6f0-189c80ee4c4e/800x1200/match/image.jpg
+            height: 1200
+            width: 800
+        thumbnail.en:
+          src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/0ce2da4d-ca36-469b-9024-0273d79feeeb/292x108/match/image.jpg
+          sources:
+          - src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/0ce2da4d-ca36-469b-9024-0273d79feeeb/292x108/match/image.jpg
+            height: 108
+            width: 292
+        poster.en:
+          src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/a7cb150d-c84a-48e0-9469-5b4ce80fba53/1920x1080/match/image.jpg
+          sources:
+          - src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/a7cb150d-c84a-48e0-9469-5b4ce80fba53/1920x1080/match/image.jpg
+            height: 1080
+            width: 1920
+        square.de:
+          src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/22209955-e136-4f17-914c-e19ec4c58886/570x570/match/image.jpg
+          sources:
+          - src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/22209955-e136-4f17-914c-e19ec4c58886/570x570/match/image.jpg
+            height: 570
+            width: 570
+        ultra-wide.hi:
+          src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/72fd489f-d978-44ba-8d04-1e33c7c36cef/3840x1646/match/image.jpg
+          sources:
+          - src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/72fd489f-d978-44ba-8d04-1e33c7c36cef/3840x1646/match/image.jpg
+            height: 1646
+            width: 3840
+        wide.fr:
+          src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/4405a5d5-8b9e-4c2b-be71-cf4e2c153e87/2560x1440/match/image.jpg
+          sources:
+          - src: https://cf-images.us-east-1.prod.boltdns.net/v1/static/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/4405a5d5-8b9e-4c2b-be71-cf4e2c153e87/2560x1440/match/image.jpg
+            height: 1440
+            width: 2560
+      readOnly: true
+      title: VideoImages
+      type: object
+    Geo:
+      description: map of geo-filtering properties
+      properties:
+        countries:
+          description: array of ISO 3166 list of 2-letter codes(https://www.iso.org/obp/ui/#home) (search for "country codes")
+          example:
+          - us
+          - ca
+          - fr
+          items:
+            type: string
+          type: array
+        exclude_countries:
+          description: if true, country array is treated as a list of countries excluded from viewing
+          type: boolean
+        restricted:
+          description: whether geo-restriction is enabled for this video
+          type: boolean
+      required:
+      - countries
+      - exclude_countries
+      - restricted
+      title: geo
+      type: object
     VideoVariant3:
       description: Object containing language-specific metadata for a video
       properties:
@@ -636,110 +564,23 @@ components:
         custom_fields:
           type: object
           description: 'map of `fieldname: value` pairs, where values are for this language; values have a maximum length of 1024 single-byte characters. Note: be sure to use the **internal** name for the field, not the display name'
-    VideoVariant:
-      description: Object containing language-specific metadata for a video
+    Schedule:
+      description: map of scheduling properties
       properties:
-        language:
-          type: string
-          description: 'The language for this variant in the language-country code format (examples: en-US, es-ES) **Note that `language` is only included when you create a variant - you must NOT include it when updating the variant**'
-          example: es-ES
-        name:
-          type: string
-          description: The title of the video in this language
-        description:
-          type: string
-          description: The video short description in this language
-        long_description:
-          type: string
-          description: The video long description in this language
-        custom_fields:
-          type: object
-          description: 'map of `fieldname: value` pairs, where values are for this language; values have a maximum length of 1024 single-byte characters. Note: be sure to use the **internal** name for the field, not the display name'
-    User:
-      description: information about who created or modified a video, if available
-      properties:
-        email:
-          description: the user's email address in Video Cloud
-          type: string
-        id:
-          description: Video Cloud system id of the user
-          type: string
-        type:
-          description: "The type of the updater, either:\n  - `user` a user in Studio\n  - `api-key` a user via the APIs\n  - `internal` a Brightcove system or user"
-          enum:
-          - user
-          - api_key
-          - internal
-          type: string
-      readOnly: true
-      title: User
+        ends_at:
+          description: '''End date-time of availability in ISO-8601(https://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) format. Note that you can input a date-time stamp with a time zone, such as `2021-05-01T18:00:00.000+08`, but it will be converted to and stored as a UTC data-time stamp: `2021-05-01T10:00:00.000Z`'''
+          example: 2020-05-20 20:41:07.689000+00:00
+          type:
+          - string
+          - 'null'
+        starts_at:
+          description: '''Start date-time of availability in ISO-8601(https://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) format. Note that you can input a date-time stamp with a time zone, such as `2021-05-01T18:00:00.000+08`, but it will be converted to and stored as a UTC data-time stamp: `2021-05-01T10:00:00.000Z`'''
+          example: 2019-05-20 20:41:07.689000+00:00
+          type:
+          - string
+          - 'null'
+      title: schedule
       type: object
-    Sharing:
-      description: map of the sharing properties for the video
-      properties:
-        by_external_acct:
-          description: whether the video was shared from another account
-          example: true
-          readOnly: true
-          type: boolean
-        by_id:
-          description: id of the account that shared the video; note that this field is populated only for the shared copy, not for the original video
-          example: 57838016001
-          readOnly: true
-          type: string
-        by_reference:
-          description: whether the video is shared by reference
-          example: true
-          readOnly: true
-          type: boolean
-        source_id:
-          description: id of the video in its original account; note that this field is populated only for the shared copy, not for the original video
-          example: 239487239487
-          readOnly: true
-          type: string
-        to_external_acct:
-          description: whether the video is shared to another account
-          example: true
-          readOnly: true
-          type: boolean
-      readOnly: true
-      title: sharing
-      type: object
-    TextTrack:
-      properties:
-        default:
-          default: false
-          description: whether this is the default track - should only be true for one text track
-          type: boolean
-        id:
-          description: System id for the text track
-          readOnly: true
-          type: string
-        kind:
-          default: captions
-          description: 'How the track is meant to be used: `subtitles`, `captions`, `descriptions`, `chapters`, `metadata`.'
-          enum:
-          - subtitles
-          - captions
-          - descriptions
-          - chapters
-          - metadata
-          - transcripts
-          type: string
-        label:
-          description: label for the track
-          type: string
-        mime_type:
-          description: mime-type for the track
-          type: string
-        src:
-          description: URL for the .vtt file
-          type: string
-        srclang:
-          description: 2-letter language code, such as "en" or "ko"
-          type: string
-        status:
-          description: Indicates the actual situation of the track, if it is `published`, `draft`, or `null` for pre-existing text tracks. Draft tracks will not be displayed in the player.
     VideoPreview:
       description: Animated thumbnail preview metadata for the video
       properties:
@@ -754,6 +595,179 @@ components:
           type: array
       title: VideoPreview
       type: object
+    VideoSources:
+      example:
+      - ext_x_version: '4'
+        src: https://manifest.prod.boltdns.net/manifest/v1/hls/v4/clear/57838016001/853641cb-d66b-4f08-bb02-8489b5fba897/10s/master.m3u8?fastly_token=NWJiMmIyNmNfMWM3YmVhZTA5OTc4YjM4ZjZiZjU1OTk0ZTkzZTUyMzhhNGU5Zjc5YTNkZGYwYWQyNWZkMTcyMGM1MzlmMWVmZg%3D%3D
+        type: application/x-mpegURL
+        uploaded_at: '2017-06-05T11:20:53.731Z'
+      - ext_x_version: '5'
+        src: https://manifest.prod.boltdns.net/manifest/v1/hls/v5/clear/57838016001/853641cb-d66b-4f08-bb02-8489b5fba897/10s/master.m3u8?fastly_token=NWJiMmIyNmNfNDc4YjJiNTM1YzkwYzcwNzliNmY3MDVjMzJmZjJhZjdmNjAxMzM0NWEzMTk3MzY2MGIwYWZhNzVhYjMyMzNhYg%3D%3D
+        type: application/x-mpegURL
+        uploaded_at: '2017-06-05T11:20:53.731Z'
+      - profiles: urn:mpeg:dash:profile:isoff-live:2011
+        src: https://manifest.prod.boltdns.net/manifest/v1/dash/live-baseurl/clear/57838016001/853641cb-d66b-4f08-bb02-8489b5fba897/2s/manifest.mpd?fastly_token=NWJiMmIyNmNfYjM3YTFiZjU5MmJjNzQzZjFkZTVlZmY0NTVhNmYxMzU3N2M2ODk5MmU1YjkyNDg5ZWRlNWRmMGNlODdjYjg5YQ%3D%3D
+        type: application/dash+xml
+        uploaded_at: '2017-06-05T11:20:53.731Z'
+      - codec: H264
+        container: MP4
+        duration: 49690
+        encoding_rate: 2129000
+        height: 720
+        remote: false
+        size: 13242064
+        src: https://bcbolt446c5271-a.akamaihd.net/media/v1/pmp4/static/clear/57838016001/853641cb-d66b-4f08-bb02-8489b5fba897/high.mp4?akamai_token=exp=1538437740~acl=/media/v1/pmp4/static/clear/57838016001/853641cb-d66b-4f08-bb02-8489b5fba897/high.mp4*~hmac=619d67d75397e01c0bb9bd88ea047ace80bd03b56261337233b5d53f2632c690
+        uploaded_at: '2017-06-05T11:20:53.731Z'
+        width: 1280
+      - codec: H264
+        container: MP4
+        duration: 49690
+        encoding_rate: 574000
+        height: 270
+        remote: false
+        size: 3586929
+        src: https://bcbolt446c5271-a.akamaihd.net/media/v1/pmp4/static/clear/57838016001/853641cb-d66b-4f08-bb02-8489b5fba897/mid.mp4?akamai_token=exp=1538437740~acl=/media/v1/pmp4/static/clear/57838016001/853641cb-d66b-4f08-bb02-8489b5fba897/mid.mp4*~hmac=fde050eac8c8d3bb5b6c9141639a3dc770b8b8a3a3f88f5436c803b133d940fc
+        uploaded_at: '2017-06-05T11:20:53.731Z'
+        width: 480
+      properties:
+        app_name:
+          description: address for RTMP stream
+          readOnly: true
+          type: string
+        asset_id:
+          description: system id for the rendition
+          readOnly: true
+          type: string
+        codec:
+          description: the video codec for the rendition
+          type: string
+        container:
+          description: the video container for the rendition
+          type: string
+        duration:
+          description: duration in milliseconds
+          type: integer
+        encoding_rate:
+          description: encoding rate in bps
+          type: integer
+        height:
+          description: frame height in pixels
+          readOnly: true
+          type: integer
+        remote:
+          description: whether the source is a remote asset
+          type: boolean
+        size:
+          description: file size in bytes
+          type: integer
+        src:
+          description: URL for HTTP rendition
+          readOnly: true
+          type: string
+        stream_name:
+          description: the stream name on the CDN
+          readOnly: true
+          type: string
+        type:
+          description: the type for segmented streams
+          readOnly: true
+          type: string
+        uploaded_at:
+          description: date/time when the video was uploaded
+          readOnly: true
+          type: string
+        width:
+          description: frame width in pixels
+          readOnly: true
+          type: integer
+      title: VideoSources
+      type: object
+    Transcript:
+      properties:
+        id:
+          description: System id for the text track
+          readOnly: true
+          type: string
+        account_id:
+          description: The account id
+          readOnly: true
+          type: string
+        default:
+          description: Whether the transcript is the default - note that if there are multi-language transcripts, there can be a default per language
+          readOnly: true
+          type: boolean
+        label:
+          description: label for the track
+          type: string
+        sources:
+          description: sources for a client to retrieve the transcription
+          type: array
+          items:
+            type: string
+            description: URLs where the transcript can be retrieved - there will an http and https URL for each transcript
+        src:
+          description: URL for the transcription file
+          type: string
+        srclang:
+          description: 2-letter or 4-letter language code, such as `es` or `es-MX`
+          type: string
+        status:
+          description: Either `draft` (unavailable to viewers) or `published`
+          type: string
+          enum:
+          - draft
+          - published
+      required:
+      - src
+      - srclang
+      title: transcription
+      type: object
+    VideoVariant2:
+      description: Object containing language-specific metadata for a video
+      properties:
+        language:
+          type: string
+          description: 'The language for this variant in the language-country code format (examples: en-US, es-ES) **Note that `language` is only included when you create a variant - you must NOT include it when updating the variant**'
+          example: de-DE
+        name:
+          type: string
+          description: The title of the video in this language
+        description:
+          type: string
+          description: The video short description in this language
+        long_description:
+          type: string
+          description: The video long description in this language
+        custom_fields:
+          type: object
+          description: 'map of `fieldname: value` pairs, where values are for this language; values have a maximum length of 1024 single-byte characters. Note: be sure to use the **internal** name for the field, not the display name'
+    CuePoint:
+      properties:
+        force_stop:
+          description: Whether playback should be stopped when the cuepoint is reached
+          type: boolean
+        metadata:
+          description: optional metadata string (512 single-byte characters maximum)
+          maxLength: 512
+          type: string
+        name:
+          description: cue point name
+          type: string
+        time:
+          description: time of the cue point in seconds
+          example: 10.527
+          type: number
+        type:
+          description: cue point type
+          enum:
+          - AD
+          - DATA
+          type: string
+      required:
+      - time
+      - type
+      title: cue_point
+      type: object
   parameters:
     ContentType:
       description: 'Content-Type: application/json'
@@ -766,20 +780,20 @@ components:
         default: application/json
         type: string
       style: simple
-    AccountId:
-      description: Video Cloud account ID.
-      explode: false
-      in: path
-      name: account_id
-      required: true
-      schema:
-        type: string
-      style: simple
     VideoId:
       description: Video ID (specified as `{video_id}}`).
       explode: false
       in: path
       name: video_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    AccountId:
+      description: Video Cloud account ID.
+      explode: false
+      in: path
+      name: account_id
       required: true
       schema:
         type: string

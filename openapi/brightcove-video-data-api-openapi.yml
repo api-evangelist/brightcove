@@ -1,7 +1,13 @@
 openapi: 3.2.0
 info:
   title: Brightcove Analytics API Reference Video Data API
-  description: "Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our <a href=\"/getting-started/concepts-testing-tools-brightcove-apis.html\" target=\"_blank\">API Testing Tools</a>.\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/analytics/index.html)**.\n\n **Base URL**: https://analytics.api.brightcove.com"
+  description: 'Reference for the Brightcove Analytics API, used to retrieve analytics data for your accounts. To test API requests, you can use our API Testing Tools.
+
+
+    For additional in-depth guides to features of the API, see the **general documentation**.
+
+
+    **Base URL**: https://analytics.api.brightcove.com'
   x-bc-access: public
   version: 1.0.0
 servers:
@@ -61,24 +67,6 @@ components:
       explode: false
       schema:
         type: string
-    video_id:
-      name: video_id
-      in: path
-      description: a Video Cloud video ID
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    Content-Type:
-      name: Content-Type
-      in: header
-      description: 'Content-Type: application/json'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
     Authorization:
       name: Authorization
       in: header
@@ -88,10 +76,28 @@ components:
       explode: false
       schema:
         type: string
+    video_id:
+      name: video_id
+      in: path
+      description: a Video Cloud video ID
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
     account_id:
       name: account_id
       in: path
       description: a Video Cloud account ID
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    Content-Type:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
       required: true
       style: simple
       explode: false

@@ -3,7 +3,7 @@ info:
   description: 'API for Brightcove Social
 
 
-    For additional in-depth guides to features of the API, see the **[Overview](/social/getting-started/overview-social-api.html)**.
+    For additional in-depth guides to features of the API, see the **Overview**.
 
 
     **Base URL:** https://edge.social.api.brightcove.com/v1'
@@ -22,7 +22,7 @@ paths:
       tags:
       - Status
       summary: List the current status for every video on the account
-      description: Gets the current status of every video Social has ever attempted to distribute to a social platform.  Note that this endpoint has pagination.
+      description: Gets the current status of every video Social has ever attempted to distribute to a social platform. Note that this endpoint has pagination.
       operationId: getAccountVideosStatus
       security:
       - BC_OAuth2:
@@ -54,8 +54,8 @@ paths:
     get:
       tags:
       - Status
-      summary: List the current status for the video.
-      description: Gets the current status of the requested video for every Social Destination is has ever been distributed to.  Note that this endpoint has pagination.
+      summary: List the current status for the video
+      description: Gets the current status of the requested video for every Social Destination is has ever been distributed to. Note that this endpoint has pagination.
       operationId: getAccountVideoStatus
       security:
       - BC_OAuth2:
@@ -85,6 +85,97 @@ paths:
         '500':
           description: Server error
 components:
+  parameters:
+    PrettyPrint:
+      name: pretty_print
+      in: query
+      description: Whether or not to pretty-print the JSON response.  Defaults to false.
+      required: false
+      schema:
+        type: boolean
+    DestinationId:
+      name: destination_id
+      in: query
+      description: 'Limit the list of videos to a single Social destination, by it''s ID. Note that this may conflict with `platform`, above. (e.g., Specifying `platform=YOUTUBE` and passing the ID of a Twitter destination will result in no statuses.)  Generally if you are passing a `destination_id` you probably don''t want to be passing a `platform` as well, as destinations imply a platform.
+
+        '
+      required: false
+      schema:
+        type: string
+        format: uuid
+    Status:
+      name: status
+      in: query
+      description: "Limit the list of videos to those with a specific status.  Valid values for this property are\n  - DELETED\n  - ERROR\n  - HIDDEN\n  - PROCESSING\n  - PUBLISHED\n  - SCHEDULED\n  - SYNCED\n  - ABANDONED"
+      schema:
+        type: string
+    PageKey:
+      name: page_key
+      in: query
+      description: Fetch the next page of data.  If the previous call to this endpoint returned a `page_key`, a subsequent call can be made with the same parameters and including the `page_key` to retrieve the next page.
+      required: false
+      schema:
+        type: string
+    AccountId:
+      name: account_id
+      in: path
+      description: ID of the account to query video statuses for
+      required: true
+      schema:
+        type: string
+    VideoId:
+      name: video_id
+      in: path
+      description: ID of the video to query video statuses for
+      required: true
+      schema:
+        type: string
+    Before:
+      name: before
+      in: query
+      description: Limit the list of videos to those whose last status change occurred before the specified date time.  Can accept either a full timestamp, or just a datestamp.  If passed just a datestamp, assumes 00:00:00 for the time, and the filter will be exclusive of the date specified.
+      required: false
+      schema:
+        type: string
+        format: date-time
+    PageSize:
+      name: page_size
+      in: query
+      description: The number of entries to fetch in the next page of data.  Must be a number between 1 and 100, inclusive.  Defaults to 20.
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 100
+    Platform:
+      name: platform
+      in: query
+      description: 'Limit the list of videos to a single social platform.  Valid values for this property are
+
+        - YOUTUBE
+
+        - FACEBOOK
+
+        - TWITTER
+
+
+        Note that this may conflict with `destination_id`, below.'
+      required: false
+      schema:
+        type: string
+        enum:
+        - YOUTUBE
+        - FACEBOOK
+        - TWITTER
+    Since:
+      name: since
+      in: query
+      description: Limit the list of videos to those whose last status change occurred since the specified date time.  Can accept either a full timestamp, or just a datestamp.  If passed just a datestamp, assumes 00:00:00 for the time, and the filter will be inclusive of the date specified.
+      required: false
+      schema:
+        type: string
+        format: date-time
   schemas:
     VideoList:
       type: object
@@ -249,97 +340,6 @@ components:
           enum:
           - SUCCESS
           - ERROR
-  parameters:
-    PageSize:
-      name: page_size
-      in: query
-      description: The number of entries to fetch in the next page of data.  Must be a number between 1 and 100, inclusive.  Defaults to 20.
-      required: false
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-        maximum: 100
-    VideoId:
-      name: video_id
-      in: path
-      description: ID of the video to query video statuses for
-      required: true
-      schema:
-        type: string
-    PrettyPrint:
-      name: pretty_print
-      in: query
-      description: Whether or not to pretty-print the JSON response.  Defaults to false.
-      required: false
-      schema:
-        type: boolean
-    Status:
-      name: status
-      in: query
-      description: "Limit the list of videos to those with a specific status.  Valid values for this property are\n  - DELETED\n  - ERROR\n  - HIDDEN\n  - PROCESSING\n  - PUBLISHED\n  - SCHEDULED\n  - SYNCED\n  - ABANDONED"
-      schema:
-        type: string
-    Before:
-      name: before
-      in: query
-      description: Limit the list of videos to those whose last status change occurred before the specified date time.  Can accept either a full timestamp, or just a datestamp.  If passed just a datestamp, assumes 00:00:00 for the time, and the filter will be exclusive of the date specified.
-      required: false
-      schema:
-        type: string
-        format: date-time
-    DestinationId:
-      name: destination_id
-      in: query
-      description: 'Limit the list of videos to a single Social destination, by it''s ID. Note that this may conflict with `platform`, above. (e.g., Specifying `platform=YOUTUBE` and passing the ID of a Twitter destination will result in no statuses.)  Generally if you are passing a `destination_id` you probably don''t want to be passing a `platform` as well, as destinations imply a platform.
-
-        '
-      required: false
-      schema:
-        type: string
-        format: uuid
-    AccountId:
-      name: account_id
-      in: path
-      description: ID of the account to query video statuses for
-      required: true
-      schema:
-        type: string
-    Platform:
-      name: platform
-      in: query
-      description: 'Limit the list of videos to a single social platform.  Valid values for this property are
-
-        - YOUTUBE
-
-        - FACEBOOK
-
-        - TWITTER
-
-
-        Note that this may conflict with `destination_id`, below.'
-      required: false
-      schema:
-        type: string
-        enum:
-        - YOUTUBE
-        - FACEBOOK
-        - TWITTER
-    PageKey:
-      name: page_key
-      in: query
-      description: Fetch the next page of data.  If the previous call to this endpoint returned a `page_key`, a subsequent call can be made with the same parameters and including the `page_key` to retrieve the next page.
-      required: false
-      schema:
-        type: string
-    Since:
-      name: since
-      in: query
-      description: Limit the list of videos to those whose last status change occurred since the specified date time.  Can accept either a full timestamp, or just a datestamp.  If passed just a datestamp, assumes 00:00:00 for the time, and the filter will be inclusive of the date specified.
-      required: false
-      schema:
-        type: string
-        format: date-time
   securitySchemes:
     BC_OAuth2:
       type: oauth2

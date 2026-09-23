@@ -1,10 +1,10 @@
 openapi: 3.2.0
 info:
   title: Brightcove CMS API Reference Media Assets API
-  description: 'Reference for the Brightcove CMS API, used to access and manage your media library. To test API requests, you can use our [API Testing Tools](/getting-started/concepts-testing-tools-brightcove-apis.html). For permissions needed for OAuth credentials, see [API Operations](/oauth/guides/api-operations-client-credentials-requests.html). For information on authenticating API requests, see the [OAuth Overview](/oauth/getting-started/overview-oauth-api-v4.html).
+  description: 'Reference for the Brightcove CMS API, used to access and manage your media library. To test API requests, you can use our API Testing Tools. For permissions needed for OAuth credentials, see API Operations. For information on authenticating API requests, see the OAuth Overview.
 
 
-    For additional in-depth guides to features of the API, see the **[general documentation](/cms/index.html)**.
+    For additional in-depth guides to features of the API, see the **general documentation**.
 
 
     **Base URL**: https://cms.api.brightcove.com'
@@ -1437,6 +1437,54 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
 components:
+  parameters:
+    AssetId:
+      description: The asset ID
+      explode: false
+      in: path
+      name: asset_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    Authorization:
+      description: 'Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)'
+      explode: false
+      in: header
+      name: Authorization
+      required: true
+      schema:
+        type: string
+      style: simple
+    AccountId:
+      description: Video Cloud account ID.
+      explode: false
+      in: path
+      name: account_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    ContentType:
+      description: 'Content-Type: application/json'
+      example: application/json
+      explode: false
+      in: header
+      name: Content-Type
+      required: true
+      schema:
+        default: application/json
+        type: string
+      style: simple
+    VideoId:
+      description: Video ID (specified as `{video_id}}`).
+      explode: false
+      in: path
+      name: video_id
+      required: true
+      schema:
+        type: string
+      style: simple
   schemas:
     VideoAsset:
       example:
@@ -1645,6 +1693,22 @@ components:
           type: integer
       title: VideoAsset
       type: object
+    Drm:
+      description: DRM packaging details (not applicable to remote assets or Dynamic Delivery accounts)
+      properties:
+        metadata_cdn_origin_id:
+          type: string
+        metadata_sharded_directory:
+          type: string
+        packager_version:
+          type: string
+        state:
+          type: string
+      readOnly: true
+      title: Drm
+      type:
+      - object
+      - 'null'
     DynamicRendition:
       example:
       - audio_configuration: L_R
@@ -1796,70 +1860,6 @@ components:
           type: integer
       title: Manifest
       type: object
-    Drm:
-      description: DRM packaging details (not applicable to remote assets or Dynamic Delivery accounts)
-      properties:
-        metadata_cdn_origin_id:
-          type: string
-        metadata_sharded_directory:
-          type: string
-        packager_version:
-          type: string
-        state:
-          type: string
-      readOnly: true
-      title: Drm
-      type:
-      - object
-      - 'null'
-  parameters:
-    VideoId:
-      description: Video ID (specified as `{video_id}}`).
-      explode: false
-      in: path
-      name: video_id
-      required: true
-      schema:
-        type: string
-      style: simple
-    ContentType:
-      description: 'Content-Type: application/json'
-      example: application/json
-      explode: false
-      in: header
-      name: Content-Type
-      required: true
-      schema:
-        default: application/json
-        type: string
-      style: simple
-    AccountId:
-      description: Video Cloud account ID.
-      explode: false
-      in: path
-      name: account_id
-      required: true
-      schema:
-        type: string
-      style: simple
-    Authorization:
-      description: 'Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)'
-      explode: false
-      in: header
-      name: Authorization
-      required: true
-      schema:
-        type: string
-      style: simple
-    AssetId:
-      description: The asset ID
-      explode: false
-      in: path
-      name: asset_id
-      required: true
-      schema:
-        type: string
-      style: simple
   securitySchemes:
     BC_OAuth2:
       type: oauth2

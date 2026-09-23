@@ -6,13 +6,13 @@ info:
     This API is used for managing operations related to Server-Side Ad Insertion (SSAI).
 
 
-    See [Video Cloud SSAI Ad Config API](/ssai/getting-started/video-cloud-ssai-ad-config-api.html) for more details on using the API.
+    See Video Cloud SSAI Ad Config API for more details on using the API.
 
 
-    You can easily create, list and delete ad configurations in Video Cloud Studio as well. For details, see [Configuring Server-Side Ad Settings](https://studio.support.brightcove.com/admin/configuring-server-side-ad-settings.html).
+    You can easily create, list and delete ad configurations in Video Cloud Studio as well. For details, see Configuring Server-Side Ad Settings.
 
 
-    For additional in-depth guides to features of the API, see the **[General documentation](/)**.
+    For additional in-depth guides to features of the API, see the **General documentation**.
 
 
     **Base URL:** https://ssai.api.brightcove.com/v1'
@@ -55,7 +55,6 @@ paths:
       tags:
       - Ad Configurations
       summary: Create an ad configuration
-      description: Create an ad configuration
       operationId: createAdConfigurations
       security:
       - BC_OAuth2:
@@ -112,7 +111,6 @@ paths:
       tags:
       - Ad Configurations
       summary: Update an ad configuration
-      description: Update an ad configuration
       operationId: updateAdConfigurations
       security:
       - BC_OAuth2:
@@ -141,13 +139,59 @@ paths:
         '500':
           description: Server error
 components:
+  parameters:
+    ConfigId:
+      name: config_id
+      in: path
+      description: ID of the ad configuration
+      required: true
+      schema:
+        type: string
+    AccountId:
+      name: account_id
+      in: path
+      description: ID of the account to query video statuses for
+      required: true
+      schema:
+        type: string
   schemas:
-    AdConfigList:
-      title: List Ad Configurations Response
-      type: array
-      description: Array of ad configuration objects
-      items:
-        $ref: '#/components/schemas/AdConfiguration'
+    Discontinuities:
+      type: object
+      description: Controls the versions of DASH to deliver Multi Period manifests or versions of HLS to deliver with discontinuities
+      properties:
+        dash:
+          type: array
+          description: 'Controls which versions of dash to deliver Multi Period Dash manifests.
+
+
+            Set to ["*"] to deliver multi-period dash for all versions
+
+
+            Empty list for never
+
+
+            Example: ["live-timeline"] to deliver for live-timeline but not for hbbtv'
+          items:
+            type: string
+          example:
+          - live-timeline
+        hls:
+          type: array
+          description: 'Controls which versions of hls to deliver with discontinuities.
+
+
+            Set to ["*"] to delivery with discontinuities in all versions of HLS
+
+
+            Empty list for never
+
+
+            Example: ["v4","v5"] to deliver for v4 & v5 but not for v3'
+          items:
+            type: string
+          example:
+          - v4
+          - v5
     AdConfiguration:
       title: Ad Configuration Response
       type: object
@@ -276,6 +320,12 @@ components:
             template:
               type: string
               description: Ad tag template. Available variables described in [this document](/vod/guides/video-cloud-ssai-ad-config-api.html#Ad_variables).
+    AdConfigList:
+      title: List Ad Configurations Response
+      type: array
+      description: Array of ad configuration objects
+      items:
+        $ref: '#/components/schemas/AdConfiguration'
     BeaconTemplate:
       title: Beacon Template
       description: Beacons are sent to send analytics data from the client. The beacon template defines the type of events to send beacons for and the information that will be sent.
@@ -309,58 +359,6 @@ components:
             template:
               type: string
               description: The beacon URL template
-    Discontinuities:
-      type: object
-      description: Controls the versions of DASH to deliver Multi Period manifests or versions of HLS to deliver with discontinuities
-      properties:
-        dash:
-          type: array
-          description: 'Controls which versions of dash to deliver Multi Period Dash manifests.
-
-
-            Set to ["*"] to deliver multi-period dash for all versions
-
-
-            Empty list for never
-
-
-            Example: ["live-timeline"] to deliver for live-timeline but not for hbbtv'
-          items:
-            type: string
-          example:
-          - live-timeline
-        hls:
-          type: array
-          description: 'Controls which versions of hls to deliver with discontinuities.
-
-
-            Set to ["*"] to delivery with discontinuities in all versions of HLS
-
-
-            Empty list for never
-
-
-            Example: ["v4","v5"] to deliver for v4 & v5 but not for v3'
-          items:
-            type: string
-          example:
-          - v4
-          - v5
-  parameters:
-    AccountId:
-      name: account_id
-      in: path
-      description: ID of the account to query video statuses for
-      required: true
-      schema:
-        type: string
-    ConfigId:
-      name: config_id
-      in: path
-      description: ID of the ad configuration
-      required: true
-      schema:
-        type: string
   securitySchemes:
     BC_OAuth2:
       type: oauth2

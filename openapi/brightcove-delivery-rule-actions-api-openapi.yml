@@ -58,7 +58,6 @@ paths:
       tags:
       - Delivery Rule Actions
       summary: Create an Action
-      description: Create an Action
       operationId: createAction
       security:
       - BC_OAuth2:
@@ -205,7 +204,6 @@ paths:
       tags:
       - Delivery Rule Actions
       summary: Delete an Action
-      description: Delete an Action
       operationId: deleteAction
       security:
       - BC_OAuth2:
@@ -237,23 +235,6 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
 components:
-  parameters:
-    AccountId:
-      name: account_id
-      in: path
-      description: Video Cloud account id
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    ActionId:
-      name: action_id
-      in: path
-      description: ID of the Action to query on
-      required: true
-      schema:
-        type: string
   schemas:
     ActionWithID:
       title: Action
@@ -356,6 +337,23 @@ components:
               items:
                 description: Audio Codec
                 type: string
+  parameters:
+    ActionId:
+      name: action_id
+      in: path
+      description: ID of the Action to query on
+      required: true
+      schema:
+        type: string
+    AccountId:
+      name: account_id
+      in: path
+      description: Video Cloud account id
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
   securitySchemes:
     BC_OAuth2:
       type: oauth2

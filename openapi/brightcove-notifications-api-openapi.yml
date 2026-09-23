@@ -1,10 +1,10 @@
 openapi: 3.2.0
 info:
   title: Brightcove CMS API Reference Notifications API
-  description: 'Reference for the Brightcove CMS API, used to access and manage your media library. To test API requests, you can use our [API Testing Tools](/getting-started/concepts-testing-tools-brightcove-apis.html). For permissions needed for OAuth credentials, see [API Operations](/oauth/guides/api-operations-client-credentials-requests.html). For information on authenticating API requests, see the [OAuth Overview](/oauth/getting-started/overview-oauth-api-v4.html).
+  description: 'Reference for the Brightcove CMS API, used to access and manage your media library. To test API requests, you can use our API Testing Tools. For permissions needed for OAuth credentials, see API Operations. For information on authenticating API requests, see the OAuth Overview.
 
 
-    For additional in-depth guides to features of the API, see the **[general documentation](/cms/index.html)**.
+    For additional in-depth guides to features of the API, see the **general documentation**.
 
 
     **Base URL**: https://cms.api.brightcove.com'
@@ -22,7 +22,7 @@ paths:
       tags:
       - Notifications
       summary: Get Subscriptions List
-      description: 'Get a list of all notification subscriptions for the account '
+      description: Get a list of all notification subscriptions for the account
       operationId: GetSubscriptionsList
       parameters:
       - $ref: '#/components/parameters/AccountId'
@@ -114,7 +114,7 @@ paths:
       tags:
       - Notifications
       summary: Get Subscription
-      description: 'Get a notification subscription for the account '
+      description: Get a notification subscription for the account
       operationId: GetSubscription
       parameters:
       - $ref: '#/components/parameters/AccountId'
@@ -155,7 +155,7 @@ paths:
       tags:
       - Notifications
       summary: Delete Subscription
-      description: 'Delete a notification subscription for the account '
+      description: Delete a notification subscription for the account
       operationId: DeleteSubscription
       parameters:
       - $ref: '#/components/parameters/AccountId'
@@ -190,6 +190,24 @@ paths:
         IsMultiContentStreaming: false
 components:
   parameters:
+    Authorization:
+      description: 'Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)'
+      explode: false
+      in: header
+      name: Authorization
+      required: true
+      schema:
+        type: string
+      style: simple
+    AccountId:
+      description: Video Cloud account ID.
+      explode: false
+      in: path
+      name: account_id
+      required: true
+      schema:
+        type: string
+      style: simple
     ContentType:
       description: 'Content-Type: application/json'
       example: application/json
@@ -206,24 +224,6 @@ components:
       explode: false
       in: path
       name: subscription_id
-      required: true
-      schema:
-        type: string
-      style: simple
-    AccountId:
-      description: Video Cloud account ID.
-      explode: false
-      in: path
-      name: account_id
-      required: true
-      schema:
-        type: string
-      style: simple
-    Authorization:
-      description: 'Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)'
-      explode: false
-      in: header
-      name: Authorization
       required: true
       schema:
         type: string

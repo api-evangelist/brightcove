@@ -4,7 +4,7 @@ info:
   description: 'Reference for the Brightcove OAuth API, used to get client credentials and access tokens for the other APIs.
 
 
-    For additional in-depth guides to features of the API, see the **[general documentation](/oauth/index.html)**.
+    For additional in-depth guides to features of the API, see the **general documentation**.
 
 
     **Base URL**: https://oauth.brightcove.com/v4'
@@ -21,7 +21,7 @@ paths:
       tags:
       - Access Tokens
       summary: Create Access Token
-      description: 'create a temporary access token for an API request '
+      description: create a temporary access token for an API request
       operationId: CreateAccessToken
       parameters:
       - $ref: '#/components/parameters/Token_Content-Type'
@@ -47,15 +47,6 @@ paths:
         IsMultiContentStreaming: false
 components:
   parameters:
-    Token_Authorization:
-      name: Authorization
-      in: header
-      description: '''Authorization: Basic client_id:client_secret (the `client_id:client_secret` string must be BASE64-encoded; see Getting Access Tokens)'''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
     grant_type:
       name: grant_type
       in: query
@@ -72,6 +63,15 @@ components:
       name: Content-Type
       in: header
       description: 'Content-Type: application/x-www-form-urlencoded'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    Token_Authorization:
+      name: Authorization
+      in: header
+      description: '''Authorization: Basic client_id:client_secret (the `client_id:client_secret` string must be BASE64-encoded; see Getting Access Tokens)'''
       required: true
       style: simple
       explode: false

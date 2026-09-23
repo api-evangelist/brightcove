@@ -58,7 +58,6 @@ paths:
       tags:
       - Delivery Rule Conditions
       summary: Update the Conditions
-      description: Update the Conditions
       operationId: updateConditions
       security:
       - BC_OAuth2:
@@ -112,16 +111,6 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
 components:
-  parameters:
-    AccountId:
-      name: account_id
-      in: path
-      description: Video Cloud account id
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
   schemas:
     Condition:
       type: object
@@ -181,6 +170,16 @@ components:
           items:
             description: Action ID
             type: string
+  parameters:
+    AccountId:
+      name: account_id
+      in: path
+      description: Video Cloud account id
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
   securitySchemes:
     BC_OAuth2:
       type: oauth2

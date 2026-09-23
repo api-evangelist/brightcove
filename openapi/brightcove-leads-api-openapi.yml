@@ -1,7 +1,13 @@
 openapi: 3.2.0
 info:
   title: Audience API Reference Leads API
-  description: "Reference for the Brightcove Audience API, used to retrieve audience data for your accounts. To test API requests, you can use our [API Testing Tools](https://apis.support.brightcove.com/getting-started/concepts-testing-tools-brightcove-apis.html).\n\nFor additional in-depth guides to features of the API, see the **[Overview](/audience/getting-started/overview-audience-api.html)**.\n\n **Base URL**: https://audience.api.brightcove.com/v1"
+  description: 'Reference for the Brightcove Audience API, used to retrieve audience data for your accounts. To test API requests, you can use our API Testing Tools.
+
+
+    For additional in-depth guides to features of the API, see the **Overview**.
+
+
+    **Base URL**: https://audience.api.brightcove.com/v1'
   version: 1.0.0
   x-bc-access: public
 servers:
@@ -58,106 +64,59 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
 components:
-  parameters:
-    fields_leads:
-      name: fields
-      in: query
-      description: 'Fields to return for leads
-
-
-        **Note:** by default, all fields are returned. Use this parameter to return fewer fields.'
-      style: form
-      explode: true
-      schema:
-        $ref: '#/components/schemas/FieldsLeads'
-    from:
-      name: from
-      in: query
-      description: '''Start time for the period covered by the report — epoch time in milliseconds or a date in the format `yyyy-mm-dd` (such as `2013-09-26`) or a relative date in `d` (days), `h` (hours), `m` (minutes), `s` (seconds) (such as `-2d` or `-6h`)'''
-      style: form
-      explode: true
-      schema:
-        oneOf:
-        - type: string
-        - type: integer
-    where:
-      name: where
-      in: query
-      description: One or more field==value pairs to filter the results; fields supported are `video_id`, `video_name`, `tracking_id`, `external_id`, `player_id`, `page_url`, `watched`, `time_watched`, `created_at`, `updated_at`, `is_synced`
-      style: form
-      explode: true
-      schema:
-        type: string
-    Content-Type:
-      name: Content-Type
-      in: header
-      description: 'Content-Type: application/json'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    offset:
-      name: offset
-      in: query
-      description: Number of items to skip
-      style: form
-      explode: true
-      schema:
-        type: integer
-        format: int32
-        default: 0
-        example: 0
-    sort_leads:
-      name: sort
-      in: query
-      description: Field to sort lead results by (prefix with `-` for descending order)
-      style: form
-      explode: true
-      schema:
-        $ref: '#/components/schemas/SortLeads'
-    Authorization:
-      name: Authorization
-      in: header
-      description: 'Authorization: Bearer access_token (see Getting Access Tokens)'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    limit:
-      name: limit
-      in: query
-      description: Number of items to return
-      style: form
-      explode: true
-      schema:
-        type: integer
-        format: int32
-        default: 25
-        example: 25
-        minimum: 1
-        maximum: 200
-    to:
-      name: to
-      in: query
-      description: End time for the period covered by the report — epoch time in milliseconds or a date in the format `yyyy-mm-dd` (such as `2013-09-26`) or a relative date in `d` (days), `h` (hours), `m` (minutes), `s` (seconds) (such as `-2d` or `-6h`)
-      style: form
-      explode: true
-      schema:
-        oneOf:
-        - type: string
-        - type: integer
-    account_id:
-      name: account_id
-      in: path
-      description: a Video Cloud account ID
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: number
   schemas:
+    FieldsLeads:
+      title: fields
+      description: Fields for Leads. See [Fields for filtering and selection](/develop/overview-audience-api.html#Retrieving_view_events) for more information
+      enum:
+      - video_id
+      - video_name
+      - external_id
+      - first_name
+      - last_name
+      - email_address
+      - business_phone
+      - country
+      - company_name
+      - industry
+      - player_id
+      - page_url
+      - created_at
+      type: string
+      example: video_id
+      x-enum-elements:
+      - name: video_id
+        description: Brightcove video id
+      - name: video_name
+        description: Brightcove video name
+      - name: tracking_id
+        description: Custom tracking id
+      - name: external_id
+        description: The Marketo, Eloqua or other custom GUID
+      - name: player_id
+        description: Brightcove player id
+      - name: page_url
+        description: The URL of the page where the view event was created
+      - name: watched
+        description: Percent watched
+      - name: time_watched
+        description: Seconds watched
+      - name: created_at
+        description: Creation date
+      - name: updated_at
+        description: Last modified date
+      - name: is_synced
+        description: A boolean denoting whether or not the view event has been synchronized
+      - name: utm_source
+        description: UTM field found in the page_url
+      - name: utm_medium
+        description: UTM field found in the page_url
+      - name: utm_medium
+        description: UTM field found in the page_url
+      - name: utm_term
+        description: UTM field found in the page_url
+      - name: utm_content
+        description: UTM field found in the page_url
     SortLeads:
       title: sort for Leads
       enum:
@@ -222,58 +181,6 @@ components:
         count: 14
         offset: 0
         limit: 4
-    FieldsLeads:
-      title: fields
-      description: Fields for Leads. See [Fields for filtering and selection](/develop/overview-audience-api.html#Retrieving_view_events) for more information
-      enum:
-      - video_id
-      - video_name
-      - external_id
-      - first_name
-      - last_name
-      - email_address
-      - business_phone
-      - country
-      - company_name
-      - industry
-      - player_id
-      - page_url
-      - created_at
-      type: string
-      example: video_id
-      x-enum-elements:
-      - name: video_id
-        description: Brightcove video id
-      - name: video_name
-        description: Brightcove video name
-      - name: tracking_id
-        description: Custom tracking id
-      - name: external_id
-        description: The Marketo, Eloqua or other custom GUID
-      - name: player_id
-        description: Brightcove player id
-      - name: page_url
-        description: The URL of the page where the view event was created
-      - name: watched
-        description: Percent watched
-      - name: time_watched
-        description: Seconds watched
-      - name: created_at
-        description: Creation date
-      - name: updated_at
-        description: Last modified date
-      - name: is_synced
-        description: A boolean denoting whether or not the view event has been synchronized
-      - name: utm_source
-        description: UTM field found in the page_url
-      - name: utm_medium
-        description: UTM field found in the page_url
-      - name: utm_medium
-        description: UTM field found in the page_url
-      - name: utm_term
-        description: UTM field found in the page_url
-      - name: utm_content
-        description: UTM field found in the page_url
     LeadsResult:
       title: Leads Result
       type: object
@@ -317,6 +224,105 @@ components:
         video_name:
           type: string
           description: the Video Cloud video name
+  parameters:
+    from:
+      name: from
+      in: query
+      description: '''Start time for the period covered by the report — epoch time in milliseconds or a date in the format `yyyy-mm-dd` (such as `2013-09-26`) or a relative date in `d` (days), `h` (hours), `m` (minutes), `s` (seconds) (such as `-2d` or `-6h`)'''
+      style: form
+      explode: true
+      schema:
+        oneOf:
+        - type: string
+        - type: integer
+    Authorization:
+      name: Authorization
+      in: header
+      description: 'Authorization: Bearer access_token (see Getting Access Tokens)'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    offset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      style: form
+      explode: true
+      schema:
+        type: integer
+        format: int32
+        default: 0
+        example: 0
+    limit:
+      name: limit
+      in: query
+      description: Number of items to return
+      style: form
+      explode: true
+      schema:
+        type: integer
+        format: int32
+        default: 25
+        example: 25
+        minimum: 1
+        maximum: 200
+    account_id:
+      name: account_id
+      in: path
+      description: a Video Cloud account ID
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: number
+    fields_leads:
+      name: fields
+      in: query
+      description: 'Fields to return for leads
+
+
+        **Note:** by default, all fields are returned. Use this parameter to return fewer fields.'
+      style: form
+      explode: true
+      schema:
+        $ref: '#/components/schemas/FieldsLeads'
+    Content-Type:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    where:
+      name: where
+      in: query
+      description: One or more field==value pairs to filter the results; fields supported are `video_id`, `video_name`, `tracking_id`, `external_id`, `player_id`, `page_url`, `watched`, `time_watched`, `created_at`, `updated_at`, `is_synced`
+      style: form
+      explode: true
+      schema:
+        type: string
+    to:
+      name: to
+      in: query
+      description: End time for the period covered by the report — epoch time in milliseconds or a date in the format `yyyy-mm-dd` (such as `2013-09-26`) or a relative date in `d` (days), `h` (hours), `m` (minutes), `s` (seconds) (such as `-2d` or `-6h`)
+      style: form
+      explode: true
+      schema:
+        oneOf:
+        - type: string
+        - type: integer
+    sort_leads:
+      name: sort
+      in: query
+      description: Field to sort lead results by (prefix with `-` for descending order)
+      style: form
+      explode: true
+      schema:
+        $ref: '#/components/schemas/SortLeads'
   securitySchemes:
     BC_OAuth2:
       type: oauth2

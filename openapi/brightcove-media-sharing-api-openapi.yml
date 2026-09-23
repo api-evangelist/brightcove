@@ -1,10 +1,10 @@
 openapi: 3.2.0
 info:
   title: Brightcove CMS API Reference Media Sharing API
-  description: 'Reference for the Brightcove CMS API, used to access and manage your media library. To test API requests, you can use our [API Testing Tools](/getting-started/concepts-testing-tools-brightcove-apis.html). For permissions needed for OAuth credentials, see [API Operations](/oauth/guides/api-operations-client-credentials-requests.html). For information on authenticating API requests, see the [OAuth Overview](/oauth/getting-started/overview-oauth-api-v4.html).
+  description: 'Reference for the Brightcove CMS API, used to access and manage your media library. To test API requests, you can use our API Testing Tools. For permissions needed for OAuth credentials, see API Operations. For information on authenticating API requests, see the OAuth Overview.
 
 
-    For additional in-depth guides to features of the API, see the **[general documentation](/cms/index.html)**.
+    For additional in-depth guides to features of the API, see the **general documentation**.
 
 
     **Base URL**: https://cms.api.brightcove.com'
@@ -191,7 +191,7 @@ paths:
       tags:
       - Media Sharing
       summary: Add Affiliate
-      description: 'Adds an affiliate to a channel - this is a Master account operation '
+      description: Adds an affiliate to a channel - this is a Master account operation
       operationId: AddAffiliate
       parameters:
       - $ref: '#/components/parameters/AccountId'
@@ -353,7 +353,7 @@ paths:
       tags:
       - Media Sharing
       summary: Approve Contract
-      description: 'Approve a contract - this is an Affiliate account operation '
+      description: Approve a contract - this is an Affiliate account operation
       operationId: ApproveContract
       parameters:
       - $ref: '#/components/parameters/AccountId'
@@ -567,43 +567,99 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
 components:
+  parameters:
+    MasterAccountId:
+      description: Video Cloud master account ID for media sharing relationships
+      explode: false
+      in: path
+      name: master_account_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    Authorization:
+      description: 'Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)'
+      explode: false
+      in: header
+      name: Authorization
+      required: true
+      schema:
+        type: string
+      style: simple
+    AccountId:
+      description: Video Cloud account ID.
+      explode: false
+      in: path
+      name: account_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    ContentType:
+      description: 'Content-Type: application/json'
+      example: application/json
+      explode: false
+      in: header
+      name: Content-Type
+      required: true
+      schema:
+        default: application/json
+        type: string
+      style: simple
+    VideoId:
+      description: Video ID (specified as `{video_id}}`).
+      explode: false
+      in: path
+      name: video_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    ChannelName:
+      description: The name of the channel - usually `default`
+      explode: false
+      in: path
+      name: channel_name
+      required: true
+      schema:
+        type: string
+      style: simple
+    AffiliateAccountId:
+      description: Video Cloud affiliate account ID for media sharing relationships
+      explode: false
+      in: path
+      name: affiliate_account_id
+      required: true
+      schema:
+        type: string
+      style: simple
   schemas:
-    Contract:
+    ChannelAffiliate:
       example:
-      - account_id: '1485884786001'
+      - account_id: '57838016001'
+        account_name: BrightcoveLearning
         approved: true
-        approved_at: '2017-08-27T12:27:21.582Z'
-        auto_accept: true
-        channel:
-          account_id: '57838016001'
-          name: default
-        channel_account_name: BrightcoveLearning
-        created_at: '2017-08-23T17:45:41.556Z'
-        updated_at: '2017-12-27T19:29:49.498Z'
+      - account_id: '1481353044001'
+        account_name: BC - Samples
+        approved: true
+      - account_id: '301925175'
+        account_name: BC Home Page Player
+        approved: true
       properties:
         account_id:
           description: affiliate account id
           type: string
+        account_name:
+          description: affiliate account name
+          type: string
         approved:
-          description: whether the contract is approved
+          description: whether the affiliate has approved the relationship
           type: boolean
-        approved_at:
-          description: when the contract was approved
-          type: string
-        auto_accept:
-          description: whether shared videos will be automatically accepted
-          type: boolean
-        channel:
-          $ref: '#/components/schemas/Channel'
-        created_at:
-          description: when the contract was created
-          readOnly: true
-          type: string
-        updated_at:
-          description: when the contract was last updated
-          readOnly: true
-          type: string
-      title: Contract
+      required:
+      - account_id
+      - account_name
+      - approved
+      title: ChannelAffiliate
       type: object
     VideoShare:
       example:
@@ -639,32 +695,14 @@ components:
       - affiliate_video_id
       title: VideoShare
       type: object
-    ChannelAffiliate:
+    AddAffiliate:
       example:
-      - account_id: '57838016001'
-        account_name: BrightcoveLearning
-        approved: true
-      - account_id: '1481353044001'
-        account_name: BC - Samples
-        approved: true
-      - account_id: '301925175'
-        account_name: BC Home Page Player
-        approved: true
+        account_id: '1937897674001'
       properties:
         account_id:
           description: affiliate account id
           type: string
-        account_name:
-          description: affiliate account name
-          type: string
-        approved:
-          description: whether the affiliate has approved the relationship
-          type: boolean
-      required:
-      - account_id
-      - account_name
-      - approved
-      title: ChannelAffiliate
+      title: AddAffiliate
       type: object
     Channel:
       description: the channel this contract belongs to
@@ -712,81 +750,43 @@ components:
       - id
       title: ShareVideoRequest
       type: object
-    AddAffiliate:
+    Contract:
       example:
-        account_id: '1937897674001'
+      - account_id: '1485884786001'
+        approved: true
+        approved_at: '2017-08-27T12:27:21.582Z'
+        auto_accept: true
+        channel:
+          account_id: '57838016001'
+          name: default
+        channel_account_name: BrightcoveLearning
+        created_at: '2017-08-23T17:45:41.556Z'
+        updated_at: '2017-12-27T19:29:49.498Z'
       properties:
         account_id:
           description: affiliate account id
           type: string
-      title: AddAffiliate
+        approved:
+          description: whether the contract is approved
+          type: boolean
+        approved_at:
+          description: when the contract was approved
+          type: string
+        auto_accept:
+          description: whether shared videos will be automatically accepted
+          type: boolean
+        channel:
+          $ref: '#/components/schemas/Channel'
+        created_at:
+          description: when the contract was created
+          readOnly: true
+          type: string
+        updated_at:
+          description: when the contract was last updated
+          readOnly: true
+          type: string
+      title: Contract
       type: object
-  parameters:
-    MasterAccountId:
-      description: Video Cloud master account ID for media sharing relationships
-      explode: false
-      in: path
-      name: master_account_id
-      required: true
-      schema:
-        type: string
-      style: simple
-    VideoId:
-      description: Video ID (specified as `{video_id}}`).
-      explode: false
-      in: path
-      name: video_id
-      required: true
-      schema:
-        type: string
-      style: simple
-    ContentType:
-      description: 'Content-Type: application/json'
-      example: application/json
-      explode: false
-      in: header
-      name: Content-Type
-      required: true
-      schema:
-        default: application/json
-        type: string
-      style: simple
-    AccountId:
-      description: Video Cloud account ID.
-      explode: false
-      in: path
-      name: account_id
-      required: true
-      schema:
-        type: string
-      style: simple
-    Authorization:
-      description: 'Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)'
-      explode: false
-      in: header
-      name: Authorization
-      required: true
-      schema:
-        type: string
-      style: simple
-    AffiliateAccountId:
-      description: Video Cloud affiliate account ID for media sharing relationships
-      explode: false
-      in: path
-      name: affiliate_account_id
-      required: true
-      schema:
-        type: string
-      style: simple
-    ChannelName:
-      description: The name of the channel - usually `default`
-      explode: false
-      in: path
-      name: channel_name
-      required: true
-      schema:
-        type: string
-      style: simple
   securitySchemes:
     BC_OAuth2:
       type: oauth2

@@ -1,10 +1,10 @@
 openapi: 3.2.0
 info:
-  title: Brightcove Ingest Profiles API Reference Account Configuration API
+  title: Brightcove Ingest Profiles API Reference Account…
   description: 'Reference for the Brightcove Ingest Profiles API, used to create and manage ingest profiles that specify video and image renditions to be created, along with instructions for archiving masters.
 
 
-    For additional in-depth guides to features of the API, see the **[general documentation](/ingest-profiles/guides/index.html)**.
+    For additional in-depth guides to features of the API, see the **general documentation**.
 
 
     **Base URL**: https://ingestion.api.brightcove.com/v1'
@@ -22,7 +22,7 @@ paths:
       tags:
       - Account Configuration
       summary: Get Default Profile
-      description: 'Get the default ingest profile for the account. '
+      description: Get the default ingest profile for the account.
       operationId: GetDefaultProfile
       security:
       - BC_OAuth2:
@@ -52,7 +52,7 @@ paths:
       tags:
       - Account Configuration
       summary: Update Default Profile
-      description: 'Updates the default ingest profile for the account. '
+      description: Updates the default ingest profile for the account.
       operationId: UpdateDefaultProfile
       security:
       - BC_OAuth2:
@@ -93,7 +93,7 @@ paths:
       tags:
       - Account Configuration
       summary: Set Default Profile
-      description: 'Sets an ingest profile as the default for the account. '
+      description: Sets an ingest profile as the default for the account.
       operationId: SetDefaultProfile
       security:
       - BC_OAuth2:
@@ -131,7 +131,60 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
 components:
+  parameters:
+    Authorization:
+      name: Authorization
+      in: header
+      description: 'Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    ContentType:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: application/json
+    account_id:
+      name: account_id
+      in: path
+      description: Video Cloud account ID.
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
   schemas:
+    UpdateDefaultProfilebody:
+      title: Update_Default_ProfileBody
+      required:
+      - account_id
+      - id
+      - default_profile_id
+      type: object
+      properties:
+        account_id:
+          type: number
+          description: Video Cloud account ID
+        id:
+          type: string
+          description: the configuration id (if you do not have it, make a GET request to get it)
+        default_profile_id:
+          type: string
+          description: The id or name of the profile you want to set as the default
+          example: multi-platform-standard-static
+        default_live_profile_id:
+          type: string
+          description: The id or name of the live profile you want to set as the default
+        default_social_clipping_profile_id:
+          type: string
+          description: The id or name of the profile you want to set as the default for creating social clips
     DefaultProfileResponse:
       title: Default Profile responses
       type: object
@@ -185,59 +238,6 @@ components:
         default_social_clipping_profile_id:
           type: string
           description: The id or name of the profile you want to set as the default for creating social clips
-    UpdateDefaultProfilebody:
-      title: Update_Default_ProfileBody
-      required:
-      - account_id
-      - id
-      - default_profile_id
-      type: object
-      properties:
-        account_id:
-          type: number
-          description: Video Cloud account ID
-        id:
-          type: string
-          description: the configuration id (if you do not have it, make a GET request to get it)
-        default_profile_id:
-          type: string
-          description: The id or name of the profile you want to set as the default
-          example: multi-platform-standard-static
-        default_live_profile_id:
-          type: string
-          description: The id or name of the live profile you want to set as the default
-        default_social_clipping_profile_id:
-          type: string
-          description: The id or name of the profile you want to set as the default for creating social clips
-  parameters:
-    ContentType:
-      name: Content-Type
-      in: header
-      description: 'Content-Type: application/json'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        example: application/json
-    Authorization:
-      name: Authorization
-      in: header
-      description: 'Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    account_id:
-      name: account_id
-      in: path
-      description: Video Cloud account ID.
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
   securitySchemes:
     BC_OAuth2:
       type: oauth2

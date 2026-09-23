@@ -4,7 +4,7 @@ info:
   description: 'Reference for the Brightcove Live API, used to create and manage live streaming events.
 
 
-    For additional in-depth guides to features of the API, see the **[Support Site](/live-api/index.html)**.
+    For additional in-depth guides to features of the API, see the **Support Site**.
 
 
     **Base URL**: https://api.bcovlive.io/v1'
@@ -21,7 +21,7 @@ paths:
       tags:
       - RTMP Outputs
       summary: List RTMP Outputs
-      description: 'Get a list of RTMP outputs. See [Live API: RTMP Outputs](/live-api/guides/live-api-rtmp-outputs.html) for more information on RTMP outputs.'
+      description: 'Get a list of RTMP outputs. See Live API: RTMP Outputs for more information on RTMP outputs.'
       operationId: GetRTMPOutputs
       parameters:
       - $ref: '#/components/parameters/JobId'
@@ -50,7 +50,7 @@ paths:
       tags:
       - RTMP Outputs
       summary: Create RTMP Output
-      description: 'Create an RTMP output. See [Live API: RTMP Outputs](/live-api/guides/live-api-rtmp-outputs.html) for more information on RTMP outputs.'
+      description: 'Create an RTMP output. See Live API: RTMP Outputs for more information on RTMP outputs.'
       operationId: CreateRTMPOutput
       parameters:
       - $ref: '#/components/parameters/JobId'
@@ -89,7 +89,7 @@ paths:
       tags:
       - RTMP Outputs
       summary: Stop RTMP Output
-      description: 'Stop an RTMP output. See [Live API: RTMP Outputs](/live-api/guides/live-api-rtmp-outputs.html) for more information on RTMP outputs.'
+      description: 'Stop an RTMP output. See Live API: RTMP Outputs for more information on RTMP outputs.'
       operationId: StopRTMPOutput
       parameters:
       - $ref: '#/components/parameters/JobId'
@@ -117,19 +117,19 @@ paths:
         IsMultiContentStreaming: false
 components:
   parameters:
-    rtmp_out_id:
-      name: rtmp_out_id
+    JobId:
+      name: job_id
       in: path
-      description: RTMP output ID
+      description: Live job ID
       required: true
       style: simple
       explode: false
       schema:
         type: string
-    JobId:
-      name: job_id
+    rtmp_out_id:
+      name: rtmp_out_id
       in: path
-      description: Live job ID
+      description: RTMP output ID
       required: true
       style: simple
       explode: false
@@ -145,90 +145,6 @@ components:
       schema:
         type: string
   schemas:
-    CreateRTMPOutputRequestBody:
-      title: Create RTMP Output Request Body
-      description: Request body for requests to create an RTMP output
-      type: object
-      properties:
-        url:
-          type: string
-          description: URL for the RTMP output
-          example: rtmp://host:port/application/streamName
-        output_label:
-          type: string
-          description: The label of the job output to use as the source for the RTMP output. Omit this parameter to simply forward the RTMP input instead.
-      required:
-      - url
-    CreateRTMPOutputResponse:
-      title: Create RTMP output success response
-      description: Create RTMP output success response
-      type: object
-      properties:
-        connection_info:
-          type: object
-          description: Information on the connection URL
-          properties:
-            host:
-              type: string
-              description: Host URL
-            port:
-              type: integer
-              description: The port number
-            application:
-              type: string
-              description: The application name in the path
-            streamName:
-              type: string
-              description: The stream name in the path
-        duration_history:
-          type: array
-          description: Array of durations for connections
-          items:
-            type: integer
-            description: A connection duration in seconds
-        rtmp_out_id:
-          type: string
-          description: System id for the RTMP output
-        stream_start:
-          type: integer
-          description: Time of the stream start in Epoch time (milliseconds)
-      example:
-        connection_info:
-          host: live-api-s.facebook.com
-          port: 80
-          application: rtmp
-          streamName: foo-bar
-        duration_history: []
-        rtmp_out_id: foo
-        stream_start: 1542731746032
-    ListRTMPOutputs:
-      title: List RMTP Outputs
-      description: Response to GET request for RTMP outputs - array of RTMP outputs objects
-      type: array
-      items:
-        $ref: '#/components/schemas/RTMPout'
-      example:
-      - rtmp_out_id: asdfg-lkjh
-        stream_start: 1538746255247
-        connection_info:
-          host: a.rtmp.youtube.com
-          port: 1935
-          application: live2
-          streamName: myStream
-          sessionStatus: Active
-        duration_history:
-        - stream_start: 1557933191000
-          stream_end: 1557936731000
-        waiting_for_start: false
-    StopRTMPOutputResponse:
-      title: Stop RTMP output response
-      description: Success response for stopping and RTMP output
-      type: object
-      properties:
-        message:
-          type: string
-          description: Success message
-          example: '{ "message": "RTMP out asdfg-lkjh deleted successfully" }'
     RTMPout:
       title: RTMP Output
       type: object
@@ -289,3 +205,87 @@ components:
 
 
             If `waiting_for_start` is `false`, it means the RTMP output was stopped.'
+    CreateRTMPOutputResponse:
+      title: Create RTMP output success response
+      description: Create RTMP output success response
+      type: object
+      properties:
+        connection_info:
+          type: object
+          description: Information on the connection URL
+          properties:
+            host:
+              type: string
+              description: Host URL
+            port:
+              type: integer
+              description: The port number
+            application:
+              type: string
+              description: The application name in the path
+            streamName:
+              type: string
+              description: The stream name in the path
+        duration_history:
+          type: array
+          description: Array of durations for connections
+          items:
+            type: integer
+            description: A connection duration in seconds
+        rtmp_out_id:
+          type: string
+          description: System id for the RTMP output
+        stream_start:
+          type: integer
+          description: Time of the stream start in Epoch time (milliseconds)
+      example:
+        connection_info:
+          host: live-api-s.facebook.com
+          port: 80
+          application: rtmp
+          streamName: foo-bar
+        duration_history: []
+        rtmp_out_id: foo
+        stream_start: 1542731746032
+    StopRTMPOutputResponse:
+      title: Stop RTMP output response
+      description: Success response for stopping and RTMP output
+      type: object
+      properties:
+        message:
+          type: string
+          description: Success message
+          example: '{ "message": "RTMP out asdfg-lkjh deleted successfully" }'
+    ListRTMPOutputs:
+      title: List RMTP Outputs
+      description: Response to GET request for RTMP outputs - array of RTMP outputs objects
+      type: array
+      items:
+        $ref: '#/components/schemas/RTMPout'
+      example:
+      - rtmp_out_id: asdfg-lkjh
+        stream_start: 1538746255247
+        connection_info:
+          host: a.rtmp.youtube.com
+          port: 1935
+          application: live2
+          streamName: myStream
+          sessionStatus: Active
+        duration_history:
+        - stream_start: 1557933191000
+          stream_end: 1557936731000
+        waiting_for_start: false
+    CreateRTMPOutputRequestBody:
+      title: Create RTMP Output Request Body
+      description: Request body for requests to create an RTMP output
+      type: object
+      properties:
+        url:
+          type: string
+          description: URL for the RTMP output
+          example: rtmp://host:port/application/streamName
+        output_label:
+          type: string
+          description: The label of the job output to use as the source for the RTMP output. Omit this parameter to simply forward the RTMP input instead.
+      required:
+      - url

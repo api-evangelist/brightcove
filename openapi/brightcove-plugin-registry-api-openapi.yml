@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
-  title: Brightcove Player Management API Reference Plugin Registry API
-  description: "Reference for the Brightcove Player Management API, used to manipulate players, player configurations and child players (embeds). To test API requests, you can use our [API Testing Tools](/getting-started/concepts-testing-tools-brightcove-apis.html). Popular testing tools include:\n\n  - [cURL](https://general.support.brightcove.com/developer/concepts-set-curl.html)\n  - [Postman](/general/use-postman-api-requests.html) - note that the tutorial here uses the Player Management API as an example\n  - [Insomnia](/general/use-insomnia-api-requests.html) - note that the tutorial here uses the Player Management API as an example\n\nIf you haven't gone through [Step-by-Step: Player Management](/player-management/getting-started/step-step-player-management.html), it's highly recommended you start there. You'll get security set up and learn some of the basics of using the Player Management API.\n\nIf you are working with this API for the first time, read the [Player Management API Overview](/player-management/getting-started/overview-player-management-api.html).\n\nRemember that after making any configuration changes you **MUST** re-publish your player. **Note:** Fields in configuration objects need to be set only if you wish to change their values. Fields in configuration objects will be displayed in the response only if explicitly set. For information on authenticating API requests, see [OAuth Overview](/oauth/getting-started/overview-oauth-api-v4.html).\n\nFor additional in-depth guides to features of the API, see the **[general documentation](/player-management/references/index.html)**.\n\nBase URL: https://players.api.brightcove.com/v2"
+  title: Brightcove Player Management API Reference Plugin Registry…
+  description: Reference for the Brightcove Player Management API, used to manipulate players, player configurations and child players (embeds).
   version: 2.0.0
   x-bc-access: public
 servers:
@@ -16,7 +16,6 @@ paths:
       tags:
       - Plugin Registry
       summary: Get all plugins
-      description: Get all plugins
       operationId: GetAllPlugin
       security:
       - BC_OAuth2:
@@ -102,7 +101,6 @@ paths:
       tags:
       - Plugin Registry
       summary: Get a single plugin
-      description: Get a single plugin
       operationId: GetPlugin
       security:
       - BC_OAuth2:
@@ -135,40 +133,6 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
 components:
-  parameters:
-    ContentType:
-      name: Content-Type
-      in: header
-      description: 'Content-Type: application/json'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-      example: application/json
-    Authorization:
-      name: Authorization
-      in: header
-      description: '**IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.
-
-
-        `Authorization: Bearer {access_token}` - (see [Getting Access
-
-        Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    plugin_id:
-      name: plugin_id
-      in: path
-      description: The plugin ID in the Plugin Registry.
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
   schemas:
     plugin:
       title: Plugin
@@ -215,6 +179,40 @@ components:
         current_version:
           type: string
           description: The current version of the plugin
+  parameters:
+    Authorization:
+      name: Authorization
+      in: header
+      description: '**IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.
+
+
+        `Authorization: Bearer {access_token}` - (see [Getting Access
+
+        Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    plugin_id:
+      name: plugin_id
+      in: path
+      description: The plugin ID in the Plugin Registry.
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    ContentType:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+      example: application/json
   securitySchemes:
     BC_OAuth2:
       type: oauth2
