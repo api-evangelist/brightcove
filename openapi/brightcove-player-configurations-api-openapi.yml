@@ -155,20 +155,6 @@ paths:
         IsMultiContentStreaming: false
 components:
   parameters:
-    Authorization:
-      name: Authorization
-      in: header
-      description: '**IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.
-
-
-        `Authorization: Bearer {access_token}` - (see [Getting Access
-
-        Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
     ContentType:
       name: Content-Type
       in: header
@@ -179,19 +165,19 @@ components:
       schema:
         type: string
       example: application/json
-    player_id:
-      name: player_id
+    account_id:
+      name: account_id
       in: path
-      description: Brightcove Player ID.
+      description: Video Cloud account ID.
       required: true
       style: simple
       explode: false
       schema:
         type: string
-    account_id:
-      name: account_id
+    player_id:
+      name: player_id
       in: path
-      description: Video Cloud account ID.
+      description: Brightcove Player ID.
       required: true
       style: simple
       explode: false
@@ -209,6 +195,20 @@ components:
         enum:
         - master
         - preview
+    Authorization:
+      name: Authorization
+      in: header
+      description: '**IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.
+
+
+        `Authorization: Bearer {access_token}` - (see [Getting Access
+
+        Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
   schemas:
     configuration:
       title: Player Configuration

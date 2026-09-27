@@ -122,27 +122,15 @@ components:
       explode: false
       schema:
         type: string
-    Authorization:
-      name: Authorization
-      in: header
-      description: 'Authorization: Bearer access_token (see Getting Access Tokens)'
+    account_id:
+      name: account_id
+      in: path
+      description: a Video Cloud account ID
       required: true
       style: simple
       explode: false
       schema:
         type: string
-    live_from:
-      name: from
-      in: query
-      description: '''Start time for the period covered by the report — epoch time in milliseconds (`1535654206775`) or a date in the format `yyyy-mm-dd` (such as `2013-09-26`)'''
-      style: form
-      explode: true
-      schema:
-        oneOf:
-        - type: string
-        - type: integer
-        default: 32 days before now
-        example: 2018-01-01
     bucket_duration:
       name: bucket_duration
       in: query
@@ -151,46 +139,6 @@ components:
       required: false
       style: form
       explode: true
-      schema:
-        type: string
-    bucket_limit:
-      name: bucket_limit
-      in: query
-      description: '''Max number of points to be returned for a time-series'''
-      required: false
-      example: 10
-      style: form
-      explode: true
-      schema:
-        type: integer
-    to:
-      name: to
-      in: query
-      description: End time for the period covered by the report — `now` or epoch time in milliseconds (`1535654206775`) or a date in the format `yyyy-mm-dd` (such as `2013-09-26`)
-      style: form
-      explode: true
-      schema:
-        oneOf:
-        - type: string
-        - type: integer
-        default: now
-        example: '2018-09-01'
-    live_where:
-      name: where
-      in: query
-      description: "One or more filters to limit responses for Live Analytics requests\nAvailable filters:\n  - video\n  - country\n  - device_type"
-      required: true
-      style: form
-      explode: true
-      schema:
-        $ref: '#/components/schemas/live_where'
-    account_id:
-      name: account_id
-      in: path
-      description: a Video Cloud account ID
-      required: true
-      style: simple
-      explode: false
       schema:
         type: string
     metrics:
@@ -210,15 +158,6 @@ components:
         - fingerprint_count
         - ccu
         example: video_view,alive_ss_ad_start,ccu
-    Content-Type:
-      name: Content-Type
-      in: header
-      description: 'Content-Type: application/json'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
     where:
       name: where
       in: query
@@ -228,6 +167,37 @@ components:
       explode: true
       schema:
         $ref: '#/components/schemas/live_where'
+    bucket_limit:
+      name: bucket_limit
+      in: query
+      description: '''Max number of points to be returned for a time-series'''
+      required: false
+      example: 10
+      style: form
+      explode: true
+      schema:
+        type: integer
+    live_where:
+      name: where
+      in: query
+      description: "One or more filters to limit responses for Live Analytics requests\nAvailable filters:\n  - video\n  - country\n  - device_type"
+      required: true
+      style: form
+      explode: true
+      schema:
+        $ref: '#/components/schemas/live_where'
+    live_from:
+      name: from
+      in: query
+      description: '''Start time for the period covered by the report — epoch time in milliseconds (`1535654206775`) or a date in the format `yyyy-mm-dd` (such as `2013-09-26`)'''
+      style: form
+      explode: true
+      schema:
+        oneOf:
+        - type: string
+        - type: integer
+        default: 32 days before now
+        example: 2018-01-01
     live_dimensions:
       name: dimensions
       in: query
@@ -237,22 +207,37 @@ components:
       explode: true
       schema:
         $ref: '#/components/schemas/LiveDimensions'
+    Authorization:
+      name: Authorization
+      in: header
+      description: 'Authorization: Bearer access_token (see Getting Access Tokens)'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    Content-Type:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    to:
+      name: to
+      in: query
+      description: End time for the period covered by the report — `now` or epoch time in milliseconds (`1535654206775`) or a date in the format `yyyy-mm-dd` (such as `2013-09-26`)
+      style: form
+      explode: true
+      schema:
+        oneOf:
+        - type: string
+        - type: integer
+        default: now
+        example: '2018-09-01'
   schemas:
-    live_where:
-      title: Live where
-      enum:
-      - country
-      - device_type
-      - video
-      type: string
-      example: video==6049313942001,6049313942002
-      x-enum-elements:
-      - name: country
-        description: ''
-      - name: device_type
-        description: ''
-      - name: video
-        description: ''
     Get_Time_Series_Response:
       title: Get Time-Series Response
       type: object
@@ -365,6 +350,21 @@ components:
       - video
       - video,country
       - video, device_type
+    live_where:
+      title: Live where
+      enum:
+      - country
+      - device_type
+      - video
+      type: string
+      example: video==6049313942001,6049313942002
+      x-enum-elements:
+      - name: country
+        description: ''
+      - name: device_type
+        description: ''
+      - name: video
+        description: ''
   securitySchemes:
     BC_OAuth2:
       type: oauth2

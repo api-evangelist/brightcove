@@ -567,143 +567,7 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
 components:
-  parameters:
-    MasterAccountId:
-      description: Video Cloud master account ID for media sharing relationships
-      explode: false
-      in: path
-      name: master_account_id
-      required: true
-      schema:
-        type: string
-      style: simple
-    Authorization:
-      description: 'Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)'
-      explode: false
-      in: header
-      name: Authorization
-      required: true
-      schema:
-        type: string
-      style: simple
-    AccountId:
-      description: Video Cloud account ID.
-      explode: false
-      in: path
-      name: account_id
-      required: true
-      schema:
-        type: string
-      style: simple
-    ContentType:
-      description: 'Content-Type: application/json'
-      example: application/json
-      explode: false
-      in: header
-      name: Content-Type
-      required: true
-      schema:
-        default: application/json
-        type: string
-      style: simple
-    VideoId:
-      description: Video ID (specified as `{video_id}}`).
-      explode: false
-      in: path
-      name: video_id
-      required: true
-      schema:
-        type: string
-      style: simple
-    ChannelName:
-      description: The name of the channel - usually `default`
-      explode: false
-      in: path
-      name: channel_name
-      required: true
-      schema:
-        type: string
-      style: simple
-    AffiliateAccountId:
-      description: Video Cloud affiliate account ID for media sharing relationships
-      explode: false
-      in: path
-      name: affiliate_account_id
-      required: true
-      schema:
-        type: string
-      style: simple
   schemas:
-    ChannelAffiliate:
-      example:
-      - account_id: '57838016001'
-        account_name: BrightcoveLearning
-        approved: true
-      - account_id: '1481353044001'
-        account_name: BC - Samples
-        approved: true
-      - account_id: '301925175'
-        account_name: BC Home Page Player
-        approved: true
-      properties:
-        account_id:
-          description: affiliate account id
-          type: string
-        account_name:
-          description: affiliate account name
-          type: string
-        approved:
-          description: whether the affiliate has approved the relationship
-          type: boolean
-      required:
-      - account_id
-      - account_name
-      - approved
-      title: ChannelAffiliate
-      type: object
-    VideoShare:
-      example:
-      - affiliate_id: '47509719001'
-        affiliate_video_id: '5766941108001'
-        error_message: null
-        shared_at: '2018-04-09T13:43:04.284Z'
-        status: COMPLETE
-        updated_at: '2018-04-09T13:43:13.687Z'
-        video_id: '5341769699001'
-      properties:
-        affiliate_id:
-          description: the id of the affiliate account the video is shared to
-          type: string
-        affiliate_video_id:
-          description: the id of the shared video in the affiliate account
-          type: string
-        shared_at:
-          description: when the video was shared
-          type: string
-        status:
-          description: the status of the sharing - either PROCESSING, COMPLETE, or FAILED
-          type: string
-        updated_at:
-          description: the video was last updated in the affiliate account
-          type: string
-        video_id:
-          description: the video id
-          type: string
-      required:
-      - video_id
-      - affiliate_id
-      - affiliate_video_id
-      title: VideoShare
-      type: object
-    AddAffiliate:
-      example:
-        account_id: '1937897674001'
-      properties:
-        account_id:
-          description: affiliate account id
-          type: string
-      title: AddAffiliate
-      type: object
     Channel:
       description: the channel this contract belongs to
       example:
@@ -738,17 +602,6 @@ components:
           description: when the channel was last updated
           type: string
       title: Channel
-      type: object
-    ShareVideoRequest:
-      example:
-      - id: '47509719001'
-      properties:
-        id:
-          description: affiliate account id to share to
-          type: string
-      required:
-      - id
-      title: ShareVideoRequest
       type: object
     Contract:
       example:
@@ -787,6 +640,153 @@ components:
           type: string
       title: Contract
       type: object
+    AddAffiliate:
+      example:
+        account_id: '1937897674001'
+      properties:
+        account_id:
+          description: affiliate account id
+          type: string
+      title: AddAffiliate
+      type: object
+    VideoShare:
+      example:
+      - affiliate_id: '47509719001'
+        affiliate_video_id: '5766941108001'
+        error_message: null
+        shared_at: '2018-04-09T13:43:04.284Z'
+        status: COMPLETE
+        updated_at: '2018-04-09T13:43:13.687Z'
+        video_id: '5341769699001'
+      properties:
+        affiliate_id:
+          description: the id of the affiliate account the video is shared to
+          type: string
+        affiliate_video_id:
+          description: the id of the shared video in the affiliate account
+          type: string
+        shared_at:
+          description: when the video was shared
+          type: string
+        status:
+          description: the status of the sharing - either PROCESSING, COMPLETE, or FAILED
+          type: string
+        updated_at:
+          description: the video was last updated in the affiliate account
+          type: string
+        video_id:
+          description: the video id
+          type: string
+      required:
+      - video_id
+      - affiliate_id
+      - affiliate_video_id
+      title: VideoShare
+      type: object
+    ChannelAffiliate:
+      example:
+      - account_id: '57838016001'
+        account_name: BrightcoveLearning
+        approved: true
+      - account_id: '1481353044001'
+        account_name: BC - Samples
+        approved: true
+      - account_id: '301925175'
+        account_name: BC Home Page Player
+        approved: true
+      properties:
+        account_id:
+          description: affiliate account id
+          type: string
+        account_name:
+          description: affiliate account name
+          type: string
+        approved:
+          description: whether the affiliate has approved the relationship
+          type: boolean
+      required:
+      - account_id
+      - account_name
+      - approved
+      title: ChannelAffiliate
+      type: object
+    ShareVideoRequest:
+      example:
+      - id: '47509719001'
+      properties:
+        id:
+          description: affiliate account id to share to
+          type: string
+      required:
+      - id
+      title: ShareVideoRequest
+      type: object
+  parameters:
+    ContentType:
+      description: 'Content-Type: application/json'
+      example: application/json
+      explode: false
+      in: header
+      name: Content-Type
+      required: true
+      schema:
+        default: application/json
+        type: string
+      style: simple
+    AffiliateAccountId:
+      description: Video Cloud affiliate account ID for media sharing relationships
+      explode: false
+      in: path
+      name: affiliate_account_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    MasterAccountId:
+      description: Video Cloud master account ID for media sharing relationships
+      explode: false
+      in: path
+      name: master_account_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    VideoId:
+      description: Video ID (specified as `{video_id}}`).
+      explode: false
+      in: path
+      name: video_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    AccountId:
+      description: Video Cloud account ID.
+      explode: false
+      in: path
+      name: account_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    ChannelName:
+      description: The name of the channel - usually `default`
+      explode: false
+      in: path
+      name: channel_name
+      required: true
+      schema:
+        type: string
+      style: simple
+    Authorization:
+      description: 'Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)'
+      explode: false
+      in: header
+      name: Authorization
+      required: true
+      schema:
+        type: string
+      style: simple
   securitySchemes:
     BC_OAuth2:
       type: oauth2

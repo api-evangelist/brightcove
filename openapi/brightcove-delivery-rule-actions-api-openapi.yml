@@ -236,12 +236,13 @@ paths:
         IsMultiContentStreaming: false
 components:
   schemas:
-    ActionWithID:
+    Action:
       title: Action
       type: object
       properties:
         id:
           type: string
+          readOnly: true
           description: Unique identifier for the Action
         properties:
           type: object
@@ -286,13 +287,12 @@ components:
               items:
                 description: Audio Codec
                 type: string
-    Action:
+    ActionWithID:
       title: Action
       type: object
       properties:
         id:
           type: string
-          readOnly: true
           description: Unique identifier for the Action
         properties:
           type: object

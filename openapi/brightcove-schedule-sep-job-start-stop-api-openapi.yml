@@ -153,6 +153,17 @@ paths:
         IsMultiContentStreaming: false
 components:
   parameters:
+    ContentType:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        default: application/json
+      example: application/json
     WorkflowId:
       name: workflow_id
       in: path
@@ -171,18 +182,55 @@ components:
       explode: false
       schema:
         type: string
-    ContentType:
-      name: Content-Type
-      in: header
-      description: 'Content-Type: application/json'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        default: application/json
-      example: application/json
   schemas:
+    JobStartStop.TaskInfo:
+      properties:
+        time_utc:
+          description: UTC time to perform task. Value must be unix timestamp in seconds.
+          type: number
+        notification:
+          description: Duration in seconds before time_utc to send a notification for the upcoming task.
+          type: number
+        state:
+          description: Task state
+          type: string
+          enum:
+          - pending
+          - cancelled
+          - failed
+          - finished
+      required:
+      - time_utc
+      - state
+      title: JobStartStop.task_info
+      type: object
+    CreateJobStartStopRequestBody.TaskInfo:
+      properties:
+        time_utc:
+          description: UTC time to perform task. Value must be unix timestamp in seconds.
+          type: number
+        notification:
+          description: Duration in seconds before time_utc to send a notification for the upcoming task.
+          type: number
+      required:
+      - time_utc
+      title: Create_JobStartStop_Body.task_info
+      type: object
+    UpdateJobStartStopRequestBody:
+      properties:
+        activation:
+          $ref: '#/components/schemas/CreateJobStartStopRequestBody.TaskInfo'
+        deactivation:
+          $ref: '#/components/schemas/CreateJobStartStopRequestBody.TaskInfo'
+      title: Update_JobStartStop_Body
+      type: object
+      example:
+        activation:
+          time_utc: 1611178000
+          notification: 300
+        deactivation:
+          time_utc: 1611188000
+          notification: 300
     JobStartStop:
       properties:
         job_id:
@@ -217,39 +265,6 @@ components:
       - account_id
       - type
       title: JobStartStop
-      type: object
-    JobStartStop.TaskInfo:
-      properties:
-        time_utc:
-          description: UTC time to perform task. Value must be unix timestamp in seconds.
-          type: number
-        notification:
-          description: Duration in seconds before time_utc to send a notification for the upcoming task.
-          type: number
-        state:
-          description: Task state
-          type: string
-          enum:
-          - pending
-          - cancelled
-          - failed
-          - finished
-      required:
-      - time_utc
-      - state
-      title: JobStartStop.task_info
-      type: object
-    CreateJobStartStopRequestBody.TaskInfo:
-      properties:
-        time_utc:
-          description: UTC time to perform task. Value must be unix timestamp in seconds.
-          type: number
-        notification:
-          description: Duration in seconds before time_utc to send a notification for the upcoming task.
-          type: number
-      required:
-      - time_utc
-      title: Create_JobStartStop_Body.task_info
       type: object
     CreateJobStartStopRequestBody:
       properties:
@@ -286,18 +301,3 @@ components:
           notification: 300
         description: My JobStartStop workflow
         notification_url: https://example.com/live/jobstartstop/callbacks
-    UpdateJobStartStopRequestBody:
-      properties:
-        activation:
-          $ref: '#/components/schemas/CreateJobStartStopRequestBody.TaskInfo'
-        deactivation:
-          $ref: '#/components/schemas/CreateJobStartStopRequestBody.TaskInfo'
-      title: Update_JobStartStop_Body
-      type: object
-      example:
-        activation:
-          time_utc: 1611178000
-          notification: 300
-        deactivation:
-          time_utc: 1611188000
-          notification: 300

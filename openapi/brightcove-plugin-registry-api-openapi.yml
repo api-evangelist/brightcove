@@ -133,6 +133,40 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
 components:
+  parameters:
+    ContentType:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+      example: application/json
+    Authorization:
+      name: Authorization
+      in: header
+      description: '**IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.
+
+
+        `Authorization: Bearer {access_token}` - (see [Getting Access
+
+        Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    plugin_id:
+      name: plugin_id
+      in: path
+      description: The plugin ID in the Plugin Registry.
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
   schemas:
     plugin:
       title: Plugin
@@ -179,40 +213,6 @@ components:
         current_version:
           type: string
           description: The current version of the plugin
-  parameters:
-    Authorization:
-      name: Authorization
-      in: header
-      description: '**IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.
-
-
-        `Authorization: Bearer {access_token}` - (see [Getting Access
-
-        Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    plugin_id:
-      name: plugin_id
-      in: path
-      description: The plugin ID in the Plugin Registry.
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    ContentType:
-      name: Content-Type
-      in: header
-      description: 'Content-Type: application/json'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-      example: application/json
   securitySchemes:
     BC_OAuth2:
       type: oauth2

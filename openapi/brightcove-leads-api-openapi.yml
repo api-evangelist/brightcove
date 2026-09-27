@@ -65,77 +65,6 @@ paths:
         IsMultiContentStreaming: false
 components:
   schemas:
-    FieldsLeads:
-      title: fields
-      description: Fields for Leads. See [Fields for filtering and selection](/develop/overview-audience-api.html#Retrieving_view_events) for more information
-      enum:
-      - video_id
-      - video_name
-      - external_id
-      - first_name
-      - last_name
-      - email_address
-      - business_phone
-      - country
-      - company_name
-      - industry
-      - player_id
-      - page_url
-      - created_at
-      type: string
-      example: video_id
-      x-enum-elements:
-      - name: video_id
-        description: Brightcove video id
-      - name: video_name
-        description: Brightcove video name
-      - name: tracking_id
-        description: Custom tracking id
-      - name: external_id
-        description: The Marketo, Eloqua or other custom GUID
-      - name: player_id
-        description: Brightcove player id
-      - name: page_url
-        description: The URL of the page where the view event was created
-      - name: watched
-        description: Percent watched
-      - name: time_watched
-        description: Seconds watched
-      - name: created_at
-        description: Creation date
-      - name: updated_at
-        description: Last modified date
-      - name: is_synced
-        description: A boolean denoting whether or not the view event has been synchronized
-      - name: utm_source
-        description: UTM field found in the page_url
-      - name: utm_medium
-        description: UTM field found in the page_url
-      - name: utm_medium
-        description: UTM field found in the page_url
-      - name: utm_term
-        description: UTM field found in the page_url
-      - name: utm_content
-        description: UTM field found in the page_url
-    SortLeads:
-      title: sort for Leads
-      enum:
-      - video_id
-      - video_name
-      - player_id
-      - created_at
-      type: string
-      example: video_id
-      default: created_at
-      x-enum-elements:
-      - name: video_id
-        description: Video id
-      - name: video_name
-        description: Video name
-      - name: player_id
-        description: Player id
-      - name: created_at
-        description: When video was created
     Get_Leads_Response:
       title: Get Leads Response
       type: object
@@ -224,7 +153,86 @@ components:
         video_name:
           type: string
           description: the Video Cloud video name
+    FieldsLeads:
+      title: fields
+      description: Fields for Leads. See [Fields for filtering and selection](/develop/overview-audience-api.html#Retrieving_view_events) for more information
+      enum:
+      - video_id
+      - video_name
+      - external_id
+      - first_name
+      - last_name
+      - email_address
+      - business_phone
+      - country
+      - company_name
+      - industry
+      - player_id
+      - page_url
+      - created_at
+      type: string
+      example: video_id
+      x-enum-elements:
+      - name: video_id
+        description: Brightcove video id
+      - name: video_name
+        description: Brightcove video name
+      - name: tracking_id
+        description: Custom tracking id
+      - name: external_id
+        description: The Marketo, Eloqua or other custom GUID
+      - name: player_id
+        description: Brightcove player id
+      - name: page_url
+        description: The URL of the page where the view event was created
+      - name: watched
+        description: Percent watched
+      - name: time_watched
+        description: Seconds watched
+      - name: created_at
+        description: Creation date
+      - name: updated_at
+        description: Last modified date
+      - name: is_synced
+        description: A boolean denoting whether or not the view event has been synchronized
+      - name: utm_source
+        description: UTM field found in the page_url
+      - name: utm_medium
+        description: UTM field found in the page_url
+      - name: utm_medium
+        description: UTM field found in the page_url
+      - name: utm_term
+        description: UTM field found in the page_url
+      - name: utm_content
+        description: UTM field found in the page_url
+    SortLeads:
+      title: sort for Leads
+      enum:
+      - video_id
+      - video_name
+      - player_id
+      - created_at
+      type: string
+      example: video_id
+      default: created_at
+      x-enum-elements:
+      - name: video_id
+        description: Video id
+      - name: video_name
+        description: Video name
+      - name: player_id
+        description: Player id
+      - name: created_at
+        description: When video was created
   parameters:
+    sort_leads:
+      name: sort
+      in: query
+      description: Field to sort lead results by (prefix with `-` for descending order)
+      style: form
+      explode: true
+      schema:
+        $ref: '#/components/schemas/SortLeads'
     from:
       name: from
       in: query
@@ -235,15 +243,15 @@ components:
         oneOf:
         - type: string
         - type: integer
-    Authorization:
-      name: Authorization
-      in: header
-      description: 'Authorization: Bearer access_token (see Getting Access Tokens)'
+    account_id:
+      name: account_id
+      in: path
+      description: a Video Cloud account ID
       required: true
       style: simple
       explode: false
       schema:
-        type: string
+        type: number
     offset:
       name: offset
       in: query
@@ -268,15 +276,6 @@ components:
         example: 25
         minimum: 1
         maximum: 200
-    account_id:
-      name: account_id
-      in: path
-      description: a Video Cloud account ID
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: number
     fields_leads:
       name: fields
       in: query
@@ -288,6 +287,23 @@ components:
       explode: true
       schema:
         $ref: '#/components/schemas/FieldsLeads'
+    where:
+      name: where
+      in: query
+      description: One or more field==value pairs to filter the results; fields supported are `video_id`, `video_name`, `tracking_id`, `external_id`, `player_id`, `page_url`, `watched`, `time_watched`, `created_at`, `updated_at`, `is_synced`
+      style: form
+      explode: true
+      schema:
+        type: string
+    Authorization:
+      name: Authorization
+      in: header
+      description: 'Authorization: Bearer access_token (see Getting Access Tokens)'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
     Content-Type:
       name: Content-Type
       in: header
@@ -295,14 +311,6 @@ components:
       required: true
       style: simple
       explode: false
-      schema:
-        type: string
-    where:
-      name: where
-      in: query
-      description: One or more field==value pairs to filter the results; fields supported are `video_id`, `video_name`, `tracking_id`, `external_id`, `player_id`, `page_url`, `watched`, `time_watched`, `created_at`, `updated_at`, `is_synced`
-      style: form
-      explode: true
       schema:
         type: string
     to:
@@ -315,14 +323,6 @@ components:
         oneOf:
         - type: string
         - type: integer
-    sort_leads:
-      name: sort
-      in: query
-      description: Field to sort lead results by (prefix with `-` for descending order)
-      style: form
-      explode: true
-      schema:
-        $ref: '#/components/schemas/SortLeads'
   securitySchemes:
     BC_OAuth2:
       type: oauth2

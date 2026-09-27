@@ -67,10 +67,10 @@ components:
       explode: false
       schema:
         type: string
-    Authorization:
-      name: Authorization
-      in: header
-      description: 'Authorization: Bearer access_token (see Getting Access Tokens)'
+    account_id:
+      name: account_id
+      in: path
+      description: a Video Cloud account ID
       required: true
       style: simple
       explode: false
@@ -85,10 +85,10 @@ components:
       explode: false
       schema:
         type: string
-    account_id:
-      name: account_id
-      in: path
-      description: a Video Cloud account ID
+    Authorization:
+      name: Authorization
+      in: header
+      description: 'Authorization: Bearer access_token (see Getting Access Tokens)'
       required: true
       style: simple
       explode: false

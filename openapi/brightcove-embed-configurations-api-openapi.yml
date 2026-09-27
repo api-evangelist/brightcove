@@ -225,6 +225,70 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
 components:
+  parameters:
+    ContentType:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+      example: application/json
+    account_id:
+      name: account_id
+      in: path
+      description: Video Cloud account ID.
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    player_id:
+      name: player_id
+      in: path
+      description: Brightcove Player ID.
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    embed_id:
+      name: embed_id
+      in: path
+      description: The embed id.
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    branch:
+      name: branch
+      in: path
+      description: A plugin id
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        enum:
+        - master
+        - preview
+    Authorization:
+      name: Authorization
+      in: header
+      description: '**IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.
+
+
+        `Authorization: Bearer {access_token}` - (see [Getting Access
+
+        Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
   schemas:
     configuration:
       title: Player Configuration
@@ -622,70 +686,6 @@ components:
               type: string
               description: A Video Cloud video id (you can also use the reference id with the syntax `ref:reference_id`)
               default: undefined
-  parameters:
-    Authorization:
-      name: Authorization
-      in: header
-      description: '**IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.
-
-
-        `Authorization: Bearer {access_token}` - (see [Getting Access
-
-        Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    ContentType:
-      name: Content-Type
-      in: header
-      description: 'Content-Type: application/json'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-      example: application/json
-    player_id:
-      name: player_id
-      in: path
-      description: Brightcove Player ID.
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    account_id:
-      name: account_id
-      in: path
-      description: Video Cloud account ID.
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    branch:
-      name: branch
-      in: path
-      description: A plugin id
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        enum:
-        - master
-        - preview
-    embed_id:
-      name: embed_id
-      in: path
-      description: The embed id.
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
   securitySchemes:
     BC_OAuth2:
       type: oauth2

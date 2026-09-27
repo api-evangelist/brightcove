@@ -533,18 +533,45 @@ paths:
         IsMultiContentStreaming: false
 components:
   schemas:
-    BeaconSet.beaconUrls:
+    BeaconSets:
+      items:
+        $ref: '#/components/schemas/BeaconSet'
+      required:
+      - beacon_set_id
+      - account_id
+      title: beacon_sets
+      type: array
+    Application.applicationAdConfiguration:
       properties:
-        beacon_type:
-          description: Beacon type
+        ad_configuration_description:
+          description: The ad configuration description
           type: string
-        beacon_url:
-          description: Beacon URL
+        ad_configuration_strategy:
+          description: The ad configuration strategy (SingleAdResponse, or MultipleAdResponse)
+          type: string
+        ad_configuration_url_format:
+          description: The URL template for the ad server
+          type: string
+        ad_configuration_variables:
+          description: Key/value pairs for the ad server URL template
+          type: object
+        ad_tracking_sample_percentage:
+          type: integer
+          description: The value determines the percentage of sessions that will be logged. A value of 0 disables logs entirely.  0 is the default value.
+        headers:
+          description: The ad configuration headers
+          type: object
+        response_type:
+          description: The ad configuration response type (Dfp, Vast, or SmartXML)
           type: string
       required:
-      - beacon_url
-      - beacon_type
-      title: beacon_set.beacon_urls
+      - ad_configuration_description
+      - response_type
+      - headers
+      - ad_configuration_strategy
+      - ad_configuration_url_format
+      - ad_configuration_variables
+      title: application.application_ad_configuration
       type: object
     CreateBeaconSetbody:
       properties:
@@ -560,21 +587,33 @@ components:
       - beacon_urls
       title: Create_beacon_setBody
       type: object
-    IngestSlateMediaSourceAssetbody:
+    BeaconSet:
       properties:
         account_id:
-          description: The Live account id (if left blank, the request will still work)
+          description: The Live account id
           type: string
-        source_description:
-          description: User identifiable description for the slate
-          type: string
-        source_url:
+        beacon_urls:
+          description: Array of beacon URLs
+          items:
+            $ref: '#/components/schemas/BeaconSet.beaconUrls'
+          type: array
+      required:
+      - beacon_urls
+      title: beacon_set
+      type: object
+    UpdateBeaconSetbody:
+      properties:
+        account_id:
           description: URL for the slate to ingest
           type: string
+        beacon_urls:
+          description: Array of beacon URLs
+          items:
+            $ref: '#/components/schemas/UpdateBeaconSetbody.beaconUrls'
+          type: array
       required:
-      - source_url
-      - account_id
-      title: Ingest_Slate_Media_Source_AssetBody
+      - beacon_urls
+      title: Update_beacon_setBody
       type: object
     DeleteBeaconSetResponse:
       properties:
@@ -589,97 +628,18 @@ components:
       - deleted
       title: Delete_beacon_set_Response
       type: object
-    CreateAdConfigurationbody:
+    CreateBeaconSetbody.beaconUrls:
       properties:
-        account_id:
-          description: Your Live account id (if you leave this blank, the request will still work, defaulting to account of the current user)
+        beacon_type:
+          description: '''The beacon type - see [Beacons](/live-api/ssai/live-api-cue-points-and-ad-beacons-ssai.html#Beacons) for the valid beacon types'''
           type: string
-        application_ad_configuration:
-          $ref: '#/components/schemas/CreateAdConfigurationbody.applicationAdConfiguration'
-        application_description:
-          description: Human readable description of the ad application.
+        beacon_url:
+          description: URL format for the beacon - see [Beacons](/live-api/ssai/live-api-cue-points-and-ad-beacons-ssai.html#Beacons) for the valid beacon variables
           type: string
       required:
-      - application_ad_configuration
-      - application_description
-      title: Create_Ad_ConfigurationBody
-      type: object
-    IngestSlateMediaSourceAssetResponse:
-      properties:
-        account_id:
-          description: Id for the account
-          type: string
-        media_source_asset_default:
-          description: Whether this is the default media source asset
-          type: boolean
-          default: false
-        media_source_asset_description:
-          description: User identifiable description for the slate
-          type: string
-        media_source_asset_id:
-          description: Id for the slate asset
-          type: string
-          readOnly: true
-        media_source_asset_status:
-          description: Current status of the ingestion of the media asset
-          type: string
-          readOnly: true
-        media_source_asset_type:
-          description: The media asset type
-          type: string
-        media_source_asset_url:
-          description: URL for the media asset to be ingested
-          type: string
-      title: Ingest_Slate_Media_Source_Asset_Response
-      type: object
-    UpdateAdConfigurationbody:
-      properties:
-        account_id:
-          description: Your Live account id (if you leave this blank, the request will still work)
-          type: string
-        application_ad_configuration:
-          $ref: '#/components/schemas/UpdateAdConfigurationbody.applicationAdConfiguration'
-        application_description:
-          description: Human readable description of the ad application.
-          type: string
-      required:
-      - application_ad_configuration
-      - application_description
-      title: Update_Ad_ConfigurationBody
-      type: object
-    GetSlateMediaSourceAssetsResponse:
-      properties:
-        account_id:
-          description: Id for the Live account
-          type: string
-        media_source_asset_default:
-          description: Whether this is the default media source asset
-          type: boolean
-          default: false
-        media_source_asset_description:
-          description: User identifiable description for the slate
-          type: string
-        media_source_asset_id:
-          description: Id for the slate asset
-          type: string
-        media_source_asset_status:
-          description: Current status of the ingestion of the media asset
-          type: string
-        media_source_asset_type:
-          description: The media asset type
-          type: string
-        media_source_asset_url:
-          description: URL for the media asset to be ingested
-          type: string
-      required:
-      - media_source_asset_id
-      - account_id
-      - media_source_asset_description
-      - media_source_asset_default
-      - media_source_asset_type
-      - media_source_asset_url
-      - media_source_asset_status
-      title: Get_Slate_Media_Source_Assets_Response
+      - beacon_url
+      - beacon_type
+      title: Create_beacon_setBody.beacon_urls
       type: object
     CreateAdConfigurationbody.applicationAdConfiguration:
       properties:
@@ -736,47 +696,54 @@ components:
       - ad_configuration_strategy
       title: Create_Ad_ConfigurationBody.application_ad_configuration
       type: object
-    BeaconSet:
+    CreateAdConfigurationbody:
       properties:
         account_id:
-          description: The Live account id
-          type: string
-        beacon_urls:
-          description: Array of beacon URLs
-          items:
-            $ref: '#/components/schemas/BeaconSet.beaconUrls'
-          type: array
-      required:
-      - beacon_urls
-      title: beacon_set
-      type: object
-    BeaconSets:
-      items:
-        $ref: '#/components/schemas/BeaconSet'
-      required:
-      - beacon_set_id
-      - account_id
-      title: beacon_sets
-      type: array
-    Application:
-      properties:
-        account_id:
-          description: The Live account id
+          description: Your Live account id (if you leave this blank, the request will still work, defaulting to account of the current user)
           type: string
         application_ad_configuration:
-          $ref: '#/components/schemas/Application.applicationAdConfiguration'
-        application_id:
-          description: The ad application id
-          type: string
-        description:
-          description: The ad application description
+          $ref: '#/components/schemas/CreateAdConfigurationbody.applicationAdConfiguration'
+        application_description:
+          description: Human readable description of the ad application.
           type: string
       required:
-      - account_id
-      - description
       - application_ad_configuration
-      - application_id
-      title: application
+      - application_description
+      title: Create_Ad_ConfigurationBody
+      type: object
+    GetSlateMediaSourceAssetsResponse:
+      properties:
+        account_id:
+          description: Id for the Live account
+          type: string
+        media_source_asset_default:
+          description: Whether this is the default media source asset
+          type: boolean
+          default: false
+        media_source_asset_description:
+          description: User identifiable description for the slate
+          type: string
+        media_source_asset_id:
+          description: Id for the slate asset
+          type: string
+        media_source_asset_status:
+          description: Current status of the ingestion of the media asset
+          type: string
+        media_source_asset_type:
+          description: The media asset type
+          type: string
+        media_source_asset_url:
+          description: URL for the media asset to be ingested
+          type: string
+      required:
+      - media_source_asset_id
+      - account_id
+      - media_source_asset_description
+      - media_source_asset_default
+      - media_source_asset_type
+      - media_source_asset_url
+      - media_source_asset_status
+      title: Get_Slate_Media_Source_Assets_Response
       type: object
     UpdateAdConfigurationbody.applicationAdConfiguration:
       properties:
@@ -815,6 +782,67 @@ components:
       - ad_configuration_strategy
       title: Update_Ad_ConfigurationBody.application_ad_configuration
       type: object
+    UpdateAdConfigurationbody:
+      properties:
+        account_id:
+          description: Your Live account id (if you leave this blank, the request will still work)
+          type: string
+        application_ad_configuration:
+          $ref: '#/components/schemas/UpdateAdConfigurationbody.applicationAdConfiguration'
+        application_description:
+          description: Human readable description of the ad application.
+          type: string
+      required:
+      - application_ad_configuration
+      - application_description
+      title: Update_Ad_ConfigurationBody
+      type: object
+    UpdateBeaconSetbody.beaconUrls:
+      properties:
+        beacon_type:
+          description: '''the beacon type - see [Beacons](/live-api/ssai/live-api-cue-points-and-ad-beacons-ssai.html#Beacons) for the valid beacon types'''
+          type: string
+        beacon_url:
+          description: URL format for the beacon - see [Beacons](/live-api/ssai/live-api-cue-points-and-ad-beacons-ssai.html#Beacons) for the valid beacon variables
+          type: string
+      required:
+      - beacon_url
+      - beacon_type
+      title: Update_beacon_setBody.beacon_urls
+      type: object
+    IngestSlateMediaSourceAssetbody:
+      properties:
+        account_id:
+          description: The Live account id (if left blank, the request will still work)
+          type: string
+        source_description:
+          description: User identifiable description for the slate
+          type: string
+        source_url:
+          description: URL for the slate to ingest
+          type: string
+      required:
+      - source_url
+      - account_id
+      title: Ingest_Slate_Media_Source_AssetBody
+      type: object
+    CreateBeaconSetResponse:
+      properties:
+        account_id:
+          description: The Live account id
+          type: string
+        beacon_urls:
+          description: Array of beacon URLs
+          items:
+            $ref: '#/components/schemas/BeaconSet.beaconUrls'
+          type: array
+        inserted:
+          description: Whether the beacon set was successfully added
+          type: boolean
+      required:
+      - beacon_urls
+      title: beacon_set
+      type: object
     CreateAdConfigurationbody.applicationAdConfiguration.clientOptions:
       properties:
         client_only_tracking:
@@ -835,31 +863,66 @@ components:
           default: false
       title: Create_Ad_ConfigurationBody.application_ad_configuration.client_options
       type: object
-    CreateBeaconSetbody.beaconUrls:
+    IngestSlateMediaSourceAssetResponse:
+      properties:
+        account_id:
+          description: Id for the account
+          type: string
+        media_source_asset_default:
+          description: Whether this is the default media source asset
+          type: boolean
+          default: false
+        media_source_asset_description:
+          description: User identifiable description for the slate
+          type: string
+        media_source_asset_id:
+          description: Id for the slate asset
+          type: string
+          readOnly: true
+        media_source_asset_status:
+          description: Current status of the ingestion of the media asset
+          type: string
+          readOnly: true
+        media_source_asset_type:
+          description: The media asset type
+          type: string
+        media_source_asset_url:
+          description: URL for the media asset to be ingested
+          type: string
+      title: Ingest_Slate_Media_Source_Asset_Response
+      type: object
+    Application:
+      properties:
+        account_id:
+          description: The Live account id
+          type: string
+        application_ad_configuration:
+          $ref: '#/components/schemas/Application.applicationAdConfiguration'
+        application_id:
+          description: The ad application id
+          type: string
+        description:
+          description: The ad application description
+          type: string
+      required:
+      - account_id
+      - description
+      - application_ad_configuration
+      - application_id
+      title: application
+      type: object
+    BeaconSet.beaconUrls:
       properties:
         beacon_type:
-          description: '''The beacon type - see [Beacons](/live-api/ssai/live-api-cue-points-and-ad-beacons-ssai.html#Beacons) for the valid beacon types'''
+          description: Beacon type
           type: string
         beacon_url:
-          description: URL format for the beacon - see [Beacons](/live-api/ssai/live-api-cue-points-and-ad-beacons-ssai.html#Beacons) for the valid beacon variables
+          description: Beacon URL
           type: string
       required:
       - beacon_url
       - beacon_type
-      title: Create_beacon_setBody.beacon_urls
-      type: object
-    DeleteAdConfigurationResponse:
-      properties:
-        application_id:
-          description: The ad application id
-          type: string
-        deleted:
-          description: Confirmation of deletion
-          type: boolean
-      required:
-      - application_id
-      - deleted
-      title: Delete_Ad_Configuration_Response
+      title: beacon_set.beacon_urls
       type: object
     DeleteSlateMediaSourceAssetResponse:
       properties:
@@ -891,87 +954,33 @@ components:
       - media_source_asset_status
       title: Delete_Slate_Media_Source_Asset_Response
       type: object
-    UpdateBeaconSetbody.beaconUrls:
+    DeleteAdConfigurationResponse:
       properties:
-        beacon_type:
-          description: '''the beacon type - see [Beacons](/live-api/ssai/live-api-cue-points-and-ad-beacons-ssai.html#Beacons) for the valid beacon types'''
+        application_id:
+          description: The ad application id
           type: string
-        beacon_url:
-          description: URL format for the beacon - see [Beacons](/live-api/ssai/live-api-cue-points-and-ad-beacons-ssai.html#Beacons) for the valid beacon variables
-          type: string
-      required:
-      - beacon_url
-      - beacon_type
-      title: Update_beacon_setBody.beacon_urls
-      type: object
-    Application.applicationAdConfiguration:
-      properties:
-        ad_configuration_description:
-          description: The ad configuration description
-          type: string
-        ad_configuration_strategy:
-          description: The ad configuration strategy (SingleAdResponse, or MultipleAdResponse)
-          type: string
-        ad_configuration_url_format:
-          description: The URL template for the ad server
-          type: string
-        ad_configuration_variables:
-          description: Key/value pairs for the ad server URL template
-          type: object
-        ad_tracking_sample_percentage:
-          type: integer
-          description: The value determines the percentage of sessions that will be logged. A value of 0 disables logs entirely.  0 is the default value.
-        headers:
-          description: The ad configuration headers
-          type: object
-        response_type:
-          description: The ad configuration response type (Dfp, Vast, or SmartXML)
-          type: string
-      required:
-      - ad_configuration_description
-      - response_type
-      - headers
-      - ad_configuration_strategy
-      - ad_configuration_url_format
-      - ad_configuration_variables
-      title: application.application_ad_configuration
-      type: object
-    CreateBeaconSetResponse:
-      properties:
-        account_id:
-          description: The Live account id
-          type: string
-        beacon_urls:
-          description: Array of beacon URLs
-          items:
-            $ref: '#/components/schemas/BeaconSet.beaconUrls'
-          type: array
-        inserted:
-          description: Whether the beacon set was successfully added
+        deleted:
+          description: Confirmation of deletion
           type: boolean
       required:
-      - beacon_urls
-      title: beacon_set
-      type: object
-    UpdateBeaconSetbody:
-      properties:
-        account_id:
-          description: URL for the slate to ingest
-          type: string
-        beacon_urls:
-          description: Array of beacon URLs
-          items:
-            $ref: '#/components/schemas/UpdateBeaconSetbody.beaconUrls'
-          type: array
-      required:
-      - beacon_urls
-      title: Update_beacon_setBody
+      - application_id
+      - deleted
+      title: Delete_Ad_Configuration_Response
       type: object
   parameters:
     SlateMsaId:
       name: slate_msa_id
       in: path
       description: A slate media asset ID
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    XAPIKEY:
+      name: X-API-KEY
+      in: header
+      description: 'X-API-KEY: {Your_Live_API_Key}'
       required: true
       style: simple
       explode: false
@@ -988,19 +997,10 @@ components:
         type: string
         default: application/json
       example: application/json
-    application_id:
-      name: application_id
+    live_account_id:
+      name: live_account_id
       in: path
-      description: The ad application id
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    XAPIKEY:
-      name: X-API-KEY
-      in: header
-      description: 'X-API-KEY: {Your_Live_API_Key}'
+      description: Live account ID
       required: true
       style: simple
       explode: false
@@ -1015,10 +1015,10 @@ components:
       explode: false
       schema:
         type: string
-    live_account_id:
-      name: live_account_id
+    application_id:
+      name: application_id
       in: path
-      description: Live account ID
+      description: The ad application id
       required: true
       style: simple
       explode: false

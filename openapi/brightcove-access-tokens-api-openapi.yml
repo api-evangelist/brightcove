@@ -47,6 +47,15 @@ paths:
         IsMultiContentStreaming: false
 components:
   parameters:
+    Token_Content-Type:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/x-www-form-urlencoded'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
     grant_type:
       name: grant_type
       in: query
@@ -59,15 +68,6 @@ components:
         enum:
         - client_credentials
       example: client_credentials
-    Token_Content-Type:
-      name: Content-Type
-      in: header
-      description: 'Content-Type: application/x-www-form-urlencoded'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
     Token_Authorization:
       name: Authorization
       in: header
