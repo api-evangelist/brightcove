@@ -460,6 +460,33 @@ paths:
         IsMultiContentStreaming: false
 components:
   schemas:
+    ManualAdCuePointInsertionbody:
+      properties:
+        ad_server_data:
+          description: a set of any variables (key/value pairs) that should be passed to the adServer
+          type: object
+        cancel:
+          description: When `true`, cuepoint specified by `cuepoint_id` will be canceled. If an ad break is already in progress, a crash-out will occur, returning to the main content.
+          type: boolean
+          default: false
+        cuepoint_id:
+          description: ID to use when creating cuepoint. If `cancel` is `true`, then this field is required and is the ID of cuepoint to cancel.
+          type: string
+        duration:
+          description: An integer value to indicate the length of the ad break in seconds
+          type: number
+        timecode:
+          description: "'When to insert the cuepoint in SMPTE HH:MM:SS:FF format from the stream start (FF = frames); if omitted, the cuepoint will be inserted immediately. Note:\n  1. If you use the timecode property, the job only only stores the most recent request for insertion\n  2. If you use the timecode property, the encoder must be sending SMPTE-formatted (HH:MM:SS:FF) timecode stored in the `tc` property via `OnFI`\n  3. Software encoders such as Wirecast and OBS do not support the sending timecode via `OnFI` packets in the RTMP stream\n  4. Elemental hardware encoders do support the sending timecode via `OnFI` packets in the RTMP stream'"
+          type: string
+          example:
+            ad_server_data:
+              subject: wildlife
+            duration: 30
+            timecode: 09:23:18:05
+      required:
+      - duration
+      title: Manual_Ad_Cue_Point_InsertionBody
+      type: object
     LiveJob:
       properties:
         ad_insertion:
@@ -616,671 +643,98 @@ components:
         encryption: {}
         playback_url: https://bcovlive-a.akamaihd.net/493885dfd7c64e23ad253fcc42c120d8/us-west-2/NA/playlist.m3u8
         playback_url_dvr: https://bcovlive-a.akamaihd.net/493885dfd7c64e23ad253fcc42c120d8/us-west-2/NA/playlist_dvr.m3u8
-    CreateLiveJobRequestBody:
+    RTMPout:
+      title: RTMP Output
+      type: object
+      description: RTMP output object
       properties:
-        ad_audio_loudness_level:
-          description: Adjust the loudness level of the audio. This is measured in LUFS and specified in dB. This is useful to set the output loudness level to conform to a standard (-23dB for EBU R.128) The recommended setting is -23. **Note that this setting only applies to the audio for SSAI ads - it does *not* affect the general audio level for live streams.**
-          maximum: 60
-          minimum: -60
-          type: number
-        ad_insertion:
-          default: false
-          description: Setting this parameter to true will enable server side ad insertion (SSAI) on the job. Current support includes, DFP, Freewheel, or any VAST 2.0/3.0 ad tags.
-          type: boolean
-        add_cdns:
-          description: Array of additional CDN providers to be used for manifest generation. For each CDN provided, the manifest will be prepended accordingly
-          items:
-            $ref: '#/components/schemas/CreateLiveJobRequestBody.addCdns'
-          type: array
-        alternate_audio:
-          description: An object of multiple language audio tracks. Multi-language audio support is limited to rtp or srt protocol.
-          type: object
-          properties:
-            tracks:
-              description: An array for multiple language audio tracks
-              type: array
-              items:
-                $ref: '#/components/schemas/CreateLiveJobRequestBody.alternate_tracks'
-        audio_only:
-          default: false
-          description: Set this parameter to true for audio-only live events. This provides video-free live streaming when you have audio-only content. **Can only be set on job creation, and not changed afterward.**
-          type: boolean
-        audio_only_storage_format:
-          default: mpeg-ts
-          description: For audio-only jobs, by default the media files will be stored in MPEG transport stream (.ts) format. You can also use Advanced Audio Coding (.aac) format. **Can only be set on job creation, and not changed afterward.**
+        rtmp_out_id:
+          type: string
+          description: system id for the RTMP output
+        stream_start:
+          type: integer
+          description: Start time of the output in Epoch time (milliseconds)
+        state:
+          type: string
+          description: Current state of the RTMP output stream
           enum:
-          - mpeg-ts
-          - aac
-          type: string
-        beacon_set:
-          description: ID for a beacon set (for SSAI only).
-          type: string
-        channel_type:
-          default: event
-          description: '''Indicates whether the job should be billed as `event` hours or a channel (`24x7`) - see [Channels and Event Hours](/live-api/getting-started/overview-brightcove-live-api.html#Channels_and_hours).'''
-          enum:
-          - 24x7
-          - event
-          type: string
-        cidr_whitelist:
-          description: 'An array of [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) blocks.
-
-
-            **Required for ALL jobs where `protocol` = `rtp`, `rtp-fec`, or `srt`.**
-
-
-            This property is **not** allowed for RTMP jobs (API will return an error).'
+          - connected
+          - disconnected
+          - error
+          - starting
+        duration_history:
           type: array
+          description: Array of durations for connections
           items:
-            type: string
-            description: Allowed IP address for input stream
-          example:
-          - 192.168.0.1/32
-        ip_whitelist:
-          description: 'An array of IP addresses.
-
-
-            This property is **not** allowed for jobs where `protocol` = `rtp`, `rtp-fec`, or `srt`. (API will return an error).'
-          type: array
-          items:
-            type: string
-            description: Allowed IP address for input stream
-          example:
-          - 192.168.0.1/32
-        copy_outputs_from_job:
-          type: string
-          description: The value is the `id` of an existing job that you want to copy the output settings for to this new job
-          example: 481ff4cf0bf74956bc2ec6e126588080
-        drm:
+            type: object
+            description: A connection start and stop
+            properties:
+              stream_start:
+                type: integer
+                description: The epoch time (in milliseconds) that a stream connected
+              stream_end:
+                type: integer
+                description: The epoch time (in milliseconds) that a stream disconnected
+        connection_info:
           type: object
-          description: DRM settings to be applied to all outputs for the job. **Note that you can also apply DRM only to specific outputs if you prefer.**
+          description: Details of the connection information
           properties:
-            modes:
-              type: array
-              description: The kinds of DRM to apply - currently Widevine and Playready with DASH and FairPlay with HLS are supported. If you prefer to make Widevine with DASH your default instead of Widevine with HLS, an account-level configuration is required and you must submit a Support request for that. Using `all` will apply all types available. See [Live DRM via the Live API](/general/live-drm.html) for more information.
-              items:
-                type: string
-                enum:
-                - all
-                - fairplay
-                - playready
-                - widevine
-                - widevine:dash
-                - widevine:hls
-              example: all
-            token_expires_in:
+            host:
+              type: string
+              description: Host URL
+            port:
               type: integer
-              description: Amount of time in seconds before the token expires
-              default: 43200
-              maximum: 31622400
-            require_playback_token:
-              type: boolean
-              description: Enables EPA.  Playback auth JWT will be required when requesting license. Uses playback rights id associated with video or JWT to enforce restrictions. **Note that EPA is in Limited Availability release. Contact your Customer Success Manager for more information.** See [Using PAS/EPA with Live](/live-api/guides/live-pas-epa.html) for more information.
-              default: false
-            check_playback_rights:
-              type: boolean
-              description: Enables PAS.  Playback auth JWT will be required when requesting license. **Note that PAS is in Limited Availability release. Contact your Customer Success Manager for more information.** See [Using PAS/EPA with Live](/live-api/guides/live-pas-epa.html) for more information.
-              default: false
-        encryption:
-          $ref: '#/components/schemas/CreateLiveJobRequestBody.encryption'
-        event_length:
-          default: 0
-          description: Used to preset and define an end time for the live event. At any point within the specified `event_length` you may reconnect to your stream. The `event_length` setting goes into effect as soon as streaming begins. In case the encoder stops, the live stream will be kept available for the duration of the `reconnect_time
-          maximum: 93600
-          minimum: 0
-          type: integer
-        hls_endlist:
-          default: true
-          description: Whether an `EXT-X-ENDLIST` tag should be added to the stream playlist when you stop the stream or the `reconnect_time` window has been reached. The `EXT-X-ENDLIST` tag indicates that no more Media Segments will be added to the Media Playlist file and helps prevent the player from displaying error messages when the stream stops.
-          type: boolean
-        live_dvr_ads_window_duration:
-          default: 100
-          description: Indicates the window from the live edge on DVR session start, in seconds, for which ad breaks will have ads inserted, before which slate will be inserted. All ad breaks inserted after session start will have ads inserted. <br> <img src="https://docs.brightcove.com/live-api/assets/live_dvr_ads_window.png" height="250px">
-          maximum: 600
-          minimum: 0
-          type: integer
-        live_dvr_sliding_window_duration:
-          default: 0
-          description: 'The time, in seconds, to keep in the live DVR manifest. If the stream duration is longer than the window duration, segment references will be removed first in first out. **Note: for SSAI jobs, the limit is `7200`. If you do not want to be charged for DVR usage, set this to 0 in the request body.**'
-          maximum: 86400
-          minimum: 0
-          type: integer
-        number_of_segments_in_live_chunklist:
-          description: Number of media segments in live playlist/manifest.
-          default: 3
-          maximum: 12
-          minimum: 3
-          type: integer
-        pass_through:
-          description: Allows metadata for the Live Module in Studio to be passed through with the job data - this metadata is not processed by the API in any way
-          type: boolean
-        transcribe_state:
-          description: 'Allows you to turn on automated captions for a live stream. Values: <br> "ON" - Enable automated captions <br> "OFF" - Disable automated captions'
-          type: string
-          default: 'OFF'
-        transcribe_options:
-          type: object
-          description: Options associated with automated captions
-          properties:
-            language_code:
+              description: The port number
+            application:
               type: string
-              default: en-US
-              description: The language used for automated captions. Currently, only English (en-US) is supported for automated captions.
-        live_stream:
-          description: Indicates that the job is a live streaming job.
+              description: The application name in the path
+            streamName:
+              type: string
+              description: The stream name in the path
+            sessionStatus:
+              type: string
+              description: The current session status
+              enum:
+              - Active
+              - Inactive
+        waiting_for_start:
           type: boolean
-        low_latency:
-          description: 'If `true` enables the job to use low latency. **Note: low latency must be enabled for the account by support.**'
-          default: false
-          type: boolean
-        max_hls_protocol_version:
-          default: 3
-          description: Sets the maximum HLS protocol version to use. Special features will be used as available. Default is `3`.
-          maximum: 5
-          minimum: 1
-          type: integer
-        notifications:
-          description: '''Array of notification destination objects or strings - notifications defined here are for job-level events.  A notification will be sent to the destination when selected event occurs. You can use a simple string with a url: &quot;https://log:pass@httpbin.org/post&quot;, or you can use an object. See [Events](/live-api/guides/live-api-notifications.html#Events) for an explanation of the events reported in `state_changed` notifications. <br> Retry strategy: In the event of a failed request to send a notification, the default retry strategy is to retry 50 times with an exponential delay between attempts: <br> `max_retry_times = 50` <br> `delay_delta_s = 5` <br> `next_retry = now_s + retry_count * delay_delta_s`'''
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/Notification'
-            - type: string
-              description: A URL to send notifications to
-          type: array
-        outputs:
-          description: Array of output specifications for live and VOD assets to be created from the live stream.
-          items:
-            $ref: '#/components/schemas/CreateLiveJobRequestBody.outputs'
-          type: array
-        protocol:
-          description: Specifies the input protocol that will be used - note that `rtmp` is for FLV input; the other protocols are for MPEG2-TS
-          type: string
-          enum:
-          - rtmp
-          - rtp
-          - rtp-fec
-          - srt
-          default: rtmp
-        reconnect_time:
-          default: 1800
-          description: The time, in seconds, to wait for a stream to reconnect to the encoder. If the encoder is disconnected, the live stream will be kept available for the full `reconnect_time` or for the **remainder** of the event length, whichever is greater.
-          maximum: 7200
-          minimum: 1
-          type: integer
-        region:
-          description: AWS region - you can also specify region as the alias for a list set up for the account by Brightcove Support. See [Supported AWS Regions](/live-api/getting-started/overview-brightcove-live-api.html#Support_aws_regions) for more details on the support in each region.
-          enum:
-          - us-west-2
-          - us-east-1
-          - ap-southeast-2
-          - ap-northeast-1
-          - ap-southeast-1
-          - ap-south-1
-          - eu-central-1
-          - eu-west-1
-          type: string
-        credentials:
-          description: The label for a named credential. When specified, the customer must include the user name and password defined by the named credential when connecting their encoder.
-          type: string
-        rtmp_ip_whitelist:
-          description: Array of IP addresses white-listed for RTMP delivery
-          items:
-            type: string
-          type: array
-        slate:
-          description: Id for a set of slate assets
-          type: string
-        srt_config:
-          type: object
-          description: Settings for latency
-          properties:
-            latency:
-              type: number
-              default: 500
-              description: 'Time in milliseconds for which the SRT receiver shall be buffering the input data to overcome packet loss by retransmission. It is recommended to be greater than four times the RTT(round trip time).
+          description: 'For SEP jobs. If `true`, the SEP job was deactivated but the RTMP output was not stopped and the next time you activate the stream on the SEP job there will be an attempt to reconnect the RTMP output.
 
 
-                To get the RTT, you can do a counted ping on the Streaming endpoint domain. For example `ping -c 10 1a244fa8f08a464e869695dd01c890d6.sep.bcovlive.io`'
-            passphrase:
-              type: string
-              description: Adding a passphrase allows for encrypted ingest via SRT into Brightcove Live.
-              minLength: 10
-              maxLength: 79
-        static:
-          default: false
-          description: Whether this is a static entry point (SEP) job
-          type: boolean
-        videocloud:
-          $ref: '#/components/schemas/CreateLiveJobRequestBody.videocloud'
-      required:
-      - live_stream
-      - region
-      - outputs
-      title: Create_Live_JobBody
-      type: object
-      example:
-        add_cdns: []
-        live_stream: true
-        pass_through:
-          dvr: false
-          stream_to_social_media: false
-        audio_only: false
-        low_latency: false
-        protocol: rtmp
-        region: eu-west-1
-        reconnect_time: 600
-        ad_insertion: false
-        outputs:
-        - media_type: video
-          format: ts
-          segment_seconds: 6
-          label: hls540p
-          live_stream: true
-          video_codec: h264
-          video_bitrate: 1700
-          keyframe_interval: 60
-          width: 960
-          height: 540
-          h264_profile: main
-          low_latency: false
-        - media_type: video
-          format: ts
-          segment_seconds: 6
-          label: hls360p
-          live_stream: true
-          video_codec: h264
-          video_bitrate: 900
-          keyframe_interval: 60
-          width: 640
-          height: 360
-          h264_profile: main
-          low_latency: false
-        - media_type: video
-          format: ts
-          segment_seconds: 6
-          label: hls270p
-          live_stream: true
-          video_codec: h264
-          video_bitrate: 450
-          keyframe_interval: 60
-          width: 480
-          height: 270
-          h264_profile: baseline
-          low_latency: false
-        videocloud:
-          video:
-            name: Example
-            description: ''
-            long_description: ''
-            tags:
-            - tag_1
-            - tag_2
-            reference_id: ''
-            link:
-              url: ''
-              text: ''
-            schedule:
-              starts_at: null
-              ends_at: null
-            custom_fields:
-              custom_field_1: Entry 1
-              custom_field_2: Entry 2
-            state: ACTIVE
-          live_to_vod: true
-        notifications: []
-        static: false
-        credentials: null
-    CreateLiveJobRequestBody.videocloud.video.cuePoint:
-      properties:
-        force-stop:
-          description: whether video is force-stopped at the cue point
-          type: boolean
-        metadata:
-          description: optional metadata string (512 single-byte characters maximum)
-          type: string
-        name:
-          description: cue point name
-          type: string
-        time:
-          description: 'time of the cue point in seconds; example: 10.527'
-          type: number
-        type:
-          description: cue point type
-          enum:
-          - AD
-          - CODE
-          example: AD
-          type: string
-      required:
-      - time
-      - type
-      title: Create_Live_Job_Request_Body.videocloud.video.cue_point
-      type: object
-    StopLiveJob:
+            If `waiting_for_start` is `false`, it means the RTMP output was stopped.'
+    CancelLiveJob:
       properties:
         id:
-          description: The job id for the stream that was stopped. Any unprocessed VOD jobs associated with the live job will continue to be processed.
+          description: The job id for the stream that was cancelled. No unprocessed VOD jobs associated with the live job will be processed.
           type: string
           readOnly: true
       title: Cancel_Live_Job_Response
       type: object
-    CreateLiveJobRequestBody.addCdns.tokenAuth.media:
-      description: Object containing tokenization properties
+    CreateLiveJobRequestBody.addCdns:
       properties:
-        end_time:
-          description: The time to end token auth, epoch time in seconds
-          format: int32
-          type: integer
-        start_time:
-          default: now
-          description: The time to apply token auth - &quot;now&quot; or epoch time in seconds
-          format: int32
-          oneOf:
-          - type: integer
-          - enum:
-            - now
-            type: string
-        ttl:
-          description: The time to live in seconds - either `end_time` or `ttl` is required
-          format: int32
-          type: integer
-      title: Create_Live_Job_Request_Body.add_cdns.token_auth.media
-      type: object
-    CreateLiveJobRequestBody.videocloud.video:
-      properties:
-        cue_points:
-          description: Array of cuepoint objects
-          items:
-            $ref: '#/components/schemas/CreateLiveJobRequestBody.videocloud.video.cuePoint'
-          type: array
-        custom_fields:
-          description: An object whose properties are `field_name`:`value` pairs - be sure to the *internal* name of the field
-          type: object
-          example:
-            custom_field_1: Entry 1
-            custom_field_2: Entry 2
-        description:
-          description: Video short description
+        label:
+          description: A label to identify the CDN.
           type: string
-          maxLength: 248
-        drm_disabled:
-          description: Use to disable DRM packaging for this video - applies only to DRM-enabled accounts
-          type: boolean
-        economics:
+        prepend:
+          description: CDN hostname to be prepended to addresses
           type: string
-          description: whether the video supports ads
+        protocol:
+          description: Protocol to use for the stream delivery
           enum:
-          - AD_SUPPORTED
-          - FREE
-        geo:
-          $ref: '#/components/schemas/CreateLiveJobRequestBody.videocloud.video.geo'
-        long_description:
-          description: A longer description of the video
+          - http
+          - https
           type: string
-        name:
-          description: Title of the video clip
-          type: string
-          maxLength: 255
-          minLength: 1
-        reference_id:
-          description: Reference id for the clip - must be unique within the account
-          type: string
-        schedule:
-          $ref: '#/components/schemas/CreateLiveJobRequestBody.videocloud.video.schedule'
-        state:
-          type: string
-          description: Whether the video should be active or inactive
-          example: ACTIVE
-          enum:
-          - ACTIVE
-          - INACTIVE
-        tags:
-          description: Array of tags for the video - note that  tags are string that may not contain a comma
-          type: object
-      required:
-      - name
-      title: Create_Live_Job_Request_Body.videocloud.video
-      description: '''An object containing inputs for Video Cloud video object creation - see the [CMS API Reference](https://apis.support.brightcove.com/cms/references/reference.html#operation/CreateVideo)'''
-      type: object
-    CreateVodClipbody.outputs.videocloud.ingest:
-      properties:
-        callbacks:
-          description: An array of URLs that notifications for the ingest job should be sent to
-          items:
-            type: string
-          type: array
-        capture-images:
-          description: '''Whether poster and thumbnail should be captured during transcoding; defaults to `true` if the the profile has image renditions, `false` if it does not - see [Images and the Dynamic Ingest API](https://apis.support.brightcove.com/dynamic-ingest/ingest-guides/images-and-dynamic-ingest-api.html) for more information'''
-          example: true
-          type: boolean
-        profile:
-          description: The ingest profile to use - we recommend that you do **not** include this field and use the account default profile instead
-          type: string
-      title: Create_VOD_ClipBody.outputs.videocloud.ingest
-      description: An object containing inputs for Video Cloud video ingestion - see the [Dynamic Ingest Reference](https://apis.support.brightcove.com/dynamic-ingest/references/reference.html#operation/AccountsVideosIngestRequestsByAccountIdAndVideoIdPost) - do not include the master field, as that information will be provided by the Live API. If no ingest profile is specified, the account default profile will be used.
-      type: object
-    CreateVodClipbody.outputs.videocloud.video.geo:
-      properties:
-        countries:
-          description: array of ISO 3166 list of [2-letter codes](https://www.iso.org/obp/ui/#home) (search for &quot;country codes&quot;)
-          type: string
-        exclude_countries:
-          description: if true, country array is treated as a list of countries excluded from viewing
-          type: boolean
-        restricted:
-          description: whether geo-restriction is enabled for this video
-          type: boolean
-      required:
-      - countries
-      - exclude_countries
-      - restricted
-      title: Create_VOD_ClipBody.outputs.videocloud.video.geo
-      type: object
-      description: map of geo-filtering properties
-    Job.outputMediaFiles:
-      properties:
-        audio_bitrate_in_kbps:
-          description: Audio bitrate of the output media file
-          type: number
-        audio_codec:
-          description: Audio codec of the output media file
-          type: string
-        audio_sample_rate:
-          description: Audio sample rate of the output media file
-          type: number
-        audio_tracks:
-          description: The number of audio tracks
-          type: number
-        channels:
-          description: The number of audio channels
-          type: number
-        created_at:
-          description: ISO 8601 date-time string representing when the output file was created
-          type: string
-        duration_in_ms:
-          description: ISO 8601 date-time string representing when the output file was created
-          type: number
-        dvr_filename:
-          description: File name for the DVR playlist manifest
-          type: string
-        error_class:
-          description: Type of error thrown
-          type: string
-        error_message:
-          description: Error message thrown
-          type: string
-        file_size_bytes:
-          description: File size
-          type: number
-        filename:
-          description: File name for the playlist manifest
-          type: string
-        finished_at:
-          description: ISO 8601 date-time string representing when the output file was finished
-          type: string
-        format:
-          description: Format of the output file
-          type: string
-        frame_rate:
-          description: Frame rate of the output file
-          type: number
-        height:
-          description: Frame height of the output file
-          type: number
-        id:
-          description: System id of the output file
-          type: string
-        keyframe_interval:
-          description: Keyframe interval for the output media file
-          format: int32
-          type: integer
-        keyframe_interval_follow_source:
-          description: Whether keyframe rate for the output matches the source
-          type: boolean
-        live_stream:
-          description: Whether the output is a live stream
-          type: boolean
-        md5_checksum:
-          description: Checksum for the output file
-          type: string
-        playback_url:
-          description: URL for the output file
-          type: string
-        playback_url_dvr:
-          description: Live DVR url for live stream output
-          type: string
-        playback_url_vod:
-          description: URL for VOD output
-          type: string
-        playlist_type:
-          description: Playlist type for playlist output
-          type: string
-        state:
-          description: Current state of output file processing
-          type: string
-        total_bitrate_in_kbps:
-          description: Total bitrate of the output media file
-          type: number
-        type:
-          description: Will be playlist for playlist output
-          type: string
-        updated_at:
-          description: ISO 8601 date-time string representing when the output file was last modified
-          type: string
-        video_bitrate_in_kbps:
-          description: Video bitrate of the output media file
-          type: number
-        video_codec:
-          description: Video codec of the output media file
-          type: string
-        width:
-          description: Frame width of the output media file
-          type: number
-      required:
-      - audio_bitrate_in_kbps
-      - audio_codec
-      - audio_sample_rate
-      - audio_tracks
-      - channels
-      - duration_in_ms
-      - file_size_bytes
-      - format
-      - frame_rate
-      - height
-      - video_bitrate_in_kbps
-      - video_codec
-      - width
-      - total_bitrate_in_kbps
-      - keyframe_interval_follow_source
-      - live_stream
-      - type
-      - filename
-      - dvr_filename
-      title: job.output_media_files
-      type: object
-    CreateVodClipbody.outputs.videocloud.video.schedule:
-      properties:
-        ends_at:
-          description: end date-time of availability in [ISO-8601](https://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) format
-          type: string
-        starts_at:
-          description: '''start date-time of availability in [ISO-8601](https://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) format'''
+        token_auth:
+          $ref: '#/components/schemas/CreateLiveJobRequestBody.addCdns.tokenAuth'
+        vendor:
+          description: CDN vendor such as akamai
           type: string
       required:
-      - ends_at
-      - starts_at
-      title: Create_VOD_ClipBody.outputs.videocloud.video.schedule
-      type: object
-      description: map of scheduling properties
-    ActivateSepStreamResponse:
-      properties:
-        id:
-          description: The job id for the stream that was activated
-          type: string
-          readOnly: true
-      required:
-      - id
-      title: Activate_SEP_Stream_Response
-      type: object
-    CreateLiveJob.outputs.videocloud:
-      properties:
-        account_id:
-          description: The Video Cloud Account ID the clip should be ingested to. Only required if using Video Cloud Account ID other than the default configured in your Live account. If set, you must also set the `credentials` property on the output.
-          type: string
-        ingest:
-          $ref: '#/components/schemas/CreateVodClipbody.outputs.videocloud.ingest'
-        video:
-          $ref: '#/components/schemas/CreateVodClipbody.outputs.videocloud.video'
-      required:
-      - video
-      - ingest
-      title: Create_VOD_ClipBody.outputs.videocloud
-      description: An object containing inputs for Video Cloud ingestion
-      type: object
-    CreateLiveJobRequestBody.encryption:
-      properties:
-        check_playback_rights:
-          description: Playback auth JWT will be required when requesting license. Uses playback rights id associated    with video or JWT to enforce restrictions. If <code translate="No">false</code> playback restrictions will be bypassed and the encrypted stream will play back as usual.
-          type: boolean
-          default: false
-        external_url:
-          description: The URL for the external encryption key - this field is required if you specify type as external, and the external key must match the `key` value
-          type: string
-        key:
-          description: 'The encryption key - either a `key`, `passphrase`, or `key_rotation` is required; if the type is `external`, `key` is required.
-
-
-            The key must be 32 hexadecimal characters. For best results, generate a key by going to [a key generator](https://www.allkeysgenerator.com/Random/Security-Encryption-Key-Generator.aspx) and selecting the `128-bit` and `Hex` options.'
-          type: string
-          maxLength: 32
-          minLength: 32
-        key_rotation:
-          default: false
-          description: Whether to use key rotation - either a `key`, `passphrase`, or `key_rotation` is required
-          type: boolean
-        method:
-          description: The encryption method to use.
-          enum:
-          - aes-128
-          type: string
-        passphrase:
-          description: The encryption key - either a `key`, `passphrase`, or `key_rotation` is required
-          type: string
-        rotate_every:
-          default: 10
-          description: Interval for key rotation in video segments
-          type: integer
-        type:
-          description: The encryption type, depending on whether an internal or external key server will be used.
-          enum:
-          - internal
-          - external
-          type: string
-      required:
-      - method
-      - type
-      title: Create_Live_Job_Request_Body.encryption
-      description: Encryption to apply to the stream.
+      - label
+      - prepend
+      - protocol
+      title: Create_Live_Job_Request_Body.add_cdns
       type: object
     CreateLiveJobRequestBody.videocloud:
       properties:
@@ -1306,6 +760,89 @@ components:
       title: Create_Live_Job_Request_Body.videocloud
       type: object
       description: Video Cloud customers have the option to create a video to use for the live stream. The `videocloud` object in the `job` settings is used for this purpose. If you want to define VOD clips to send to Video Cloud, use the `videocloud` object in `outputs`.
+    DeactivateSepStreamResponse:
+      properties:
+        id:
+          description: The job id for the stream that was Deactivated
+          type: string
+      required:
+      - id
+      title: Deactivate_SEP_Stream_Response
+      type: object
+    CreateLiveJobRequestBody.videocloud.video.schedule:
+      properties:
+        ends_at:
+          description: end date-time of availability in [ISO-8601](https://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) format
+          type: string
+        starts_at:
+          description: start date-time of availability in [ISO-8601](https://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) format
+          type: string
+      required:
+      - ends_at
+      - starts_at
+      title: Create_Live_Job_Request_Body.videocloud.video.schedule
+      type: object
+      description: map of scheduling properties
+    InsertId3TimedMetadatabody.id3Tag:
+      description: An object containing variables for the ID3 timed metadata
+      properties:
+        name:
+          description: A name for the tag
+          type: string
+        timecode:
+          description: 'Time to insert - by default, insertion is immediate.
+
+
+            Note:
+
+            1. If you use the timecode property, the job only only stores the most
+
+            recent request for insertion;
+
+            2. If you use the timecode property, the encoder must be sending SMPTE-formatted (HH:MM:SS:FF) timecode stored in the `tc` property via `OnFI`;
+
+            3. Software encoders such as Wirecast and OBS do not support the sending timecode via `OnFI` packets in the RTMP stream;
+
+            4. Elemental hardware encoders do support the sending timecode via `OnFI` packets in the RTMP stream'
+          type: string
+        value:
+          description: A value for the tag (maximum string data size 256KB)
+          type: string
+      required:
+      - name
+      - value
+      title: Insert_ID3_timed_metadataBody.id3_tag
+      type: object
+    playback_added_cdns:
+      properties:
+        label:
+          description: A label to identify the CDN.
+          type: string
+        prepend:
+          description: Typically, a domain or path to prepend to addresses
+          type: string
+        protocol:
+          description: Protocol to use in sending the stream to the CDN.
+          type: string
+      required:
+      - label
+      - prepend
+      - protocol
+      title: add_cdns
+      type: object
+    InsertId3TimedMetadatabody:
+      properties:
+        id3_tag:
+          $ref: '#/components/schemas/InsertId3TimedMetadatabody.id3Tag'
+      required:
+      - id3_tag
+      title: Insert_ID3_timed_metadataBody
+      type: object
+      example:
+        id3_tag:
+          name: BCOV
+          value: my value
+          timecode: '15:50:49:16'
     Job:
       properties:
         ad_insertion:
@@ -1640,77 +1177,24 @@ components:
             playback_url_dvr: https://bcovlive-a.akamaihd.net/3ae7fa89943f4a96aa273fbbf175d527/us-west-2/NA/profile_1/chunklist_dvr.m3u8
             playback_url_vod: https://bcovlive-a.akamaihd.net/3ae7fa89943f4a96aa273fbbf175d527/us-west-2/NA/profile_1/chunklist_vod.m3u8
             playback_added_cdns: []
-    playback_added_cdns:
+    CreateVodClipbody.outputs.videocloud.video.geo:
       properties:
-        label:
-          description: A label to identify the CDN.
+        countries:
+          description: array of ISO 3166 list of [2-letter codes](https://www.iso.org/obp/ui/#home) (search for &quot;country codes&quot;)
           type: string
-        prepend:
-          description: Typically, a domain or path to prepend to addresses
-          type: string
-        protocol:
-          description: Protocol to use in sending the stream to the CDN.
-          type: string
-      required:
-      - label
-      - prepend
-      - protocol
-      title: add_cdns
-      type: object
-    CreatePlaybackTokenRequestBody:
-      title: Create Playback Token Request Body
-      description: Create Playback Token Request Body
-      type: object
-      properties:
-        dvr:
+        exclude_countries:
+          description: if true, country array is treated as a list of countries excluded from viewing
           type: boolean
-          description: whether DVR playback is required
-          default: false
-        application_id:
-          type: string
-          description: The application id for an SSAI job
-        playback_added_cdn:
-          type: string
-          description: The label for the BYOCDN if you are using one
-        playlist:
-          type: string
-          description: The label given to an output of "type" "playlist"
-    AddAdMetadatabody:
-      title: Add Ad Metadata Request body
-      description: -> A set of key/value pairs for ad requests.
-      type: object
-      properties:
-        ad_server_data:
-          type: object
-          description: Object containing a collection of keys and values. Values may be strings, numbers, or boolean.
-          example:
-            ad_server_data:
-              one: won
-              two: 2
-              three: false
-    CreateLiveJobRequestBody.addCdns.tokenAuth:
-      description: 'Token authentication details
-
-
-        **Note: If you don''t have your secret key for Akamai, or need to have a new one, contact your Customer Success Manager or Brightcove Support.**'
-      properties:
-        auth_type:
-          description: Token authentication type - currently, the only supported value is `Akamai2.0`
-          type: string
-        key:
-          description: Your Akamai token auth password
-          type: string
-        media:
-          $ref: '#/components/schemas/CreateLiveJobRequestBody.addCdns.tokenAuth.media'
-        token_name:
-          description: Your Akamai token token name
-          type: string
+        restricted:
+          description: whether geo-restriction is enabled for this video
+          type: boolean
       required:
-      - auth_type
-      - key
-      - token_name
-      title: Create_Live_Job_Request_Body.add_cdns.token_auth
+      - countries
+      - exclude_countries
+      - restricted
+      title: Create_VOD_ClipBody.outputs.videocloud.video.geo
       type: object
+      description: map of geo-filtering properties
     Job.stream:
       properties:
         created_at:
@@ -1762,6 +1246,875 @@ components:
       title: job.stream
       type: object
       description: Object containing properties for the live stream
+    CreateLiveJobRequestBody.alternate_tracks:
+      type: object
+      description: Object containing audio track properties
+      properties:
+        language:
+          description: The code for the language to be used. At present this is flexible and could be in any of the various language formats required/supported by the specs, specifically RFC5456/BCP47 which also covers ISO-639 as per the requirements.
+          type: string
+        video_pid:
+          description: The Packet Identifier (PID) from the MPEG-TS input stream for the video track
+          type: integer
+        pid:
+          description: The Packet Identifier (PID) from the MPEG-TS input stream for a specific audio track
+          type: integer
+        default:
+          description: The audio track marked as DEFAULT in the EXT-X-MEDIA as well as the track to be muxed into video stream. If not present, the first track is the default. If multiple playlists are defined with different defaults, the top level default track is the muxed one.
+          type: boolean
+          default: false
+        label:
+          description: '''A text description to be used for the track, preferred to be used by the player where possible. Defaults to the language with an ID for each track e.g. en-0 if not specified.'''
+          type: string
+        variant:
+          description: 'Maps to the DASH Role Schema values: (Used in DASH Role urn:mpeg:dash:role:2011)'
+          enum:
+          - main
+          - alternate
+          - commentary
+          - supplementary
+          - dub
+          default: main
+        streams:
+          description: 'This mimics the streams field of the playlist output type; example: { “source”: “720p” } - matches the label of the output source. If not present, uses the default audio settings.'
+          type: array
+      required:
+      - language
+      - video_pid
+      - pid
+      - default
+    CuePoint:
+      properties:
+        accuracy:
+          description: The cuepoint insertion accuracy - may be segment or frame
+          type: string
+        duration:
+          description: The cuepoint duration in seconds
+          type: number
+        id:
+          description: The cuepoint id
+          type: string
+        inserted_at:
+          description: Time when the cue point was inserted in the stream
+          type: string
+      required:
+      - id
+      - duration
+      - accuracy
+      - inserted_at
+      title: cue_point
+      type: object
+    Job.inputMediaFile:
+      properties:
+        audio_bitrate_in_kbps:
+          description: Audio bitrate of the input media file
+          type: number
+        audio_codec:
+          description: Audio codec of the input media file
+          type: string
+        audio_sample_rate:
+          description: Audio sample rate of the input media file
+          type: number
+        audio_tracks:
+          description: The number of audio tracks
+          type: number
+        channels:
+          description: The number of audio channels
+          type: number
+        created_at:
+          description: ISO 8601 date-time string representing when the input file was created
+          type: string
+        duration_in_ms:
+          description: 'duration_in_ms.
+
+            **Note:** Please note the value of this parameter represents the duration of the Live FEED. Still, when the live job finishes without processing, it means there''s no Live FEED delivered or processed, and then the value for this parameter gets to be EPOC time when the live job was finished.'
+          type: number
+        error_class:
+          description: Type of error thrown
+          type: string
+        error_message:
+          description: Error message thrown
+          type: string
+        file_size_bytes:
+          description: File size
+          type: number
+        finished_at:
+          description: ISO 8601 date-time string representing when the input file was finished
+          type: string
+        format:
+          description: Format of the input file
+          type: string
+        frame_rate:
+          description: Frame rate of the input file
+          type: number
+        height:
+          description: Frame height of the input file
+          type: number
+        id:
+          description: System id of the input file
+          type: string
+        md5_checksum:
+          description: Checksum for the input file
+          type: string
+        state:
+          description: Current state of input file processing
+          type: string
+        total_bitrate_in_kbps:
+          description: Total bitrate of the input media file
+          type: number
+        updated_at:
+          description: ISO 8601 date-time string representing when the input file was last modified
+          type: string
+        url:
+          description: URL for the input media file
+          type: string
+        video_bitrate_in_kbps:
+          description: Video bitrate of the input media file
+          type: number
+        video_codec:
+          description: Video codec of the input media file
+          type: string
+        width:
+          description: Frame width of the input media file
+          type: number
+      title: job.input_media_file
+      type: object
+      description: Object containing properties for the input media file. *Note that some fields under the media file object are null. These fields were ported from the old Zencoder and are not relevant.
+    CreatePlaybackTokenRequestBody:
+      title: Create Playback Token Request Body
+      description: Create Playback Token Request Body
+      type: object
+      properties:
+        dvr:
+          type: boolean
+          description: whether DVR playback is required
+          default: false
+        application_id:
+          type: string
+          description: The application id for an SSAI job
+        playback_added_cdn:
+          type: string
+          description: The label for the BYOCDN if you are using one
+        playlist:
+          type: string
+          description: The label given to an output of "type" "playlist"
+    CreateLiveJobRequestBody.videocloud.video:
+      properties:
+        cue_points:
+          description: Array of cuepoint objects
+          items:
+            $ref: '#/components/schemas/CreateLiveJobRequestBody.videocloud.video.cuePoint'
+          type: array
+        custom_fields:
+          description: An object whose properties are `field_name`:`value` pairs - be sure to the *internal* name of the field
+          type: object
+          example:
+            custom_field_1: Entry 1
+            custom_field_2: Entry 2
+        description:
+          description: Video short description
+          type: string
+          maxLength: 248
+        drm_disabled:
+          description: Use to disable DRM packaging for this video - applies only to DRM-enabled accounts
+          type: boolean
+        economics:
+          type: string
+          description: whether the video supports ads
+          enum:
+          - AD_SUPPORTED
+          - FREE
+        geo:
+          $ref: '#/components/schemas/CreateLiveJobRequestBody.videocloud.video.geo'
+        long_description:
+          description: A longer description of the video
+          type: string
+        name:
+          description: Title of the video clip
+          type: string
+          maxLength: 255
+          minLength: 1
+        reference_id:
+          description: Reference id for the clip - must be unique within the account
+          type: string
+        schedule:
+          $ref: '#/components/schemas/CreateLiveJobRequestBody.videocloud.video.schedule'
+        state:
+          type: string
+          description: Whether the video should be active or inactive
+          example: ACTIVE
+          enum:
+          - ACTIVE
+          - INACTIVE
+        tags:
+          description: Array of tags for the video - note that  tags are string that may not contain a comma
+          type: object
+      required:
+      - name
+      title: Create_Live_Job_Request_Body.videocloud.video
+      description: '''An object containing inputs for Video Cloud video object creation - see the [CMS API Reference](https://apis.support.brightcove.com/cms/references/reference.html#operation/CreateVideo)'''
+      type: object
+    Id3Tag:
+      properties:
+        tag_name:
+          description: The ID3 tag name
+          type: string
+        tag_value:
+          description: The ID3 tag value
+          type: string
+      required:
+      - tag_name
+      - tag_value
+      title: id3_tag
+      type: object
+    Job.stream.destination:
+      properties:
+        latitude:
+          description: Latitude of the location source
+          type: string
+        location:
+          description: Longitude of the location source
+          type: string
+        longitude:
+          description: Longitude of the location source
+          type: string
+      title: job.stream.destination
+      type: object
+      description: Object representing the destination of the stream
+    CreateLiveJobRequestBody:
+      properties:
+        ad_audio_loudness_level:
+          description: Adjust the loudness level of the audio. This is measured in LUFS and specified in dB. This is useful to set the output loudness level to conform to a standard (-23dB for EBU R.128) The recommended setting is -23. **Note that this setting only applies to the audio for SSAI ads - it does *not* affect the general audio level for live streams.**
+          maximum: 60
+          minimum: -60
+          type: number
+        ad_insertion:
+          default: false
+          description: Setting this parameter to true will enable server side ad insertion (SSAI) on the job. Current support includes, DFP, Freewheel, or any VAST 2.0/3.0 ad tags.
+          type: boolean
+        add_cdns:
+          description: Array of additional CDN providers to be used for manifest generation. For each CDN provided, the manifest will be prepended accordingly
+          items:
+            $ref: '#/components/schemas/CreateLiveJobRequestBody.addCdns'
+          type: array
+        alternate_audio:
+          description: An object of multiple language audio tracks. Multi-language audio support is limited to rtp or srt protocol.
+          type: object
+          properties:
+            tracks:
+              description: An array for multiple language audio tracks
+              type: array
+              items:
+                $ref: '#/components/schemas/CreateLiveJobRequestBody.alternate_tracks'
+        audio_only:
+          default: false
+          description: Set this parameter to true for audio-only live events. This provides video-free live streaming when you have audio-only content. **Can only be set on job creation, and not changed afterward.**
+          type: boolean
+        audio_only_storage_format:
+          default: mpeg-ts
+          description: For audio-only jobs, by default the media files will be stored in MPEG transport stream (.ts) format. You can also use Advanced Audio Coding (.aac) format. **Can only be set on job creation, and not changed afterward.**
+          enum:
+          - mpeg-ts
+          - aac
+          type: string
+        beacon_set:
+          description: ID for a beacon set (for SSAI only).
+          type: string
+        channel_type:
+          default: event
+          description: '''Indicates whether the job should be billed as `event` hours or a channel (`24x7`) - see [Channels and Event Hours](/live-api/getting-started/overview-brightcove-live-api.html#Channels_and_hours).'''
+          enum:
+          - 24x7
+          - event
+          type: string
+        cidr_whitelist:
+          description: 'An array of [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) blocks.
+
+
+            **Required for ALL jobs where `protocol` = `rtp`, `rtp-fec`, or `srt`.**
+
+
+            This property is **not** allowed for RTMP jobs (API will return an error).'
+          type: array
+          items:
+            type: string
+            description: Allowed IP address for input stream
+          example:
+          - 192.168.0.1/32
+        ip_whitelist:
+          description: 'An array of IP addresses.
+
+
+            This property is **not** allowed for jobs where `protocol` = `rtp`, `rtp-fec`, or `srt`. (API will return an error).'
+          type: array
+          items:
+            type: string
+            description: Allowed IP address for input stream
+          example:
+          - 192.168.0.1/32
+        copy_outputs_from_job:
+          type: string
+          description: The value is the `id` of an existing job that you want to copy the output settings for to this new job
+          example: 481ff4cf0bf74956bc2ec6e126588080
+        drm:
+          type: object
+          description: DRM settings to be applied to all outputs for the job. **Note that you can also apply DRM only to specific outputs if you prefer.**
+          properties:
+            modes:
+              type: array
+              description: The kinds of DRM to apply - currently Widevine and Playready with DASH and FairPlay with HLS are supported. If you prefer to make Widevine with DASH your default instead of Widevine with HLS, an account-level configuration is required and you must submit a Support request for that. Using `all` will apply all types available. See [Live DRM via the Live API](/general/live-drm.html) for more information.
+              items:
+                type: string
+                enum:
+                - all
+                - fairplay
+                - playready
+                - widevine
+                - widevine:dash
+                - widevine:hls
+              example: all
+            token_expires_in:
+              type: integer
+              description: Amount of time in seconds before the token expires
+              default: 43200
+              maximum: 31622400
+            require_playback_token:
+              type: boolean
+              description: Enables EPA.  Playback auth JWT will be required when requesting license. Uses playback rights id associated with video or JWT to enforce restrictions. **Note that EPA is in Limited Availability release. Contact your Customer Success Manager for more information.** See [Using PAS/EPA with Live](/live-api/guides/live-pas-epa.html) for more information.
+              default: false
+            check_playback_rights:
+              type: boolean
+              description: Enables PAS.  Playback auth JWT will be required when requesting license. **Note that PAS is in Limited Availability release. Contact your Customer Success Manager for more information.** See [Using PAS/EPA with Live](/live-api/guides/live-pas-epa.html) for more information.
+              default: false
+        encryption:
+          $ref: '#/components/schemas/CreateLiveJobRequestBody.encryption'
+        event_length:
+          default: 0
+          description: Used to preset and define an end time for the live event. At any point within the specified `event_length` you may reconnect to your stream. The `event_length` setting goes into effect as soon as streaming begins. In case the encoder stops, the live stream will be kept available for the duration of the `reconnect_time
+          maximum: 93600
+          minimum: 0
+          type: integer
+        hls_endlist:
+          default: true
+          description: Whether an `EXT-X-ENDLIST` tag should be added to the stream playlist when you stop the stream or the `reconnect_time` window has been reached. The `EXT-X-ENDLIST` tag indicates that no more Media Segments will be added to the Media Playlist file and helps prevent the player from displaying error messages when the stream stops.
+          type: boolean
+        live_dvr_ads_window_duration:
+          default: 100
+          description: Indicates the window from the live edge on DVR session start, in seconds, for which ad breaks will have ads inserted, before which slate will be inserted. All ad breaks inserted after session start will have ads inserted. <br> <img src="https://docs.brightcove.com/live-api/assets/live_dvr_ads_window.png" height="250px">
+          maximum: 600
+          minimum: 0
+          type: integer
+        live_dvr_sliding_window_duration:
+          default: 0
+          description: 'The time, in seconds, to keep in the live DVR manifest. If the stream duration is longer than the window duration, segment references will be removed first in first out. **Note: for SSAI jobs, the limit is `7200`. If you do not want to be charged for DVR usage, set this to 0 in the request body.**'
+          maximum: 86400
+          minimum: 0
+          type: integer
+        number_of_segments_in_live_chunklist:
+          description: Number of media segments in live playlist/manifest.
+          default: 3
+          maximum: 12
+          minimum: 3
+          type: integer
+        pass_through:
+          description: Allows metadata for the Live Module in Studio to be passed through with the job data - this metadata is not processed by the API in any way
+          type: boolean
+        transcribe_state:
+          description: 'Allows you to turn on automated captions for a live stream. Values: <br> "ON" - Enable automated captions <br> "OFF" - Disable automated captions'
+          type: string
+          default: 'OFF'
+        transcribe_options:
+          type: object
+          description: Options associated with automated captions
+          properties:
+            language_code:
+              type: string
+              default: en-US
+              description: The language used for automated captions. Currently, only English (en-US) is supported for automated captions.
+        live_stream:
+          description: Indicates that the job is a live streaming job.
+          type: boolean
+        low_latency:
+          description: 'If `true` enables the job to use low latency. **Note: low latency must be enabled for the account by support.**'
+          default: false
+          type: boolean
+        max_hls_protocol_version:
+          default: 3
+          description: Sets the maximum HLS protocol version to use. Special features will be used as available. Default is `3`.
+          maximum: 5
+          minimum: 1
+          type: integer
+        notifications:
+          description: '''Array of notification destination objects or strings - notifications defined here are for job-level events.  A notification will be sent to the destination when selected event occurs. You can use a simple string with a url: &quot;https://log:pass@httpbin.org/post&quot;, or you can use an object. See [Events](/live-api/guides/live-api-notifications.html#Events) for an explanation of the events reported in `state_changed` notifications. <br> Retry strategy: In the event of a failed request to send a notification, the default retry strategy is to retry 50 times with an exponential delay between attempts: <br> `max_retry_times = 50` <br> `delay_delta_s = 5` <br> `next_retry = now_s + retry_count * delay_delta_s`'''
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/Notification'
+            - type: string
+              description: A URL to send notifications to
+          type: array
+        outputs:
+          description: Array of output specifications for live and VOD assets to be created from the live stream.
+          items:
+            $ref: '#/components/schemas/CreateLiveJobRequestBody.outputs'
+          type: array
+        protocol:
+          description: Specifies the input protocol that will be used - note that `rtmp` is for FLV input; the other protocols are for MPEG2-TS
+          type: string
+          enum:
+          - rtmp
+          - rtp
+          - rtp-fec
+          - srt
+          default: rtmp
+        reconnect_time:
+          default: 1800
+          description: The time, in seconds, to wait for a stream to reconnect to the encoder. If the encoder is disconnected, the live stream will be kept available for the full `reconnect_time` or for the **remainder** of the event length, whichever is greater.
+          maximum: 7200
+          minimum: 1
+          type: integer
+        region:
+          description: AWS region - you can also specify region as the alias for a list set up for the account by Brightcove Support. See [Supported AWS Regions](/live-api/getting-started/overview-brightcove-live-api.html#Support_aws_regions) for more details on the support in each region.
+          enum:
+          - us-west-2
+          - us-east-1
+          - ap-southeast-2
+          - ap-northeast-1
+          - ap-southeast-1
+          - ap-south-1
+          - eu-central-1
+          - eu-west-1
+          type: string
+        credentials:
+          description: The label for a named credential. When specified, the customer must include the user name and password defined by the named credential when connecting their encoder.
+          type: string
+        rtmp_ip_whitelist:
+          description: Array of IP addresses white-listed for RTMP delivery
+          items:
+            type: string
+          type: array
+        slate:
+          description: Id for a set of slate assets
+          type: string
+        srt_config:
+          type: object
+          description: Settings for latency
+          properties:
+            latency:
+              type: number
+              default: 500
+              description: 'Time in milliseconds for which the SRT receiver shall be buffering the input data to overcome packet loss by retransmission. It is recommended to be greater than four times the RTT(round trip time).
+
+
+                To get the RTT, you can do a counted ping on the Streaming endpoint domain. For example `ping -c 10 1a244fa8f08a464e869695dd01c890d6.sep.bcovlive.io`'
+            passphrase:
+              type: string
+              description: Adding a passphrase allows for encrypted ingest via SRT into Brightcove Live.
+              minLength: 10
+              maxLength: 79
+        static:
+          default: false
+          description: Whether this is a static entry point (SEP) job
+          type: boolean
+        videocloud:
+          $ref: '#/components/schemas/CreateLiveJobRequestBody.videocloud'
+      required:
+      - live_stream
+      - region
+      - outputs
+      title: Create_Live_JobBody
+      type: object
+      example:
+        add_cdns: []
+        live_stream: true
+        pass_through:
+          dvr: false
+          stream_to_social_media: false
+        audio_only: false
+        low_latency: false
+        protocol: rtmp
+        region: eu-west-1
+        reconnect_time: 600
+        ad_insertion: false
+        outputs:
+        - media_type: video
+          format: ts
+          segment_seconds: 6
+          label: hls540p
+          live_stream: true
+          video_codec: h264
+          video_bitrate: 1700
+          keyframe_interval: 60
+          width: 960
+          height: 540
+          h264_profile: main
+          low_latency: false
+        - media_type: video
+          format: ts
+          segment_seconds: 6
+          label: hls360p
+          live_stream: true
+          video_codec: h264
+          video_bitrate: 900
+          keyframe_interval: 60
+          width: 640
+          height: 360
+          h264_profile: main
+          low_latency: false
+        - media_type: video
+          format: ts
+          segment_seconds: 6
+          label: hls270p
+          live_stream: true
+          video_codec: h264
+          video_bitrate: 450
+          keyframe_interval: 60
+          width: 480
+          height: 270
+          h264_profile: baseline
+          low_latency: false
+        videocloud:
+          video:
+            name: Example
+            description: ''
+            long_description: ''
+            tags:
+            - tag_1
+            - tag_2
+            reference_id: ''
+            link:
+              url: ''
+              text: ''
+            schedule:
+              starts_at: null
+              ends_at: null
+            custom_fields:
+              custom_field_1: Entry 1
+              custom_field_2: Entry 2
+            state: ACTIVE
+          live_to_vod: true
+        notifications: []
+        static: false
+        credentials: null
+    CreateLiveJobRequestBody.addCdns.tokenAuth:
+      description: 'Token authentication details
+
+
+        **Note: If you don''t have your secret key for Akamai, or need to have a new one, contact your Customer Success Manager or Brightcove Support.**'
+      properties:
+        auth_type:
+          description: Token authentication type - currently, the only supported value is `Akamai2.0`
+          type: string
+        key:
+          description: Your Akamai token auth password
+          type: string
+        media:
+          $ref: '#/components/schemas/CreateLiveJobRequestBody.addCdns.tokenAuth.media'
+        token_name:
+          description: Your Akamai token token name
+          type: string
+      required:
+      - auth_type
+      - key
+      - token_name
+      title: Create_Live_Job_Request_Body.add_cdns.token_auth
+      type: object
+    CreateVodClipbody.outputs.videocloud.video.cuePoint:
+      properties:
+        force-stop:
+          description: whether video is force-stopped at the cue point
+          type: boolean
+        metadata:
+          description: optional metadata string (512 single-byte characters maximum)
+          type: string
+        name:
+          description: cue point name
+          type: string
+        time:
+          description: 'time of the cue point in seconds; example: 10.527'
+          type: number
+        type:
+          description: cue point type
+          enum:
+          - AD
+          - CODE
+          example: AD
+          type: string
+      required:
+      - time
+      - type
+      title: Create_VOD_ClipBody.outputs.videocloud.video.cue_point
+      type: object
+    CreateLiveJobRequestBody.videocloud.video.geo:
+      properties:
+        countries:
+          description: array of ISO 3166 list of [2-letter codes](https://www.iso.org/obp/ui/#home) (search for &quot;country codes&quot;)
+          type: string
+        exclude_countries:
+          description: if true, country array is treated as a list of countries excluded from viewing
+          type: boolean
+        restricted:
+          description: whether geo-restriction is enabled for this video
+          type: boolean
+      required:
+      - countries
+      - exclude_countries
+      - restricted
+      title: Create_Live_Job_Request_Body.videocloud.video.geo
+      type: object
+      description: map of geo-filtering properties
+    Notification:
+      properties:
+        credentials:
+          description: Credentials for the destination, if required.
+          type: string
+        event:
+          description: Event type to send notifications for.  It’s recommended to set events on the job and not individual rendition outputs since renditions will finish simultaneously.
+          type: string
+          enum:
+          - state_changed
+          - first_segment_uploaded
+          - output_finished
+          - rtmp_output_state_changed
+        url:
+          description: Destination for the notification.
+          type: string
+      required:
+      - url
+      - event
+      title: notification
+      type: object
+    Outputs:
+      properties:
+        id:
+          description: The unique id for the rendition.
+          type: string
+        playback_url:
+          description: Media HLS manifest for the specified rendition (non-SSAI).
+          type: string
+        playback_url_dvr:
+          description: Media HLS manifest for the specified rendition (with DVR capability).
+          type: string
+        playback_url_vod:
+          description: Media HLS manifest for the VOD version of the stream if one was specified in the job settings - note that the VOD will not be available until the live event has finished and the creation of the VOD is complete.
+          type: string
+      required:
+      - id
+      - playback_url
+      - playback_url_dvr
+      - playback_url_vod
+      title: outputs
+      type: object
+    PlaybackToken:
+      title: Create Playback Token Response
+      description: An `ad_config_id` to use for playback
+      type: object
+      properties:
+        playback_token:
+          type: string
+          example: live.TCaG-5GnlxmTFA8twsstmHqgET9npvC3nVtokT5nte...
+    Job.stream.location:
+      properties:
+        latitude:
+          description: Latitude of the location source
+          type: string
+        location:
+          description: Longitude of the location source
+          type: string
+        longitude:
+          description: Longitude of the location source
+          type: string
+      title: job.stream.location
+      type: object
+      description: Object representing the location of the stream
+    Job.outputMediaFiles:
+      properties:
+        audio_bitrate_in_kbps:
+          description: Audio bitrate of the output media file
+          type: number
+        audio_codec:
+          description: Audio codec of the output media file
+          type: string
+        audio_sample_rate:
+          description: Audio sample rate of the output media file
+          type: number
+        audio_tracks:
+          description: The number of audio tracks
+          type: number
+        channels:
+          description: The number of audio channels
+          type: number
+        created_at:
+          description: ISO 8601 date-time string representing when the output file was created
+          type: string
+        duration_in_ms:
+          description: ISO 8601 date-time string representing when the output file was created
+          type: number
+        dvr_filename:
+          description: File name for the DVR playlist manifest
+          type: string
+        error_class:
+          description: Type of error thrown
+          type: string
+        error_message:
+          description: Error message thrown
+          type: string
+        file_size_bytes:
+          description: File size
+          type: number
+        filename:
+          description: File name for the playlist manifest
+          type: string
+        finished_at:
+          description: ISO 8601 date-time string representing when the output file was finished
+          type: string
+        format:
+          description: Format of the output file
+          type: string
+        frame_rate:
+          description: Frame rate of the output file
+          type: number
+        height:
+          description: Frame height of the output file
+          type: number
+        id:
+          description: System id of the output file
+          type: string
+        keyframe_interval:
+          description: Keyframe interval for the output media file
+          format: int32
+          type: integer
+        keyframe_interval_follow_source:
+          description: Whether keyframe rate for the output matches the source
+          type: boolean
+        live_stream:
+          description: Whether the output is a live stream
+          type: boolean
+        md5_checksum:
+          description: Checksum for the output file
+          type: string
+        playback_url:
+          description: URL for the output file
+          type: string
+        playback_url_dvr:
+          description: Live DVR url for live stream output
+          type: string
+        playback_url_vod:
+          description: URL for VOD output
+          type: string
+        playlist_type:
+          description: Playlist type for playlist output
+          type: string
+        state:
+          description: Current state of output file processing
+          type: string
+        total_bitrate_in_kbps:
+          description: Total bitrate of the output media file
+          type: number
+        type:
+          description: Will be playlist for playlist output
+          type: string
+        updated_at:
+          description: ISO 8601 date-time string representing when the output file was last modified
+          type: string
+        video_bitrate_in_kbps:
+          description: Video bitrate of the output media file
+          type: number
+        video_codec:
+          description: Video codec of the output media file
+          type: string
+        width:
+          description: Frame width of the output media file
+          type: number
+      required:
+      - audio_bitrate_in_kbps
+      - audio_codec
+      - audio_sample_rate
+      - audio_tracks
+      - channels
+      - duration_in_ms
+      - file_size_bytes
+      - format
+      - frame_rate
+      - height
+      - video_bitrate_in_kbps
+      - video_codec
+      - width
+      - total_bitrate_in_kbps
+      - keyframe_interval_follow_source
+      - live_stream
+      - type
+      - filename
+      - dvr_filename
+      title: job.output_media_files
+      type: object
+    CreateLiveJobRequestBody.addCdns.tokenAuth.media:
+      description: Object containing tokenization properties
+      properties:
+        end_time:
+          description: The time to end token auth, epoch time in seconds
+          format: int32
+          type: integer
+        start_time:
+          default: now
+          description: The time to apply token auth - &quot;now&quot; or epoch time in seconds
+          format: int32
+          oneOf:
+          - type: integer
+          - enum:
+            - now
+            type: string
+        ttl:
+          description: The time to live in seconds - either `end_time` or `ttl` is required
+          format: int32
+          type: integer
+      title: Create_Live_Job_Request_Body.add_cdns.token_auth.media
+      type: object
+    CreateVodClipbody.outputs.videocloud.ingest:
+      properties:
+        callbacks:
+          description: An array of URLs that notifications for the ingest job should be sent to
+          items:
+            type: string
+          type: array
+        capture-images:
+          description: '''Whether poster and thumbnail should be captured during transcoding; defaults to `true` if the the profile has image renditions, `false` if it does not - see [Images and the Dynamic Ingest API](https://apis.support.brightcove.com/dynamic-ingest/ingest-guides/images-and-dynamic-ingest-api.html) for more information'''
+          example: true
+          type: boolean
+        profile:
+          description: The ingest profile to use - we recommend that you do **not** include this field and use the account default profile instead
+          type: string
+      title: Create_VOD_ClipBody.outputs.videocloud.ingest
+      description: An object containing inputs for Video Cloud video ingestion - see the [Dynamic Ingest Reference](https://apis.support.brightcove.com/dynamic-ingest/references/reference.html#operation/AccountsVideosIngestRequestsByAccountIdAndVideoIdPost) - do not include the master field, as that information will be provided by the Live API. If no ingest profile is specified, the account default profile will be used.
+      type: object
+    CreateLiveJob.outputs.videocloud:
+      properties:
+        account_id:
+          description: The Video Cloud Account ID the clip should be ingested to. Only required if using Video Cloud Account ID other than the default configured in your Live account. If set, you must also set the `credentials` property on the output.
+          type: string
+        ingest:
+          $ref: '#/components/schemas/CreateVodClipbody.outputs.videocloud.ingest'
+        video:
+          $ref: '#/components/schemas/CreateVodClipbody.outputs.videocloud.video'
+      required:
+      - video
+      - ingest
+      title: Create_VOD_ClipBody.outputs.videocloud
+      description: An object containing inputs for Video Cloud ingestion
+      type: object
+    CreateVodClipbody.outputs.videocloud.video.schedule:
+      properties:
+        ends_at:
+          description: end date-time of availability in [ISO-8601](https://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) format
+          type: string
+        starts_at:
+          description: '''start date-time of availability in [ISO-8601](https://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) format'''
+          type: string
+      required:
+      - ends_at
+      - starts_at
+      title: Create_VOD_ClipBody.outputs.videocloud.video.schedule
+      type: object
+      description: map of scheduling properties
     ListLiveJobsResponse:
       properties:
         jobs:
@@ -1907,145 +2260,98 @@ components:
             playback_url_dvr: https://bcovlive-a.akamaihd.net/c1d242de729d4a76a605e018cc101601/eu-west-1/NA/profile_0/chunklist_dvr.m3u8
             playback_url_vod: https://bcovlive-a.akamaihd.net/c1d242de729d4a76a605e018cc101601/eu-west-1/NA/profile_0/chunklist_vod.m3u8
             playback_added_cdns: []
-    CreateVodClipbody.outputs.videocloud.video:
+    ActivateSepStreamResponse:
       properties:
-        cue_points:
-          description: Array of cuepoint objects
-          items:
-            $ref: '#/components/schemas/CreateVodClipbody.outputs.videocloud.video.cuePoint'
-          type: array
-        custom_fields:
-          description: An object whose properties are `field_name`:`value` pairs - be sure to the *internal* name of the field
-          type: object
-        description:
-          description: Video short description
+        id:
+          description: The job id for the stream that was activated
           type: string
-        drm_disabled:
-          description: Use to disable DRM packaging for this video - applies only to DRM-enabled accounts
+          readOnly: true
+      required:
+      - id
+      title: Activate_SEP_Stream_Response
+      type: object
+    InsertId3TimedMetadataResponse:
+      properties:
+        id:
+          description: The job id
+          type: string
+        id3_tag:
+          $ref: '#/components/schemas/Id3Tag'
+      required:
+      - id
+      - id3_tag
+      title: Insert_ID3_timed_metadata_Response
+      type: object
+    CreateLiveJobRequestBody.encryption:
+      properties:
+        check_playback_rights:
+          description: Playback auth JWT will be required when requesting license. Uses playback rights id associated    with video or JWT to enforce restrictions. If <code translate="No">false</code> playback restrictions will be bypassed and the encrypted stream will play back as usual.
           type: boolean
-        economics:
+          default: false
+        external_url:
+          description: The URL for the external encryption key - this field is required if you specify type as external, and the external key must match the `key` value
           type: string
-          description: whether the video supports ads
+        key:
+          description: 'The encryption key - either a `key`, `passphrase`, or `key_rotation` is required; if the type is `external`, `key` is required.
+
+
+            The key must be 32 hexadecimal characters. For best results, generate a key by going to [a key generator](https://www.allkeysgenerator.com/Random/Security-Encryption-Key-Generator.aspx) and selecting the `128-bit` and `Hex` options.'
+          type: string
+          maxLength: 32
+          minLength: 32
+        key_rotation:
+          default: false
+          description: Whether to use key rotation - either a `key`, `passphrase`, or `key_rotation` is required
+          type: boolean
+        method:
+          description: The encryption method to use.
           enum:
-          - AD_SUPPORTED
-          - FREE
-        geo:
-          $ref: '#/components/schemas/CreateVodClipbody.outputs.videocloud.video.geo'
-        long_description:
-          description: A longer description of the video
+          - aes-128
+          type: string
+        passphrase:
+          description: The encryption key - either a `key`, `passphrase`, or `key_rotation` is required
+          type: string
+        rotate_every:
+          default: 10
+          description: Interval for key rotation in video segments
+          type: integer
+        type:
+          description: The encryption type, depending on whether an internal or external key server will be used.
+          enum:
+          - internal
+          - external
+          type: string
+      required:
+      - method
+      - type
+      title: Create_Live_Job_Request_Body.encryption
+      description: Encryption to apply to the stream.
+      type: object
+    CreateLiveJobRequestBody.videocloud.video.cuePoint:
+      properties:
+        force-stop:
+          description: whether video is force-stopped at the cue point
+          type: boolean
+        metadata:
+          description: optional metadata string (512 single-byte characters maximum)
           type: string
         name:
-          description: Title of the video clip
+          description: cue point name
           type: string
-        reference_id:
-          description: Reference id for the clip - must be unique within the account
-          type: string
-        schedule:
-          $ref: '#/components/schemas/CreateVodClipbody.outputs.videocloud.video.schedule'
-        state:
-          type: string
-          description: Whether the video should be active or inactive
-          example: ACTIVE
+        time:
+          description: 'time of the cue point in seconds; example: 10.527'
+          type: number
+        type:
+          description: cue point type
           enum:
-          - ACTIVE
-          - INACTIVE
-        tags:
-          description: Array of tags for the video - note that  tags are string that may not contain a comma
-          type: object
-      required:
-      - name
-      title: Create_VOD_ClipBody.outputs.videocloud.video
-      description: '''An object containing inputs for Video Cloud video object creation - see the [CMS API Reference](https://apis.support.brightcove.com/cms/references/reference.html#operation/CreateVideo)'''
-      type: object
-    RTMPout:
-      title: RTMP Output
-      type: object
-      description: RTMP output object
-      properties:
-        rtmp_out_id:
-          type: string
-          description: system id for the RTMP output
-        stream_start:
-          type: integer
-          description: Start time of the output in Epoch time (milliseconds)
-        state:
-          type: string
-          description: Current state of the RTMP output stream
-          enum:
-          - connected
-          - disconnected
-          - error
-          - starting
-        duration_history:
-          type: array
-          description: Array of durations for connections
-          items:
-            type: object
-            description: A connection start and stop
-            properties:
-              stream_start:
-                type: integer
-                description: The epoch time (in milliseconds) that a stream connected
-              stream_end:
-                type: integer
-                description: The epoch time (in milliseconds) that a stream disconnected
-        connection_info:
-          type: object
-          description: Details of the connection information
-          properties:
-            host:
-              type: string
-              description: Host URL
-            port:
-              type: integer
-              description: The port number
-            application:
-              type: string
-              description: The application name in the path
-            streamName:
-              type: string
-              description: The stream name in the path
-            sessionStatus:
-              type: string
-              description: The current session status
-              enum:
-              - Active
-              - Inactive
-        waiting_for_start:
-          type: boolean
-          description: 'For SEP jobs. If `true`, the SEP job was deactivated but the RTMP output was not stopped and the next time you activate the stream on the SEP job there will be an attempt to reconnect the RTMP output.
-
-
-            If `waiting_for_start` is `false`, it means the RTMP output was stopped.'
-    Outputs:
-      properties:
-        id:
-          description: The unique id for the rendition.
-          type: string
-        playback_url:
-          description: Media HLS manifest for the specified rendition (non-SSAI).
-          type: string
-        playback_url_dvr:
-          description: Media HLS manifest for the specified rendition (with DVR capability).
-          type: string
-        playback_url_vod:
-          description: Media HLS manifest for the VOD version of the stream if one was specified in the job settings - note that the VOD will not be available until the live event has finished and the creation of the VOD is complete.
+          - AD
+          - CODE
+          example: AD
           type: string
       required:
-      - id
-      - playback_url
-      - playback_url_dvr
-      - playback_url_vod
-      title: outputs
-      type: object
-    DeactivateSepStreamResponse:
-      properties:
-        id:
-          description: The job id for the stream that was Deactivated
-          type: string
-      required:
-      - id
-      title: Deactivate_SEP_Stream_Response
+      - time
+      - type
+      title: Create_Live_Job_Request_Body.videocloud.video.cue_point
       type: object
     CreateLiveJobRequestBody.outputs:
       properties:
@@ -2196,321 +2502,76 @@ components:
       - segment_seconds
       title: Create_Live_Job_Request_Body.outputs
       type: object
-    CancelLiveJob:
+    CreateVodClipbody.outputs.videocloud.video:
+      properties:
+        cue_points:
+          description: Array of cuepoint objects
+          items:
+            $ref: '#/components/schemas/CreateVodClipbody.outputs.videocloud.video.cuePoint'
+          type: array
+        custom_fields:
+          description: An object whose properties are `field_name`:`value` pairs - be sure to the *internal* name of the field
+          type: object
+        description:
+          description: Video short description
+          type: string
+        drm_disabled:
+          description: Use to disable DRM packaging for this video - applies only to DRM-enabled accounts
+          type: boolean
+        economics:
+          type: string
+          description: whether the video supports ads
+          enum:
+          - AD_SUPPORTED
+          - FREE
+        geo:
+          $ref: '#/components/schemas/CreateVodClipbody.outputs.videocloud.video.geo'
+        long_description:
+          description: A longer description of the video
+          type: string
+        name:
+          description: Title of the video clip
+          type: string
+        reference_id:
+          description: Reference id for the clip - must be unique within the account
+          type: string
+        schedule:
+          $ref: '#/components/schemas/CreateVodClipbody.outputs.videocloud.video.schedule'
+        state:
+          type: string
+          description: Whether the video should be active or inactive
+          example: ACTIVE
+          enum:
+          - ACTIVE
+          - INACTIVE
+        tags:
+          description: Array of tags for the video - note that  tags are string that may not contain a comma
+          type: object
+      required:
+      - name
+      title: Create_VOD_ClipBody.outputs.videocloud.video
+      description: '''An object containing inputs for Video Cloud video object creation - see the [CMS API Reference](https://apis.support.brightcove.com/cms/references/reference.html#operation/CreateVideo)'''
+      type: object
+    AddAdMetadatabody:
+      title: Add Ad Metadata Request body
+      description: -> A set of key/value pairs for ad requests.
+      type: object
+      properties:
+        ad_server_data:
+          type: object
+          description: Object containing a collection of keys and values. Values may be strings, numbers, or boolean.
+          example:
+            ad_server_data:
+              one: won
+              two: 2
+              three: false
+    StopLiveJob:
       properties:
         id:
-          description: The job id for the stream that was cancelled. No unprocessed VOD jobs associated with the live job will be processed.
+          description: The job id for the stream that was stopped. Any unprocessed VOD jobs associated with the live job will continue to be processed.
           type: string
           readOnly: true
       title: Cancel_Live_Job_Response
-      type: object
-    CreateLiveJobRequestBody.alternate_tracks:
-      type: object
-      description: Object containing audio track properties
-      properties:
-        language:
-          description: The code for the language to be used. At present this is flexible and could be in any of the various language formats required/supported by the specs, specifically RFC5456/BCP47 which also covers ISO-639 as per the requirements.
-          type: string
-        video_pid:
-          description: The Packet Identifier (PID) from the MPEG-TS input stream for the video track
-          type: integer
-        pid:
-          description: The Packet Identifier (PID) from the MPEG-TS input stream for a specific audio track
-          type: integer
-        default:
-          description: The audio track marked as DEFAULT in the EXT-X-MEDIA as well as the track to be muxed into video stream. If not present, the first track is the default. If multiple playlists are defined with different defaults, the top level default track is the muxed one.
-          type: boolean
-          default: false
-        label:
-          description: '''A text description to be used for the track, preferred to be used by the player where possible. Defaults to the language with an ID for each track e.g. en-0 if not specified.'''
-          type: string
-        variant:
-          description: 'Maps to the DASH Role Schema values: (Used in DASH Role urn:mpeg:dash:role:2011)'
-          enum:
-          - main
-          - alternate
-          - commentary
-          - supplementary
-          - dub
-          default: main
-        streams:
-          description: 'This mimics the streams field of the playlist output type; example: { “source”: “720p” } - matches the label of the output source. If not present, uses the default audio settings.'
-          type: array
-      required:
-      - language
-      - video_pid
-      - pid
-      - default
-    ManualAdCuePointInsertionbody:
-      properties:
-        ad_server_data:
-          description: a set of any variables (key/value pairs) that should be passed to the adServer
-          type: object
-        cancel:
-          description: When `true`, cuepoint specified by `cuepoint_id` will be canceled. If an ad break is already in progress, a crash-out will occur, returning to the main content.
-          type: boolean
-          default: false
-        cuepoint_id:
-          description: ID to use when creating cuepoint. If `cancel` is `true`, then this field is required and is the ID of cuepoint to cancel.
-          type: string
-        duration:
-          description: An integer value to indicate the length of the ad break in seconds
-          type: number
-        timecode:
-          description: "'When to insert the cuepoint in SMPTE HH:MM:SS:FF format from the stream start (FF = frames); if omitted, the cuepoint will be inserted immediately. Note:\n  1. If you use the timecode property, the job only only stores the most recent request for insertion\n  2. If you use the timecode property, the encoder must be sending SMPTE-formatted (HH:MM:SS:FF) timecode stored in the `tc` property via `OnFI`\n  3. Software encoders such as Wirecast and OBS do not support the sending timecode via `OnFI` packets in the RTMP stream\n  4. Elemental hardware encoders do support the sending timecode via `OnFI` packets in the RTMP stream'"
-          type: string
-          example:
-            ad_server_data:
-              subject: wildlife
-            duration: 30
-            timecode: 09:23:18:05
-      required:
-      - duration
-      title: Manual_Ad_Cue_Point_InsertionBody
-      type: object
-    Job.inputMediaFile:
-      properties:
-        audio_bitrate_in_kbps:
-          description: Audio bitrate of the input media file
-          type: number
-        audio_codec:
-          description: Audio codec of the input media file
-          type: string
-        audio_sample_rate:
-          description: Audio sample rate of the input media file
-          type: number
-        audio_tracks:
-          description: The number of audio tracks
-          type: number
-        channels:
-          description: The number of audio channels
-          type: number
-        created_at:
-          description: ISO 8601 date-time string representing when the input file was created
-          type: string
-        duration_in_ms:
-          description: 'duration_in_ms.
-
-            **Note:** Please note the value of this parameter represents the duration of the Live FEED. Still, when the live job finishes without processing, it means there''s no Live FEED delivered or processed, and then the value for this parameter gets to be EPOC time when the live job was finished.'
-          type: number
-        error_class:
-          description: Type of error thrown
-          type: string
-        error_message:
-          description: Error message thrown
-          type: string
-        file_size_bytes:
-          description: File size
-          type: number
-        finished_at:
-          description: ISO 8601 date-time string representing when the input file was finished
-          type: string
-        format:
-          description: Format of the input file
-          type: string
-        frame_rate:
-          description: Frame rate of the input file
-          type: number
-        height:
-          description: Frame height of the input file
-          type: number
-        id:
-          description: System id of the input file
-          type: string
-        md5_checksum:
-          description: Checksum for the input file
-          type: string
-        state:
-          description: Current state of input file processing
-          type: string
-        total_bitrate_in_kbps:
-          description: Total bitrate of the input media file
-          type: number
-        updated_at:
-          description: ISO 8601 date-time string representing when the input file was last modified
-          type: string
-        url:
-          description: URL for the input media file
-          type: string
-        video_bitrate_in_kbps:
-          description: Video bitrate of the input media file
-          type: number
-        video_codec:
-          description: Video codec of the input media file
-          type: string
-        width:
-          description: Frame width of the input media file
-          type: number
-      title: job.input_media_file
-      type: object
-      description: Object containing properties for the input media file. *Note that some fields under the media file object are null. These fields were ported from the old Zencoder and are not relevant.
-    PlaybackToken:
-      title: Create Playback Token Response
-      description: An `ad_config_id` to use for playback
-      type: object
-      properties:
-        playback_token:
-          type: string
-          example: live.TCaG-5GnlxmTFA8twsstmHqgET9npvC3nVtokT5nte...
-    Notification:
-      properties:
-        credentials:
-          description: Credentials for the destination, if required.
-          type: string
-        event:
-          description: Event type to send notifications for.  It’s recommended to set events on the job and not individual rendition outputs since renditions will finish simultaneously.
-          type: string
-          enum:
-          - state_changed
-          - first_segment_uploaded
-          - output_finished
-          - rtmp_output_state_changed
-        url:
-          description: Destination for the notification.
-          type: string
-      required:
-      - url
-      - event
-      title: notification
-      type: object
-    CreateLiveJobRequestBody.videocloud.video.geo:
-      properties:
-        countries:
-          description: array of ISO 3166 list of [2-letter codes](https://www.iso.org/obp/ui/#home) (search for &quot;country codes&quot;)
-          type: string
-        exclude_countries:
-          description: if true, country array is treated as a list of countries excluded from viewing
-          type: boolean
-        restricted:
-          description: whether geo-restriction is enabled for this video
-          type: boolean
-      required:
-      - countries
-      - exclude_countries
-      - restricted
-      title: Create_Live_Job_Request_Body.videocloud.video.geo
-      type: object
-      description: map of geo-filtering properties
-    Id3Tag:
-      properties:
-        tag_name:
-          description: The ID3 tag name
-          type: string
-        tag_value:
-          description: The ID3 tag value
-          type: string
-      required:
-      - tag_name
-      - tag_value
-      title: id3_tag
-      type: object
-    Job.stream.location:
-      properties:
-        latitude:
-          description: Latitude of the location source
-          type: string
-        location:
-          description: Longitude of the location source
-          type: string
-        longitude:
-          description: Longitude of the location source
-          type: string
-      title: job.stream.location
-      type: object
-      description: Object representing the location of the stream
-    CreateLiveJobRequestBody.videocloud.video.schedule:
-      properties:
-        ends_at:
-          description: end date-time of availability in [ISO-8601](https://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) format
-          type: string
-        starts_at:
-          description: start date-time of availability in [ISO-8601](https://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) format
-          type: string
-      required:
-      - ends_at
-      - starts_at
-      title: Create_Live_Job_Request_Body.videocloud.video.schedule
-      type: object
-      description: map of scheduling properties
-    InsertId3TimedMetadatabody:
-      properties:
-        id3_tag:
-          $ref: '#/components/schemas/InsertId3TimedMetadatabody.id3Tag'
-      required:
-      - id3_tag
-      title: Insert_ID3_timed_metadataBody
-      type: object
-      example:
-        id3_tag:
-          name: BCOV
-          value: my value
-          timecode: '15:50:49:16'
-    InsertId3TimedMetadatabody.id3Tag:
-      description: An object containing variables for the ID3 timed metadata
-      properties:
-        name:
-          description: A name for the tag
-          type: string
-        timecode:
-          description: 'Time to insert - by default, insertion is immediate.
-
-
-            Note:
-
-            1. If you use the timecode property, the job only only stores the most
-
-            recent request for insertion;
-
-            2. If you use the timecode property, the encoder must be sending SMPTE-formatted (HH:MM:SS:FF) timecode stored in the `tc` property via `OnFI`;
-
-            3. Software encoders such as Wirecast and OBS do not support the sending timecode via `OnFI` packets in the RTMP stream;
-
-            4. Elemental hardware encoders do support the sending timecode via `OnFI` packets in the RTMP stream'
-          type: string
-        value:
-          description: A value for the tag (maximum string data size 256KB)
-          type: string
-      required:
-      - name
-      - value
-      title: Insert_ID3_timed_metadataBody.id3_tag
-      type: object
-    CreateLiveJobRequestBody.addCdns:
-      properties:
-        label:
-          description: A label to identify the CDN.
-          type: string
-        prepend:
-          description: CDN hostname to be prepended to addresses
-          type: string
-        protocol:
-          description: Protocol to use for the stream delivery
-          enum:
-          - http
-          - https
-          type: string
-        token_auth:
-          $ref: '#/components/schemas/CreateLiveJobRequestBody.addCdns.tokenAuth'
-        vendor:
-          description: CDN vendor such as akamai
-          type: string
-      required:
-      - label
-      - prepend
-      - protocol
-      title: Create_Live_Job_Request_Body.add_cdns
-      type: object
-    InsertId3TimedMetadataResponse:
-      properties:
-        id:
-          description: The job id
-          type: string
-        id3_tag:
-          $ref: '#/components/schemas/Id3Tag'
-      required:
-      - id
-      - id3_tag
-      title: Insert_ID3_timed_metadata_Response
       type: object
     ManualAdCuePointInsertionResponse:
       properties:
@@ -2530,77 +2591,95 @@ components:
           duration: 30
           id: c1d242de729d4a76a605e018cc101601
         id: 3ae7fa89943f4a96aa273fbbf175d527
-    CreateVodClipbody.outputs.videocloud.video.cuePoint:
-      properties:
-        force-stop:
-          description: whether video is force-stopped at the cue point
-          type: boolean
-        metadata:
-          description: optional metadata string (512 single-byte characters maximum)
-          type: string
-        name:
-          description: cue point name
-          type: string
-        time:
-          description: 'time of the cue point in seconds; example: 10.527'
-          type: number
-        type:
-          description: cue point type
-          enum:
-          - AD
-          - CODE
-          example: AD
-          type: string
-      required:
-      - time
-      - type
-      title: Create_VOD_ClipBody.outputs.videocloud.video.cue_point
-      type: object
-    CuePoint:
-      properties:
-        accuracy:
-          description: The cuepoint insertion accuracy - may be segment or frame
-          type: string
-        duration:
-          description: The cuepoint duration in seconds
-          type: number
-        id:
-          description: The cuepoint id
-          type: string
-        inserted_at:
-          description: Time when the cue point was inserted in the stream
-          type: string
-      required:
-      - id
-      - duration
-      - accuracy
-      - inserted_at
-      title: cue_point
-      type: object
-    Job.stream.destination:
-      properties:
-        latitude:
-          description: Latitude of the location source
-          type: string
-        location:
-          description: Longitude of the location source
-          type: string
-        longitude:
-          description: Longitude of the location source
-          type: string
-      title: job.stream.destination
-      type: object
-      description: Object representing the destination of the stream
   parameters:
-    XAPIKEY:
-      name: X-API-KEY
+    ad_insertion:
+      name: ad_insertion
+      in: query
+      description: Filter results by is SSAI enabled
+      style: form
+      explode: true
+      schema:
+        type: boolean
+    ContentType:
+      name: Content-Type
       in: header
-      description: 'X-API-KEY: {Your_Live_API_Key}'
+      description: 'Content-Type: application/json'
       required: true
       style: simple
       explode: false
       schema:
         type: string
+        default: application/json
+      example: application/json
+    page_size:
+      name: page_size
+      in: query
+      description: Max number of items to return in one request (1-1000, default is 10)
+      style: form
+      explode: true
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 10
+    user_id:
+      name: user_id
+      in: query
+      description: Filter results by one or more user IDs
+      style: form
+      explode: true
+      schema:
+        oneOf:
+        - type: string
+          description: User id
+        - type: array
+          items:
+            type: string
+            description: User id
+    start_token:
+      name: start_token
+      in: query
+      description: Next token from previous page; do not specify when fetching first page
+      style: form
+      explode: true
+      schema:
+        type: string
+    sort:
+      name: sort
+      in: query
+      description: Attribute to sort jobs by (`created_at` | `modified_at`, default is `created_at`)
+      style: form
+      explode: true
+      schema:
+        type: string
+        enum:
+        - created_at
+        - modified_at
+        default: created_at
+    created_at:
+      name: created_at
+      in: query
+      description: Filter results by Unix time of job creation (in milliseconds)
+      style: form
+      explode: true
+      schema:
+        type: integer
+    account_id:
+      name: account_id
+      in: query
+      description: Filter results by particular account, or specify ‘*’ to search all accounts.  Default value is account API key belongs to
+      style: form
+      explode: true
+      schema:
+        type: string
+    static:
+      name: static
+      in: query
+      description: Filter results by has static endpoint
+      style: form
+      explode: true
+      schema:
+        type: boolean
     ssai_state:
       name: ssai_state
       in: query
@@ -2629,82 +2708,64 @@ components:
             - start_transcoding
             - transcoding
             - error
-    ContentType:
-      name: Content-Type
+    XAPIKEY:
+      name: X-API-KEY
       in: header
-      description: 'Content-Type: application/json'
+      description: 'X-API-KEY: {Your_Live_API_Key}'
       required: true
       style: simple
       explode: false
       schema:
         type: string
-        default: application/json
-      example: application/json
-    ad_insertion:
-      name: ad_insertion
-      in: query
-      description: Filter results by is SSAI enabled
-      style: form
-      explode: true
+    JobId:
+      name: job_id
+      in: path
+      description: Live job ID
+      required: true
+      style: simple
+      explode: false
       schema:
-        type: boolean
-    user_id:
-      name: user_id
+        type: string
+    region:
+      name: region
       in: query
-      description: Filter results by one or more user IDs
+      description: Filter results by one or more regions
       style: form
       explode: true
       schema:
         oneOf:
         - type: string
-          description: User id
+          description: region
+          enum:
+          - us-west-2
+          - us-east-1
+          - ap-southeast-2
+          - ap-northeast-1
+          - ap-southeast-1
+          - eu-central-1
+          - eu-west-1
+          - sa-east-1
         - type: array
           items:
             type: string
-            description: User id
-    sort_dir:
-      name: sort_dir
+            description: region
+            enum:
+            - us-west-2
+            - us-east-1
+            - ap-southeast-2
+            - ap-northeast-1
+            - ap-southeast-1
+            - eu-central-1
+            - eu-west-1
+            - sa-east-1
+    modified_at:
+      name: modified_at
       in: query
-      description: Sort direction (default is asc):`asc` - ascending; `desc` - descending
-      style: form
-      explode: true
-      schema:
-        type: string
-        enum:
-        - asc
-        - desc
-        default: asc
-    static:
-      name: static
-      in: query
-      description: Filter results by has static endpoint
-      style: form
-      explode: true
-      schema:
-        type: boolean
-    sort:
-      name: sort
-      in: query
-      description: Attribute to sort jobs by (`created_at` | `modified_at`, default is `created_at`)
-      style: form
-      explode: true
-      schema:
-        type: string
-        enum:
-        - created_at
-        - modified_at
-        default: created_at
-    page_size:
-      name: page_size
-      in: query
-      description: Max number of items to return in one request (1-1000, default is 10)
+      description: Filter results by Unix time of job last modified (in milliseconds)
       style: form
       explode: true
       schema:
         type: integer
-        minimum: 1
-        maximum: 1000
-        default: 10
     state:
       name: state
       in: query
@@ -2741,76 +2802,15 @@ components:
             - cancelled
             - finished
             - failed
-    JobId:
-      name: job_id
-      in: path
-      description: Live job ID
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    account_id:
-      name: account_id
+    sort_dir:
+      name: sort_dir
       in: query
-      description: Filter results by particular account, or specify ‘*’ to search all accounts.  Default value is account API key belongs to
+      description: Sort direction (default is asc):`asc` - ascending; `desc` - descending
       style: form
       explode: true
       schema:
         type: string
-    region:
-      name: region
-      in: query
-      description: Filter results by one or more regions
-      style: form
-      explode: true
-      schema:
-        oneOf:
-        - type: string
-          description: region
-          enum:
-          - us-west-2
-          - us-east-1
-          - ap-southeast-2
-          - ap-northeast-1
-          - ap-southeast-1
-          - eu-central-1
-          - eu-west-1
-          - sa-east-1
-        - type: array
-          items:
-            type: string
-            description: region
-            enum:
-            - us-west-2
-            - us-east-1
-            - ap-southeast-2
-            - ap-northeast-1
-            - ap-southeast-1
-            - eu-central-1
-            - eu-west-1
-            - sa-east-1
-    start_token:
-      name: start_token
-      in: query
-      description: Next token from previous page; do not specify when fetching first page
-      style: form
-      explode: true
-      schema:
-        type: string
-    created_at:
-      name: created_at
-      in: query
-      description: Filter results by Unix time of job creation (in milliseconds)
-      style: form
-      explode: true
-      schema:
-        type: integer
-    modified_at:
-      name: modified_at
-      in: query
-      description: Filter results by Unix time of job last modified (in milliseconds)
-      style: form
-      explode: true
-      schema:
-        type: integer
+        enum:
+        - asc
+        - desc
+        default: asc

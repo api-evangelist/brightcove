@@ -58,28 +58,10 @@ paths:
         IsMultiContentStreaming: false
 components:
   parameters:
-    Accept-Encoding:
-      name: Accept-Encoding
-      in: header
-      description: 'Accept-Encoding: gzip (optional)'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
     account_id:
       name: account_id
       in: path
       description: a Video Cloud account ID
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    video_id:
-      name: video_id
-      in: path
-      description: a Video Cloud video ID
       required: true
       style: simple
       explode: false
@@ -98,6 +80,24 @@ components:
       name: Content-Type
       in: header
       description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    video_id:
+      name: video_id
+      in: path
+      description: a Video Cloud video ID
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    Accept-Encoding:
+      name: Accept-Encoding
+      in: header
+      description: 'Accept-Encoding: gzip (optional)'
       required: true
       style: simple
       explode: false

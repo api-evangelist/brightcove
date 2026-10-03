@@ -356,29 +356,10 @@ paths:
         IsMultiContentStreaming: false
 components:
   parameters:
-    ContentType:
-      name: Content-Type
-      in: header
-      description: 'Content-Type: application/json'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-      example: application/json
     account_id:
       name: account_id
       in: path
       description: Video Cloud account ID.
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    player_id:
-      name: player_id
-      in: path
-      description: Brightcove Player ID.
       required: true
       style: simple
       explode: false
@@ -398,28 +379,26 @@ components:
       explode: false
       schema:
         type: string
+    ContentType:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+      example: application/json
+    player_id:
+      name: player_id
+      in: path
+      description: Brightcove Player ID.
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
   schemas:
-    player_request_body:
-      title: Create Player Request Body
-      type: object
-      description: Player object
-      properties:
-        name:
-          type: string
-          description: A name for the player - avoid confusion by giving the player a name that will help convey what it should be used for
-        description:
-          type: string
-          description: A description of the player - avoid confusion by giving the player a description that will help convey what it should be used for
-        configuration:
-          $ref: '#/components/schemas/configuration'
-      example:
-        name: Test_Player
-        description: A test player for autoplay and video looping
-        configuration:
-          autoplay: any
-          loop: true
-          video_cloud:
-            video: '4093372393001'
     configuration:
       title: Player Configuration
       type: object
@@ -816,6 +795,27 @@ components:
               type: string
               description: A Video Cloud video id (you can also use the reference id with the syntax `ref:reference_id`)
               default: undefined
+    player_request_body:
+      title: Create Player Request Body
+      type: object
+      description: Player object
+      properties:
+        name:
+          type: string
+          description: A name for the player - avoid confusion by giving the player a name that will help convey what it should be used for
+        description:
+          type: string
+          description: A description of the player - avoid confusion by giving the player a description that will help convey what it should be used for
+        configuration:
+          $ref: '#/components/schemas/configuration'
+      example:
+        name: Test_Player
+        description: A test player for autoplay and video looping
+        configuration:
+          autoplay: any
+          loop: true
+          video_cloud:
+            video: '4093372393001'
     player_response:
       title: Create Player Request Body
       type: object

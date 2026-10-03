@@ -191,6 +191,24 @@ paths:
         IsMultiContentStreaming: false
 components:
   parameters:
+    AccountId:
+      description: Video Cloud account ID.
+      explode: false
+      in: path
+      name: account_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    Authorization:
+      description: 'Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)'
+      explode: false
+      in: header
+      name: Authorization
+      required: true
+      schema:
+        type: string
+      style: simple
     ContentType:
       description: 'Content-Type: application/json'
       example: application/json
@@ -211,25 +229,17 @@ components:
       schema:
         type: string
       style: simple
-    AccountId:
-      description: Video Cloud account ID.
-      explode: false
-      in: path
-      name: account_id
-      required: true
-      schema:
-        type: string
-      style: simple
-    Authorization:
-      description: 'Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)'
-      explode: false
-      in: header
-      name: Authorization
-      required: true
-      schema:
-        type: string
-      style: simple
   schemas:
+    LabelUpdate:
+      description: Update Label request body
+      title: label
+      type: object
+      properties:
+        new_label:
+          type: string
+          description: The new label which will replace **the last item in the label path**
+      example:
+        new_label: forest_birds
     LabelsList:
       description: A list of labels for the account
       type: object
@@ -261,16 +271,6 @@ components:
           type: string
       example:
         path: /nature/mammals/seamammals
-    LabelUpdate:
-      description: Update Label request body
-      title: label
-      type: object
-      properties:
-        new_label:
-          type: string
-          description: The new label which will replace **the last item in the label path**
-      example:
-        new_label: forest_birds
   securitySchemes:
     BC_OAuth2:
       type: oauth2

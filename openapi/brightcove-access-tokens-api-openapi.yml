@@ -47,6 +47,15 @@ paths:
         IsMultiContentStreaming: false
 components:
   parameters:
+    Token_Authorization:
+      name: Authorization
+      in: header
+      description: '''Authorization: Basic client_id:client_secret (the `client_id:client_secret` string must be BASE64-encoded; see Getting Access Tokens)'''
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
     Token_Content-Type:
       name: Content-Type
       in: header
@@ -68,15 +77,6 @@ components:
         enum:
         - client_credentials
       example: client_credentials
-    Token_Authorization:
-      name: Authorization
-      in: header
-      description: '''Authorization: Basic client_id:client_secret (the `client_id:client_secret` string must be BASE64-encoded; see Getting Access Tokens)'''
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
   schemas:
     CreateAccessTokenResponse:
       title: Create Access Token Response

@@ -134,16 +134,15 @@ paths:
         IsMultiContentStreaming: false
 components:
   parameters:
-    ContentType:
-      name: Content-Type
-      in: header
-      description: 'Content-Type: application/json'
+    plugin_id:
+      name: plugin_id
+      in: path
+      description: The plugin ID in the Plugin Registry.
       required: true
       style: simple
       explode: false
       schema:
         type: string
-      example: application/json
     Authorization:
       name: Authorization
       in: header
@@ -158,15 +157,16 @@ components:
       explode: false
       schema:
         type: string
-    plugin_id:
-      name: plugin_id
-      in: path
-      description: The plugin ID in the Plugin Registry.
+    ContentType:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
       required: true
       style: simple
       explode: false
       schema:
         type: string
+      example: application/json
   schemas:
     plugin:
       title: Plugin

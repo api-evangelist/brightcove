@@ -116,16 +116,96 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
 components:
+  parameters:
+    rtmp_out_id:
+      name: rtmp_out_id
+      in: path
+      description: RTMP output ID
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    XAPIKEY:
+      name: X-API-KEY
+      in: header
+      description: 'X-API-KEY: {Your_Live_API_Key}'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    JobId:
+      name: job_id
+      in: path
+      description: Live job ID
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
   schemas:
-    StopRTMPOutputResponse:
-      title: Stop RTMP output response
-      description: Success response for stopping and RTMP output
+    CreateRTMPOutputResponse:
+      title: Create RTMP output success response
+      description: Create RTMP output success response
       type: object
       properties:
-        message:
+        connection_info:
+          type: object
+          description: Information on the connection URL
+          properties:
+            host:
+              type: string
+              description: Host URL
+            port:
+              type: integer
+              description: The port number
+            application:
+              type: string
+              description: The application name in the path
+            streamName:
+              type: string
+              description: The stream name in the path
+        duration_history:
+          type: array
+          description: Array of durations for connections
+          items:
+            type: integer
+            description: A connection duration in seconds
+        rtmp_out_id:
           type: string
-          description: Success message
-          example: '{ "message": "RTMP out asdfg-lkjh deleted successfully" }'
+          description: System id for the RTMP output
+        stream_start:
+          type: integer
+          description: Time of the stream start in Epoch time (milliseconds)
+      example:
+        connection_info:
+          host: live-api-s.facebook.com
+          port: 80
+          application: rtmp
+          streamName: foo-bar
+        duration_history: []
+        rtmp_out_id: foo
+        stream_start: 1542731746032
+    ListRTMPOutputs:
+      title: List RMTP Outputs
+      description: Response to GET request for RTMP outputs - array of RTMP outputs objects
+      type: array
+      items:
+        $ref: '#/components/schemas/RTMPout'
+      example:
+      - rtmp_out_id: asdfg-lkjh
+        stream_start: 1538746255247
+        connection_info:
+          host: a.rtmp.youtube.com
+          port: 1935
+          application: live2
+          streamName: myStream
+          sessionStatus: Active
+        duration_history:
+        - stream_start: 1557933191000
+          stream_end: 1557936731000
+        waiting_for_start: false
     RTMPout:
       title: RTMP Output
       type: object
@@ -186,6 +266,15 @@ components:
 
 
             If `waiting_for_start` is `false`, it means the RTMP output was stopped.'
+    StopRTMPOutputResponse:
+      title: Stop RTMP output response
+      description: Success response for stopping and RTMP output
+      type: object
+      properties:
+        message:
+          type: string
+          description: Success message
+          example: '{ "message": "RTMP out asdfg-lkjh deleted successfully" }'
     CreateRTMPOutputRequestBody:
       title: Create RTMP Output Request Body
       description: Request body for requests to create an RTMP output
@@ -200,92 +289,3 @@ components:
           description: The label of the job output to use as the source for the RTMP output. Omit this parameter to simply forward the RTMP input instead.
       required:
       - url
-    ListRTMPOutputs:
-      title: List RMTP Outputs
-      description: Response to GET request for RTMP outputs - array of RTMP outputs objects
-      type: array
-      items:
-        $ref: '#/components/schemas/RTMPout'
-      example:
-      - rtmp_out_id: asdfg-lkjh
-        stream_start: 1538746255247
-        connection_info:
-          host: a.rtmp.youtube.com
-          port: 1935
-          application: live2
-          streamName: myStream
-          sessionStatus: Active
-        duration_history:
-        - stream_start: 1557933191000
-          stream_end: 1557936731000
-        waiting_for_start: false
-    CreateRTMPOutputResponse:
-      title: Create RTMP output success response
-      description: Create RTMP output success response
-      type: object
-      properties:
-        connection_info:
-          type: object
-          description: Information on the connection URL
-          properties:
-            host:
-              type: string
-              description: Host URL
-            port:
-              type: integer
-              description: The port number
-            application:
-              type: string
-              description: The application name in the path
-            streamName:
-              type: string
-              description: The stream name in the path
-        duration_history:
-          type: array
-          description: Array of durations for connections
-          items:
-            type: integer
-            description: A connection duration in seconds
-        rtmp_out_id:
-          type: string
-          description: System id for the RTMP output
-        stream_start:
-          type: integer
-          description: Time of the stream start in Epoch time (milliseconds)
-      example:
-        connection_info:
-          host: live-api-s.facebook.com
-          port: 80
-          application: rtmp
-          streamName: foo-bar
-        duration_history: []
-        rtmp_out_id: foo
-        stream_start: 1542731746032
-  parameters:
-    JobId:
-      name: job_id
-      in: path
-      description: Live job ID
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    rtmp_out_id:
-      name: rtmp_out_id
-      in: path
-      description: RTMP output ID
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    XAPIKEY:
-      name: X-API-KEY
-      in: header
-      description: 'X-API-KEY: {Your_Live_API_Key}'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string

@@ -132,16 +132,6 @@ paths:
         IsMultiContentStreaming: false
 components:
   parameters:
-    ContentType:
-      name: Content-Type
-      in: header
-      description: 'Content-Type: application/json'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        example: application/json
     account_id:
       name: account_id
       in: path
@@ -160,6 +150,16 @@ components:
       explode: false
       schema:
         type: string
+    ContentType:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: application/json
   schemas:
     UpdateDefaultProfilebody:
       title: Update_Default_ProfileBody
@@ -175,6 +175,26 @@ components:
         id:
           type: string
           description: the configuration id (if you do not have it, make a GET request to get it)
+        default_profile_id:
+          type: string
+          description: The id or name of the profile you want to set as the default
+          example: multi-platform-standard-static
+        default_live_profile_id:
+          type: string
+          description: The id or name of the live profile you want to set as the default
+        default_social_clipping_profile_id:
+          type: string
+          description: The id or name of the profile you want to set as the default for creating social clips
+    SetDefaultProfilebody:
+      title: Set_Default_ProfileBody
+      required:
+      - account_id
+      - default_profile_id
+      type: object
+      properties:
+        account_id:
+          type: number
+          description: Video Cloud account ID
         default_profile_id:
           type: string
           description: The id or name of the profile you want to set as the default
@@ -218,26 +238,6 @@ components:
         date_created: 1526447969283
         date_last_modified: 1526447969283
         id: 55525f84e4b08e946aa03281
-    SetDefaultProfilebody:
-      title: Set_Default_ProfileBody
-      required:
-      - account_id
-      - default_profile_id
-      type: object
-      properties:
-        account_id:
-          type: number
-          description: Video Cloud account ID
-        default_profile_id:
-          type: string
-          description: The id or name of the profile you want to set as the default
-          example: multi-platform-standard-static
-        default_live_profile_id:
-          type: string
-          description: The id or name of the live profile you want to set as the default
-        default_social_clipping_profile_id:
-          type: string
-          description: The id or name of the profile you want to set as the default for creating social clips
   securitySchemes:
     BC_OAuth2:
       type: oauth2

@@ -226,38 +226,10 @@ paths:
         IsMultiContentStreaming: false
 components:
   parameters:
-    ContentType:
-      name: Content-Type
-      in: header
-      description: 'Content-Type: application/json'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-      example: application/json
     account_id:
       name: account_id
       in: path
       description: Video Cloud account ID.
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    player_id:
-      name: player_id
-      in: path
-      description: Brightcove Player ID.
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    embed_id:
-      name: embed_id
-      in: path
-      description: The embed id.
       required: true
       style: simple
       explode: false
@@ -284,6 +256,34 @@ components:
         `Authorization: Bearer {access_token}` - (see [Getting Access
 
         Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    embed_id:
+      name: embed_id
+      in: path
+      description: The embed id.
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    ContentType:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+      example: application/json
+    player_id:
+      name: player_id
+      in: path
+      description: Brightcove Player ID.
       required: true
       style: simple
       explode: false
