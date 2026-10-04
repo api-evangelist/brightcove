@@ -112,147 +112,7 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
 components:
-  parameters:
-    bucket_limit:
-      name: bucket_limit
-      in: query
-      description: '''Max number of points to be returned for a time-series'''
-      required: false
-      example: 10
-      style: form
-      explode: true
-      schema:
-        type: integer
-    account_id:
-      name: account_id
-      in: path
-      description: a Video Cloud account ID
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    Authorization:
-      name: Authorization
-      in: header
-      description: 'Authorization: Bearer access_token (see Getting Access Tokens)'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    metrics:
-      name: metrics
-      in: query
-      description: "Data metrics to return for live analytics requests:\n\n  - `video_impression` - the number of video impressions\n  - `video_view` - the number of video views\n  - `video_seconds_viewed` - seconds of video viewed\n  - `alive_ss_ad_start` - SSAI ad starts\n  - `fingerprint_count` - \"fingerprint\" (user) count\n  - `ccu` - concurrent viewers"
-      required: true
-      style: form
-      explode: true
-      schema:
-        type: string
-        enum:
-        - video_impression
-        - video_view
-        - video_seconds_viewed
-        - alive_ss_ad_start
-        - fingerprint_count
-        - ccu
-        example: video_view,alive_ss_ad_start,ccu
-    Content-Type:
-      name: Content-Type
-      in: header
-      description: 'Content-Type: application/json'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    live_where:
-      name: where
-      in: query
-      description: "One or more filters to limit responses for Live Analytics requests\nAvailable filters:\n  - video\n  - country\n  - device_type"
-      required: true
-      style: form
-      explode: true
-      schema:
-        $ref: '#/components/schemas/live_where'
-    bucket_duration:
-      name: bucket_duration
-      in: query
-      description: '''Intervals duration in the form of an integer plus `m` (minutes), `h` (hours), or `d` (days)'''
-      example: 5m
-      required: false
-      style: form
-      explode: true
-      schema:
-        type: string
-    to:
-      name: to
-      in: query
-      description: End time for the period covered by the report — `now` or epoch time in milliseconds (`1535654206775`) or a date in the format `yyyy-mm-dd` (such as `2013-09-26`)
-      style: form
-      explode: true
-      schema:
-        oneOf:
-        - type: string
-        - type: integer
-        default: now
-        example: '2018-09-01'
-    live_from:
-      name: from
-      in: query
-      description: '''Start time for the period covered by the report — epoch time in milliseconds (`1535654206775`) or a date in the format `yyyy-mm-dd` (such as `2013-09-26`)'''
-      style: form
-      explode: true
-      schema:
-        oneOf:
-        - type: string
-        - type: integer
-        default: 32 days before now
-        example: 2018-01-01
-    Accept-Encoding:
-      name: Accept-Encoding
-      in: header
-      description: 'Accept-Encoding: gzip (optional)'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    live_dimensions:
-      name: dimensions
-      in: query
-      description: "One or more dimensions to report on for Live Analytics requests\nDimensions:\n  - video\n  - video, country\n  - video, device_type"
-      required: true
-      style: form
-      explode: true
-      schema:
-        $ref: '#/components/schemas/LiveDimensions'
-    where:
-      name: where
-      in: query
-      description: one or more 'dimension==value' pairs to filter the results; for live, the only available filters are `country`, `device-type`, and `video`. This is a filter in which the options areL where in the world, in which device or which part of the video. In this case, the property is called where as if to use some DSL that mimics the SQL syntax, and that is why it is called where
-      required: true
-      style: form
-      explode: true
-      schema:
-        $ref: '#/components/schemas/live_where'
   schemas:
-    live_where:
-      title: Live where
-      enum:
-      - country
-      - device_type
-      - video
-      type: string
-      example: video==6049313942001,6049313942002
-      x-enum-elements:
-      - name: country
-        description: ''
-      - name: device_type
-        description: ''
-      - name: video
-        description: ''
     LiveDimensions:
       enum:
       - video
@@ -365,6 +225,146 @@ components:
           items:
             type: object
             description: An object containing the `timestamp` value (in the units specified in the `bucket_duration` parameter) and values of the metrics (specified in the `metrics` parameter) at the timestamp
+    live_where:
+      title: Live where
+      enum:
+      - country
+      - device_type
+      - video
+      type: string
+      example: video==6049313942001,6049313942002
+      x-enum-elements:
+      - name: country
+        description: ''
+      - name: device_type
+        description: ''
+      - name: video
+        description: ''
+  parameters:
+    Accept-Encoding:
+      name: Accept-Encoding
+      in: header
+      description: 'Accept-Encoding: gzip (optional)'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    live_dimensions:
+      name: dimensions
+      in: query
+      description: "One or more dimensions to report on for Live Analytics requests\nDimensions:\n  - video\n  - video, country\n  - video, device_type"
+      required: true
+      style: form
+      explode: true
+      schema:
+        $ref: '#/components/schemas/LiveDimensions'
+    metrics:
+      name: metrics
+      in: query
+      description: "Data metrics to return for live analytics requests:\n\n  - `video_impression` - the number of video impressions\n  - `video_view` - the number of video views\n  - `video_seconds_viewed` - seconds of video viewed\n  - `alive_ss_ad_start` - SSAI ad starts\n  - `fingerprint_count` - \"fingerprint\" (user) count\n  - `ccu` - concurrent viewers"
+      required: true
+      style: form
+      explode: true
+      schema:
+        type: string
+        enum:
+        - video_impression
+        - video_view
+        - video_seconds_viewed
+        - alive_ss_ad_start
+        - fingerprint_count
+        - ccu
+        example: video_view,alive_ss_ad_start,ccu
+    where:
+      name: where
+      in: query
+      description: one or more 'dimension==value' pairs to filter the results; for live, the only available filters are `country`, `device-type`, and `video`. This is a filter in which the options areL where in the world, in which device or which part of the video. In this case, the property is called where as if to use some DSL that mimics the SQL syntax, and that is why it is called where
+      required: true
+      style: form
+      explode: true
+      schema:
+        $ref: '#/components/schemas/live_where'
+    Content-Type:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    live_where:
+      name: where
+      in: query
+      description: "One or more filters to limit responses for Live Analytics requests\nAvailable filters:\n  - video\n  - country\n  - device_type"
+      required: true
+      style: form
+      explode: true
+      schema:
+        $ref: '#/components/schemas/live_where'
+    live_from:
+      name: from
+      in: query
+      description: '''Start time for the period covered by the report — epoch time in milliseconds (`1535654206775`) or a date in the format `yyyy-mm-dd` (such as `2013-09-26`)'''
+      style: form
+      explode: true
+      schema:
+        oneOf:
+        - type: string
+        - type: integer
+        default: 32 days before now
+        example: 2018-01-01
+    to:
+      name: to
+      in: query
+      description: End time for the period covered by the report — `now` or epoch time in milliseconds (`1535654206775`) or a date in the format `yyyy-mm-dd` (such as `2013-09-26`)
+      style: form
+      explode: true
+      schema:
+        oneOf:
+        - type: string
+        - type: integer
+        default: now
+        example: '2018-09-01'
+    bucket_limit:
+      name: bucket_limit
+      in: query
+      description: '''Max number of points to be returned for a time-series'''
+      required: false
+      example: 10
+      style: form
+      explode: true
+      schema:
+        type: integer
+    account_id:
+      name: account_id
+      in: path
+      description: a Video Cloud account ID
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    Authorization:
+      name: Authorization
+      in: header
+      description: 'Authorization: Bearer access_token (see Getting Access Tokens)'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    bucket_duration:
+      name: bucket_duration
+      in: query
+      description: '''Intervals duration in the form of an integer plus `m` (minutes), `h` (hours), or `d` (days)'''
+      example: 5m
+      required: false
+      style: form
+      explode: true
+      schema:
+        type: string
   securitySchemes:
     BC_OAuth2:
       type: oauth2

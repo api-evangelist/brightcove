@@ -568,6 +568,50 @@ paths:
         IsMultiContentStreaming: false
 components:
   schemas:
+    AddAffiliate:
+      example:
+        account_id: '1937897674001'
+      properties:
+        account_id:
+          description: affiliate account id
+          type: string
+      title: AddAffiliate
+      type: object
+    Channel:
+      description: the channel this contract belongs to
+      example:
+      - account_id: '1486906377'
+        account_name: Brightcove Training
+        created_at: '2017-09-27T13:54:08.661Z'
+        enforce_custom_fields: false
+        enforce_geo: true
+        name: default
+        updated_at: '2017-09-27T13:54:08.661Z'
+      properties:
+        account_id:
+          description: master account id
+          type: string
+        account_name:
+          description: master account name
+          type: string
+        created_at:
+          description: when the channel was created
+          readOnly: true
+          type: string
+        enforce_custom_fields:
+          description: if true, will allow sharing only if the affiliate account has all custom fields that have values for the video to be shared
+          type: boolean
+        enforce_geo:
+          description: if true, and master account is enabled for geo-filtering
+          type: boolean
+        name:
+          description: channel name
+          type: string
+        updated_at:
+          description: when the channel was last updated
+          type: string
+      title: Channel
+      type: object
     ChannelAffiliate:
       example:
       - account_id: '57838016001'
@@ -632,6 +676,17 @@ components:
           type: string
       title: Contract
       type: object
+    ShareVideoRequest:
+      example:
+      - id: '47509719001'
+      properties:
+        id:
+          description: affiliate account id to share to
+          type: string
+      required:
+      - id
+      title: ShareVideoRequest
+      type: object
     VideoShare:
       example:
       - affiliate_id: '47509719001'
@@ -666,85 +721,12 @@ components:
       - affiliate_video_id
       title: VideoShare
       type: object
-    ShareVideoRequest:
-      example:
-      - id: '47509719001'
-      properties:
-        id:
-          description: affiliate account id to share to
-          type: string
-      required:
-      - id
-      title: ShareVideoRequest
-      type: object
-    Channel:
-      description: the channel this contract belongs to
-      example:
-      - account_id: '1486906377'
-        account_name: Brightcove Training
-        created_at: '2017-09-27T13:54:08.661Z'
-        enforce_custom_fields: false
-        enforce_geo: true
-        name: default
-        updated_at: '2017-09-27T13:54:08.661Z'
-      properties:
-        account_id:
-          description: master account id
-          type: string
-        account_name:
-          description: master account name
-          type: string
-        created_at:
-          description: when the channel was created
-          readOnly: true
-          type: string
-        enforce_custom_fields:
-          description: if true, will allow sharing only if the affiliate account has all custom fields that have values for the video to be shared
-          type: boolean
-        enforce_geo:
-          description: if true, and master account is enabled for geo-filtering
-          type: boolean
-        name:
-          description: channel name
-          type: string
-        updated_at:
-          description: when the channel was last updated
-          type: string
-      title: Channel
-      type: object
-    AddAffiliate:
-      example:
-        account_id: '1937897674001'
-      properties:
-        account_id:
-          description: affiliate account id
-          type: string
-      title: AddAffiliate
-      type: object
   parameters:
-    AccountId:
-      description: Video Cloud account ID.
-      explode: false
-      in: path
-      name: account_id
-      required: true
-      schema:
-        type: string
-      style: simple
     AffiliateAccountId:
       description: Video Cloud affiliate account ID for media sharing relationships
       explode: false
       in: path
       name: affiliate_account_id
-      required: true
-      schema:
-        type: string
-      style: simple
-    Authorization:
-      description: 'Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)'
-      explode: false
-      in: header
-      name: Authorization
       required: true
       schema:
         type: string
@@ -758,15 +740,13 @@ components:
       schema:
         type: string
       style: simple
-    ContentType:
-      description: 'Content-Type: application/json'
-      example: application/json
+    MasterAccountId:
+      description: Video Cloud master account ID for media sharing relationships
       explode: false
-      in: header
-      name: Content-Type
+      in: path
+      name: master_account_id
       required: true
       schema:
-        default: application/json
         type: string
       style: simple
     ChannelName:
@@ -778,13 +758,33 @@ components:
       schema:
         type: string
       style: simple
-    MasterAccountId:
-      description: Video Cloud master account ID for media sharing relationships
+    AccountId:
+      description: Video Cloud account ID.
       explode: false
       in: path
-      name: master_account_id
+      name: account_id
       required: true
       schema:
+        type: string
+      style: simple
+    Authorization:
+      description: 'Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)'
+      explode: false
+      in: header
+      name: Authorization
+      required: true
+      schema:
+        type: string
+      style: simple
+    ContentType:
+      description: 'Content-Type: application/json'
+      example: application/json
+      explode: false
+      in: header
+      name: Content-Type
+      required: true
+      schema:
+        default: application/json
         type: string
       style: simple
   securitySchemes:

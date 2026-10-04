@@ -62,6 +62,16 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
 components:
+  parameters:
+    AccountId:
+      name: account_id
+      in: path
+      description: Video Cloud account id
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
   schemas:
     Action:
       title: Action
@@ -172,16 +182,6 @@ components:
           items:
             description: Action ID
             type: string
-  parameters:
-    AccountId:
-      name: account_id
-      in: path
-      description: Video Cloud account id
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
   securitySchemes:
     BC_OAuth2:
       type: oauth2

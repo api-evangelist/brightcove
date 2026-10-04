@@ -122,195 +122,146 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
 components:
+  parameters:
+    Accept-Encoding:
+      name: Accept-Encoding
+      in: header
+      description: 'Accept-Encoding: gzip (optional)'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    Authorization:
+      name: Authorization
+      in: header
+      description: 'Authorization: Bearer access_token (see Getting Access Tokens)'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    format:
+      name: format
+      in: query
+      description: format to return the results in
+      style: form
+      explode: true
+      schema:
+        $ref: '#/components/schemas/Format'
+    to:
+      name: to
+      in: query
+      description: End time for the period covered by the report — `now` or epoch time in milliseconds (`1535654206775`) or a date in the format `yyyy-mm-dd` (such as `2013-09-26`)
+      style: form
+      explode: true
+      schema:
+        oneOf:
+        - type: string
+        - type: integer
+        default: now
+        example: '2018-09-01'
+    reconciled:
+      name: reconciled
+      in: query
+      description: if true, only reconciled data is returned; if false, only realtime data is returned; if not present, both reconciled and realtime data are returned
+      style: form
+      explode: true
+      schema:
+        type: boolean
+        default: true
+        example: true
+    where:
+      name: where
+      in: query
+      description: one or more 'dimension==value' pairs to filter the results; for live, the only available filters are `country`, `device-type`, and `video`. This is a filter in which the options areL where in the world, in which device or which part of the video. In this case, the property is called where as if to use some DSL that mimics the SQL syntax, and that is why it is called where
+      required: true
+      style: form
+      explode: true
+      schema:
+        $ref: '#/components/schemas/live_where'
+    Content-Type:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    from:
+      name: from
+      in: query
+      description: '''Start time for the period covered by the report — epoch time in milliseconds (`1535654206775`) or a date in the format `yyyy-mm-dd` (such as `2013-09-26`)'''
+      style: form
+      explode: true
+      schema:
+        oneOf:
+        - type: string
+        - type: integer
+        default: 32 days before `to` value
+        example: 2018-01-01
+    offset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      style: form
+      explode: true
+      schema:
+        type: integer
+        format: int32
+        default: 0
+        example: 10
+    dimensions:
+      name: dimensions
+      in: query
+      description: "One or more dimensions to report on; see [Multiple Dimensions](/analytics/getting-started/analytics-api-overview-dimensions-fields-and-parameters.html) or which combined dimensions are supported\n\nDimensions:\n  - account\n  - audio_track_language\n  - browser_type\n  - caption_track_language\n  - city\n  - country\n  - date\n  - date_hour\n  - destination_domain\n  - destination_path\n  - device_os\n  - device_manufacturer\n  - device_type\n  - live_stream\n  - player\n  - referrer_domain\n  - region\n  - search_terms\n  - social_platform\n  - source_type\n  - video\n  - stream_type"
+      required: true
+      style: form
+      explode: true
+      schema:
+        $ref: '#/components/schemas/Dimensions'
+    limit:
+      name: limit
+      in: query
+      description: Number of items to return
+      style: form
+      explode: true
+      schema:
+        type: integer
+        format: int32
+        default: 10
+        example: 10
+    fields:
+      name: fields
+      in: query
+      description: 'Fields to return - available fields varies according to the dimensions - see the [Overview: Analytics API](/analytics/getting-started/analytics-api-overview-dimensions-fields-and-parameters.html) for more details'
+      style: form
+      explode: true
+      schema:
+        type: string
+        default: '`video_view` + others (varies by dimension)'
+        example: video_view, video_impression, video.name
+    accounts:
+      name: accounts
+      in: query
+      description: One or more account ids, separated by commas
+      required: true
+      style: form
+      explode: true
+      schema:
+        type: string
+    sort:
+      name: sort
+      in: query
+      description: Field to sort results by (prefix with `-` for descending order); you can sort on **any field** that you specifying the `fields` parameter.
+      style: form
+      explode: true
+      schema:
+        type: string
+        default: video_view
+        example: video_view
   schemas:
-    Format:
-      title: format
-      enum:
-      - csv
-      - json
-      - xlxs
-      type: string
-      example: csv
-      x-enum-elements:
-      - name: csv
-        description: ''
-      - name: json
-        description: ''
-      - name: xlxs
-        description: ''
-    live_where:
-      title: Live where
-      enum:
-      - country
-      - device_type
-      - video
-      type: string
-      example: video==6049313942001,6049313942002
-      x-enum-elements:
-      - name: country
-        description: ''
-      - name: device_type
-        description: ''
-      - name: video
-        description: ''
-    Dimensions:
-      title: dimensions
-      enum:
-      - account
-      - audio_track_language
-      - caption_track_language
-      - city
-      - country
-      - region
-      - date
-      - date-time
-      - device_os
-      - device_type
-      - player
-      - referrer_domain
-      - destination_domain
-      - search_terms
-      - social_platform
-      - source_type
-      - video
-      - stream_type
-      type: string
-      example: account
-      x-enum-elements:
-      - name: account
-        description: Analytics data for account as a whole
-      - name: audio_track_language
-        description: Analytics by audio track language selected by viewers
-      - name: caption_track_language
-        description: Analytics by caption/subtitle track language enabled by viewers
-      - name: city
-        description: Geo analytics for cities
-      - name: country
-        description: Geo analytics for countries
-      - name: region
-        description: Geo analytics for regions of countries
-      - name: date
-        description: Daily analytics for a range of days
-      - name: datetime
-        description: Hourly analytics for a range of hours - available for the previous 32 days
-      - name: device_os
-        description: Analytics by device operating systems
-      - name: device_type
-        description: Analytics by device type
-      - name: player
-        description: Analytics by player
-      - name: referrer_domain
-        description: Analytics by referring domain
-      - name: destination_domain
-        description: Analytics by the destination domain
-      - name: search_terms
-        description: Search terms that brought the user to the page
-      - name: source_type
-        description: Source such as search or direct link
-      - name: video
-        description: Analytics by video
-      - name: stream_type
-        description: Identifies whether content is video-on-demand (VOD) or live
-    Get_Available_Date_Range_Response:
-      title: Get Available Date Range Response
-      required:
-      - reconciled_from
-      - reconciled_to
-      type: object
-      properties:
-        reconciled_from:
-          type: string
-          description: the earliest date that you can use for from and get reconciled data
-        reconciled_to:
-          type: string
-          description: '''the latest date that you can use for to and get reconciled data (realtime data may be available for later dates)'''
-      example:
-        reconciled_from: '2011-01-01'
-        reconciled_to: '2018-08-31'
-    Get_Analytics_Report_Response:
-      title: Get Analytics Report Response
-      required:
-      - account
-      - item_count
-      - items
-      - summary
-      - video_engagement_1
-      - video_engagement_25
-      - video_engagement_50
-      - video_engagement_75
-      - video_engagement_100
-      type: object
-      properties:
-        account:
-          type: string
-          description: the Video Cloud account id
-        item_count:
-          type: integer
-          description: the total number of items matching the request
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Items'
-          description: array of analytics objects for the videos returned
-        summary:
-          $ref: '#/components/schemas/Summary'
-        video_engagement_1:
-          type: number
-          description: number of views at the 1% point of the video duration for all videos
-        video_engagement_25:
-          type: number
-          description: number of views at the 25% point of the video duration for all videos
-        video_engagement_50:
-          type: number
-          description: number of views at the 50% point of the video duration for all videos
-        video_engagement_75:
-          type: number
-          description: number of views at the 75% point of the video duration for all videos
-        video_engagement_100:
-          type: number
-          description: number of views at the 100% point of the video duration for all videos
-      example:
-        item_count: 378
-        items:
-        - video_duration: null
-          video_name: School of Fish
-          video_seconds_viewed: 0
-          video_impression: 1
-          ad_mode_complete: 0
-          video: '5068505928001'
-          engagement_score: null
-          video_percent_viewed: 0
-          play_request: 0
-          video_view: 0
-          player_name: Popular Videos Playlist Player v6
-          ad_mode_begin: 0
-          play_rate: 0
-          player: players.brightcove.com/1752604059001/Hyuo8j4pM_default
-        - video_duration: null
-          video_name: null
-          video_seconds_viewed: 0
-          video_impression: 2
-          ad_mode_complete: 0
-          video: null
-          engagement_score: null
-          video_percent_viewed: 0
-          play_request: 0
-          video_view: 0
-          player_name: CarouselPlayerPlugin
-          ad_mode_begin: 0
-          play_rate: 0
-          player: players.brightcove.com/1752604059001/18ba409a-3d7d-424e-9d10-849a5864f09e_default
-        summary:
-          engagement_score: 404.21
-          video_seconds_viewed: 722394
-          video_percent_viewed: 6203852.1
-          video_impression: 45116
-          play_request: 22035
-          ad_mode_complete: 757
-          video_view: 15348
-          ad_mode_begin: 923
-          play_rate: 0.34
     Items:
       title: items
       type: object
@@ -445,145 +396,194 @@ components:
           type: integer
           description: Total video views for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
           format: int32
-  parameters:
-    sort:
-      name: sort
-      in: query
-      description: Field to sort results by (prefix with `-` for descending order); you can sort on **any field** that you specifying the `fields` parameter.
-      style: form
-      explode: true
-      schema:
-        type: string
-        default: video_view
-        example: video_view
-    offset:
-      name: offset
-      in: query
-      description: Number of items to skip
-      style: form
-      explode: true
-      schema:
-        type: integer
-        format: int32
-        default: 0
-        example: 10
-    Authorization:
-      name: Authorization
-      in: header
-      description: 'Authorization: Bearer access_token (see Getting Access Tokens)'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    Content-Type:
-      name: Content-Type
-      in: header
-      description: 'Content-Type: application/json'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    fields:
-      name: fields
-      in: query
-      description: 'Fields to return - available fields varies according to the dimensions - see the [Overview: Analytics API](/analytics/getting-started/analytics-api-overview-dimensions-fields-and-parameters.html) for more details'
-      style: form
-      explode: true
-      schema:
-        type: string
-        default: '`video_view` + others (varies by dimension)'
-        example: video_view, video_impression, video.name
-    dimensions:
-      name: dimensions
-      in: query
-      description: "One or more dimensions to report on; see [Multiple Dimensions](/analytics/getting-started/analytics-api-overview-dimensions-fields-and-parameters.html) or which combined dimensions are supported\n\nDimensions:\n  - account\n  - audio_track_language\n  - browser_type\n  - caption_track_language\n  - city\n  - country\n  - date\n  - date_hour\n  - destination_domain\n  - destination_path\n  - device_os\n  - device_manufacturer\n  - device_type\n  - live_stream\n  - player\n  - referrer_domain\n  - region\n  - search_terms\n  - social_platform\n  - source_type\n  - video\n  - stream_type"
-      required: true
-      style: form
-      explode: true
-      schema:
-        $ref: '#/components/schemas/Dimensions'
-    from:
-      name: from
-      in: query
-      description: '''Start time for the period covered by the report — epoch time in milliseconds (`1535654206775`) or a date in the format `yyyy-mm-dd` (such as `2013-09-26`)'''
-      style: form
-      explode: true
-      schema:
-        oneOf:
-        - type: string
-        - type: integer
-        default: 32 days before `to` value
-        example: 2018-01-01
-    where:
-      name: where
-      in: query
-      description: one or more 'dimension==value' pairs to filter the results; for live, the only available filters are `country`, `device-type`, and `video`. This is a filter in which the options areL where in the world, in which device or which part of the video. In this case, the property is called where as if to use some DSL that mimics the SQL syntax, and that is why it is called where
-      required: true
-      style: form
-      explode: true
-      schema:
-        $ref: '#/components/schemas/live_where'
-    reconciled:
-      name: reconciled
-      in: query
-      description: if true, only reconciled data is returned; if false, only realtime data is returned; if not present, both reconciled and realtime data are returned
-      style: form
-      explode: true
-      schema:
-        type: boolean
-        default: true
-        example: true
-    format:
-      name: format
-      in: query
-      description: format to return the results in
-      style: form
-      explode: true
-      schema:
-        $ref: '#/components/schemas/Format'
-    to:
-      name: to
-      in: query
-      description: End time for the period covered by the report — `now` or epoch time in milliseconds (`1535654206775`) or a date in the format `yyyy-mm-dd` (such as `2013-09-26`)
-      style: form
-      explode: true
-      schema:
-        oneOf:
-        - type: string
-        - type: integer
-        default: now
-        example: '2018-09-01'
-    limit:
-      name: limit
-      in: query
-      description: Number of items to return
-      style: form
-      explode: true
-      schema:
-        type: integer
-        format: int32
-        default: 10
-        example: 10
-    accounts:
-      name: accounts
-      in: query
-      description: One or more account ids, separated by commas
-      required: true
-      style: form
-      explode: true
-      schema:
-        type: string
-    Accept-Encoding:
-      name: Accept-Encoding
-      in: header
-      description: 'Accept-Encoding: gzip (optional)'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
+    Dimensions:
+      title: dimensions
+      enum:
+      - account
+      - audio_track_language
+      - caption_track_language
+      - city
+      - country
+      - region
+      - date
+      - date-time
+      - device_os
+      - device_type
+      - player
+      - referrer_domain
+      - destination_domain
+      - search_terms
+      - social_platform
+      - source_type
+      - video
+      - stream_type
+      type: string
+      example: account
+      x-enum-elements:
+      - name: account
+        description: Analytics data for account as a whole
+      - name: audio_track_language
+        description: Analytics by audio track language selected by viewers
+      - name: caption_track_language
+        description: Analytics by caption/subtitle track language enabled by viewers
+      - name: city
+        description: Geo analytics for cities
+      - name: country
+        description: Geo analytics for countries
+      - name: region
+        description: Geo analytics for regions of countries
+      - name: date
+        description: Daily analytics for a range of days
+      - name: datetime
+        description: Hourly analytics for a range of hours - available for the previous 32 days
+      - name: device_os
+        description: Analytics by device operating systems
+      - name: device_type
+        description: Analytics by device type
+      - name: player
+        description: Analytics by player
+      - name: referrer_domain
+        description: Analytics by referring domain
+      - name: destination_domain
+        description: Analytics by the destination domain
+      - name: search_terms
+        description: Search terms that brought the user to the page
+      - name: source_type
+        description: Source such as search or direct link
+      - name: video
+        description: Analytics by video
+      - name: stream_type
+        description: Identifies whether content is video-on-demand (VOD) or live
+    live_where:
+      title: Live where
+      enum:
+      - country
+      - device_type
+      - video
+      type: string
+      example: video==6049313942001,6049313942002
+      x-enum-elements:
+      - name: country
+        description: ''
+      - name: device_type
+        description: ''
+      - name: video
+        description: ''
+    Get_Analytics_Report_Response:
+      title: Get Analytics Report Response
+      required:
+      - account
+      - item_count
+      - items
+      - summary
+      - video_engagement_1
+      - video_engagement_25
+      - video_engagement_50
+      - video_engagement_75
+      - video_engagement_100
+      type: object
+      properties:
+        account:
+          type: string
+          description: the Video Cloud account id
+        item_count:
+          type: integer
+          description: the total number of items matching the request
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Items'
+          description: array of analytics objects for the videos returned
+        summary:
+          $ref: '#/components/schemas/Summary'
+        video_engagement_1:
+          type: number
+          description: number of views at the 1% point of the video duration for all videos
+        video_engagement_25:
+          type: number
+          description: number of views at the 25% point of the video duration for all videos
+        video_engagement_50:
+          type: number
+          description: number of views at the 50% point of the video duration for all videos
+        video_engagement_75:
+          type: number
+          description: number of views at the 75% point of the video duration for all videos
+        video_engagement_100:
+          type: number
+          description: number of views at the 100% point of the video duration for all videos
+      example:
+        item_count: 378
+        items:
+        - video_duration: null
+          video_name: School of Fish
+          video_seconds_viewed: 0
+          video_impression: 1
+          ad_mode_complete: 0
+          video: '5068505928001'
+          engagement_score: null
+          video_percent_viewed: 0
+          play_request: 0
+          video_view: 0
+          player_name: Popular Videos Playlist Player v6
+          ad_mode_begin: 0
+          play_rate: 0
+          player: players.brightcove.com/1752604059001/Hyuo8j4pM_default
+        - video_duration: null
+          video_name: null
+          video_seconds_viewed: 0
+          video_impression: 2
+          ad_mode_complete: 0
+          video: null
+          engagement_score: null
+          video_percent_viewed: 0
+          play_request: 0
+          video_view: 0
+          player_name: CarouselPlayerPlugin
+          ad_mode_begin: 0
+          play_rate: 0
+          player: players.brightcove.com/1752604059001/18ba409a-3d7d-424e-9d10-849a5864f09e_default
+        summary:
+          engagement_score: 404.21
+          video_seconds_viewed: 722394
+          video_percent_viewed: 6203852.1
+          video_impression: 45116
+          play_request: 22035
+          ad_mode_complete: 757
+          video_view: 15348
+          ad_mode_begin: 923
+          play_rate: 0.34
+    Get_Available_Date_Range_Response:
+      title: Get Available Date Range Response
+      required:
+      - reconciled_from
+      - reconciled_to
+      type: object
+      properties:
+        reconciled_from:
+          type: string
+          description: the earliest date that you can use for from and get reconciled data
+        reconciled_to:
+          type: string
+          description: '''the latest date that you can use for to and get reconciled data (realtime data may be available for later dates)'''
+      example:
+        reconciled_from: '2011-01-01'
+        reconciled_to: '2018-08-31'
+    Format:
+      title: format
+      enum:
+      - csv
+      - json
+      - xlxs
+      type: string
+      example: csv
+      x-enum-elements:
+      - name: csv
+        description: ''
+      - name: json
+        description: ''
+      - name: xlxs
+        description: ''
   securitySchemes:
     BC_OAuth2:
       type: oauth2

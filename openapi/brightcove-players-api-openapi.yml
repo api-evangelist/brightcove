@@ -355,50 +355,133 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
 components:
-  parameters:
-    account_id:
-      name: account_id
-      in: path
-      description: Video Cloud account ID.
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    Authorization:
-      name: Authorization
-      in: header
-      description: '**IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.
-
-
-        `Authorization: Bearer {access_token}` - (see [Getting Access
-
-        Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    ContentType:
-      name: Content-Type
-      in: header
-      description: 'Content-Type: application/json'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-      example: application/json
-    player_id:
-      name: player_id
-      in: path
-      description: Brightcove Player ID.
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
   schemas:
+    player_response:
+      title: Create Player Request Body
+      type: object
+      description: Player object
+      properties:
+        account_id:
+          type: string
+          description: The account id
+        created_at:
+          type: string
+          description: The player creation date-time
+        embeds_count:
+          type: integer
+          description: The number of embeds (instances of this player), will always be at least 1
+        id:
+          type: string
+          description: The player id
+        last_viewed:
+          type: array
+          description: array of objects containing information about recent views of the player
+          items:
+            type: object
+            properties:
+              count:
+                type: integer
+                description: Number of the times the player was viewed
+              date:
+                type: string
+                description: Date-time string for the date of the views
+        name:
+          type: string
+          description: The player name
+        description:
+          type: string
+          description: The player description
+        url:
+          type: string
+          description: URL to player
+        branches:
+          type: object
+          description: The branches of the player - contains objects for the preview and master (published) player
+          properties:
+            preview:
+              type: object
+              description: The preview player branch
+              properties:
+                configuration:
+                  $ref: '#/components/schemas/configuration'
+                updated_at:
+                  type: string
+                  description: date-time of last update to preview player
+                template_updated_at:
+                  type: string
+                  description: date-time of last update to preview player template
+                preview_url:
+                  type: string
+                  description: URL for the player
+            master:
+              type: object
+              description: The master (published) player branch
+              properties:
+                configuration:
+                  $ref: '#/components/schemas/configuration'
+                updated_at:
+                  type: string
+                  description: date-time of last update to preview player
+                template_updated_at:
+                  type: string
+                  description: date-time of last update to preview player template
+                preview_url:
+                  type: string
+                  description: URL for the player
+      example:
+        account_id: '1752604059001'
+        id: default
+        name: Brightcove Default Player
+        description: This is an instance of the Brightcove Default Player.  You can modify this or choose to create your own.
+        branches:
+          preview:
+            configuration:
+              player:
+                template:
+                  version: 6.24.1
+                  name: single-video-template
+              video_cloud:
+                policy_key: BCpkADawqM1TW0eSP6AUwWK5gRTb0ZL-Wb4SYZkb5unfFMVjCU4NYtePkcJaxArVJpQS1sd4PTJ2HP4TOzY1H3Z-zOM7w9_9y0XzoSI_Xg3F0FTNkcNLPJUVlo4cVnyyPK4qdx90f_xonqux
+              compatibility: true
+            updated_at: '2018-07-26T19:34:35.454Z'
+            template_updated_at: '2018-09-19T13:53:34.437Z'
+            preview_url: https://preview-players.brightcove.net/v2/accounts/1752604059001/players/default/preview/embeds/default/master/index.html
+          master:
+            configuration:
+              compatibility: true
+              video_cloud:
+                policy_key: BCpkADawqM1TW0eSP6AUwWK5gRTb0ZL-Wb4SYZkb5unfFMVjCU4NYtePkcJaxArVJpQS1sd4PTJ2HP4TOzY1H3Z-zOM7w9_9y0XzoSI_Xg3F0FTNkcNLPJUVlo4cVnyyPK4qdx90f_xonqux
+              player:
+                template:
+                  name: single-video-template
+                  version: 6.24.1
+            updated_at: '2018-07-26T19:34:35.476Z'
+            template_updated_at: '2018-09-19T13:53:39.568Z'
+            preview_url: https://preview-players.brightcove.net/v2/accounts/1752604059001/players/default/master/embeds/default/master/index.html
+        created_at: '2018-07-26T19:34:35.456Z'
+        embed_count: 1
+        url: https://players.brightcove.net/1752604059001/default_default/index.html
+    player_request_body:
+      title: Create Player Request Body
+      type: object
+      description: Player object
+      properties:
+        name:
+          type: string
+          description: A name for the player - avoid confusion by giving the player a name that will help convey what it should be used for
+        description:
+          type: string
+          description: A description of the player - avoid confusion by giving the player a description that will help convey what it should be used for
+        configuration:
+          $ref: '#/components/schemas/configuration'
+      example:
+        name: Test_Player
+        description: A test player for autoplay and video looping
+        configuration:
+          autoplay: any
+          loop: true
+          video_cloud:
+            video: '4093372393001'
     configuration:
       title: Player Configuration
       type: object
@@ -795,132 +878,49 @@ components:
               type: string
               description: A Video Cloud video id (you can also use the reference id with the syntax `ref:reference_id`)
               default: undefined
-    player_request_body:
-      title: Create Player Request Body
-      type: object
-      description: Player object
-      properties:
-        name:
-          type: string
-          description: A name for the player - avoid confusion by giving the player a name that will help convey what it should be used for
-        description:
-          type: string
-          description: A description of the player - avoid confusion by giving the player a description that will help convey what it should be used for
-        configuration:
-          $ref: '#/components/schemas/configuration'
-      example:
-        name: Test_Player
-        description: A test player for autoplay and video looping
-        configuration:
-          autoplay: any
-          loop: true
-          video_cloud:
-            video: '4093372393001'
-    player_response:
-      title: Create Player Request Body
-      type: object
-      description: Player object
-      properties:
-        account_id:
-          type: string
-          description: The account id
-        created_at:
-          type: string
-          description: The player creation date-time
-        embeds_count:
-          type: integer
-          description: The number of embeds (instances of this player), will always be at least 1
-        id:
-          type: string
-          description: The player id
-        last_viewed:
-          type: array
-          description: array of objects containing information about recent views of the player
-          items:
-            type: object
-            properties:
-              count:
-                type: integer
-                description: Number of the times the player was viewed
-              date:
-                type: string
-                description: Date-time string for the date of the views
-        name:
-          type: string
-          description: The player name
-        description:
-          type: string
-          description: The player description
-        url:
-          type: string
-          description: URL to player
-        branches:
-          type: object
-          description: The branches of the player - contains objects for the preview and master (published) player
-          properties:
-            preview:
-              type: object
-              description: The preview player branch
-              properties:
-                configuration:
-                  $ref: '#/components/schemas/configuration'
-                updated_at:
-                  type: string
-                  description: date-time of last update to preview player
-                template_updated_at:
-                  type: string
-                  description: date-time of last update to preview player template
-                preview_url:
-                  type: string
-                  description: URL for the player
-            master:
-              type: object
-              description: The master (published) player branch
-              properties:
-                configuration:
-                  $ref: '#/components/schemas/configuration'
-                updated_at:
-                  type: string
-                  description: date-time of last update to preview player
-                template_updated_at:
-                  type: string
-                  description: date-time of last update to preview player template
-                preview_url:
-                  type: string
-                  description: URL for the player
-      example:
-        account_id: '1752604059001'
-        id: default
-        name: Brightcove Default Player
-        description: This is an instance of the Brightcove Default Player.  You can modify this or choose to create your own.
-        branches:
-          preview:
-            configuration:
-              player:
-                template:
-                  version: 6.24.1
-                  name: single-video-template
-              video_cloud:
-                policy_key: BCpkADawqM1TW0eSP6AUwWK5gRTb0ZL-Wb4SYZkb5unfFMVjCU4NYtePkcJaxArVJpQS1sd4PTJ2HP4TOzY1H3Z-zOM7w9_9y0XzoSI_Xg3F0FTNkcNLPJUVlo4cVnyyPK4qdx90f_xonqux
-              compatibility: true
-            updated_at: '2018-07-26T19:34:35.454Z'
-            template_updated_at: '2018-09-19T13:53:34.437Z'
-            preview_url: https://preview-players.brightcove.net/v2/accounts/1752604059001/players/default/preview/embeds/default/master/index.html
-          master:
-            configuration:
-              compatibility: true
-              video_cloud:
-                policy_key: BCpkADawqM1TW0eSP6AUwWK5gRTb0ZL-Wb4SYZkb5unfFMVjCU4NYtePkcJaxArVJpQS1sd4PTJ2HP4TOzY1H3Z-zOM7w9_9y0XzoSI_Xg3F0FTNkcNLPJUVlo4cVnyyPK4qdx90f_xonqux
-              player:
-                template:
-                  name: single-video-template
-                  version: 6.24.1
-            updated_at: '2018-07-26T19:34:35.476Z'
-            template_updated_at: '2018-09-19T13:53:39.568Z'
-            preview_url: https://preview-players.brightcove.net/v2/accounts/1752604059001/players/default/master/embeds/default/master/index.html
-        created_at: '2018-07-26T19:34:35.456Z'
-        embed_count: 1
-        url: https://players.brightcove.net/1752604059001/default_default/index.html
+  parameters:
+    account_id:
+      name: account_id
+      in: path
+      description: Video Cloud account ID.
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    player_id:
+      name: player_id
+      in: path
+      description: Brightcove Player ID.
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    Authorization:
+      name: Authorization
+      in: header
+      description: '**IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.
+
+
+        `Authorization: Bearer {access_token}` - (see [Getting Access
+
+        Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    ContentType:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+      example: application/json
   securitySchemes:
     BC_OAuth2:
       type: oauth2

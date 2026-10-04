@@ -218,6 +218,15 @@ components:
       title: Subscription
       type: object
   parameters:
+    SubscriptionId:
+      description: Subscription ID.
+      explode: false
+      in: path
+      name: subscription_id
+      required: true
+      schema:
+        type: string
+      style: simple
     AccountId:
       description: Video Cloud account ID.
       explode: false
@@ -232,15 +241,6 @@ components:
       explode: false
       in: header
       name: Authorization
-      required: true
-      schema:
-        type: string
-      style: simple
-    SubscriptionId:
-      description: Subscription ID.
-      explode: false
-      in: path
-      name: subscription_id
       required: true
       schema:
         type: string

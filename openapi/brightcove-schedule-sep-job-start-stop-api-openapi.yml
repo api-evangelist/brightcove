@@ -153,19 +153,19 @@ paths:
         IsMultiContentStreaming: false
 components:
   parameters:
-    XAPIKEY:
-      name: X-API-KEY
-      in: header
-      description: 'X-API-KEY: {Your_Live_API_Key}'
+    WorkflowId:
+      name: workflow_id
+      in: path
+      description: Scheduler Workflow ID
       required: true
       style: simple
       explode: false
       schema:
         type: string
-    WorkflowId:
-      name: workflow_id
-      in: path
-      description: Scheduler Workflow ID
+    XAPIKEY:
+      name: X-API-KEY
+      in: header
+      description: 'X-API-KEY: {Your_Live_API_Key}'
       required: true
       style: simple
       explode: false
@@ -183,7 +183,7 @@ components:
         default: application/json
       example: application/json
   schemas:
-    CreateJobStartStopRequestBody.TaskInfo:
+    JobStartStop.TaskInfo:
       properties:
         time_utc:
           description: UTC time to perform task. Value must be unix timestamp in seconds.
@@ -191,9 +191,18 @@ components:
         notification:
           description: Duration in seconds before time_utc to send a notification for the upcoming task.
           type: number
+        state:
+          description: Task state
+          type: string
+          enum:
+          - pending
+          - cancelled
+          - failed
+          - finished
       required:
       - time_utc
-      title: Create_JobStartStop_Body.task_info
+      - state
+      title: JobStartStop.task_info
       type: object
     UpdateJobStartStopRequestBody:
       properties:
@@ -210,41 +219,6 @@ components:
         deactivation:
           time_utc: 1611188000
           notification: 300
-    CreateJobStartStopRequestBody:
-      properties:
-        job_id:
-          description: Live Job ID to schedule activation and deactivation for. Job must be a static Job.
-          type: string
-        activation:
-          $ref: '#/components/schemas/CreateJobStartStopRequestBody.TaskInfo'
-        deactivation:
-          $ref: '#/components/schemas/CreateJobStartStopRequestBody.TaskInfo'
-        description:
-          description: JobStartStop workflow description.
-          type: string
-        notification_url:
-          description: URL to send notifications for activation and deactivation. Required if a pre-notification is configured for activation or deactivation.
-          type: string
-        redundant_group:
-          type: boolean
-          description: If `true`, then `job_id` must be a redundant group id
-          default: false
-      required:
-      - job_id
-      - activation
-      - deactivation
-      title: Create_JobStartStop_Body
-      type: object
-      example:
-        job_id: 481ff4cf0bf74956bc2ec6e126588080
-        activation:
-          time_utc: 1611178000
-          notification: 300
-        deactivation:
-          time_utc: 1611188000
-          notification: 300
-        description: My JobStartStop workflow
-        notification_url: https://example.com/live/jobstartstop/callbacks
     JobStartStop:
       properties:
         job_id:
@@ -280,7 +254,7 @@ components:
       - type
       title: JobStartStop
       type: object
-    JobStartStop.TaskInfo:
+    CreateJobStartStopRequestBody.TaskInfo:
       properties:
         time_utc:
           description: UTC time to perform task. Value must be unix timestamp in seconds.
@@ -288,16 +262,42 @@ components:
         notification:
           description: Duration in seconds before time_utc to send a notification for the upcoming task.
           type: number
-        state:
-          description: Task state
-          type: string
-          enum:
-          - pending
-          - cancelled
-          - failed
-          - finished
       required:
       - time_utc
-      - state
-      title: JobStartStop.task_info
+      title: Create_JobStartStop_Body.task_info
       type: object
+    CreateJobStartStopRequestBody:
+      properties:
+        job_id:
+          description: Live Job ID to schedule activation and deactivation for. Job must be a static Job.
+          type: string
+        activation:
+          $ref: '#/components/schemas/CreateJobStartStopRequestBody.TaskInfo'
+        deactivation:
+          $ref: '#/components/schemas/CreateJobStartStopRequestBody.TaskInfo'
+        description:
+          description: JobStartStop workflow description.
+          type: string
+        notification_url:
+          description: URL to send notifications for activation and deactivation. Required if a pre-notification is configured for activation or deactivation.
+          type: string
+        redundant_group:
+          type: boolean
+          description: If `true`, then `job_id` must be a redundant group id
+          default: false
+      required:
+      - job_id
+      - activation
+      - deactivation
+      title: Create_JobStartStop_Body
+      type: object
+      example:
+        job_id: 481ff4cf0bf74956bc2ec6e126588080
+        activation:
+          time_utc: 1611178000
+          notification: 300
+        deactivation:
+          time_utc: 1611188000
+          notification: 300
+        description: My JobStartStop workflow
+        notification_url: https://example.com/live/jobstartstop/callbacks

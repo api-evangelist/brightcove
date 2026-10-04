@@ -190,12 +190,63 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
 components:
+  schemas:
+    LabelUpdate:
+      description: Update Label request body
+      title: label
+      type: object
+      properties:
+        new_label:
+          type: string
+          description: The new label which will replace **the last item in the label path**
+      example:
+        new_label: forest_birds
+    LabelPath:
+      description: The full path for a label that can be assigned to videos
+      title: label
+      type: object
+      properties:
+        path:
+          type: string
+      example:
+        path: /nature/mammals/seamammals
+    LabelsList:
+      description: A list of labels for the account
+      type: object
+      properties:
+        account_id:
+          type: string
+          description: The Video Cloud account id
+          example: '57838016001'
+        labels:
+          type: array
+          description: Array of labels that exist for the account
+          items:
+            type: string
+            description: a full label path
+          example:
+          - /nature/birds
+          - /nature/birds/shorebirds
+          - /nature/birds/forestbirds
+          - /nature/mammals/seamammals
+        version:
+          type: integer
+          description: An internal version tracker
   parameters:
     AccountId:
       description: Video Cloud account ID.
       explode: false
       in: path
       name: account_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    label_path:
+      description: '''The path for a label to update or delete. Note that the operation performed is on the last item in the path, so for example, if you specify the path `/nature/birds/seabirds`, only the `seabirds` label will be updated/deleted, but if you specify the path as `/nature/birds`, `birds` and any sub-labels of `birds` will be updated/deleted.'''
+      explode: false
+      in: path
+      name: label_path
       required: true
       schema:
         type: string
@@ -220,57 +271,6 @@ components:
         default: application/json
         type: string
       style: simple
-    label_path:
-      description: '''The path for a label to update or delete. Note that the operation performed is on the last item in the path, so for example, if you specify the path `/nature/birds/seabirds`, only the `seabirds` label will be updated/deleted, but if you specify the path as `/nature/birds`, `birds` and any sub-labels of `birds` will be updated/deleted.'''
-      explode: false
-      in: path
-      name: label_path
-      required: true
-      schema:
-        type: string
-      style: simple
-  schemas:
-    LabelUpdate:
-      description: Update Label request body
-      title: label
-      type: object
-      properties:
-        new_label:
-          type: string
-          description: The new label which will replace **the last item in the label path**
-      example:
-        new_label: forest_birds
-    LabelsList:
-      description: A list of labels for the account
-      type: object
-      properties:
-        account_id:
-          type: string
-          description: The Video Cloud account id
-          example: '57838016001'
-        labels:
-          type: array
-          description: Array of labels that exist for the account
-          items:
-            type: string
-            description: a full label path
-          example:
-          - /nature/birds
-          - /nature/birds/shorebirds
-          - /nature/birds/forestbirds
-          - /nature/mammals/seamammals
-        version:
-          type: integer
-          description: An internal version tracker
-    LabelPath:
-      description: The full path for a label that can be assigned to videos
-      title: label
-      type: object
-      properties:
-        path:
-          type: string
-      example:
-        path: /nature/mammals/seamammals
   securitySchemes:
     BC_OAuth2:
       type: oauth2

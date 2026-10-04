@@ -406,211 +406,6 @@ paths:
         IsMultiContentStreaming: false
 components:
   schemas:
-    Geo:
-      description: map of geo-filtering properties
-      properties:
-        countries:
-          description: array of ISO 3166 list of 2-letter codes(https://www.iso.org/obp/ui/#home) (search for "country codes")
-          example:
-          - us
-          - ca
-          - fr
-          items:
-            type: string
-          type: array
-        exclude_countries:
-          description: if true, country array is treated as a list of countries excluded from viewing
-          type: boolean
-        restricted:
-          description: whether geo-restriction is enabled for this video
-          type: boolean
-      required:
-      - countries
-      - exclude_countries
-      - restricted
-      title: geo
-      type: object
-    VideoVariant:
-      description: Object containing language-specific metadata for a video
-      properties:
-        language:
-          type: string
-          description: 'The language for this variant in the language-country code format (examples: en-US, es-ES) **Note that `language` is only included when you create a variant - you must NOT include it when updating the variant**'
-          example: es-ES
-        name:
-          type: string
-          description: The title of the video in this language
-        description:
-          type: string
-          description: The video short description in this language
-        long_description:
-          type: string
-          description: The video long description in this language
-        custom_fields:
-          type: object
-          description: 'map of `fieldname: value` pairs, where values are for this language; values have a maximum length of 1024 single-byte characters. Note: be sure to use the **internal** name for the field, not the display name'
-    Folder:
-      properties:
-        account_id:
-          description: Video Cloud account id
-          example: 57838016001
-          readOnly: true
-          type: string
-        created_at:
-          description: date/time folder created
-          example: 2017-11-23 19:53:59.687000+00:00
-          readOnly: true
-          type: string
-        id:
-          description: system id for the folder
-          example: 5a17275782aca45b631295f9
-          readOnly: true
-          type: string
-        name:
-          description: folder name
-          example: birds
-          type: string
-        updated_at:
-          description: date/time folder last modified
-          example: 2017-11-23 20:06:24.537000+00:00
-          readOnly: true
-          type: string
-        video_count:
-          description: number of videos in the folder
-          example: 5
-          readOnly: true
-          type: string
-      title: Folder
-      type: object
-    VideoPreviewSource:
-      description: HLS manifest entry for animated preview
-      properties:
-        ext_x_version:
-          description: HLS EXT-X-VERSION value
-          example: '7'
-          type: string
-        src:
-          description: URL to the preview HLS manifest
-          example: https://manifest.prod.boltdns.net/.../preview.m3u8?...
-          type: string
-        type:
-          description: MIME type
-          example: application/x-mpegURL
-          type: string
-      title: VideoPreviewSource
-      type: object
-    CuePoint:
-      properties:
-        force_stop:
-          description: Whether playback should be stopped when the cuepoint is reached
-          type: boolean
-        metadata:
-          description: optional metadata string (512 single-byte characters maximum)
-          maxLength: 512
-          type: string
-        name:
-          description: cue point name
-          type: string
-        time:
-          description: time of the cue point in seconds
-          example: 10.527
-          type: number
-        type:
-          description: cue point type
-          enum:
-          - AD
-          - DATA
-          type: string
-      required:
-      - time
-      - type
-      title: cue_point
-      type: object
-    User:
-      description: information about who created or modified a video, if available
-      properties:
-        email:
-          description: the user's email address in Video Cloud
-          type: string
-        id:
-          description: Video Cloud system id of the user
-          type: string
-        type:
-          description: "The type of the updater, either:\n  - `user` a user in Studio\n  - `api-key` a user via the APIs\n  - `internal` a Brightcove system or user"
-          enum:
-          - user
-          - api_key
-          - internal
-          type: string
-      readOnly: true
-      title: User
-      type: object
-    TextTrack:
-      properties:
-        default:
-          default: false
-          description: whether this is the default track - should only be true for one text track
-          type: boolean
-        id:
-          description: System id for the text track
-          readOnly: true
-          type: string
-        kind:
-          default: captions
-          description: 'How the track is meant to be used: `subtitles`, `captions`, `descriptions`, `chapters`, `metadata`.'
-          enum:
-          - subtitles
-          - captions
-          - descriptions
-          - chapters
-          - metadata
-          - transcripts
-          type: string
-        label:
-          description: label for the track
-          type: string
-        mime_type:
-          description: mime-type for the track
-          type: string
-        src:
-          description: URL for the .vtt file
-          type: string
-        srclang:
-          description: 2-letter language code, such as "en" or "ko"
-          type: string
-        status:
-          description: Indicates the actual situation of the track, if it is `published`, `draft`, or `null` for pre-existing text tracks. Draft tracks will not be displayed in the player.
-    Schedule:
-      description: map of scheduling properties
-      properties:
-        ends_at:
-          description: '''End date-time of availability in ISO-8601(https://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) format. Note that you can input a date-time stamp with a time zone, such as `2021-05-01T18:00:00.000+08`, but it will be converted to and stored as a UTC data-time stamp: `2021-05-01T10:00:00.000Z`'''
-          example: 2020-05-20 20:41:07.689000+00:00
-          type:
-          - string
-          - 'null'
-        starts_at:
-          description: '''Start date-time of availability in ISO-8601(https://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) format. Note that you can input a date-time stamp with a time zone, such as `2021-05-01T18:00:00.000+08`, but it will be converted to and stored as a UTC data-time stamp: `2021-05-01T10:00:00.000Z`'''
-          example: 2019-05-20 20:41:07.689000+00:00
-          type:
-          - string
-          - 'null'
-      title: schedule
-      type: object
-    VideoPreview:
-      description: Animated thumbnail preview metadata for the video
-      properties:
-        start:
-          description: Start time in milliseconds for the preview segment
-          example: 10000
-          type: integer
-        sources:
-          description: Array of HLS manifests for the animated preview
-          items:
-            $ref: '#/components/schemas/VideoPreviewSource'
-          type: array
-      title: VideoPreview
-      type: object
     Video:
       description: Object containing metadata for a video
       properties:
@@ -820,89 +615,81 @@ components:
           $ref: '#/components/schemas/VideoVariants'
       title: Video
       type: object
-    Transcript:
+    VideoVariant3:
+      description: Object containing language-specific metadata for a video
       properties:
+        language:
+          type: string
+          description: 'The language for this variant in the language-country code format (examples: en-US, es-ES) **Note that `language` is only included when you create a variant - you must NOT include it when updating the variant**'
+          example: ja-JA
+        name:
+          type: string
+          description: The title of the video in this language
+        description:
+          type: string
+          description: The video short description in this language
+        long_description:
+          type: string
+          description: The video long description in this language
+        custom_fields:
+          type: object
+          description: 'map of `fieldname: value` pairs, where values are for this language; values have a maximum length of 1024 single-byte characters. Note: be sure to use the **internal** name for the field, not the display name'
+    User:
+      description: information about who created or modified a video, if available
+      properties:
+        email:
+          description: the user's email address in Video Cloud
+          type: string
         id:
-          description: System id for the text track
-          readOnly: true
+          description: Video Cloud system id of the user
           type: string
-        account_id:
-          description: The account id
-          readOnly: true
+        type:
+          description: "The type of the updater, either:\n  - `user` a user in Studio\n  - `api-key` a user via the APIs\n  - `internal` a Brightcove system or user"
+          enum:
+          - user
+          - api_key
+          - internal
           type: string
-        default:
-          description: Whether the transcript is the default - note that if there are multi-language transcripts, there can be a default per language
-          readOnly: true
-          type: boolean
-        label:
-          description: label for the track
-          type: string
+      readOnly: true
+      title: User
+      type: object
+    VideoPreview:
+      description: Animated thumbnail preview metadata for the video
+      properties:
+        start:
+          description: Start time in milliseconds for the preview segment
+          example: 10000
+          type: integer
         sources:
-          description: sources for a client to retrieve the transcription
+          description: Array of HLS manifests for the animated preview
+          items:
+            $ref: '#/components/schemas/VideoPreviewSource'
           type: array
+      title: VideoPreview
+      type: object
+    Geo:
+      description: map of geo-filtering properties
+      properties:
+        countries:
+          description: array of ISO 3166 list of 2-letter codes(https://www.iso.org/obp/ui/#home) (search for "country codes")
+          example:
+          - us
+          - ca
+          - fr
           items:
             type: string
-            description: URLs where the transcript can be retrieved - there will an http and https URL for each transcript
-        src:
-          description: URL for the transcription file
-          type: string
-        srclang:
-          description: 2-letter or 4-letter language code, such as `es` or `es-MX`
-          type: string
-        status:
-          description: Either `draft` (unavailable to viewers) or `published`
-          type: string
-          enum:
-          - draft
-          - published
+          type: array
+        exclude_countries:
+          description: if true, country array is treated as a list of countries excluded from viewing
+          type: boolean
+        restricted:
+          description: whether geo-restriction is enabled for this video
+          type: boolean
       required:
-      - src
-      - srclang
-      title: transcription
-      type: object
-    Sharing:
-      description: map of the sharing properties for the video
-      properties:
-        by_external_acct:
-          description: whether the video was shared from another account
-          example: true
-          readOnly: true
-          type: boolean
-        by_id:
-          description: id of the account that shared the video; note that this field is populated only for the shared copy, not for the original video
-          example: 57838016001
-          readOnly: true
-          type: string
-        by_reference:
-          description: whether the video is shared by reference
-          example: true
-          readOnly: true
-          type: boolean
-        source_id:
-          description: id of the video in its original account; note that this field is populated only for the shared copy, not for the original video
-          example: 239487239487
-          readOnly: true
-          type: string
-        to_external_acct:
-          description: whether the video is shared to another account
-          example: true
-          readOnly: true
-          type: boolean
-      readOnly: true
-      title: sharing
-      type: object
-    Link:
-      description: map of related link properties - can only be added on update, not creation
-      properties:
-        text:
-          description: text for the link
-          maxLength: 255
-          type: string
-        url:
-          description: URL for the link
-          maxLength: 255
-          type: string
-      title: link
+      - countries
+      - exclude_countries
+      - restricted
+      title: geo
       type: object
     VideoVariant2:
       description: Object containing language-specific metadata for a video
@@ -977,13 +764,171 @@ components:
       readOnly: true
       title: VideoImages
       type: object
-    VideoVariant3:
+    Transcript:
+      properties:
+        id:
+          description: System id for the text track
+          readOnly: true
+          type: string
+        account_id:
+          description: The account id
+          readOnly: true
+          type: string
+        default:
+          description: Whether the transcript is the default - note that if there are multi-language transcripts, there can be a default per language
+          readOnly: true
+          type: boolean
+        label:
+          description: label for the track
+          type: string
+        sources:
+          description: sources for a client to retrieve the transcription
+          type: array
+          items:
+            type: string
+            description: URLs where the transcript can be retrieved - there will an http and https URL for each transcript
+        src:
+          description: URL for the transcription file
+          type: string
+        srclang:
+          description: 2-letter or 4-letter language code, such as `es` or `es-MX`
+          type: string
+        status:
+          description: Either `draft` (unavailable to viewers) or `published`
+          type: string
+          enum:
+          - draft
+          - published
+      required:
+      - src
+      - srclang
+      title: transcription
+      type: object
+    Folder:
+      properties:
+        account_id:
+          description: Video Cloud account id
+          example: 57838016001
+          readOnly: true
+          type: string
+        created_at:
+          description: date/time folder created
+          example: 2017-11-23 19:53:59.687000+00:00
+          readOnly: true
+          type: string
+        id:
+          description: system id for the folder
+          example: 5a17275782aca45b631295f9
+          readOnly: true
+          type: string
+        name:
+          description: folder name
+          example: birds
+          type: string
+        updated_at:
+          description: date/time folder last modified
+          example: 2017-11-23 20:06:24.537000+00:00
+          readOnly: true
+          type: string
+        video_count:
+          description: number of videos in the folder
+          example: 5
+          readOnly: true
+          type: string
+      title: Folder
+      type: object
+    Schedule:
+      description: map of scheduling properties
+      properties:
+        ends_at:
+          description: '''End date-time of availability in ISO-8601(https://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) format. Note that you can input a date-time stamp with a time zone, such as `2021-05-01T18:00:00.000+08`, but it will be converted to and stored as a UTC data-time stamp: `2021-05-01T10:00:00.000Z`'''
+          example: 2020-05-20 20:41:07.689000+00:00
+          type:
+          - string
+          - 'null'
+        starts_at:
+          description: '''Start date-time of availability in ISO-8601(https://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) format. Note that you can input a date-time stamp with a time zone, such as `2021-05-01T18:00:00.000+08`, but it will be converted to and stored as a UTC data-time stamp: `2021-05-01T10:00:00.000Z`'''
+          example: 2019-05-20 20:41:07.689000+00:00
+          type:
+          - string
+          - 'null'
+      title: schedule
+      type: object
+    Link:
+      description: map of related link properties - can only be added on update, not creation
+      properties:
+        text:
+          description: text for the link
+          maxLength: 255
+          type: string
+        url:
+          description: URL for the link
+          maxLength: 255
+          type: string
+      title: link
+      type: object
+    Sharing:
+      description: map of the sharing properties for the video
+      properties:
+        by_external_acct:
+          description: whether the video was shared from another account
+          example: true
+          readOnly: true
+          type: boolean
+        by_id:
+          description: id of the account that shared the video; note that this field is populated only for the shared copy, not for the original video
+          example: 57838016001
+          readOnly: true
+          type: string
+        by_reference:
+          description: whether the video is shared by reference
+          example: true
+          readOnly: true
+          type: boolean
+        source_id:
+          description: id of the video in its original account; note that this field is populated only for the shared copy, not for the original video
+          example: 239487239487
+          readOnly: true
+          type: string
+        to_external_acct:
+          description: whether the video is shared to another account
+          example: true
+          readOnly: true
+          type: boolean
+      readOnly: true
+      title: sharing
+      type: object
+    VideoVariants:
+      description: Array of video variants
+      type: array
+      items:
+      - $ref: '#/components/schemas/VideoVariant'
+      - $ref: '#/components/schemas/VideoVariant2'
+      - $ref: '#/components/schemas/VideoVariant3'
+    VideoPreviewSource:
+      description: HLS manifest entry for animated preview
+      properties:
+        ext_x_version:
+          description: HLS EXT-X-VERSION value
+          example: '7'
+          type: string
+        src:
+          description: URL to the preview HLS manifest
+          example: https://manifest.prod.boltdns.net/.../preview.m3u8?...
+          type: string
+        type:
+          description: MIME type
+          example: application/x-mpegURL
+          type: string
+      title: VideoPreviewSource
+      type: object
+    VideoVariant:
       description: Object containing language-specific metadata for a video
       properties:
         language:
           type: string
           description: 'The language for this variant in the language-country code format (examples: en-US, es-ES) **Note that `language` is only included when you create a variant - you must NOT include it when updating the variant**'
-          example: ja-JA
+          example: es-ES
         name:
           type: string
           description: The title of the video in this language
@@ -996,32 +941,74 @@ components:
         custom_fields:
           type: object
           description: 'map of `fieldname: value` pairs, where values are for this language; values have a maximum length of 1024 single-byte characters. Note: be sure to use the **internal** name for the field, not the display name'
-    VideoVariants:
-      description: Array of video variants
-      type: array
-      items:
-      - $ref: '#/components/schemas/VideoVariant'
-      - $ref: '#/components/schemas/VideoVariant2'
-      - $ref: '#/components/schemas/VideoVariant3'
+    TextTrack:
+      properties:
+        default:
+          default: false
+          description: whether this is the default track - should only be true for one text track
+          type: boolean
+        id:
+          description: System id for the text track
+          readOnly: true
+          type: string
+        kind:
+          default: captions
+          description: 'How the track is meant to be used: `subtitles`, `captions`, `descriptions`, `chapters`, `metadata`.'
+          enum:
+          - subtitles
+          - captions
+          - descriptions
+          - chapters
+          - metadata
+          - transcripts
+          type: string
+        label:
+          description: label for the track
+          type: string
+        mime_type:
+          description: mime-type for the track
+          type: string
+        src:
+          description: URL for the .vtt file
+          type: string
+        srclang:
+          description: 2-letter language code, such as "en" or "ko"
+          type: string
+        status:
+          description: Indicates the actual situation of the track, if it is `published`, `draft`, or `null` for pre-existing text tracks. Draft tracks will not be displayed in the player.
+    CuePoint:
+      properties:
+        force_stop:
+          description: Whether playback should be stopped when the cuepoint is reached
+          type: boolean
+        metadata:
+          description: optional metadata string (512 single-byte characters maximum)
+          maxLength: 512
+          type: string
+        name:
+          description: cue point name
+          type: string
+        time:
+          description: time of the cue point in seconds
+          example: 10.527
+          type: number
+        type:
+          description: cue point type
+          enum:
+          - AD
+          - DATA
+          type: string
+      required:
+      - time
+      - type
+      title: cue_point
+      type: object
   parameters:
-    Limit:
-      description: Number of items to return - see [Paging Search Results](/cms/searching/using-cms-api-page-search-results.html) for more information
-      explode: true
-      in: query
-      name: limit
-      schema:
-        default: 20
-        example: 20
-        format: int32
-        maximum: 100
-        minimum: 1
-        type: integer
-      style: form
-    VideoId:
-      description: Video ID (specified as `{video_id}}`).
+    Authorization:
+      description: 'Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)'
       explode: false
-      in: path
-      name: video_id
+      in: header
+      name: Authorization
       required: true
       schema:
         type: string
@@ -1035,24 +1022,6 @@ components:
       required: true
       schema:
         default: application/json
-        type: string
-      style: simple
-    Authorization:
-      description: 'Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)'
-      explode: false
-      in: header
-      name: Authorization
-      required: true
-      schema:
-        type: string
-      style: simple
-    FolderId:
-      description: Folder ID.
-      explode: false
-      in: path
-      name: folder_id
-      required: true
-      schema:
         type: string
       style: simple
     VideoSort:
@@ -1105,6 +1074,33 @@ components:
         - description: Trailing week video views (this field can only be sorted on - it is not returned)
           name: plays_trailing_week
       style: form
+    FolderId:
+      description: Folder ID.
+      explode: false
+      in: path
+      name: folder_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    VideoId:
+      description: Video ID (specified as `{video_id}}`).
+      explode: false
+      in: path
+      name: video_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    AccountId:
+      description: Video Cloud account ID.
+      explode: false
+      in: path
+      name: account_id
+      required: true
+      schema:
+        type: string
+      style: simple
     Offset:
       description: Number of items to skip - see [Paging Search Results](/cms/searching/using-cms-api-page-search-results.html) for more information
       explode: true
@@ -1116,15 +1112,19 @@ components:
         format: int32
         type: integer
       style: form
-    AccountId:
-      description: Video Cloud account ID.
-      explode: false
-      in: path
-      name: account_id
-      required: true
+    Limit:
+      description: Number of items to return - see [Paging Search Results](/cms/searching/using-cms-api-page-search-results.html) for more information
+      explode: true
+      in: query
+      name: limit
       schema:
-        type: string
-      style: simple
+        default: 20
+        example: 20
+        format: int32
+        maximum: 100
+        minimum: 1
+        type: integer
+      style: form
   securitySchemes:
     BC_OAuth2:
       type: oauth2

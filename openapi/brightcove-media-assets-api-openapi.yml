@@ -1438,6 +1438,79 @@ paths:
         IsMultiContentStreaming: false
 components:
   schemas:
+    Manifest:
+      example:
+        account_id: '57838016001'
+        audio_only: false
+        cdn_origin_id: '8801'
+        complete: true
+        controller_type: DEFAULT
+        current_filename: 57838016001_5819043232001_5819044609001.m3u8
+        id: '5819043232001'
+        key_systems: []
+        name: greatblueheron.mp4
+        progressive_download: false
+        reference_id: ''
+        remote_stream_name: ''
+        remote_url: ''
+        size: 0
+        type: HLS_MANIFEST
+        updated_at: '2018-08-07T14:06:52.489Z'
+        uploaded_at: '2018-08-07T14:05:57.105Z'
+        video_duration: 0
+      properties:
+        audio_only:
+          description: not applicable to ism_manifests
+          type: boolean
+        cdn_origin_id:
+          description: an internally used id (not applicable to remote assets)
+          type: string
+        complete:
+          description: whether processing is complete for the asset (will be true for remote assets if a remote_url is supplied)
+          type: boolean
+        controller_type:
+          description: the controller type for ingested renditions (not applicable to remote renditions or other types of assets)
+          type: string
+        current_filename:
+          description: the filename for an ingested asset in the Video Cloud system (not applicable to remote assets)
+          type: string
+        id:
+          description: the asset id
+          readOnly: true
+          type: string
+        name:
+          description: asset name
+          type: string
+        progressive_download:
+          description: whether ingested rendition is available by progressive download (not applicable to other asset types or remote renditions)
+          type: boolean
+        reference_id:
+          description: the asset reference id (must be unique within the account); this is **not** the same as the video reference id
+          type: string
+        remote_stream_name:
+          description: name for remote streams (not applicable to asset types other than rendition)
+          type: string
+        remote_url:
+          description: the url for a remote asset (not applicable to ingested assets); **`remote_url` is required when adding an asset (POST)**
+          maxLength: 250
+          type: string
+        size:
+          description: the size of the asset in bytes (integer)
+          type: integer
+        type:
+          description: the type of the asset
+          type: string
+        updated_at:
+          description: when the video was last modified
+          type: string
+        uploaded_at:
+          description: when the asset was added to the video in Video Cloud
+          type: string
+        video_duration:
+          description: video duration in seconds (present if you included it when you created the asset)
+          type: integer
+      title: Manifest
+      type: object
     VideoAsset:
       example:
       - account_id: '57838016001'
@@ -1645,6 +1718,22 @@ components:
           type: integer
       title: VideoAsset
       type: object
+    Drm:
+      description: DRM packaging details (not applicable to remote assets or Dynamic Delivery accounts)
+      properties:
+        metadata_cdn_origin_id:
+          type: string
+        metadata_sharded_directory:
+          type: string
+        packager_version:
+          type: string
+        state:
+          type: string
+      readOnly: true
+      title: Drm
+      type:
+      - object
+      - 'null'
     DynamicRendition:
       example:
       - audio_configuration: L_R
@@ -1723,96 +1812,25 @@ components:
           type: string
       title: DynamicRendition
       type: object
-    Drm:
-      description: DRM packaging details (not applicable to remote assets or Dynamic Delivery accounts)
-      properties:
-        metadata_cdn_origin_id:
-          type: string
-        metadata_sharded_directory:
-          type: string
-        packager_version:
-          type: string
-        state:
-          type: string
-      readOnly: true
-      title: Drm
-      type:
-      - object
-      - 'null'
-    Manifest:
-      example:
-        account_id: '57838016001'
-        audio_only: false
-        cdn_origin_id: '8801'
-        complete: true
-        controller_type: DEFAULT
-        current_filename: 57838016001_5819043232001_5819044609001.m3u8
-        id: '5819043232001'
-        key_systems: []
-        name: greatblueheron.mp4
-        progressive_download: false
-        reference_id: ''
-        remote_stream_name: ''
-        remote_url: ''
-        size: 0
-        type: HLS_MANIFEST
-        updated_at: '2018-08-07T14:06:52.489Z'
-        uploaded_at: '2018-08-07T14:05:57.105Z'
-        video_duration: 0
-      properties:
-        audio_only:
-          description: not applicable to ism_manifests
-          type: boolean
-        cdn_origin_id:
-          description: an internally used id (not applicable to remote assets)
-          type: string
-        complete:
-          description: whether processing is complete for the asset (will be true for remote assets if a remote_url is supplied)
-          type: boolean
-        controller_type:
-          description: the controller type for ingested renditions (not applicable to remote renditions or other types of assets)
-          type: string
-        current_filename:
-          description: the filename for an ingested asset in the Video Cloud system (not applicable to remote assets)
-          type: string
-        id:
-          description: the asset id
-          readOnly: true
-          type: string
-        name:
-          description: asset name
-          type: string
-        progressive_download:
-          description: whether ingested rendition is available by progressive download (not applicable to other asset types or remote renditions)
-          type: boolean
-        reference_id:
-          description: the asset reference id (must be unique within the account); this is **not** the same as the video reference id
-          type: string
-        remote_stream_name:
-          description: name for remote streams (not applicable to asset types other than rendition)
-          type: string
-        remote_url:
-          description: the url for a remote asset (not applicable to ingested assets); **`remote_url` is required when adding an asset (POST)**
-          maxLength: 250
-          type: string
-        size:
-          description: the size of the asset in bytes (integer)
-          type: integer
-        type:
-          description: the type of the asset
-          type: string
-        updated_at:
-          description: when the video was last modified
-          type: string
-        uploaded_at:
-          description: when the asset was added to the video in Video Cloud
-          type: string
-        video_duration:
-          description: video duration in seconds (present if you included it when you created the asset)
-          type: integer
-      title: Manifest
-      type: object
   parameters:
+    VideoId:
+      description: Video ID (specified as `{video_id}}`).
+      explode: false
+      in: path
+      name: video_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    AssetId:
+      description: The asset ID
+      explode: false
+      in: path
+      name: asset_id
+      required: true
+      schema:
+        type: string
+      style: simple
     AccountId:
       description: Video Cloud account ID.
       explode: false
@@ -1840,24 +1858,6 @@ components:
       required: true
       schema:
         default: application/json
-        type: string
-      style: simple
-    VideoId:
-      description: Video ID (specified as `{video_id}}`).
-      explode: false
-      in: path
-      name: video_id
-      required: true
-      schema:
-        type: string
-      style: simple
-    AssetId:
-      description: The asset ID
-      explode: false
-      in: path
-      name: asset_id
-      required: true
-      schema:
         type: string
       style: simple
   securitySchemes:

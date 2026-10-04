@@ -64,105 +64,6 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
 components:
-  parameters:
-    account_id:
-      name: account_id
-      in: path
-      description: a Video Cloud account ID
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: number
-    fields_leads:
-      name: fields
-      in: query
-      description: 'Fields to return for leads
-
-
-        **Note:** by default, all fields are returned. Use this parameter to return fewer fields.'
-      style: form
-      explode: true
-      schema:
-        $ref: '#/components/schemas/FieldsLeads'
-    Authorization:
-      name: Authorization
-      in: header
-      description: 'Authorization: Bearer access_token (see Getting Access Tokens)'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    Content-Type:
-      name: Content-Type
-      in: header
-      description: 'Content-Type: application/json'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    to:
-      name: to
-      in: query
-      description: End time for the period covered by the report — epoch time in milliseconds or a date in the format `yyyy-mm-dd` (such as `2013-09-26`) or a relative date in `d` (days), `h` (hours), `m` (minutes), `s` (seconds) (such as `-2d` or `-6h`)
-      style: form
-      explode: true
-      schema:
-        oneOf:
-        - type: string
-        - type: integer
-    sort_leads:
-      name: sort
-      in: query
-      description: Field to sort lead results by (prefix with `-` for descending order)
-      style: form
-      explode: true
-      schema:
-        $ref: '#/components/schemas/SortLeads'
-    limit:
-      name: limit
-      in: query
-      description: Number of items to return
-      style: form
-      explode: true
-      schema:
-        type: integer
-        format: int32
-        default: 25
-        example: 25
-        minimum: 1
-        maximum: 200
-    from:
-      name: from
-      in: query
-      description: '''Start time for the period covered by the report — epoch time in milliseconds or a date in the format `yyyy-mm-dd` (such as `2013-09-26`) or a relative date in `d` (days), `h` (hours), `m` (minutes), `s` (seconds) (such as `-2d` or `-6h`)'''
-      style: form
-      explode: true
-      schema:
-        oneOf:
-        - type: string
-        - type: integer
-    where:
-      name: where
-      in: query
-      description: One or more field==value pairs to filter the results; fields supported are `video_id`, `video_name`, `tracking_id`, `external_id`, `player_id`, `page_url`, `watched`, `time_watched`, `created_at`, `updated_at`, `is_synced`
-      style: form
-      explode: true
-      schema:
-        type: string
-    offset:
-      name: offset
-      in: query
-      description: Number of items to skip
-      style: form
-      explode: true
-      schema:
-        type: integer
-        format: int32
-        default: 0
-        example: 0
   schemas:
     Get_Leads_Response:
       title: Get Leads Response
@@ -323,6 +224,105 @@ components:
         video_name:
           type: string
           description: the Video Cloud video name
+  parameters:
+    fields_leads:
+      name: fields
+      in: query
+      description: 'Fields to return for leads
+
+
+        **Note:** by default, all fields are returned. Use this parameter to return fewer fields.'
+      style: form
+      explode: true
+      schema:
+        $ref: '#/components/schemas/FieldsLeads'
+    limit:
+      name: limit
+      in: query
+      description: Number of items to return
+      style: form
+      explode: true
+      schema:
+        type: integer
+        format: int32
+        default: 25
+        example: 25
+        minimum: 1
+        maximum: 200
+    where:
+      name: where
+      in: query
+      description: One or more field==value pairs to filter the results; fields supported are `video_id`, `video_name`, `tracking_id`, `external_id`, `player_id`, `page_url`, `watched`, `time_watched`, `created_at`, `updated_at`, `is_synced`
+      style: form
+      explode: true
+      schema:
+        type: string
+    sort_leads:
+      name: sort
+      in: query
+      description: Field to sort lead results by (prefix with `-` for descending order)
+      style: form
+      explode: true
+      schema:
+        $ref: '#/components/schemas/SortLeads'
+    Content-Type:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    to:
+      name: to
+      in: query
+      description: End time for the period covered by the report — epoch time in milliseconds or a date in the format `yyyy-mm-dd` (such as `2013-09-26`) or a relative date in `d` (days), `h` (hours), `m` (minutes), `s` (seconds) (such as `-2d` or `-6h`)
+      style: form
+      explode: true
+      schema:
+        oneOf:
+        - type: string
+        - type: integer
+    from:
+      name: from
+      in: query
+      description: '''Start time for the period covered by the report — epoch time in milliseconds or a date in the format `yyyy-mm-dd` (such as `2013-09-26`) or a relative date in `d` (days), `h` (hours), `m` (minutes), `s` (seconds) (such as `-2d` or `-6h`)'''
+      style: form
+      explode: true
+      schema:
+        oneOf:
+        - type: string
+        - type: integer
+    account_id:
+      name: account_id
+      in: path
+      description: a Video Cloud account ID
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: number
+    Authorization:
+      name: Authorization
+      in: header
+      description: 'Authorization: Bearer access_token (see Getting Access Tokens)'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    offset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      style: form
+      explode: true
+      schema:
+        type: integer
+        format: int32
+        default: 0
+        example: 0
   securitySchemes:
     BC_OAuth2:
       type: oauth2

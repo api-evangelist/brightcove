@@ -140,39 +140,57 @@ paths:
           description: Server error
 components:
   schemas:
-    BeaconTemplate:
-      title: Beacon Template
-      description: Beacons are sent to send analytics data from the client. The beacon template defines the type of events to send beacons for and the information that will be sent.
+    AdConfigList:
+      title: List Ad Configurations Response
+      type: array
+      description: Array of ad configuration objects
+      items:
+        $ref: '#/components/schemas/AdConfiguration'
+    AdConfig:
+      title: ad_config
       type: object
+      description: Ad config part of an ad configuration object
       properties:
-        type:
+        expected_ad_response:
           type: string
-          description: Type of beacon to fire.
+          description: 'Which tech to use to parse the response.
+
+
+            When the `expected_ad_response` is set to `vast_3_0`, SSAI makes one VAST call for each ad cue point defined in Video Cloud. For VMAP and ad rules, SSAI makes requests based on the defined ad breaks in the initial ad response.'
           enum:
-          - content_first_quartile
-          - content_start
-          - content_midpoint
-          - content_third_quartile
-          - content_complete
-          - content_quartiles
-          - content_interval
-          - ad_start
-          - ad_first_quartile
-          - ad_midpoint
-          - ad_third_quartile
-          - ad_complete
-          - ad_quartiles
-          - ad_break_start
-          - ad_break_end
-          - segment_start
-          - segment_end
-          - on_load
+          - dfp_ad_rules
+          - dfp_vmap
+          - smart_xml
+          - vast_3_0
+        enable_ads:
+          type: boolean
+          description: 'Flags whether to disable the server side firing of ad requests.
+
+
+            When set to `false`, SSAI will not request any ads server-side and will include all ad requests in the VMAP output
+
+
+            When set to `true`, SSAI will request ads server-side and include any that are unsuccessful in the VMAP output'
+          default: true
+        disable_server_beacons:
+          type: boolean
+          description: 'Flags whether to disable the server side firing of ad impressions/beacons
+
+
+            When set to `true`, SSAI will not fire any beacons server-side and will include all beacons in the VMAP output
+
+
+            When set to `false`, SSAI will fire the beacons it is able to server-side and include any it is not able to in the VMAP output'
+        round_up_cue_points:
+          type: boolean
+          description: Flags whether to round up ad cue point time to the next keyframe
+          default: false
         template_url:
           type: object
           properties:
             template:
               type: string
-              description: The beacon URL template
+              description: Ad tag template. Available variables described in [this document](/vod/guides/video-cloud-ssai-ad-config-api.html#Ad_variables).
     AdConfiguration:
       title: Ad Configuration Response
       type: object
@@ -256,51 +274,39 @@ components:
           hls:
           - '*'
         extend_beacon_guard_ttl: true
-    AdConfig:
-      title: ad_config
+    BeaconTemplate:
+      title: Beacon Template
+      description: Beacons are sent to send analytics data from the client. The beacon template defines the type of events to send beacons for and the information that will be sent.
       type: object
-      description: Ad config part of an ad configuration object
       properties:
-        expected_ad_response:
+        type:
           type: string
-          description: 'Which tech to use to parse the response.
-
-
-            When the `expected_ad_response` is set to `vast_3_0`, SSAI makes one VAST call for each ad cue point defined in Video Cloud. For VMAP and ad rules, SSAI makes requests based on the defined ad breaks in the initial ad response.'
+          description: Type of beacon to fire.
           enum:
-          - dfp_ad_rules
-          - dfp_vmap
-          - smart_xml
-          - vast_3_0
-        enable_ads:
-          type: boolean
-          description: 'Flags whether to disable the server side firing of ad requests.
-
-
-            When set to `false`, SSAI will not request any ads server-side and will include all ad requests in the VMAP output
-
-
-            When set to `true`, SSAI will request ads server-side and include any that are unsuccessful in the VMAP output'
-          default: true
-        disable_server_beacons:
-          type: boolean
-          description: 'Flags whether to disable the server side firing of ad impressions/beacons
-
-
-            When set to `true`, SSAI will not fire any beacons server-side and will include all beacons in the VMAP output
-
-
-            When set to `false`, SSAI will fire the beacons it is able to server-side and include any it is not able to in the VMAP output'
-        round_up_cue_points:
-          type: boolean
-          description: Flags whether to round up ad cue point time to the next keyframe
-          default: false
+          - content_first_quartile
+          - content_start
+          - content_midpoint
+          - content_third_quartile
+          - content_complete
+          - content_quartiles
+          - content_interval
+          - ad_start
+          - ad_first_quartile
+          - ad_midpoint
+          - ad_third_quartile
+          - ad_complete
+          - ad_quartiles
+          - ad_break_start
+          - ad_break_end
+          - segment_start
+          - segment_end
+          - on_load
         template_url:
           type: object
           properties:
             template:
               type: string
-              description: Ad tag template. Available variables described in [this document](/vod/guides/video-cloud-ssai-ad-config-api.html#Ad_variables).
+              description: The beacon URL template
     Discontinuities:
       type: object
       description: Controls the versions of DASH to deliver Multi Period manifests or versions of HLS to deliver with discontinuities
@@ -338,12 +344,6 @@ components:
           example:
           - v4
           - v5
-    AdConfigList:
-      title: List Ad Configurations Response
-      type: array
-      description: Array of ad configuration objects
-      items:
-        $ref: '#/components/schemas/AdConfiguration'
   parameters:
     AccountId:
       name: account_id

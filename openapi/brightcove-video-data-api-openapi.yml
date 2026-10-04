@@ -58,28 +58,10 @@ paths:
         IsMultiContentStreaming: false
 components:
   parameters:
-    account_id:
-      name: account_id
-      in: path
-      description: a Video Cloud account ID
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    Authorization:
-      name: Authorization
+    Accept-Encoding:
+      name: Accept-Encoding
       in: header
-      description: 'Authorization: Bearer access_token (see Getting Access Tokens)'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    Content-Type:
-      name: Content-Type
-      in: header
-      description: 'Content-Type: application/json'
+      description: 'Accept-Encoding: gzip (optional)'
       required: true
       style: simple
       explode: false
@@ -94,10 +76,28 @@ components:
       explode: false
       schema:
         type: string
-    Accept-Encoding:
-      name: Accept-Encoding
+    Content-Type:
+      name: Content-Type
       in: header
-      description: 'Accept-Encoding: gzip (optional)'
+      description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    account_id:
+      name: account_id
+      in: path
+      description: a Video Cloud account ID
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    Authorization:
+      name: Authorization
+      in: header
+      description: 'Authorization: Bearer access_token (see Getting Access Tokens)'
       required: true
       style: simple
       explode: false
