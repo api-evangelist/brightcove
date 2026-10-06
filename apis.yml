@@ -32,7 +32,7 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/brightcove.png
 url: https://raw.githubusercontent.com/api-evangelist/brightcove/refs/heads/main/apis.yml
 created: '2026-06-13'
-modified: '2026-06-13'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 tags:
 - Video
@@ -755,6 +755,10 @@ apis:
   - type: Documentation
     url: https://apis.support.brightcove.com/cms/
 common:
+- url: https://www.brightcove.com/blog
+  type: Blog
+- url: https://www.brightcove.com/blog/feed.xml
+  type: BlogRSS
 - type: CapabilityMap
   url: capabilities/brightcove-capability-edges.yml
   name: Brightcove Business Capability Map
