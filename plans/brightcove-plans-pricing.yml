@@ -44,3 +44,21 @@ notes:
   - Key cost drivers include video bandwidth, storage, number of plays, and product tier
   - API access is generally included with the platform subscription
   - Contact sales at https://www.brightcove.com/en/contact/ for a custom quote
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models: []
+  units: []
+  plans:
+  - name: Marketing Edition
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Enterprise Edition
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
