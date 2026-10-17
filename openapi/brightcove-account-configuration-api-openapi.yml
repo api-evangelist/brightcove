@@ -132,6 +132,30 @@ paths:
         IsMultiContentStreaming: false
 components:
   schemas:
+    UpdateDefaultProfilebody:
+      title: Update_Default_ProfileBody
+      required:
+      - account_id
+      - id
+      - default_profile_id
+      type: object
+      properties:
+        account_id:
+          type: number
+          description: Video Cloud account ID
+        id:
+          type: string
+          description: the configuration id (if you do not have it, make a GET request to get it)
+        default_profile_id:
+          type: string
+          description: The id or name of the profile you want to set as the default
+          example: multi-platform-standard-static
+        default_live_profile_id:
+          type: string
+          description: The id or name of the live profile you want to set as the default
+        default_social_clipping_profile_id:
+          type: string
+          description: The id or name of the profile you want to set as the default for creating social clips
     DefaultProfileResponse:
       title: Default Profile responses
       type: object
@@ -185,40 +209,7 @@ components:
         default_social_clipping_profile_id:
           type: string
           description: The id or name of the profile you want to set as the default for creating social clips
-    UpdateDefaultProfilebody:
-      title: Update_Default_ProfileBody
-      required:
-      - account_id
-      - id
-      - default_profile_id
-      type: object
-      properties:
-        account_id:
-          type: number
-          description: Video Cloud account ID
-        id:
-          type: string
-          description: the configuration id (if you do not have it, make a GET request to get it)
-        default_profile_id:
-          type: string
-          description: The id or name of the profile you want to set as the default
-          example: multi-platform-standard-static
-        default_live_profile_id:
-          type: string
-          description: The id or name of the live profile you want to set as the default
-        default_social_clipping_profile_id:
-          type: string
-          description: The id or name of the profile you want to set as the default for creating social clips
   parameters:
-    account_id:
-      name: account_id
-      in: path
-      description: Video Cloud account ID.
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
     Authorization:
       name: Authorization
       in: header
@@ -238,6 +229,15 @@ components:
       schema:
         type: string
         example: application/json
+    account_id:
+      name: account_id
+      in: path
+      description: Video Cloud account ID.
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
   securitySchemes:
     BC_OAuth2:
       type: oauth2

@@ -355,6 +355,49 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
 components:
+  parameters:
+    player_id:
+      name: player_id
+      in: path
+      description: Brightcove Player ID.
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    Authorization:
+      name: Authorization
+      in: header
+      description: '**IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.
+
+
+        `Authorization: Bearer {access_token}` - (see [Getting Access
+
+        Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    ContentType:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+      example: application/json
+    account_id:
+      name: account_id
+      in: path
+      description: Video Cloud account ID.
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
   schemas:
     player_response:
       title: Create Player Request Body
@@ -461,27 +504,6 @@ components:
         created_at: '2018-07-26T19:34:35.456Z'
         embed_count: 1
         url: https://players.brightcove.net/1752604059001/default_default/index.html
-    player_request_body:
-      title: Create Player Request Body
-      type: object
-      description: Player object
-      properties:
-        name:
-          type: string
-          description: A name for the player - avoid confusion by giving the player a name that will help convey what it should be used for
-        description:
-          type: string
-          description: A description of the player - avoid confusion by giving the player a description that will help convey what it should be used for
-        configuration:
-          $ref: '#/components/schemas/configuration'
-      example:
-        name: Test_Player
-        description: A test player for autoplay and video looping
-        configuration:
-          autoplay: any
-          loop: true
-          video_cloud:
-            video: '4093372393001'
     configuration:
       title: Player Configuration
       type: object
@@ -878,49 +900,27 @@ components:
               type: string
               description: A Video Cloud video id (you can also use the reference id with the syntax `ref:reference_id`)
               default: undefined
-  parameters:
-    account_id:
-      name: account_id
-      in: path
-      description: Video Cloud account ID.
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    player_id:
-      name: player_id
-      in: path
-      description: Brightcove Player ID.
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    Authorization:
-      name: Authorization
-      in: header
-      description: '**IMPORTANT:** Basic Authentication is no longer supported. You must use OAuth 2.0 for all authentication.
-
-
-        `Authorization: Bearer {access_token}` - (see [Getting Access
-
-        Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    ContentType:
-      name: Content-Type
-      in: header
-      description: 'Content-Type: application/json'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-      example: application/json
+    player_request_body:
+      title: Create Player Request Body
+      type: object
+      description: Player object
+      properties:
+        name:
+          type: string
+          description: A name for the player - avoid confusion by giving the player a name that will help convey what it should be used for
+        description:
+          type: string
+          description: A description of the player - avoid confusion by giving the player a description that will help convey what it should be used for
+        configuration:
+          $ref: '#/components/schemas/configuration'
+      example:
+        name: Test_Player
+        description: A test player for autoplay and video looping
+        configuration:
+          autoplay: any
+          loop: true
+          video_cloud:
+            video: '4093372393001'
   securitySchemes:
     BC_OAuth2:
       type: oauth2

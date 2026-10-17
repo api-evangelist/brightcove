@@ -1511,6 +1511,84 @@ components:
           type: integer
       title: Manifest
       type: object
+    DynamicRendition:
+      example:
+      - audio_configuration: L_R
+        created_at: '2016-11-14T15:05:56.209Z'
+        duration: 31488
+        encoding_rate: 125000
+        frame_height: null
+        frame_width: null
+        language: en
+        media_type: audio
+        rendition_id: default/audio128
+        size: 506818
+        updated_at: '2016-11-14T15:05:56.209Z'
+        variant: main
+      - created_at: '2016-11-14T15:06:17.295Z'
+        duration: 31465
+        encoding_rate: 902000
+        frame_height: 360
+        frame_width: 640
+        media_type: video
+        rendition_id: default/video900
+        size: 3561912
+        updated_at: '2016-11-14T15:06:17.295Z'
+        variant: main
+      properties:
+        audio_configuration:
+          description: The audio configuration of the audio track
+          readOnly: true
+          type: string
+        duration:
+          description: duration in milliseconds
+          readOnly: true
+          type: integer
+        encoding_rate:
+          description: average encoding rate in kbps
+          readOnly: true
+          type: integer
+        frame_height:
+          description: frame height in pixels
+          readOnly: true
+          type: integer
+        frame_width:
+          description: frame width in pixels
+          readOnly: true
+          type: integer
+        media_type:
+          description: media type for the rendition (audio or video)
+          enum:
+          - audio
+          - video
+          readOnly: true
+          type: string
+        rendition_id:
+          description: the rendition id
+          readOnly: true
+          type: string
+        size:
+          description: the size of the asset in bytes (integer)
+          readOnly: true
+          type: integer
+        updated_at:
+          description: when the video was last modified
+          readOnly: true
+          type: string
+        uploaded_at:
+          description: when the asset was added to the video in Video Cloud
+          readOnly: true
+          type: string
+        variant:
+          description: The variant of the HLS profile (baseline, main, or high)
+          enum:
+          - baseline
+          - main
+          - high
+          readOnly: true
+          type: string
+      title: DynamicRendition
+      type: object
     VideoAsset:
       example:
       - account_id: '57838016001'
@@ -1734,90 +1812,12 @@ components:
       type:
       - object
       - 'null'
-    DynamicRendition:
-      example:
-      - audio_configuration: L_R
-        created_at: '2016-11-14T15:05:56.209Z'
-        duration: 31488
-        encoding_rate: 125000
-        frame_height: null
-        frame_width: null
-        language: en
-        media_type: audio
-        rendition_id: default/audio128
-        size: 506818
-        updated_at: '2016-11-14T15:05:56.209Z'
-        variant: main
-      - created_at: '2016-11-14T15:06:17.295Z'
-        duration: 31465
-        encoding_rate: 902000
-        frame_height: 360
-        frame_width: 640
-        media_type: video
-        rendition_id: default/video900
-        size: 3561912
-        updated_at: '2016-11-14T15:06:17.295Z'
-        variant: main
-      properties:
-        audio_configuration:
-          description: The audio configuration of the audio track
-          readOnly: true
-          type: string
-        duration:
-          description: duration in milliseconds
-          readOnly: true
-          type: integer
-        encoding_rate:
-          description: average encoding rate in kbps
-          readOnly: true
-          type: integer
-        frame_height:
-          description: frame height in pixels
-          readOnly: true
-          type: integer
-        frame_width:
-          description: frame width in pixels
-          readOnly: true
-          type: integer
-        media_type:
-          description: media type for the rendition (audio or video)
-          enum:
-          - audio
-          - video
-          readOnly: true
-          type: string
-        rendition_id:
-          description: the rendition id
-          readOnly: true
-          type: string
-        size:
-          description: the size of the asset in bytes (integer)
-          readOnly: true
-          type: integer
-        updated_at:
-          description: when the video was last modified
-          readOnly: true
-          type: string
-        uploaded_at:
-          description: when the asset was added to the video in Video Cloud
-          readOnly: true
-          type: string
-        variant:
-          description: The variant of the HLS profile (baseline, main, or high)
-          enum:
-          - baseline
-          - main
-          - high
-          readOnly: true
-          type: string
-      title: DynamicRendition
-      type: object
   parameters:
-    VideoId:
-      description: Video ID (specified as `{video_id}}`).
+    AccountId:
+      description: Video Cloud account ID.
       explode: false
       in: path
-      name: video_id
+      name: account_id
       required: true
       schema:
         type: string
@@ -1831,20 +1831,20 @@ components:
       schema:
         type: string
       style: simple
-    AccountId:
-      description: Video Cloud account ID.
-      explode: false
-      in: path
-      name: account_id
-      required: true
-      schema:
-        type: string
-      style: simple
     Authorization:
       description: 'Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)'
       explode: false
       in: header
       name: Authorization
+      required: true
+      schema:
+        type: string
+      style: simple
+    VideoId:
+      description: Video ID (specified as `{video_id}}`).
+      explode: false
+      in: path
+      name: video_id
       required: true
       schema:
         type: string

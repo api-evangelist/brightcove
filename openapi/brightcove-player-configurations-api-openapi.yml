@@ -167,15 +167,6 @@ components:
         enum:
         - master
         - preview
-    account_id:
-      name: account_id
-      in: path
-      description: Video Cloud account ID.
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
     player_id:
       name: player_id
       in: path
@@ -209,6 +200,15 @@ components:
       schema:
         type: string
       example: application/json
+    account_id:
+      name: account_id
+      in: path
+      description: Video Cloud account ID.
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
   schemas:
     configuration:
       title: Player Configuration

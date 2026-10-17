@@ -275,79 +275,6 @@ paths:
         IsMultiContentStreaming: false
 components:
   schemas:
-    Videofields.standardField:
-      properties:
-        description:
-          description: description (instruction for user)
-          type: string
-        id:
-          description: data name for the field (used to access it in searches, etc.)
-          type: string
-        required:
-          description: whether field must have a value before video can be active
-          type: boolean
-      title: VideoFields.standard_field
-      type: object
-    CustomFields:
-      description: array of standard field maps
-      items:
-        $ref: '#/components/schemas/customField'
-      type: array
-    Videofields.customField:
-      properties:
-        description:
-          description: description (instruction for user)
-          type: string
-        display_name:
-          description: display name
-          type: string
-        enum_values:
-          description: array of string values for select type fields
-          items:
-            type: string
-          type: array
-        id:
-          description: data name for the field (used to access it in searches, etc.)
-          type: string
-        required:
-          description: whether field must have a value before video can be active
-          type: boolean
-          default: false
-        type:
-          description: custom field type (enum or string)
-          type: string
-          readOnly: true
-      title: VideoFields.custom_field
-      type: object
-    customField:
-      properties:
-        description:
-          description: description (instruction for user)
-          type: string
-        display_name:
-          description: display name
-          type: string
-        enum_values:
-          description: 'Array of string values for select type fields (by default the maximum is 100 values; this can be increased up to 1000 by submitting a [request to Support](https://supportportal.brightcove.com/)).
-
-
-            This field is **required** for `enum` types, and **not allowed** for `string` types.'
-          items:
-            type: string
-            maxLength: 100
-          type: array
-        id:
-          description: "Data name for the field (used to access it in searches, etc.)\n\nNote the following **requirements** for the custom field `id`:\n  - all lowercase\n  - no spaces (use underscore [_] instead)\n  - max length: 128 single-byte characters\n  - must be unique among all custom fields for the account\n  - must not be one of the [Reserved names](https://studio.support.brightcove.com/admin/creating-custom-metadata-fields.html#reserved)\n\n  Note that updating it will trigger an internal process to update the `id` in any videos that have the custom field."
-          type: string
-        required:
-          description: whether field must have a value before video can be active
-          type: boolean
-          default: false
-        type:
-          description: custom field type (enum or string)
-          type: string
-      title: custom_field
-      type: object
     customFieldUpdate:
       properties:
         description:
@@ -479,16 +406,80 @@ components:
           type: array
       title: VideoFields
       type: object
+    customField:
+      properties:
+        description:
+          description: description (instruction for user)
+          type: string
+        display_name:
+          description: display name
+          type: string
+        enum_values:
+          description: 'Array of string values for select type fields (by default the maximum is 100 values; this can be increased up to 1000 by submitting a [request to Support](https://supportportal.brightcove.com/)).
+
+
+            This field is **required** for `enum` types, and **not allowed** for `string` types.'
+          items:
+            type: string
+            maxLength: 100
+          type: array
+        id:
+          description: "Data name for the field (used to access it in searches, etc.)\n\nNote the following **requirements** for the custom field `id`:\n  - all lowercase\n  - no spaces (use underscore [_] instead)\n  - max length: 128 single-byte characters\n  - must be unique among all custom fields for the account\n  - must not be one of the [Reserved names](https://studio.support.brightcove.com/admin/creating-custom-metadata-fields.html#reserved)\n\n  Note that updating it will trigger an internal process to update the `id` in any videos that have the custom field."
+          type: string
+        required:
+          description: whether field must have a value before video can be active
+          type: boolean
+          default: false
+        type:
+          description: custom field type (enum or string)
+          type: string
+      title: custom_field
+      type: object
+    Videofields.customField:
+      properties:
+        description:
+          description: description (instruction for user)
+          type: string
+        display_name:
+          description: display name
+          type: string
+        enum_values:
+          description: array of string values for select type fields
+          items:
+            type: string
+          type: array
+        id:
+          description: data name for the field (used to access it in searches, etc.)
+          type: string
+        required:
+          description: whether field must have a value before video can be active
+          type: boolean
+          default: false
+        type:
+          description: custom field type (enum or string)
+          type: string
+          readOnly: true
+      title: VideoFields.custom_field
+      type: object
+    CustomFields:
+      description: array of standard field maps
+      items:
+        $ref: '#/components/schemas/customField'
+      type: array
+    Videofields.standardField:
+      properties:
+        description:
+          description: description (instruction for user)
+          type: string
+        id:
+          description: data name for the field (used to access it in searches, etc.)
+          type: string
+        required:
+          description: whether field must have a value before video can be active
+          type: boolean
+      title: VideoFields.standard_field
+      type: object
   parameters:
-    custom_field_id:
-      description: Custom Field ID.
-      explode: false
-      in: path
-      name: custom_field_id
-      required: true
-      schema:
-        type: string
-      style: simple
     AccountId:
       description: Video Cloud account ID.
       explode: false
@@ -503,6 +494,15 @@ components:
       explode: false
       in: header
       name: Authorization
+      required: true
+      schema:
+        type: string
+      style: simple
+    custom_field_id:
+      description: Custom Field ID.
+      explode: false
+      in: path
+      name: custom_field_id
       required: true
       schema:
         type: string

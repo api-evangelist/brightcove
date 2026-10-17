@@ -206,14 +206,6 @@ paths:
         IsMultiContentStreaming: false
 components:
   parameters:
-    created_at:
-      name: created_at
-      in: query
-      description: Filter results by Unix time of job creation (in milliseconds)
-      style: form
-      explode: true
-      schema:
-        type: integer
     jvod_state:
       name: jvod_state
       in: query
@@ -248,62 +240,20 @@ components:
             - finished
             - failed
             - creating_asset
-    ContentType:
-      name: Content-Type
-      in: header
-      description: 'Content-Type: application/json'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-        default: application/json
-      example: application/json
-    label:
-      name: label
+    user_id:
+      name: user_id
       in: query
-      description: Filter results by one or more VOD job labels
+      description: Filter results by one or more user IDs
       style: form
       explode: true
       schema:
         oneOf:
         - type: string
-          description: VOD job label
-          enum:
-          - none
-          - ready
-          - waiting_input
-          - start_transcoding
-          - transcoding
-          - error
+          description: User id
         - type: array
           items:
             type: string
-            description: VOD job label
-            enum:
-            - none
-            - ready
-            - waiting_input
-            - start_transcoding
-            - transcoding
-            - error
-    account_id:
-      name: account_id
-      in: query
-      description: Filter results by particular account, or specify ‘*’ to search all accounts.  Default value is account API key belongs to
-      style: form
-      explode: true
-      schema:
-        type: string
-    XAPIKEY:
-      name: X-API-KEY
-      in: header
-      description: 'X-API-KEY: {Your_Live_API_Key}'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
+            description: User id
     start_token:
       name: start_token
       in: query
@@ -336,51 +286,43 @@ components:
             - ftp
             - instant
             - error
-    sort_dir:
-      name: sort_dir
+    label:
+      name: label
       in: query
-      description: Sort direction (default is asc):`asc` - ascending; `desc` - descending
-      style: form
-      explode: true
-      schema:
-        type: string
-        enum:
-        - asc
-        - desc
-        default: asc
-    page_size:
-      name: page_size
-      in: query
-      description: Max number of items to return in one request (1-1000, default is 10)
-      style: form
-      explode: true
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-        default: 10
-    user_id:
-      name: user_id
-      in: query
-      description: Filter results by one or more user IDs
+      description: Filter results by one or more VOD job labels
       style: form
       explode: true
       schema:
         oneOf:
         - type: string
-          description: User id
+          description: VOD job label
+          enum:
+          - none
+          - ready
+          - waiting_input
+          - start_transcoding
+          - transcoding
+          - error
         - type: array
           items:
             type: string
-            description: User id
-    modified_at:
-      name: modified_at
-      in: query
-      description: Filter results by Unix time of job last modified (in milliseconds)
-      style: form
-      explode: true
+            description: VOD job label
+            enum:
+            - none
+            - ready
+            - waiting_input
+            - start_transcoding
+            - transcoding
+            - error
+    XAPIKEY:
+      name: X-API-KEY
+      in: header
+      description: 'X-API-KEY: {Your_Live_API_Key}'
+      required: true
+      style: simple
+      explode: false
       schema:
-        type: integer
+        type: string
     jvod_id:
       name: jvod_id
       in: path
@@ -390,6 +332,25 @@ components:
       explode: false
       schema:
         type: string
+    ContentType:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        default: application/json
+      example: application/json
+    modified_at:
+      name: modified_at
+      in: query
+      description: Filter results by Unix time of job last modified (in milliseconds)
+      style: form
+      explode: true
+      schema:
+        type: integer
     sort:
       name: sort
       in: query
@@ -402,6 +363,45 @@ components:
         - created_at
         - modified_at
         default: created_at
+    created_at:
+      name: created_at
+      in: query
+      description: Filter results by Unix time of job creation (in milliseconds)
+      style: form
+      explode: true
+      schema:
+        type: integer
+    page_size:
+      name: page_size
+      in: query
+      description: Max number of items to return in one request (1-1000, default is 10)
+      style: form
+      explode: true
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 10
+    sort_dir:
+      name: sort_dir
+      in: query
+      description: Sort direction (default is asc):`asc` - ascending; `desc` - descending
+      style: form
+      explode: true
+      schema:
+        type: string
+        enum:
+        - asc
+        - desc
+        default: asc
+    account_id:
+      name: account_id
+      in: query
+      description: Filter results by particular account, or specify ‘*’ to search all accounts.  Default value is account API key belongs to
+      style: form
+      explode: true
+      schema:
+        type: string
     JobId:
       name: job_id
       in: path
@@ -412,6 +412,77 @@ components:
       schema:
         type: string
   schemas:
+    VodJobs:
+      properties:
+        jvod_id:
+          description: The clip job id
+          type: string
+        label:
+          description: The clip label (from the input)
+          type: string
+      required:
+      - jvod_id
+      - label
+      title: vod_jobs
+      type: object
+    ListVodJobs:
+      properties:
+        next_token:
+          description: Use as start_token to fetch next page.  Not include if no more matching jobs.
+          type: string
+        start_token:
+          description: Returns start_token from current request (not included on first page).
+          type: string
+        vod_jobs:
+          description: The filtered list of jobs.  List may be empty if no matching jobs or for last page.
+          items:
+            $ref: '#/components/schemas/VodJobs2'
+          type: array
+      required:
+      - start_token
+      - vod_jobs
+      title: List_Live_Jobs200
+      type: object
+      example:
+        jvod_state: processing
+        jvod_progress: Chunklist-download-error
+        job_id: 3ae7fa89943f4a96aa273fbbf175d527
+        jvod_id: a731d75e39bf40708168cedef60ba404
+        jvod_last_state_change_at: 1536151062350
+        jvod_type: s3
+        jvod_url: s3://alive-pr-us-west-2-di-tmp/a5c3b3f8149a43328fd5ac8124765808.mp4
+        jvod_worker_id: i-0dac4a87c61e688ab
+        label: first 30 secs of live job
+        cloud_id: 301c91a5d9254b5d944b108c355f12be
+        jvod_cancelling_flag: false
+        jvod_created_at: 1536151027046
+        jvod_duration_s: 93600
+        jvod_reported_duration_s: null
+        jvod_finished_at: 0
+        jvod_region: us-west-2
+        account_id: a95ac581551b4478b27910e5675db1f8
+        user_id: c2691d4d039040be96c190a949d754a7
+        jvod_start_time_relative_s: 10
+        jvod_end_time_relative_s: 300
+        jvod_videocloud:
+          video:
+            name: TEST Clip
+            clip_source_video_id: '5831009084001'
+          ingest: {}
+    CreateVodClipbody.outputs.videocloud.video.schedule:
+      properties:
+        ends_at:
+          description: end date-time of availability in [ISO-8601](https://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) format
+          type: string
+        starts_at:
+          description: '''start date-time of availability in [ISO-8601](https://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) format'''
+          type: string
+      required:
+      - ends_at
+      - starts_at
+      title: Create_VOD_ClipBody.outputs.videocloud.video.schedule
+      type: object
+      description: map of scheduling properties
     CreateVodClipbody.outputs:
       properties:
         credentials:
@@ -478,20 +549,6 @@ components:
       - label
       title: Create_VOD_ClipBody.outputs
       type: object
-    CreateVodClipbody.outputs.videocloud:
-      properties:
-        account_id:
-          description: The Video Cloud Account ID the clip should be ingested to. Only required if using Video Cloud Account ID other than the default configured in your Live account. If set, you must also set the `credentials` property on the output.
-          type: string
-        ingest:
-          $ref: '#/components/schemas/CreateVodClipbody.outputs.videocloud.ingest'
-        video:
-          $ref: '#/components/schemas/CreateVodClipbody.outputs.videocloud.video'
-      required:
-      - video
-      title: Create_VOD_ClipBody.outputs.videocloud
-      description: An object containing inputs for Video Cloud ingestion
-      type: object
     CreateVodClipbody.outputs.videocloud.video:
       properties:
         cue_points:
@@ -542,127 +599,66 @@ components:
       title: Create_VOD_ClipBody.outputs.videocloud.video
       description: '''An object containing inputs for Video Cloud video object creation - see the [CMS API Reference](https://apis.support.brightcove.com/cms/references/reference.html#operation/CreateVideo)'''
       type: object
-    VodJobs2:
+    CreateVodClipbody.outputs.videocloud.video.geo:
       properties:
-        job_id:
-          description: The parent job id
+        countries:
+          description: array of ISO 3166 list of [2-letter codes](https://www.iso.org/obp/ui/#home) (search for &quot;country codes&quot;)
           type: string
-        jvod_created_at:
-          description: Time vod job was created (UNIX time in milliseconds)
-          type: integer
-        jvod_duration_s:
-          description: Length of VOD clip requested (seconds)
-          type: integer
-        jvod_finished_at:
-          description: Time vod job completed processing (UNIX time in milliseconds)
-          type: integer
-        jvod_id:
-          description: The clip job id
-          type: string
-        jvod_last_state_change_at:
-          description: Time vod job was last modified (UNIX time in milliseconds)
-          type: integer
-        jvod_region:
-          description: Region VOD job is processed in
-          enum:
-          - us-west-2
-          - us-east-1
-          - ap-southeast-2
-          - ap-northeast-1
-          - ap-southeast-1
-          - eu-central-1
-          - eu-west-1
-          - sa-east-1
-          type: string
-        jvod_reported_duration_s:
-          description: Length of VOD clip as generated (seconds)
-          type: integer
-        jvod_state:
-          description: 'Current vod job processing state
-
-
-            Possible values for
-
-            **VOD jobs** are:
-
-            - `error` (An error has occurred; the job will not be processed.)
-
-            - `waiting_finish_live` ()
-
-            - `waiting` (The job waiting for processing.)
-
-            - `waiting_finish_live` (The job waiting for the Live Job to finish [if the clip depends on that].)
-
-            - `processing` (The clip is being processed.)
-
-            - `creating_asset` (A VOD asset is being created.)
-
-            - `cancelling` (The job has been cancelled and the worker is stopping the job and will NOT process any pending VOD outputs.)
-
-            - `cancelled` (The job has been cancelled successfully.)
-
-            - `finished` (The job has finished successfully.)
-
-            - `failed` (The job has stopped as a result of a system error.)'
-          enum:
-          - error
-          - waiting
-          - waiting_finish_live
-          - processing
-          - cancelling
-          - cancelled
-          - finished
-          - failed
-          - creating_asset
-          type: string
-        jvod_type:
-          description: VOD job type
-          enum:
-          - s3
-          - ftp
-          - instant
-          - error
-          type: string
-        jvod_url:
-          description: VOD job destination (e.g. s3://somebucket or ftp://someserver)
-          type: string
-        label:
-          description: The clip label (from the input)
-          type: string
-        user_id:
-          description: ID of creating user
-          type: string
-      required:
-      - jvod_id
-      - label
-      title: vod_jobs2
-      type: object
-    CreateVodClipbody.outputs.videocloud.video.cuePoint:
-      properties:
-        force-stop:
-          description: whether video is force-stopped at the cue point
+        exclude_countries:
+          description: if true, country array is treated as a list of countries excluded from viewing
           type: boolean
-        metadata:
-          description: optional metadata string (512 single-byte characters maximum)
-          type: string
-        name:
-          description: cue point name
-          type: string
-        time:
-          description: 'time of the cue point in seconds; example: 10.527'
-          type: number
-        type:
-          description: cue point type
-          enum:
-          - AD
-          - CODE
-          example: AD
-          type: string
+        restricted:
+          description: whether geo-restriction is enabled for this video
+          type: boolean
       required:
-      - time
-      - type
-      title: Create_VOD_ClipBody.outputs.videocloud.video.cue_point
+      - countries
+      - exclude_countries
+      - restricted
+      title: Create_VOD_ClipBody.outputs.videocloud.video.geo
       type: object
+      description: map of geo-filtering properties
+    CreateVodClipbody.outputs.videocloud:
+      properties:
+        account_id:
+          description: The Video Cloud Account ID the clip should be ingested to. Only required if using Video Cloud Account ID other than the default configured in your Live account. If set, you must also set the `credentials` property on the output.
+          type: string
+        ingest:
+          $ref: '#/components/schemas/CreateVodClipbody.outputs.videocloud.ingest'
+        video:
+          $ref: '#/components/schemas/CreateVodClipbody.outputs.videocloud.video'
+      required:
+      - video
+      title: Create_VOD_ClipBody.outputs.videocloud
+      description: An object containing inputs for Video Cloud ingestion
+      type: object
+    CreateVodClipbody:
+      description: Request body for creating a clip. **Note that if you are sending a clip to Video Cloud and the account has your Live APIKey, you should *not* include the `credentials` field in the `outputs`.**
+      properties:
+        live_job_id:
+          description: The id of Live Stream job to create the VOD clip from.
+          type: string
+        outputs:
+          description: Array of VOD outputs
+          items:
+            $ref: '#/components/schemas/CreateVodClipbody.outputs'
+          type: array
+      required:
+      - live_job_id
+      - outputs
+      title: Create_VOD_ClipBody
+      type: object
+      example:
+        live_job_id: 3ae7fa89943f4a96aa273fbbf175d527
+        outputs:
+        - label: first 30 secs of live job
+          notifications:
+          - https://solutions.brightcove.com/bcls/live/live-callbacks.php
+          stream_start_time: 10
+          stream_end_time: 300
+          videocloud:
+            video:
+              name: TEST Clip
+            ingest: {}
     CreateVodJobResponse:
       properties:
         vod_jobs:
@@ -685,51 +681,6 @@ components:
           readOnly: true
           example: 3ae7fa89943f4a96aa273fbbf175d527
       title: Create VOD Job Response
-      type: object
-    CreateVodClipbody.outputs.videocloud.video.geo:
-      properties:
-        countries:
-          description: array of ISO 3166 list of [2-letter codes](https://www.iso.org/obp/ui/#home) (search for &quot;country codes&quot;)
-          type: string
-        exclude_countries:
-          description: if true, country array is treated as a list of countries excluded from viewing
-          type: boolean
-        restricted:
-          description: whether geo-restriction is enabled for this video
-          type: boolean
-      required:
-      - countries
-      - exclude_countries
-      - restricted
-      title: Create_VOD_ClipBody.outputs.videocloud.video.geo
-      type: object
-      description: map of geo-filtering properties
-    CreateVodClipbody.outputs.videocloud.video.schedule:
-      properties:
-        ends_at:
-          description: end date-time of availability in [ISO-8601](https://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) format
-          type: string
-        starts_at:
-          description: '''start date-time of availability in [ISO-8601](https://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) format'''
-          type: string
-      required:
-      - ends_at
-      - starts_at
-      title: Create_VOD_ClipBody.outputs.videocloud.video.schedule
-      type: object
-      description: map of scheduling properties
-    VodJobs:
-      properties:
-        jvod_id:
-          description: The clip job id
-          type: string
-        label:
-          description: The clip label (from the input)
-          type: string
-      required:
-      - jvod_id
-      - label
-      title: vod_jobs
       type: object
     GetVodJob:
       title: Get_VOD_Job200
@@ -849,50 +800,6 @@ components:
             name: TEST Clip
             clip_source_video_id: '5831009084001'
           ingest: {}
-    ListVodJobs:
-      properties:
-        next_token:
-          description: Use as start_token to fetch next page.  Not include if no more matching jobs.
-          type: string
-        start_token:
-          description: Returns start_token from current request (not included on first page).
-          type: string
-        vod_jobs:
-          description: The filtered list of jobs.  List may be empty if no matching jobs or for last page.
-          items:
-            $ref: '#/components/schemas/VodJobs2'
-          type: array
-      required:
-      - start_token
-      - vod_jobs
-      title: List_Live_Jobs200
-      type: object
-      example:
-        jvod_state: processing
-        jvod_progress: Chunklist-download-error
-        job_id: 3ae7fa89943f4a96aa273fbbf175d527
-        jvod_id: a731d75e39bf40708168cedef60ba404
-        jvod_last_state_change_at: 1536151062350
-        jvod_type: s3
-        jvod_url: s3://alive-pr-us-west-2-di-tmp/a5c3b3f8149a43328fd5ac8124765808.mp4
-        jvod_worker_id: i-0dac4a87c61e688ab
-        label: first 30 secs of live job
-        cloud_id: 301c91a5d9254b5d944b108c355f12be
-        jvod_cancelling_flag: false
-        jvod_created_at: 1536151027046
-        jvod_duration_s: 93600
-        jvod_reported_duration_s: null
-        jvod_finished_at: 0
-        jvod_region: us-west-2
-        account_id: a95ac581551b4478b27910e5675db1f8
-        user_id: c2691d4d039040be96c190a949d754a7
-        jvod_start_time_relative_s: 10
-        jvod_end_time_relative_s: 300
-        jvod_videocloud:
-          video:
-            name: TEST Clip
-            clip_source_video_id: '5831009084001'
-          ingest: {}
     CreateVodClipbody.outputs.videocloud.ingest:
       properties:
         callbacks:
@@ -910,34 +817,6 @@ components:
       title: Create_VOD_ClipBody.outputs.videocloud.ingest
       description: An object containing inputs for Video Cloud video ingestion - see the [Dynamic Ingest Reference](https://apis.support.brightcove.com/dynamic-ingest/references/reference.html#operation/AccountsVideosIngestRequestsByAccountIdAndVideoIdPost) - do not include the master field, as that information will be provided by the Live API. If no ingest profile is specified, the account default profile will be used.
       type: object
-    CreateVodClipbody:
-      description: Request body for creating a clip. **Note that if you are sending a clip to Video Cloud and the account has your Live APIKey, you should *not* include the `credentials` field in the `outputs`.**
-      properties:
-        live_job_id:
-          description: The id of Live Stream job to create the VOD clip from.
-          type: string
-        outputs:
-          description: Array of VOD outputs
-          items:
-            $ref: '#/components/schemas/CreateVodClipbody.outputs'
-          type: array
-      required:
-      - live_job_id
-      - outputs
-      title: Create_VOD_ClipBody
-      type: object
-      example:
-        live_job_id: 3ae7fa89943f4a96aa273fbbf175d527
-        outputs:
-        - label: first 30 secs of live job
-          notifications:
-          - https://solutions.brightcove.com/bcls/live/live-callbacks.php
-          stream_start_time: 10
-          stream_end_time: 300
-          videocloud:
-            video:
-              name: TEST Clip
-            ingest: {}
     Notification:
       properties:
         credentials:
@@ -958,4 +837,125 @@ components:
       - url
       - event
       title: notification
+      type: object
+    CreateVodClipbody.outputs.videocloud.video.cuePoint:
+      properties:
+        force-stop:
+          description: whether video is force-stopped at the cue point
+          type: boolean
+        metadata:
+          description: optional metadata string (512 single-byte characters maximum)
+          type: string
+        name:
+          description: cue point name
+          type: string
+        time:
+          description: 'time of the cue point in seconds; example: 10.527'
+          type: number
+        type:
+          description: cue point type
+          enum:
+          - AD
+          - CODE
+          example: AD
+          type: string
+      required:
+      - time
+      - type
+      title: Create_VOD_ClipBody.outputs.videocloud.video.cue_point
+      type: object
+    VodJobs2:
+      properties:
+        job_id:
+          description: The parent job id
+          type: string
+        jvod_created_at:
+          description: Time vod job was created (UNIX time in milliseconds)
+          type: integer
+        jvod_duration_s:
+          description: Length of VOD clip requested (seconds)
+          type: integer
+        jvod_finished_at:
+          description: Time vod job completed processing (UNIX time in milliseconds)
+          type: integer
+        jvod_id:
+          description: The clip job id
+          type: string
+        jvod_last_state_change_at:
+          description: Time vod job was last modified (UNIX time in milliseconds)
+          type: integer
+        jvod_region:
+          description: Region VOD job is processed in
+          enum:
+          - us-west-2
+          - us-east-1
+          - ap-southeast-2
+          - ap-northeast-1
+          - ap-southeast-1
+          - eu-central-1
+          - eu-west-1
+          - sa-east-1
+          type: string
+        jvod_reported_duration_s:
+          description: Length of VOD clip as generated (seconds)
+          type: integer
+        jvod_state:
+          description: 'Current vod job processing state
+
+
+            Possible values for
+
+            **VOD jobs** are:
+
+            - `error` (An error has occurred; the job will not be processed.)
+
+            - `waiting_finish_live` ()
+
+            - `waiting` (The job waiting for processing.)
+
+            - `waiting_finish_live` (The job waiting for the Live Job to finish [if the clip depends on that].)
+
+            - `processing` (The clip is being processed.)
+
+            - `creating_asset` (A VOD asset is being created.)
+
+            - `cancelling` (The job has been cancelled and the worker is stopping the job and will NOT process any pending VOD outputs.)
+
+            - `cancelled` (The job has been cancelled successfully.)
+
+            - `finished` (The job has finished successfully.)
+
+            - `failed` (The job has stopped as a result of a system error.)'
+          enum:
+          - error
+          - waiting
+          - waiting_finish_live
+          - processing
+          - cancelling
+          - cancelled
+          - finished
+          - failed
+          - creating_asset
+          type: string
+        jvod_type:
+          description: VOD job type
+          enum:
+          - s3
+          - ftp
+          - instant
+          - error
+          type: string
+        jvod_url:
+          description: VOD job destination (e.g. s3://somebucket or ftp://someserver)
+          type: string
+        label:
+          description: The clip label (from the input)
+          type: string
+        user_id:
+          description: ID of creating user
+          type: string
+      required:
+      - jvod_id
+      - label
+      title: vod_jobs2
       type: object

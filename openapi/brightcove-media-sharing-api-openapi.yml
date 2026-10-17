@@ -567,7 +567,111 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
 components:
+  parameters:
+    AffiliateAccountId:
+      description: Video Cloud affiliate account ID for media sharing relationships
+      explode: false
+      in: path
+      name: affiliate_account_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    AccountId:
+      description: Video Cloud account ID.
+      explode: false
+      in: path
+      name: account_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    Authorization:
+      description: 'Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)'
+      explode: false
+      in: header
+      name: Authorization
+      required: true
+      schema:
+        type: string
+      style: simple
+    VideoId:
+      description: Video ID (specified as `{video_id}}`).
+      explode: false
+      in: path
+      name: video_id
+      required: true
+      schema:
+        type: string
+      style: simple
+    ContentType:
+      description: 'Content-Type: application/json'
+      example: application/json
+      explode: false
+      in: header
+      name: Content-Type
+      required: true
+      schema:
+        default: application/json
+        type: string
+      style: simple
+    ChannelName:
+      description: The name of the channel - usually `default`
+      explode: false
+      in: path
+      name: channel_name
+      required: true
+      schema:
+        type: string
+      style: simple
+    MasterAccountId:
+      description: Video Cloud master account ID for media sharing relationships
+      explode: false
+      in: path
+      name: master_account_id
+      required: true
+      schema:
+        type: string
+      style: simple
   schemas:
+    ShareVideoRequest:
+      example:
+      - id: '47509719001'
+      properties:
+        id:
+          description: affiliate account id to share to
+          type: string
+      required:
+      - id
+      title: ShareVideoRequest
+      type: object
+    ChannelAffiliate:
+      example:
+      - account_id: '57838016001'
+        account_name: BrightcoveLearning
+        approved: true
+      - account_id: '1481353044001'
+        account_name: BC - Samples
+        approved: true
+      - account_id: '301925175'
+        account_name: BC Home Page Player
+        approved: true
+      properties:
+        account_id:
+          description: affiliate account id
+          type: string
+        account_name:
+          description: affiliate account name
+          type: string
+        approved:
+          description: whether the affiliate has approved the relationship
+          type: boolean
+      required:
+      - account_id
+      - account_name
+      - approved
+      title: ChannelAffiliate
+      type: object
     AddAffiliate:
       example:
         account_id: '1937897674001'
@@ -612,33 +716,6 @@ components:
           type: string
       title: Channel
       type: object
-    ChannelAffiliate:
-      example:
-      - account_id: '57838016001'
-        account_name: BrightcoveLearning
-        approved: true
-      - account_id: '1481353044001'
-        account_name: BC - Samples
-        approved: true
-      - account_id: '301925175'
-        account_name: BC Home Page Player
-        approved: true
-      properties:
-        account_id:
-          description: affiliate account id
-          type: string
-        account_name:
-          description: affiliate account name
-          type: string
-        approved:
-          description: whether the affiliate has approved the relationship
-          type: boolean
-      required:
-      - account_id
-      - account_name
-      - approved
-      title: ChannelAffiliate
-      type: object
     Contract:
       example:
       - account_id: '1485884786001'
@@ -676,17 +753,6 @@ components:
           type: string
       title: Contract
       type: object
-    ShareVideoRequest:
-      example:
-      - id: '47509719001'
-      properties:
-        id:
-          description: affiliate account id to share to
-          type: string
-      required:
-      - id
-      title: ShareVideoRequest
-      type: object
     VideoShare:
       example:
       - affiliate_id: '47509719001'
@@ -721,72 +787,6 @@ components:
       - affiliate_video_id
       title: VideoShare
       type: object
-  parameters:
-    AffiliateAccountId:
-      description: Video Cloud affiliate account ID for media sharing relationships
-      explode: false
-      in: path
-      name: affiliate_account_id
-      required: true
-      schema:
-        type: string
-      style: simple
-    VideoId:
-      description: Video ID (specified as `{video_id}}`).
-      explode: false
-      in: path
-      name: video_id
-      required: true
-      schema:
-        type: string
-      style: simple
-    MasterAccountId:
-      description: Video Cloud master account ID for media sharing relationships
-      explode: false
-      in: path
-      name: master_account_id
-      required: true
-      schema:
-        type: string
-      style: simple
-    ChannelName:
-      description: The name of the channel - usually `default`
-      explode: false
-      in: path
-      name: channel_name
-      required: true
-      schema:
-        type: string
-      style: simple
-    AccountId:
-      description: Video Cloud account ID.
-      explode: false
-      in: path
-      name: account_id
-      required: true
-      schema:
-        type: string
-      style: simple
-    Authorization:
-      description: 'Authorization: Bearer {access_token} - see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html)'
-      explode: false
-      in: header
-      name: Authorization
-      required: true
-      schema:
-        type: string
-      style: simple
-    ContentType:
-      description: 'Content-Type: application/json'
-      example: application/json
-      explode: false
-      in: header
-      name: Content-Type
-      required: true
-      schema:
-        default: application/json
-        type: string
-      style: simple
   securitySchemes:
     BC_OAuth2:
       type: oauth2

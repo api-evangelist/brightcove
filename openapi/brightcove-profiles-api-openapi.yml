@@ -204,24 +204,78 @@ paths:
         IsMultiContentStreaming: false
 components:
   schemas:
-    IngestProfile.digitalMaster:
-      title: IngestProfile.digital_master
+    IngestProfileResponse:
+      title: Ingest Profile
+      required:
+      - name
+      - account_id
       type: object
       properties:
-        rendition:
+        id:
+          description: System id for the profile
           type: string
-          description: rendition to use as master - either `passthrough` (the source optimized for online delivery) or `none` if you do not want to archive a master
-          default: none
-          enum:
-          - passthrough
-          - none
-        distribute:
-          type: boolean
-          description: 'whether to make the master playable as a rendition by pushing it to the CDN(s)
-
-
-            **Note that this option applies only to legacy ingest profiles, and will be ignored for Dynamic Delivery profiles**'
-          default: false
+          readOnly: true
+        version:
+          type: number
+          description: system-managed version number
+          readOnly: true
+        name:
+          type: string
+          description: profile name (must be unique within the account)
+        account_id:
+          type: string
+          description: Video Cloud account ID.
+          readOnly: true
+        dynamic_origin:
+          $ref: '#/components/schemas/IngestProfile.dynamicOrigin'
+        renditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/IngestProfile.renditions'
+          description: array of rendition maps **Legacy Ingest only** - should be an empty array for Dynamic Delivery
+        packages:
+          type: array
+          items:
+            $ref: '#/components/schemas/IngestProfile.packages'
+          description: array of package maps for DRM (see Content Security) **Legacy Ingest only** - should be an empty array for Dynamic Delivery
+        description:
+          type: string
+          description: description of the profile
+        digital_master:
+          $ref: '#/components/schemas/IngestProfile.digitalMaster'
+      example:
+        version: 2
+        name: multi-platform-standard-static
+        display_name: Multiplatform Standard
+        description: Deliver a wide range of content types across a variety of platforms on mobile and desktop.
+        account_id: -1
+        brightcove_standard: true
+        date_created: 1495114240899
+        date_last_modified: 1503002227773
+        digital_master:
+          rendition: passthrough
+          distribute: false
+        renditions: []
+        packages: []
+        dynamic_origin:
+          renditions:
+          - default/audio64
+          - default/audio128
+          - default/video700
+          - default/video2000
+          - default/video1700
+          - default/video1200
+          - default/audio96
+          - default/video450
+          - default/video900
+          images:
+          - label: poster
+            height: 720
+            width: 1280
+          - label: thumbnail
+            height: 90
+            width: 160
+        id: 6198c17bbbdc42a4bb60a41f
     IngestProfile.dynamicOrigin.dynamicProfileOptions:
       title: IngestProfile.dynamic_origin.dynamic_profile_options
       required:
@@ -334,64 +388,6 @@ components:
           description: Array of watermark objects specifying one or more watermarks to be added to renditions
           items:
             $ref: '#/components/schemas/IngestProfile.dynamicOrigin.dynamicProfileOptions.watermarks'
-    IngestProfile.renditions.skip:
-      title: IngestProfiles.renditions.skip
-      description: A set of conditions for skipping creation of this rendition see Conditional Output **Legacy Ingest only**
-      type: object
-      properties:
-        min_audio_bitrate:
-          type: integer
-          description: the minimum audio bitrate that the source must have (kbps) **Legacy Ingest only**
-          format: int32
-        max_audio_bitrate:
-          type: integer
-          description: the maximum audio bitrate that the source must have (kbps) **Legacy Ingest only**
-          format: int32
-        min_video_bitrate:
-          type: integer
-          description: the minimum video bitrate that the source must have (kbps) **Legacy Ingest only**
-          format: int32
-        max_video_bitrate:
-          type: integer
-          description: the maximum video bitrate that the source must have (kbps) **Legacy Ingest only**
-          format: int32
-        require_audio:
-          type: boolean
-          description: if true the source must include an audio track **Legacy Ingest only**
-        require_video:
-          type: boolean
-          description: if true the source must include a video track **Legacy Ingest only**
-        min_size:
-          type: string
-          description: the source must be at least this resolution - string of the form &quot;widthxheight&quot; (e.g. &quot;400x225&quot;) **Legacy Ingest only**
-        max_size:
-          type: string
-          description: the source must be at most this resolution - string of the form &quot;widthxheight&quot; (e.g. &quot;1920x1080&quot;) **Legacy Ingest only**
-    IngestProfile.dynamicOrigin.dynamicProfileOptions.watermarks:
-      title: IngestProfile.renditions.watermarks
-      description: One or more watermark images for Context Aware Encoding profiles
-      required:
-      - url
-      - width
-      - x
-      - y
-      type: object
-      properties:
-        url:
-          type: string
-          description: URL for the watermark image
-        width:
-          type: string
-          description: width in pixels or percent of frame width; e.g. 20 or 10%
-        height:
-          type: string
-          description: height in pixels or percent of frame width; e.g. 20 or 10%
-        x:
-          type: string
-          description: distance from left edge to center of image as pixels or percent of frame width; e.g. 20 or 10% (use negative values like -10 to position the watermark relative to the right edge)
-        y:
-          type: string
-          description: distance from top edge to center if image as pixels or percent of frame height; e.g. 20 or 10% (use negative values like -10 to position the watermark relative to the bottom edge)
     IngestProfile.dynamicOrigin:
       title: IngestProfile.dynamic_origin
       required:
@@ -411,78 +407,6 @@ components:
           items:
             $ref: '#/components/schemas/IngestProfile.dynamicOrigin.images'
           description: array of image specifications for poster and thumbnail (if omitted, no images will be captured during ingestion)
-    IngestProfileResponse:
-      title: Ingest Profile
-      required:
-      - name
-      - account_id
-      type: object
-      properties:
-        id:
-          description: System id for the profile
-          type: string
-          readOnly: true
-        version:
-          type: number
-          description: system-managed version number
-          readOnly: true
-        name:
-          type: string
-          description: profile name (must be unique within the account)
-        account_id:
-          type: string
-          description: Video Cloud account ID.
-          readOnly: true
-        dynamic_origin:
-          $ref: '#/components/schemas/IngestProfile.dynamicOrigin'
-        renditions:
-          type: array
-          items:
-            $ref: '#/components/schemas/IngestProfile.renditions'
-          description: array of rendition maps **Legacy Ingest only** - should be an empty array for Dynamic Delivery
-        packages:
-          type: array
-          items:
-            $ref: '#/components/schemas/IngestProfile.packages'
-          description: array of package maps for DRM (see Content Security) **Legacy Ingest only** - should be an empty array for Dynamic Delivery
-        description:
-          type: string
-          description: description of the profile
-        digital_master:
-          $ref: '#/components/schemas/IngestProfile.digitalMaster'
-      example:
-        version: 2
-        name: multi-platform-standard-static
-        display_name: Multiplatform Standard
-        description: Deliver a wide range of content types across a variety of platforms on mobile and desktop.
-        account_id: -1
-        brightcove_standard: true
-        date_created: 1495114240899
-        date_last_modified: 1503002227773
-        digital_master:
-          rendition: passthrough
-          distribute: false
-        renditions: []
-        packages: []
-        dynamic_origin:
-          renditions:
-          - default/audio64
-          - default/audio128
-          - default/video700
-          - default/video2000
-          - default/video1700
-          - default/video1200
-          - default/audio96
-          - default/video450
-          - default/video900
-          images:
-          - label: poster
-            height: 720
-            width: 1280
-          - label: thumbnail
-            height: 90
-            width: 160
-        id: 6198c17bbbdc42a4bb60a41f
     IngestProfile.renditions:
       title: IngestProfile.renditions
       description: Rendition definitions **Legacy Ingest Only**  - should be an empty array for Dynamic Delivery
@@ -682,6 +606,166 @@ components:
         upscale:
           type: boolean
           description: whether to upsize the frames if the source frame size is smaller than the target **Legacy Ingest only**
+    IngestProfile.renditions.watermarks:
+      title: IngestProfile.renditions.watermarks
+      required:
+      - url
+      - width
+      - height
+      - x
+      - y
+      type: object
+      properties:
+        url:
+          type: string
+          description: URL for the watermark image **Legacy Ingest only**
+        width:
+          type: string
+          description: width in pixels or percent of frame width; e.g. 20 or 10% - decimal values like 10.5% are not permitted **Legacy Ingest only**
+        height:
+          type: string
+          description: height in pixels or percent of frame width; e.g. 20 or 10% - decimal values like 10.5% are not permitted **Legacy Ingest only**
+        x:
+          type: string
+          description: distance from left edge to center of image as pixels or percent of frame width; e.g. 20 or 10% (use negative values like -10 to position the watermark relative to the right edge) - decimal values like 10.5% are not permitted **Legacy Ingest only**
+        y:
+          type: string
+          description: distance from top edge to center if image as pixels or percent of frame height; e.g. 20 or 10% (use negative values like -10 to position the watermark relative to the bottom edge) - decimal values like 10.5% are not permitted **Legacy Ingest only**
+    IngestProfile.dynamicOrigin.dynamicProfileOptions.maxResolution:
+      title: IngestProfile.dynamic_origin.dynamic_profile_options.max_resolution
+      type: object
+      description: Defines the maximum resolution for renditions for **CAE profiles only**
+      required:
+      - height
+      - width
+      properties:
+        height:
+          type: integer
+          description: Maximum height for renditions for **CAE profiles only** - defaults to the source height
+          format: int32
+        width:
+          type: integer
+          description: Maximum width for renditions for **CAE profiles only** - defaults to the source width
+          format: int32
+    ProfileList:
+      title: Profile List
+      description: Array of ingest profiles
+      type: array
+      items:
+        $ref: '#/components/schemas/IngestProfileResponse'
+    IngestProfile.digitalMaster:
+      title: IngestProfile.digital_master
+      type: object
+      properties:
+        rendition:
+          type: string
+          description: rendition to use as master - either `passthrough` (the source optimized for online delivery) or `none` if you do not want to archive a master
+          default: none
+          enum:
+          - passthrough
+          - none
+        distribute:
+          type: boolean
+          description: 'whether to make the master playable as a rendition by pushing it to the CDN(s)
+
+
+            **Note that this option applies only to legacy ingest profiles, and will be ignored for Dynamic Delivery profiles**'
+          default: false
+    IngestProfile.dynamicOrigin.images:
+      title: IngestProfile.dynamic_origin.images
+      type: object
+      properties:
+        label:
+          type: string
+          description: the kind of image this will be
+          enum:
+          - poster
+          - thumbnail
+        height:
+          type: integer
+          description: the height of the image in pixels
+          format: int32
+        width:
+          type: integer
+          description: the width of the image in pixels
+          format: int32
+    IngestProfile.dynamicOrigin.dynamicProfileOptions.watermarks:
+      title: IngestProfile.renditions.watermarks
+      description: One or more watermark images for Context Aware Encoding profiles
+      required:
+      - url
+      - width
+      - x
+      - y
+      type: object
+      properties:
+        url:
+          type: string
+          description: URL for the watermark image
+        width:
+          type: string
+          description: width in pixels or percent of frame width; e.g. 20 or 10%
+        height:
+          type: string
+          description: height in pixels or percent of frame width; e.g. 20 or 10%
+        x:
+          type: string
+          description: distance from left edge to center of image as pixels or percent of frame width; e.g. 20 or 10% (use negative values like -10 to position the watermark relative to the right edge)
+        y:
+          type: string
+          description: distance from top edge to center if image as pixels or percent of frame height; e.g. 20 or 10% (use negative values like -10 to position the watermark relative to the bottom edge)
+    IngestProfile.renditions.skip:
+      title: IngestProfiles.renditions.skip
+      description: A set of conditions for skipping creation of this rendition see Conditional Output **Legacy Ingest only**
+      type: object
+      properties:
+        min_audio_bitrate:
+          type: integer
+          description: the minimum audio bitrate that the source must have (kbps) **Legacy Ingest only**
+          format: int32
+        max_audio_bitrate:
+          type: integer
+          description: the maximum audio bitrate that the source must have (kbps) **Legacy Ingest only**
+          format: int32
+        min_video_bitrate:
+          type: integer
+          description: the minimum video bitrate that the source must have (kbps) **Legacy Ingest only**
+          format: int32
+        max_video_bitrate:
+          type: integer
+          description: the maximum video bitrate that the source must have (kbps) **Legacy Ingest only**
+          format: int32
+        require_audio:
+          type: boolean
+          description: if true the source must include an audio track **Legacy Ingest only**
+        require_video:
+          type: boolean
+          description: if true the source must include a video track **Legacy Ingest only**
+        min_size:
+          type: string
+          description: the source must be at least this resolution - string of the form &quot;widthxheight&quot; (e.g. &quot;400x225&quot;) **Legacy Ingest only**
+        max_size:
+          type: string
+          description: the source must be at most this resolution - string of the form &quot;widthxheight&quot; (e.g. &quot;1920x1080&quot;) **Legacy Ingest only**
+    IngestProfile.packages:
+      title: IngestProfile.packages
+      required:
+      - drm
+      - package_type
+      - renditions
+      type: object
+      properties:
+        drm:
+          type: array
+          items:
+            type: string
+          description: for MPEG-DASH, array of DRM types to apply, e.g. [&quot;widevine&quot;, &quot;playready&quot;] **Legacy Ingest only**
+        package_type:
+          type: string
+          description: for MPEG-DASH, the package type is `dash`; for other formats, the package type is the DRM type, e.g. `widevine` **Legacy Ingest only**
+        renditions:
+          type: object
+          description: for MPEG-DASH, the renditions will be set to the `reference_id` for a single rendition; for other formats, renditions is set equal to an array of rendition `reference_id`&#39;s **Legacy Ingest only**
     IngestProfile.dynamicOrigin.dynamicProfileOptions.video_configuration:
       title: IngestProfile.dynamicOrigin.dynamicProfileOptions.video_configuration
       description: 'A specific rendition resolution that is prioritized or mandated.
@@ -707,23 +791,21 @@ components:
         width: 428
         height: 240
         required: true
-    IngestProfile.dynamicOrigin.images:
-      title: IngestProfile.dynamic_origin.images
+    IngestProfile.dynamicOrigin.dynamicProfileOptions.minResolution:
+      title: IngestProfile.dynamic_origin.dynamic_profile_options.min_resolution
+      description: Defines the minimum resolution for for **CAE profiles only** renditions
       type: object
+      required:
+      - height
+      - width
       properties:
-        label:
-          type: string
-          description: the kind of image this will be
-          enum:
-          - poster
-          - thumbnail
         height:
           type: integer
-          description: the height of the image in pixels
+          description: Minimum height for renditions for **CAE profiles only**
           format: int32
         width:
           type: integer
-          description: the width of the image in pixels
+          description: Minimum width for renditions for **CAE profiles only**
           format: int32
     IngestProfile:
       title: Ingest Profile
@@ -792,93 +874,11 @@ components:
           - label: thumbnail
             height: 90
             width: 160
-    IngestProfile.packages:
-      title: IngestProfile.packages
-      required:
-      - drm
-      - package_type
-      - renditions
-      type: object
-      properties:
-        drm:
-          type: array
-          items:
-            type: string
-          description: for MPEG-DASH, array of DRM types to apply, e.g. [&quot;widevine&quot;, &quot;playready&quot;] **Legacy Ingest only**
-        package_type:
-          type: string
-          description: for MPEG-DASH, the package type is `dash`; for other formats, the package type is the DRM type, e.g. `widevine` **Legacy Ingest only**
-        renditions:
-          type: object
-          description: for MPEG-DASH, the renditions will be set to the `reference_id` for a single rendition; for other formats, renditions is set equal to an array of rendition `reference_id`&#39;s **Legacy Ingest only**
-    ProfileList:
-      title: Profile List
-      description: Array of ingest profiles
-      type: array
-      items:
-        $ref: '#/components/schemas/IngestProfileResponse'
-    IngestProfile.dynamicOrigin.dynamicProfileOptions.minResolution:
-      title: IngestProfile.dynamic_origin.dynamic_profile_options.min_resolution
-      description: Defines the minimum resolution for for **CAE profiles only** renditions
-      type: object
-      required:
-      - height
-      - width
-      properties:
-        height:
-          type: integer
-          description: Minimum height for renditions for **CAE profiles only**
-          format: int32
-        width:
-          type: integer
-          description: Minimum width for renditions for **CAE profiles only**
-          format: int32
-    IngestProfile.renditions.watermarks:
-      title: IngestProfile.renditions.watermarks
-      required:
-      - url
-      - width
-      - height
-      - x
-      - y
-      type: object
-      properties:
-        url:
-          type: string
-          description: URL for the watermark image **Legacy Ingest only**
-        width:
-          type: string
-          description: width in pixels or percent of frame width; e.g. 20 or 10% - decimal values like 10.5% are not permitted **Legacy Ingest only**
-        height:
-          type: string
-          description: height in pixels or percent of frame width; e.g. 20 or 10% - decimal values like 10.5% are not permitted **Legacy Ingest only**
-        x:
-          type: string
-          description: distance from left edge to center of image as pixels or percent of frame width; e.g. 20 or 10% (use negative values like -10 to position the watermark relative to the right edge) - decimal values like 10.5% are not permitted **Legacy Ingest only**
-        y:
-          type: string
-          description: distance from top edge to center if image as pixels or percent of frame height; e.g. 20 or 10% (use negative values like -10 to position the watermark relative to the bottom edge) - decimal values like 10.5% are not permitted **Legacy Ingest only**
-    IngestProfile.dynamicOrigin.dynamicProfileOptions.maxResolution:
-      title: IngestProfile.dynamic_origin.dynamic_profile_options.max_resolution
-      type: object
-      description: Defines the maximum resolution for renditions for **CAE profiles only**
-      required:
-      - height
-      - width
-      properties:
-        height:
-          type: integer
-          description: Maximum height for renditions for **CAE profiles only** - defaults to the source height
-          format: int32
-        width:
-          type: integer
-          description: Maximum width for renditions for **CAE profiles only** - defaults to the source width
-          format: int32
   parameters:
-    Authorization:
-      name: Authorization
-      in: header
-      description: 'Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))'
+    profile_id:
+      name: profile_id
+      in: path
+      description: The ingest profile ID.
       required: true
       style: simple
       explode: false
@@ -894,19 +894,19 @@ components:
       schema:
         type: string
         example: application/json
-    account_id:
-      name: account_id
-      in: path
-      description: Video Cloud account ID.
+    Authorization:
+      name: Authorization
+      in: header
+      description: 'Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))'
       required: true
       style: simple
       explode: false
       schema:
         type: string
-    profile_id:
-      name: profile_id
+    account_id:
+      name: account_id
       in: path
-      description: The ingest profile ID.
+      description: Video Cloud account ID.
       required: true
       style: simple
       explode: false

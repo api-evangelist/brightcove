@@ -189,34 +189,6 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
 components:
-  schemas:
-    Subscription:
-      properties:
-        endpoint:
-          description: the notifications endpoint
-          example: https://solutions.brightcove.com/bcls/di-api/cms-callbacks.php
-          type: string
-        events:
-          description: list of events subscribed to
-          example:
-          - video-change
-          type: array
-          items:
-            type: string
-            enum:
-            - video-change
-        id:
-          description: system id for the subscription
-          example: a0847083-79f4-4315-8a2c-403465a3d9bc
-          readOnly: true
-          type: string
-        service_account:
-          description: the Video Cloud account id
-          example: '57838016001'
-          readOnly: true
-          type: string
-      title: Subscription
-      type: object
   parameters:
     SubscriptionId:
       description: Subscription ID.
@@ -256,6 +228,34 @@ components:
         default: application/json
         type: string
       style: simple
+  schemas:
+    Subscription:
+      properties:
+        endpoint:
+          description: the notifications endpoint
+          example: https://solutions.brightcove.com/bcls/di-api/cms-callbacks.php
+          type: string
+        events:
+          description: list of events subscribed to
+          example:
+          - video-change
+          type: array
+          items:
+            type: string
+            enum:
+            - video-change
+        id:
+          description: system id for the subscription
+          example: a0847083-79f4-4315-8a2c-403465a3d9bc
+          readOnly: true
+          type: string
+        service_account:
+          description: the Video Cloud account id
+          example: '57838016001'
+          readOnly: true
+          type: string
+      title: Subscription
+      type: object
   securitySchemes:
     BC_OAuth2:
       type: oauth2
