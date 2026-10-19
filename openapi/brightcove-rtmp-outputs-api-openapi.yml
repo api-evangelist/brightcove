@@ -159,39 +159,6 @@ components:
         duration_history: []
         rtmp_out_id: foo
         stream_start: 1542731746032
-    ListRTMPOutputs:
-      title: List RMTP Outputs
-      description: Response to GET request for RTMP outputs - array of RTMP outputs objects
-      type: array
-      items:
-        $ref: '#/components/schemas/RTMPout'
-      example:
-      - rtmp_out_id: asdfg-lkjh
-        stream_start: 1538746255247
-        connection_info:
-          host: a.rtmp.youtube.com
-          port: 1935
-          application: live2
-          streamName: myStream
-          sessionStatus: Active
-        duration_history:
-        - stream_start: 1557933191000
-          stream_end: 1557936731000
-        waiting_for_start: false
-    CreateRTMPOutputRequestBody:
-      title: Create RTMP Output Request Body
-      description: Request body for requests to create an RTMP output
-      type: object
-      properties:
-        url:
-          type: string
-          description: URL for the RTMP output
-          example: rtmp://host:port/application/streamName
-        output_label:
-          type: string
-          description: The label of the job output to use as the source for the RTMP output. Omit this parameter to simply forward the RTMP input instead.
-      required:
-      - url
     RTMPout:
       title: RTMP Output
       type: object
@@ -261,7 +228,49 @@ components:
           type: string
           description: Success message
           example: '{ "message": "RTMP out asdfg-lkjh deleted successfully" }'
+    CreateRTMPOutputRequestBody:
+      title: Create RTMP Output Request Body
+      description: Request body for requests to create an RTMP output
+      type: object
+      properties:
+        url:
+          type: string
+          description: URL for the RTMP output
+          example: rtmp://host:port/application/streamName
+        output_label:
+          type: string
+          description: The label of the job output to use as the source for the RTMP output. Omit this parameter to simply forward the RTMP input instead.
+      required:
+      - url
+    ListRTMPOutputs:
+      title: List RMTP Outputs
+      description: Response to GET request for RTMP outputs - array of RTMP outputs objects
+      type: array
+      items:
+        $ref: '#/components/schemas/RTMPout'
+      example:
+      - rtmp_out_id: asdfg-lkjh
+        stream_start: 1538746255247
+        connection_info:
+          host: a.rtmp.youtube.com
+          port: 1935
+          application: live2
+          streamName: myStream
+          sessionStatus: Active
+        duration_history:
+        - stream_start: 1557933191000
+          stream_end: 1557936731000
+        waiting_for_start: false
   parameters:
+    JobId:
+      name: job_id
+      in: path
+      description: Live job ID
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
     XAPIKEY:
       name: X-API-KEY
       in: header
@@ -275,15 +284,6 @@ components:
       name: rtmp_out_id
       in: path
       description: RTMP output ID
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    JobId:
-      name: job_id
-      in: path
-      description: Live job ID
       required: true
       style: simple
       explode: false

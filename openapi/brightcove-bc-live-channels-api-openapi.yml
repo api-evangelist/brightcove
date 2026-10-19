@@ -1,0 +1,154 @@
+openapi: 3.2.0
+info:
+  title: Brightcove Cloud Playout Channel Manager API Reference BC…
+  description: Reference for the Brightcove Cloud Playout Channel Manager API, used to access and manage your Cloud Playout channels.
+  version: 1.0.0
+servers:
+- url: https://cm.cloudplayout.brightcove.com
+  description: Production server
+- url: https://cm.cloudplayout.qa.brightcove.com
+  description: QA server
+tags:
+- name: BC Live channels
+paths:
+  /accounts/{account_id}/bc_channels:
+    x-bc-throttle-key: null
+    get:
+      tags:
+      - BC Live channels
+      summary: List All BC Live channels
+      description: List all BC Live channels that a channel can use
+      operationId: ListBCLiveChannels
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: SSAI true/false for filtering
+        in: query
+        required: true
+        style: form
+        explode: false
+        schema:
+          type: boolean
+      - name: Brightcove Live redundant groups true/false for filtering
+        in: query
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: boolean
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BcLiveChannelProperties'
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/read
+        - BC_CLOUD_PLAYOUT_READ
+      x-bc-throttle-key: null
+components:
+  schemas:
+    BcLiveChannelProperties:
+      title: BcLiveChannelObjcet
+      type: object
+      properties:
+        jobs:
+          type: array
+          description: List of bc live jobs for the account.
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Id of the bc live channel.
+              videocloud:
+                type: object
+                properties:
+                  live_to_vod:
+                    type: boolean
+                    description: defines if live to vod is enabled.
+                  video:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: name of the live event.
+                      link:
+                        type: object
+                      schedule:
+                        type: object
+                      state:
+                        type: string
+                        description: State of the live event.
+                      custom_fields:
+                        type: object
+                    description: live event properties.
+                description: Video cloud properties.
+              state:
+                type: string
+                description: State of the bc live channel.
+              static:
+                type: boolean
+                description: Defines if the live event is SEP/non-SEP.
+              ad_insertion:
+                type: boolean
+                description: Defines if the live event has ssai enabled/not.
+              region:
+                type: string
+                description: Region of the bc live channel.
+              reconnect_time:
+                type: integer
+                description: Reconnect time of the bc live channel.
+                format: int32
+              submitted_at:
+                type: string
+                description: Time when the bc live channel is submitted.
+      example:
+        jobs:
+        - id: d901a1d5a00947c6804557e46ff37dh8
+          videocloud:
+            live_to_vod: true
+            video:
+              name: hfgh
+              link: {}
+              schedule: {}
+              state: ACTIVE
+              custom_fields: {}
+          state: waiting
+          static: false
+          ad_insertion: false
+          region: us-west-2
+          reconnect_time: 600
+          submitted_at: 2021-07-05 12:28:23.510000+00:00
+  securitySchemes:
+    BC_OAuth2:
+      type: oauth2
+      description: Brightcove OAuth API. See the [support documentation](https://support.brightcove.com/oauth-api) or [Getting Access Tokens](https://support.brightcove.com/oauth-api-sample-get-access-token) to learn more
+      flows:
+        clientCredentials:
+          tokenUrl: https://oauth.qa.brightcove.com/v4/access_token
+          scopes:
+            video-cloud/cloud-playout/all: Able to manage cloud playout channels.
+            video-cloud/cloud-playout/read: Able to read cloud playout channels.
+            BC_CLOUD_PLAYOUT_READ: Permission-based access control
+            BC_CLOUD_PLAYOUT_WRITE: Permission-based access control
+x-bc-implicit-head: true
+x-bc-implicit-options: true

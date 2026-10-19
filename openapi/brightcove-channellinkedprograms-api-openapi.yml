@@ -1,0 +1,362 @@
+openapi: 3.2.0
+info:
+  title: Brightcove Cloud Playout Channel Manager API Reference…
+  description: Reference for the Brightcove Cloud Playout Channel Manager API, used to access and manage your Cloud Playout channels.
+  version: 1.0.0
+servers:
+- url: https://cm.cloudplayout.brightcove.com
+  description: Production server
+- url: https://cm.cloudplayout.qa.brightcove.com
+  description: QA server
+tags:
+- name: ChannelLinkedPrograms
+paths:
+  /accounts/{account_id}/cp_channels/{channel_id}/linked_programs:
+    x-bc-throttle-key: null
+    get:
+      tags:
+      - ChannelLinkedPrograms
+      summary: Get channel linked programs
+      description: Gets a set of linked programs
+      operationId: GetLinkedPrograms
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: channel_id
+        in: path
+        description: Cloud Playout Channel Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelLinkedPrograms'
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/read
+        - BC_CLOUD_PLAYOUT_READ
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+    put:
+      tags:
+      - ChannelLinkedPrograms
+      summary: Channel Linked Programs
+      description: Create a new set of linked programs based on each request
+      operationId: SaveLinkedPrograms
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        description: 'Content-Type: application/json'
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          default: application/json
+      - name: channel_id
+        in: path
+        description: Cloud Playout Channel Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: Channel linked programs request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChannelLinkedPrograms'
+        required: true
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelLinkedPrograms'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+        409:
+          description: 'CONFLICT: Indicates a request conflict with the current state of the target resource'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/all
+        - BC_CLOUD_PLAYOUT_WRITE
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+  /accounts/{account_id}/cp_channels/{channel_id}/linked_programs/slate/{slate_id}:
+    x-bc-throttle-key: null
+    put:
+      tags:
+      - ChannelLinkedPrograms
+      summary: Channel Linked Programs Slate
+      description: For linking a slate to channel linked programs
+      operationId: SaveLinkedProgramsSlate
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        description: 'Content-Type: application/json'
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          default: application/json
+      - name: channel_id
+        in: path
+        description: Cloud Playout Channel Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: slate_id
+        in: path
+        description: Public id of a slate asset.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncMessage'
+              example:
+                message: Slate linked successfully.
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+        409:
+          description: 'CONFLICT: Indicates a request conflict with the current state of the target resource'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/all
+        - BC_CLOUD_PLAYOUT_WRITE
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+  /accounts/{account_id}/cp_channels/{channel_id}/linked_programs/slate:
+    x-bc-throttle-key: null
+    get:
+      tags:
+      - ChannelLinkedPrograms
+      summary: Get channel linked programs slate
+      description: Gets the linked programs slate
+      operationId: GetLinkedProgramsSlate
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: channel_id
+        in: path
+        description: Cloud Playout Channel Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelLinkedProgramsGetSlate'
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/read
+        - BC_CLOUD_PLAYOUT_READ
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+components:
+  schemas:
+    ChannelLinkedPrograms:
+      title: ChannelLinkedPrograms
+      type: object
+      properties:
+        programs:
+          type: array
+          description: List of programs to be added
+          items:
+            $ref: '#/components/schemas/LinkedProgram'
+        warning:
+          type: string
+          description: A warning message if any
+      example:
+        programs:
+        - id: '168379869878'
+          order: 1
+        - id: '168379866786'
+          order: 2
+          start_time: 2022-07-17T00.00.00Z
+        warning: ''
+    AsyncMessage:
+      title: MessageObject
+      type: object
+      properties:
+        message:
+          type: string
+          description: message from the api
+    LinkedProgram:
+      title: Program
+      type: object
+      properties:
+        id:
+          type: string
+          description: Program id
+        start_time:
+          type: string
+          description: Hard start time of the program.
+        order:
+          type: string
+          description: The order in which the program has to start
+        status:
+          type: string
+          description: Status of the program.
+          enum:
+          - running
+          - completed
+      example:
+        id: '1673846283628'
+        order: '1'
+        start_time: 2022-07-17T00.00.00Z
+    LinkedProgramSlate:
+      title: Slate
+      type: object
+      properties:
+        slate_id:
+          type: string
+          description: Public id of the slate asset
+        name:
+          type: string
+          description: Name of the slate asset
+      example:
+        slate_id: '1673846283628'
+        name: slate
+    ChannelLinkedProgramsGetSlate:
+      title: ChannelLinkedProgramsGetSlate
+      type: array
+      items:
+        $ref: '#/components/schemas/LinkedProgramSlate'
+    BadRequest:
+      title: BadRequest
+      type: object
+      properties:
+        message:
+          type: object
+  securitySchemes:
+    BC_OAuth2:
+      type: oauth2
+      description: Brightcove OAuth API. See the [support documentation](https://support.brightcove.com/oauth-api) or [Getting Access Tokens](https://support.brightcove.com/oauth-api-sample-get-access-token) to learn more
+      flows:
+        clientCredentials:
+          tokenUrl: https://oauth.qa.brightcove.com/v4/access_token
+          scopes:
+            video-cloud/cloud-playout/all: Able to manage cloud playout channels.
+            video-cloud/cloud-playout/read: Able to read cloud playout channels.
+            BC_CLOUD_PLAYOUT_READ: Permission-based access control
+            BC_CLOUD_PLAYOUT_WRITE: Permission-based access control
+x-bc-implicit-head: true
+x-bc-implicit-options: true

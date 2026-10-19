@@ -1,0 +1,144 @@
+openapi: 3.2.0
+info:
+  title: Brightcove Cloud Playout Channel Manager API Reference Fast…
+  description: Reference for the Brightcove Cloud Playout Channel Manager API, used to access and manage your Cloud Playout channels.
+  version: 1.0.0
+servers:
+- url: https://cm.cloudplayout.brightcove.com
+  description: Production server
+- url: https://cm.cloudplayout.qa.brightcove.com
+  description: QA server
+tags:
+- name: FastDestinations
+paths:
+  /accounts/{account_id}/destinations:
+    x-bc-throttle-key: null
+    get:
+      tags:
+      - FastDestinations
+      summary: Get list of enabled fast destinations for an account
+      operationId: GetAccountLevelFastDestinations
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelFastDestinations'
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/read
+        - BC_CLOUD_PLAYOUT_READ
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+  /accounts/{account_id}/cp_channels/{channel_id}/destinations:
+    x-bc-throttle-key: null
+    get:
+      tags:
+      - FastDestinations
+      summary: Get list of possible fast destinations that can be attached to a channel
+      operationId: GetFastDestinations
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: channel_id
+        in: path
+        description: Cloud Playout Channel Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelFastDestinations'
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/read
+        - BC_CLOUD_PLAYOUT_READ
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+components:
+  schemas:
+    ChannelFastDestinations:
+      title: ChannelFastDestinations
+      type: object
+      properties:
+        native:
+          type: array
+          description: The list of native destinations that can be attached to a channel
+          items:
+            type: array
+        others:
+          type: array
+          description: The list of non-native destinations that can be attached to a channel
+          items:
+            type: array
+      example:
+        native:
+        - name: roku
+          display_name: Roku
+        others:
+        - name: samsung_tv_plus
+          display_name: Samsung Tv Plus
+  securitySchemes:
+    BC_OAuth2:
+      type: oauth2
+      description: Brightcove OAuth API. See the [support documentation](https://support.brightcove.com/oauth-api) or [Getting Access Tokens](https://support.brightcove.com/oauth-api-sample-get-access-token) to learn more
+      flows:
+        clientCredentials:
+          tokenUrl: https://oauth.qa.brightcove.com/v4/access_token
+          scopes:
+            video-cloud/cloud-playout/all: Able to manage cloud playout channels.
+            video-cloud/cloud-playout/read: Able to read cloud playout channels.
+            BC_CLOUD_PLAYOUT_READ: Permission-based access control
+            BC_CLOUD_PLAYOUT_WRITE: Permission-based access control
+x-bc-implicit-head: true
+x-bc-implicit-options: true

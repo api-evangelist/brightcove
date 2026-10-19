@@ -81,53 +81,22 @@ paths:
         '500':
           description: Server error
 components:
+  parameters:
+    AccountId:
+      name: account_id
+      in: path
+      description: ID of the account to query video statuses for
+      required: true
+      schema:
+        type: string
+    SessionId:
+      name: session_id
+      in: path
+      description: Session id from the VMAP response
+      required: true
+      schema:
+        type: string
   schemas:
-    AdTraceConfiguration:
-      type: object
-      description: Configuration for the ad trace.
-      properties:
-        playback_config:
-          $ref: '#/components/schemas/PlaybackConfig'
-        title_metadata:
-          type: object
-          description: Metadata for the video
-          properties:
-            duration:
-              type: string
-              description: The video duration
-              example: 39s
-        videocloud_metadata:
-          $ref: '#/components/schemas/VideoCloudMetadata'
-      example:
-        playback_config:
-          name: config_name
-          vmap_response_namespace: config_namespace
-          account_id: account_id
-          ad_config:
-            enable_ads: true
-            expected_ad_response: dfp_ad_rules
-            disable_server_beacons: false
-            round_up_cue_points: false
-            template_url:
-              template: template_url
-          extend_beacon_guard_ttl: false
-        title_metadata:
-          duration: 10s
-        videocloud_metadata:
-          name: ad_name
-          tags:
-          - tag1:tag1_value
-          - tag2:tag2_value
-          ad_keys: a=1&b=2
-          cue_points:
-          - name: Pre-roll
-            type: AD
-            time: 0
-            metadata: type:pre-roll,a=b
-          - name: Mid-roll
-            type: AD
-            time: 10
-            metadata: type=mid-roll,x=y
     AdConfig:
       title: ad_config
       type: object
@@ -173,6 +142,14 @@ components:
             template:
               type: string
               description: Ad tag template. Available variables described in [this document](/vod/guides/video-cloud-ssai-ad-config-api.html#Ad_variables).
+    AdResponse:
+      title: Ad Response
+      type: object
+      description: An ad response. The content varies depending on the kind of response expected. For examples, see [Video Cloud SSAI Ad Tag Validation](https://player.support.brightcove.com/advertising/video-cloud-ssai-ad-tag-validation.html#Tracing_without_an_ad_config_id)
+      example:
+        xml:
+          summary: VMAP/VAST example
+          value: "'<vmap:VMAP xmlns:bc=\"bc\" xmlns:vmap=\"https://www.iab.net/vmap-1.0\" xmlns:xsi=\"https://www.w3.org/2001/XMLSchema-instance\" version=\"1.0\">\n<vmap:Extensions>\n<bc:Brightcove ttl=\"1800\" contenturi=\"https://ssaiplayback.us-east-1.qa.boltdns.net/playback/once/v1/hls/v5/clear/accoutn_debug/debug/debug/7592e9c3-214f-4c68-a576-1e2494b7be06/debug.m3u8\" contentlength=\"10.0000\" payloadlength=\"70.0000\" contenttype=\"application/x-mpegURL\"></bc:Brightcove>\n<bc:BrightcoveDebug sessionID=\"7592e9c3-214f-4c68-a576-1e2494b7be06\"></bc:BrightcoveDebug>\n</vmap:Extensions>\n<vmap:AdBreak breakType=\"linear\" breakId=\"PreRoll_0_0\" timeOffset=\"start\">\n<vmap:AdSource allowMultipleAds=\"true\" followRedirects=\"true\" id=\"0\">\n<vmap:VASTData>\n  <VAST xmlns:xsd=\"https://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"https://www.w3.org/2001/XMLSchema-instance\">\n    <Ad id=\"test-01-30s\">\n      <InLine>\n        <AdSystem>BIAS</AdSystem>\n        <AdTitle>test-01-30s</AdTitle>\n        <Creatives>\n          <Creative>\n            <Linear>\n              <CreativeExtensions>\n                <CreativeExtension>\n                  <BrightcoveForeignKey>test-01-30s</BrightcoveForeignKey>\n                </CreativeExtension>\n              </CreativeExtensions>\n              <Duration>00:00:30.0000</Duration>\n              <TrackingEvents>\n                <Tracking event=\"mute\">https://solutions.brightcove.com/beacon?event=mute&amp;type=vast&amp;request_id=43a0e4a5-4420-11e8-b306-99b1b6ae5164&amp;parent_request_id=436ae081-4420-11e8-bd7f-41361f814644&amp;ad_id=test-01-30s</Tracking>\n                <Tracking event=\"unmute\">https://solutions.brightcove.com/beacon?event=unmute&amp;type=vast&amp;request_id=43a0e4a5-4420-11e8-b306-99b1b6ae5164&amp;parent_request_id=436ae081-4420-11e8-bd7f-41361f814644&amp;ad_id=test-01-30s</Tracking>\n                <Tracking event=\"rewind\">https://solutions.brightcove.com/beacon?event=rewind&amp;type=vast&amp;request_id=43a0e4a5-4420-11e8-b306-99b1b6ae5164&amp;parent_request_id=436ae081-4420-11e8-bd7f-41361f814644&amp;ad_id=test-01-30s</Tracking>\n                <Tracking event=\"pause\">https://solutions.brightcove.com/beacon?event=pause&amp;type=vast&amp;request_id=43a0e4a5-4420-11e8-b306-99b1b6ae5164&amp;parent_request_id=436ae081-4420-11e8-bd7f-41361f814644&amp;ad_id=test-01-30s</Tracking>\n                <Tracking event=\"resume\">https://solutions.brightcove.com/beacon?event=resume&amp;type=vast&amp;request_id=43a0e4a5-4420-11e8-b306-99b1b6ae5164&amp;parent_request_id=436ae081-4420-11e8-bd7f-41361f814644&amp;ad_id=test-01-30s</Tracking>\n                <Tracking event=\"fullscreen\">https://solutions.brightcove.com/beacon?event=fullscreen&amp;type=vast&amp;request_id=43a0e4a5-4420-11e8-b306-99b1b6ae5164&amp;parent_request_id=436ae081-4420-11e8-bd7f-41361f814644&amp;ad_id=test-01-30s</Tracking>\n                <Tracking event=\"acceptInvitation\">https://solutions.brightcove.com/beacon?event=acceptInvitation&amp;type=vast&amp;request_id=43a0e4a5-4420-11e8-b306-99b1b6ae5164&amp;parent_request_id=436ae081-4420-11e8-bd7f-41361f814644&amp;ad_id=test-01-30s</Tracking>\n              </TrackingEvents>\n              <VideoClicks>\n                <ClickThrough id=\"clickthrough\">https://www.brightcove.com/en/</ClickThrough>\n                <ClickTracking id=\"43a0e4a5-4420-11e8-b306-99b1b6ae5164\"></ClickTracking>\n              </VideoClicks>\n            </Linear>\n          </Creative>\n        </Creatives>\n      </InLine>\n    </Ad>\n  </VAST>\n</vmap:VASTData>\n</vmap:AdSource>\n</vmap:AdBreak>\n...// additional ad breaks\n</vmap:VMAP>'"
     PlaybackConfig:
       type: object
       description: Playback configuration for ads
@@ -192,14 +169,6 @@ components:
           type: boolean
           description: Sets the length of the Beacon Guard TTL (Time to live) to the length of the Content’s Session TTL. Otherwise, the default is 1 minute.
           default: false
-    AdResponse:
-      title: Ad Response
-      type: object
-      description: An ad response. The content varies depending on the kind of response expected. For examples, see [Video Cloud SSAI Ad Tag Validation](https://player.support.brightcove.com/advertising/video-cloud-ssai-ad-tag-validation.html#Tracing_without_an_ad_config_id)
-      example:
-        xml:
-          summary: VMAP/VAST example
-          value: "'<vmap:VMAP xmlns:bc=\"bc\" xmlns:vmap=\"https://www.iab.net/vmap-1.0\" xmlns:xsi=\"https://www.w3.org/2001/XMLSchema-instance\" version=\"1.0\">\n<vmap:Extensions>\n<bc:Brightcove ttl=\"1800\" contenturi=\"https://ssaiplayback.us-east-1.qa.boltdns.net/playback/once/v1/hls/v5/clear/accoutn_debug/debug/debug/7592e9c3-214f-4c68-a576-1e2494b7be06/debug.m3u8\" contentlength=\"10.0000\" payloadlength=\"70.0000\" contenttype=\"application/x-mpegURL\"></bc:Brightcove>\n<bc:BrightcoveDebug sessionID=\"7592e9c3-214f-4c68-a576-1e2494b7be06\"></bc:BrightcoveDebug>\n</vmap:Extensions>\n<vmap:AdBreak breakType=\"linear\" breakId=\"PreRoll_0_0\" timeOffset=\"start\">\n<vmap:AdSource allowMultipleAds=\"true\" followRedirects=\"true\" id=\"0\">\n<vmap:VASTData>\n  <VAST xmlns:xsd=\"https://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"https://www.w3.org/2001/XMLSchema-instance\">\n    <Ad id=\"test-01-30s\">\n      <InLine>\n        <AdSystem>BIAS</AdSystem>\n        <AdTitle>test-01-30s</AdTitle>\n        <Creatives>\n          <Creative>\n            <Linear>\n              <CreativeExtensions>\n                <CreativeExtension>\n                  <BrightcoveForeignKey>test-01-30s</BrightcoveForeignKey>\n                </CreativeExtension>\n              </CreativeExtensions>\n              <Duration>00:00:30.0000</Duration>\n              <TrackingEvents>\n                <Tracking event=\"mute\">https://solutions.brightcove.com/beacon?event=mute&amp;type=vast&amp;request_id=43a0e4a5-4420-11e8-b306-99b1b6ae5164&amp;parent_request_id=436ae081-4420-11e8-bd7f-41361f814644&amp;ad_id=test-01-30s</Tracking>\n                <Tracking event=\"unmute\">https://solutions.brightcove.com/beacon?event=unmute&amp;type=vast&amp;request_id=43a0e4a5-4420-11e8-b306-99b1b6ae5164&amp;parent_request_id=436ae081-4420-11e8-bd7f-41361f814644&amp;ad_id=test-01-30s</Tracking>\n                <Tracking event=\"rewind\">https://solutions.brightcove.com/beacon?event=rewind&amp;type=vast&amp;request_id=43a0e4a5-4420-11e8-b306-99b1b6ae5164&amp;parent_request_id=436ae081-4420-11e8-bd7f-41361f814644&amp;ad_id=test-01-30s</Tracking>\n                <Tracking event=\"pause\">https://solutions.brightcove.com/beacon?event=pause&amp;type=vast&amp;request_id=43a0e4a5-4420-11e8-b306-99b1b6ae5164&amp;parent_request_id=436ae081-4420-11e8-bd7f-41361f814644&amp;ad_id=test-01-30s</Tracking>\n                <Tracking event=\"resume\">https://solutions.brightcove.com/beacon?event=resume&amp;type=vast&amp;request_id=43a0e4a5-4420-11e8-b306-99b1b6ae5164&amp;parent_request_id=436ae081-4420-11e8-bd7f-41361f814644&amp;ad_id=test-01-30s</Tracking>\n                <Tracking event=\"fullscreen\">https://solutions.brightcove.com/beacon?event=fullscreen&amp;type=vast&amp;request_id=43a0e4a5-4420-11e8-b306-99b1b6ae5164&amp;parent_request_id=436ae081-4420-11e8-bd7f-41361f814644&amp;ad_id=test-01-30s</Tracking>\n                <Tracking event=\"acceptInvitation\">https://solutions.brightcove.com/beacon?event=acceptInvitation&amp;type=vast&amp;request_id=43a0e4a5-4420-11e8-b306-99b1b6ae5164&amp;parent_request_id=436ae081-4420-11e8-bd7f-41361f814644&amp;ad_id=test-01-30s</Tracking>\n              </TrackingEvents>\n              <VideoClicks>\n                <ClickThrough id=\"clickthrough\">https://www.brightcove.com/en/</ClickThrough>\n                <ClickTracking id=\"43a0e4a5-4420-11e8-b306-99b1b6ae5164\"></ClickTracking>\n              </VideoClicks>\n            </Linear>\n          </Creative>\n        </Creatives>\n      </InLine>\n    </Ad>\n  </VAST>\n</vmap:VASTData>\n</vmap:AdSource>\n</vmap:AdBreak>\n...// additional ad breaks\n</vmap:VMAP>'"
     AdCall:
       title: Ad Call
       type: object
@@ -351,21 +320,52 @@ components:
               metadata:
                 type: string
                 description: String of metadata assigned to the cuepoint when it was created
-  parameters:
-    AccountId:
-      name: account_id
-      in: path
-      description: ID of the account to query video statuses for
-      required: true
-      schema:
-        type: string
-    SessionId:
-      name: session_id
-      in: path
-      description: Session id from the VMAP response
-      required: true
-      schema:
-        type: string
+    AdTraceConfiguration:
+      type: object
+      description: Configuration for the ad trace.
+      properties:
+        playback_config:
+          $ref: '#/components/schemas/PlaybackConfig'
+        title_metadata:
+          type: object
+          description: Metadata for the video
+          properties:
+            duration:
+              type: string
+              description: The video duration
+              example: 39s
+        videocloud_metadata:
+          $ref: '#/components/schemas/VideoCloudMetadata'
+      example:
+        playback_config:
+          name: config_name
+          vmap_response_namespace: config_namespace
+          account_id: account_id
+          ad_config:
+            enable_ads: true
+            expected_ad_response: dfp_ad_rules
+            disable_server_beacons: false
+            round_up_cue_points: false
+            template_url:
+              template: template_url
+          extend_beacon_guard_ttl: false
+        title_metadata:
+          duration: 10s
+        videocloud_metadata:
+          name: ad_name
+          tags:
+          - tag1:tag1_value
+          - tag2:tag2_value
+          ad_keys: a=1&b=2
+          cue_points:
+          - name: Pre-roll
+            type: AD
+            time: 0
+            metadata: type:pre-roll,a=b
+          - name: Mid-roll
+            type: AD
+            time: 10
+            metadata: type=mid-roll,x=y
   securitySchemes:
     BC_OAuth2:
       type: oauth2

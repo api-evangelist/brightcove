@@ -123,64 +123,6 @@ paths:
         IsMultiContentStreaming: false
 components:
   parameters:
-    Content-Type:
-      name: Content-Type
-      in: header
-      description: 'Content-Type: application/json'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    format:
-      name: format
-      in: query
-      description: format to return the results in
-      style: form
-      explode: true
-      schema:
-        $ref: '#/components/schemas/Format'
-    from:
-      name: from
-      in: query
-      description: '''Start time for the period covered by the report — epoch time in milliseconds (`1535654206775`) or a date in the format `yyyy-mm-dd` (such as `2013-09-26`)'''
-      style: form
-      explode: true
-      schema:
-        oneOf:
-        - type: string
-        - type: integer
-        default: 32 days before `to` value
-        example: 2018-01-01
-    Accept-Encoding:
-      name: Accept-Encoding
-      in: header
-      description: 'Accept-Encoding: gzip (optional)'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    limit:
-      name: limit
-      in: query
-      description: Number of items to return
-      style: form
-      explode: true
-      schema:
-        type: integer
-        format: int32
-        default: 10
-        example: 10
-    accounts:
-      name: accounts
-      in: query
-      description: One or more account ids, separated by commas
-      required: true
-      style: form
-      explode: true
-      schema:
-        type: string
     to:
       name: to
       in: query
@@ -193,15 +135,6 @@ components:
         - type: integer
         default: now
         example: '2018-09-01'
-    Authorization:
-      name: Authorization
-      in: header
-      description: 'Authorization: Bearer access_token (see Getting Access Tokens)'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
     sort:
       name: sort
       in: query
@@ -221,6 +154,76 @@ components:
       explode: true
       schema:
         $ref: '#/components/schemas/Dimensions'
+    limit:
+      name: limit
+      in: query
+      description: Number of items to return
+      style: form
+      explode: true
+      schema:
+        type: integer
+        format: int32
+        default: 10
+        example: 10
+    from:
+      name: from
+      in: query
+      description: '''Start time for the period covered by the report — epoch time in milliseconds (`1535654206775`) or a date in the format `yyyy-mm-dd` (such as `2013-09-26`)'''
+      style: form
+      explode: true
+      schema:
+        oneOf:
+        - type: string
+        - type: integer
+        default: 32 days before `to` value
+        example: 2018-01-01
+    accounts:
+      name: accounts
+      in: query
+      description: One or more account ids, separated by commas
+      required: true
+      style: form
+      explode: true
+      schema:
+        type: string
+    offset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      style: form
+      explode: true
+      schema:
+        type: integer
+        format: int32
+        default: 0
+        example: 10
+    format:
+      name: format
+      in: query
+      description: format to return the results in
+      style: form
+      explode: true
+      schema:
+        $ref: '#/components/schemas/Format'
+    Content-Type:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    fields:
+      name: fields
+      in: query
+      description: 'Fields to return - available fields varies according to the dimensions - see the [Overview: Analytics API](/analytics/getting-started/analytics-api-overview-dimensions-fields-and-parameters.html) for more details'
+      style: form
+      explode: true
+      schema:
+        type: string
+        default: '`video_view` + others (varies by dimension)'
+        example: video_view, video_impression, video.name
     reconciled:
       name: reconciled
       in: query
@@ -240,43 +243,25 @@ components:
       explode: true
       schema:
         $ref: '#/components/schemas/live_where'
-    offset:
-      name: offset
-      in: query
-      description: Number of items to skip
-      style: form
-      explode: true
-      schema:
-        type: integer
-        format: int32
-        default: 0
-        example: 10
-    fields:
-      name: fields
-      in: query
-      description: 'Fields to return - available fields varies according to the dimensions - see the [Overview: Analytics API](/analytics/getting-started/analytics-api-overview-dimensions-fields-and-parameters.html) for more details'
-      style: form
-      explode: true
+    Accept-Encoding:
+      name: Accept-Encoding
+      in: header
+      description: 'Accept-Encoding: gzip (optional)'
+      required: true
+      style: simple
+      explode: false
       schema:
         type: string
-        default: '`video_view` + others (varies by dimension)'
-        example: video_view, video_impression, video.name
+    Authorization:
+      name: Authorization
+      in: header
+      description: 'Authorization: Bearer access_token (see Getting Access Tokens)'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
   schemas:
-    live_where:
-      title: Live where
-      enum:
-      - country
-      - device_type
-      - video
-      type: string
-      example: video==6049313942001,6049313942002
-      x-enum-elements:
-      - name: country
-        description: ''
-      - name: device_type
-        description: ''
-      - name: video
-        description: ''
     Get_Analytics_Report_Response:
       title: Get Analytics Report Response
       required:
@@ -361,77 +346,52 @@ components:
           video_view: 15348
           ad_mode_begin: 923
           play_rate: 0.34
-    Summary:
-      title: Summary
+    Get_Available_Date_Range_Response:
+      title: Get Available Date Range Response
+      required:
+      - reconciled_from
+      - reconciled_to
       type: object
       properties:
-        ad_mode_begin:
-          type: integer
-          description: Total ad mode begin events received for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
-          format: int32
-        ad_mode_complete:
-          type: integer
-          description: Total ad mode complete events received for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
-          format: int32
-        active_media:
-          type: integer
-          description: Total active videos in account(s) - note that properties included in the summary vary depending on the dimension(s) and fields requested
-          format: int32
-        bytes_delivered:
-          type: integer
-          description: Total bytes of data delivered for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
-          format: int32
-        daily_unique_viewers:
-          type: integer
-          description: Total daily unique viewers for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
-          format: int32
-        drm_bytes_packaged:
-          type: number
-          description: Total DRM bytes packaged for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
-        engagement_score:
-          type: number
-          description: Average engagement score for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
-        licenses_served:
-          type: integer
-          description: Total DRM licenses serverd for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
-          format: int32
-        live_seconds_streamed:
-          type: number
-          description: Total second of live video streamed for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
-        play_rate:
-          type: number
-          description: Average play rate for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
-        play_request:
-          type: integer
-          description: Total play requests for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
-          format: int32
-        player_load:
-          type: integer
-          description: Total player loads for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
-          format: int32
-        video_engagement_1:
-          type: number
-          description: Average views at 1% point for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
-        video_engagement_25:
-          type: number
-          description: Average views at 25% point for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
-        video_engagement_50:
-          type: number
-          description: Average views at 50% point for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
-        video_engagement_75:
-          type: number
-          description: Average views at 75% point for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
-        video_engagement_100:
-          type: number
-          description: Average views at 100% point for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
-        video_impression:
-          type: integer
-          description: Total video impressions for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
-          format: int32
-        video_view:
-          type: integer
-          description: Total video views for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
-          format: int32
+        reconciled_from:
+          type: string
+          description: the earliest date that you can use for from and get reconciled data
+        reconciled_to:
+          type: string
+          description: '''the latest date that you can use for to and get reconciled data (realtime data may be available for later dates)'''
+      example:
+        reconciled_from: '2011-01-01'
+        reconciled_to: '2018-08-31'
+    Format:
+      title: format
+      enum:
+      - csv
+      - json
+      - xlxs
+      type: string
+      example: csv
+      x-enum-elements:
+      - name: csv
+        description: ''
+      - name: json
+        description: ''
+      - name: xlxs
+        description: ''
+    live_where:
+      title: Live where
+      enum:
+      - country
+      - device_type
+      - video
+      type: string
+      example: video==6049313942001,6049313942002
+      x-enum-elements:
+      - name: country
+        description: ''
+      - name: device_type
+        description: ''
+      - name: video
+        description: ''
     Dimensions:
       title: dimensions
       enum:
@@ -553,37 +513,77 @@ components:
           type: integer
           description: number of times some portion of the video was viewed
           format: int32
-    Get_Available_Date_Range_Response:
-      title: Get Available Date Range Response
-      required:
-      - reconciled_from
-      - reconciled_to
+    Summary:
+      title: Summary
       type: object
       properties:
-        reconciled_from:
-          type: string
-          description: the earliest date that you can use for from and get reconciled data
-        reconciled_to:
-          type: string
-          description: '''the latest date that you can use for to and get reconciled data (realtime data may be available for later dates)'''
-      example:
-        reconciled_from: '2011-01-01'
-        reconciled_to: '2018-08-31'
-    Format:
-      title: format
-      enum:
-      - csv
-      - json
-      - xlxs
-      type: string
-      example: csv
-      x-enum-elements:
-      - name: csv
-        description: ''
-      - name: json
-        description: ''
-      - name: xlxs
-        description: ''
+        ad_mode_begin:
+          type: integer
+          description: Total ad mode begin events received for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
+          format: int32
+        ad_mode_complete:
+          type: integer
+          description: Total ad mode complete events received for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
+          format: int32
+        active_media:
+          type: integer
+          description: Total active videos in account(s) - note that properties included in the summary vary depending on the dimension(s) and fields requested
+          format: int32
+        bytes_delivered:
+          type: integer
+          description: Total bytes of data delivered for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
+          format: int32
+        daily_unique_viewers:
+          type: integer
+          description: Total daily unique viewers for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
+          format: int32
+        drm_bytes_packaged:
+          type: number
+          description: Total DRM bytes packaged for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
+        engagement_score:
+          type: number
+          description: Average engagement score for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
+        licenses_served:
+          type: integer
+          description: Total DRM licenses serverd for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
+          format: int32
+        live_seconds_streamed:
+          type: number
+          description: Total second of live video streamed for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
+        play_rate:
+          type: number
+          description: Average play rate for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
+        play_request:
+          type: integer
+          description: Total play requests for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
+          format: int32
+        player_load:
+          type: integer
+          description: Total player loads for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
+          format: int32
+        video_engagement_1:
+          type: number
+          description: Average views at 1% point for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
+        video_engagement_25:
+          type: number
+          description: Average views at 25% point for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
+        video_engagement_50:
+          type: number
+          description: Average views at 50% point for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
+        video_engagement_75:
+          type: number
+          description: Average views at 75% point for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
+        video_engagement_100:
+          type: number
+          description: Average views at 100% point for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
+        video_impression:
+          type: integer
+          description: Total video impressions for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
+          format: int32
+        video_view:
+          type: integer
+          description: Total video views for all items - note that properties included in the summary vary depending on the dimension(s) and fields requested
+          format: int32
   securitySchemes:
     BC_OAuth2:
       type: oauth2

@@ -754,6 +754,141 @@ apis:
     url: openapi/brightcove-view-events-api-openapi.yml
   - type: Documentation
     url: https://apis.support.brightcove.com/cms/
+- aid: brightcove:brightcove-assets-api
+  name: Brightcove Assets API
+  description: The Assets API from Brightcove — 5 operation(s) for assets.
+  humanURL: https://apis.support.brightcove.com/dynamic-ingest/
+  baseURL: https://ingest.api.brightcove.com/v1
+  tags:
+  - Assets
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-assets-api-openapi.yml
+- aid: brightcove:brightcove-bc-live-channels-api
+  name: Brightcove BC Live channels API
+  description: The BC Live channels API from Brightcove — 1 operation(s) for bc live channels.
+  humanURL: https://apis.support.brightcove.com/dynamic-ingest/
+  baseURL: https://ingest.api.brightcove.com/v1
+  tags:
+  - BC Live channels
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-bc-live-channels-api-openapi.yml
+- aid: brightcove:brightcove-channel-dynamic-overlays-api
+  name: Brightcove Channel Dynamic Overlays API
+  description: >-
+    The Channel Dynamic Overlays API from Brightcove — 3 operation(s) for channel dynamic overlays.
+  humanURL: https://apis.support.brightcove.com/dynamic-ingest/
+  baseURL: https://ingest.api.brightcove.com/v1
+  tags:
+  - Channel Dynamic Overlays
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-channel-dynamic-overlays-api-openapi.yml
+- aid: brightcove:brightcove-channel-metadata-api
+  name: Brightcove Channel Metadata API
+  description: The Channel Metadata API from Brightcove — 7 operation(s) for channel metadata.
+  humanURL: https://apis.support.brightcove.com/dynamic-ingest/
+  baseURL: https://ingest.api.brightcove.com/v1
+  tags:
+  - Channel Metadata
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-channel-metadata-api-openapi.yml
+- aid: brightcove:brightcove-channel-overlays-api
+  name: Brightcove Channel Overlays API
+  description: The Channel Overlays API from Brightcove — 3 operation(s) for channel overlays.
+  humanURL: https://apis.support.brightcove.com/dynamic-ingest/
+  baseURL: https://ingest.api.brightcove.com/v1
+  tags:
+  - Channel Overlays
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-channel-overlays-api-openapi.yml
+- aid: brightcove:brightcove-channellinkedprograms-api
+  name: Brightcove Channel Linked Programs API
+  description: >-
+    The ChannelLinkedPrograms API from Brightcove — 3 operation(s) for channellinkedprograms.
+  humanURL: https://apis.support.brightcove.com/dynamic-ingest/
+  baseURL: https://ingest.api.brightcove.com/v1
+  tags:
+  - ChannelLinkedPrograms
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-channellinkedprograms-api-openapi.yml
+- aid: brightcove:brightcove-channels-api
+  name: Brightcove Channels API
+  description: The Channels API from Brightcove — 10 operation(s) for channels.
+  humanURL: https://apis.support.brightcove.com/dynamic-ingest/
+  baseURL: https://ingest.api.brightcove.com/v1
+  tags:
+  - Channels
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-channels-api-openapi.yml
+- aid: brightcove:brightcove-fastchannels-api
+  name: Brightcove Fast Channels API
+  description: The FastChannels API from Brightcove — 3 operation(s) for fastchannels.
+  humanURL: https://apis.support.brightcove.com/dynamic-ingest/
+  baseURL: https://ingest.api.brightcove.com/v1
+  tags:
+  - FastChannels
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-fastchannels-api-openapi.yml
+- aid: brightcove:brightcove-fastdestinations-api
+  name: Brightcove Fast Destinations API
+  description: The FastDestinations API from Brightcove — 2 operation(s) for fastdestinations.
+  humanURL: https://apis.support.brightcove.com/dynamic-ingest/
+  baseURL: https://ingest.api.brightcove.com/v1
+  tags:
+  - FastDestinations
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-fastdestinations-api-openapi.yml
+- aid: brightcove:brightcove-get-all-importable-assets-from-the-playlist-api
+  name: Brightcove Get all importable assets from the playlist API
+  description: >-
+    The Get all importable assets from the playlist API from Brightcove — 1 operation(s) for get all importable
+    assets from the playlist.
+  humanURL: https://apis.support.brightcove.com/dynamic-ingest/
+  baseURL: https://ingest.api.brightcove.com/v1
+  tags:
+  - Get all importable assets from the playlist
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-get-all-importable-assets-from-the-playlist-api-openapi.yml
+- aid: brightcove:brightcove-play-now-api
+  name: Brightcove Play Now API
+  description: The Play Now API from Brightcove — 1 operation(s) for play now.
+  humanURL: https://apis.support.brightcove.com/dynamic-ingest/
+  baseURL: https://ingest.api.brightcove.com/v1
+  tags:
+  - Play Now
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-play-now-api-openapi.yml
+- aid: brightcove:brightcove-samsungtvplusapicredentials-api
+  name: Brightcove Samsung Tv Plus API Credentials API
+  description: >-
+    The SamsungTvPlusApiCredentials API from Brightcove — 2 operation(s) for samsungtvplusapicredentials.
+  humanURL: https://apis.support.brightcove.com/dynamic-ingest/
+  baseURL: https://ingest.api.brightcove.com/v1
+  tags:
+  - SamsungTvPlusApiCredentials
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-samsungtvplusapicredentials-api-openapi.yml
+- aid: brightcove:brightcove-wurl-api
+  name: Brightcove Wurl API
+  description: The Wurl API from Brightcove — 3 operation(s) for wurl.
+  humanURL: https://apis.support.brightcove.com/dynamic-ingest/
+  baseURL: https://ingest.api.brightcove.com/v1
+  tags:
+  - Wurl
+  properties:
+  - type: OpenAPI
+    url: openapi/brightcove-wurl-api-openapi.yml
 common:
 - url: https://www.brightcove.com/blog
   type: Blog

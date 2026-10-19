@@ -113,15 +113,6 @@ paths:
         IsMultiContentStreaming: false
 components:
   parameters:
-    Content-Type:
-      name: Content-Type
-      in: header
-      description: 'Content-Type: application/json'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
     live_from:
       name: from
       in: query
@@ -134,42 +125,6 @@ components:
         - type: integer
         default: 32 days before now
         example: 2018-01-01
-    live_dimensions:
-      name: dimensions
-      in: query
-      description: "One or more dimensions to report on for Live Analytics requests\nDimensions:\n  - video\n  - video, country\n  - video, device_type"
-      required: true
-      style: form
-      explode: true
-      schema:
-        $ref: '#/components/schemas/LiveDimensions'
-    Authorization:
-      name: Authorization
-      in: header
-      description: 'Authorization: Bearer access_token (see Getting Access Tokens)'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    Accept-Encoding:
-      name: Accept-Encoding
-      in: header
-      description: 'Accept-Encoding: gzip (optional)'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    live_where:
-      name: where
-      in: query
-      description: "One or more filters to limit responses for Live Analytics requests\nAvailable filters:\n  - video\n  - country\n  - device_type"
-      required: true
-      style: form
-      explode: true
-      schema:
-        $ref: '#/components/schemas/live_where'
     bucket_duration:
       name: bucket_duration
       in: query
@@ -178,34 +133,6 @@ components:
       required: false
       style: form
       explode: true
-      schema:
-        type: string
-    bucket_limit:
-      name: bucket_limit
-      in: query
-      description: '''Max number of points to be returned for a time-series'''
-      required: false
-      example: 10
-      style: form
-      explode: true
-      schema:
-        type: integer
-    where:
-      name: where
-      in: query
-      description: one or more 'dimension==value' pairs to filter the results; for live, the only available filters are `country`, `device-type`, and `video`. This is a filter in which the options areL where in the world, in which device or which part of the video. In this case, the property is called where as if to use some DSL that mimics the SQL syntax, and that is why it is called where
-      required: true
-      style: form
-      explode: true
-      schema:
-        $ref: '#/components/schemas/live_where'
-    account_id:
-      name: account_id
-      in: path
-      description: a Video Cloud account ID
-      required: true
-      style: simple
-      explode: false
       schema:
         type: string
     to:
@@ -220,6 +147,79 @@ components:
         - type: integer
         default: now
         example: '2018-09-01'
+    account_id:
+      name: account_id
+      in: path
+      description: a Video Cloud account ID
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    where:
+      name: where
+      in: query
+      description: one or more 'dimension==value' pairs to filter the results; for live, the only available filters are `country`, `device-type`, and `video`. This is a filter in which the options areL where in the world, in which device or which part of the video. In this case, the property is called where as if to use some DSL that mimics the SQL syntax, and that is why it is called where
+      required: true
+      style: form
+      explode: true
+      schema:
+        $ref: '#/components/schemas/live_where'
+    Content-Type:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    live_where:
+      name: where
+      in: query
+      description: "One or more filters to limit responses for Live Analytics requests\nAvailable filters:\n  - video\n  - country\n  - device_type"
+      required: true
+      style: form
+      explode: true
+      schema:
+        $ref: '#/components/schemas/live_where'
+    Accept-Encoding:
+      name: Accept-Encoding
+      in: header
+      description: 'Accept-Encoding: gzip (optional)'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    Authorization:
+      name: Authorization
+      in: header
+      description: 'Authorization: Bearer access_token (see Getting Access Tokens)'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    live_dimensions:
+      name: dimensions
+      in: query
+      description: "One or more dimensions to report on for Live Analytics requests\nDimensions:\n  - video\n  - video, country\n  - video, device_type"
+      required: true
+      style: form
+      explode: true
+      schema:
+        $ref: '#/components/schemas/LiveDimensions'
+    bucket_limit:
+      name: bucket_limit
+      in: query
+      description: '''Max number of points to be returned for a time-series'''
+      required: false
+      example: 10
+      style: form
+      explode: true
+      schema:
+        type: integer
     metrics:
       name: metrics
       in: query
@@ -253,6 +253,11 @@ components:
         description: ''
       - name: video
         description: ''
+    LiveDimensions:
+      enum:
+      - video
+      - video,country
+      - video, device_type
     Get_Events_Response:
       title: Get Events Response
       type: object
@@ -285,11 +290,6 @@ components:
               totals:
                 type: object
                 description: Object containing metric/value pairs for the associated dimensions
-    LiveDimensions:
-      enum:
-      - video
-      - video,country
-      - video, device_type
     Get_Time_Series_Response:
       title: Get Time-Series Response
       type: object

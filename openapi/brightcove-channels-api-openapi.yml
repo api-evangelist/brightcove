@@ -1,0 +1,1907 @@
+openapi: 3.2.0
+info:
+  title: Brightcove Cloud Playout Channel Manager API Reference…
+  description: Reference for the Brightcove Cloud Playout Channel Manager API, used to access and manage your Cloud Playout channels.
+  version: 1.0.0
+servers:
+- url: https://cm.cloudplayout.brightcove.com
+  description: Production server
+- url: https://cm.cloudplayout.qa.brightcove.com
+  description: QA server
+tags:
+- name: Channels
+paths:
+  /accounts/{account_id}/cp_channels:
+    x-bc-throttle-key: null
+    get:
+      tags:
+      - Channels
+      summary: Get all channels for an account
+      description: Gets all Cloud Playout channels for an account
+      operationId: GetAllChannels
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAllChannels'
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/read
+        - BC_CLOUD_PLAYOUT_READ
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+    post:
+      tags:
+      - Channels
+      summary: Create channel
+      description: Creates a cloud playout channel for an account
+      operationId: CreateChannel
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        description: 'Content-Type: application/json'
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          default: application/json
+      requestBody:
+        description: Creates a cloudplayout channel for an account
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateChannel'
+            examples:
+              For non-SSAI channel with Live input enabled & BC Live destination:
+                $ref: '#/components/examples/nonSSAIWithLive'
+              For non-SSAI channel without Live input enabled & BC Live destination:
+                $ref: '#/components/examples/nonSSAIWithoutLive'
+              For non-SSAI channel without Live input enabled & 3rd party Live destination:
+                $ref: '#/components/examples/nonSSAIWith3rdParty'
+              For non-SSAI channel without Live input enabled & S3 destination:
+                $ref: '#/components/examples/nonSSAIWithS3'
+              For SSAI channel:
+                $ref: '#/components/examples/SSAI'
+              For SSAI channel with s3 destination:
+                $ref: '#/components/examples/SSAIWithS3'
+              For SSAI with Live RTP Live input enabled & BC Live destination:
+                $ref: '#/components/examples/SSAIWithLive'
+              Channel with an existing live job id as output location:
+                $ref: '#/components/examples/existingLiveJobIdForOutputLocation'
+        required: true
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelTopLevel'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+              examples:
+                Invalid Name and Description:
+                  $ref: '#/components/examples/invalidNameAndDescription'
+                Enable SSAI with no ad slate:
+                  $ref: '#/components/examples/noSlate'
+                Bad Image Url:
+                  $ref: '#/components/examples/invalidImage'
+                Bad Dates:
+                  $ref: '#/components/examples/invalidDates'
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/all
+        - BC_CLOUD_PLAYOUT_WRITE
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+  /accounts/{account_id}/cp_channels/{channel_id}:
+    x-bc-throttle-key: null
+    get:
+      tags:
+      - Channels
+      summary: Get details of a channel
+      description: Gets all Cloud Playout channels for an account
+      operationId: GetChannel
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: channel_id
+        in: path
+        description: Cloud Playout Channel Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetChannel'
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/read
+        - BC_CLOUD_PLAYOUT_READ
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+    delete:
+      tags:
+      - Channels
+      summary: Delete a channel
+      description: Delete a Cloud Playout channel for an account
+      operationId: DeleteChannel
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: channel_id
+        in: path
+        description: Cloud Playout Channel Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        202:
+          description: 202 Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncMessage'
+              example:
+                message: Delete initiated
+        400:
+          description: Bad Request
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/all
+        - BC_CLOUD_PLAYOUT_WRITE
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+    patch:
+      tags:
+      - Channels
+      summary: Update a channel
+      description: Update a Cloud Playout channel for an account
+      operationId: UpdateChannel
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        description: 'Content-Type: application/json'
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          default: application/json
+      - name: channel_id
+        in: path
+        description: Cloud Playout Channel Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: Updates a cloudplayout channel for an account
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateChannel'
+            examples:
+              Update Name:
+                $ref: '#/components/examples/updateName'
+              Update Description:
+                $ref: '#/components/examples/updateDescription'
+              Update Start Time:
+                $ref: '#/components/examples/updateStartTime'
+              Update Stop Time:
+                $ref: '#/components/examples/updateStopTime'
+              Enable SSAI:
+                $ref: '#/components/examples/enableSSAI'
+              Disable SSAI:
+                $ref: '#/components/examples/disableSSAI'
+              Disable Live Input:
+                $ref: '#/components/examples/disableLiveInput'
+              Update Input Groups:
+                $ref: '#/components/examples/updateInputGroup'
+              Update SSAI with Input Groups:
+                $ref: '#/components/examples/enableSSAIWithLiveInputGroup'
+              Update Loop On Completion:
+                $ref: '#/components/examples/updateLoopOnCompletion'
+              Update Live Profile:
+                $ref: '#/components/examples/updateLiveProfile'
+              Update Output Groups:
+                $ref: '#/components/examples/updateOutputGroups'
+              Update Mid-roll slot time:
+                $ref: '#/components/examples/updateMidRollSlotTime'
+              Disable Mid-roll import:
+                $ref: '#/components/examples/DisableMidRollImportWhenSSAIEnabled'
+              Update Multiple Items:
+                $ref: '#/components/examples/updateMultiple'
+        required: true
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelTopLevel'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+              examples:
+                Invalid Name and Description:
+                  $ref: '#/components/examples/invalidNameAndDescription'
+                Enable SSAI with no ad slate:
+                  $ref: '#/components/examples/noSlate'
+                Bad Image Url:
+                  $ref: '#/components/examples/invalidImage'
+                Bad Dates:
+                  $ref: '#/components/examples/invalidDates'
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/all
+        - BC_CLOUD_PLAYOUT_WRITE
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+  /accounts/{account_id}/cp_channels/{channel_id}/schedules:
+    x-bc-throttle-key: null
+    patch:
+      tags:
+      - Channels
+      summary: Update schedule of a channel
+      description: Update the schedule (start, stop and hard start time) of a cloud playout channel
+      operationId: UpdateChannelSchedule
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        description: 'Content-Type: application/json'
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          default: application/json
+      - name: channel_id
+        in: path
+        description: Cloud Playout Channel Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: Update a cloudplayout channel schedule
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateChannelSchedule'
+            examples:
+              Update Hard Start:
+                $ref: '#/components/examples/upsertChannelHardStartSchedule'
+              Delete Hard Start:
+                $ref: '#/components/examples/deleteChannelHardStartSchedule'
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HardStartChannelTopLevel'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+              examples:
+                Invalid Hard Start Time Format:
+                  $ref: '#/components/examples/invalidHardStartFormat'
+                Ond of Hard Start Time or Slate Id Missing:
+                  $ref: '#/components/examples/oneOfHardStartOrSlateMissing'
+                Hard Start Time Create/Update Error with Draft Channel Start Time:
+                  $ref: '#/components/examples/hardStartAndChannelStartError'
+                Hard Start Time Create/Update Error with Draft Channel Stop Time:
+                  $ref: '#/components/examples/hardStartAndChannelStopError'
+                Invalid Slate Id:
+                  $ref: '#/components/examples/invalidSlateId'
+                Running Channel And Hard Start Create Error:
+                  $ref: '#/components/examples/hardStartCreateError'
+                Running Channel And Slate Update Error:
+                  $ref: '#/components/examples/slateUpdateError'
+                Running Channel And Hard Start Update Error:
+                  $ref: '#/components/examples/hardStartUpdateError'
+                Playlist Started And Hard Start Update Error:
+                  $ref: '#/components/examples/hardStartCreateChannelRunningError'
+                Slate Started And Slate Update Error:
+                  $ref: '#/components/examples/slateUpdateChannelRunningError'
+                Channel Start Time Update Error with Hard Start Time:
+                  $ref: '#/components/examples/channelStartTimeUpdateAndhardStartError'
+                Channel Stop Time Update Error with Hard Start Time:
+                  $ref: '#/components/examples/channelStoptTimeUpdateAndhardStartError'
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/all
+        - BC_CLOUD_PLAYOUT_WRITE
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+  /accounts/{account_id}/cp_channels/{channel_id}/start:
+    x-bc-throttle-key: null
+    post:
+      tags:
+      - Channels
+      summary: Start a channel
+      description: Start a cloud playout channel
+      operationId: StartChannel
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: channel_id
+        in: path
+        description: Cloud Playout Channel Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        202:
+          description: 202 Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncMessage'
+              example:
+                message: Start initiated
+        400:
+          description: Bad Request
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/all
+        - BC_CLOUD_PLAYOUT_WRITE
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+  /accounts/{account_id}/cp_channels/{channel_id}/stop:
+    x-bc-throttle-key: null
+    post:
+      tags:
+      - Channels
+      summary: Stop a channel
+      description: Stop a cloud playout channel
+      operationId: StopChannel
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: channel_id
+        in: path
+        description: Cloud Playout Channel Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        202:
+          description: 202 Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncMessage'
+              example:
+                message: Stop initiated
+        400:
+          description: Bad Request
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/all
+        - BC_CLOUD_PLAYOUT_WRITE
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+  /accounts/{account_id}/cp_channels/{channel_id}/create:
+    x-bc-throttle-key: null
+    post:
+      tags:
+      - Channels
+      summary: Activate a channel
+      description: Activate a cloud playout channel
+      operationId: ActivateChannel
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: channel_id
+        in: path
+        description: Cloud Playout Channel Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        202:
+          description: 202 Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelTopLevel'
+        400:
+          description: Bad Request
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/all
+        - BC_CLOUD_PLAYOUT_WRITE
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+  /accounts/{account_id}/cp_channels/{channel_id}/deactivate:
+    x-bc-throttle-key: null
+    post:
+      tags:
+      - Channels
+      summary: Deactivate a channel
+      description: Deactivate a cloud playout channel
+      operationId: DeactivateChannel
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: channel_id
+        in: path
+        description: Cloud Playout Channel Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        202:
+          description: 202 Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncMessage'
+        400:
+          description: Bad Request
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/all
+        - BC_CLOUD_PLAYOUT_WRITE
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+  /accounts/{account_id}/cp_channels/{channel_id}/preview:
+    x-bc-throttle-key: null
+    get:
+      tags:
+      - Channels
+      summary: Get preview of a running channel
+      description: Get preview image of a running channel
+      operationId: GetChannelPreview
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: channel_id
+        in: path
+        description: Cloud Playout Channel Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetChannelPreview'
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/read
+        - BC_CLOUD_PLAYOUT_READ
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+  /accounts/{account_id}/cp_channels/{channel_id}/telemetrics/healthmetric:
+    x-bc-throttle-key: null
+    get:
+      tags:
+      - Channels
+      summary: Get health metrics of a running channel
+      operationId: GetChannelMetric
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: channel_id
+        in: path
+        description: Cloud Playout Channel Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: duration of metrics in minutes
+        in: query
+        required: true
+        style: form
+        explode: false
+        schema:
+          type: integer
+          format: int32
+          default: 35
+      - name: period of metrics in minutes
+        in: query
+        required: true
+        style: form
+        explode: false
+        schema:
+          type: integer
+          format: int32
+          default: 5
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetChannelHealth'
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/read
+        - BC_CLOUD_PLAYOUT_READ
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+  /accounts/{account_id}/cp_channels/{channel_id}/as_run_logs:
+    x-bc-throttle-key: null
+    get:
+      tags:
+      - Channels
+      summary: Get as run logs of a channel
+      operationId: GetAsRunLogs
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: channel_id
+        in: path
+        description: Cloud Playout Channel Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: as run logs format
+        in: query
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: string
+          default: json
+          enum:
+          - json
+          - xml
+          - csv
+      - name: download as run logs
+        in: query
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: boolean
+          default: true
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsRunLogs'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AsRunLogs'
+            text/csv:
+              schema:
+                type: string
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/read
+        - BC_CLOUD_PLAYOUT_READ
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+components:
+  examples:
+    updateLoopOnCompletion:
+      value:
+        input_group:
+        - input_type: playlist
+          loop_on_completion: false
+    DisableMidRollImportWhenSSAIEnabled:
+      value:
+        mid_roll_import_enabled: 'false'
+    updateMidRollSlotTime:
+      value:
+        mid_roll_slot_time: '55'
+    hardStartAndChannelStartError:
+      value:
+        message: Cannot update Hard Start Time. Minimum 10 minute duration gap between channel start time
+    noSlate:
+      value:
+        message: SSAI enabled; but ad slate not found
+    upsertChannelHardStartSchedule:
+      value:
+        start_time: 2020-08-06 22:00:00 +0530
+        stop_time: 2020-08-07 22:00:00 +0530
+        loop_on_completion: true
+        hard_start_time: 2020-08-06 22:30:00 +0530
+        slate_id: 30a1b08cdb84c60b4a0158f4749eb48
+    updateDescription:
+      value:
+        description: updated description
+    SSAIWithS3:
+      value:
+        name: TestSSAIChannel
+        description: A channel to test ssai on cloud playout
+        start_time: 2020-09-17T00.00.00Z
+        stop_time: 2020-09-18T00.00.00Z
+        input_group:
+        - input_type: playlist
+          loop_on_completion: true
+        ssai_enabled: true
+        mid_roll_import_enabled: true
+        mid_roll_slot_time: 30
+        image_id: https://path-to/channel/image.png
+        live_profile: 6e1af1a714ee45e7ac27c5ad
+        output_group:
+        - type: s3
+          ingest_locations:
+          - pipeline_id: 1
+            location: s3_credential_id
+        - type: rtp
+          ingest_locations:
+          - pipeline_id: 1
+            location: bc_live
+        region: us-east-1
+    invalidSlateId:
+      value:
+        message: No slate exists with public_id ID
+    channelStoptTimeUpdateAndhardStartError:
+      value:
+        message: Channel stop time and hard start time validation failed. Minimum channel stop time must be greater than hard start time
+    hardStartUpdateError:
+      value:
+        message: Cannot update Hard Start Time. Hard start time should be less than channel stop time
+    enableSSAI:
+      value:
+        output_group:
+        - type: rtp
+          ingest_locations:
+          - pipeline_id: 1
+            location: bc_live
+        ssai_enabled: true
+    updateInputGroup:
+      value:
+        input_group:
+        - input_type: playlist
+          loop_on_completion: true
+        - input_type: slate
+          input_id: https://test.mp4
+        - input_type: rtmp
+    updateMultiple:
+      value:
+        name: test_poster_cleanup
+        channel_id: dfb8f7a5593f4f6cbb8ba13740c59ccc
+        description: test_poster_cleanup
+        start_time: 2021-05-18 22:00:00 +0530
+        stop_time: 2021-03-28 10:00:00 +0530
+        input_group:
+        - input_type: playlist
+          loop_on_completion: true
+        - input_type: slate
+          input_id: https://s3transition-lambda-poc.s3.amazonaws.com/funny_cartoon.mp4
+        - input_type: rtmp
+        live_profile: 6e1af1a714ee45e7ac27c5ad
+        output_group:
+        - type: rtmp
+          ingest_locations:
+          - pipeline_id: 1
+            location: bc_live
+        region: us-east-1
+    hardStartCreateError:
+      value:
+        message: Cannot create/update Hard Start Time. Channel already playing playlist
+    updateLiveProfile:
+      value:
+        live_profile: 6e1af1a714ee45e7ac27c5ae
+    nonSSAIWithoutLive:
+      value:
+        name: TestChannel
+        description: A channel to test cloud playout
+        start_time: 2020-09-17T00.00.00Z
+        stop_time: 2020-09-18T00.00.00Z
+        input_group:
+        - input_type: playlist
+          loop_on_completion: true
+        image_id: https://path-to/channel/image.png
+        live_profile: 6e1af1a714ee45e7ac27c5ad
+        output_group:
+        - type: rtmp
+          ingest_locations:
+          - pipeline_id: 1
+            location: bc_live
+        region: us-east-1
+    hardStartCreateChannelRunningError:
+      value:
+        message: Cannot update Hard Start Time. Channel would have started playlist
+    updateStopTime:
+      value:
+        stop_time: 2021-05-17 12:18:50.344000+00:00
+    invalidNameAndDescription:
+      value:
+        message:
+          errors:
+          - Invalid special characters or space in Channel Name. Space not allowed. Allowed special characters are _.:/=+-
+          - 'Description is too long. Maximum characters allowed : 250'
+    slateUpdateError:
+      value:
+        message: Slate already started. Cannot delete Hard Start Time now
+    channelStartTimeUpdateAndhardStartError:
+      value:
+        message: Channel start time and hard start time validation failed, 10 minute duration gap between channel start time and hard start time
+    enableSSAIWithLiveInputGroup:
+      value:
+        input_group:
+        - input_type: playlist
+          loop_on_completion: true
+        - input_type: slate
+          input_id: https://test.mp4
+        - input_type: rtp
+    updateStartTime:
+      value:
+        start_time: 2021-05-17 08:18:50.344000+00:00
+    invalidDates:
+      value:
+        message:
+          errors:
+          - Error parsing the start-time, cannot be in the past
+          - Invalid start_time. An example of valid date format would be 2020-12-16 03:41:22 UTC
+          - Invalid stop_time. An example of valid date format would be 2020-12-16 03:41:22 UTC
+    existingLiveJobIdForOutputLocation:
+      value:
+        name: TestChannelWithExistingLiveJob
+        start_time: 2020-09-17T00.00.00Z
+        stop_time: 2020-09-18T00.00.00Z
+        input_group:
+        - input_type: playlist
+          loop_on_completion: true
+        ssai_enabled: true
+        mid_roll_import_enabled: true
+        mid_roll_slot_time: 30
+        image_id: https://path-to/channel/image.png
+        live_profile: 6e1af1a714ee45e7ac27c5ad
+        output_group:
+        - type: rtmp
+          ingest_locations:
+          - pipeline_id: 1
+            location: ac71d53a356d4d95986109257ae62faf
+        region: us-east-1
+    hardStartAndChannelStopError:
+      value:
+        message: Cannot update Hard Start Time. Hard start time should be less than channel stop time
+    slateUpdateChannelRunningError:
+      value:
+        message: Slate already started. Cannot change slate
+    invalidImage:
+      value:
+        message:
+          errors:
+          - image_id should be in String format
+          - Invalid Image URL
+          - Image URL must be a valid https url
+    disableSSAI:
+      value:
+        output_group:
+        - type: rtmp
+          ingest_locations:
+          - pipeline_id: 1
+            location: bc_live
+        ssai_enabled: false
+    SSAI:
+      value:
+        name: TestSSAIChannel
+        description: A channel to test ssai on cloud playout
+        start_time: 2020-09-17T00.00.00Z
+        stop_time: 2020-09-18T00.00.00Z
+        input_group:
+        - input_type: playlist
+          loop_on_completion: true
+        ssai_enabled: true
+        mid_roll_import_enabled: true
+        mid_roll_slot_time: 30
+        image_id: https://path-to/channel/image.png
+        live_profile: 6e1af1a714ee45e7ac27c5ad
+        output_group:
+        - type: rtp
+          ingest_locations:
+          - pipeline_id: 1
+            location: bc_live
+        region: us-east-1
+    deleteChannelHardStartSchedule:
+      value:
+        hard_start_time: null
+    SSAIWithLive:
+      value:
+        name: TestSSAIWithLiveChannel
+        description: A channel to test ssai with Live on cloud playout
+        start_time: 2020-09-17T00.00.00Z
+        stop_time: 2020-09-18T00.00.00Z
+        input_group:
+        - input_type: playlist
+          loop_on_completion: true
+        - input_type: slate
+          input_id: https://test.mp4
+        - input_type: rtp
+        ssai_enabled: true
+        mid_roll_import_enabled: true
+        mid_roll_slot_time: 30
+        image_id: https://path-to/channel/image.png
+        live_profile: 6e1af1a714ee45e7ac27c5ad
+        output_group:
+        - type: rtp
+          ingest_locations:
+          - pipeline_id: 1
+            location: bc_live
+        region: us-east-1
+    oneOfHardStartOrSlateMissing:
+      value:
+        message: Please provide value for both hard start time and slate
+    nonSSAIWithS3:
+      value:
+        name: TestChannel
+        description: A channel to test cloud playout
+        start_time: 2020-09-17T00.00.00Z
+        stop_time: 2020-09-18T00.00.00Z
+        input_group:
+        - input_type: playlist
+          loop_on_completion: true
+        image_id: https://path-to/channel/image.png
+        live_profile: 6e1af1a714ee45e7ac27c5ad
+        output_group:
+        - type: s3
+          ingest_locations:
+          - pipeline_id: 1
+            location: s3_credential_id
+        region: us-east-1
+    updateOutputGroups:
+      value:
+        output_group:
+        - type: rtmp
+          ingest_locations:
+          - pipeline_id: 1
+            location: bc_live
+    disableLiveInput:
+      value:
+        __comment: Just pass the required input groups without rtmp & slate to remove the live input.
+        input_group:
+        - input_type: playlist
+          loop_on_completion: true
+    invalidHardStartFormat:
+      value:
+        message: Hard Start Time is not in Standard Time Format
+    updateName:
+      value:
+        name: test_channel_edit
+    nonSSAIWithLive:
+      value:
+        name: TestChannel
+        description: A channel to test cloud playout
+        start_time: 2020-09-17T00.00.00Z
+        stop_time: 2020-09-18T00.00.00Z
+        input_group:
+        - input_type: playlist
+          loop_on_completion: true
+        - input_type: slate
+          input_id: https://s3transition-lambda-poc.s3.amazonaws.com/funny_cartoon.mp4
+        - input_type: rtmp
+        image_id: https://path-to/channel/image.png
+        live_profile: 6e1af1a714ee45e7ac27c5ad
+        output_group:
+        - type: rtmp
+          ingest_locations:
+          - pipeline_id: 1
+            location: bc_live
+        region: us-east-1
+    nonSSAIWith3rdParty:
+      value:
+        name: TestChannel
+        description: A channel to test cloud playout
+        start_time: 2020-09-17T00.00.00Z
+        stop_time: 2020-09-18T00.00.00Z
+        input_group:
+        - input_type: playlist
+          loop_on_completion: true
+        image_id: https://path-to/channel/image.png
+        live_profile: 6e1af1a714ee45e7ac27c5ad
+        output_group:
+        - type: rtmp
+          ingest_locations:
+          - pipeline_id: 1
+            location: rtmp://path-to/rtmp/destination
+        region: us-east-1
+  schemas:
+    UpdateChannel:
+      allOf:
+      - $ref: '#/components/schemas/ChannelProperties'
+      - title: UpdateChannel
+        type: object
+      - type: object
+    ChannelProperties:
+      title: CreateChannel
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the channel
+        description:
+          type: string
+          description: Description of the channel
+        ssai_enabled:
+          type: boolean
+          description: Channel enabled for SSAI
+          default: false
+        mid_roll_import_enabled:
+          type: boolean
+          description: For SSAI enabled channels, specify if midroll import is enabled or disabled
+          default: true
+        mid_roll_slot_time:
+          maximum: 600
+          minimum: 30
+          type: integer
+          description: For SSAI enabled channels, specify midroll slot duration in seconds
+          format: int32
+          default: 30
+        start_time:
+          type: string
+          description: Scheduled start time of the channel. Should be a future date/time
+          format: date-time
+        stop_time:
+          type: string
+          description: Scheduled stop time of the channel. Should be a future date/time. Leave this empty to run the channel 24*7
+          format: date-time
+        image_id:
+          type: string
+          description: Image URL that need to be associated with the channel
+          default: https://bc-cloudplayout-prod.s3.amazonaws.com/default_channel_image.png
+        live_profile:
+          type: string
+          description: Live profile on the account that need to be associated with this channel. Use the [List Profiles](https://apis.support.brightcove.com/cloud-playout-apis/references/reference-channels.html#operation/ListProfiles) API to get the profile id's.
+        channel_class:
+          type: string
+          default: single-pipeline
+        region:
+          type: string
+          description: Region for the channel.
+          enum:
+          - us-east-1
+          - us-east-2
+          - us-west-2
+          - ap-south-1
+          - ap-southeast-1
+          - ap-southeast-2
+          - ap-northeast-1
+          - ap-northeast-2
+          - eu-central-1
+          - eu-west-1
+          - eu-west-2
+          - eu-west-3
+          - eu-north-1
+          - sa-east-1
+        input_group:
+          required:
+          - input_type
+          type: array
+          items:
+            properties:
+              input_type:
+                type: string
+                description: The input types for the channel. Playlist is mandatory, rest others are optional
+                enum:
+                - playlist
+                - slate
+                - rtmp
+                - rtp
+              input_id:
+                type: string
+                description: Applicable only in slate input_type. Denotes a http URL for the slate MP4
+                default: https://bc-cloudplayout-prod.s3.amazonaws.com/cloudplayout-slate-v2.mp4
+              loop_on_completion:
+                type: boolean
+                description: Applicable only in playlist input_type. Denotes a looped/non-looped channel
+        output_group:
+          type: array
+          items:
+            properties:
+              type:
+                type: string
+                description: Output destination(s) for the channel. rtp is the only option for SSAI enabled channels
+                enum:
+                - rtmp
+                - s3
+                - rtp
+              ingest_locations:
+                type: array
+                items:
+                  properties:
+                    pipeline_id:
+                      type: integer
+                      description: Indicates the output pipeline. 1 only for now
+                      format: int32
+                    location:
+                      type: string
+                      description: Location where the output destination is configured. For rtmp/rtp type; 1. Specify as bc_live if you want Cloud PlayOut to create a new Brightcove Live event. 2. For using an existing BC Live event, pass in the existing event's job ID. See [ListBCLiveChannels](https://apis.support.brightcove.com/cloud-playout-apis/references/reference-channels.html#operation/ListBCLiveChannels) to get the available job id's. For s3 type; pass in the credentials id (Refer [Credentials](https://apis.support.brightcove.com/cloud-playout-apis/references/reference-channels.html#tag/Credentials)) for Cloud Playout to create HLS playlist on the given S3 location.
+                    redundancy:
+                      type: boolean
+                      description: Enables or disables Brightcove Live redundancy. Applicable only for rtmp/rtp type with location as either 'bc_live' or an existing Brightcove live redundant group id available in the users videocloud account.
+    GetChannel:
+      title: GetChannel
+      type: object
+      properties:
+        channel:
+          $ref: '#/components/schemas/ExtendedChannel'
+      example:
+        public_id: 8635d6147ab64e4788a44d70c23cced0
+        name: testChannel
+        description: Channel created for testing Cloud Playout
+        account_id: '6062814566001'
+        state: DRAFT
+        start_time: 2020-12-17 06:00:00 UTC
+        stop_time: 2020-12-17 07:00:00 UTC
+        input_groups: playlist
+        output_groups: rtmp
+        loop_playlist: true
+        playlist_id: '1686204667297382886'
+        channel_class: single-pipeline
+        ssai_enabled: false
+        aws_region: us-east-1
+        created_at: 2020-12-16 03:41:22 UTC
+        updated_at: 2020-12-17 04:53:30 UTC
+        image_url: https://bc-cloudplayout-prod.s3.amazonaws.com/default_channel_image.png
+        output_destinations:
+        - Brightcove Live
+        channel_created_at: 2020-12-16 03:41:22 UTC
+        channel_updated_at: 2020-12-17 04:53:30 UTC
+        channel_created_by: abc@xyz.com
+        channel_updated_by: abc@xyz.com
+        live_profile:
+          display_name: Standard Live HD 720p - Tier 1
+          name: standard-live-hd-720p-tier-1
+          date_created: 2018-06-04 18:16:44 UTC
+          date_modified: 2018-06-04 18:16:44 UTC
+        channel_data:
+          input_group:
+          - input_type: slate
+            value: https://bc-cloudplayout-prod.s3.amazonaws.com/cloudplayout-slate-v2.mp4
+            public_id: 8f5d4bd7474346398f63d29928fe7c11
+          - input_type: rtmp
+            value:
+              type: RTMP_PUSH
+              url: rtmp://cloudplayout.brightcove.com/cloudplayout/2773cfce04834175a16ff3db6c6f713a
+              security_groups:
+              - '2960733'
+          - input_type: playlist
+            value: playlist_name
+            description: Playlist created for Cloud Playout
+            public_id: '1691563159090702307'
+          output_groups:
+          - type: preview
+            destination_url: bc-cloudplayout-prod/framecapture/2773cfce04834175a16ff3db6c6f713a/image
+            encoder_settings:
+            - width: 640
+              height: 360
+              capture_interval: 5
+              capture_interval_units: SECONDS
+          - type: rtmp
+            destination_url: rtmp://3c702c9afcd24a93b73cf57af2eb44f5.sep.bcovlive.io:1935/3c702c9afcd24a93b73cf57af2eb44f5/alive
+            location_id: 3c702c9afcd24a93b73cf57af2eb44f5
+            location: Shared-media-test
+            destination: Brightcove Live
+            encoder_settings:
+            - width: 1280
+              height: 720
+              bitrate: 2400000
+              gop_size: 90.0
+              gop_size_units: FRAMES
+              profile: HIGH
+              level: H264_LEVEL_AUTO
+              scan_type: PROGRESSIVE
+              framerate_control: SPECIFIED
+            stream_url: rtmp://3c702c9afcd24a93b73cf57af2eb44f5.sep.bcovlive.io:1935/3c702c9afcd24a93b73cf57af2eb44f5/alive
+            static: true
+            playback_url: https://bcovlive-a.akamaihd.net/3c702c9afcd24a93b73cf57af2eb44f5/us-west-2/NA/playlist.m3u8
+            playback_url_dvr: https://bcovlive-a.akamaihd.net/3c702c9afcd24a93b73cf57af2eb44f5/us-west-2/NA/playlist_dvr.m3u8
+    AsRunLogs:
+      title: AsRunLogsJsonObject
+      type: object
+      properties:
+        account_id:
+          type: string
+          description: Video cloud account id
+        channel_id:
+          type: string
+          description: Id of the channel
+        channel_name:
+          type: string
+          description: Name of the channel
+        from:
+          type: string
+          description: Start date & time of the logs
+        to:
+          type: string
+          description: End date & time of the logs
+        events:
+          type: array
+          description: List of events between from & to
+          xml:
+            name: events
+            wrapped: true
+          items:
+            $ref: '#/components/schemas/GetAsRunEvent'
+      xml:
+        name: as_run_log
+    GetAsRunEvent:
+      title: As run logs event
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        type:
+          type: string
+        start_time:
+          type: string
+        end_time:
+          type: string
+        playhead_start_time:
+          type: string
+      xml:
+        name: event
+    AsyncMessage:
+      title: MessageObject
+      type: object
+      properties:
+        message:
+          type: string
+          description: message from the api
+    GetChannelHealth:
+      title: HealthMetric
+      type: object
+      properties:
+        resp:
+          type: array
+          items:
+            properties:
+              pipeline_0:
+                type: object
+                properties:
+                  metric_data_results:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: string
+                        label:
+                          type: string
+                        timestamps:
+                          type: array
+                          items:
+                            type: string
+                        values:
+                          type: array
+                          items:
+                            type: string
+                        status_code:
+                          type: string
+      example:
+        resp:
+        - pipeline_0:
+            metric_data_results:
+            - id: m1
+              label: NetworkIn
+              timestamps:
+              - 2021-07-05 03:41:00 UTC
+              values:
+              - 71507.5
+              status_code: Complete
+            - id: m2
+              label: NetworkOut
+              timestamps:
+              - 2021-07-05 03:41:00 UTC
+              values:
+              - 5517809.0
+              status_code: Complete
+            - id: m3
+              label: InputVideoFrameRate
+              timestamps: []
+              values: []
+              status_code: Complete
+            - id: m4
+              label: ActiveAlerts
+              timestamps:
+              - 2021-07-05 03:41:00 UTC
+              values:
+              - 0.0
+              status_code: Complete
+            - id: m5
+              label: DroppedFrames
+              timestamps:
+              - 2021-07-05 03:41:00 UTC
+              values:
+              - 0.0
+              status_code: Complete
+            - id: m6
+              label: SvqTime
+              timestamps:
+              - 2021-07-05 03:41:00 UTC
+              values:
+              - 0.0
+              status_code: Complete
+            - id: m7
+              label: FillMsec
+              timestamps:
+              - 2021-07-05 03:41:00 UTC
+              values:
+              - 0.0
+              status_code: Complete
+            - id: m8
+              label: UdpInputLoss
+              timestamps: []
+              values: []
+              status_code: Complete
+            messages: []
+    GetAllChannels:
+      title: GetAllChannels
+      type: object
+      properties:
+        items:
+          type: array
+          description: The list of channels.  List may be empty if no channels
+          items:
+            $ref: '#/components/schemas/ChannelTopLevel'
+      example:
+        items:
+        - public_id: 8635d6147ab64e4788a44d70c23cced0
+          name: testChannel
+          description: Channel created for testing Cloud Playout
+          account_id: '6062814566001'
+          state: DRAFT
+          start_time: 2020-12-17 06:00:00 UTC
+          stop_time: 2020-12-17 07:00:00 UTC
+          input_groups: playlist
+          output_groups: rtmp
+          loop_playlist: true
+          playlist_id: '1686204667297382886'
+          channel_class: single-pipeline
+          ssai_enabled: false
+          aws_region: us-east-1
+          created_at: 2020-12-16 03:41:22 UTC
+          updated_at: 2020-12-17 04:53:30 UTC
+          image_url: https://bc-cloudplayout-prod.s3.amazonaws.com/default_channel_image.png
+          output_destinations:
+          - Brightcove Live
+          channel_created_at: 2020-12-16 03:41:22 UTC
+          channel_updated_at: 2020-12-17 04:53:30 UTC
+          channel_created_by: abc@xyz.com
+          channel_updated_by: abc@xyz.com
+          additional_metadata: {}
+    UpdateChannelSchedule:
+      title: UpdateSchedule
+      type: object
+      properties:
+        start_time:
+          type: string
+          description: start time of channel
+          format: date-time
+        stop_time:
+          type: string
+          description: stop time of channel
+          format: date-time
+        loop_on_completion:
+          type: boolean
+          description: channel looped/non-looped
+        hard_start_time:
+          type: string
+          description: hard start time of channel
+          format: date-time
+        slate_id:
+          type: string
+          description: id of the slate asset. See [Get Assets](https://apis.support.brightcove.com/cloud-playout-apis/references/reference-channels.html#operation/GetAssets) to list all the available slate id's.
+      example:
+        start_time: 2020-08-06 22:00:00 +0530
+        stop_time: 2020-08-07 22:00:00 +0530
+        loop_on_completion: true
+        hard_start_time: 2020-08-06 22:30:00 +0530
+        slate_id: 30a1b08cdb84c60b4a0158f4749eb48
+    BadRequest:
+      title: BadRequest
+      type: object
+      properties:
+        message:
+          type: object
+    GetChannelPreview:
+      title: Preview
+      type: object
+      properties:
+        url:
+          type: string
+    CreateChannel:
+      allOf:
+      - $ref: '#/components/schemas/ChannelProperties'
+      - required:
+        - input_group
+        - live_profile
+        - name
+        - output_group
+        - region
+        - start_time
+        type: object
+    HardStartChannelTopLevel:
+      title: HardStartChannelTopLevel
+      type: object
+      properties:
+        channel:
+          $ref: '#/components/schemas/ChannelTopLevel'
+      example:
+        public_id: 7ba0ab27e1ba4c69bfbb7e2b6958a3e5
+        name: testChannel
+        description: testChannel
+        account_id: '6062814566001'
+        state: DRAFT
+        start_time: 2021-10-10 16:30:00 UTC
+        stop_time: 2021-10-20 04:30:00 UTC
+        input_groups: playlist:slate:rtmp
+        output_groups: rtmp
+        loop_playlist: true
+        playlist_id: '1700806648849757071'
+        channel_class: single-pipeline
+        aws_region: us-east-1
+        created_at: 2021-05-26 07:40:40 UTC
+        updated_at: 2021-05-26 07:40:40 UTC
+        image_url: https://picsum.photos/200/300
+        output_destinations:
+        - Brightcove Live
+        channel_created_at: 2021-05-26 07:40:40 UTC
+        channel_updated_at: 2021-05-26 07:40:40 UTC
+        channel_created_by: user@example.com
+        channel_updated_by: user@example.com
+        hard_start:
+          start_time: 2021-10-10 17:00:00 UTC
+          asset_details:
+            asset_url: https://bc-cloudplayout-prod.s3.amazonaws.com/cloudplayout-slate-v2.mp4
+            id: 30a1b08cdb84c60b4a0158f4749eb48
+            name: countdownslate
+    ExtendedChannel:
+      allOf:
+      - $ref: '#/components/schemas/ChannelTopLevel'
+      - type: object
+        properties:
+          live_profile:
+            type: array
+            items:
+              type: object
+              properties:
+                display_name:
+                  type: string
+                  description: Display name of the profile used by the channel
+                name:
+                  type: string
+                  description: Name of the profile used by the channel
+                date_created:
+                  type: string
+                  description: Created date of the profile
+                date_modified:
+                  type: string
+                  description: Updated date of the profile
+          channel_data:
+            type: object
+            properties:
+              input_group:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    input_type:
+                      type: string
+                      description: Type of the input
+                      enum:
+                      - rtmp
+                      - slate
+                      - playlist
+                      - rtp
+                    value:
+                      type: string
+                      description: Value of the input type
+                    description:
+                      type: string
+                      description: Description of the input type
+                    public_id:
+                      type: string
+                      description: public id of the given input type
+              output_group:
+                required:
+                - destination
+                - destination_url
+                - type
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      description: Type of the output destination
+                      enum:
+                      - rtmp
+                      - rtp
+                      - s3
+                    location:
+                      type: string
+                      description: BC Live job/redundant_group name, in case BC Live is the destination
+                    location_id:
+                      type: string
+                      description: BC Live job/redundant_group ID, in case BC Live is the destination
+                    redundancy:
+                      type: boolean
+                      description: BC Live redundancy true/false, in case BC Live is the destination
+                    destination:
+                      type: string
+                      description: Destination for this output group. Brightcove Live - if BC Live is the destination
+                      enum:
+                      - Brightcove Live
+                      - RTMP
+                      - RTP
+                      - S3
+                    destination_url:
+                      type: string
+                      description: Output destination URL
+                    outputs:
+                      required:
+                      - destination_url
+                      - type
+                      type: array
+                      description: BC Live jobs info, in case of BC Live redundancy enabled channles
+                      items:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            description: Type of the output destination
+                            enum:
+                            - rtmp
+                            - rtp
+                          location:
+                            type: string
+                            description: BC Live job name, in case BC Live is the destination
+                          location_id:
+                            type: string
+                            description: BC Live job ID, in case BC Live is the destination
+                          destination_url:
+                            type: string
+                            description: Output destination URL
+    ChannelTopLevel:
+      title: TopLevelChannelObject
+      type: object
+      properties:
+        public_id:
+          type: string
+          description: Id for the channel.
+          readOnly: true
+        name:
+          type: string
+          description: Name of the channel.
+        description:
+          type: string
+          description: Description of the channel.
+        account_id:
+          type: string
+          description: Account id of the channel.
+        state:
+          type: string
+          description: state of the channel.
+          enum:
+          - DRAFT
+          - CREATING
+          - CREATE_ERROR
+          - SCHEDULED
+          - RE-SCHEDULING
+          - STARTING
+          - RUNNING
+          - START_ERROR
+          - STOPPING
+          - STOP_ERROR
+          - DELETING
+          - DELETE_ERROR
+        status:
+          type: string
+          description: Status of the channel.
+        message:
+          type: string
+          description: Error message or status message.
+        start_time:
+          type: string
+          description: Start time of the channel.
+        stop_time:
+          type: string
+          description: Stop time of the channel.
+        input_groups:
+          type: string
+          description: Input groups of the channel.
+        output_groups:
+          type: string
+          description: Output groups of the channel.
+        loop_playlist:
+          type: boolean
+          description: Looped channel/Non-Looped channel.
+        playlist_id:
+          type: string
+          description: Playlist id associated with the channel.
+        channel_class:
+          type: string
+          description: Channel class.
+        ssai_enabled:
+          type: boolean
+          description: SSAI/non-SSAI channel.
+        aws_region:
+          type: string
+          description: Region for the channel.
+        image_url:
+          type: string
+          description: Channel image URL.
+        output_destinations:
+          type: array
+          description: Output destinations configured for the channel.
+          items:
+            type: string
+        channel_created_at:
+          type: string
+          description: Time of channel creation.
+        channel_updated_at:
+          type: string
+          description: Last updated time of the channel.
+        channel_created_by:
+          type: string
+          description: User email that created the channel.
+        channel_updated_by:
+          type: string
+          description: User email that last updated the channel.
+        hard_start:
+          type: object
+          properties:
+            start_time:
+              type: string
+              description: Hard start time of the channel.
+            asset_details:
+              type: object
+              properties:
+                asset_url:
+                  type: string
+                  description: Public URL of the asset.
+                id:
+                  type: string
+                  description: Id of the asset.
+                name:
+                  type: string
+                  description: name of the asset.
+              description: Details of the slate asset.
+          description: Hard Start details of the channel.
+      example:
+        public_id: 7ba0ab27e1ba4c69bfbb7e2b6958a3e5
+        name: testChannel
+        description: testChannel
+        account_id: '6062814566001'
+        state: DRAFT
+        start_time: 2021-10-10 16:30:00 UTC
+        stop_time: 2021-10-20 04:30:00 UTC
+        input_groups: playlist:slate:rtmp
+        output_groups: rtmp
+        loop_playlist: true
+        playlist_id: '1700806648849757071'
+        channel_class: single-pipeline
+        aws_region: us-east-1
+        created_at: 2021-05-26 07:40:40 UTC
+        updated_at: 2021-05-26 07:40:40 UTC
+        image_url: https://picsum.photos/200/300
+        output_destinations:
+        - Brightcove Live
+        channel_created_at: 2021-05-26 07:40:40 UTC
+        channel_updated_at: 2021-05-26 07:40:40 UTC
+        channel_created_by: user@example.com
+        channel_updated_by: user@example.com
+  securitySchemes:
+    BC_OAuth2:
+      type: oauth2
+      description: Brightcove OAuth API. See the [support documentation](https://support.brightcove.com/oauth-api) or [Getting Access Tokens](https://support.brightcove.com/oauth-api-sample-get-access-token) to learn more
+      flows:
+        clientCredentials:
+          tokenUrl: https://oauth.qa.brightcove.com/v4/access_token
+          scopes:
+            video-cloud/cloud-playout/all: Able to manage cloud playout channels.
+            video-cloud/cloud-playout/read: Able to read cloud playout channels.
+            BC_CLOUD_PLAYOUT_READ: Permission-based access control
+            BC_CLOUD_PLAYOUT_WRITE: Permission-based access control
+x-bc-implicit-head: true
+x-bc-implicit-options: true

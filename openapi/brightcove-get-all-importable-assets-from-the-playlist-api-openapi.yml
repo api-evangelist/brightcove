@@ -1,0 +1,132 @@
+openapi: 3.2.0
+info:
+  title: Brightcove Cloud Playout Channel Manager API Reference Get…
+  description: Reference for the Brightcove Cloud Playout Channel Manager API, used to access and manage your Cloud Playout channels.
+  version: 1.0.0
+servers:
+- url: https://cm.cloudplayout.brightcove.com
+  description: Production server
+- url: https://cm.cloudplayout.qa.brightcove.com
+  description: QA server
+tags:
+- name: Get all importable assets from the playlist
+paths:
+  /accounts/{account_id}/playlists/{playlist_id}/importable-assets:
+    x-bc-throttle-key: null
+    get:
+      tags:
+      - Get all importable assets from the playlist
+      summary: Get all importable assets from the playlist
+      operationId: GetImportableAssets
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: playlist_id
+        in: path
+        description: CMS Playlist ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportableAssets'
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/read
+        - BC_CLOUD_PLAYOUT_READ
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+      x-operation-id-source: normalized
+      x-operation-id-original: GetImportable Assets
+components:
+  schemas:
+    ImportableAssets:
+      title: ImportableAssetsObject
+      type: object
+      properties:
+        eligible_assets:
+          type: array
+          items:
+            properties:
+              name:
+                type: string
+                description: asset name
+              id:
+                type: string
+                description: asset id
+              images:
+                type: object
+                description: image object URL
+              tags:
+                type: array
+                description: tags associated with the asset
+                items:
+                  type: string
+              duration:
+                type: integer
+                description: asset duration in milliseconds
+                format: int32
+              delivery_type:
+                type: string
+                description: Delivery type for the asset
+        rejected_assets:
+          type: array
+          description: video_ids of rejected assets
+          items:
+            type: string
+      example:
+        eligible_assets:
+        - name: cloudplayout-static-v1-smpte
+          id: '70702002899202'
+          images:
+            thumbnail:
+              src: https://cf-images.us-east-1.qa.boltdns.net/v1/jit/6062814566001/dafe34fd-4485-4d50-adca-afd3cbd45af9/main/1280x720/15s/match/image.jpg
+          tags:
+          - tag1
+          - tag2
+          - tag3
+          duration: 30000
+          delivery_type: dynamic_origin
+        rejected_assets:
+        - '70702089454202'
+        - '70702089446202'
+  securitySchemes:
+    BC_OAuth2:
+      type: oauth2
+      description: Brightcove OAuth API. See the [support documentation](https://support.brightcove.com/oauth-api) or [Getting Access Tokens](https://support.brightcove.com/oauth-api-sample-get-access-token) to learn more
+      flows:
+        clientCredentials:
+          tokenUrl: https://oauth.qa.brightcove.com/v4/access_token
+          scopes:
+            video-cloud/cloud-playout/all: Able to manage cloud playout channels.
+            video-cloud/cloud-playout/read: Able to read cloud playout channels.
+            BC_CLOUD_PLAYOUT_READ: Permission-based access control
+            BC_CLOUD_PLAYOUT_WRITE: Permission-based access control
+x-bc-implicit-head: true
+x-bc-implicit-options: true

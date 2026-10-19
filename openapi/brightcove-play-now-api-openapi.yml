@@ -1,0 +1,109 @@
+openapi: 3.2.0
+info:
+  title: Brightcove Cloud Playout Channel Manager API Reference Play…
+  description: Reference for the Brightcove Cloud Playout Channel Manager API, used to access and manage your Cloud Playout channels.
+  version: 1.0.0
+servers:
+- url: https://cm.cloudplayout.brightcove.com
+  description: Production server
+- url: https://cm.cloudplayout.qa.brightcove.com
+  description: QA server
+tags:
+- name: Play Now
+paths:
+  /accounts/{account_id}/cp_channels/{channel_id}/video/{video_id}/order/{order}/skip:
+    x-bc-throttle-key: null
+    post:
+      tags:
+      - Play Now
+      summary: Skip to a particular asset in a running channel
+      operationId: SkipToVideoId
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: channel_id
+        in: path
+        description: Cloud Playout Channel Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: video_id
+        in: path
+        description: ID of a video in a Playlist
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int32
+      - name: order
+        in: path
+        description: Order of a video in a Playlist
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        202:
+          description: 202 Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncMessage'
+              example:
+                message: Play Now initiated
+        400:
+          description: Bad Request
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/all
+        - BC_CLOUD_PLAYOUT_WRITE
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+components:
+  schemas:
+    AsyncMessage:
+      title: MessageObject
+      type: object
+      properties:
+        message:
+          type: string
+          description: message from the api
+  securitySchemes:
+    BC_OAuth2:
+      type: oauth2
+      description: Brightcove OAuth API. See the [support documentation](https://support.brightcove.com/oauth-api) or [Getting Access Tokens](https://support.brightcove.com/oauth-api-sample-get-access-token) to learn more
+      flows:
+        clientCredentials:
+          tokenUrl: https://oauth.qa.brightcove.com/v4/access_token
+          scopes:
+            video-cloud/cloud-playout/all: Able to manage cloud playout channels.
+            video-cloud/cloud-playout/read: Able to read cloud playout channels.
+            BC_CLOUD_PLAYOUT_READ: Permission-based access control
+            BC_CLOUD_PLAYOUT_WRITE: Permission-based access control
+x-bc-implicit-head: true
+x-bc-implicit-options: true

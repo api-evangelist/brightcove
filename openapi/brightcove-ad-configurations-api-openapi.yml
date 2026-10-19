@@ -237,12 +237,6 @@ components:
             template:
               type: string
               description: Ad tag template. Available variables described in [this document](/vod/guides/video-cloud-ssai-ad-config-api.html#Ad_variables).
-    AdConfigList:
-      title: List Ad Configurations Response
-      type: array
-      description: Array of ad configuration objects
-      items:
-        $ref: '#/components/schemas/AdConfiguration'
     BeaconTemplate:
       title: Beacon Template
       description: Beacons are sent to send analytics data from the client. The beacon template defines the type of events to send beacons for and the information that will be sent.
@@ -276,6 +270,12 @@ components:
             template:
               type: string
               description: The beacon URL template
+    AdConfigList:
+      title: List Ad Configurations Response
+      type: array
+      description: Array of ad configuration objects
+      items:
+        $ref: '#/components/schemas/AdConfiguration'
     AdConfiguration:
       title: Ad Configuration Response
       type: object

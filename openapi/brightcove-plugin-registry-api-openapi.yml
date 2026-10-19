@@ -1,7 +1,29 @@
 openapi: 3.2.0
 info:
   title: Brightcove Player Management API Reference Plugin Registry…
-  description: Reference for the Brightcove Player Management API, used to manipulate players, player configurations and child players (embeds).
+  description: 'Reference for the Brightcove Player Management API, used to manipulate players, player configurations and child players (embeds). To test API requests, you can use our API Testing Tools. Popular testing tools include:
+
+
+    - cURL
+
+    - Postman - note that the tutorial here uses the Player Management API as an example
+
+    - Insomnia - note that the tutorial here uses the Player Management API as an example
+
+
+    If you haven''t gone through Step-by-Step: Player Management, it''s highly recommended you start there. You''ll get security set up and learn some of the basics of using the Player Management API.
+
+
+    If you are working with this API for the first time, read the Player Management API Overview.
+
+
+    Remember that after making any configuration changes you **MUST** re-publish your player. **Note:** Fields in configuration objects need to be set only if you wish to change their values. Fields in configuration objects will be displayed in the response only if explicitly set. For information on authenticating API requests, see OAuth Overview.
+
+
+    For additional in-depth guides to features of the API, see the **general documentation**.
+
+
+    Base URL: https://players.api.brightcove.com/v2'
   version: 2.0.0
   x-bc-access: public
 servers:
@@ -190,6 +212,15 @@ components:
       schema:
         type: string
       example: application/json
+    plugin_id:
+      name: plugin_id
+      in: path
+      description: The plugin ID in the Plugin Registry.
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
     Authorization:
       name: Authorization
       in: header
@@ -199,15 +230,6 @@ components:
         `Authorization: Bearer {access_token}` - (see [Getting Access
 
         Tokens](/oauth/code-samples/oauth-api-sample-get-access-token.html))'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    plugin_id:
-      name: plugin_id
-      in: path
-      description: The plugin ID in the Plugin Registry.
       required: true
       style: simple
       explode: false

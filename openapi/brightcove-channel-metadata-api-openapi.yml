@@ -1,0 +1,567 @@
+openapi: 3.2.0
+info:
+  title: Brightcove Cloud Playout Channel Manager API Reference…
+  description: Reference for the Brightcove Cloud Playout Channel Manager API, used to access and manage your Cloud Playout channels.
+  version: 1.0.0
+servers:
+- url: https://cm.cloudplayout.brightcove.com
+  description: Production server
+- url: https://cm.cloudplayout.qa.brightcove.com
+  description: QA server
+tags:
+- name: Channel Metadata
+paths:
+  /accounts/{account_id}/channel/metadata/regions:
+    x-bc-throttle-key: null
+    get:
+      tags:
+      - Channel Metadata
+      summary: Get all regions for channel metadata
+      operationId: GetAllChannelRegions
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        description: 'Content-Type: application/json'
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          default: application/json
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelMetadataRegions'
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/read
+        - BC_CLOUD_PLAYOUT_READ
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+  /accounts/{account_id}/channel/metadata/regions/{region_key}:
+    x-bc-throttle-key: null
+    get:
+      tags:
+      - Channel Metadata
+      summary: Get all regions for channel metadata
+      description: Get a region for channel metadata
+      operationId: GetAChannelRegion
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        description: 'Content-Type: application/json'
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          default: application/json
+      - name: region_key
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelMetadataRegion'
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/read
+        - BC_CLOUD_PLAYOUT_READ
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+  /accounts/{account_id}/channel/metadata/languages:
+    x-bc-throttle-key: null
+    get:
+      tags:
+      - Channel Metadata
+      summary: Get all languages for channel metadata
+      operationId: GetAllChannelLanguages
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        description: 'Content-Type: application/json'
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          default: application/json
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelMetadataLanguages'
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/read
+        - BC_CLOUD_PLAYOUT_READ
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+  /accounts/{account_id}/channel/metadata/languages/{language_code}:
+    x-bc-throttle-key: null
+    get:
+      tags:
+      - Channel Metadata
+      summary: Get a language for channel metadata
+      operationId: GetAChannelLanguage
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        description: 'Content-Type: application/json'
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          default: application/json
+      - name: language_code
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelMetadataLanguage'
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/read
+        - BC_CLOUD_PLAYOUT_READ
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+  /accounts/{account_id}/channel/metadata/regions/{region_key}/ratings:
+    x-bc-throttle-key: null
+    get:
+      tags:
+      - Channel Metadata
+      summary: Get all ratings for a channel region
+      operationId: GetAllChannelRatings
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        description: 'Content-Type: application/json'
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          default: application/json
+      - name: region_key
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelMetadataRegionalRatings'
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/read
+        - BC_CLOUD_PLAYOUT_READ
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+  /accounts/{account_id}/channel/metadata/genres:
+    x-bc-throttle-key: null
+    get:
+      tags:
+      - Channel Metadata
+      summary: Get all genres for a channel
+      operationId: GetAllChannelGenres
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        description: 'Content-Type: application/json'
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          default: application/json
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelMetadataGenres'
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/read
+        - BC_CLOUD_PLAYOUT_READ
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+  /accounts/{account_id}/channel/metadata/subgenres:
+    x-bc-throttle-key: null
+    get:
+      tags:
+      - Channel Metadata
+      summary: Get all sub-genres for a channel genre
+      description: Get all sub-genres for a given channel genre, if not given return all genres & sub-genres
+      operationId: GetAllChannelSubGenres
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        description: 'Content-Type: application/json'
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          default: application/json
+      - name: genre_name
+        in: query
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelMetadataSubGenres'
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/read
+        - BC_CLOUD_PLAYOUT_READ
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+components:
+  schemas:
+    ChannelMetadataRegionalRatings:
+      title: ChannelMetadataRegionalRatings
+      type: object
+      properties:
+        region:
+          type: string
+        regionName:
+          type: string
+        ratings:
+          type: array
+          items:
+            type: object
+      example:
+        region: US
+        regionName: United States
+        ratings:
+        - region: US
+          rating: TVG
+          age: 1
+        - region: US
+          rating: TVY
+          age: 1
+        - region: US
+          rating: G
+          age: 1
+        - region: US
+          rating: UR
+          age: 1
+        - region: US
+          rating: NR
+          age: 1
+        - region: US
+          rating: TVY7
+          age: 7
+        - region: US
+          rating: TVY7FV
+          age: 7
+        - region: US
+          rating: TVPG
+          age: 8
+        - region: US
+          rating: PG
+          age: 8
+        - region: US
+          rating: PG13
+          age: 13
+        - region: US
+          rating: TV14
+          age: 14
+        - region: US
+          rating: R
+          age: 17
+        - region: US
+          rating: NC17
+          age: 17
+        - region: US
+          rating: TVMA
+          age: 18
+    ChannelMetadataRegions:
+      title: ChannelMetadataRegions
+      type: object
+      properties:
+        items:
+          type: array
+          description: The list of regions for channel metadata.
+          items:
+            type: object
+      example:
+        items:
+        - key: GLOBAL
+          regionName: GLOBAL
+        - key: AF
+          regionName: Afghanistan
+    ChannelMetadataSubGenres:
+      title: ChannelMetadataSubGenres
+      type: object
+      properties:
+        genre:
+          type: string
+        subGenre:
+          type: array
+          items:
+            type: object
+      example:
+        genre: Action & Adventure
+        subGenre:
+        - Crime
+        - International
+        - Martial Arts
+        - Military
+        - Thriller
+        - Western
+    ChannelMetadataRegion:
+      title: ChannelMetadataRegion
+      type: object
+      properties:
+        key:
+          type: string
+        regionName:
+          type: string
+      example:
+        key: GLOBAL
+        regionName: GLOBAL
+    ChannelMetadataLanguage:
+      title: ChannelMetadataLanguage
+      type: object
+      properties:
+        code:
+          type: string
+        name:
+          type: string
+      example:
+        code: ab
+        name: Abkhazian
+    ChannelMetadataLanguages:
+      title: ChannelMetadataLanguages
+      type: object
+      properties:
+        items:
+          type: array
+          description: The list of languages for channel metadata.
+          items:
+            type: object
+      example:
+        items:
+        - code: ab
+          name: Abkhazian
+        - code: aa
+          name: Afar
+    ChannelMetadataGenres:
+      title: ChannelMetadataGenres
+      type: object
+      properties:
+        items:
+          type: array
+          description: The list of genres for channel metadata.
+          items:
+            type: object
+      example:
+        items:
+        - Action & Adventure
+        - Action Sports
+        - Animals
+        - Animated
+  securitySchemes:
+    BC_OAuth2:
+      type: oauth2
+      description: Brightcove OAuth API. See the [support documentation](https://support.brightcove.com/oauth-api) or [Getting Access Tokens](https://support.brightcove.com/oauth-api-sample-get-access-token) to learn more
+      flows:
+        clientCredentials:
+          tokenUrl: https://oauth.qa.brightcove.com/v4/access_token
+          scopes:
+            video-cloud/cloud-playout/all: Able to manage cloud playout channels.
+            video-cloud/cloud-playout/read: Able to read cloud playout channels.
+            BC_CLOUD_PLAYOUT_READ: Permission-based access control
+            BC_CLOUD_PLAYOUT_WRITE: Permission-based access control
+x-bc-implicit-head: true
+x-bc-implicit-options: true

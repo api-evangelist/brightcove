@@ -1,0 +1,504 @@
+openapi: 3.2.0
+info:
+  title: Brightcove Cloud Playout Channel Manager API Reference…
+  description: Reference for the Brightcove Cloud Playout Channel Manager API, used to access and manage your Cloud Playout channels.
+  version: 1.0.0
+servers:
+- url: https://cm.cloudplayout.brightcove.com
+  description: Production server
+- url: https://cm.cloudplayout.qa.brightcove.com
+  description: QA server
+tags:
+- name: Channel Overlays
+paths:
+  /accounts/{account_id}/cp_channels/{channel_id}/overlays:
+    x-bc-throttle-key: null
+    get:
+      tags:
+      - Channel Overlays
+      summary: Get All overlay images for a channel
+      operationId: GetChannelOverlays
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: channel_id
+        in: path
+        description: Cloud Playout Channel Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetChannelOverlays'
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/read
+        - BC_CLOUD_PLAYOUT_READ
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+    post:
+      tags:
+      - Channel Overlays
+      summary: Associate an overlay asset for a channel
+      operationId: AssociateOverlay
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: channel_id
+        in: path
+        description: Cloud Playout Channel Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: overlay details
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateChannelOverlay'
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetChannelOverlay'
+        400:
+          description: Bad Request
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/all
+        - BC_CLOUD_PLAYOUT_WRITE
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+  /accounts/{account_id}/cp_channels/{channel_id}/overlays/{overlay_id}:
+    x-bc-throttle-key: null
+    get:
+      tags:
+      - Channel Overlays
+      summary: Get an overlay image for a channel
+      operationId: GetChannelOverlay
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: channel_id
+        in: path
+        description: Cloud Playout Channel Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: overlay_id
+        in: path
+        description: Cloud Playout Overlay Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetChannelOverlay'
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/read
+        - BC_CLOUD_PLAYOUT_READ
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+    delete:
+      tags:
+      - Channel Overlays
+      summary: delete an overlay image for a channel
+      description: Delete an overlay image for a channel
+      operationId: DeleteChannelOverlay
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: channel_id
+        in: path
+        description: Cloud Playout Channel Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: overlay_id
+        in: path
+        description: Cloud Playout Overlay Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncMessage'
+              example:
+                message: Deleted
+        400:
+          description: Bad Request
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/all
+        - BC_CLOUD_PLAYOUT_WRITE
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+    patch:
+      tags:
+      - Channel Overlays
+      summary: Update an overlay asset for a channel
+      operationId: UpdateAssociatedOverlay
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: channel_id
+        in: path
+        description: Cloud Playout Channel Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: overlay_id
+        in: path
+        description: Cloud Playout Overlay Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: overlay details
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateChannelOverlay'
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetChannelOverlay'
+        400:
+          description: Bad Request
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/all
+        - BC_CLOUD_PLAYOUT_WRITE
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+  /accounts/{account_id}/cp_channels/{channel_id}/overlays/{overlay_id}/deactivate:
+    x-bc-throttle-key: null
+    post:
+      tags:
+      - Channel Overlays
+      summary: Deactivate an overlay asset for a channel
+      operationId: DeactivateOverlay
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: channel_id
+        in: path
+        description: Cloud Playout Channel Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: overlay_id
+        in: path
+        description: Cloud Playout Overlay Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncMessage'
+              example:
+                message: Deactivated
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/all
+        - BC_CLOUD_PLAYOUT_WRITE
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+components:
+  schemas:
+    GetChannelOverlay:
+      title: Get Channel Overlay
+      type: object
+      properties:
+        public_id:
+          type: string
+        asset_id:
+          type: string
+        layer:
+          type: integer
+          format: int32
+        opacity:
+          type: integer
+          format: int32
+        width:
+          type: integer
+          format: int32
+        height:
+          type: integer
+          format: int32
+        use_original_resolution:
+          type: boolean
+        x:
+          type: integer
+          format: int32
+        y:
+          type: integer
+          format: int32
+        start_time:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+          format: int32
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        state:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+          - SCHEDULED
+    ChannelOverlayProperties:
+      title: Create Channel Overlay
+      type: object
+      properties:
+        asset_id:
+          type: string
+          description: Overlay image asset's public ID or an URL of a new overlay image
+        layer:
+          maximum: 1
+          minimum: 0
+          type: integer
+          description: The number of the layer. Higher values of layer are inserted on top of overlays with lower values
+          format: int32
+        opacity:
+          maximum: 100
+          minimum: 0
+          type: integer
+          description: 0 is transparent and 100 is fully opaque
+          format: int32
+        width:
+          type: integer
+          description: Specify width for the overlay image in pixels. "use_original_resolution" to use image's original resolution.
+          format: int32
+        height:
+          type: integer
+          description: Specify height for the overlay image in pixels. "use_original_resolution" to use image's original resolution.
+          format: int32
+        use_original_resolution:
+          type: boolean
+          description: Enable this to use image's original resolution
+          default: false
+        x:
+          type: integer
+          description: Placement of the left edge of the overlay relative to the left edge of the video frame, in pixels
+          format: int32
+        y:
+          type: integer
+          description: Placement of the top edge of the overlay relative to the top edge of the video frame, in pixels
+          format: int32
+        start_time:
+          type: string
+          description: Specify a futuristic start time for this schedule.
+          format: date-time
+        duration:
+          type: integer
+          description: Specify how long (hh:mm:ss) the overlay image should appear or leave it empty for unlimited duration
+          format: int32
+    AsyncMessage:
+      title: MessageObject
+      type: object
+      properties:
+        message:
+          type: string
+          description: message from the api
+    CreateChannelOverlay:
+      allOf:
+      - $ref: '#/components/schemas/ChannelOverlayProperties'
+      - required:
+        - asset_id
+        - layer
+        - opacity
+        - start_time
+        type: object
+    UpdateChannelOverlay:
+      allOf:
+      - $ref: '#/components/schemas/ChannelOverlayProperties'
+      - type: object
+    GetChannelOverlays:
+      title: Get all channel overlays
+      type: object
+      properties:
+        items:
+          type: array
+          description: The list of overlays.  List may be empty if no overlays are found
+          items:
+            $ref: '#/components/schemas/GetChannelOverlay'
+  securitySchemes:
+    BC_OAuth2:
+      type: oauth2
+      description: Brightcove OAuth API. See the [support documentation](https://support.brightcove.com/oauth-api) or [Getting Access Tokens](https://support.brightcove.com/oauth-api-sample-get-access-token) to learn more
+      flows:
+        clientCredentials:
+          tokenUrl: https://oauth.qa.brightcove.com/v4/access_token
+          scopes:
+            video-cloud/cloud-playout/all: Able to manage cloud playout channels.
+            video-cloud/cloud-playout/read: Able to read cloud playout channels.
+            BC_CLOUD_PLAYOUT_READ: Permission-based access control
+            BC_CLOUD_PLAYOUT_WRITE: Permission-based access control
+x-bc-implicit-head: true
+x-bc-implicit-options: true

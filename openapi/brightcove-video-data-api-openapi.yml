@@ -57,34 +57,20 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
 components:
+  schemas:
+    Get_Alltime_Video_Views_Response:
+      title: Get Alltime_ ideo Views Response
+      required:
+      - alltime_video_views
+      type: object
+      properties:
+        alltime_video_views:
+          type: integer
+          description: all-time video views
+          format: int32
+      example:
+        alltime_video_views: 42271
   parameters:
-    Content-Type:
-      name: Content-Type
-      in: header
-      description: 'Content-Type: application/json'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    Authorization:
-      name: Authorization
-      in: header
-      description: 'Authorization: Bearer access_token (see Getting Access Tokens)'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    Accept-Encoding:
-      name: Accept-Encoding
-      in: header
-      description: 'Accept-Encoding: gzip (optional)'
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
     video_id:
       name: video_id
       in: path
@@ -103,19 +89,33 @@ components:
       explode: false
       schema:
         type: string
-  schemas:
-    Get_Alltime_Video_Views_Response:
-      title: Get Alltime_ ideo Views Response
-      required:
-      - alltime_video_views
-      type: object
-      properties:
-        alltime_video_views:
-          type: integer
-          description: all-time video views
-          format: int32
-      example:
-        alltime_video_views: 42271
+    Content-Type:
+      name: Content-Type
+      in: header
+      description: 'Content-Type: application/json'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    Accept-Encoding:
+      name: Accept-Encoding
+      in: header
+      description: 'Accept-Encoding: gzip (optional)'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    Authorization:
+      name: Authorization
+      in: header
+      description: 'Authorization: Bearer access_token (see Getting Access Tokens)'
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
   securitySchemes:
     BC_OAuth2:
       type: oauth2

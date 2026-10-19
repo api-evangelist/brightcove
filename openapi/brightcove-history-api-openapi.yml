@@ -86,20 +86,6 @@ paths:
           description: Server error
 components:
   parameters:
-    Status:
-      name: status
-      in: query
-      description: "Limit the list of videos to those with a specific status.  Valid values for this property are\n  - DELETED\n  - ERROR\n  - HIDDEN\n  - PROCESSING\n  - PUBLISHED\n  - SCHEDULED\n  - SYNCED\n  - ABANDONED"
-      schema:
-        type: string
-    Before:
-      name: before
-      in: query
-      description: Limit the list of videos to those whose last status change occurred before the specified date time.  Can accept either a full timestamp, or just a datestamp.  If passed just a datestamp, assumes 00:00:00 for the time, and the filter will be exclusive of the date specified.
-      required: false
-      schema:
-        type: string
-        format: date-time
     AccountId:
       name: account_id
       in: path
@@ -107,13 +93,6 @@ components:
       required: true
       schema:
         type: string
-    PrettyPrint:
-      name: pretty_print
-      in: query
-      description: Whether or not to pretty-print the JSON response.  Defaults to false.
-      required: false
-      schema:
-        type: boolean
     PageSize:
       name: page_size
       in: query
@@ -124,13 +103,6 @@ components:
         format: int32
         minimum: 1
         maximum: 100
-    VideoId:
-      name: video_id
-      in: path
-      description: ID of the video to query video statuses for
-      required: true
-      schema:
-        type: string
     PageKey:
       name: page_key
       in: query
@@ -156,6 +128,19 @@ components:
       schema:
         type: string
         format: date-time
+    Status:
+      name: status
+      in: query
+      description: "Limit the list of videos to those with a specific status.  Valid values for this property are\n  - DELETED\n  - ERROR\n  - HIDDEN\n  - PROCESSING\n  - PUBLISHED\n  - SCHEDULED\n  - SYNCED\n  - ABANDONED"
+      schema:
+        type: string
+    PrettyPrint:
+      name: pretty_print
+      in: query
+      description: Whether or not to pretty-print the JSON response.  Defaults to false.
+      required: false
+      schema:
+        type: boolean
     Platform:
       name: platform
       in: query
@@ -176,6 +161,21 @@ components:
         - YOUTUBE
         - FACEBOOK
         - TWITTER
+    Before:
+      name: before
+      in: query
+      description: Limit the list of videos to those whose last status change occurred before the specified date time.  Can accept either a full timestamp, or just a datestamp.  If passed just a datestamp, assumes 00:00:00 for the time, and the filter will be exclusive of the date specified.
+      required: false
+      schema:
+        type: string
+        format: date-time
+    VideoId:
+      name: video_id
+      in: path
+      description: ID of the video to query video statuses for
+      required: true
+      schema:
+        type: string
   schemas:
     VideoList:
       type: object
@@ -262,18 +262,6 @@ components:
           autosync_id: 83440ca9-ca3b-43d4-b75f-a606efe03433
           action: YOUTUBE_DELETE
           result: SUCCESS
-    Error:
-      type: object
-      properties:
-        error_code:
-          type: string
-          description: The error code returned recorded by the server, from the social platform, if any.
-        error_message:
-          type: string
-          description: The error message recorded by the server, or returned from the social platform, if any.
-        platform_error:
-          type: string
-          description: JSON representation of the error object returned from the social platform, if any.
     Video:
       type: object
       properties:
@@ -340,6 +328,18 @@ components:
           enum:
           - SUCCESS
           - ERROR
+    Error:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: The error code returned recorded by the server, from the social platform, if any.
+        error_message:
+          type: string
+          description: The error message recorded by the server, or returned from the social platform, if any.
+        platform_error:
+          type: string
+          description: JSON representation of the error object returned from the social platform, if any.
   securitySchemes:
     BC_OAuth2:
       type: oauth2

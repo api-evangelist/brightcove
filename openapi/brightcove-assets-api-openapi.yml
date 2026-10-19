@@ -1,0 +1,640 @@
+openapi: 3.2.0
+info:
+  title: Brightcove Cloud Playout Channel Manager API Reference…
+  description: Reference for the Brightcove Cloud Playout Channel Manager API, used to access and manage your Cloud Playout channels.
+  version: 1.0.0
+servers:
+- url: https://cm.cloudplayout.brightcove.com
+  description: Production server
+- url: https://cm.cloudplayout.qa.brightcove.com
+  description: QA server
+tags:
+- name: Assets
+paths:
+  /accounts/{account_id}/assets/{asset_type}/upload_url:
+    x-bc-throttle-key: null
+    post:
+      tags:
+      - Assets
+      summary: Get upload URL for an asset upload
+      description: Get upload url for an asset
+      operationId: GetUploadUrl
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: asset_type
+        in: path
+        description: Cloud Playout Asset Type
+        required: true
+        style: simple
+        explode: false
+        schema:
+          $ref: '#/components/schemas/AssetType'
+      requestBody:
+        description: File name that is getting uploaded
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UploadFileName'
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUploadUrl'
+        400:
+          description: Bad Request
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/all
+        - BC_CLOUD_PLAYOUT_WRITE
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+  /accounts/{account_id}/assets/{asset_type}/upload/complete:
+    x-bc-throttle-key: null
+    post:
+      tags:
+      - Assets
+      summary: Mark an upload as complete
+      description: Mark upload complete
+      operationId: UploadComplete
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: asset_type
+        in: path
+        description: Cloud Playout Asset Type
+        required: true
+        style: simple
+        explode: false
+        schema:
+          $ref: '#/components/schemas/AssetType'
+      requestBody:
+        description: File name and key that got uploaded
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UploadComplete'
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadCompleteResponse'
+        400:
+          description: Bad Request
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/all
+        - BC_CLOUD_PLAYOUT_WRITE
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+  /accounts/{account_id}/assets/{asset_type}/{asset_id}/upload/complete:
+    x-bc-throttle-key: null
+    patch:
+      tags:
+      - Assets
+      summary: Mark an upload as complete
+      operationId: UploadCompleteUpdate
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: asset_type
+        in: path
+        description: Cloud Playout Asset Type
+        required: true
+        style: simple
+        explode: false
+        schema:
+          $ref: '#/components/schemas/AssetType'
+      - name: asset_id
+        in: path
+        description: Cloud Playout Asset public ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: File name and key that got uploaded
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UploadComplete'
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadCompleteResponse'
+        400:
+          description: Bad Request
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/all
+        - BC_CLOUD_PLAYOUT_WRITE
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+  /accounts/{account_id}/assets/{asset_type}:
+    x-bc-throttle-key: null
+    get:
+      tags:
+      - Assets
+      summary: Get all cloud playout assets for an account
+      description: Get all assets
+      operationId: GetAssets
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: asset_type
+        in: path
+        description: Cloud Playout Asset Type
+        required: true
+        style: simple
+        explode: false
+        schema:
+          $ref: '#/components/schemas/AssetType'
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAssetsResponse'
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/read
+        - BC_CLOUD_PLAYOUT_READ
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+    post:
+      tags:
+      - Assets
+      summary: Create a new cloud playout asset for an account
+      description: Create a new asset
+      operationId: CreateAsset
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: asset_type
+        in: path
+        description: Cloud Playout Asset Type
+        required: true
+        style: simple
+        explode: false
+        schema:
+          $ref: '#/components/schemas/AssetType'
+      requestBody:
+        description: New asset details
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAsset'
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateAssetResponse'
+        400:
+          description: Bad Request
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/all
+        - BC_CLOUD_PLAYOUT_WRITE
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+  /accounts/{account_id}/assets/{asset_type}/{asset_id}:
+    x-bc-throttle-key: null
+    get:
+      tags:
+      - Assets
+      summary: Get a cloud playout asset for an account
+      description: Get an asset
+      operationId: GetAsset
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: asset_type
+        in: path
+        description: Cloud Playout Asset Type
+        required: true
+        style: simple
+        explode: false
+        schema:
+          $ref: '#/components/schemas/AssetType'
+      - name: asset_id
+        in: path
+        description: Cloud Playout Asset public ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAssetResponse'
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/read
+        - BC_CLOUD_PLAYOUT_READ
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+    delete:
+      tags:
+      - Assets
+      summary: Delete a cloud playout asset for an account
+      description: Delete an asset
+      operationId: DeleteAsset
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: asset_type
+        in: path
+        description: Cloud Playout Asset Type
+        required: true
+        style: simple
+        explode: false
+        schema:
+          $ref: '#/components/schemas/AssetType'
+      - name: asset_id
+        in: path
+        description: Cloud Playout Asset public ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncMessage'
+              example:
+                message: deleted
+        400:
+          description: Bad Request
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/all
+        - BC_CLOUD_PLAYOUT_WRITE
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+    patch:
+      tags:
+      - Assets
+      summary: Update a cloud playout asset for an account
+      description: Update an asset
+      operationId: UpdateAsset
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: asset_type
+        in: path
+        description: Cloud Playout Asset Type
+        required: true
+        style: simple
+        explode: false
+        schema:
+          $ref: '#/components/schemas/AssetType'
+      - name: asset_id
+        in: path
+        description: Cloud Playout Asset public ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: Update asset details
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAsset'
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateAssetResponse'
+        400:
+          description: Bad Request
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/all
+        - BC_CLOUD_PLAYOUT_WRITE
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+components:
+  schemas:
+    UploadComplete:
+      title: Complete Upload
+      required:
+      - file_key
+      type: object
+      properties:
+        name:
+          type: string
+        file_key:
+          type: string
+    GetAssetResponse:
+      title: Get an Asset
+      type: object
+      properties:
+        public_id:
+          type: string
+        path:
+          type: string
+        name:
+          type: string
+        asset_type:
+          type: string
+        type:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        default:
+          type: boolean
+          description: Denotes the default asset. Only supported for slates.
+    AsyncMessage:
+      title: MessageObject
+      type: object
+      properties:
+        message:
+          type: string
+          description: message from the api
+    UploadFileName:
+      title: File name
+      required:
+      - file_name
+      type: object
+      properties:
+        file_name:
+          type: string
+    AssetType:
+      type: string
+      enum:
+      - overlay
+      - slate
+    GetUploadUrl:
+      title: UploadUrl
+      type: object
+      properties:
+        file_key:
+          type: string
+        upload_url:
+          type: string
+        headers:
+          type: object
+          properties:
+            Content-Type:
+              type: string
+    CreateAsset:
+      title: Create Asset
+      required:
+      - file_url
+      - name
+      type: object
+      properties:
+        file_url:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          description: Applicable only for overlay assets. By default type will be considered as static for overlay assets if value not passed.
+          enum:
+          - static
+          - dynamic
+    CreateAssetResponse:
+      title: Create Asset response
+      type: object
+      properties:
+        id:
+          type: string
+        asset_url:
+          type: string
+        name:
+          type: string
+    UpdateAsset:
+      title: Create Asset
+      type: object
+      properties:
+        file_url:
+          type: string
+          description: A public http/https URL for the asset
+        name:
+          type: string
+          description: A name identifier for the asset
+        type:
+          type: string
+          description: Applicable only for overlay assets.
+          enum:
+          - static
+          - dynamic
+    GetAssetsResponse:
+      title: Get all Assets
+      type: object
+      properties:
+        items:
+          type: array
+          description: The list of assets.  List may be empty if no assets are found
+          items:
+            $ref: '#/components/schemas/GetAssetResponse'
+    UploadCompleteResponse:
+      title: Upload Completed
+      type: object
+      properties:
+        id:
+          type: string
+        asset_url:
+          type: string
+        name:
+          type: string
+  securitySchemes:
+    BC_OAuth2:
+      type: oauth2
+      description: Brightcove OAuth API. See the [support documentation](https://support.brightcove.com/oauth-api) or [Getting Access Tokens](https://support.brightcove.com/oauth-api-sample-get-access-token) to learn more
+      flows:
+        clientCredentials:
+          tokenUrl: https://oauth.qa.brightcove.com/v4/access_token
+          scopes:
+            video-cloud/cloud-playout/all: Able to manage cloud playout channels.
+            video-cloud/cloud-playout/read: Able to read cloud playout channels.
+            BC_CLOUD_PLAYOUT_READ: Permission-based access control
+            BC_CLOUD_PLAYOUT_WRITE: Permission-based access control
+x-bc-implicit-head: true
+x-bc-implicit-options: true

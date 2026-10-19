@@ -1,0 +1,494 @@
+openapi: 3.2.0
+info:
+  title: Brightcove Cloud Playout Channel Manager API Reference Wurl…
+  description: Reference for the Brightcove Cloud Playout Channel Manager API, used to access and manage your Cloud Playout channels.
+  version: 1.0.0
+servers:
+- url: https://cm.cloudplayout.brightcove.com
+  description: Production server
+- url: https://cm.cloudplayout.qa.brightcove.com
+  description: QA server
+tags:
+- name: Wurl
+paths:
+  /accounts/{account_id}/wurl/api_keys:
+    x-bc-throttle-key: null
+    get:
+      tags:
+      - Wurl
+      summary: Get all wurl api keys for an account
+      description: Gets all wurl api keys for an account
+      operationId: GetAllWurlApiKeys
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAllWurlApiKeys'
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/read
+        - BC_CLOUD_PLAYOUT_READ
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+    post:
+      tags:
+      - Wurl
+      summary: Create a wurl api key
+      description: Creates a wurl api key for an account
+      operationId: CreateWurlApiKey
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        description: 'Content-Type: application/json'
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          default: application/json
+      requestBody:
+        description: Creates a wurl api key for an account
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWurlApiKey'
+        required: true
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WurlApiKeys'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/all
+        - BC_CLOUD_PLAYOUT_WRITE
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+  /accounts/{account_id}/wurl/api_keys/{wurl_api_key_id}:
+    x-bc-throttle-key: null
+    get:
+      tags:
+      - Wurl
+      summary: Get details of a wurl api key
+      description: Gets a wurl api key by its id for an account
+      operationId: GetWurlApiKey
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: wurl_api_key_id
+        in: path
+        description: Cloud Playout Wurl api key Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WurlApiKeys'
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/read
+        - BC_CLOUD_PLAYOUT_READ
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+    delete:
+      tags:
+      - Wurl
+      summary: Delete a wurl api key
+      description: Delete a Cloud Playout wurl api key for an account
+      operationId: DeleteWurlApiKey
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: wurl_api_key_id
+        in: path
+        description: Cloud Playout Wurl api key Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        202:
+          description: 202 Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncMessage'
+              example:
+                message: Wurl API key deleted successfully
+        400:
+          description: Bad Request
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+        409:
+          description: 'CONFLICT: Indicates a request conflict with the current state of the target resource'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/all
+        - BC_CLOUD_PLAYOUT_WRITE
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+    patch:
+      tags:
+      - Wurl
+      summary: Update a wurl api key
+      description: Update a Cloud Playout wurl api key for an account
+      operationId: UpdateWurlApiKey
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        description: 'Content-Type: application/json'
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          default: application/json
+      - name: wurl_api_key_id
+        in: path
+        description: Cloud Playout Wurl api key Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: Updates a cloudplayout wurl api key for an account
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateWurlApiKey'
+        required: true
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WurlApiKeys'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+        409:
+          description: 'CONFLICT: Indicates a request conflict with the current state of the target resource'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/all
+        - BC_CLOUD_PLAYOUT_WRITE
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+  /accounts/{account_id}/cp_channels/{channel_id}/wurl/epg:
+    x-bc-throttle-key: null
+    post:
+      tags:
+      - Wurl
+      summary: Wurl EPG push
+      description: Pushes EPG of a channel to Wurl
+      operationId: WurlEPGPush
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        description: 'Content-Type: application/json'
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          default: application/json
+      - name: channel_id
+        in: path
+        description: Cloud Playout Channel Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncMessage'
+              example:
+                message: Added 50 programs and 100 events for processing
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+        409:
+          description: 'CONFLICT: Indicates a request conflict with the current state of the target resource'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/all
+        - BC_CLOUD_PLAYOUT_WRITE
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+components:
+  schemas:
+    CreateWurlApiKey:
+      allOf:
+      - $ref: '#/components/schemas/WurlApiKey'
+      - required:
+        - api_key
+        - name
+        type: object
+    GetAllWurlApiKeys:
+      title: GetAllWurlApiKeys
+      type: object
+      properties:
+        items:
+          type: array
+          description: The list of wurl api keys.  List may be empty if no api keys
+          items:
+            $ref: '#/components/schemas/WurlApiKeys'
+      example:
+        items:
+        - public_id: b8090a8b27664cd5a924b61dc997fe11
+          account_id: '70701684277865'
+          name: wurl_key_default
+          api_key: API_KEY_1
+          default: true
+          created_at: 2022-04-20 06:44:16 UTC
+          updated_at: 2022-04-20 06:44:16 UTC
+        - public_id: b67j4a8b27664cd5a924b61dc997fe11
+          account_id: '70701684277865'
+          name: wurl_key_name
+          api_key: API_KEY_2
+          default: false
+          created_at: 2022-04-20 06:44:16 UTC
+          updated_at: 2022-04-20 06:44:16 UTC
+    WurlApiKeys:
+      title: WurlApiKeysObject
+      type: object
+      properties:
+        public_id:
+          type: string
+          description: Id for the api key.
+        account_id:
+          type: string
+          description: Video cloud Account id.
+        name:
+          type: string
+          description: Name of the api key.
+        api_key:
+          type: string
+          description: Wurl api key.
+        default:
+          type: boolean
+          description: To denote if the api key is default or not.
+        created_at:
+          type: string
+          description: Time of api key record creation
+        updated_at:
+          type: string
+          description: Time of api key record update
+      example:
+        public_id: b8090a8b27664cd5a924b61dc997fe11
+        account_id: '70701684277865'
+        name: wurl_key_default
+        api_key: API_KEY
+        default: true
+        created_at: 2022-04-20 06:44:16 UTC
+        updated_at: 2022-04-20 06:44:16 UTC
+    AsyncMessage:
+      title: MessageObject
+      type: object
+      properties:
+        message:
+          type: string
+          description: message from the api
+    WurlApiKey:
+      title: WurlApiKey
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the api key
+        api_key:
+          type: string
+          description: Wurl api key
+        default:
+          type: string
+          description: To denote if the api key is default or not
+      example:
+        name: wurl_key_name
+        api_key: wurl_api_key
+        default: false
+    UpdateWurlApiKey:
+      allOf:
+      - $ref: '#/components/schemas/WurlApiKey'
+      - title: UpdateWurlApiKey
+        type: object
+      - type: object
+    BadRequest:
+      title: BadRequest
+      type: object
+      properties:
+        message:
+          type: object
+  securitySchemes:
+    BC_OAuth2:
+      type: oauth2
+      description: Brightcove OAuth API. See the [support documentation](https://support.brightcove.com/oauth-api) or [Getting Access Tokens](https://support.brightcove.com/oauth-api-sample-get-access-token) to learn more
+      flows:
+        clientCredentials:
+          tokenUrl: https://oauth.qa.brightcove.com/v4/access_token
+          scopes:
+            video-cloud/cloud-playout/all: Able to manage cloud playout channels.
+            video-cloud/cloud-playout/read: Able to read cloud playout channels.
+            BC_CLOUD_PLAYOUT_READ: Permission-based access control
+            BC_CLOUD_PLAYOUT_WRITE: Permission-based access control
+x-bc-implicit-head: true
+x-bc-implicit-options: true

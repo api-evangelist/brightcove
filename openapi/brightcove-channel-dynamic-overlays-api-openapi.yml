@@ -1,0 +1,472 @@
+openapi: 3.2.0
+info:
+  title: Brightcove Cloud Playout Channel Manager API Reference…
+  description: Reference for the Brightcove Cloud Playout Channel Manager API, used to access and manage your Cloud Playout channels.
+  version: 1.0.0
+servers:
+- url: https://cm.cloudplayout.brightcove.com
+  description: Production server
+- url: https://cm.cloudplayout.qa.brightcove.com
+  description: QA server
+tags:
+- name: Channel Dynamic Overlays
+paths:
+  /accounts/{account_id}/cp_channels/{channel_id}/dynamic_overlays:
+    x-bc-throttle-key: null
+    get:
+      tags:
+      - Channel Dynamic Overlays
+      summary: Get All dynamic overlays for a channel
+      operationId: GetChannelDynamicOverlays
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: channel_id
+        in: path
+        description: Cloud Playout Channel Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetChannelDynamicOverlays'
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/read
+        - BC_CLOUD_PLAYOUT_READ
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+    post:
+      tags:
+      - Channel Dynamic Overlays
+      summary: Associate a dynamic overlay for a channel
+      operationId: AssociateDynamicOverlay
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: channel_id
+        in: path
+        description: Cloud Playout Channel Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: Dynamic overlay details
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateChannelDynamicOverlay'
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetChannelDynamicOverlay'
+        400:
+          description: Bad Request
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/all
+        - BC_CLOUD_PLAYOUT_WRITE
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+  /accounts/{account_id}/cp_channels/{channel_id}/dynamic_overlays/{overlay_id}:
+    x-bc-throttle-key: null
+    get:
+      tags:
+      - Channel Dynamic Overlays
+      summary: Get a dynamic overlay for a channel
+      operationId: GetChannelDynamicOverlay
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: channel_id
+        in: path
+        description: Cloud Playout Channel Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: overlay_id
+        in: path
+        description: Cloud Playout Overlay Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetChannelDynamicOverlay'
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/read
+        - BC_CLOUD_PLAYOUT_READ
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+    delete:
+      tags:
+      - Channel Dynamic Overlays
+      summary: delete a dynamic overlay for a channel
+      description: Delete a dynamic overlay for a channel
+      operationId: DeleteChannelDynamicOverlay
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: channel_id
+        in: path
+        description: Cloud Playout Channel Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: overlay_id
+        in: path
+        description: Cloud Playout Overlay Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncMessage'
+              example:
+                message: Deleted
+        400:
+          description: Bad Request
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/all
+        - BC_CLOUD_PLAYOUT_WRITE
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+    patch:
+      tags:
+      - Channel Dynamic Overlays
+      summary: Update a dynamic overlay for a channel
+      operationId: UpdateAssociatedDynamicOverlay
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: channel_id
+        in: path
+        description: Cloud Playout Channel Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: overlay_id
+        in: path
+        description: Cloud Playout Overlay Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: Dynamic overlay details
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateChannelDynamicOverlay'
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetChannelDynamicOverlay'
+        400:
+          description: Bad Request
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/all
+        - BC_CLOUD_PLAYOUT_WRITE
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+  /accounts/{account_id}/cp_channels/{channel_id}/dynamic_overlays/{overlay_id}/deactivate:
+    x-bc-throttle-key: null
+    post:
+      tags:
+      - Channel Dynamic Overlays
+      summary: Deactivate a dynamic overlay for a channel
+      operationId: DeactivateDynamicOverlay
+      parameters:
+      - name: account_id
+        in: path
+        description: Video Cloud account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: channel_id
+        in: path
+        description: Cloud Playout Channel Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: overlay_id
+        in: path
+        description: Cloud Playout Overlay Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncMessage'
+              example:
+                message: Deactivated
+        401:
+          description: 'UNAUTHORIZED: Authentication failed; check to make sure your client credentials were correct for the access token'
+          content: {}
+        403:
+          description: 'BAD_VALUE: Spelling error or other use of non-existent field '
+          content: {}
+        404:
+          description: 'RESOURCE_NOT_FOUND: The api could not find the resource you requested'
+          content: {}
+      deprecated: false
+      security:
+      - BC_OAuth2:
+        - video-cloud/cloud-playout/all
+        - BC_CLOUD_PLAYOUT_WRITE
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      x-bc-throttle-key: null
+components:
+  schemas:
+    CreateChannelDynamicOverlay:
+      example:
+        start_time: 2021-07-14 08:02:30.344000+00:00
+        duration: 4200
+        asset_id: 11a8b72fa00c480da05fc22b6d2f76dc
+      allOf:
+      - $ref: '#/components/schemas/ChannelDynamicOverlayProperties'
+      - required:
+        - asset_id
+        - start_time
+        type: object
+    AsyncMessage:
+      title: MessageObject
+      type: object
+      properties:
+        message:
+          type: string
+          description: message from the api
+    GetChannelDynamicOverlays:
+      title: Get all channel dynamic overlays
+      type: object
+      properties:
+        items:
+          type: array
+          description: The list of dynamic overlays.  List may be empty if no dynamic overlays are found
+          items:
+            $ref: '#/components/schemas/GetChannelDynamicOverlay'
+    UpdateChannelDynamicOverlay:
+      allOf:
+      - $ref: '#/components/schemas/ChannelDynamicOverlayProperties'
+      - type: object
+    ChannelDynamicOverlayProperties:
+      title: Create Channel Dynamic Overlay
+      type: object
+      properties:
+        asset_id:
+          type: string
+          description: Dynamic overlay asset's public ID or an URL of a new dynamic overlay
+        start_time:
+          type: string
+          description: Specify a futuristic start time for this schedule.
+          format: date-time
+        duration:
+          type: integer
+          description: Specify how long (hh:mm:ss) the dynamic overlay should appear or leave it empty for unlimited duration
+          format: int32
+    GetChannelDynamicOverlay:
+      title: Get Channel Dynamic Overlay
+      type: object
+      properties:
+        public_id:
+          type: string
+        start_time:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+          format: int32
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        state:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+          - SCHEDULED
+        asset_details:
+          type: object
+          properties:
+            name:
+              type: string
+            asset_url:
+              type: string
+            id:
+              type: string
+      example:
+        public_id: 1c918ddef69a42c4a6743a2423e9455d
+        start_time: 2021-07-16 17:30:00 UTC
+        duration: 4200
+        created_at: 2021-07-13 07:25:27 UTC
+        updated_at: 2021-07-13 07:25:27 UTC
+        state: INACTIVE
+        asset_details:
+          name: singular live updated
+          asset_url: https://app.singular.live/output/5EoxJK8A3ehK6zOUxm2NNk/Default?aspect=16:9
+          id: dffd5980771d40b9919132c4c7395a3f
+  securitySchemes:
+    BC_OAuth2:
+      type: oauth2
+      description: Brightcove OAuth API. See the [support documentation](https://support.brightcove.com/oauth-api) or [Getting Access Tokens](https://support.brightcove.com/oauth-api-sample-get-access-token) to learn more
+      flows:
+        clientCredentials:
+          tokenUrl: https://oauth.qa.brightcove.com/v4/access_token
+          scopes:
+            video-cloud/cloud-playout/all: Able to manage cloud playout channels.
+            video-cloud/cloud-playout/read: Able to read cloud playout channels.
+            BC_CLOUD_PLAYOUT_READ: Permission-based access control
+            BC_CLOUD_PLAYOUT_WRITE: Permission-based access control
+x-bc-implicit-head: true
+x-bc-implicit-options: true
