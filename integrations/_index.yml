@@ -67,3 +67,731 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: brightcove-dash-industry-forum
+  label: DASH Industry Forum
+  partner_name: DASH Industry Forum
+  category: adaptive streaming standard (MPEG-DASH)
+  type: register
+  channel: standard-directory
+  evidence: https://dashif.org/members/
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: DASH Industry Forum members (dashif.org/members)
+    standard: MPEG-DASH (DASH-IF IOP)
+    spec_file: null
+    role: dashif-contributor-member
+    registered_name: brightcove
+    register_id: https://www.brightcove.com/
+    name_source: logo file name (the page prints no name)
+    member_tier: contributor
+    matched_domain: brightcove.com
+    matched_by: domain
+    signal_note: 'participation only: DASH-IF publishes no certified-products list (conformance.dashif.org is a
+      validator tool); member_tier is a per-edge signal, never counted'
+    detected_by: sweep-streaming-video.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: brightcove-acquia-dam
+  label: Acquia DAM
+  partner: acquia
+  partner_name: Acquia DAM
+  category: Content Management
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.brightcove.com/partners/acquia-dam
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Brightcove Marketplace (marketplace.brightcove.com llms.txt + listing .md twins)
+    spec_file: null
+    role: brightcove-app
+    registered_name: Acquia DAM
+    matched_domain: acquia.com
+    matched_by: domain+name-among-holders
+    listings: 1
+    sample_apps:
+    - Acquia DAM
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-streaming-video.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: brightcove-blueshift
+  label: BlueShift
+  partner: blueshift
+  partner_name: BlueShift
+  category: Audience Engagement
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.brightcove.com/partners/blueshift
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Brightcove Marketplace (marketplace.brightcove.com llms.txt + listing .md twins)
+    spec_file: null
+    role: brightcove-app
+    registered_name: BlueShift
+    matched_domain: blueshift.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - BlueShift
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-streaming-video.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: brightcove-cvent-event-management-marketing
+  label: Cvent Event Management & Marketing
+  partner: cvent
+  partner_name: Cvent Event Management & Marketing
+  category: Content Distribution & Storage
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.brightcove.com/partners/cvent-event-management-marketing
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Brightcove Marketplace (marketplace.brightcove.com llms.txt + listing .md twins)
+    spec_file: null
+    role: brightcove-app
+    registered_name: Cvent Event Management & Marketing
+    matched_domain: cvent.com
+    matched_by: domain+name-among-holders
+    listings: 1
+    sample_apps:
+    - Cvent Event Management & Marketing
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-streaming-video.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: brightcove-domo
+  label: Domo
+  partner: domo
+  partner_name: Domo
+  category: Audience Engagement
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.brightcove.com/partners/domo
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Brightcove Marketplace (marketplace.brightcove.com llms.txt + listing .md twins)
+    spec_file: null
+    role: brightcove-app
+    registered_name: Domo
+    matched_domain: domo.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Domo
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-streaming-video.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: brightcove-inthegame
+  label: Inthegame
+  partner: inthegame
+  partner_name: Inthegame
+  category: Monetization & eCommerce
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.brightcove.com/partners/inthegame
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Brightcove Marketplace (marketplace.brightcove.com llms.txt + listing .md twins)
+    spec_file: null
+    role: brightcove-app
+    registered_name: Inthegame
+    matched_domain: inthegame.io
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Inthegame
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-streaming-video.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: brightcove-livelike-interactive-timeline
+  label: LiveLike Interactive Timeline
+  partner: livelike
+  partner_name: LiveLike Interactive Timeline
+  category: Media Solutions
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.brightcove.com/partners/livelike-interactive-timeline
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Brightcove Marketplace (marketplace.brightcove.com llms.txt + listing .md twins)
+    spec_file: null
+    role: brightcove-app
+    registered_name: LiveLike Interactive Timeline
+    matched_domain: livelike.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - LiveLike Interactive Timeline
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-streaming-video.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: brightcove-orange-logic
+  label: Orange Logic
+  partner: orangelogic
+  partner_name: Orange Logic
+  category: Digital Asset Management
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.brightcove.com/partners/orange-logic
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Brightcove Marketplace (marketplace.brightcove.com llms.txt + listing .md twins)
+    spec_file: null
+    role: brightcove-app
+    registered_name: Orange Logic
+    matched_domain: orangelogic.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Orange Logic
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-streaming-video.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: brightcove-rainfocus-event-marketing-and-management
+  label: RainFocus Event Marketing and Management
+  partner: rainfocus
+  partner_name: RainFocus Event Marketing and Management
+  category: Audience Engagement
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.brightcove.com/partners/rainfocus-event-marketing-and-management
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Brightcove Marketplace (marketplace.brightcove.com llms.txt + listing .md twins)
+    spec_file: null
+    role: brightcove-app
+    registered_name: RainFocus Event Marketing and Management
+    matched_domain: rainfocus.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - RainFocus Event Marketing and Management
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-streaming-video.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: brightcove-riverside
+  label: Riverside
+  partner: riverside
+  partner_name: Riverside
+  category: Content Distribution & Storage
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.brightcove.com/partners/riverside
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Brightcove Marketplace (marketplace.brightcove.com llms.txt + listing .md twins)
+    spec_file: null
+    role: brightcove-app
+    registered_name: Riverside
+    matched_domain: riverside.fm
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Riverside
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-streaming-video.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: brightcove-sendbird-live-chat
+  label: Sendbird Live Chat
+  partner: sendbird
+  partner_name: Sendbird Live Chat
+  category: Events, Conferencing & Learning
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.brightcove.com/partners/sendbird-live-chat
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Brightcove Marketplace (marketplace.brightcove.com llms.txt + listing .md twins)
+    spec_file: null
+    role: brightcove-app
+    registered_name: Sendbird Live Chat
+    matched_domain: sendbird.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Sendbird Live Chat
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-streaming-video.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: brightcove-verbit-brightcove-captioning-integration
+  label: Verbit-Brightcove Captioning Integration
+  partner: verbit
+  partner_name: Verbit-Brightcove Captioning Integration
+  category: Accessibility
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.brightcove.com/partners/verbit-brightcove-captioning-integration
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Brightcove Marketplace (marketplace.brightcove.com llms.txt + listing .md twins)
+    spec_file: null
+    role: brightcove-app
+    registered_name: Verbit-Brightcove Captioning Integration
+    matched_domain: verbit.ai
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Verbit-Brightcove Captioning Integration
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-streaming-video.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: brightcove-wochit-video-editor
+  label: Wochit Video Editor
+  partner: wochit
+  partner_name: Wochit Video Editor
+  category: Video Enrichment & Enhancement
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.brightcove.com/partners/wochit-video-editor
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Brightcove Marketplace (marketplace.brightcove.com llms.txt + listing .md twins)
+    spec_file: null
+    role: brightcove-app
+    registered_name: Wochit Video Editor
+    matched_domain: wochit.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Wochit Video Editor
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-streaming-video.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: brightcove-adobe-analytics-plugin-for-brightcove-player
+  label: Adobe Analytics Plugin for Brightcove Player
+  partner: adobe-analytics
+  partner_name: Adobe Analytics Plugin for Brightcove Player
+  category: Audience Engagement
+  type: marketplace
+  marketplace: own
+  channel: provider-built
+  evidence: https://marketplace.brightcove.com/partners/adobe-analytics-plugin-for-brightcove-player
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Brightcove Marketplace (marketplace.brightcove.com llms.txt + listing .md twins)
+    spec_file: null
+    role: brightcove-provider-built-app
+    registered_name: Adobe Analytics Plugin for Brightcove Player
+    matched_domain: adobe.com
+    matched_by: domain+name-among-holders
+    listings: 1
+    sample_apps:
+    - Adobe Analytics Plugin for Brightcove Player
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-streaming-video.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: brightcove-adobe-commerce-extension
+  label: Adobe Commerce Extension
+  partner: adobe-commerce
+  partner_name: Adobe Commerce Extension
+  category: Monetization & eCommerce
+  type: marketplace
+  marketplace: own
+  channel: provider-built
+  evidence: https://marketplace.brightcove.com/partners/adobe-commerce-extension
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Brightcove Marketplace (marketplace.brightcove.com llms.txt + listing .md twins)
+    spec_file: null
+    role: brightcove-provider-built-app
+    registered_name: Adobe Commerce Extension
+    matched_domain: adobe.com
+    matched_by: domain+name-among-holders
+    listings: 1
+    sample_apps:
+    - Adobe Commerce Extension
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-streaming-video.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: brightcove-adobe-experience-manager-video-integration
+  label: Adobe Experience Manager Video Integration
+  partner: adobe-experience-manager
+  partner_name: Adobe Experience Manager Video Integration
+  category: Content Management
+  type: marketplace
+  marketplace: own
+  channel: provider-built
+  evidence: https://marketplace.brightcove.com/partners/adobe-experience-manager-video-integration
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Brightcove Marketplace (marketplace.brightcove.com llms.txt + listing .md twins)
+    spec_file: null
+    role: brightcove-provider-built-app
+    registered_name: Adobe Experience Manager Video Integration
+    matched_domain: adobe.com
+    matched_by: domain+name-among-holders
+    listings: 1
+    sample_apps:
+    - Adobe Experience Manager Video Integration
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-streaming-video.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: brightcove-dropbox
+  label: Dropbox
+  partner: dropbox
+  partner_name: Dropbox
+  category: Content Distribution & Storage
+  type: marketplace
+  marketplace: own
+  channel: provider-built
+  evidence: https://marketplace.brightcove.com/partners/dropbox
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Brightcove Marketplace (marketplace.brightcove.com llms.txt + listing .md twins)
+    spec_file: null
+    role: brightcove-provider-built-app
+    registered_name: Dropbox
+    matched_domain: dropbox.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Dropbox
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-streaming-video.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: brightcove-drupal-video-connect
+  label: Drupal Video Connect
+  partner: drupal
+  partner_name: Drupal Video Connect
+  category: Content Management
+  type: marketplace
+  marketplace: own
+  channel: provider-built
+  evidence: https://marketplace.brightcove.com/partners/drupal-video-connect
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Brightcove Marketplace (marketplace.brightcove.com llms.txt + listing .md twins)
+    spec_file: null
+    role: brightcove-provider-built-app
+    registered_name: Drupal Video Connect
+    matched_domain: drupal.org
+    matched_by: domain+name-among-holders
+    listings: 1
+    sample_apps:
+    - Drupal Video Connect
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-streaming-video.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: brightcove-oracle-eloqua-integration
+  label: Oracle Eloqua Integration
+  partner: eloqua
+  partner_name: Oracle Eloqua Integration
+  category: Audience Engagement
+  type: marketplace
+  marketplace: own
+  channel: provider-built
+  evidence: https://marketplace.brightcove.com/partners/oracle-eloqua-integration
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Brightcove Marketplace (marketplace.brightcove.com llms.txt + listing .md twins)
+    spec_file: null
+    role: brightcove-provider-built-app
+    registered_name: Oracle Eloqua Integration
+    matched_domain: oracle.com
+    matched_by: domain+verified
+    listings: 1
+    sample_apps:
+    - Oracle Eloqua Integration
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-streaming-video.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: brightcove-brightcove-hootsuite-connector
+  label: Brightcove Hootsuite Connector
+  partner: hootsuite
+  partner_name: Brightcove Hootsuite Connector
+  category: Content Distribution & Storage
+  type: marketplace
+  marketplace: own
+  channel: provider-built
+  evidence: https://marketplace.brightcove.com/partners/brightcove-hootsuite-connector
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Brightcove Marketplace (marketplace.brightcove.com llms.txt + listing .md twins)
+    spec_file: null
+    role: brightcove-provider-built-app
+    registered_name: Brightcove Hootsuite Connector
+    matched_domain: hootsuite.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Brightcove Hootsuite Connector
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-streaming-video.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: brightcove-adobe-marketo-engage-for-brightcove
+  label: ADOBE MARKETO ENGAGE FOR BRIGHTCOVE
+  partner: marketo
+  partner_name: ADOBE MARKETO ENGAGE FOR BRIGHTCOVE
+  category: Audience Engagement
+  type: marketplace
+  marketplace: own
+  channel: provider-built
+  evidence: https://marketplace.brightcove.com/partners/adobe-marketo-engage-for-brightcove
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Brightcove Marketplace (marketplace.brightcove.com llms.txt + listing .md twins)
+    spec_file: null
+    role: brightcove-provider-built-app
+    registered_name: ADOBE MARKETO ENGAGE FOR BRIGHTCOVE
+    matched_domain: adobe.com
+    matched_by: domain+name-among-holders
+    listings: 1
+    sample_apps:
+    - ADOBE MARKETO ENGAGE FOR BRIGHTCOVE
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-streaming-video.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: brightcove-brightcove-social-sharing-for-pinterest
+  label: Brightcove Social Sharing for Pinterest
+  partner: pinterest
+  partner_name: Brightcove Social Sharing for Pinterest
+  category: Content Distribution & Storage
+  type: marketplace
+  marketplace: own
+  channel: provider-built
+  evidence: https://marketplace.brightcove.com/partners/brightcove-social-sharing-for-pinterest
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Brightcove Marketplace (marketplace.brightcove.com llms.txt + listing .md twins)
+    spec_file: null
+    role: brightcove-provider-built-app
+    registered_name: Brightcove Social Sharing for Pinterest
+    matched_domain: pinterest.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Brightcove Social Sharing for Pinterest
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-streaming-video.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: brightcove-shopify
+  label: Shopify
+  partner: shopify
+  partner_name: Shopify
+  category: Monetization & eCommerce
+  type: marketplace
+  marketplace: own
+  channel: provider-built
+  evidence: https://marketplace.brightcove.com/partners/shopify-integration
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Brightcove Marketplace (marketplace.brightcove.com llms.txt + listing .md twins)
+    spec_file: null
+    role: brightcove-provider-built-app
+    registered_name: Shopify
+    matched_domain: shopify.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Shopify
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-streaming-video.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: brightcove-sitecore-video-connector
+  label: Sitecore Video Connector
+  partner: sitecore
+  partner_name: Sitecore Video Connector
+  category: Content Management
+  type: marketplace
+  marketplace: own
+  channel: provider-built
+  evidence: https://marketplace.brightcove.com/partners/sitecore-video-connector
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Brightcove Marketplace (marketplace.brightcove.com llms.txt + listing .md twins)
+    spec_file: null
+    role: brightcove-provider-built-app
+    registered_name: Sitecore Video Connector
+    matched_domain: sitecore.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Sitecore Video Connector
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-streaming-video.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: brightcove-sprinklr
+  label: Sprinklr
+  partner: sprinklr
+  partner_name: Sprinklr
+  category: Content Distribution & Storage
+  type: marketplace
+  marketplace: own
+  channel: provider-built
+  evidence: https://marketplace.brightcove.com/partners/sprinklr
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Brightcove Marketplace (marketplace.brightcove.com llms.txt + listing .md twins)
+    spec_file: null
+    role: brightcove-provider-built-app
+    registered_name: Sprinklr
+    matched_domain: sprinklr.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Sprinklr
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-streaming-video.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: brightcove-brightcove-beacon-payment-processing-with-stripe
+  label: Brightcove Beacon Payment Processing with Stripe
+  partner: stripe
+  partner_name: Brightcove Beacon Payment Processing with Stripe
+  category: Media Solutions
+  type: marketplace
+  marketplace: own
+  channel: provider-built
+  evidence: https://marketplace.brightcove.com/partners/brightcove-beacon-payment-processing-with-stripe
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Brightcove Marketplace (marketplace.brightcove.com llms.txt + listing .md twins)
+    spec_file: null
+    role: brightcove-provider-built-app
+    registered_name: Brightcove Beacon Payment Processing with Stripe
+    matched_domain: stripe.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Brightcove Beacon Payment Processing with Stripe
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-streaming-video.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: brightcove-tealium-plugin-for-brightcove-player
+  label: Tealium Plugin for Brightcove Player
+  partner: tealium
+  partner_name: Tealium Plugin for Brightcove Player
+  category: Audience Engagement
+  type: marketplace
+  marketplace: own
+  channel: provider-built
+  evidence: https://marketplace.brightcove.com/partners/tealium-plugin-for-brightcove-player
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Brightcove Marketplace (marketplace.brightcove.com llms.txt + listing .md twins)
+    spec_file: null
+    role: brightcove-provider-built-app
+    registered_name: Tealium Plugin for Brightcove Player
+    matched_domain: tealium.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Tealium Plugin for Brightcove Player
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-streaming-video.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: brightcove-webex-by-cisco-to-brightcove-live
+  label: Webex by Cisco to Brightcove Live
+  partner: webex
+  partner_name: Webex by Cisco to Brightcove Live
+  category: Events, Conferencing & Learning
+  type: marketplace
+  marketplace: own
+  channel: provider-built
+  evidence: https://marketplace.brightcove.com/partners/webex-by-cisco-to-brightcove-live
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Brightcove Marketplace (marketplace.brightcove.com llms.txt + listing .md twins)
+    spec_file: null
+    role: brightcove-provider-built-app
+    registered_name: Webex by Cisco to Brightcove Live
+    matched_domain: webex.com
+    matched_by: domain+name-among-holders
+    listings: 1
+    sample_apps:
+    - Webex by Cisco to Brightcove Live
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-streaming-video.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
