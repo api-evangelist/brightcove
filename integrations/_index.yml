@@ -825,3 +825,38 @@
     detected: '2026-10-20'
   status: not-a-workflow
   arazzo: null
+- slug: brightcove-dpp-digital-production-partnership
+  label: DPP (Digital Production Partnership)
+  partner_name: DPP (Digital Production Partnership)
+  category: media supply-chain industry body
+  type: register
+  channel: standard-directory
+  evidence: https://www.thedpp.com/members-directory
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: DPP members directory (thedpp.com/members-directory)
+    standard: DPP
+    spec_file: null
+    role: dpp-member
+    registered_name: Brightcove
+    register_id: https://www.thedpp.com/members-directory
+    matched_domain: brightcove.com
+    matched_by: domain
+    signal_note: 'membership is participation; certified_products = one entry per Committed to Security mark type
+      the directory flags (Broadcast / Production). DPP no longer offers the assessment (thedpp.com/security), so
+      every mark is lapsed: true'
+    detected_by: sweep-film-media-identifiers-eidr.py
+    detected: '2026-10-21'
+    dpp_category: technology
+    certified_products:
+    - product: DPP Committed to Security (Broadcast)
+      lapsed: true
+      programme_status: discontinued
+      lapsed_evidence: https://www.thedpp.com/security
+    - product: DPP Committed to Security (Production)
+      lapsed: true
+      programme_status: discontinued
+      lapsed_evidence: https://www.thedpp.com/security
+  status: not-a-workflow
+  arazzo: null

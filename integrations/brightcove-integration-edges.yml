@@ -11,6 +11,17 @@ checked:
 - https://www.svta.org/svta-member-companies-list/
 - microsoft-teams/integrations/microsoft-teams-integration-edges.yml
 - zoom/integrations/zoom-integration-edges.yml
+- https://members.eidr.org/
+- https://movielabs.com/2030showcase/
+- https://movielabs.com/about-industry-forum/
+- https://movielabs.com/about/
+- https://plus.ttpn.org/
+- https://web.isan.org/public/en/sign-up
+- https://www.eidr.org/eidr-participants
+- https://www.eidr.org/members/
+- https://www.thedpp.com/members-directory
+- https://www.thedpp.com/security
+- https://www.ttpn.org/
 marketplace_apps:
 - marketplace: own
   channel: partner-built
@@ -856,6 +867,41 @@ edges:
     detected: '2026-10-20'
   detected_by: sweep-compliance-assurance.py
   first_seen: '2026-10-20'
+- partner_name: DPP (Digital Production Partnership)
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.thedpp.com/members-directory
+  category: media supply-chain industry body
+  contract_reference:
+    register: DPP members directory (thedpp.com/members-directory)
+    standard: DPP
+    spec_file: null
+    role: dpp-member
+    registered_name: Brightcove
+    register_id: https://www.thedpp.com/members-directory
+    matched_domain: brightcove.com
+    matched_by: domain
+    signal_note: 'membership is participation; certified_products = one entry per Committed to Security mark type
+      the directory flags (Broadcast / Production). DPP no longer offers the assessment (thedpp.com/security), so
+      every mark is lapsed: true'
+    detected_by: sweep-film-media-identifiers-eidr.py
+    detected: '2026-10-21'
+    dpp_category: technology
+    certified_products:
+    - product: DPP Committed to Security (Broadcast)
+      lapsed: true
+      programme_status: discontinued
+      lapsed_evidence: https://www.thedpp.com/security
+    - product: DPP Committed to Security (Production)
+      lapsed: true
+      programme_status: discontinued
+      lapsed_evidence: https://www.thedpp.com/security
+  detected_by: sweep-film-media-identifiers-eidr.py
+  first_seen: '2026-10-21'
 source:
 - https://fivetran.com/docs-sitemap.xml
 - https://fivetran.com/docs/connectors/partner-built-program
