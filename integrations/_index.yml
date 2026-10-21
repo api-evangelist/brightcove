@@ -834,6 +834,64 @@
       lapsed_evidence: https://www.thedpp.com/security
   status: not-a-workflow
   arazzo: null
+- slug: brightcove-cocoapods-trunk
+  label: CocoaPods trunk
+  partner_name: CocoaPods trunk
+  category: iOS SDK (CocoaPods)
+  type: register
+  channel: package-registry
+  evidence: https://cocoapods.org/pods/Brightcove-Player-SDK
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: CocoaPods trunk (cdn.cocoapods.org Specs; github.com/CocoaPods/Specs)
+    spec_file: null
+    role: cocoapods-publisher
+    registered_name: Brightcove
+    matched_domain: brightcove.com
+    matched_by: domain
+    pods:
+    - pod: Brightcove-Player-SDK
+      version: 5.3.4
+      homepage: https://docs.brightcove.com/en/video-cloud/mobile-sdks/
+      deprecated: false
+    - pod: Brightcove-Player-SDK-FairPlay
+      version: 1.1.3
+      homepage: http://docs.brightcove.com/en/video-cloud/mobile-sdks/brightcove-player-sdk-for-ios/index.html
+      deprecated: false
+    - pod: Brightcove-Player-SDK-IMA
+      version: 2.3.1
+      homepage: https://docs.brightcove.com/en/video-cloud/mobile-sdks/
+      deprecated: false
+    - pod: Brightcove-Player-SDK-OUX
+      version: 2.1.10
+      homepage: https://docs.brightcove.com/en/video-cloud/mobile-sdks/
+      deprecated: false
+    - pod: Brightcove-Player-SDK-Player-UI
+      version: 1.0.4
+      homepage: http://docs.brightcove.com/en/video-cloud/mobile-sdks/brightcove-player-sdk-for-ios/index.html
+      deprecated: false
+    - pod: Brightcove-Player-SDK-SidecarSubtitles
+      version: 2.1.6
+      homepage: http://docs.brightcove.com/en/video-cloud/mobile-sdks/brightcove-player-sdk-for-ios/index.html
+      deprecated: false
+    - pod: Brightcove-Video-Cloud-App-SDK-MediaAPI
+      version: '2.3'
+      homepage: http://support.brightcove.com/en/video-cloud/docs/video-cloud-app-sdk-ios
+      deprecated: false
+    - pod: Brightcove-Video-Cloud-App-SDK-Player-and-Sharing-Kit
+      version: '2.3'
+      homepage: http://support.brightcove.com/en/video-cloud/docs/video-cloud-app-sdk-ios
+      deprecated: false
+    - pod: Brightcove-Video-Cloud-Player-SDK
+      version: 5.4.3
+      homepage: http://support.brightcove.com/en/video-cloud/docs/brightcove-video-cloud-player-sdk-ios/
+      deprecated: false
+    signal_note: latest podspec homepage (domain) + authors (name); pods, versions and counts are context
+    detected_by: sweep-mobile-sdk-index.py
+    detected: '2026-10-21'
+  status: not-a-workflow
+  arazzo: null
 - slug: brightcove-microsoft-teams-own
   label: Microsoft Teams (own)
   partner: microsoft-teams
@@ -869,6 +927,19 @@
   marketplace: own
   channel: partner-built
   evidence: https://ecosystem.hubspot.com/marketplace/listing/brightcove
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: brightcove-google-play-developer-google-play-sdk-index
+  label: Google Play Developer (Google Play SDK Index)
+  partner: google-play
+  partner_name: Google Play Developer (Google Play SDK Index)
+  category: mobile SDK (ads)
+  type: marketplace
+  marketplace: Google Play SDK Index
+  channel: partner-built
+  evidence: https://play.google.com/sdks/details/com-brightcove-player-android-sdk
   source: edge
   relationship: platform-app
   status: not-a-workflow
