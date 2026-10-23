@@ -502,3 +502,9 @@ components:
             BC_CLOUD_PLAYOUT_WRITE: Permission-based access control
 x-bc-implicit-head: true
 x-bc-implicit-options: true
+x-provenance:
+  method: harvested
+  publisher: Brightcove
+  source: https://cm.cloudplayout.brightcove.com/openapi.yaml
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
