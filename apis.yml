@@ -832,6 +832,8 @@ apis:
   humanURL: https://apis.support.brightcove.com/dynamic-ingest/
   baseURL: https://ingest.api.brightcove.com/v1
   tags:
+  - FAST
+  tags_raw:
   - FastChannels
   properties:
   - type: OpenAPI
@@ -853,7 +855,8 @@ apis:
     assets from the playlist.
   humanURL: https://apis.support.brightcove.com/dynamic-ingest/
   baseURL: https://ingest.api.brightcove.com/v1
-  tags:
+  tags: []
+  tags_raw:
   - Get all importable assets from the playlist
   properties:
   - type: OpenAPI
