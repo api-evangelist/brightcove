@@ -1,4 +1,4 @@
-# Brightcove (brightcove)
+# Brightcove
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,284 +66,206 @@
 
 Brightcove is an online video platform providing REST APIs for uploading and managing videos, encoding, CDN delivery, player configuration, analytics, and live streaming management. Its Video Cloud platform serves media companies, broadcasters, marketers, and OTT providers globally.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/brightcove/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/brightcove/refs/heads/main/apis.yml)
+**Areas:** Video · Media · Streaming · Live Streaming · Analytics · CDN · OTT · Player · Ad Insertion
+
+## Brightcove on APIs.io
+
+Everything profiled for Brightcove is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/brightcove/](https://apis.io/providers/brightcove/)** — or go straight to one of the APIs or properties below.
+
+### APIs (53)
+
+- [Brightcove Dynamic Ingest API](https://apis.io/apis/brightcove/brightcove-dynamic-ingest-api/) — Handles ingestion of videos and media assets into Video Cloud, supporting remote URL ingestion and upload from local files.
+- [Brightcove Analytics API](https://apis.io/apis/brightcove/brightcove-analytics-api/) — Retrieves analytics data programmatically for Video Cloud accounts, including dimensions like device type, geography, player, and video performance metrics.
+- [Brightcove Playback API](https://apis.io/apis/brightcove/brightcove-playback-api/) — Fetches video and playlist data for players and mobile apps, providing optimized delivery of media metadata and playback URLs.
+- [Brightcove Player Management API](https://apis.io/apis/brightcove/brightcove-player-management-api/) — Creates, edits, and manages Brightcove players as publishable resources with full configuration control.
+- [Brightcove Live API](https://apis.io/apis/brightcove/brightcove-live-api/) — Creates and manages live streams with comprehensive streaming controls including RTMP, RTP, RTP-FEC, and SRT input protocols and HLS output delivery.
+- [Brightcove OAuth API](https://apis.io/apis/brightcove/brightcove-oauth-api/) — Implements OAuth 2.0 client credentials flow for managing credentials and obtaining access tokens for all Brightcove REST APIs.
+- [Brightcove SSAI API](https://apis.io/apis/brightcove/brightcove-ssai-api/) — Enables server-side ad stitching directly into video streams, supporting VOD and live stream monetization with seamless ad insertion.
+- [Brightcove Ingest Profiles API](https://apis.io/apis/brightcove/brightcove-ingest-profiles-api/) — Manages profiles that define video processing during ingestion, controlling encoding settings and rendition creation.
+- [Brightcove Delivery Rules API](https://apis.io/apis/brightcove/brightcove-delivery-rules-api/) — Customizes media delivery to meet specific business objectives, enabling conditional logic for rendition selection and CDN routing.
+- [Brightcove Cloud Playout APIs](https://apis.io/apis/brightcove/brightcove-cloud-playout-apis/) — Manages cloud-based linear channel playout with EPG (Electronic Programming Guide) and Channels APIs for scheduled programming.
+- [Brightcove Audience API](https://apis.io/apis/brightcove/brightcove-audience-api/) — Retrieves viewing event and lead data for marketing automation workflows, enabling integration with MAP and CRM platforms.
+- [Brightcove Social API](https://apis.io/apis/brightcove/brightcove-social-api/) — Retrieves social sharing status and history for videos distributed to social media platforms.
+- [Brightcove Playback Restrictions API](https://apis.io/apis/brightcove/brightcove-playback-restrictions-api/) — Provides scalable playback management including DRM, concurrency controls, and geographic and domain restrictions.
+- [Brightcove Access Tokens API](https://apis.io/apis/brightcove/brightcove-access-tokens-api/) — Get access tokens to authenticate API requests.
+- [Brightcove Account Configuration API](https://apis.io/apis/brightcove/brightcove-account-configuration-api/) — Operations for managing default profiles for the account.
+- [Brightcove Ad Call Tracking API](https://apis.io/apis/brightcove/brightcove-ad-call-tracking-api/) — Operations for tracking ad calls - used primarily for debugging.
+- [Brightcove Ad Configurations API](https://apis.io/apis/brightcove/brightcove-ad-configurations-api/) — Operations for managing ad configurations.
+- [Brightcove Analytics Report API](https://apis.io/apis/brightcove/brightcove-analytics-report-api/) — Full analytics reports with many options for filtering, date ranges, formats, and more.
+- [Brightcove Clear-Sources API](https://apis.io/apis/brightcove/brightcove-clear-sources-api/) — Clear_sources endpoints expose unencrypted sources to the preview players in the studio for customers who are using [Playback…
+- [Brightcove Client Credentials API](https://apis.io/apis/brightcove/brightcove-client-credentials-api/) — Create client credentials needed to get access tokens.
+- [Brightcove Credentials API](https://apis.io/apis/brightcove/brightcove-credentials-api/) — Operations for creating and managing credentials for secure destinations.
+- [Brightcove Custom Fields API](https://apis.io/apis/brightcove/brightcove-custom-fields-api/) — Operations for creating and managing custom fields.
+- [Brightcove Delivery Rule Actions API](https://apis.io/apis/brightcove/brightcove-delivery-rule-actions-api/) — Operations for creating, reading, updating and deleting Delivery Rule Actions
+- [Brightcove Delivery Rule Conditions API](https://apis.io/apis/brightcove/brightcove-delivery-rule-conditions-api/) — Operations for reading and updating Delivery Rule Conditions
+- [Brightcove Delivery Rules API](https://apis.io/apis/brightcove/brightcove-delivery-rules-api/) — Operations for reading Delivery Rules
+- [Brightcove Embed Configurations API](https://apis.io/apis/brightcove/brightcove-embed-configurations-api/) — Operations for managing player embed (child player) configurations.
+- [Brightcove Engagement Report API](https://apis.io/apis/brightcove/brightcove-engagement-report-api/) — Detailed engagement reports by account, video or player. Detailed engagement is available only for the most recent 32 days.
+- [Brightcove Folders API](https://apis.io/apis/brightcove/brightcove-folders-api/) — Operations for managing folders to organize your videos.
+- [Brightcove History API](https://apis.io/apis/brightcove/brightcove-history-api/) — Operations for getting the history of all or a specific video.
+- [Brightcove Ingest API](https://apis.io/apis/brightcove/brightcove-ingest-api/) — The Ingest API from Brightcove — 2 operation(s) for ingest.
+- [Brightcove Labels API](https://apis.io/apis/brightcove/brightcove-labels-api/) — Operations for managing folders to organize your videos. See [Working with Labels](/cms/managing-videos/working-with-labels.html) for more information.
+- [Brightcove Leads API](https://apis.io/apis/brightcove/brightcove-leads-api/) — Get leads for a Video Cloud account.
+- [Brightcove Live Analytics API](https://apis.io/apis/brightcove/brightcove-live-analytics-api/) — Analytics for Live streams
+- [Brightcove Live Job Clip API](https://apis.io/apis/brightcove/brightcove-live-job-clip-api/) — Operations for creating and managing VOD clips, including scheduling clips for SEP jobs
+- [Brightcove Live Jobs API](https://apis.io/apis/brightcove/brightcove-live-jobs-api/) — Operations for creating live jobs, listing live jobs, getting job details, and canceling live jobs. There are also operations for activating and…
+- [Brightcove Media Assets API](https://apis.io/apis/brightcove/brightcove-media-assets-api/) — Operations for managing renditions, manifests, and other media assets. These operations are used mainly for remote assets.
+- [Brightcove Media Sharing API](https://apis.io/apis/brightcove/brightcove-media-sharing-api/) — Operations for creating and managing hierarchical labels that can be associated with videos.
+- [Brightcove Notifications API](https://apis.io/apis/brightcove/brightcove-notifications-api/) — Operations for setting up and managing notifications of changes to your video library.
+- [Brightcove Player Configurations API](https://apis.io/apis/brightcove/brightcove-player-configurations-api/) — Operations for managing player configurations.
+- [Brightcove Player Embeds API](https://apis.io/apis/brightcove/brightcove-player-embeds-api/) — Operations for managing player embeds (child players).
+- [Brightcove Players API](https://apis.io/apis/brightcove/brightcove-players-api/) — Operations for managing players.
+- [Brightcove Playlists API](https://apis.io/apis/brightcove/brightcove-playlists-api/) — Operations for managing video playlists.
+- [Brightcove Plugin Registry API](https://apis.io/apis/brightcove/brightcove-plugin-registry-api/) — Operations for working with the player plugin registry.
+- [Brightcove Profiles API](https://apis.io/apis/brightcove/brightcove-profiles-api/) — Operations creating and managing ingest profiles.
+- [Brightcove Redundant Groups API](https://apis.io/apis/brightcove/brightcove-redundant-groups-api/) — Operations for creating redundant groups of live jobs for failover in case one stream fails
+- [Brightcove RTMP Outputs API](https://apis.io/apis/brightcove/brightcove-rtmp-outputs-api/) — Operations for creating and managing RTMP outputs. Note that RTMP output hours will be billed against event hours.
+- [Brightcove Schedule Clip API](https://apis.io/apis/brightcove/brightcove-schedule-clip-api/) — Operations for scheduling the creation of a VOD clip for SEP jobs only.
+- [Brightcove Schedule SEP Job Start Stop API](https://apis.io/apis/brightcove/brightcove-schedule-sep-job-start-stop-api/) — Operations for scheduling the activation and deactivation of an SEP job.
+- [Brightcove SSAI API](https://apis.io/apis/brightcove/brightcove-ssai-api/) — Operations for managing server-side ad insertion with live streams.
+- [Brightcove Status API](https://apis.io/apis/brightcove/brightcove-status-api/) — Operations for getting the status of all or a specific video.
+- [Brightcove Video Data API](https://apis.io/apis/brightcove/brightcove-video-data-api/) — Low latency endpoints for quickly retrieving a single piece of data.
+- [Brightcove Videos API](https://apis.io/apis/brightcove/brightcove-videos-api/) — Operations for managing videos, video metadata, audio tracks, and more.
+- [Brightcove View Events API](https://apis.io/apis/brightcove/brightcove-view-events-api/) — Get view events for a Video Cloud account
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### GraphQL (1)
+
+GraphQL schemas.
+
+- [Moved to /providers/brightcove/](https://apis.io/graphqls/brightcove/brightcove-graphql/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Brightcove Agentic Access](https://apis.io/agentic-access/brightcove/brightcove-agentic-access/)
+
+#### Collections (40)
+
+Postman and Open Collection request collections.
+
+- [Brightcove Analytics API Reference Access Tokens API](https://apis.io/collections/brightcove/open-brightcove-access-tokens-api/)
+- [Brightcove Analytics API Reference Access Tokens Account Configuration API](https://apis.io/collections/brightcove/open-brightcove-account-configuration-api/)
+- [Brightcove Analytics API Reference Access Tokens Ad Call Tracking API](https://apis.io/collections/brightcove/open-brightcove-ad-call-tracking-api/)
+- [Brightcove Analytics API Reference Access Tokens Ad Configurations API](https://apis.io/collections/brightcove/open-brightcove-ad-configurations-api/)
+- [Brightcove Analytics API Reference Access Tokens Analytics Report API](https://apis.io/collections/brightcove/open-brightcove-analytics-report-api/)
+- [Brightcove Analytics API Reference Access Tokens Clear-Sources API](https://apis.io/collections/brightcove/open-brightcove-clear-sources-api/)
+- [Brightcove Analytics API Reference Access Tokens Client Credentials API](https://apis.io/collections/brightcove/open-brightcove-client-credentials-api/)
+- [Brightcove Analytics API Reference Access Tokens Credentials API](https://apis.io/collections/brightcove/open-brightcove-credentials-api/)
+- [Brightcove Analytics API Reference Access Tokens Custom Fields API](https://apis.io/collections/brightcove/open-brightcove-custom-fields-api/)
+- [Brightcove Analytics API Reference Access Tokens Delivery Rule Actions API](https://apis.io/collections/brightcove/open-brightcove-delivery-rule-actions-api/)
+- [Brightcove Analytics API Reference Access Tokens Delivery Rule Conditions API](https://apis.io/collections/brightcove/open-brightcove-delivery-rule-conditions-api/)
+- [Brightcove Analytics API Reference Access Tokens Delivery Rules API](https://apis.io/collections/brightcove/open-brightcove-delivery-rules-api/)
+- [Brightcove Analytics API Reference Access Tokens Embed Configurations API](https://apis.io/collections/brightcove/open-brightcove-embed-configurations-api/)
+- [Brightcove Analytics API Reference Access Tokens Engagement Report API](https://apis.io/collections/brightcove/open-brightcove-engagement-report-api/)
+- [Brightcove Analytics API Reference Access Tokens Folders API](https://apis.io/collections/brightcove/open-brightcove-folders-api/)
+- [Brightcove Analytics API Reference Access Tokens History API](https://apis.io/collections/brightcove/open-brightcove-history-api/)
+- [Brightcove Analytics API Reference Access Tokens Ingest API](https://apis.io/collections/brightcove/open-brightcove-ingest-api/)
+- [Brightcove Analytics API Reference Access Tokens Labels API](https://apis.io/collections/brightcove/open-brightcove-labels-api/)
+- [Brightcove Analytics API Reference Access Tokens Leads API](https://apis.io/collections/brightcove/open-brightcove-leads-api/)
+- [Brightcove Analytics API Reference Access Tokens Live Analytics API](https://apis.io/collections/brightcove/open-brightcove-live-analytics-api/)
+- [Brightcove Analytics API Reference Access Tokens Live Job Clip API](https://apis.io/collections/brightcove/open-brightcove-live-job-clip-api/)
+- [Brightcove Analytics API Reference Access Tokens Live Jobs API](https://apis.io/collections/brightcove/open-brightcove-live-jobs-api/)
+- [Brightcove Analytics API Reference Access Tokens Media Assets API](https://apis.io/collections/brightcove/open-brightcove-media-assets-api/)
+- [Brightcove Analytics API Reference Access Tokens Media Sharing API](https://apis.io/collections/brightcove/open-brightcove-media-sharing-api/)
+- [Brightcove Analytics API Reference Access Tokens Notifications API](https://apis.io/collections/brightcove/open-brightcove-notifications-api/)
+- …and 15 more published on APIs.io
 
-## Tags
+#### Security (3)
 
-- Video
-- Media
-- Streaming
-- Live Streaming
-- Analytics
-- CDN
-- OTT
-- Player
-- Ad Insertion
+Authentication, trust centre, and vulnerability disclosure.
 
-## Timestamps
+- [Brightcove Authentication](https://apis.io/security/brightcove/brightcove-authentication/)
+- [Brightcove Domain Security](https://apis.io/security/brightcove/brightcove-domain-security/)
+- [Brightcove Trust Center](https://apis.io/security/brightcove/brightcove-trust-center/)
 
-- **Created:** 2026-06-13
-- **Modified:** 2026-06-13
+#### OAuth scopes (1)
 
-## APIs
+The permissions the API asks for.
 
-### Brightcove CMS API
+- [Brightcove Scopes](https://apis.io/scopes/brightcove/brightcove-scopes/)
 
-Delivers uncached access to all media data within your Video Cloud library, enabling full CRUD operations on videos, playlists, and assets.
+#### Plans and pricing (1)
 
-- **Human URL:** [https://apis.support.brightcove.com/cms/](https://apis.support.brightcove.com/cms/)
-- **Base URL:** `https://cms.api.brightcove.com/v1`
+Published plans, tiers and prices.
 
-#### Tags
+- [Brightcove Plans Pricing](https://apis.io/plans/brightcove/brightcove-plans-pricing/)
 
-- CMS
-- Video Management
-- Media
+#### Rate limits (1)
 
-#### Properties
+Published request limits.
 
-- [Documentation](https://apis.support.brightcove.com/cms/)
-- [OpenAPI](https://apis.support.brightcove.com/cms/references/cms-api-swagger.yaml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Graph Q L](graphql/brightcove-graphql.md)
+- [Brightcove Rate Limits](https://apis.io/rate-limits/brightcove/brightcove-rate-limits/)
 
-### Brightcove Dynamic Ingest API
+#### FinOps (1)
 
-Handles ingestion of videos and media assets into Video Cloud, supporting remote URL ingestion and upload from local files.
+What the API costs to run, by operation.
 
-- **Human URL:** [https://apis.support.brightcove.com/dynamic-ingest/](https://apis.support.brightcove.com/dynamic-ingest/)
-- **Base URL:** `https://ingest.api.brightcove.com/v1`
+- [Brightcove Finops](https://apis.io/finops/brightcove/brightcove-finops/)
 
-#### Tags
+## Where to find this API
 
-- Ingest
-- Video Upload
-- Encoding
-
-#### Properties
-
-- [Documentation](https://apis.support.brightcove.com/dynamic-ingest/)
-
-### Brightcove Analytics API
-
-Retrieves analytics data programmatically for Video Cloud accounts, including dimensions like device type, geography, player, and video performance metrics.
-
-- **Human URL:** [https://apis.support.brightcove.com/analytics/](https://apis.support.brightcove.com/analytics/)
-- **Base URL:** `https://analytics.api.brightcove.com/v1`
-
-#### Tags
-
-- Analytics
-- Reporting
-- Metrics
-
-#### Properties
-
-- [Documentation](https://apis.support.brightcove.com/analytics/)
-
-### Brightcove Playback API
-
-Fetches video and playlist data for players and mobile apps, providing optimized delivery of media metadata and playback URLs.
-
-- **Human URL:** [https://apis.support.brightcove.com/playback/](https://apis.support.brightcove.com/playback/)
-- **Base URL:** `https://edge.api.brightcove.com/playback/v1`
-
-#### Tags
-
-- Playback
-- Video Delivery
-- Player
-
-#### Properties
-
-- [Documentation](https://apis.support.brightcove.com/playback/)
-
-### Brightcove Player Management API
-
-Creates, edits, and manages Brightcove players as publishable resources with full configuration control.
-
-- **Human URL:** [https://apis.support.brightcove.com/player-management/](https://apis.support.brightcove.com/player-management/)
-- **Base URL:** `https://players.api.brightcove.com/v2`
-
-#### Tags
-
-- Player
-- Configuration
-- Management
-
-#### Properties
-
-- [Documentation](https://apis.support.brightcove.com/player-management/)
-
-### Brightcove Live API
-
-Creates and manages live streams with comprehensive streaming controls including RTMP, RTP, RTP-FEC, and SRT input protocols and HLS output delivery.
-
-- **Human URL:** [https://apis.support.brightcove.com/live-api/](https://apis.support.brightcove.com/live-api/)
-- **Base URL:** `https://api.bcovlive.io/v1`
-
-#### Tags
-
-- Live Streaming
-- Broadcasting
-- HLS
-
-#### Properties
-
-- [Documentation](https://apis.support.brightcove.com/live-api/)
-
-### Brightcove OAuth API
-
-Implements OAuth 2.0 client credentials flow for managing credentials and obtaining access tokens for all Brightcove REST APIs.
-
-- **Human URL:** [https://apis.support.brightcove.com/oauth/](https://apis.support.brightcove.com/oauth/)
-- **Base URL:** `https://oauth.brightcove.com/v4`
-
-#### Tags
-
-- OAuth
-- Authentication
-- Security
-
-#### Properties
-
-- [Documentation](https://apis.support.brightcove.com/oauth/)
-
-### Brightcove SSAI API
-
-Enables server-side ad stitching directly into video streams, supporting VOD and live stream monetization with seamless ad insertion.
-
-- **Human URL:** [https://apis.support.brightcove.com/ssai/](https://apis.support.brightcove.com/ssai/)
-- **Base URL:** `https://ssai.api.brightcove.com/v1`
-
-#### Tags
-
-- Ad Insertion
-- Monetization
-- SSAI
-
-#### Properties
-
-- [Documentation](https://apis.support.brightcove.com/ssai/)
-
-### Brightcove Ingest Profiles API
-
-Manages profiles that define video processing during ingestion, controlling encoding settings and rendition creation.
-
-- **Human URL:** [https://apis.support.brightcove.com/ingest-profiles/](https://apis.support.brightcove.com/ingest-profiles/)
-- **Base URL:** `https://ingestion.api.brightcove.com/v1`
-
-#### Tags
-
-- Encoding
-- Ingest Profiles
-- Transcoding
-
-#### Properties
-
-- [Documentation](https://apis.support.brightcove.com/ingest-profiles/)
-
-### Brightcove Delivery Rules API
-
-Customizes media delivery to meet specific business objectives, enabling conditional logic for rendition selection and CDN routing.
-
-- **Human URL:** [https://apis.support.brightcove.com/delivery-rules/](https://apis.support.brightcove.com/delivery-rules/)
-- **Base URL:** `https://delivery-rules.api.brightcove.com`
-
-#### Tags
-
-- Delivery
-- CDN
-- Rules Engine
-
-#### Properties
-
-- [Documentation](https://apis.support.brightcove.com/delivery-rules/)
-
-### Brightcove Cloud Playout APIs
-
-Manages cloud-based linear channel playout with EPG (Electronic Programming Guide) and Channels APIs for scheduled programming.
-
-- **Human URL:** [https://apis.support.brightcove.com/cloud-playout-apis/](https://apis.support.brightcove.com/cloud-playout-apis/)
-- **Base URL:** `https://cm.cloudplayout.brightcove.com`
-
-#### Tags
-
-- Cloud Playout
-- Linear TV
-- EPG
-- Channels
-
-#### Properties
-
-- [Documentation](https://apis.support.brightcove.com/cloud-playout-apis/)
-
-### Brightcove Audience API
-
-Retrieves viewing event and lead data for marketing automation workflows, enabling integration with MAP and CRM platforms.
-
-- **Human URL:** [https://apis.support.brightcove.com/audience/](https://apis.support.brightcove.com/audience/)
-- **Base URL:** `https://audience.api.brightcove.com/v1`
-
-#### Tags
-
-- Audience
-- Marketing Automation
-- Lead Data
-
-#### Properties
-
-- [Documentation](https://apis.support.brightcove.com/audience/)
-
-### Brightcove Social API
-
-Retrieves social sharing status and history for videos distributed to social media platforms.
-
-- **Human URL:** [https://apis.support.brightcove.com/social/](https://apis.support.brightcove.com/social/)
-- **Base URL:** `https://edge.social.api.brightcove.com/v1`
-
-#### Tags
-
-- Social Media
-- Distribution
-- Sharing
-
-#### Properties
-
-- [Documentation](https://apis.support.brightcove.com/social/)
-
-### Brightcove Playback Restrictions API
-
-Provides scalable playback management including DRM, concurrency controls, and geographic and domain restrictions.
-
-- **Human URL:** [https://apis.support.brightcove.com/playback-restrictions/](https://apis.support.brightcove.com/playback-restrictions/)
-- **Base URL:** `https://playback-auth.api.brightcove.com`
-
-#### Tags
-
-- DRM
-- Playback Restrictions
-- Security
-- Concurrency
-
-#### Properties
-
-- [Documentation](https://apis.support.brightcove.com/playback-restrictions/)
-
-## Common Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.brightcove.com)
 - [Documentation](https://apis.support.brightcove.com/)
-- [Git Hub Org](https://github.com/brightcove)
-- [LinkedIn](https://www.linkedin.com/company/brightcove)
-- [Blog](https://www.brightcove.com/en/blog/)
 - [Pricing](https://www.brightcove.com/en/contact/)
-- [Status Page](https://status.brightcove.com/)
-- [X (Twitter)](https://x.com/brightcove)
-- [Plans](plans/brightcove-plans-pricing.yml)
-- [Rate Limits](rate-limits/brightcove-rate-limits.yml)
-- [Fin Ops](finops/brightcove-finops.yml)
+- [Blog](https://www.brightcove.com/blog)
+- [Status](https://status.brightcove.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 33.0** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.4 |
+| Contract quality | 50.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 21.1 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 13.2 |
+
+**Agent readiness 25.0** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 26.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/brightcove/](https://apis.io/providers/brightcove/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Brightcove: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/brightcove/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
